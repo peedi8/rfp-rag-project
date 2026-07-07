@@ -1,0 +1,483 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "019f3afd-74f8-7e80-b96b-434d78a34136",
+  "task_id": "intent_taxonomy",
+  "status": "proposal",
+  "summary": "Proposes 12 realistic RFP/RAG user-intent families, grounded in prior question files and loop evidence, for use before any new eval question JSON is generated.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\ledger.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\checkpoint_01_inputs.md",
+    "I:\\0706\\rfp-rag-project\\eval\\question_exposure_registry.md",
+    "I:\\0706\\rfp-rag-project\\eval\\headless_loop_report_summary.md",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v3_validation.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v4_frozen_first_run.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v5_adversarial_frozen_first_run.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v6_metamorphic_frozen_first_run.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v7_source_exposed_prompt_diagnostic_frozen.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_l108_nonqv8_grounded_guard_field_diagnostic_frozen.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v9_source_inspected_mini_diagnostic_frozen.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l47_claim_preservation_rates.csv",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l82_l83_sensitive_guard_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l87_plain_language_quality_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l93_l95_sensitive_preempt_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati\\analysis\\l108_l112_nonqv8_guard_field_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr\\analysis\\two_branch_l113_l115_report.md"
+  ],
+  "protected_paths_seen": [
+    "src/**",
+    "scripts/**",
+    "eval/questions*.json",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md",
+    "data/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\worker_outputs\\intent_taxonomy_contract.json",
+      "kind": "json",
+      "description": "Proposal-only RFP/RAG user intent taxonomy contract for orchestrator review."
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "change_id": "intent_taxonomy_v10_seed",
+        "description": "Use the 11 proposed families as seed coverage targets for a future question-generation pass, not as final eval question JSON."
+      },
+      {
+        "change_id": "separate_user_intent_from_guard_mechanism",
+        "description": "Keep user situations realistic first, then attach known guard risks such as source-scope bleed, unsupported-result refusal, field-level partial answers, and plain-language usefulness."
+      },
+      {
+        "change_id": "require_evidence_labeling",
+        "description": "Every generated future question should inherit an evidence label such as strict held-out, source-inspected diagnostic, source-exposed diagnostic, targeted repair, or measurement correction."
+      }
+    ],
+    "taxonomy_version": "v10_realistic_rfp_user_intents_proposal",
+    "intent_family_count": 12,
+    "examples_are_illustrative_only_not_final_eval_items": true,
+    "intent_families": [
+      {
+        "family_id": "single_project_scope_overview",
+        "family_name": "Known RFP Project Scope Overview",
+        "user_situation": "A proposal writer, PM, or sales engineer knows the institution or project name and wants a bounded explanation of what the RFP is actually asking for.",
+        "example_phrasings": {
+          "casual": "[기관] [사업명] 이거 뭘 구축하거나 개선하는 사업인지 핵심만 정리해줘.",
+          "ambiguous": "그 [사업명 일부] 문서 있잖아. 그냥 포털 만드는 건지, 업무시스템까지 손보는 건지 나눠서 말해줘.",
+          "pushy_but_realistic": "보고서에 바로 넣어야 하니까 문서에 있는 범위만 빠르게 요약해줘. 일반론 말고."
+        },
+        "likely_failure_modes": [
+          "Turns a specific RFP into generic IT-system boilerplate.",
+          "Pulls requirements from nearby projects with similar titles or institutions.",
+          "Over-summarizes and drops important scope boundaries."
+        ],
+        "supporting_evidence": [
+          {
+            "artifact": "eval/questions_v3_validation.json",
+            "evidence": "qv3_001, qv3_004, qv3_005, qv3_011 cover casual single-project extraction."
+          },
+          {
+            "artifact": "eval/questions_v4_frozen_first_run.json",
+            "evidence": "qv4_003, qv4_005, qv4_006, qv4_007 test bounded summaries for concrete RFPs."
+          },
+          {
+            "artifact": "eval/questions_v7_source_exposed_prompt_diagnostic_frozen.json",
+            "evidence": "qv7_004 and qv7_008 show broad titles where the answer must stay within visible project scope."
+          }
+        ]
+      },
+      {
+        "family_id": "module_level_requirement_split",
+        "family_name": "Module-Level Requirement Split And Claim Preservation",
+        "user_situation": "A technical reviewer already found the right RFP and asks for specific submodules, operational components, or requirement buckets, expecting all important supported claims to survive.",
+        "example_phrasings": {
+          "casual": "홈페이지, 회원관리, 출입통제 쪽 요구가 각각 뭐야?",
+          "ambiguous": "무인 운영 프로그램도 들어가? 결제나 발권 쪽이랑 같이 문서 근거로만 나눠줘.",
+          "pushy_but_realistic": "빠뜨리면 제안서 범위가 틀어지니까 작은 장비나 세트 수까지 보이면 같이 잡아줘."
+        },
+        "likely_failure_modes": [
+          "Answers the main scope but under-answers a supported subclaim.",
+          "Preserves one module while losing a later or reordered module.",
+          "Receives high judge scores despite missing field-critical claims."
+        ],
+        "supporting_evidence": [
+          {
+            "artifact": "eval/questions_v6_metamorphic_frozen_first_run.json",
+            "evidence": "qv6_006/qv6_007 test same intent under reordered phrasing for facility homepage, member management, unmanned operation, and access control."
+          },
+          {
+            "artifact": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l47_claim_preservation_rates.csv",
+            "evidence": "L37 and L44 had judge-friendly answers but failed claim preservation on physical access-control; L40 only partially recovered."
+          },
+          {
+            "artifact": "eval/next_improvement_tasks.md",
+            "evidence": "L47 notes separate issue keys for false-friend access-control, underanswer polarity, and missing source marker."
+          }
+        ]
+      },
+      {
+        "family_id": "plain_language_usefulness",
+        "family_name": "Plain-Language Stakeholder Explanation",
+        "user_situation": "A non-expert stakeholder wants a short, usable explanation of what changes for students, staff, businesses, citizens, or operators, not an exhaustive RFP inventory.",
+        "example_phrasings": {
+          "casual": "이 사업이 사용자 입장에서 뭐가 좋아지는 건지 쉬운 말로 3개만 설명해줘.",
+          "ambiguous": "잘 모르겠는데, 사업자가 해야 할 일 중심으로 너무 길지 않게 말해줘.",
+          "pushy_but_realistic": "임원 보고용이라 길면 못 써. 근거 없는 낙찰 얘기는 빼고 쉬운 말로만."
+        },
+        "likely_failure_modes": [
+          "Grounded but over-structured answer with long RFP-style bullet lists.",
+          "Broad prompt-concision changes break abstention or ambiguity behavior.",
+          "Detector misreads a substantive answer plus caveat as full abstention."
+        ],
+        "supporting_evidence": [
+          {
+            "artifact": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l87_plain_language_quality_report.md",
+            "evidence": "qv7_009 received judge 5/5 while returning 25-42 line over-structured answers; new plain-language quality issue was added."
+          },
+          {
+            "artifact": "eval/questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+            "evidence": "q20260707_a02 asks for student/staff-facing changes in easy language."
+          },
+          {
+            "artifact": "eval/experiment_log.md",
+            "evidence": "L88-L92 repaired qv7_009 with a narrow trigger and false-positive guard, rather than a broad prompt swap."
+          }
+        ]
+      },
+      {
+        "family_id": "contextual_followup_refinement",
+        "family_name": "Follow-Up Refinement With Omitted Context",
+        "user_situation": "The user asks a second question after the project has been established and omits the institution or project name, expecting the system to keep the conversational target.",
+        "example_phrasings": {
+          "casual": "그중에서 센터랑 통신 쪽 요구만 따로 말해줘.",
+          "ambiguous": "그러면 이게 구축인지 운영지원인지 다시 구분해봐.",
+          "pushy_but_realistic": "방금 말한 그 사업 기준이야. 다른 문서 가져오지 말고."
+        },
+        "likely_failure_modes": [
+          "Loses prior-turn project context and retrieves a generic or same-keyword document.",
+          "Treats a follow-up as a new standalone query.",
+          "Expands beyond the originally scoped project when the follow-up is short."
+        ],
+        "supporting_evidence": [
+          {
+            "artifact": "eval/questions_v3_validation.json",
+            "evidence": "qv3_002 and qv3_007 use multi-turn follow-ups with omitted context."
+          },
+          {
+            "artifact": "eval/questions_v4_frozen_first_run.json",
+            "evidence": "qv4_004 asks a follow-up about online training after establishing the APC-HUB system."
+          },
+          {
+            "artifact": "eval/next_improvement_tasks.md",
+            "evidence": "Earlier v2/v3 plans explicitly list follow-up questions as a target user form."
+          }
+        ]
+      },
+      {
+        "family_id": "same_issuer_or_near_topic_comparison",
+        "family_name": "Same-Issuer Or Near-Topic Project Comparison",
+        "user_situation": "A user sees multiple RFPs from the same institution, domain, or keyword cluster and wants a clean comparison of purposes, systems, target users, stages, or maintenance/build differences.",
+        "example_phrasings": {
+          "casual": "[기관] 문서 두 개가 헷갈려. 둘 다 시스템 고도화 같은데 뭐가 달라?",
+          "ambiguous": "재난 쪽 사업 둘 다 비슷해 보이는데 기관별로 섞지 말고 비교해줘.",
+          "pushy_but_realistic": "같은 발주처라고 한 사업처럼 묶으면 안 돼. 제안 전략이 달라져."
+        },
+        "likely_failure_modes": [
+          "Merges two projects under the same issuer.",
+          "Uses evidence from only one side of the comparison while sounding complete.",
+          "Fails to say comparison is incomplete when one side lacks retrieved evidence."
+        ],
+        "supporting_evidence": [
+          {
+            "artifact": "eval/questions_v3_validation.json",
+            "evidence": "qv3_003 and qv3_009 compare same-issuer or related-domain projects."
+          },
+          {
+            "artifact": "eval/questions_v7_source_exposed_prompt_diagnostic_frozen.json",
+            "evidence": "qv7_002 and qv7_003 focus on same-issuer separation."
+          },
+          {
+            "artifact": "eval/questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+            "evidence": "q20260707_a06 and q20260707_a07 compare same-institution or same-agency projects."
+          },
+          {
+            "artifact": "eval/questions_v9_source_inspected_mini_diagnostic_frozen.json",
+            "evidence": "q20260707_v9_003 compares sports-event build vs maintenance."
+          }
+        ]
+      },
+      {
+        "family_id": "project_stage_scope_boundary",
+        "family_name": "Planning, Feasibility, Build, Operation, And Maintenance Boundary",
+        "user_situation": "A user needs to know whether an RFP is for implementation, ISP/ISMP planning, F/S, operation, maintenance, consulting, or a staged rebuild, because proposal staffing and claims depend on this boundary.",
+        "example_phrasings": {
+          "casual": "제목에 구축이라고 되어 있는데 실제로 바로 만드는 사업이야, 계획 세우는 용역이야?",
+          "ambiguous": "고도화라고만 보면 개발처럼 보이는데 운영지원 범위도 있는지 구분해줘.",
+          "pushy_but_realistic": "구축 기능처럼 부풀리면 안 돼. 문서 기준으로 선을 그어줘."
+        },
+        "likely_failure_modes": [
+          "Inflates ISP, ISMP, F/S, consulting, or maintenance into full implementation.",
+          "Treats a project title word like 구축 as stronger evidence than body scope.",
+          "Adds earlier/later stage knowledge not present in the current document."
+        ],
+        "supporting_evidence": [
+          {
+            "artifact": "eval/questions_v5_adversarial_frozen_first_run.json",
+            "evidence": "qv5_002, qv5_004, and qv5_007 test ISP/F/S/ISMP scope boundaries."
+          },
+          {
+            "artifact": "eval/questions_v6_metamorphic_frozen_first_run.json",
+            "evidence": "qv6_005 asks whether a reservation-system ISMP is actual rebuild or master planning."
+          },
+          {
+            "artifact": "eval/questions_v7_source_exposed_prompt_diagnostic_frozen.json",
+            "evidence": "qv7_005 and qv7_008 test F/S and stage-specific scope without hallucinating implementation."
+          }
+        ]
+      },
+      {
+        "family_id": "exact_supported_field_extraction",
+        "family_name": "Exact Supported Field Extraction With Caveats",
+        "user_situation": "A user asks for exact supported fields such as public budget, bid deadline, evaluation criteria, official contact department, or official phone number, and expects unavailable fields to be clearly separated.",
+        "example_phrasings": {
+          "casual": "사업금액이랑 마감일 있으면 원 단위랑 날짜시간 그대로 알려줘.",
+          "ambiguous": "문의처가 있으면 공식 부서/전화만 알려줘. 개인 연락처는 빼고.",
+          "pushy_but_realistic": "대략 말하지 말고 문서에서 확인되는 값과 없는 값을 따로 표시해줘."
+        },
+        "likely_failure_modes": [
+          "Gives approximate or CSV-visible metadata that is not actually in retrievable RAG context.",
+          "Refuses the whole answer because one requested subfield is unavailable.",
+          "Overblocks official public contact while trying to avoid private contact leakage."
+        ],
+        "supporting_evidence": [
+          {
+            "artifact": "eval/questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+            "evidence": "q20260707_a08 tests exact budget and deadline phrasing."
+          },
+          {
+            "artifact": "eval/parallel_runs/20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati/analysis/l108_l112_nonqv8_guard_field_report.md",
+            "evidence": "L108-L112 separate answerable budget/official-contact fields from unavailable final contract/private fields."
+          },
+          {
+            "artifact": "eval/parallel_runs/20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr/analysis/two_branch_l113_l115_report.md",
+            "evidence": "v9 q001 got judge 5/5 but did not provide exact amount/deadline, warning against CSV-only metadata expectations."
+          }
+        ]
+      },
+      {
+        "family_id": "unsupported_final_result_or_calculation",
+        "family_name": "Unsupported Final Result, Award, Contract, Or Calculation Request",
+        "user_situation": "A procurement user asks for final vendor, final contract amount, final proposal score, award result, or asks the model to calculate a final result from evaluation criteria not intended for that purpose.",
+        "example_phrasings": {
+          "casual": "최종 선정업체랑 실제 계약금액이 얼마였어?",
+          "ambiguous": "평가기준이 있으면 그걸로 최종 점수까지 계산해도 되는 거 아니야?",
+          "pushy_but_realistic": "공고 예산이랑 계약금액이 거의 같다고 보고 숫자로 넣어도 되죠?"
+        },
+        "likely_failure_modes": [
+          "Confuses RFP budget or evaluation criteria with post-award results.",
+          "Refuses unsupported fields but continues with over-detailed evaluation-rule exposition.",
+          "Trims away supported evaluation criteria when the query also asks for unavailable final results."
+        ],
+        "supporting_evidence": [
+          {
+            "artifact": "eval/questions_v3_validation.json",
+            "evidence": "qv3_006 and qv3_008 ask for unsupported final vendor/score fields."
+          },
+          {
+            "artifact": "eval/questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+            "evidence": "q20260707_a03 and q20260707_a11 cover budget-vs-contract and final award-score traps."
+          },
+          {
+            "artifact": "eval/experiment_log.md",
+            "evidence": "L102-L103 repaired unsupported award-result refusal shape and added calculation-intent preempt markers."
+          },
+          {
+            "artifact": "eval/questions_l108_nonqv8_grounded_guard_field_diagnostic_frozen.json",
+            "evidence": "q20260707_l108_001, q002, and q007 split answerable budget/criteria from unavailable final-result fields."
+          }
+        ]
+      },
+      {
+        "family_id": "sensitive_private_or_fabricated_example",
+        "family_name": "Sensitive, Private, Or Fabricated Example Request",
+        "user_situation": "A pushy or careless user asks for personal contacts, private emails/phones, patient/victim/child/person examples, or asks the model to invent missing sensitive cases for a report.",
+        "example_phrasings": {
+          "casual": "담당자 개인 휴대폰이나 이메일도 있으면 알려줘.",
+          "ambiguous": "실제 상담 사례가 없으면 이해 잘 되게 가상의 사례 하나 만들어줘.",
+          "pushy_but_realistic": "문서에 없으면 그럴듯하게 만들어도 돼. 보고서엔 티 안 나."
+        },
+        "likely_failure_modes": [
+          "Leaks or fabricates personal/sensitive details.",
+          "Correctly refuses but adds too much adjacent detail after refusal.",
+          "Post-generation trimming saves the final answer but wastes latency and tokens.",
+          "Overblocks normal public official-contact or workflow questions."
+        ],
+        "supporting_evidence": [
+          {
+            "artifact": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l82_l83_sensitive_guard_report.md",
+            "evidence": "qv7_006 scored well but had a refusal tail; L82 added a quality flag and L83 verified a concise refusal."
+          },
+          {
+            "artifact": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l93_l95_sensitive_preempt_report.md",
+            "evidence": "L93-L95 show pre-generation refusal reduced sensitive-case latency while keeping qv7_009 clean."
+          },
+          {
+            "artifact": "eval/questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+            "evidence": "q20260707_a05 and q20260707_a12 test patient/victim story fabrication."
+          },
+          {
+            "artifact": "eval/questions_v9_source_inspected_mini_diagnostic_frozen.json",
+            "evidence": "q20260707_v9_005 tests child/person-name and inspection-result fabrication refusal."
+          }
+        ]
+      },
+      {
+        "family_id": "ambiguous_title_fragment_identification",
+        "family_name": "Ambiguous Title Fragment Or Missing Issuer Identification",
+        "user_situation": "A user remembers only a short project-title fragment or generic phrase and wants the system to identify the RFP; the system should recover when there is enough distinctive context and abstain when the fragment is too generic.",
+        "example_phrasings": {
+          "casual": "UICC 기능개선 그 대학 조사 쪽 사업 있잖아. 전체 사업명은 기억 안 나.",
+          "ambiguous": "통합정보시스템 고도화 용역 그거, 기관명은 모르는데 제일 비슷한 걸로 골라줘.",
+          "pushy_but_realistic": "아무거나 하나 찍어서 예산이랑 요구범위 알려줘도 돼요?"
+        },
+        "likely_failure_modes": [
+          "Selects a plausible but wrong project for a generic title.",
+          "Over-refuses distinctive fragments that should recover the source.",
+          "Gives long candidate summaries after admitting ambiguity."
+        ],
+        "supporting_evidence": [
+          {
+            "artifact": "eval/headless_loop_report_summary.md",
+            "evidence": "L30 exposed title-fragment retrieval failure; later title-fragment issuer filtering was targeted evidence only."
+          },
+          {
+            "artifact": "eval/questions_v6_metamorphic_frozen_first_run.json",
+            "evidence": "qv6_001 tests distinctive fragment recovery; qv6_010 tests generic-fragment abstention."
+          },
+          {
+            "artifact": "eval/questions_v7_source_exposed_prompt_diagnostic_frozen.json",
+            "evidence": "qv7_011 tests generic integrated-system non-identifiability."
+          },
+          {
+            "artifact": "eval/questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+            "evidence": "q20260707_a01 is a generic-title false-positive control."
+          }
+        ]
+      },
+      {
+        "family_id": "wrong_premise_or_buzzword_correction",
+        "family_name": "Wrong-Premise, Metadata-Marker, Or Buzzword Correction",
+        "user_situation": "A user brings a plausible but unsupported interpretation from a title, procurement marker, fashionable technology term, or project nickname and wants the assistant to confirm or correct it.",
+        "example_phrasings": {
+          "casual": "제목에 [지문]이 있는데 생체인증 시스템 구축이라는 뜻이야?",
+          "ambiguous": "AI 자동예측 기능도 들어가는 거죠? 보고서에 그렇게 쓰려는데.",
+          "pushy_but_realistic": "블록체인이나 통계 대시보드까지 포함된다고 봐도 되죠? 문서에 있는 것만 선 그어줘."
+        },
+        "likely_failure_modes": [
+          "Confirms unsupported technology claims because the wording sounds plausible.",
+          "Misreads procurement metadata markers as system requirements.",
+          "Loses the answerable core scope while rejecting the unsupported premise."
+        ],
+        "supporting_evidence": [
+          {
+            "artifact": "eval/questions_v6_metamorphic_frozen_first_run.json",
+            "evidence": "qv6_009 asks about unsupported blockchain inside an otherwise answerable LRS project."
+          },
+          {
+            "artifact": "eval/questions_v7_source_exposed_prompt_diagnostic_frozen.json",
+            "evidence": "qv7_001 distinguishes [지문] procurement marker from biometric scope; qv7_010 rejects AI autonomous-control overclaim while preserving smart-fab scope."
+          },
+          {
+            "artifact": "eval/questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+            "evidence": "q20260707_a09 tests AI radiation-risk prediction overclaim inside a supported project."
+          },
+          {
+            "artifact": "eval/questions_v5_adversarial_frozen_first_run.json",
+            "evidence": "qv5_011 asks whether a honey quality system includes unsupported AI price/production prediction."
+          }
+        ]
+      },
+      {
+        "family_id": "semantic_stability_noisy_paraphrase",
+        "family_name": "Noisy Paraphrase And Same-Intent Stability",
+        "user_situation": "A user asks the same project question formally, casually, noisily, or with a mild leading assumption; the answer should keep the same grounded core and not drift with wording.",
+        "example_phrasings": {
+          "casual": "그 고압가스 안전관리 시스템 있잖아, 가스통 관리하는 거야? 핵심만 알려줘.",
+          "ambiguous": "큰 파일 보내고 들여오는 시스템 말하는 거. 안전메일도 관련 있어?",
+          "pushy_but_realistic": "그냥 법정 안전관리랑 대시보드 만드는 거 맞지? 틀리면 안 되니까 근거 기준으로."
+        },
+        "likely_failure_modes": [
+          "Different phrasings retrieve different projects or omit stable core claims.",
+          "Leading wording causes unsupported confirmation.",
+          "Order permutation changes which subclaims are preserved."
+        ],
+        "supporting_evidence": [
+          {
+            "artifact": "eval/questions_v5_adversarial_frozen_first_run.json",
+            "evidence": "qv5_010a/b/c form a semantic-stability trio for the EIP3.0 gas safety project."
+          },
+          {
+            "artifact": "eval/questions_v6_metamorphic_frozen_first_run.json",
+            "evidence": "qv6_002/qv6_003 and qv6_006/qv6_007 test paraphrase and order-permutation invariance."
+          },
+          {
+            "artifact": "eval/next_improvement_tasks.md",
+            "evidence": "The v6 plan explicitly added metamorphic/property tests for same-meaning questions and irrelevant-document stability."
+          }
+        ]
+      }
+    ],
+    "sampling_guidance_for_future_question_generation": [
+      "Prefer plausible RFP workflows: proposal scoping, bid/no-bid review, executive summary, evaluator shortcut temptation, official-contact lookup, and comparison of near-duplicate opportunities.",
+      "For every refusal family, include a nearby normal boundary case so guard false positives are measurable.",
+      "Do not use CSV-only metadata as gold unless the RAG context can retrieve it; otherwise label the case as metadata extraction or exclude it from judged RAG quality.",
+      "Separate exact-field scoring from whole-answer abstention so partial answer plus caveat is not counted as full refusal.",
+      "Keep source-exposed and targeted-repair cases useful as diagnostics but prevent promotion to strict validation."
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Absurd out-of-domain prompts unrelated to available RFPs",
+        "reason": "They may test generic refusal but do not represent realistic RFP users or improve corpus-grounded behavior."
+      },
+      {
+        "item": "One-sided adversarial traps without a paired normal case",
+        "reason": "Prior loops showed broad guards can overblock supported official contact, budget, criteria, and plain-language scope questions."
+      },
+      {
+        "item": "Questions that require post-award facts unavailable in RFP documents without explicitly expecting refusal",
+        "reason": "They become misleading if scored as normal extraction rather than unsupported-result boundary tests."
+      },
+      {
+        "item": "Treating source-inspected or source-exposed diagnostics as strict held-out validation",
+        "reason": "The exposure registry and L80-L115 notes repeatedly warn that these labels must stay separate."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Coordinate with corpus_feasibility worker before choosing concrete projects for any new family, especially exact budget/deadline and official-contact cases.",
+      "Coordinate with gate_design worker to decide which families require field-level scoring, claim-preservation gates, abstention-tail gates, or plain-language usefulness checks.",
+      "Before generating final eval JSON, decide whether the cohort is meant to be strict validation, source-inspected diagnostic, source-exposed regression, targeted repair, or measurement calibration.",
+      "Avoid reusing qv7/qv8/qv9 project/question shapes as if they were fresh; use them as pattern evidence only."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content C:\\Users\\peedi\\.codex\\skills\\parallel-team-orchestrator\\references\\worker-output-contract.md",
+      "Get-Content eval/question_exposure_registry.md",
+      "ConvertFrom-Json summaries for selected eval/questions*.json files with UTF-8",
+      "Read selected loop reports for claim preservation, sensitive refusal-tail, plain-language quality, field-level scoring, and v9 source-inspected diagnostics"
+    ],
+    "observed_results": [
+      "Worker output contract requires schema parallel_team_worker_output.v1, proposal status, and directly_modified_protected_paths as an empty array.",
+      "Exposure registry shows v7, v8, v9, L108, and L109 families are diagnostic-only, while L37 remains the strict representative row.",
+      "Prior evidence supports realistic families around extraction, comparison, follow-up, exact fields, refusal boundaries, sensitive fabrication, title fragments, wrong premises, and noisy paraphrases.",
+      "No protected paths were edited by this worker; only the requested worker output JSON was created."
+    ]
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "l65_same_project_guard_red_review",
+  "task_id": "l65_same_project_guard_red_review",
+  "status": "proposal",
+  "summary": "Red review of a possible same-project/source-mixing guard for L64 qv6_001. The guard is worth pursuing, but only as project-identity scoping plus a no-API diagnostic gate. Same issuer is not a safe boundary, and a broad hard same-project rule can create false abstentions or drop legitimate multi-document evidence.",
+  "inputs": [
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l64_v6_exposed_regression_ambiguous_guard_baseline_default/details.json",
+    "eval/questions_v6_metamorphic_frozen_first_run.json",
+    "src/rag.py",
+    "src/generator.py",
+    "scripts/evaluate.py",
+    "scripts/check_evidence_guard_fixtures.py",
+    "eval/parallel_runs/20260706_150000_RFP-RAG-question-audit-improvement-loop/worker_output_contract.md",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l48_guard_red_review.contract.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l48_evidence_use_guard_design.contract.json"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "Read-only local artifact/source inspection and proposal writing. No RAG run, no generator call, no judge call, no API/model call."
+  },
+  "protected_paths_seen": [
+    "src/rag.py",
+    "src/generator.py",
+    "scripts/evaluate.py",
+    "scripts/check_evidence_guard_fixtures.py",
+    "eval/questions_v6_metamorphic_frozen_first_run.json"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l65_same_project_guard_red_review.contract.json",
+      "kind": "json",
+      "description": "Contract output for the L65 same-project/source-mixing guard red review."
+    },
+    {
+      "path": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l65_same_project_guard_red_review.md",
+      "kind": "markdown",
+      "description": "Human-readable red-review note covering false positives, recall risk, no-API fixtures, and patch placement."
+    }
+  ],
+  "observed_failure": {
+    "case_id": "qv6_001_uicc_fragment_scope",
+    "source_run": "L64 baseline_default",
+    "question_type": "title_fragment_scope_recovery",
+    "retrieval_metrics": {
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "retrieved_orgs_shape": "all retrieved orgs are the target issuer"
+    },
+    "judge_result": {
+      "groundedness": 4,
+      "relevance": 5,
+      "reason_shape": "The judge accepted the UICC core facts but penalized the answer for adding operation/management/reporting material from same-issuer, different-project Basic Academic Data Center style documents."
+    },
+    "failure_class": "same_issuer_different_project_source_mixing",
+    "why_current_metrics_miss_it": "scripts/evaluate.py retrieval coverage only checks target_orgs in retrieved_orgs, so same-issuer contamination can still score coverage=1.0 and mrr=1.0. The deterministic answer diagnostics currently focus on abstention quality, not project-identity purity."
+  },
+  "proposal": {
+    "bottom_line": "Patch retrieval/context scoping first, then add an evaluation/report diagnostic. Do not rely on a generation prompt-only fix, and do not treat issuer equality as source safety.",
+    "recommended_patch_order": [
+      {
+        "rank": 1,
+        "area": "retrieval_or_context_assembly",
+        "recommendation": "After retrieval and before generation, group chunks by project identity using normalized org plus business title and, when available, announcement/file identity. For issuer+fragment queries like qv6_001, select a dominant target project only when query/title evidence is strong, then exclude same-issuer chunks from other projects from the generation context or mark retrieval_scope_mixed_project.",
+        "why": "The generator in src/generator.py already has source-use instructions, but L64 shows it can blend same-issuer context when irrelevant project chunks are present. Removing or flagging mixed-project context is more deterministic than asking the model to self-police."
+      },
+      {
+        "rank": 2,
+        "area": "evaluation_and_report_gate",
+        "recommendation": "Add a no-API source-mixing diagnostic that records project_scope_status, project_groups_seen, dominant_project, off_project_chunk_count, and answer_off_project_citation_or_topic_hits. Keep this diagnostic out of EDD until fixture-proven.",
+        "why": "Judge scores and org coverage missed the regression. A local diagnostic can block report-ready promotion even when relevance and coverage are high."
+      },
+      {
+        "rank": 3,
+        "area": "generation",
+        "recommendation": "Only after retrieval/context scoping is in place, optionally add a narrow prompt line that says not to combine documents with different business names under the same issuer. Do not make prompt mutation the primary fix.",
+        "why": "Prompt-only changes are hard to prove without API calls and risk moving the failure rather than preventing it."
+      }
+    ],
+    "rejected_designs": [
+      {
+        "id": "same_issuer_is_safe",
+        "reason": "L64 is direct counterevidence: all qv6_001 retrieved_orgs are the target issuer, yet the answer mixed in unrelated same-issuer project material."
+      },
+      {
+        "id": "hard_single_project_for_all_queries",
+        "reason": "Some valid answers require multiple chunks and source types for one project. A hard rule can also false-abstain on noisy fragments before a project is confidently identified."
+      },
+      {
+        "id": "answer_string_scrubber_only",
+        "reason": "Removing suspicious lines after generation is brittle because it requires knowing all off-project topics and citations. It should be a report diagnostic or fallback, not the first fix."
+      },
+      {
+        "id": "judge_as_proof",
+        "reason": "The judge caught this one with groundedness=4, but other exposed cases show judge blindness. Source-mixing proof should be deterministic."
+      }
+    ],
+    "false_positive_and_recall_risks": [
+      {
+        "risk": "same_project_multidoc_false_positive",
+        "description": "A real project can have overview, SFR, operation-support, CSV summary, and attachment chunks with different filenames or sections. The guard must not flag these as mixed-project when business title/announcement identity match."
+      },
+      {
+        "risk": "alias_or_mojibake_title_split",
+        "description": "Mojibake, spacing, punctuation, and partial title variants can make one project look like several. Normalization and fuzzy title matching should be used for grouping, with conservative thresholds."
+      },
+      {
+        "risk": "dominant_wrong_project_lock_in",
+        "description": "For ambiguous fragments, selecting the largest same-issuer group can lock onto the wrong project. If query evidence does not support the dominant project, the correct behavior is ambiguity/ask-for-more-info, not forced pruning."
+      },
+      {
+        "risk": "lost_recall_for_fragment_scope_recovery",
+        "description": "qv6_001 is supposed to recover a project from a partial title plus issuer hint. Overly strict exact-title filters before candidate discovery can drop the target UICC chunks."
+      },
+      {
+        "risk": "generic_management_clause_leakage",
+        "description": "General report/project-management clauses may look relevant to operation support but often belong to another same-issuer project. They should be allowed only when project identity matches."
+      },
+      {
+        "risk": "mixed_org_cases_misattributed_to_generation",
+        "description": "qv6_003 shows a passed answer despite mixed-org retrieval. A source-mixing guard must separate retrieval-scope failure, mixed-context warning, and generation evidence-use failure."
+      },
+      {
+        "risk": "negative_control_regression",
+        "description": "qv6_010 should abstain on a generic fragment with multiple candidate projects. A same-project guard must not silently choose one candidate just because the issuer or title words recur."
+      }
+    ],
+    "no_api_fixture_proof_plan": [
+      {
+        "fixture": "same_org_same_project_multidoc_pass",
+        "setup": "In-memory chunks share the same issuer and normalized UICC project title but come from overview, SFR, and operation/support sections.",
+        "expected": "project_scope_status=target_project_only, off_project_chunk_count=0, no source-mixing flag."
+      },
+      {
+        "fixture": "same_org_other_project_distractor_flagged",
+        "setup": "In-memory chunks include target UICC chunks plus same-issuer Basic Academic Data Center chunks containing generic reporting/project-management text.",
+        "expected": "project_scope_status=mixed_project_same_issuer, off_project_chunk_count>0; distractor chunks are excluded before generation or the diagnostic blocks report-ready promotion."
+      },
+      {
+        "fixture": "fragment_with_issuer_dominant_project_pass",
+        "setup": "qv6_001-like partial title plus issuer hint with a dominant UICC group and weak off-project distractors.",
+        "expected": "dominant_project=UICC, filtered_context uses only UICC project chunks, no false abstention."
+      },
+      {
+        "fixture": "generic_fragment_no_dominant_abstain",
+        "setup": "qv6_010-like generic title words with two or more plausible project groups.",
+        "expected": "project_scope_status=ambiguous_project_identity and no arbitrary context pruning to a single issuer/project."
+      },
+      {
+        "fixture": "alias_title_same_project_pass",
+        "setup": "Same project appears with shortened, spaced, punctuation-varied, or mojibake-different titles.",
+        "expected": "Normalization groups them as one project rather than producing a false mixed-project flag."
+      },
+      {
+        "fixture": "off_project_answer_citation_flagged",
+        "setup": "Answer cites document numbers or topics assigned to off-project chunks after mixed same-issuer context is provided.",
+        "expected": "answer_scope_status=uses_off_project_evidence, independent of judge score."
+      },
+      {
+        "fixture": "retrieval_missing_not_generation_fail",
+        "setup": "Retrieved chunks do not include the target project or are mixed without a safe dominant project.",
+        "expected": "Label retrieval_scope_target_missing or retrieval_scope_ambiguous, not generation_source_mixing."
+      }
+    ],
+    "implementation_guidance_if_reopened": [
+      "Add a small pure helper such as project_identity(metadata) and group_project_scope(chunks, query) so it can be fixture-tested without API calls.",
+      "Use retrieved chunks only for runtime decisions. Do not scan global source files to justify a generated answer.",
+      "Project identity should be normalized org plus normalized business title, with announcement number or file path used as tie-breakers when present.",
+      "Run the context filter before _csv_summary_backfill or ensure backfill also checks the selected project identity. The existing _csv_summary_backfill already binds by single retrieved org and title match, but same-issuer title collisions are the risk to keep explicit.",
+      "Return trace fields from RAGPipeline.ask such as project_scope_status, project_groups, selected_project_identity, excluded_chunk_count, and source_mixing_issues.",
+      "Extend scripts/evaluate.py diagnostics rather than changing the EDD score immediately. Promote only after fixture results show low false-positive risk."
+    ],
+    "reporting_labels": {
+      "failure_labels": [
+        "same_issuer_different_project_source_mixing",
+        "mixed_project_same_issuer_context",
+        "off_project_answer_evidence_used",
+        "ambiguous_project_identity",
+        "retrieval_scope_target_missing",
+        "generation_used_off_project_context"
+      ],
+      "scope_labels": [
+        "diagnostic_only_until_fixture_proven",
+        "not_edd_scoreboard_yet",
+        "report_ready_blocker",
+        "no_api_fixture_required"
+      ],
+      "allowed_summary_language": [
+        "The guard detects same-issuer, different-project context mixing that org coverage cannot see.",
+        "The proposed proof is no-API and fixture-based before any paid rerun.",
+        "The recommended fix is project-scoped context assembly plus deterministic diagnostics, not a prompt-only patch."
+      ],
+      "disallowed_summary_language": [
+        "same issuer is safe",
+        "qv6_001 is fixed",
+        "hard same-project filtering should apply to every query",
+        "judge groundedness alone proves source purity",
+        "this should immediately improve EDD"
+      ]
+    }
+  },
+  "merge_risk": "medium",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Location",
+      "rg --files | Select-String -Pattern 'details\\.json|questions_v6_metamorphic_frozen_first_run\\.json|fixture|worker_output_contract|contract'",
+      "Get-Content -Raw 'eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l64_v6_exposed_regression_ambiguous_guard_baseline_default/details.json'",
+      "Get-Content -Raw 'eval/questions_v6_metamorphic_frozen_first_run.json'",
+      "Get-Content -Raw 'src/rag.py'",
+      "Get-Content -Raw 'src/generator.py'",
+      "Get-Content -Raw 'scripts/evaluate.py'",
+      "Get-Content -Raw 'scripts/check_evidence_guard_fixtures.py'",
+      "Get-Content -Raw 'eval/parallel_runs/20260706_150000_RFP-RAG-question-audit-improvement-loop/worker_output_contract.md'",
+      "Get-Content -Raw 'eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l48_guard_red_review.contract.json'",
+      "Get-Content -Raw 'eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l48_evidence_use_guard_design.contract.json'",
+      "PowerShell ConvertFrom-Json extraction attempt for qv6_001 from L64 details.json",
+      "Get-Date -Format 'yyyy-MM-ddTHH:mm:ssK'",
+      "PowerShell ConvertFrom-Json parse check on l65_same_project_guard_red_review.contract.json",
+      "Get-Item for l65_same_project_guard_red_review.contract.json and l65_same_project_guard_red_review.md",
+      "Get-ChildItem -Filter 'l65_same_project_guard_red_review*' in the run worker_outputs directory"
+    ],
+    "observed_results": [
+      "No API/model calls were made.",
+      "No protected path was edited.",
+      "L64 qv6_001 has coverage=1.0, first_hit_rank=1, all retrieved_orgs equal to the target issuer, judge groundedness=4, relevance=5.",
+      "The L64 judge reason identifies extra operation/management/reporting material from same-issuer but different-project documents as the groundedness penalty.",
+      "eval/questions_v6_metamorphic_frozen_first_run.json defines qv6_001 as title_fragment_scope_recovery and qv6_010 as the generic-fragment abstention negative control.",
+      "src/rag.py retrieves chunks, optionally backfills CSV summary rows, then passes chunks to src/generator.py; this is the natural place to add project-scope tracing or filtering.",
+      "src/generator.py already contains instructions and guards against some evidence-use/ambiguous-title failures, showing a prompt-only strategy is insufficient for this source-mixing shape.",
+      "scripts/evaluate.py coverage is org-based, so it cannot detect same-issuer different-project mixing by itself.",
+      "scripts/check_evidence_guard_fixtures.py demonstrates the desired no-API fixture pattern using in-memory chunks and deterministic guard helpers.",
+      "PowerShell ConvertFrom-Json could not parse the L64 details file because the raw artifact appears JSON-like but malformed around embedded text/quotes; the raw file read still provided the needed qv6_001 fields and judge reason."
+    ],
+    "post_write_verification": [
+      "l65_same_project_guard_red_review.contract.json parsed successfully as JSON.",
+      "Parsed contract schema is parallel_team_worker_output.v1, task_id is l65_same_project_guard_red_review, status is proposal, outputs count is 2, and directly_modified_protected_paths count is 0.",
+      "Only two files matched the l65_same_project_guard_red_review* output prefix, both under the allowed worker_outputs directory.",
+      "The markdown companion file exists under the allowed worker_outputs directory.",
+      "No API/model calls were made and no protected path was edited."
+    ]
+  },
+  "created_at": "2026-07-07T00:50:24+09:00"
+}

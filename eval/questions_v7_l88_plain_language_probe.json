@@ -1,0 +1,17 @@
+[
+  {
+    "id": "qv7_009_venture_confirm_feature_upgrade",
+    "type": "single_extract_plain_language",
+    "questioner_profile": "non_expert_small_business_user",
+    "failure_mode": "plain-language answer without over-technical expansion",
+    "turns": [
+      "벤처기업협회 벤처확인종합관리시스템 기능 고도화가 뭘 고치는 건지 잘 모르겠어. 사업자가 해야 할 일 중심으로 쉽게 말해줘. 단, 최종 업체나 계약 결과는 문서에 없으면 말하지 마."
+    ],
+    "target_orgs": [
+      "(사)벤처기업협회"
+    ],
+    "target_biz": "2024년 벤처확인종합관리시스템 기능 고도화 용역사업 입찰공고",
+    "property_under_test": "plain language with unsupported-result boundary",
+    "note": "Targeted source-exposed L88 prompt/format probe; diagnostic only, not strict validation."
+  }
+]

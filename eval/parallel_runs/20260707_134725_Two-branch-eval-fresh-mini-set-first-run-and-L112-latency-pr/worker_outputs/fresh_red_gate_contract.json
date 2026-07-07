@@ -1,0 +1,148 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "fresh_red_gate",
+  "task_id": "fresh_red_gate",
+  "status": "proposal",
+  "summary": "Red-gate proposal for labeling a new v9 mini-set: strict first-run claims require a frozen, uninspected, non-target-derived cohort; local source-inspected or prior-failure-derived sets should be labeled diagnostic-only unless a truly untouched source pool and pre-run freeze are documented.",
+  "inputs": [
+    "scripts/build_exposure_registry.py",
+    "eval/question_exposure_registry.json",
+    "eval/experiment_log.md",
+    "eval/parallel_runs/20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati/analysis/l108_l112_nonqv8_guard_field_report.md"
+  ],
+  "protected_paths_seen": [
+    "src/**",
+    "scripts/**",
+    "eval/questions*.json",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "\uc5c5\ubb34\uc77c\uc9c0.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr/worker_outputs/fresh_red_gate_contract.json",
+      "kind": "json",
+      "description": "fresh mini-set red-gate proposal"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "area": "classification_policy",
+        "first_run_validation_rules": [
+          "The question file and any manifest must be frozen before the first model run, before answer inspection, before retrieval-chunk inspection, and before scorer/guard edits based on the mini-set.",
+          "The cohort must not be built from known failed cases, high-latency tails, scorer bugs, or target projects selected because prior loops exposed a weakness.",
+          "The tested code path must not contain qid-, target-title-, target-org-, answer-value-, or exact source-snippet-specific fixes for the new set.",
+          "The registry entry must exist before aggregation, and the first-run prefix should be whitelisted by the aggregator before any scoreboard claim is allowed.",
+          "Only the first execution can support the first-run claim; after answers, retrieval traces, failure causes, or judge outputs are inspected, later same-set reruns become exposed regression or diagnostic evidence."
+        ],
+        "diagnostic_only_rules": [
+          "Use diagnostic-only for probes, no-judge rows, field-score-only rows, latency sweeps, scorer calibration, targeted failure probes, target-fix checks, false-positive checks, and any set designed after inspecting prior failure families.",
+          "Use diagnostic-only when prompts are new but source projects are already exposed, or when the set is generated from local source inspection over the already-used corpus.",
+          "Use diagnostic-only for L112-style follow-up on the same eight-case non-qv8 cohort; the useful signals are false abstention, field_score issues, latency, and cost, not a new comparable EDD score."
+        ],
+        "development_only_rules": [
+          "Use development-only for drafts, fixture-design files, target-assignment drafts, ungrounded question ideas, or any set whose expected labels or source evidence were inspected while guard/scorer code was still being changed.",
+          "Unknown or unregistered files must remain non-promotable, consistent with the existing do_not_promote_until_reviewed default."
+        ]
+      },
+      {
+        "area": "answer_leakage_and_target_fix_controls",
+        "rules": [
+          "Keep expected answers, field labels, source snippets, and scorer-only markers out of prompts and model-visible retrieval context.",
+          "Do not add aliases, guard markers, scorer exceptions, retrieval boosts, or post-trim exceptions keyed to v9 qids, exact target titles, target organizations, known answer values, or copied local-source wording.",
+          "Do not inspect v9 candidate answers, retrieved chunks, failure causes, or judge outputs until the frozen first run has completed and the run label has been recorded.",
+          "Do not promote a fix validated only on the same v9 failures; require generalized fixtures plus a separate untouched cohort or explicitly label the rerun as diagnostic repair evidence.",
+          "For mixed answerable/unavailable/private-contact questions, preserve field-level scoring outside aggregate EDD until the scorer is reviewed; do not let a clean aggregate score hide over-refusal or unsafe exposure."
+        ]
+      },
+      {
+        "area": "required_report_wording_for_local_source_inspection",
+        "wording": "This v9 mini-set was generated from local corpus/source inspection. It is prompt-fresh but source-inspected, so it must not be described as blind, unseen-source, or strict held-out validation unless a separate untouched source pool and pre-run freeze are documented. Report results as source-inspected first-execution diagnostic evidence; after answer/retrieval/failure inspection, all reruns are exposed regression or diagnostic-only. It does not replace the strict scoreboard row, and no-judge or field-score-only EDD values are not comparable with judged EDD rows."
+      },
+      {
+        "area": "v9_registry_naming",
+        "preferred_if_generated_from_local_source_inspection": {
+          "example_file": "questions_v9_source_inspected_mini_diagnostic_frozen.json",
+          "status": "source_inspected_v9_mini_diagnostic_frozen",
+          "claim_use": "diagnostic_only",
+          "reason": "Prompt-fresh mini-set generated from local corpus/source inspection after prior v7/v8/L108-L112 loop insights; useful for guard, field-score, and latency evidence but not strict held-out validation."
+        },
+        "allowed_only_if_untouched_source_and_freeze_gates_are_documented": {
+          "example_file": "questions_v9_fresh_mini_frozen_first_run.json",
+          "pre_run_status": "frozen_uninspected_v9_mini_first_run_candidate",
+          "pre_run_claim_use": "do_not_promote_until_first_run_recorded",
+          "post_first_run_status": "first_validation_exposed",
+          "post_first_run_claim_use": "first_run_and_regression_only",
+          "reason": "Frozen before execution from an untouched source/target pool, with no answer, retrieval, failure, or target-specific code inspection before the first run; only the first execution may support validation and later reruns are exposed regression."
+        },
+        "if_used_for_target_fix_or_latency_after_l112": {
+          "status": "targeted_v9_guard_latency_probe_exposed",
+          "claim_use": "diagnostic_only",
+          "reason": "Built or selected to measure known guard, field-score, or latency risks after L112; measures repair/generalization signals only and must not enter the strict scoreboard."
+        }
+      },
+      {
+        "area": "promotion_gate",
+        "rules": [
+          "Reject promotion if any registry status is unknown_needs_review or any claim_use starts with do_not_promote.",
+          "Reject strict promotion if the mini-set came from already-exposed source projects without explicit source-inspected caveat language.",
+          "Reject strict promotion if the report calls a no-judge EDD comparable to judged EDD, or if field-score-only rows are folded into aggregate EDD.",
+          "Allow strict scoreboard promotion only when registry claim_use is first_run_and_regression_only, the run label is the documented first-run prefix, judged quality metrics are present, and the report preserves the one-time nature of the claim."
+        ]
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Calling a local-source-inspected v9 mini-set strict fresh validation without caveats",
+        "risk": "Conflicts with the v7/v8/L108-L112 doctrine that source-exposed or prior-insight-derived cohorts are diagnostic-only."
+      },
+      {
+        "item": "Using L112 no-judge EDD or v9 no-judge EDD as a comparable leaderboard score",
+        "risk": "The L108-L112 report states no-judge EDD is not comparable because groundedness/relevance are null."
+      },
+      {
+        "item": "Adding v9-specific guard/scorer exceptions after reading first-run failures and then reporting the same-set rerun as validation",
+        "risk": "This is target-fix contamination and should be labeled diagnostic repair evidence only."
+      },
+      {
+        "item": "Inventing a new source-inspected first-run claim_use that the aggregator treats as scoreboard without an explicit code review",
+        "risk": "Existing promotion logic recognizes first_run_and_regression_only; new claim_use names should default diagnostic unless the orchestrator updates and verifies aggregation intentionally."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Confirm whether v9 target projects come from a truly untouched source pool or only from local inspection of the already-exposed corpus.",
+      "Confirm whether the v9 generator saw exact answer values, source snippets, expected field labels, previous failure notes, or L112/v8 target-fix candidates before the first run.",
+      "If strict first-run promotion is desired, add an explicit first-run prefix mapping and verify the aggregate keeps all non-first reruns diagnostic-only.",
+      "Decide whether the final report should use the stricter wording source-inspected diagnostic mini-set or the narrower source-inspected first-execution evidence label."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content C:/Users/peedi/.codex/skills/parallel-team-orchestrator/SKILL.md",
+      "Get-Content C:/Users/peedi/.codex/skills/eval-loop-orchestrator/SKILL.md",
+      "Get-Content C:/Users/peedi/.codex/skills/parallel-team-orchestrator/references/worker-output-contract.md",
+      "Get-ChildItem I:/0706/rfp-rag-project and requested worker_outputs folder",
+      "Get-Content scripts/build_exposure_registry.py",
+      "Get-Content eval/question_exposure_registry.json",
+      "rg -n for first-run/diagnostic/development/claim_use/exposure/v8/v9/leakage/contamination/target terms across requested inputs",
+      "Line-numbered read of eval/experiment_log.md lines 1450-1870",
+      "Line-numbered read of eval/parallel_runs/20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati/analysis/l108_l112_nonqv8_guard_field_report.md",
+      "python -m json.tool eval/parallel_runs/20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr/worker_outputs/fresh_red_gate_contract.json",
+      "git status --short"
+    ],
+    "observed_results": [
+      "Output folder existed and was empty before writing this proposal.",
+      "Exposure registry rules state strict validation requires a frozen, uninspected first run; inspected failures plus targeted fixes spend holdout value; probes/targeted/no-judge sets are diagnostic; drafts become exposed after answer/retrieval/failure inspection.",
+      "Existing registry labels v7 source-exposed, v8 semi-fresh/source-exposed, L106 draft, and L108/L109 grounded guard sets as diagnostic_only.",
+      "Experiment log L80-L112 repeatedly keeps unknown/unregistered, source-exposed, no-judge, targeted, and prior-failure-derived rows out of the scoreboard; L112 is the best diagnostic row but not strict validation.",
+      "The L108-L112 report explicitly says the cohort is diagnostic-only, no-judge EDD is not comparable, and further work should use a new untouched mini-set or latency/cost sweep.",
+      "JSON parse validation passed for this contract file.",
+      "git status --short could not validate the worktree because I:/0706/rfp-rag-project is not a Git repository from this workdir.",
+      "This worker directly modified only the allowed proposal JSON path and no protected paths."
+    ]
+  }
+}

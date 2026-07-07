@@ -1,0 +1,18 @@
+[
+  {
+    "id": "qv6_007_goyang_facility_order_permutation",
+    "type": "metamorphic_pair_order_permutation",
+    "questioner_profile": "messy_facility_operator",
+    "metamorphic_group": "goyang_facility",
+    "failure_mode": "shuffled title tokens should not change project binding or answer",
+    "turns": [
+      "회원 통합운영이랑 관산 다목적구장 홈페이지 그거, 고양 공사 시스템 구축 건 말이야. 무인 운영 프로그램하고 출입통제까지 포함되는지 문서 근거로만 정리해줘."
+    ],
+    "target_orgs": [
+      "고양도시관리공사"
+    ],
+    "target_biz": "관산근린공원 다목적구장 홈페이지 및 회원 통합운영 관리 시스템 구축[협상에 의한 계약]",
+    "property_under_test": "order/permutation invariance against qv6_006",
+    "note": "L39 diagnostic top_k depth probe after qv6_007 failed to preserve qv6_006 detail depth. Same exposed v6 case; do not use as fresh validation."
+  }
+]

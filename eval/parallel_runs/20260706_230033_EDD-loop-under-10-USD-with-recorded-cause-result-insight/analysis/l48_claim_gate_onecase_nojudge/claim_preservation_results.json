@@ -1,0 +1,85 @@
+{
+  "schema": "rfp_rag_claim_preservation_results.v1",
+  "created_at": "2026-07-07T00:21:54",
+  "details_path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l48_evidence_guard_onecase_nojudge_baseline_default\\details.json",
+  "expectations_path": "eval\\claim_preservation_expectations.json",
+  "source_root": ".",
+  "summary": {
+    "cases_checked": 1,
+    "claims_total": 2,
+    "claims_passed": 0,
+    "claims_failed": 2,
+    "claim_preservation_rate": 0.0,
+    "gate_status": "fail",
+    "claim_scope": "diagnostic_only_exposed_case"
+  },
+  "cases": [
+    {
+      "id": "qv6_007_goyang_facility_order_permutation",
+      "canonical_id": "qv6_006_goyang_facility_canonical",
+      "metamorphic_group": "goyang_facility",
+      "claim_scope": "diagnostic_only_exposed_case",
+      "answer_found": true,
+      "retrieval_scope": {
+        "target_org_any": [
+          "고양도시관리공사"
+        ],
+        "retrieved_orgs": [
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사"
+        ],
+        "target_retrieved_count": 8,
+        "off_target_retrieved_count": 0,
+        "retrieval_scope_status": "target_only"
+      },
+      "case_status": "fail",
+      "claims_total": 2,
+      "claims_passed": 0,
+      "claims_failed": 2,
+      "claims_warned": 0,
+      "claim_preservation_rate": 0.0,
+      "claims": [
+        {
+          "claim_key": "unmanned_operation_program",
+          "description": "The project includes an unmanned operation program and H/W linkage support.",
+          "status": "fail",
+          "issue": "source_supported_but_answer_underanswered",
+          "source_supported": true,
+          "answer_supported": true,
+          "underanswered": true,
+          "source_hits": [
+            "무인화 운영 프로그램 제공",
+            "하드웨어 연동"
+          ],
+          "answer_hits": [
+            "무인화 운영을 위한 프로그램"
+          ],
+          "false_friend_hits": []
+        },
+        {
+          "claim_key": "physical_access_control_system",
+          "description": "The project includes physical access-control-system purchase/installation, not only account/access-permission security.",
+          "status": "fail",
+          "issue": "source_supported_but_answer_underanswered;false_friend_substitution",
+          "source_supported": true,
+          "answer_supported": false,
+          "underanswered": true,
+          "source_hits": [
+            "출입통제시스템 구매 및 설치",
+            "출입통제시스템"
+          ],
+          "answer_hits": [],
+          "false_friend_hits": [
+            "네트워크 접근통제"
+          ]
+        }
+      ]
+    }
+  ]
+}

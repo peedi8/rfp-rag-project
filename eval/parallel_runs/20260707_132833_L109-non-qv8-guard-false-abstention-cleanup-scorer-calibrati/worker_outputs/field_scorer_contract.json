@@ -1,0 +1,68 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "field_scorer",
+  "task_id": "field_scorer",
+  "status": "proposal",
+  "summary": "L108 shows two scorer blind spots: a generic refusal cue can satisfy a refusal field too easily, and mixed answers need a case-level abstention rule that preserves an answer when at least one required answer field passes. I propose field-specific refusal fixtures plus a mixed-answer abstention override, with no direct code edits.",
+  "inputs": [
+    "scripts/field_level_contact_scorer.py",
+    "scripts/evaluate.py",
+    "eval/field_level_contact_privacy_fixtures.json",
+    "eval/questions_l108_nonqv8_grounded_guard_field_diagnostic_frozen.json",
+    "eval/parallel_runs/20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L/worker_outputs/l108_nonqv8_grounded_nojudge_baseline_default/details.json"
+  ],
+  "protected_paths_seen": [
+    "src/generator.py",
+    "scripts/evaluate.py",
+    "scripts/field_level_contact_scorer.py",
+    "scripts/run_experiment_worker.py",
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati/worker_outputs/field_scorer_contract.json",
+      "kind": "json",
+      "description": "field scorer audit proposal"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Add fixture-level refusal evidence for refusal fields, so pass/fail does not rely on a generic global refusal marker alone. For q002-style mixed answers, a refusal field should pass only when the response contains the field-specific refusal cue plus the field topic, not just any refusal phrase.",
+      "Extend the field fixture schema with an optional field such as refusal_markers or refusal_evidence, then use that for expected_action in {refuse, withhold} before falling back to generic refusal detection.",
+      "Treat mixed answers as answered when any answer/answer_with_caveat field passes, even if a refusal field is only partially satisfied. This keeps a supported answer from being counted as whole-answer abstention.",
+      "Record a mixed-answer diagnostic flag, e.g. mixed_supported_answer_and_refusal, so the evaluator can report the split without collapsing it into a pure abstention or pure pass."
+    ],
+    "rejected_or_risky_items": [
+      "Do not let the global REFUSAL_MARKERS list by itself certify a refusal field.",
+      "Do not require all fields to pass before clearing abstention if the case already contains a satisfied answer field.",
+      "Do not expand the change into EDD scoring; keep it diagnostic and fixture-driven."
+    ],
+    "needs_orchestrator_review": [
+      "Confirm whether the mixed-answer override should affect only the abstention label or also the downstream field_score case_passed summary.",
+      "Confirm the new fixture key name for refusal-specific evidence before implementation."
+    ]
+  },
+  "merge_risk": "medium",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw 'I:\\0706\\rfp-rag-project\\scripts\\field_level_contact_scorer.py'",
+      "Get-Content -Raw 'I:\\0706\\rfp-rag-project\\scripts\\evaluate.py'",
+      "Get-Content -Raw 'I:\\0706\\rfp-rag-project\\eval\\field_level_contact_privacy_fixtures.json'",
+      "Get-Content -Raw 'I:\\0706\\rfp-rag-project\\eval\\questions_l108_nonqv8_grounded_guard_field_diagnostic_frozen.json'",
+      "Get-Content -Raw 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\worker_outputs\\l108_nonqv8_grounded_nojudge_baseline_default\\details.json'",
+      "rg -n \"has_refusal|expected_action|score_answer_fields|abstain|field_score\" 'I:\\0706\\rfp-rag-project\\scripts\\field_level_contact_scorer.py' 'I:\\0706\\rfp-rag-project\\scripts\\evaluate.py'",
+      "rg -n \"mixed_official_answer_private_refusal_pass|mixed_official_over_refusal_fail|private_contact_refusal_pass|evaluation_criteria|official_contact_boundary\" 'I:\\0706\\rfp-rag-project\\eval\\field_level_contact_privacy_fixtures.json'",
+      "rg -n \"false_abstention_rate|field_score_issues|answer_quality_issues|abstention_accuracy\" 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\worker_outputs\\l108_nonqv8_grounded_nojudge_baseline_default\\details.json'"
+    ],
+    "observed_results": [
+      "field_level_contact_scorer.py currently passes refusal fields when has_refusal_marker is present and the required marker is found, even if the refusal cue is generic rather than field-specific.",
+      "evaluate.py currently derives abstention from is_abstention(answer) and only conditionally clears it from field_score, which makes mixed answers sensitive to how case_passed is computed.",
+      "The L108 fixture set includes an explicit mixed answer/refusal example at q20260707_l108_002 and a control set where answerable fields and refusal fields are separated, which is enough to test a stricter mixed-answer rule.",
+      "The baseline details show false_abstention_rate at 0.6, so the current behavior already has enough signal to justify a narrow diagnostic change."
+    ]
+  }
+}

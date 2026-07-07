@@ -1,0 +1,11 @@
+{
+  "schema": "rfp_rag_frozen_question_set_manifest.v1",
+  "created_at": "2026-07-06T20:15:42",
+  "label": "v4_frozen_first_run",
+  "source": "eval\\questions_v4_draft_noapi.json",
+  "dest": "eval\\questions_v4_frozen_first_run.json",
+  "sha256": "29441fe8e64c89086b2bac4ea98d0058b5121dc6dfa9b556301eedd0f6f2ee80",
+  "case_count": 10,
+  "allowed_use": "first_scored_run_only_until_answers_or_failures_are_inspected",
+  "rule": "If the frozen file is edited or failures are inspected before rerun, do not use later scores as strict untouched validation."
+}

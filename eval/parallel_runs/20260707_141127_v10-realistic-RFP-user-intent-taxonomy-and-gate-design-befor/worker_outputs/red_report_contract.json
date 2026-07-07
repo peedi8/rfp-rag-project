@@ -1,0 +1,250 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "red_report",
+  "task_id": "red_report",
+  "status": "proposal",
+  "summary": "Red-team proposal for v10 realistic RFP user-intent taxonomy: treat the taxonomy as a measurement lens, keep source-inspected/prior-failure-derived cohorts diagnostic-only, label every EDD by gate version and claim use, and report diary wording that separates raw first runs, measurement corrections, repair diagnostics, and latency-only evidence.",
+  "inputs": [
+    "I:/0706/rfp-rag-project/eval/experiment_log.md",
+    "I:/0706/rfp-rag-project/eval/next_improvement_tasks.md",
+    "I:/0706/rfp-rag-project/업무일지.md",
+    "I:/0706/rfp-rag-project/eval/question_exposure_registry.md",
+    "I:/0706/rfp-rag-project/eval/question_exposure_registry.json",
+    "I:/0706/rfp-rag-project/eval/claim_preservation_expectations.json",
+    "I:/0706/rfp-rag-project/eval/parallel_runs/20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati/analysis/l108_l112_nonqv8_guard_field_report.md",
+    "I:/0706/rfp-rag-project/eval/parallel_runs/20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr/analysis/two_branch_l113_l115_report.md",
+    "I:/0706/rfp-rag-project/eval/parallel_runs/20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr/worker_outputs/fresh_red_gate_contract.json",
+    "I:/0706/rfp-rag-project/eval/parallel_runs/20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor/ledger.json",
+    "I:/0706/rfp-rag-project/eval/parallel_runs/20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor/checkpoint_01_inputs.md"
+  ],
+  "protected_paths_seen": [
+    "src/**",
+    "scripts/**",
+    "eval/questions*.json",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md",
+    "data/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:/0706/rfp-rag-project/eval/parallel_runs/20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor/worker_outputs/red_report_contract.json",
+      "kind": "json",
+      "description": "proposal-only red-team report wording and claim-label contract for v10 realistic intent taxonomy"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "area": "red_team_position",
+        "recommendation": "Use the v10 realistic intent taxonomy as a pre-registered measurement map, not as a new way to chase EDD. Each intent should say what a real RFP user wants, which fields are answerable from RAG context, which fields must be withheld or marked unavailable, which gate version applies, and which claim label is allowed before any answer is inspected.",
+        "why": [
+          "The recent L108-L112 loop showed that one user question can contain answerable official fields, unavailable final-result fields, and unsafe private/fabricated fields.",
+          "The L113-L115 report showed that source-inspected prompt-fresh sets can reveal useful failures but still do not become strict held-out validation.",
+          "The q001 v9 gap showed that CSV-visible amount/deadline expectations can exceed what the RAG answer context actually exposes, even when automatic judge scores are high."
+        ]
+      },
+      {
+        "area": "overfitting_and_contamination_risks",
+        "risks": [
+          {
+            "risk": "Failure-family overfitting",
+            "description": "If v10 is built mostly from qv8, L108-L112, and v9 failure patterns, it may overrepresent privacy/final-result traps and underrepresent ordinary RFP usage such as scope explanation, budget/deadline lookup, eligibility, deliverables, evaluation criteria, comparison, and plain-language summary.",
+            "control": "For every trap-like intent, include at least one normal supported boundary case that should not be refused. Track intent balance in the question manifest."
+          },
+          {
+            "risk": "Source-inspection contamination",
+            "description": "Questions created after local corpus/source inspection are useful, but they are not blind held-out evidence unless an untouched source pool and pre-run freeze are documented.",
+            "control": "Label source-inspected v10 material as diagnostic-only by default. Promote only a frozen, uninspected first run whose registry claim_use allows it."
+          },
+          {
+            "risk": "Answer-value or metadata leakage",
+            "description": "Question design can accidentally encode exact answer values, source snippets, CSV-only metadata, or known source row structure. That creates a test of question-author memory rather than RAG behavior.",
+            "control": "Keep exact expected values out of prompts unless they are part of the user question. For amount/deadline questions, verify those fields are retrievable from answer context or label the task as metadata extraction."
+          },
+          {
+            "risk": "Same-set repair inflation",
+            "description": "After first-run answers, retrieval traces, judge output, or failure causes are inspected, rerunning the same v10 set can confirm a repair but cannot support a fresh performance claim.",
+            "control": "Preserve first-run raw rows, then label later same-set runs as exposed regression, diagnostic repair, measurement correction, or latency-only."
+          },
+          {
+            "risk": "Scorer-marker overfitting and encoding defects",
+            "description": "Field-level markers can become too literal or can break under encoding, as seen in the L109 marker corruption and private-label false leak issues.",
+            "control": "Prefer concept-level field expectations with concrete leak patterns only where needed. Add UTF-8 and fixture checks before scoring rows influence reports."
+          },
+          {
+            "risk": "Guard overblocking",
+            "description": "Broad refusal markers such as guessing or final-result wording can block normal procurement questions that ask for supported budget, criteria, official contact, or workflow details.",
+            "control": "Every new refusal trigger needs positive traps and false-positive fixtures. Report over_refusal separately from unsafe_exposure."
+          },
+          {
+            "risk": "Gate-version score mixing",
+            "description": "EDD values from different judge modes, abstention detectors, field scorers, quality flags, or latency gates can look comparable while measuring different contracts.",
+            "control": "Every row must carry gate_version, scorer_version, judge_mode, cohort exposure label, and claim_use. Do not average or rank across incompatible gates without an explicit caveat."
+          }
+        ]
+      },
+      {
+        "area": "claim_label_rules",
+        "rules": [
+          {
+            "label": "strict_scoreboard_first_run",
+            "allowed_when": "Question set is frozen before answer/retrieval/failure inspection, uses an uninspected source/question pool, has a registry entry whose claim_use allows first-run evidence, uses judged quality metrics, and has no target-specific code or scorer changes based on the set.",
+            "report_use": "Can support the strict representative row, but only for the documented first execution."
+          },
+          {
+            "label": "source_inspected_diagnostic",
+            "allowed_when": "Questions are prompt-fresh and frozen before execution but were generated from local corpus/source inspection or prior loop insights.",
+            "report_use": "Useful diagnostic first execution; do not call blind, untouched, or strict held-out validation."
+          },
+          {
+            "label": "exposed_regression_or_diagnostic_repair",
+            "allowed_when": "The same cohort is rerun after answers, traces, failures, judge outputs, or target projects were inspected.",
+            "report_use": "Use for cause/fix evidence and regression stability, not for new performance claims."
+          },
+          {
+            "label": "measurement_correction",
+            "allowed_when": "Saved answers are rescored after abstention detection, field scoring, encoding, or evaluator logic changes without a new model answer run.",
+            "report_use": "Report raw and corrected rows side by side. Say the detector or scorer changed, not that the model improved."
+          },
+          {
+            "label": "no_judge_diagnostic",
+            "allowed_when": "Groundedness/relevance judge scores are omitted or null, including single abstention probes and cheap guard checks.",
+            "report_use": "Do not compare EDD with judged rows. Use false abstention, abstention accuracy, field_score issues, empty answers, latency, and cost instead."
+          },
+          {
+            "label": "same_cohort_latency_only",
+            "allowed_when": "A previously cleaned cohort is reused only to compare speed, cost, and tail latency under fixed quality invariants.",
+            "report_use": "Can nominate a speed candidate only if quality invariants hold and the latency gain is material. It cannot strengthen accuracy or generalization claims."
+          },
+          {
+            "label": "field_level_diagnostic",
+            "allowed_when": "A row mixes answerable supported fields with unavailable, private, or fabricated fields.",
+            "report_use": "Report field_score beside EDD, not inside aggregate EDD, until the field scorer is reviewed and stable."
+          },
+          {
+            "label": "development_only_or_do_not_promote",
+            "allowed_when": "Drafts, unknown registry entries, unregistered question files, fixture design files, or rows created while guard/scorer code is still being changed.",
+            "report_use": "Keep out of scoreboards and final performance claims."
+          }
+        ]
+      },
+      {
+        "area": "edd_gate_version_report_logic",
+        "recommended_explanation": "EDD should be described as gate-versioned evidence. A row's score is meaningful only inside a fixed cohort, fixed answer-generation path, fixed judge mode, fixed abstention detector, fixed field scorer, fixed quality flags, and fixed claim label. When any of those gates changes, the new EDD is a new measurement contract, not a direct leaderboard replacement.",
+        "required_report_fields_per_row": [
+          "loop_id",
+          "question_file",
+          "cohort_exposure_status",
+          "claim_label",
+          "gate_version",
+          "scorer_or_detector_change",
+          "judge_mode",
+          "answer_run_kind",
+          "raw_or_corrected",
+          "EDD_if_comparable",
+          "non_EDD_primary_metrics",
+          "allowed_claim"
+        ],
+        "gate_version_wording": [
+          "Use G0/G1/G2-style names only if the report includes a short changelog that says what changed.",
+          "If the gate sharpens and the score drops, describe it as newly visible failure unless the answer behavior truly regressed.",
+          "If a saved-answer correction raises EDD, write measurement correction, not model improvement.",
+          "If no-judge EDD is 60.0, call it bookkeeping and point to false abstention, field_score issues, latency, and cost.",
+          "If field-level scoring is added, keep field metrics beside EDD until aggregate policy is intentionally changed."
+        ],
+        "short_report_wording": "In this project, EDD is not a single universal rank. It is a score under a named gate. L114 raw and L115 correction can share the same answers but differ because the abstention detector changed; L112 can be clean on false abstention and field_score while its no-judge EDD remains non-comparable. Therefore the report should say which gate was added, which failure became visible, which cause was repaired, and which claim label the row is allowed to support."
+      },
+      {
+        "area": "v10_taxonomy_report_guardrails",
+        "guardrails": [
+          "Balance v10 across realistic user intents: supported extraction, supported summary, comparison, eligibility or requirement lookup, evaluation criteria, mixed partial-answer caveats, unsupported final-result refusal, private or fabricated field refusal, official-contact versus private-contact split, and plain-language usefulness.",
+          "For each intent, record expected answer shape: answer, partial answer plus caveat, short refusal, ask-for-disambiguation, or field-split response.",
+          "Avoid question wording that depends on CSV-only metadata unless the RAG context exposes the same metadata.",
+          "Avoid using exact target titles, qids, known answer values, or previous failure phrases in code fixes or prompt rules.",
+          "Keep a small first-run raw cohort separate from guard fixtures and targeted probes.",
+          "For every v10 score, preserve raw first execution before any detector, prompt, retrieval, or scorer repair."
+        ]
+      },
+      {
+        "area": "proposed_report_phrasing",
+        "paragraphs": [
+          "The v10 taxonomy is intended to make the evaluation more realistic, not easier. It separates normal RFP user needs from safety and unsupported-result traps, then attaches a claim label to each cohort before any answer is inspected.",
+          "Rows produced from source-inspected question design are useful diagnostic evidence. They can reveal whether the system handles real procurement wording, but they do not replace the strict scoreboard unless the source pool was untouched and the first-run gate was documented before execution.",
+          "When a detector or scorer is corrected, the report should preserve both the raw row and the corrected row. The corrected row may be the better measurement, but the raw row explains what the system and evaluator actually did at the time.",
+          "A higher EDD is not automatically a stronger system. The stronger claim is narrower: under gate version X, on cohort Y, with claim label Z, these failures were cleared and these risks remain."
+        ]
+      },
+      {
+        "area": "proposed_diary_wording_ko",
+        "note": "The following Korean diary wording intentionally avoids the two requested Korean terms.",
+        "paragraphs": [
+          "오늘은 v10 질문을 바로 만들기보다, 먼저 실제 RFP 사용자가 물을 법한 의도부터 정리했다. 예산, 마감, 평가기준처럼 답해야 하는 필드와 최종 선정업체, 실제 계약금액처럼 문서에 없으면 멈춰야 하는 필드, 그리고 공식 문의처와 개인 연락처처럼 한 질문 안에서 나눠야 하는 필드를 따로 보았다. 이 분류는 점수를 올리기 위한 꼼수가 아니라, 답변이 사용자의 실제 의도를 맞추는지 보기 위한 지도다.",
+          "가장 큰 위험은 taxonomy가 지난 실패를 너무 많이 닮는 것이다. qv8과 L108-L112에서 본 함정만 모으면 안전장치는 좋아 보이지만, 평범한 제안요청서 요약이나 예산, 일정 확인 같은 정상 사용성이 줄어들 수 있다. 그래서 v10은 질문 의도별로 정상 질문과 함정 질문을 같이 두고, source-inspected이면 diagnostic-only로 남기는 쪽이 맞다.",
+          "EDD는 한 줄 순위표가 아니라 gate가 붙은 측정값으로 설명해야 한다. L114 raw와 L115 correction처럼 같은 답변도 감지기가 바뀌면 점수가 달라진다. 이때 성능이 올랐다고 쓰지 않고, 같은 답변을 새 감지 기준으로 다시 읽었다고 써야 한다. gate가 날카로워져 점수가 내려가도, 그건 실패라기보다 숨은 문제를 보이게 만든 일일 수 있다.",
+          "다음에는 v10 문항을 답변 보기 전에 고정하고, CSV-only metadata를 기대하는 질문은 제외하거나 RAG context에서 실제로 보이는지 먼저 확인한다. 첫 실행은 raw로 남기고, 이후 수리나 재계산은 별도 label로 묶는다. 보고서에는 strict scoreboard, diagnostic repair, measurement correction, latency-only를 섞지 않는다."
+        ]
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Calling v10 realistic taxonomy a strict validation set by default",
+        "reason": "The taxonomy is being designed after many prior failure insights, so it is at least partly source-exposed and failure-family-driven unless a truly untouched pool and freeze process are documented."
+      },
+      {
+        "item": "Using one aggregate EDD for mixed official/private or answerable/unavailable questions",
+        "reason": "L108-L112 showed that whole-answer abstention can hide partial-answer correctness, over-refusal, and unsafe leakage."
+      },
+      {
+        "item": "Treating detector/scorer corrections as model improvements",
+        "reason": "L99 and L115-style corrections improve measurement of saved answers; they should not be described as new answer-generation gains."
+      },
+      {
+        "item": "Retuning guards directly on v10 failures and then reporting the rerun as fresh validation",
+        "reason": "That would spend the cohort's holdout value. The rerun may be useful repair evidence only."
+      },
+      {
+        "item": "Expecting CSV-visible metadata without confirming answer-context visibility",
+        "reason": "The v9 q001 usefulness gap shows that automatic 5/5 judge scores can miss a user-visible metadata mismatch."
+      },
+      {
+        "item": "Ranking judged, no-judge, field-score-only, and latency-only rows together",
+        "reason": "Those rows measure different gate contracts and should not share a simple leaderboard."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Decide whether v10 will be registered as source-inspected diagnostic, frozen uninspected first-run candidate, or two separate cohorts with different claim_use values.",
+      "Choose the gate_version naming convention and require every report table row to show gate_version plus claim_label.",
+      "Confirm whether amount/deadline questions should be allowed only when those fields are retrievable from the RAG answer context, not merely present in CSV metadata.",
+      "Decide whether field-level metrics remain outside aggregate EDD for v10 mixed-field rows until a stable policy is reviewed.",
+      "Require the taxonomy worker and gate worker outputs to include normal boundary cases for every refusal or trap category.",
+      "Before any v10 paid run, freeze the question file and registry entry, then preserve raw first-run output before repairs or recomputes."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content C:/Users/peedi/.codex/skills/parallel-team-orchestrator/SKILL.md",
+      "Get-Content C:/Users/peedi/.codex/skills/parallel-team-orchestrator/references/worker-output-contract.md",
+      "Get-Content C:/Users/peedi/.codex/skills/eval-loop-orchestrator/SKILL.md",
+      "Get-Content eval/parallel_runs/20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor/checkpoint_01_inputs.md",
+      "Get-Content eval/parallel_runs/20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor/ledger.json",
+      "rg -n for v10, EDD, gate, taxonomy, intent, two-branch, source_inspected, diagnostic_only, measurement correction, field_score, and claim_use across requested inputs",
+      "Get-Content eval/parallel_runs/20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr/analysis/two_branch_l113_l115_report.md",
+      "Get-Content eval/parallel_runs/20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati/analysis/l108_l112_nonqv8_guard_field_report.md",
+      "Line-window reads of eval/experiment_log.md, eval/next_improvement_tasks.md, and 업무일지.md around L106-L115/v9/v10 preparation context",
+      "Get-ChildItem target worker_outputs folder before write"
+    ],
+    "observed_results": [
+      "The target v10 run ledger lists red_report as a proposal-only worker with output path under worker_outputs.",
+      "The target worker_outputs folder was empty before this proposal was written.",
+      "Experiment log and latest reports repeatedly require diagnostic-only labels for source-exposed, source-inspected, no-judge, same-cohort latency, and failure-family-derived rows.",
+      "L108-L112 established that no-judge EDD is not comparable and that field_score issues should be reported beside EDD.",
+      "L113-L115 established that v9 source-inspected first execution is diagnostic-only, L115 is measurement correction, and targeted v9 reruns must not be called validation.",
+      "업무일지 wording already separates raw first runs, measurement correction, diagnostic repair, and strict validation caveats; this proposal preserves that style.",
+      "This worker directly modified only the requested proposal JSON path and no protected paths."
+    ]
+  }
+}

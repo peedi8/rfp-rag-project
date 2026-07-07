@@ -1,0 +1,5 @@
+﻿suite,experiment,run_mode,edd_score,retrieval_coverage_avg,hit_all_targets_rate,mrr,groundedness_avg,relevance_avg,abstention_accuracy,false_abstention_rate,empty_answer_rate,latency_avg_sec,edd_retrieval_coverage_avg,edd_hit_all_targets_rate,edd_mrr,edd_groundedness_avg,edd_relevance_avg,edd_abstention_accuracy,edd_latency_score
+prompt_sweep,prompt_default,scored,37.5,1.0,1.0,1.0,,,,0.5,0.0,30.782,1.0,1.0,1.0,0.0,0.0,0.0,0.0
+prompt_sweep,prompt_strict_evidence,scored,42.49,1.0,1.0,1.0,,,,0.167,0.0,49.607,1.0,1.0,1.0,0.0,0.0,0.0,0.0
+prompt_sweep,prompt_concise_verified,scored,45.46,1.0,1.0,1.0,,,,0.0,0.0,27.973,1.0,1.0,1.0,0.0,0.0,0.0,0.0921
+prompt_sweep,prompt_report_ready,scored,40.01,1.0,1.0,1.0,,,,0.333,0.0,50.385,1.0,1.0,1.0,0.0,0.0,0.0,0.0

@@ -1,0 +1,46 @@
+{
+  "source_details": "eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr\\worker_outputs\\l114_v9_source_inspected_first_execution_judged_baseline_default\\details.json",
+  "score_label": "measurement_correction",
+  "metrics": {
+    "retrieval_coverage_avg": 1.0,
+    "hit_all_targets_rate": 1.0,
+    "mrr": 1.0,
+    "groundedness_avg": 5.0,
+    "relevance_avg": 5.0,
+    "abstention_accuracy": 1.0,
+    "false_abstention_rate": 0.0,
+    "empty_answer_rate": 0.0,
+    "latency_avg_sec": 14.934
+  },
+  "edd_row": {
+    "suite": "baseline_default",
+    "experiment": "baseline_default",
+    "score_label": "measurement_correction",
+    "retrieval_coverage_avg": 1.0,
+    "hit_all_targets_rate": 1.0,
+    "mrr": 1.0,
+    "groundedness_avg": 5.0,
+    "relevance_avg": 5.0,
+    "abstention_accuracy": 1.0,
+    "false_abstention_rate": 0.0,
+    "empty_answer_rate": 0.0,
+    "latency_avg_sec": 14.934,
+    "edd_score": 98.42,
+    "edd_retrieval_coverage_avg": 1.0,
+    "edd_hit_all_targets_rate": 1.0,
+    "edd_mrr": 1.0,
+    "edd_groundedness_avg": 1.0,
+    "edd_relevance_avg": 1.0,
+    "edd_abstention_accuracy": 1.0,
+    "edd_latency_score": 0.6848
+  },
+  "changed_abstention_cases": [
+    {
+      "id": "q20260707_v9_005_childcare_sensitive_case_fabrication",
+      "old_abstention": false,
+      "new_abstention": true,
+      "expect_abstention": true
+    }
+  ],
+  "answer_quality_issue_cases": {}
+}

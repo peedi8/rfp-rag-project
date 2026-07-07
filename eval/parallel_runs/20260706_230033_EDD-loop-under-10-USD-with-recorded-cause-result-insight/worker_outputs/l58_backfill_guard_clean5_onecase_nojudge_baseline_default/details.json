@@ -1,0 +1,103 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": null,
+      "relevance_avg": null,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 17.6
+    },
+    "edd_score": 47.82,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": [
+      {
+        "id": "qv6_007_goyang_facility_order_permutation",
+        "type": "metamorphic_pair_order_permutation",
+        "answer": "근거 문서: 고양도시관리공사 관산근린공원 다목적구장 회원 통합운영관리 시스템 구축 제안요청서(발주기관: 고양도시관리공사)\n\n요약(핵심만)\n- 무인 운영 프로그램: 포함됨. 문서5(사업범위)에서 \"라. 무인화 운영을 위한 프로그램 및 기술 지원\"으로 명시되어 있어 제공 대상임이 확인됩니다. 또한 문서3의 시스템 구성 요구사항(ECR-001)에서 \"운영시스템과의 하드웨어(H/W) 연동 프로그램 제공\"도 요구되고 있습니다.\n- 출입통제시스템 포함 여부: 포함되어 있음. 근거: 참고 문서에 \"안내데스크 및 출입통제시스템 구매 및 설치\"가 명시되어 있음. (문서9) 다만 세부 방식, 장비 규격, 연동 대상은 제공된 문서에서 추가 확인이 필요합니다.",
+        "retrieved_orgs": [
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 361,
+          "answer_line_count": 4
+        },
+        "latency_sec": 17.6,
+        "context_backfill_count": 1,
+        "retrieval_sec": 1.46,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 89,
+              "completion_tokens": null,
+              "total_tokens": 89
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 16.14,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4575,
+              "completion_tokens": 1379,
+              "total_tokens": 5954
+            },
+            "cost_usd": 0.009637,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 16.137,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.009637
+      }
+    ]
+  }
+}

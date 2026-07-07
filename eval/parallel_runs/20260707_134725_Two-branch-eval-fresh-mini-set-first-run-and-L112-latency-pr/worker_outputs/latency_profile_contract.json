@@ -1,0 +1,183 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "latency_profile",
+  "task_id": "latency_profile",
+  "status": "proposal",
+  "summary": "Latency-only proposal for the frozen L112 8-case cohort: run no-judge top-k profiling, prefer one guarded topk_sweep only if the orchestrator can reserve the remaining budget; otherwise stage topk5_only first and compare against the existing L112 top_k=8 baseline.",
+  "inputs": [
+    "scripts/run_experiment_worker.py",
+    "scripts/evaluate.py",
+    "eval/questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json",
+    "eval/parallel_runs/20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati/worker_outputs/l112_nonqv8_grounded_nojudge_current_scorer_confirm_baseline_default/details.json",
+    "eval/parallel_runs/20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati/analysis/l108_l112_nonqv8_guard_field_report.md"
+  ],
+  "protected_paths_seen": [
+    "src/**",
+    "scripts/**",
+    "eval/questions*.json",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "\uc5c5\ubb34\uc77c\uc9c0.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr/worker_outputs/latency_profile_contract.json",
+      "kind": "json",
+      "description": "latency profiling proposal"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "kind": "cohort_freeze",
+        "question_file": "eval/questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json",
+        "case_count": 8,
+        "expected_abstention_cases": 3,
+        "non_abstention_cases": 5,
+        "rationale": "Use the exact L112 diagnostic cohort. Do not swap in a fresh set, qv8 set, judged set, or case-limit subset for this latency profile."
+      },
+      {
+        "kind": "baseline_to_compare",
+        "source": "L112 baseline_default no-judge details",
+        "params": {
+          "use_mmr": true,
+          "top_k": 8,
+          "mmr_lambda": 0.5,
+          "fetch_k": 20,
+          "auto_filter": true,
+          "rewrite_query": true
+        },
+        "metrics": {
+          "latency_avg_sec": 7.184,
+          "false_abstention_rate": 0.0,
+          "abstention_accuracy": 1.0,
+          "empty_answer_rate": 0.0,
+          "field_score_issues": {}
+        }
+      },
+      {
+        "kind": "primary_suite_when_budget_reserved",
+        "suite": "topk_sweep",
+        "judge_mode": "no-judge",
+        "experiments_covered": [
+          "topk5_filter_rewrite",
+          "topk8_filter_rewrite_control",
+          "topk12_filter_rewrite"
+        ],
+        "command": "python scripts\\run_experiment_worker.py --run-dir eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr --worker-id latency_profile_topk_sweep_nojudge --suite topk_sweep --questions eval\\questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json --no-judge --hard-stop-usd 4.00 --starting-spent-usd 3.511722 --preflight-case-estimate-usd 0.02",
+        "budget_note": "With 8 cases, the runner preflight estimate is 0.160000 USD per experiment. topk_sweep projects 0.480000 USD against roughly 0.488278 USD remaining from 3.511722 to 4.00, so this should run only if the orchestrator has serialized or reserved shared spend and updates --starting-spent-usd to the latest observed value immediately before launch."
+      },
+      {
+        "kind": "budget_safer_staged_fallback",
+        "suite_order": [
+          "topk5_only",
+          "topk8_only",
+          "topk12_only"
+        ],
+        "judge_mode": "no-judge",
+        "commands": [
+          "python scripts\\run_experiment_worker.py --run-dir eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr --worker-id latency_profile_topk5_nojudge --suite topk5_only --questions eval\\questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json --no-judge --hard-stop-usd 4.00 --starting-spent-usd <latest_observed_spend> --preflight-case-estimate-usd 0.02",
+          "python scripts\\run_experiment_worker.py --run-dir eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr --worker-id latency_profile_topk8_nojudge_control --suite topk8_only --questions eval\\questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json --no-judge --hard-stop-usd 4.00 --starting-spent-usd <updated_observed_spend_after_topk5> --preflight-case-estimate-usd 0.02",
+          "python scripts\\run_experiment_worker.py --run-dir eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr --worker-id latency_profile_topk12_nojudge_optional --suite topk12_only --questions eval\\questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json --no-judge --hard-stop-usd 4.00 --starting-spent-usd <updated_observed_spend_after_prior_runs> --preflight-case-estimate-usd 0.02"
+        ],
+        "stopping_rule": "Run topk5_only first if shared budget is not reserved. If topk5 passes all guard criteria and reduces latency versus 7.184s, stop and report it as the latency candidate. Run topk8_only only when same-run variance control is required. Run topk12_only only if enough budget remains and the orchestrator wants a full top-k curve; otherwise skip because it is unlikely to improve latency when L112 already has coverage and MRR at 1.0."
+      },
+      {
+        "kind": "acceptance_criteria",
+        "baseline_latency_avg_sec": 7.184,
+        "required_for_each_candidate": [
+          "metrics.latency_avg_sec < 7.184",
+          "metrics.false_abstention_rate == 0.0",
+          "metrics.abstention_accuracy == 1.0",
+          "details_all[experiment].issues.field_score_issues == {}",
+          "details_all[experiment].issues.false_abstain == []",
+          "details_all[experiment].issues.empty_answer == []"
+        ],
+        "selection_rule": "Among rows that satisfy every guard criterion, choose the lowest latency_avg_sec. If no row reduces latency while preserving the guard metrics, keep L112 top_k=8 as the current latency-safe baseline."
+      },
+      {
+        "kind": "report_wording",
+        "required_label": "same-cohort latency-only diagnostic",
+        "allowed_claim_template": "On the source-exposed L112 8-case diagnostic cohort, no-judge top_k=<N> changed average latency from 7.184s to <X>s while preserving false_abstention_rate=0.0, abstention_accuracy=1.0, and empty field_score_issues. This is a latency profiling signal only.",
+        "required_disclaimer": "Do not describe the result as fresh validation, judged quality improvement, EDD improvement, or generalization. The L112 cohort is source-exposed and no-judge; groundedness/relevance remain null and are not comparable with judged runs.",
+        "avoid_phrases": [
+          "fresh performance gain",
+          "quality improved",
+          "generalizes",
+          "new benchmark win",
+          "EDD improved"
+        ]
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "judged top-k profile",
+        "reason": "The objective is latency-only and the no-judge L112 row is the comparison point. Adding judge calls would spend unnecessary budget and make the row non-comparable with the current no-judge diagnostic."
+      },
+      {
+        "item": "fresh mini-set claims from this branch",
+        "reason": "This proposal is limited to the existing L112 8-case cohort. Any fresh-set result must be reported separately by the fresh branch."
+      },
+      {
+        "item": "unconditional full topk_sweep during parallel spend",
+        "reason": "The full sweep's preflight projection is about 0.480000 USD, leaving only about 0.008278 USD under the 4.00 hard stop from the observed 3.511722 starting spend. Shared spend must be serialized or the staged fallback should be used."
+      },
+      {
+        "item": "topk12_only as first run",
+        "reason": "top_k=12 is more likely to add context and generation cost than reduce latency, and L112 already shows coverage and MRR at 1.0."
+      },
+      {
+        "item": "editing protected scorer, runner, question, or log files",
+        "reason": "The task is proposal-only. Protected paths must remain untouched."
+      }
+    ],
+    "needs_orchestrator_review": [
+      {
+        "check": "Inspect latest budget ledger before launch",
+        "reason": "The command's --starting-spent-usd must reflect any sibling worker spend after 3.511722; the runner cannot see concurrent spend from other processes."
+      },
+      {
+        "check": "Confirm sibling top-k worker state",
+        "reason": "A sibling folder named l113_l112_same_cohort_latency_topk_sweep_nojudge_topk_sweep already exists with an empty budget_ledger.jsonl at inspection time. If that worker is active or later produces valid results, do not duplicate the same topk_sweep."
+      },
+      {
+        "check": "Compare issue summaries before selecting candidate",
+        "reason": "Use details.json issues.field_score_issues, false_abstain, and empty_answer arrays as the gate. EDD should not be used for this no-judge latency-only decision."
+      },
+      {
+        "check": "Keep report language diagnostic-only",
+        "reason": "The existing report explicitly says L108-L112 no-judge rows are diagnostic-only and not comparable with judged rows."
+      }
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw C:\\Users\\peedi\\.codex\\skills\\eval-loop-orchestrator\\SKILL.md",
+      "Get-Content -Raw C:\\Users\\peedi\\.codex\\skills\\parallel-team-orchestrator\\SKILL.md",
+      "Get-Content -Raw C:\\Users\\peedi\\.codex\\skills\\parallel-team-orchestrator\\references\\worker-output-contract.md",
+      "rg -n \"topk5_only|topk8_only|topk12_only|topk_sweep|no[-_ ]?judge|judge|latency|elapsed|duration|hard stop|hard_stop|cost|spend|abstention|false_abstention|field_score\" scripts\\run_experiment_worker.py scripts\\evaluate.py",
+      "Get-Content -Raw eval\\parallel_runs\\20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati\\analysis\\l108_l112_nonqv8_guard_field_report.md",
+      "Get-Content -Raw eval\\parallel_runs\\20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati\\worker_outputs\\l112_nonqv8_grounded_nojudge_current_scorer_confirm_baseline_default\\details.json",
+      "Get-Content scripts\\run_experiment_worker.py selected ranges",
+      "Get-Content scripts\\evaluate.py selected ranges",
+      "[System.IO.File]::ReadAllText questions JSON as UTF-8 | ConvertFrom-Json",
+      "[System.IO.File]::ReadAllText L112 details JSON as UTF-8 | ConvertFrom-Json",
+      "Test-Path eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr\\worker_outputs\\latency_profile_contract.json"
+    ],
+    "observed_results": [
+      "run_experiment_worker.py defines topk_sweep, topk5_only, topk8_only, and topk12_only suites using the CONTROL params with top_k varied.",
+      "run_experiment_worker.py supports --no-judge, --hard-stop-usd, --starting-spent-usd, and --preflight-case-estimate-usd; default estimate is 0.02 USD per case, so the 8-case preflight estimate is 0.160000 USD per experiment.",
+      "run_experiment_worker.py writes only under the provided run_dir/worker_outputs path for experiment outputs and records issue summaries including false_abstain, empty_answer, and field_score_issues.",
+      "evaluate.py records latency_sec, retrieval_sec, generation_sec, retrieval/generation costs, abstention, and field_score per case; aggregate includes latency_avg_sec, abstention_accuracy, false_abstention_rate, and empty_answer_rate.",
+      "The L112 question file parses as 8 UTF-8 JSON cases: 5 non-abstention and 3 expected-abstention.",
+      "The L112 baseline_default no-judge row has latency_avg_sec=7.184, false_abstention_rate=0.0, abstention_accuracy=1.0, empty_answer_rate=0.0, and field_score_issues={}.",
+      "The L108-L112 report labels L112 diagnostic-only and warns not to compare no-judge EDD rows to judged rows or claim fresh validation.",
+      "Starting observed spend in the report is 3.511722 under a 4.00 local hard stop, leaving approximately 0.488278.",
+      "A sibling worker output folder for a topk_sweep was present with only budget_ledger.jsonl at inspection time, so duplicate top-k execution should be orchestrator-gated.",
+      "The target latency_profile_contract.json did not exist before this proposal write."
+    ]
+  }
+}

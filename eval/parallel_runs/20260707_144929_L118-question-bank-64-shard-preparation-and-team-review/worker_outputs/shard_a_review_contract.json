@@ -1,0 +1,258 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "shard_a_metadata_corpus_reviewer",
+  "task_id": "L118_question_bank_64_shard_A_metadata_corpus_review",
+  "status": "proposal",
+  "summary": "Reviewed shard A's 16 cases for metadata/corpus analytics coherence. Recommend keeping Q001-Q012 as core metadata/corpus analytics, keeping Q065 only as a clearly labeled corpus-wide acronym search bridge, and moving or quarantining Q033-Q035 because their own lane metadata marks them as ordinary RAG text cluster-comparison cases.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\A_metadata_corpus.json"
+  ],
+  "models": {
+    "answer_model": "",
+    "judge_model": ""
+  },
+  "protected_paths_seen": [
+    "eval/question_bank64_shards_20260707.*",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "\\uc5c5\\ubb34\\uc77c\\uc9c0.md",
+    "src/**",
+    "scripts/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\worker_outputs\\shard_a_review_contract.json",
+      "kind": "json",
+      "description": "proposal-only shard A review under parallel_team_worker_output.v1"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "recommendation_id": "A_KEEP_CORE_METADATA_CASES_Q001_Q012",
+        "case_ids": [
+          "Q001",
+          "Q002",
+          "Q003",
+          "Q004",
+          "Q005",
+          "Q006",
+          "Q007",
+          "Q008",
+          "Q009",
+          "Q010",
+          "Q011",
+          "Q012"
+        ],
+        "decision": "keep_in_shard_a",
+        "reason": "These 12 cases consistently use lane=metadata_corpus_analytics, v10_or_extension_family=corpus_analytics_gate, answerability_source=csv_metadata_only_or_corpus_tool, seed_required=false, and sidecar blockers focused on aggregation correctness, CSV metadata visibility, and ordinary EDD exclusion.",
+        "execution_notes": [
+          "Evaluate them as corpus/metadata analytics rather than ordinary passage-grounded RAG.",
+          "Expected answers should be scored against deterministic metadata/corpus computations where possible: counts, filters, sorting, grouping, and keyword matches.",
+          "Do not require retrieved body evidence unless the specific case asks for corpus keyword search beyond CSV metadata fields."
+        ]
+      },
+      {
+        "recommendation_id": "A_KEEP_Q065_AS_ACRONYM_BRIDGE_WITH_GUARDS",
+        "case_ids": [
+          "Q065"
+        ],
+        "decision": "keep_conditionally_in_shard_a",
+        "reason": "Q065 is not in the same corpus_analytics_gate family as Q001-Q012, but it still uses answerability_source=csv_metadata_only_or_corpus_tool and tests a corpus-wide ERP acronym search. It can broaden shard A without becoming ordinary RAG if scored as exact/variant acronym retrieval over metadata plus corpus text.",
+        "execution_notes": [
+          "Label Q065 separately as v10_or_extension_family=acronym_corpus_search in any aggregate.",
+          "Require case-insensitive acronym matching and Korean/English title/body visibility metrics.",
+          "Do not let an LLM infer ERP relevance from generic enterprise-system semantics without matching evidence."
+        ]
+      },
+      {
+        "recommendation_id": "A_MOVE_OR_QUARANTINE_Q033_Q035",
+        "case_ids": [
+          "Q033",
+          "Q034",
+          "Q035"
+        ],
+        "decision": "move_to_ordinary_rag_or_cluster_comparison_shard",
+        "reason": "These three cases are marked lane=ordinary_rag_text, v10_or_extension_family=corpus_cluster_comparison, answerability_source=rag_text, and sidecar blockers body_visible_support/missing_required_claim/project_mixing. They ask for multi-document comparisons and common/different requirement synthesis, which is a different evaluation contract from metadata/corpus analytics.",
+        "fallback_if_no_swap_available": "Keep them in the physical shard only as a quarantined secondary lane and exclude them from the shard A metadata analytics score. Report a separate ordinary_rag_text_cluster_comparison subtotal.",
+        "preferred_swap_profile": [
+          "metadata-only counts by agency, amount, file type, notice type, or project category",
+          "corpus-wide keyword/acronym search with deterministic hit lists",
+          "filter/sort/group cases answerable from CSV metadata or explicitly indexed corpus text without synthesizing requirements across projects"
+        ]
+      },
+      {
+        "recommendation_id": "A_SIDE_CAR_REQUIREMENTS_BEFORE_EXECUTION",
+        "case_ids": [
+          "Q001",
+          "Q002",
+          "Q003",
+          "Q004",
+          "Q005",
+          "Q006",
+          "Q007",
+          "Q008",
+          "Q009",
+          "Q010",
+          "Q011",
+          "Q012",
+          "Q065"
+        ],
+        "decision": "require_tooling_metrics_before_scored_execution",
+        "required_tooling_or_sidecar_metrics": [
+          "metadata_schema_visibility: confirm loaded columns for project/title, issuer/agency, budget/amount, file format, document type, and any category fields used by the questions",
+          "metadata_row_count_and_dedup: total corpus rows, unique project count, duplicate handling rule, and excluded rows",
+          "aggregation_correctness: deterministic expected count/list/top-n results for count, group, sort, and threshold-filter questions",
+          "budget_normalization: parse units such as won, million, billion, unknown/missing amount, and sort nulls consistently",
+          "file_format_count: deterministic PDF/HWP counts and mixed/unknown extension handling for Q012",
+          "keyword_hit_sidecar: exact query terms, normalized variants, fields searched, hit ids, and false-positive exclusions for domain/acronym cases",
+          "ordinary_edd_exclusion: a flag proving these cases were not judged by ordinary evidence-document-detection alone",
+          "answer_shape_check: expected answer type list/count/table/classification must match the case, with penalties for unsupported narrative synthesis"
+        ]
+      },
+      {
+        "recommendation_id": "A_SCORING_PROTOCOL",
+        "case_ids": [
+          "Q001",
+          "Q002",
+          "Q003",
+          "Q004",
+          "Q005",
+          "Q006",
+          "Q007",
+          "Q008",
+          "Q009",
+          "Q010",
+          "Q011",
+          "Q012",
+          "Q065",
+          "Q033",
+          "Q034",
+          "Q035"
+        ],
+        "decision": "separate_lane_scoring_required",
+        "reason": "A single score across metadata aggregations, acronym search, and ordinary multi-document comparison would reward incompatible behaviors. Metadata cases should prioritize exactness/completeness of computed outputs; ordinary comparison cases should prioritize body support, scope separation, and required-claim coverage.",
+        "accepted_metric_split": [
+          "metadata_corpus_analytics_core_score for Q001-Q012",
+          "acronym_corpus_search_score for Q065 or a subscore inside shard A",
+          "ordinary_rag_text_cluster_comparison_score for Q033-Q035 only if they remain quarantined"
+        ]
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Treating all 16 cases as one coherent metadata/corpus analytics shard",
+        "case_ids": [
+          "Q001",
+          "Q002",
+          "Q003",
+          "Q004",
+          "Q005",
+          "Q006",
+          "Q007",
+          "Q008",
+          "Q009",
+          "Q010",
+          "Q011",
+          "Q012",
+          "Q065",
+          "Q033",
+          "Q034",
+          "Q035"
+        ],
+        "risk": "Q033-Q035 are ordinary RAG text comparison cases and would contaminate shard A's metadata analytics signal."
+      },
+      {
+        "item": "Using ordinary EDD or first-hit retrieval metrics as pass/fail for metadata aggregation questions",
+        "case_ids": [
+          "Q001",
+          "Q002",
+          "Q003",
+          "Q004",
+          "Q005",
+          "Q012"
+        ],
+        "risk": "A model can retrieve a relevant document while failing the actual aggregate, count, sort, threshold, or file-format computation."
+      },
+      {
+        "item": "Allowing LLM semantic guessing for domain/category filters",
+        "case_ids": [
+          "Q006",
+          "Q007",
+          "Q008",
+          "Q009",
+          "Q010",
+          "Q011",
+          "Q065"
+        ],
+        "risk": "Broad domain labels such as education, traffic, disaster/safety/security, health/welfare/insurance, culture/events, ODA, and ERP can be overfit by prompt prior unless the sidecar records exact fields searched, normalized term variants, and excluded false positives."
+      },
+      {
+        "item": "Scoring Q003-Q005 without amount normalization",
+        "case_ids": [
+          "Q003",
+          "Q004",
+          "Q005"
+        ],
+        "risk": "Budget sorting/filtering can be wrong if units, missing values, commas, Korean amount notation, or VAT-inclusive/exclusive fields are parsed inconsistently."
+      },
+      {
+        "item": "Scoring Q033-Q035 as metadata-only or corpus-keyword cases",
+        "case_ids": [
+          "Q033",
+          "Q034",
+          "Q035"
+        ],
+        "risk": "They require multi-document body synthesis and comparison, so metadata-only tooling would under-test the intended behavior while ordinary RAG scoring would distort shard A."
+      },
+      {
+        "item": "Cross-lane leaderboard interpretation",
+        "case_ids": [
+          "Q001",
+          "Q002",
+          "Q003",
+          "Q004",
+          "Q005",
+          "Q006",
+          "Q007",
+          "Q008",
+          "Q009",
+          "Q010",
+          "Q011",
+          "Q012",
+          "Q065",
+          "Q033",
+          "Q034",
+          "Q035"
+        ],
+        "risk": "The input note already warns not to compare across lanes as one strict score. The final runner should preserve that warning in summary outputs."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Select replacement metadata/corpus analytics cases for Q033-Q035 if the 64-case bank must keep exactly 16 cases per shard with pure shard semantics.",
+      "Confirm whether Q065 should remain in shard A as an acronym-corpus bridge or move to a separate keyword/acronym shard if one exists.",
+      "Generate deterministic sidecar expected outputs for Q001-Q012 and Q065 before answer execution; otherwise mark shard A as diagnostic-only.",
+      "Preserve the input's diagnostic_candidate_only_not_yet_answer_run status until freeze/register is repeated with lane-specific scoring."
+    ]
+  },
+  "merge_risk": "medium",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\A_metadata_corpus.json'",
+      "rg -n \"parallel_team_worker_output|worker_output|accepted_recommendations|risky\" 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review' 'I:\\0706\\rfp-rag-project\\eval'",
+      "Get-Content -Raw 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\worker_outputs\\report_case_review.contract.json'",
+      "Get-ChildItem -Recurse -File 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\worker_outputs'"
+    ],
+    "observed_results": [
+      "Input shard contains 16 visible case records.",
+      "Q001-Q012 have lane=metadata_corpus_analytics and v10_or_extension_family=corpus_analytics_gate.",
+      "Q065 has v10_or_extension_family=acronym_corpus_search and answerability_source=csv_metadata_only_or_corpus_tool.",
+      "Q033-Q035 have lane=ordinary_rag_text and answerability_source=rag_text.",
+      "Prior contract examples use schema=parallel_team_worker_output.v1 with proposal.accepted_fields_or_changes and proposal.rejected_or_risky_items.",
+      "No existing worker output file was present in the target worker_outputs directory before this write."
+    ]
+  },
+  "created_at": "2026-07-07T15:20:00+09:00"
+}

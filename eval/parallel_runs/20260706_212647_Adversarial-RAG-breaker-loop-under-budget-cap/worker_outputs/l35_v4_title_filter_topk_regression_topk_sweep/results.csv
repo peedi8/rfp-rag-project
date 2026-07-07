@@ -1,0 +1,4 @@
+﻿suite,experiment,edd_score,retrieval_coverage_avg,hit_all_targets_rate,mrr,groundedness_avg,relevance_avg,abstention_accuracy,false_abstention_rate,empty_answer_rate,latency_avg_sec,edd_retrieval_coverage_avg,edd_hit_all_targets_rate,edd_mrr,edd_groundedness_avg,edd_relevance_avg,edd_abstention_accuracy,edd_latency_score
+topk_sweep,topk5_filter_rewrite,96.44,1.0,1.0,1.0,5.0,5.0,1.0,0.0,0.0,23.683,1.0,1.0,1.0,1.0,1.0,1.0,0.2871
+topk_sweep,topk8_filter_rewrite_control,94.64,1.0,1.0,1.0,5.0,5.0,1.0,0.111,0.0,24.273,1.0,1.0,1.0,1.0,1.0,1.0,0.2603
+topk_sweep,topk12_filter_rewrite,92.77,1.0,1.0,1.0,4.222,5.0,1.0,0.0,0.0,26.137,1.0,1.0,1.0,0.8444,1.0,1.0,0.1756

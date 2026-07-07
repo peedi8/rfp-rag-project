@@ -1,0 +1,8 @@
+{
+  "schema": "rfp_rag_cost_summary.v1",
+  "calls_recorded": 0,
+  "calls_with_observed_cost": 0,
+  "observed_cost_usd": 0.0,
+  "cost_basis": "local_price_table",
+  "missing_cost_rows": []
+}

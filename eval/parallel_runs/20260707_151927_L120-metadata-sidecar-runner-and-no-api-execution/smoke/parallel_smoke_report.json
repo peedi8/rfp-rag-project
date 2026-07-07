@@ -1,0 +1,8 @@
+{
+  "schema": "parallel_team_smoke_report.v1",
+  "created_at": "2026-07-07T15:25:49",
+  "run_dir": "eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution",
+  "status": "pass",
+  "worker_output_count": 2,
+  "issues": []
+}

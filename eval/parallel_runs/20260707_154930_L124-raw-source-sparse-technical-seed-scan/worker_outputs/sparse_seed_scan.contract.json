@@ -1,0 +1,68 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "main_codex",
+  "task_id": "sparse_seed_scan",
+  "status": "proposal",
+  "summary": "Scanned 97 technical candidate documents under raw HWP/PDF source text and found 5 high-absence sparse seed candidates.",
+  "inputs": [
+    "scripts/find_sparse_technical_seeds.py",
+    "data/원본 데이터/data_list.csv",
+    "scripts/run_sparse_field_guard.py"
+  ],
+  "protected_paths_seen": [
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260707_154930_L124-raw-source-sparse-technical-seed-scan/analysis/raw_sparse_seed_scan/raw_sparse_seed_scan.json",
+      "kind": "json",
+      "description": "raw sparse seed scan results"
+    },
+    {
+      "path": "eval/parallel_runs/20260707_154930_L124-raw-source-sparse-technical-seed-scan/analysis/raw_sparse_seed_scan/raw_sparse_seed_scan.csv",
+      "kind": "data",
+      "description": "raw sparse seed scan table"
+    },
+    {
+      "path": "eval/parallel_runs/20260707_154930_L124-raw-source-sparse-technical-seed-scan/analysis/raw_sparse_seed_scan/raw_sparse_seed_scan.md",
+      "kind": "md",
+      "description": "raw sparse seed scan report"
+    },
+    {
+      "path": "eval/parallel_runs/20260707_154930_L124-raw-source-sparse-technical-seed-scan/analysis/raw_sparse_seed_scan/raw_sparse_seed_scan.svg",
+      "kind": "data",
+      "description": "raw sparse seed scan chart"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Use DOC073, DOC051, DOC025, DOC090, and DOC023 as candidate sparse seeds for future diagnostic answer tests.",
+      "Do not call L124 an answer run or EDD point.",
+      "Use raw_file_text as the source basis for sparse/not-found seed selection."
+    ],
+    "rejected_or_risky_items": [
+      "Do not reuse ADD as a sparse seed because raw text shows all 31 technical field groups.",
+      "Do not score seed scan results as model performance."
+    ],
+    "needs_orchestrator_review": [
+      "Before an answer run, freeze a small sparse diagnostic question file using one or more of the top candidates."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "python -m py_compile scripts/find_sparse_technical_seeds.py",
+      "python scripts/find_sparse_technical_seeds.py --out-dir eval/parallel_runs/20260707_154930_L124-raw-source-sparse-technical-seed-scan/analysis/raw_sparse_seed_scan --limit 25"
+    ],
+    "observed_results": [
+      "technical_candidate_docs_scanned=97",
+      "field_group_count=31",
+      "recommended_sparse_seed_count=5",
+      "source_basis_counts.raw_file_text=97"
+    ]
+  }
+}

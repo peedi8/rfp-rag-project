@@ -1,0 +1,490 @@
+{
+  "schema": "rfp_rag_question_exposure_registry.v1",
+  "created_at": "2026-07-07T14:02:25",
+  "entries": [
+    {
+      "file": "eval\\questions.example.json",
+      "name": "questions.example.json",
+      "question_count": 9,
+      "target_org_count": 0,
+      "sample_ids": [],
+      "status": "example_only",
+      "claim_use": "do_not_use_for_performance",
+      "reason": "Example seed file, not a maintained validation suite."
+    },
+    {
+      "file": "eval\\questions.json",
+      "name": "questions.json",
+      "question_count": 10,
+      "target_org_count": 5,
+      "sample_ids": [
+        "q1_single_extract",
+        "q2_followup",
+        "q3_multi_topic",
+        "q4_single_check",
+        "q5_followup"
+      ],
+      "status": "legacy_exposed",
+      "claim_use": "baseline_development_only",
+      "reason": "Initial development/evaluation set used before later v2/v3 loops."
+    },
+    {
+      "file": "eval\\questions_l106_nonqv8_guard_generalization_diagnostic_draft.json",
+      "name": "questions_l106_nonqv8_guard_generalization_diagnostic_draft.json",
+      "question_count": 7,
+      "target_org_count": 0,
+      "sample_ids": [
+        "q20260707_l106_nonqv8_001_erp_final_vendor_contract_contact",
+        "q20260707_l106_nonqv8_002_award_score_selected_vendor_from_criteria",
+        "q20260707_l106_nonqv8_003_patient_story_refusal_with_scope_allowed",
+        "q20260707_l106_nonqv8_004_victim_or_counseling_story_refusal",
+        "q20260707_l106_nonqv8_005_insurance_claim_story_and_award_result_combo"
+      ],
+      "status": "draft_nonqv8_guard_generalization_after_l105",
+      "claim_use": "diagnostic_only",
+      "reason": "Non-qv8 guard-generalization draft cases designed after L105 saturation; use for fixture/design only until grounded target projects are assigned and frozen."
+    },
+    {
+      "file": "eval\\questions_l108_nonqv8_grounded_guard_field_diagnostic_frozen.json",
+      "name": "questions_l108_nonqv8_grounded_guard_field_diagnostic_frozen.json",
+      "question_count": 8,
+      "target_org_count": 4,
+      "sample_ids": [
+        "q20260707_l108_001_hanyoung_budget_vs_final_contract",
+        "q20260707_l108_002_hanyoung_eval_criteria_vendor_caveat",
+        "q20260707_l108_003_kefi_private_contact_fabrication",
+        "q20260707_l108_004_kefi_official_contact_boundary",
+        "q20260707_l108_005_khidi_patient_story_fabrication"
+      ],
+      "status": "grounded_nonqv8_guard_field_diagnostic_after_l105",
+      "claim_use": "diagnostic_only",
+      "reason": "Concrete corpus-backed non-qv8 guard and field-scoring diagnostic set derived after L105/L106; not strict validation because failure families were designed from prior insights."
+    },
+    {
+      "file": "eval\\questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json",
+      "name": "questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json",
+      "question_count": 8,
+      "target_org_count": 4,
+      "sample_ids": [
+        "q20260707_l109_001_hanyoung_budget_vs_final_contract",
+        "q20260707_l109_002_hanyoung_eval_criteria_vendor_caveat",
+        "q20260707_l109_003_kefi_private_contact_fabrication",
+        "q20260707_l109_004_kefi_official_contact_boundary",
+        "q20260707_l109_005_khidi_patient_story_fabrication"
+      ],
+      "status": "scored_copy_nonqv8_guard_field_diagnostic_after_l108",
+      "claim_use": "diagnostic_only",
+      "reason": "Same source-exposed L108 question intents with stricter field expectations and scorer calibration after L108 inspection; compares measurement/guard repair only, not fresh validation."
+    },
+    {
+      "file": "eval\\questions_qv3_010_targeted.json",
+      "name": "questions_qv3_010_targeted.json",
+      "question_count": 1,
+      "target_org_count": 1,
+      "sample_ids": [
+        "qv3_010_casual_anyang_sports_reservation"
+      ],
+      "status": "targeted_single_case_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Single known qv3_010 targeted rerun set."
+    },
+    {
+      "file": "eval\\questions_v2.json",
+      "name": "questions_v2.json",
+      "question_count": 25,
+      "target_org_count": 27,
+      "sample_ids": [
+        "qv2_001_single_elec_security",
+        "qv2_002_single_chungbuk_disaster_gis",
+        "qv2_003_single_add_large_transfer",
+        "qv2_004_single_achievement_longitudinal",
+        "qv2_005_followup_sports_lms_instructor"
+      ],
+      "status": "full_v2_exposed",
+      "claim_use": "development_and_regression_only",
+      "reason": "Used for audit/improvement planning and partial real RAG smoke."
+    },
+    {
+      "file": "eval\\questions_v2_compare_probe.json",
+      "name": "questions_v2_compare_probe.json",
+      "question_count": 3,
+      "target_org_count": 11,
+      "sample_ids": [
+        "qv2_009_compare_learning_platforms",
+        "qv2_010_compare_disaster_safety_systems",
+        "qv2_018_ambiguous_gwangju"
+      ],
+      "status": "diagnostic_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Probe set for compare behavior."
+    },
+    {
+      "file": "eval\\questions_v2_groundedness_probe.json",
+      "name": "questions_v2_groundedness_probe.json",
+      "question_count": 3,
+      "target_org_count": 4,
+      "sample_ids": [
+        "qv2_001_single_elec_security",
+        "qv2_002_single_chungbuk_disaster_gis",
+        "qv2_023_score_trap_health_info_duplicate"
+      ],
+      "status": "diagnostic_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Probe set for groundedness/source-scope behavior."
+    },
+    {
+      "file": "eval\\questions_v2_holdout.json",
+      "name": "questions_v2_holdout.json",
+      "question_count": 7,
+      "target_org_count": 9,
+      "sample_ids": [
+        "qv2_004_single_achievement_longitudinal",
+        "qv2_008_followup_pension_social_insurance",
+        "qv2_012_compare_public_platforms",
+        "qv2_016_precise_korea_univ_pdf_budget",
+        "qv2_019_ambiguous_rail_upgrade"
+      ],
+      "status": "holdout_spent",
+      "claim_use": "first_holdout_only",
+      "reason": "First holdout was inspected and targeted fixes followed, so later reruns are not strict held-out evidence."
+    },
+    {
+      "file": "eval\\questions_v2_holdout_failure_probe.json",
+      "name": "questions_v2_holdout_failure_probe.json",
+      "question_count": 3,
+      "target_org_count": 6,
+      "sample_ids": [
+        "qv2_012_compare_public_platforms",
+        "qv2_022_abstain_personal_contacts",
+        "qv2_025_score_trap_performance_requirements"
+      ],
+      "status": "targeted_failure_probe_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Built from known holdout failures."
+    },
+    {
+      "file": "eval\\questions_v2_tune.json",
+      "name": "questions_v2_tune.json",
+      "question_count": 18,
+      "target_org_count": 22,
+      "sample_ids": [
+        "qv2_001_single_elec_security",
+        "qv2_002_single_chungbuk_disaster_gis",
+        "qv2_003_single_add_large_transfer",
+        "qv2_005_followup_sports_lms_instructor",
+        "qv2_006_followup_incheon_committee_security"
+      ],
+      "status": "tune_exposed",
+      "claim_use": "tuning_score_only",
+      "reason": "Used for tuning champion candidates; not strict validation."
+    },
+    {
+      "file": "eval\\questions_v3_validation.json",
+      "name": "questions_v3_validation.json",
+      "question_count": 12,
+      "target_org_count": 12,
+      "sample_ids": [
+        "qv3_001_typo_biff_online_services",
+        "qv3_002_followup_pyeongtaek_bis",
+        "qv3_003_compare_kwater_three_projects",
+        "qv3_004_ambiguous_redcross_dr",
+        "qv3_005_single_ipnavi_center_management"
+      ],
+      "status": "first_validation_exposed",
+      "claim_use": "first_run_and_regression_only",
+      "reason": "Used for L0-L3 scored runs and later L4-L16 diagnostics."
+    },
+    {
+      "file": "eval\\questions_v4_draft_noapi.json",
+      "name": "questions_v4_draft_noapi.json",
+      "question_count": 10,
+      "target_org_count": 10,
+      "sample_ids": [
+        "qv4_001_kusf_athlete_record_metrics",
+        "qv4_002_gas_erp_scope_vs_portal",
+        "qv4_003_election_admin_operation_no_policy_guess",
+        "qv4_004_apc_hub_online_training_followup",
+        "qv4_005_museum_exhibition_guide_ict"
+      ],
+      "status": "draft_exposed_by_v4_first_run",
+      "claim_use": "development_and_regression_only",
+      "reason": "Draft source for the v4 frozen first run; v4 answers and candidate failures have now been inspected."
+    },
+    {
+      "file": "eval\\questions_v4_frozen_first_run.json",
+      "name": "questions_v4_frozen_first_run.json",
+      "question_count": 10,
+      "target_org_count": 10,
+      "sample_ids": [
+        "qv4_001_kusf_athlete_record_metrics",
+        "qv4_002_gas_erp_scope_vs_portal",
+        "qv4_003_election_admin_operation_no_policy_guess",
+        "qv4_004_apc_hub_online_training_followup",
+        "qv4_005_museum_exhibition_guide_ict"
+      ],
+      "status": "first_validation_exposed",
+      "claim_use": "first_run_and_regression_only",
+      "reason": "Frozen v4 first run was executed as L25 and later probes used the same set; do not call future reruns fresh validation."
+    },
+    {
+      "file": "eval\\questions_v5_adversarial_draft.json",
+      "name": "questions_v5_adversarial_draft.json",
+      "question_count": 14,
+      "target_org_count": 13,
+      "sample_ids": [
+        "qv5_001_contam_university_portal_korea",
+        "qv5_002_title_bias_incheon_job_isp",
+        "qv5_003_forbidden_final_vendor_trash_bag",
+        "qv5_004_scope_guard_laos_feasibility",
+        "qv5_005_budget_vs_contract_airport_erp"
+      ],
+      "status": "draft_exposed_by_v5_first_run",
+      "claim_use": "development_and_regression_only",
+      "reason": "Draft source for the v5 adversarial first run; L30 answers and failures have now been inspected."
+    },
+    {
+      "file": "eval\\questions_v5_adversarial_frozen_first_run.json",
+      "name": "questions_v5_adversarial_frozen_first_run.json",
+      "question_count": 14,
+      "target_org_count": 13,
+      "sample_ids": [
+        "qv5_001_contam_university_portal_korea",
+        "qv5_002_title_bias_incheon_job_isp",
+        "qv5_003_forbidden_final_vendor_trash_bag",
+        "qv5_004_scope_guard_laos_feasibility",
+        "qv5_005_budget_vs_contract_airport_erp"
+      ],
+      "status": "first_validation_exposed",
+      "claim_use": "first_run_and_regression_only",
+      "reason": "Frozen v5 first run was executed as L30 in the adversarial loop; later L31-L34 repairs/recomputes are exposed regression only."
+    },
+    {
+      "file": "eval\\questions_v6_l38_safety_retry.json",
+      "name": "questions_v6_l38_safety_retry.json",
+      "question_count": 2,
+      "target_org_count": 1,
+      "sample_ids": [
+        "qv6_004_unavailable_procurement_result_university_finance",
+        "qv6_010_generic_fragment_unidentifiable_abstain"
+      ],
+      "status": "targeted_failure_probe_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Built from known v6 abstention failures qv6_004/qv6_010 after L37 inspection."
+    },
+    {
+      "file": "eval\\questions_v6_l39_goyang_order_depth_probe.json",
+      "name": "questions_v6_l39_goyang_order_depth_probe.json",
+      "question_count": 1,
+      "target_org_count": 1,
+      "sample_ids": [
+        "qv6_007_goyang_facility_order_permutation"
+      ],
+      "status": "targeted_failure_probe_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Single known v6 metamorphic failure qv6_007 used for top_k and alias diagnostics."
+    },
+    {
+      "file": "eval\\questions_v6_l61_ambiguous_title_abstention_probe.json",
+      "name": "questions_v6_l61_ambiguous_title_abstention_probe.json",
+      "question_count": 1,
+      "target_org_count": 0,
+      "sample_ids": [
+        "qv6_010_generic_fragment_unidentifiable_abstain"
+      ],
+      "status": "targeted_failure_probe_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Single known v6 qv6_010 ambiguity/refusal case used after L60 inspection."
+    },
+    {
+      "file": "eval\\questions_v6_l65_uicc_project_focus_probe.json",
+      "name": "questions_v6_l65_uicc_project_focus_probe.json",
+      "question_count": 1,
+      "target_org_count": 1,
+      "sample_ids": [
+        "qv6_001_uicc_fragment_scope"
+      ],
+      "status": "targeted_failure_probe_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Single known v6 qv6_001 same-issuer project-focus case used after L64 inspection."
+    },
+    {
+      "file": "eval\\questions_v6_metamorphic_draft.json",
+      "name": "questions_v6_metamorphic_draft.json",
+      "question_count": 10,
+      "target_org_count": 7,
+      "sample_ids": [
+        "qv6_001_uicc_fragment_scope",
+        "qv6_002_add_large_transfer_invariance_a",
+        "qv6_003_add_large_transfer_invariance_b",
+        "qv6_004_unavailable_procurement_result_university_finance",
+        "qv6_005_rail_reservation_ismp_not_rebuild"
+      ],
+      "status": "draft_exposed_by_v6_first_run",
+      "claim_use": "development_and_regression_only",
+      "reason": "Draft source for the v6 metamorphic/property first run; L37 answers and failures have now been inspected."
+    },
+    {
+      "file": "eval\\questions_v6_metamorphic_frozen_first_run.json",
+      "name": "questions_v6_metamorphic_frozen_first_run.json",
+      "question_count": 10,
+      "target_org_count": 7,
+      "sample_ids": [
+        "qv6_001_uicc_fragment_scope",
+        "qv6_002_add_large_transfer_invariance_a",
+        "qv6_003_add_large_transfer_invariance_b",
+        "qv6_004_unavailable_procurement_result_university_finance",
+        "qv6_005_rail_reservation_ismp_not_rebuild"
+      ],
+      "status": "first_validation_exposed",
+      "claim_use": "first_run_and_regression_only",
+      "reason": "Frozen v6 first run was executed as L37; later targeted retries on L38-L40 are diagnostic, not fresh validation."
+    },
+    {
+      "file": "eval\\questions_v7_l83_sensitive_guard_probe.json",
+      "name": "questions_v7_l83_sensitive_guard_probe.json",
+      "question_count": 1,
+      "target_org_count": 1,
+      "sample_ids": [
+        "qv7_006_insurance_claim_forbidden_result_contact"
+      ],
+      "status": "targeted_failure_probe_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Single qv7_006 source-exposed case rerun after L82 sensitive/refusal-tail guard; measures repair only."
+    },
+    {
+      "file": "eval\\questions_v7_l88_plain_language_probe.json",
+      "name": "questions_v7_l88_plain_language_probe.json",
+      "question_count": 1,
+      "target_org_count": 1,
+      "sample_ids": [
+        "qv7_009_venture_confirm_feature_upgrade"
+      ],
+      "status": "targeted_failure_probe_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Single qv7_009 source-exposed case rerun after L87 plain-language over-structure flag; measures format repair only."
+    },
+    {
+      "file": "eval\\questions_v7_l94_sensitive_preempt_probe.json",
+      "name": "questions_v7_l94_sensitive_preempt_probe.json",
+      "question_count": 2,
+      "target_org_count": 2,
+      "sample_ids": [
+        "qv7_006_insurance_claim_forbidden_result_contact",
+        "qv7_012_redcross_patient_example_refusal"
+      ],
+      "status": "targeted_failure_probe_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Two source-exposed sensitive/forbidden-info cases rerun after preemptive abstention guard; measures latency/cost repair only."
+    },
+    {
+      "file": "eval\\questions_v7_source_exposed_prompt_diagnostic_draft.json",
+      "name": "questions_v7_source_exposed_prompt_diagnostic_draft.json",
+      "question_count": 12,
+      "target_org_count": 10,
+      "sample_ids": [
+        "qv7_001_koica_bracket_marker_not_fingerprint",
+        "qv7_002_agri_afsis_nepal_same_issuer_compare",
+        "qv7_003_add_record_vs_transfer_compare",
+        "qv7_004_seoul_map_platform_scope",
+        "qv7_005_mozambique_its_fs_not_build"
+      ],
+      "status": "source_exposed_prompt_diagnostic_draft",
+      "claim_use": "diagnostic_only",
+      "reason": "Fresh prompt forms over already-exposed corpus projects; useful for diagnostics but not strict validation."
+    },
+    {
+      "file": "eval\\questions_v7_source_exposed_prompt_diagnostic_frozen.json",
+      "name": "questions_v7_source_exposed_prompt_diagnostic_frozen.json",
+      "question_count": 12,
+      "target_org_count": 10,
+      "sample_ids": [
+        "qv7_001_koica_bracket_marker_not_fingerprint",
+        "qv7_002_agri_afsis_nepal_same_issuer_compare",
+        "qv7_003_add_record_vs_transfer_compare",
+        "qv7_004_seoul_map_platform_scope",
+        "qv7_005_mozambique_its_fs_not_build"
+      ],
+      "status": "source_exposed_prompt_diagnostic_frozen",
+      "claim_use": "diagnostic_only",
+      "reason": "Frozen diagnostic copy of v7 source-exposed prompts; run results must not be reported as fresh held-out validation."
+    },
+    {
+      "file": "eval\\questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+      "name": "questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+      "question_count": 10,
+      "target_org_count": 8,
+      "sample_ids": [
+        "q20260707_a01_generic_integrated_system_preempt_false_positive",
+        "q20260707_a02_hanyoung_plain_language_track_system",
+        "q20260707_a03_kogas_erp_final_contract_vs_budget",
+        "q20260707_a05_nmc_patient_example_fabrication",
+        "q20260707_a06_gist_same_issuer_rcms_vs_academic"
+      ],
+      "status": "semi_fresh_deadline_diagnostic",
+      "claim_use": "diagnostic_only",
+      "reason": "Codex-generated semi-fresh/source-exposed mixed diagnostic set created after prior loop insights; useful for deadline stress evidence but not strict held-out validation."
+    },
+    {
+      "file": "eval\\questions_v8_l100_latency_tail_probe.json",
+      "name": "questions_v8_l100_latency_tail_probe.json",
+      "question_count": 5,
+      "target_org_count": 4,
+      "sample_ids": [
+        "q20260707_a01_generic_integrated_system_preempt_false_positive",
+        "q20260707_a02_hanyoung_plain_language_track_system",
+        "q20260707_a05_nmc_patient_example_fabrication",
+        "q20260707_a06_gist_same_issuer_rcms_vs_academic",
+        "q20260707_a07_livestock_honey_vs_traceability_compare"
+      ],
+      "status": "targeted_latency_tail_probe_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Five qv8 high-latency cases selected after L98/L99 inspection; measures latency repair only and must not be reported as fresh validation."
+    },
+    {
+      "file": "eval\\questions_v8_l102_award_result_probe.json",
+      "name": "questions_v8_l102_award_result_probe.json",
+      "question_count": 1,
+      "target_org_count": 1,
+      "sample_ids": [
+        "q20260707_a11_dbrain_award_score_and_vendor"
+      ],
+      "status": "targeted_award_result_probe_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Single qv8_a11 unsupported final evaluation score / selected vendor probe after L101 inspection; measures refusal-boundary repair only."
+    },
+    {
+      "file": "eval\\questions_v8_l104_victim_story_probe.json",
+      "name": "questions_v8_l104_victim_story_probe.json",
+      "question_count": 1,
+      "target_org_count": 1,
+      "sample_ids": [
+        "q20260707_a12_seoul_digital_sex_crime_sensitive_story"
+      ],
+      "status": "targeted_sensitive_story_probe_exposed",
+      "claim_use": "diagnostic_only",
+      "reason": "Single qv8_a12 victim-story fabrication probe after L103 latency inspection; measures sensitive-story preempt latency repair only."
+    },
+    {
+      "file": "eval\\questions_v9_source_inspected_mini_diagnostic_frozen.json",
+      "name": "questions_v9_source_inspected_mini_diagnostic_frozen.json",
+      "question_count": 5,
+      "target_org_count": 6,
+      "sample_ids": [
+        "q20260707_v9_001_at_budget_deadline_scope",
+        "q20260707_v9_002_incheon_museum_scope_effects",
+        "q20260707_v9_003_sports_event_build_vs_maintenance_compare",
+        "q20260707_v9_004_robot_award_result_trap",
+        "q20260707_v9_005_childcare_sensitive_case_fabrication"
+      ],
+      "status": "source_inspected_v9_mini_diagnostic_frozen",
+      "claim_use": "diagnostic_only",
+      "reason": "Prompt-fresh mini-set frozen before first answer run but generated from local corpus/source inspection after prior loop insights; useful for guard, field-score, and latency evidence but not strict held-out validation."
+    }
+  ],
+  "rules": {
+    "strict_validation": "Only a frozen, uninspected first run can support strict validation.",
+    "spent_holdout": "If failures are inspected and targeted fixes are made, later same-set reruns are not held-out evidence.",
+    "diagnostic": "Probe, no-judge, or targeted question files can explain causes but not final performance.",
+    "draft": "Draft question files become exposed once answers, retrieval chunks, or failure causes are inspected."
+  }
+}

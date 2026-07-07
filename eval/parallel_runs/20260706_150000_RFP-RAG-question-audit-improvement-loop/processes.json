@@ -1,0 +1,13 @@
+[
+  {
+    "suite": "topk_sweep",
+    "returncode": 0,
+    "log": "eval\\parallel_runs\\20260706_150000_RFP-RAG-question-audit-improvement-loop\\logs\\topk_sweep.log"
+  },
+  {
+    "suite": "aggregate",
+    "returncode": 0,
+    "stdout": "{\n  \"rows\": 1,\n  \"summary\": \"eval\\\\parallel_runs\\\\20260706_150000_RFP-RAG-question-audit-improvement-loop\\\\summary\\\\summary.md\"\n}\n",
+    "stderr": ""
+  }
+]

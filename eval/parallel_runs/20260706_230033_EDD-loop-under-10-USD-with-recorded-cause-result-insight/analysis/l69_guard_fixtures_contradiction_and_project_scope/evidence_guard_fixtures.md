@@ -1,0 +1,22 @@
+# Evidence Guard Fixtures
+
+- created_at: `2026-07-07T00:58:06`
+- fixtures: `12`
+- passed: `12`
+- failed: `0`
+- status: `pass`
+
+| fixture | passed |
+|---|---:|
+| target_bound_csv_summary_backfill | True |
+| mixed_org_no_backfill | True |
+| false_friend_only_no_repair | True |
+| no_physical_source_no_repair | True |
+| source_supported_denial_repaired | True |
+| source_supported_contradictory_caveat_repaired | True |
+| narrow_unknown_boundary_passes | True |
+| ambiguous_title_verbose_refusal_trimmed | True |
+| ambiguous_title_short_refusal_preserved | True |
+| ambiguous_title_single_candidate_no_trim | True |
+| same_org_clear_project_focus_filters_other_title | True |
+| same_org_ambiguous_project_focus_preserves_titles | True |

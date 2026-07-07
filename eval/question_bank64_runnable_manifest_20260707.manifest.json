@@ -1,0 +1,222 @@
+{
+  "schema": "artifact_manifest.v1",
+  "artifact": "question_bank64_runnable_manifest_20260707",
+  "created_at": "2026-07-07T15:10:02",
+  "merged_review_at": "2026-07-07T15:14:57",
+  "files": [
+    "eval\\question_bank64_runnable_manifest_20260707.json",
+    "eval\\question_bank64_runnable_manifest_20260707.csv",
+    "eval\\question_bank64_runnable_manifest_20260707.md"
+  ],
+  "case_count": 64,
+  "claim": "execution-readiness manifest; not an answer run and not an EDD leaderboard row",
+  "ordinary_edd_included_count": 49,
+  "sidecar_or_trace_count": 15,
+  "runnable_status_counts": {
+    "ready": 62,
+    "blocked_until_trace_wrapper": 2
+  },
+  "execution_mode_counts": {
+    "metadata_corpus_sidecar": 13,
+    "multi_document_comparison_or_business_recommendation": 5,
+    "concrete_single_document_rag": 3,
+    "selected_project_seeded_contract_rag": 8,
+    "selected_project_seeded_technical_rag": 8,
+    "corpus_discovery_rag_with_sidecar": 2,
+    "negative_requirement_check": 1,
+    "near_duplicate_comparison": 1,
+    "wrong_org_correction_boundary": 1,
+    "conversation_seeded_followup_rag": 4,
+    "conversation_seeded_numeric_comparison": 1,
+    "conversation_seeded_domain_expansion": 1,
+    "unsupported_claim_boundary": 5,
+    "missing_metadata_abstention_boundary": 1,
+    "persona_or_business_usefulness_seeded_rag": 8,
+    "system_trace_audit": 2
+  },
+  "shard_summary": {
+    "A_metadata_corpus": {
+      "count": 16,
+      "ordinary_edd_included": 3,
+      "sidecar_or_trace_only": 13,
+      "blocked_until_trace_wrapper": 0,
+      "modes": {
+        "metadata_corpus_sidecar": 13,
+        "multi_document_comparison_or_business_recommendation": 3
+      },
+      "gates": {
+        "G_METADATA_AGGREGATION": 13,
+        "G_MULTI_DOC_COMPARISON": 3,
+        "G_QUARANTINED_COMPARISON_SUBTOTAL": 3
+      },
+      "statuses": {
+        "ready": 16
+      }
+    },
+    "B_contract_technical_extract": {
+      "count": 16,
+      "ordinary_edd_included": 16,
+      "sidecar_or_trace_only": 0,
+      "blocked_until_trace_wrapper": 0,
+      "modes": {
+        "concrete_single_document_rag": 3,
+        "selected_project_seeded_contract_rag": 8,
+        "selected_project_seeded_technical_rag": 5
+      },
+      "gates": {
+        "G_SINGLE_DOC_TARGET": 3,
+        "G_SELECTED_PROJECT_MEMORY": 13,
+        "G_CONTRACT_FIELDS": 8,
+        "G_TECHNICAL_REQUIREMENT_FIELDS": 5
+      },
+      "statuses": {
+        "ready": 16
+      }
+    },
+    "C_technical_followup_boundary": {
+      "count": 16,
+      "ordinary_edd_included": 16,
+      "sidecar_or_trace_only": 0,
+      "blocked_until_trace_wrapper": 0,
+      "modes": {
+        "selected_project_seeded_technical_rag": 3,
+        "corpus_discovery_rag_with_sidecar": 2,
+        "negative_requirement_check": 1,
+        "near_duplicate_comparison": 1,
+        "wrong_org_correction_boundary": 1,
+        "conversation_seeded_followup_rag": 4,
+        "conversation_seeded_numeric_comparison": 1,
+        "conversation_seeded_domain_expansion": 1,
+        "unsupported_claim_boundary": 1,
+        "missing_metadata_abstention_boundary": 1
+      },
+      "gates": {
+        "G_SELECTED_PROJECT_MEMORY": 3,
+        "G_TECHNICAL_REQUIREMENT_FIELDS": 3,
+        "G_CORPUS_DISCOVERY": 2,
+        "G_NEGATIVE_REQUIREMENT": 1,
+        "G_DUPLICATE_TITLE_DISAMBIGUATION": 1,
+        "G_ENTITY_CORRECTION": 1,
+        "G_FOLLOWUP_CONTEXT_MEMORY": 4,
+        "G_NUMERIC_COMPARISON": 1,
+        "G_FOLLOWUP_DOMAIN_EXPANSION": 1,
+        "G_UNSUPPORTED_CLAIM_BOUNDARY": 1,
+        "G_NO_EXACT_BUDGET_GUESS": 1
+      },
+      "statuses": {
+        "ready": 16
+      }
+    },
+    "D_persona_business_citation": {
+      "count": 16,
+      "ordinary_edd_included": 14,
+      "sidecar_or_trace_only": 2,
+      "blocked_until_trace_wrapper": 2,
+      "modes": {
+        "unsupported_claim_boundary": 4,
+        "persona_or_business_usefulness_seeded_rag": 8,
+        "system_trace_audit": 2,
+        "multi_document_comparison_or_business_recommendation": 2
+      },
+      "gates": {
+        "G_UNSUPPORTED_CLAIM_BOUNDARY": 4,
+        "G_CONTEXTUAL_USEFULNESS": 8,
+        "G_TRACE_TRANSPARENCY": 2,
+        "G_MULTI_DOC_COMPARISON": 2,
+        "G_BUSINESS_RECOMMENDATION_CRITERIA": 2
+      },
+      "statuses": {
+        "ready": 14,
+        "blocked_until_trace_wrapper": 2
+      }
+    }
+  },
+  "review_summary": {
+    "source_run_dir": "eval\\parallel_runs\\20260707_150641_L119-question-bank-64-runnable-manifest-seed-and-preflight-d",
+    "worker_statuses": {
+      "A_metadata_corpus": "pass_with_warnings",
+      "B_contract_technical_extract": "pass_with_warnings",
+      "C_technical_followup_boundary": "pass",
+      "D_persona_business_citation": "pass_with_warnings"
+    },
+    "findings_by_worker": {
+      "A_metadata_corpus": [
+        {
+          "severity": "low",
+          "case_id": "Q001-Q012,Q065",
+          "cause": "These rows are explicitly marked execution_mode=metadata_corpus_sidecar with ordinary_edd_included=false and runner notes that exclude ordinary target-org RAG.",
+          "result": "Ordinary EDD exclusion is correct; they should be scored only through the metadata sidecar path.",
+          "recommended_change": "Keep them out of the ordinary EDD subtotal and preserve the sidecar-only gate."
+        },
+        {
+          "severity": "medium",
+          "case_id": "Q006-Q011,Q065",
+          "cause": "Several prompts are broad cross-domain or acronym-heavy searches, so keyword-only preflight can over-match unrelated rows even when the sidecar key is correct.",
+          "result": "Metadata sidecar keys are sufficient for routing, but preflight filtering is vulnerable to false positives if it leans on terms like ERP, ODA, education, or general governance language.",
+          "recommended_change": "Use computed_sidecar_key plus row-level metadata filters, not keyword match alone, before judging readiness."
+        },
+        {
+          "severity": "low",
+          "case_id": "Q033-Q035",
+          "cause": "These comparison rows are physically inside shard A but are labeled ordinary_rag_text with source_execution_subtotal=ordinary_rag_text_cluster_comparison_quarantined_inside_A and ordinary_edd_included=true.",
+          "result": "They should remain in A physically, but be subtotaled separately from the metadata/corpus sidecar cases.",
+          "recommended_change": "Keep the quarantine boundary intact and do not merge their scores into the metadata corpus subtotal."
+        }
+      ],
+      "B_contract_technical_extract": [
+        {
+          "severity": "medium",
+          "case_id": "Q038-Q045",
+          "cause": "The runner note says to run at least one seed and only run both if time allows, but it does not explicitly bind the run to the selected-project memory or forbid cross-seed synthesis.",
+          "result": "A runner could pick the wrong project seed or blend evidence across the two project docs, which would overstate contract-field coverage on sparse rows.",
+          "recommended_change": "Change the note to: choose the seed that matches selected-project memory, use one fixed seed per run, and abstain rather than blend if the needed field is not present."
+        },
+        {
+          "severity": "low",
+          "case_id": "Q046-Q050",
+          "cause": "The technical seed pool includes one short seed (S_ADD_LARGE_TRANSFER) alongside richer docs, but the note only says to avoid claiming absent fields.",
+          "result": "Sparse-field cases such as UI/UX or infrastructure can still produce weak overclaims unless the runner has an explicit fallback order.",
+          "recommended_change": "Add a preferred-seed order or a 'return not found/none' fallback so sparse documents do not get padded with guessed technical fields."
+        }
+      ],
+      "C_technical_followup_boundary": [],
+      "D_persona_business_citation": [
+        {
+          "severity": "high",
+          "case_id": "Q090-Q091",
+          "cause": "These are system_trace_audit rows, not ordinary answer rows; they require retrieval_trace, chunk_source_map, and citation span export before scoring.",
+          "result": "They are not runnable as plain EDD cases and will fail or mis-score without a trace-export wrapper.",
+          "recommended_change": "Add a pre-execution trace wrapper that exports the required artifacts and routes these rows to a dedicated trace audit path."
+        },
+        {
+          "severity": "medium",
+          "case_id": "Q077-Q081",
+          "cause": "These unsupported_claim_boundary rows are about refusal of guarantees/current/live certainty, so ordinary EDD is not a sufficient success signal.",
+          "result": "A fluent but non-refusing answer can look retrieval-good while still being wrong for the task.",
+          "recommended_change": "Keep abstention_correctness and useful_safe_alternative as explicit gates, and do not rely on ordinary EDD aggregation for these rows."
+        },
+        {
+          "severity": "medium",
+          "case_id": "Q082-Q089",
+          "cause": "These persona/business usefulness rows are judged on contextual fit and usefulness, which EDD alone can miss.",
+          "result": "Plausible but unhelpful answers may pass retrieval quality while failing task usefulness.",
+          "recommended_change": "Require G_CONTEXTUAL_USEFULNESS and a calibrated judge/readback sample for these rows."
+        },
+        {
+          "severity": "medium",
+          "case_id": "Q036-Q037",
+          "cause": "These business recommendation rows need both multi-document comparison and explicit recommendation criteria; EDD alone does not test either.",
+          "result": "A single-doc or criterion-opaque answer could be over-accepted.",
+          "recommended_change": "Keep G_MULTI_DOC_COMPARISON and G_BUSINESS_RECOMMENDATION_CRITERIA as separate gates, with comparison coverage and criteria transparency checked explicitly."
+        }
+      ]
+    },
+    "merge_decisions": [
+      "Q001-Q012 and Q065 remain sidecar-only metadata/corpus rows; keyword lists are candidate preflight aids, not strict gold answers.",
+      "Q033-Q035 remain physically in shard A but score under a quarantined comparison subtotal.",
+      "Q038-Q045 must use one selected-project seed per run and must not blend evidence across seeds.",
+      "Q046-Q050 must use a preferred seed/fallback policy and return not-found rather than padding sparse fields.",
+      "Q090-Q091 are blocked until a retrieval-trace export wrapper exists."
+    ]
+  }
+}

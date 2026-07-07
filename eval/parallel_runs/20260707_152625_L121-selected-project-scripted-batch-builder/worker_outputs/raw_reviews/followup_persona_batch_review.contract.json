@@ -1,0 +1,27 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "followup_persona_batch_review",
+  "task_id": "followup_persona_batch_review",
+  "status": "completed",
+  "summary": "Accepted: Q067-Q072 are aligned with prior-turn follow-up, and Q070 matches the sidecar domain-expansion intent. Accepted: Q073 correctly preserves the ISP/ISMP dynamic-seed thread, with the resolved one-turn variant trading fidelity for cheaper smoke coverage. Accepted: Q075-Q081 are labeled as abstention cases and the prompts are boundary-style unsupported claims. Risky: Q082-Q089 are broadly useful persona/business rewrites, but a few are generic enough that grounded usefulness may hinge on the earlier transcript quality. Needs review: the resolved_one_turn variants are intentionally shorter and may under-test memory-sensitive behavior compared with multiturn.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_multiturn_primary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_resolved_primary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\answers\\Q070_sidecar_answer.md"
+  ],
+  "protected_paths_seen": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_multiturn_primary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_resolved_primary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\answers\\Q070_sidecar_answer.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\worker_outputs\\followup_persona_batch_review.contract.json"
+  ],
+  "proposal": "Keep the batch as-is. The only watchpoint is evaluation sensitivity: resolved_one_turn is fine for low-cost smoke, but multiturn remains the better fit when you want to stress transcript recall, sidecar linkage, or incremental follow-up behavior.",
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": "Reviewed the requested Q067, Q069-Q073, Q075, Q077, Q079-Q081, and Q082-Q089 entries directly from the batch and question files, plus the Q070 sidecar note. No external files were edited."
+}

@@ -1,0 +1,68 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 5.0,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 40.69
+    },
+    "edd_score": 85.0,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": [
+      {
+        "id": "qv6_007_goyang_facility_order_permutation",
+        "type": "metamorphic_pair_order_permutation",
+        "answer": "근거: 고양도시관리공사 - 관산근린공원 다목적구장 회원 통합운영관리 시스템 구축\n(근거문서: 문서5(사업범위), 문서3(ECR-001), 문서2(SFR-012), 문서7(보안·접근제품 목록))\n\n정리:\n- 무인 운영 프로그램 포함 여부: 포함되어 있음.\n  - 근거: 문서5 사업범위 라. \"무인화 운영을 위한 프로그램 및 기술 지원\" 명시. 문서3 ECR-001에도 \"운영시스템과의 하드웨어(H/W) 연동 프로그램 제공\" 명시.\n\n- 출입통제(물리적 시설 출입통제 장치 연동 등) 포함 여부: 제공된 문서에서 확인할 수 없습니다.\n  - 단, 시스템 사용자·관리자 접근권한 및 접속기록 등(시스템 차원의 접근통제)은 포함되어 있음.\n    - 근거: 문서2 SFR-012 (사용자 생성/삭제, 접근권한 부여/회수/변경 및 접속기록 저장 등) 및 문서7의 접근·서버·네트워크 접근통제 등 보안제품 목록.",
+        "retrieved_orgs": [
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "latency_sec": 40.69,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제공된 문서들에 근거하여 명확히 정리함. '무인 운영 프로그램' 포함은 문서5의 사업범위(라. '무인화 운영을 위한 프로그램 및 기술 지원')와 문서3(ECR-001, H/W 연동 프로그램 제공)에서 직접 확인되므로 근거 기반 서술임. '출입통제'(물리적 출입통제 장치 연동 등)는 제공된 문서들에서 명시적 근거가 없어 포함 여부를 확인할 수 없다고 정확히 표기하였고, 대신 시스템 차원의 접근권한·접속기록 등 접근통제 관련 기능은 문서2(SFR-012) 및 문서7의 보안·접근통제 제품 목록에 근거해 분리하여 명시하고 있어 질문에 적절히 답함.",
+          "judge_model": "gpt-5-mini"
+        },
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 449,
+          "answer_line_count": 8
+        }
+      }
+    ]
+  }
+}

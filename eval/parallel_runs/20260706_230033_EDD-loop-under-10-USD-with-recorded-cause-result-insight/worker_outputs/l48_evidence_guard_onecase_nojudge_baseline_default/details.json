@@ -1,0 +1,101 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": null,
+      "relevance_avg": null,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 19.54
+    },
+    "edd_score": 47.38,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": [
+      {
+        "id": "qv6_007_goyang_facility_order_permutation",
+        "type": "metamorphic_pair_order_permutation",
+        "answer": "요약(근거: 고양도시관리공사 관산근린공원 다목적구장 회원 통합운영관리 시스템 구축, 발주기관: 고양도시관리공사)\n\n- 무인화 운영 프로그램 포함 여부: 포함되어 있음.\n  - 근거: 문서5(사업범위) 라항에 \"무인화 운영을 위한 프로그램 및 기술 지원\" 명시.\n\n- 출입통제(물리적 출입통제 장치·시스템) 포함 여부: 제공된 문서에서 확인할 수 없습니다.\n  - 근거 및 관련 항목 설명: 문서3(ECR-001)은 \"운영시스템과의 하드웨어(H/W) 연동 프로그램 제공\"을 요구하고 있고, 문서7(붙임10)에는 보안 관련 제품 목록(예: 스마트카드, 네트워크 접근통제 등)이 나열되어 있으나, 이는 출입통제의 도입을 명시하거나 출입통제 기능을 요구한다고 직접 규정한 조항이 아님. 따라서 출입통제 포함 여부는 문서에서 명확히 확인되지 않습니다.\n\n필요하면 출입통제 포함 여부를 명확히 확인할 수 있는 추가 문서(요구사항 세부내역의 출입통제 관련 항목 또는 하드웨어 연동 대상 장비 명시)를 요청해 주세요.",
+        "retrieved_orgs": [
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 505,
+          "answer_line_count": 6
+        },
+        "latency_sec": 19.54,
+        "retrieval_sec": 3.3,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 89,
+              "completion_tokens": null,
+              "total_tokens": 89
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 16.23,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4342,
+              "completion_tokens": 946,
+              "total_tokens": 5288
+            },
+            "cost_usd": 0.007514,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 16.231,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.007514
+      }
+    ]
+  }
+}

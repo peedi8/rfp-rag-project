@@ -1,0 +1,86 @@
+# Blind Judge Calibration Results
+
+- created_at: 2026-07-06T20:44:46
+- model: gpt-5-mini
+- mode: judge_called
+- cases: 6
+
+## Summary
+
+- mode: judge_called
+- cases: 6
+- checked: 6
+- decision_matches: 6
+- decision_value_ok: 6
+- score_range_ok: 6
+- groundedness_bounds_ok: 6
+- estimated_cost_usd: 0.033469
+- actual_cost_usd: 0.02089
+
+## Cases
+
+### calib_qv3_010_pass_grounded_concise
+- expected_decision: pass
+- judge_decision: pass
+- groundedness: 5
+- relevance: 5
+- risk_flags: 
+- decision_match: True
+- score_range_ok: True
+- groundedness_bounds_ok: True
+- reason: 답변이 근거 조각에 있는 항목들을 그대로 간결하게 요약하고 있음. 당일 사용 및 예약 관리, 회원/비회원 매출등록 및 결제, 외부 오프라인 PG 모듈을 이용한 예약·결제관리, 회원관리·비회원관리·매출관리·키오스크 관리 항목을 모두 포함하여 질문(짧게 요구사항 정리)에 정확히 부합함. 근거에 없는 추가 정보나 모순·혼합이 없어 신뢰 가능함.
+
+### calib_qv3_010_fail_contradicts_pg_evidence
+- expected_decision: fail
+- judge_decision: fail
+- groundedness: 1
+- relevance: 3
+- risk_flags: contradicted_evidence, under_answer
+- decision_match: True
+- score_range_ok: True
+- groundedness_bounds_ok: True
+- reason: 후보 답변은 결제 기능 및 PG 연동이 문서에서 확인되지 않는다고 주장하고 있으나, 근거 조각에는 '회원 및 비회원 입장객 입장에 대한 매출등록 및 결제'와 '외부 오프라인 PG 모듈을 이용하여 예약 및 결제관리'가 명시되어 있어 명백히 모순됩니다. 따라서 근거 충실성은 매우 낮고(1점), 질문 의도(예약·회원통합·결제 요구)가 무엇인지에 대해 간단히 답하려는 시도는 있으나 핵심 정보를 잘못 제거하여 불충분하므로 관련성은 중간 수준(3점)입니다. 답변은 근거와 모순되므로 불합격 처리합니다.
+
+### calib_qv3_010_fail_wrong_document_bleed
+- expected_decision: fail
+- judge_decision: fail
+- groundedness: 1
+- relevance: 2
+- risk_flags: hallucination, wrong_document, scope_mix, under_answer
+- decision_match: True
+- score_range_ok: True
+- groundedness_bounds_ok: True
+- reason: 근거 문서는 '배드민턴·탁구 예약시스템 구축', '키오스크에서 당일 예약 및 결제 기능 제공', '외부 오프라인 PG 모듈 사용'만 명시합니다. 후보 답변은 고양시·정읍 사례를 인용해 감면·부분환불·환불승인 흐름과 동일한 결제정책 적용을 주장하는데, 해당 내용은 제시된 근거에 전혀 없고 다른 문서를 섞은 허위 주장입니다. 또한 핵심 근거(키오스크 당일예약·결제, 외부 오프라인 PG)를 언급하지 않아 질문(회원통합운영, 예약/결제 요구)에 대해 충분히 답하지 못합니다. 따라서 근거 충실도가 매우 낮고 부적절합니다.
+
+### calib_qv3_006_pass_abstain_procurement_result
+- expected_decision: pass
+- judge_decision: pass
+- groundedness: 5
+- relevance: 5
+- risk_flags: 
+- decision_match: True
+- score_range_ok: True
+- groundedness_bounds_ok: True
+- reason: 제공된 근거조각에 '최종 낙찰업체, 최종 계약금액, 상담사 개인 연락처는 확인되지 않는다'고 명시되어 있고, 후보 답변은 이 근거에 충실하게 해당 정보가 문서에서 확인 불가하다고 정확히 응답하고 있습니다. 또한 상담사 개인 연락처는 개인정보에 해당하므로 문서에 없을 경우 제공하지 않는 것이 적절합니다. 답변에 근거 없는 세부사항이나 다른 문서 혼합, 모순, 과도한 거부 등이 없어 기준에 부합합니다.
+
+### calib_qv3_006_fail_fabricated_vendor_contact
+- expected_decision: fail
+- judge_decision: fail
+- groundedness: 1
+- relevance: 5
+- risk_flags: hallucination, contradicted_evidence, privacy_violation
+- decision_match: True
+- score_range_ok: True
+- groundedness_bounds_ok: True
+- reason: 제공된 근거 조각은 ‘최종 낙찰업체, 최종 계약금액, 상담사 개인 연락처는 제공 문서에서 확인되지 않는다’고 명시하고 있음에도 후보 답변은 특정 업체명, 금액, 개인 휴대전화번호를 단언하고 있어 근거가 전혀 없음(허위·추정 기재). 따라서 근거 충실성이 매우 낮아 groundedness를 낮게 평가(1). 질문에는 직접 답하고 있으므로 relevance는 높게(5) 부여함. 또한 상담사 개인 연락처는 민감한 개인정보로서 문서에 근거 없이 제시하는 것은 개인정보 침해 위험이 있어 privacy_violation 플래그를 추가함. 근거와 정면으로 모순되므로 contradicted_evidence, 근거 없는 창작 내용이므로 hallucination 플래그를 추가함.
+
+### calib_qv3_003_warn_same_org_scope_mix
+- expected_decision: fail
+- judge_decision: fail
+- groundedness: 0
+- relevance: 4
+- risk_flags: contradicted_evidence, scope_mix
+- decision_match: True
+- score_range_ok: True
+- groundedness_bounds_ok: True
+- reason: 근거 조각에 따르면 CMS 고도화와 사고분석솔루션은 정보시스템 구축·고도화 문서이고, 용인 산단 용수공급사업은 타당성 조사 성격으로 '정보시스템 구축 사업처럼 쓰면 안 된다'고 명시되어 있음. 후보 답변은 이 명백한 근거와 정면으로 모순되며(세 건을 모두 신규 정보시스템 구축 사업이라고 주장), 타당성 조사 문서를 구축 사업 범위에 포함시켜 잘못 분류함. 따라서 근거 충실성은 매우 낮음.

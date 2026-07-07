@@ -1,0 +1,25 @@
+{
+  "schema": "l121_handoff.v1",
+  "created_at": "2026-07-07T15:35:40",
+  "status": "complete_selected_project_batch_ready",
+  "artifacts": [
+    "scripts/build_selected_project_batch.py",
+    "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.json",
+    "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_multiturn_primary.json",
+    "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_resolved_primary.json",
+    "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_secondary_variants.json"
+  ],
+  "counts": {
+    "primary_cases": 35,
+    "secondary_variants": 16,
+    "multiturn_calls_if_executed": 71,
+    "resolved_calls_if_executed": 35
+  },
+  "must_remember": [
+    "L121 is a prepared batch, not an answer run or EDD point.",
+    "Resolved-one-turn is cheap smoke; multiturn is required for memory/follow-up claims.",
+    "Secondary variants are diagnostic-only.",
+    "Sparse-field not-found/padding guard is needed before scoring secondary technical variants.",
+    "First answer run must be preserved raw."
+  ]
+}

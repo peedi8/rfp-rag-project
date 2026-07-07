@@ -1,0 +1,4 @@
+﻿suite,experiment,edd_score,retrieval_coverage_avg,hit_all_targets_rate,mrr,groundedness_avg,relevance_avg,abstention_accuracy,false_abstention_rate,empty_answer_rate,latency_avg_sec,edd_retrieval_coverage_avg,edd_hit_all_targets_rate,edd_mrr,edd_groundedness_avg,edd_relevance_avg,edd_abstention_accuracy,edd_latency_score
+mmr_lambda_sweep,lambda03_top8_filter_rewrite,93.08,1.0,1.0,1.0,4.5,5.0,1.0,0.0,0.0,29.628,1.0,1.0,1.0,0.9,1.0,1.0,0.0169
+mmr_lambda_sweep,lambda05_top8_filter_rewrite_control,96.57,1.0,1.0,1.0,4.667,5.0,1.0,0.0,0.0,17.251,1.0,1.0,1.0,0.9334,1.0,1.0,0.5795
+mmr_lambda_sweep,lambda07_top8_filter_rewrite,80.0,1.0,1.0,1.0,3.667,4.333,0.0,0.0,0.0,16.796,1.0,1.0,1.0,0.7334,0.8666,0.0,0.6002

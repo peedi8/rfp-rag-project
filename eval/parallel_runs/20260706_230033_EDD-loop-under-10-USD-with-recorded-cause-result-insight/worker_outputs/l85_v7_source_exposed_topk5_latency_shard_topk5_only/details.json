@@ -1,0 +1,1062 @@
+{
+  "topk5_filter_rewrite": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 5,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 5.0,
+      "abstention_accuracy": 1.0,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 16.865
+    },
+    "edd_score": 97.99,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {
+        "plain_language_answer_over_structured": [
+          "qv7_009_venture_confirm_feature_upgrade"
+        ]
+      }
+    },
+    "details": [
+      {
+        "id": "qv7_001_koica_bracket_marker_not_fingerprint",
+        "type": "metadata_marker_scope_guard",
+        "answer": "사업: KOICA 우즈베키스탄 열린 의정활동 상하원 국회 방송시스템 구축 및 지역의회 연계 개선 PMC 용역 (발주기관: KOICA 전자조달)\n\n요약 답변\n- 제공된 문서들에서는 제목의 “[지문]” 표기의 의미를 확인할 수 없습니다. 따라서 이것이 지문(생체)인식 출입통제 등 생체인증 시스템 구축을 의미하는지는 제공된 문서에서 확인할 수 없습니다. (근거: 문서1·문서2의 사업명 표기만 존재함; 의미 정의 없음)\n- 문서들에 명시된 실제 사업 범위는 국회 방송시스템 구축·연계 및 PMC 용역 업무입니다. 생체인증 장비 설치·운영은 문서에 명시되어 있지 않습니다. (근거: 문서1, 문서2, 문서4, 문서5)\n\n문서 근거로 확인되는 주요 사업 범위(간략)\n- 방송 기자재 구매·설치·통합시험·검수와 기자재 조달업체 선정·운영 지원 (문서1: Activity 1.1.1)\n- 상·하원 대상 국회 방송중계시스템 및 대국민 의사중계서비스 등 응용시스템(총 4식) 개발·운영 요건: 오픈소스 우대, 영어/우즈벡어/러시아어 지원, 1초 이내 응답성, 다중 송출 채널(9개 TV채널, YouTube, Facebook, 포털 등), API 연계(의원·정당정보) 등 (문서4)\n- PMC 용역 기간·대상지·집행한도액 등 계약 조건(용역기간 ~2027.09.30, 대상지 타슈켄트·12개 주·카라칼팍스탄, 집행한도액 명시) (문서2)\n- 소프트웨어 지식재산권 및 반출·공동소유 관련 규정(문서5)\n- 사업관리·성과관리·연수·보고서 등 산출물 목록(문서1)\n\n권고(문서상 확인 불가 사항 보완)\n- “[지문]” 표기의 정확한 의미(예: 공고 분류 태그, 내부 코드, 생체인증 뜻 등)는 제공 문서에서 정의되어 있지 않습니다. 확인하려면 KOICA 전자조달 공고의 메타정보 또는 발주처 문의가 필요합니다. 제공 문서에는 발주처의 공식 연락처 또는 추가 설명이 명시되어 있지 않습니다. (근거: 문서1~5에 설명·연락처 부재)\n\n(근거 문서: 문서1, 문서2, 문서4, 문서5)",
+        "retrieved_orgs": [
+          "KOICA 전자조달",
+          "KOICA 전자조달",
+          "기초과학연구원",
+          "KOICA 전자조달",
+          "KOICA 전자조달"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 985,
+          "answer_line_count": 13
+        },
+        "latency_sec": 20.77,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 2.4,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 130,
+              "completion_tokens": null,
+              "total_tokens": 130
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 18.36,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2826,
+              "completion_tokens": 1585,
+              "total_tokens": 4411
+            },
+            "cost_usd": 0.009252,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 18.365,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.009252,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "근거 문서들(문서1·문서2·문서4·문서5)은 사업명에 '[지문]' 표기가 있으나 그 표기의 의미(지문=지문인식 등 생체인증인지, 혹은 전자조달 표기인지)를 정의하거나 설명하는 내용이 전혀 없음. 반면 문서들에는 상·하원 국회방송시스템 구축, 기자재 조달·설치·통합시험·검수, 응용시스템(방송중계·대국민 의사중계), PMC 용역 기간·대상지·예산, SW 지식재산권 등 방송/연계 관련 세부 범위가 상세히 명시되어 있어(문서1: Activity 1.1.1 등, 문서4의 시스템 요건 등) 답변의 요지(‘[지문]의 의미는 문서에서 확인되지 않음’ 및 ‘사업 범위는 방송시스템·연계·PMC로, 생체인증 설치는 명시 없음’)는 검색된 근거에 잘 뒷받침되고 질문에 직접 답하고 있음. 따라서 groundedness·relevance 모두 최고점으로 평가함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3285,
+                "completion_tokens": 803,
+                "total_tokens": 4088
+              },
+              "cost_usd": 0.006077,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 9.512,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.006077
+        }
+      },
+      {
+        "id": "qv7_002_agri_afsis_nepal_same_issuer_compare",
+        "type": "same_issuer_compare",
+        "answer": "요약(근거: 문서1·3·5, 문서2·4 — 모두 발주기관: 한국농어촌공사)\n\n1) 아세안+3 식량안보정보시스템(AFSIS) 3단계 협력(캄보디아)사업 PMC 용역\n- 사업명/발주기관: 아세안+3 식량안보정보시스템(AFSIS) 3단계 협력(캄보디아) PMC 용역 / 한국농어촌공사 (근거: 문서1·3·5)\n- 목적: ASEAN 지역(특히 캄보디아)에서 식량안보 정보네트워크 구축 및 농업통계·원격탐사 기반 수확량 예측·정책지원 역량 강화(마스터플랜·예측관리·성과관리 포함). (근거: 문서5, 문서3)\n- 대상국/지역: 캄보디아(캄퐁 스퓨 주) 및 AFSIS 관련 회원국 초청 워크숍 대상(AFSIS 사무국, 캄보디아·베트남·라오스·필리핀·인도네시아 등). (근거: 문서5, 문서1)\n- 시스템 범위(제공 문서에 명시된 범위만):\n  - 위성·UAV 정보의 저장·표준화·시각화·분석 서비스 구축\n  - 쌀 생산량 예측 지원 정보서비스 및 수확량 예측용 웹 시스템 개발\n  - 지도(맵) 서비스 생성 및 통계 서비스 개발\n  - 생산예측모델(FSFM) 개발·예측관리 및 활용시스템 구축\n  - ICT 기자재(웹/DB 서버, GIS 장비, 화상회의 장비, 업무용 PC 등) 도입·현지 인수·사후 유지보수 역량 강화\n  - PMC 역할로서 PDM 수립, 기초선/종료선 조사·성과관리·예비사후평가 등 사업관리 수행. (근거: 문서1·3·5)\n\n2) 네팔 수자원관리 정보화사업 - Pilot 시스템 구축용역\n- 사업명/발주기관: 네팔 수자원관리 정보화사업 - Pilot 시스템 구축용역 / 한국농어촌공사 (근거: 문서2·4)\n- 목적: 자동계측기 및 GIS 기반 Pilot 시스템 도입을 통해 네팔(DWRI)의 수자원·관개관리 정보화 역량 강화 및 NIMIS 기능·자료 제공 확대. (근거: 문서4)\n- 대상국/기관: 네팔(Department of Water Resources and Irrigation, DWRI) 및 기존 관개관리시스템(NIMIS) 연계·확대. (근거: 문서4)\n- 시스템 범위(제공 문서에 명시된 범위만):\n  - 자동계측기기 설치(자료 수집용)\n  - GIS 기반 Pilot 시스템 구축\n  - 자동계측기·모바일 입력 등을 통해 수집된 자료의 표출 및 관리(데이터 표출·관리 기능)\n  - (사업성격상) 계측장비·모바일 자료입력 시연과 기술전수 목적 포함. (근거: 문서4)\n  - 보안·제출 의무 등 제안참여자 준수사항(보안서약서, 개인정보 동의서 등) 존재. (근거: 문서2)\n\n추가 확인 필요 사항(문서에 없음): 사업별 상세 일정·최종 산출물 명세서·예산 집행 세부내역 등은 제공된 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "한국농어촌공사",
+          "한국농어촌공사",
+          "한국농어촌공사",
+          "한국농어촌공사",
+          "한국농어촌공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1305,
+          "answer_line_count": 23
+        },
+        "latency_sec": 16.13,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.42,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 139,
+              "completion_tokens": null,
+              "total_tokens": 139
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 15.72,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2837,
+              "completion_tokens": 1526,
+              "total_tokens": 4363
+            },
+            "cost_usd": 0.008995,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 15.716,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.008995,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변이 검색된 근거(문서1·3·5 for AFSIS, 문서2·4 for 네팔)에서 직접 추출한 내용으로 목적, 대상국(기관), 시스템 범위를 각 항목별로 분리해 제시함. 근거에 없는 정보를 새로 창작하지 않았고, 문서에 명시된 장비·모델(FSFM), 교육·PMC 역할, 자동계측기·GIS·NIMIS 연계 등 주요 항목을 충실히 반영함. (단, 세부 일정·예산 등 문서에 없는 항목은 명시적으로 추가 확인 필요하다고 밝힘.)",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3443,
+                "completion_tokens": 556,
+                "total_tokens": 3999
+              },
+              "cost_usd": 0.005084,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 7.597,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005084
+        }
+      },
+      {
+        "id": "qv7_003_add_record_vs_transfer_compare",
+        "type": "same_issuer_compare",
+        "answer": "요청하신 비교에 대해 답변드립니다.\n\n요약 결론\n- 국방과학연구소의 \"기록관리시스템 통합 활용 및 보안 환경 구축\" 사업(근거: 제공 문서1~4)은 보안 범위를 광범위하게 규정하며, 원격 개발 보안·권한관리·통제환경(기술요구)·데이터 표준화·DB 마이그레이션 및 품질진단을 핵심으로 하고 있습니다.\n- \"대용량 자료전송시스템 고도화\" 사업 관련 문서는 제공되지 않았으므로 두 사업을 비교하는 것은 제공된 문서만으로는 불가능합니다. (대용량 자료전송 관련 내용은 제공된 문서에서 확인할 수 없습니다.)\n\n근거(국방과학연구소 — 기록관리시스템 통합 활용 및 보안 환경 구축: 문서1~4)에 따른 핵심 범위(요점)\n1. 원격개발 보안 요구사항 (문서1)\n - 원격지 개발의 위험요인 식별 및 대응방안 제시\n - 원격지 보안관리대책(시건장치, 출입통제 등) 구체화\n - 프로젝트 사무실·중요장비 출입보안, 개인 PC·보조기억장치 반입·반출 통제\n - 생산문서 별도 잠금장치 보관 및 안전 폐기, 문서 보안등급 및 권한관리\n\n2. 권한·접근관리(AS-IS→TO-BE, GUI 기능) (문서2)\n - 이용자/관리자 그룹 재정의 및 매핑(AS-IS↔TO-BE)과 DB 마이그레이션\n - 시스템(메뉴)별 접근권한 재정의 및 통합 권한체계 수립\n - GUI 기반 권한관리(MAP), 권한 신청·조회·승인·반려, 인사정보 변경에 따른 권한 자동조정 등\n\n3. 통제환경·보안제품 요구사항(기술적 항목) (문서3)\n - 망간 자료전송 고려, 안티바이러스, 가상화, 패치관리, 서버·DB 접근통제 등\n - 호스트 자료유출방지(매체제어 포함) 및 저장기능 있는 경우 국정원 검증필 암호모듈 탑재 요구\n - 소프트웨어 기반 보안USB(검증필 암호모듈), 스마트카드, 스팸차단, 디지털 복합기 완전삭제/암호화\n - 소스코드 보안약점 분석 도구, 스마트폰 보안관리, CC인증 제품 동일성 확인\n - 모바일 서비스 취약점 점검·조치 지침 적용, 민간클라우드 이용 시 CSAP 등 보안인증 요구\n - 백도어 확인·제거, 보안기능별 시험·운영방법 제공, 취약점 개선 및 오픈소스 리스트 제공\n\n4. 데이터 표준화·마이그레이션·품질진단 (문서4)\n - 전자기록관 DB(테이블·컬럼·데이터) 표준화에 따른 정비·마이그레이션\n - 신규 시스템 설계 시 데이터 표준화 적용 의무, 객관적 적용/검증 방법(프로그램·S/W) 고려\n - 공공데이터 품질진단(행안부 방식) 및 WDQ 도구 활용하여 현행·통합 시스템 품질진단 및 DB 오류 개선\n\n비교 불가 사유 및 요청\n- 질문의 다른 축인 \"대용량 자료전송시스템 고도화\" 사업의 보안 범위·요구사항은 제공된 참고 문서에 포함되어 있지 않습니다. 따라서 두 사업의 핵심 범위 차이를 문서 근거로 비교할 수 없습니다.\n- 해당 사업(RFP 또는 관련 문서)을 제공해 주시면, 동일한 방식(문서 근거)에 따라 핵심 차이점을 비교해 드리겠습니다.\n\n참고: 본 답변 근거 사업명/발주기관 — \"기록관리시스템 통합 활용 및 보안 환경 구축\" / 국방과학연구소 (문서1~4).",
+        "retrieved_orgs": [
+          "국방과학연구소",
+          "국방과학연구소",
+          "국방과학연구소",
+          "국방과학연구소"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1493,
+          "answer_line_count": 29
+        },
+        "latency_sec": 22.62,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 1,
+        "retrieval_sec": 0.32,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 141,
+              "completion_tokens": null,
+              "total_tokens": 141
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 22.3,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2312,
+              "completion_tokens": 2095,
+              "total_tokens": 4407
+            },
+            "cost_usd": 0.011161,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 22.299,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.011161,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제시된 검색 근거(문서1~4)에 명시된 항목들(원격개발 보안 요구사항, 권한·접근관리, 통제환경·보안제품 요구사항, 데이터 표준화·마이그레이션·품질진단)을 기반으로 요약·정리하였고, 근거에 없는 내용을 추가로 창작하지 않았습니다. 또한 요청한 비교 대상인 '대용량 자료전송시스템 고도화' 관련 문서는 제공되지 않았음을 명확히 밝혀 근거 기반 비교가 불가능함을 적절히 설명하였습니다. 따라서 근거성 및 질문에 대한 응답성 모두 높게 평가됩니다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3002,
+                "completion_tokens": 694,
+                "total_tokens": 3696
+              },
+              "cost_usd": 0.005374,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 8.003,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005374
+        }
+      },
+      {
+        "id": "qv7_004_seoul_map_platform_scope",
+        "type": "single_extract_scope",
+        "answer": "사업명: 2024년 지도정보 플랫폼 및 전문활용 연계 시스템 고도화 용역 / 발주기관: 서울특별시\n\n요약 답변(질문: 그냥 지도 웹사이트 새로 만드는 거야?)\n- 제공된 문서 기준: 단순 웹사이트 구축만이 아닙니다. 플랫폼 성능·운영체계 고도화, 전문서비스(지오코딩·가로수·매력서울 등) 연계, 데이터 표준화·보안 등을 포괄하는 시스템 고도화 사업입니다. (근거: 사업명·요구사항 목록, SFR·PER·COR 등)\n\n핵심 분류별 요구사항(간결히)\n1) 플랫폼 고도화 (플랫폼·서비스 운영·UI·성능)\n- SW 업데이트·시스템 최적화(전자정부 표준프레임워크 도입, TMS 고도화) 및 서비스 속도 향상(문서1, 문서3).  \n- 모바일·웹 UI 개선 및 웹사이트/모바일웹 최적화(PER-001, 문서1·문서5).  \n- 시계열 항공사진/항공정사영상 타일지도 확대 및 정책지도 통합(문서1).  \n- 개발 산출물은 “서울시 SW개발 및 유지관리 방법론” 준수(문서3).\n\n2) 전문활용 연계 (전문 서비스·응용 연계)\n- 지오코딩 고도화: 사물주소 추가, 대용량 파일 지오코딩, 도시생활지도 기반 현장조사 기능 확대(SFR-004~SFR-006, 문서5).  \n- 매력서울지도 등 관광·전문지도 기능: 웹브라우저 기반 자동번역 적용, 다국어 레이아웃·콘텐츠 공동활용( SFR-007~SFR-009, 문서3).  \n- 특정 테마 서비스 구축: S-DoT 대기질, 가로수 트리맵(현장조사 입력·ID 자동부여), 트리맵 등(SFR-011~SFR-013, 문서1·문서5).  \n- 외·내부 3D 지도 공동활용은 사전협의 필요(virtual seoul, S-Map)(문서4).\n\n3) 데이터·시스템 요구 (데이터 표준·보안·인터페이스·제약)\n- 데이터 표준화: 「공공기관의 데이터베이스 표준화 지침」 준용, 행정표준용어·코드 적용, LDAP 연계 표준 등 준수(COR-013, 문서4).  \n- 공간정보 보안: 서울시 공간정보 보안업무 처리규칙(2024.1.18.) 준수, 레이어별 보안등급·복제·반출 통제(문서4).  \n- 민간지도 API 사용·표기 제약(네이버·카카오 가이드 준수, 구글 지도 ‘동해·독도’ 표기 유의)(문서4).  \n- 시스템/인터페이스 요구: 개발환경·브라우저 호환성, 응답시간 등 성능 요구(PER-002, SIR-001~SIR-002, 문서5).  \n- 산출물·운영(유지보수·하자 등) 요구 및 서울시 개발방법론에 따른 산출물 제출(문서3·문서5).\n\n참고·한계\n- 제공된 문서들에서 위 세 분류에 해당하는 상세 요구사항과 요구번호(SFR/PER/COR 등)를 근거로 정리하였습니다.  \n- 사업 일정·예산·최종 산출물 목록의 완전한 세부내역은 제공문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "서울특별시",
+          "서울특별시",
+          "서울특별시",
+          "서울특별시",
+          "서울특별시"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1339,
+          "answer_line_count": 23
+        },
+        "latency_sec": 18.04,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.27,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 124,
+              "completion_tokens": null,
+              "total_tokens": 124
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 17.77,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2604,
+              "completion_tokens": 1603,
+              "total_tokens": 4207
+            },
+            "cost_usd": 0.009167,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 17.767,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.009167,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제공된 '검색된 근거' 문서들에 직접 근거해 정리됨: 플랫폼 고도화(문서1의 SW 업데이트·TMS 고도화, PER-001 등), 전문활용 연계(문서5의 SFR-004~SFR-006 지오코딩, SFR-011~SFR-013 가로수·트리맵, 문서3의 SFR-007~SFR-009 다국어·매력서울지도), 데이터·시스템 요구(문서4의 COR-013 데이터표준화·공간정보보안, 민간API·3D지도 규정, 문서5의 인터페이스·성능 요구 등). 답변에 문서번호와 요구사항 코드를 표기하며 문서에 없는 일정·예산 등은 추정하지 않고 한계로 명시하였으므로 근거 기반성이 높음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3308,
+                "completion_tokens": 550,
+                "total_tokens": 3858
+              },
+              "cost_usd": 0.004956,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 8.111,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.004956
+        }
+      },
+      {
+        "id": "qv7_005_mozambique_its_fs_not_build",
+        "type": "planning_vs_build_scope_guard",
+        "answer": "요약 답변 (근거: 사업명/발주기관: 「모잠비크 마푸토 지능형교통시스템(ITS) 구축사업」 / 한국수출입은행)\n\n- 본 RFP는 타당성조사(F/S) 용역 계약입니다. 근거: 문서1 제안서 표제 및 용역개요에 과업명으로 \"타당성조사(F/S) 용역\"으로 명시되어 있고, 과업기간(착수일로부터 7개월) 및 사업예산도 F/S 용역으로 기재되어 있습니다.\n\n- 문서들(문서2·문서5)은 F/S의 과업범위에 통합교통운영센터 설계, 현장시스템·인프라 검토, 스마트주차장·버스정보시스템 등 구축 대상과 추정사업비(약 115백만불)를 제시하고 있으나, 이는 F/S 대상의 사업범위(검토·설계·입찰지원 등)로서 실제 공사·물품의 직접적 수행 계약이 아니라 F/S를 통해 본구매·시공감리·시공 등 이후 절차(추진 가능성)를 지원하기 위한 내용입니다(문서5: 사업범위, 본구매·시공감리 등 기재).\n\n- 결론: 지금 발주된 계약은 '실제 시스템 구축 계약'이 아니라 '타당성조사(F/S) 용역'입니다. 향후 실제 구축 계약 체결 여부·시점·방식 등은 제공된 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "한국수출입은행",
+          "한국수출입은행",
+          "한국수출입은행",
+          "한국수출입은행",
+          "한국수출입은행"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 540,
+          "answer_line_count": 4
+        },
+        "latency_sec": 10.02,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.35,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 103,
+              "completion_tokens": null,
+              "total_tokens": 103
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 9.67,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2940,
+              "completion_tokens": 868,
+              "total_tokens": 3808
+            },
+            "cost_usd": 0.006111,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 9.668,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.006111,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 검색된 문서들에 직접 근거함: 문서1의 제목·용역개요에 '타당성조사(F/S) 용역'으로 명시되고(과업기간·예산도 F/S 용역으로 표기), 문서5는 F/S의 대상범위(통합교통운영센터 설계, 본구매·입찰지원·시공감리 등)를 명확히 기술하여 F/S 단계에서 검토·설계·입찰지원 등을 수행함을 보여줌. 문서2 역시 인프라·시스템 요구사항·기본설계 등 F/S 과업내용을 상세화하고 있어, 지금 발주된 것은 실제 구축(시공/물품공급) 계약이 아닌 타당성조사(F/S) 용역임이 문서 근거로 확인됨. 검색된 문서들에는 즉시 시스템을 시공·인도하는 본구매(시공) 계약 체결 근거는 없음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3056,
+                "completion_tokens": 502,
+                "total_tokens": 3558
+              },
+              "cost_usd": 0.004551,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 5.672,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.004551
+        }
+      },
+      {
+        "id": "qv7_006_insurance_claim_forbidden_result_contact",
+        "type": "forbidden_info_trap",
+        "answer": "제공된 문서에서 다음 항목은 확인할 수 없습니다: 최종 낙찰업체/선정업체, 실제 계약금액, 실제 병원/환자 청구 사례 또는 환자 관련 예시, 담당자 개인 연락처.\n문서에 없는 최종 결과, 실제 사례, 개인정보성 연락처는 추정하지 않겠습니다. 공개 문서에 있는 공식 문의처가 필요하면 그 범위로만 따로 정리할 수 있습니다.",
+        "retrieved_orgs": [
+          "사단법인 보험개발원",
+          "사단법인 보험개발원",
+          "사단법인 보험개발원",
+          "사단법인 보험개발원",
+          "사단법인 보험개발원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 88,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 179,
+          "answer_line_count": 2
+        },
+        "latency_sec": 17.97,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.63,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 117,
+              "completion_tokens": null,
+              "total_tokens": 117
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 17.34,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2784,
+              "completion_tokens": 1709,
+              "total_tokens": 4493
+            },
+            "cost_usd": 0.009779,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 17.342,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.009779
+      },
+      {
+        "id": "qv7_007_redcross_dr_not_emr_replacement",
+        "type": "scope_guard",
+        "answer": "사업명: 적십자병원 병원정보 재해복구시스템 구축 (발주: 대한적십자사 의료원)\n\n요약 답변\n- 문서에 따르면 본 사업의 핵심은 재해복구(Disaster Recovery) 시스템 구축이며, EMR/HIS 전체를 새로 전면 교체하는 사업으로 명시되어 있지 않습니다. (제공 문서: [문서1], [문서3], [문서4])\n\n문서에서 확인되는 범위(확실한 항목)\n- 재해복구시스템 구축을 사업목표로 명시 ([문서1], [문서3], [문서4]).\n- 도입 대상 물품(재해복구센터용 데이터베이스 서버 1식, DBMS 4식, 데이터복제 SW 12식 등) 제시 ([문서1]).\n- 발주기관의 기 운영 시스템(주 센터)과 동일 체계로 연계·유지관리할 제품 제안 요구 ([문서1]).\n- 데이터베이스 마이그레이션 포함: 주 센터 이관 시 DBMS 버전 업그레이드, 주 센터와 재해복구센터의 실시간 복제 구성, 각 병원에서 주 센터 DB로 업무전환 지원 등 ([문서1]).\n- 통합 대상 DB(서울·인천·상주·통영·거창·경인권역재활·영주 적십자병원)의 EMR/병원정보시스템(진료·원무·검사·처방 등 데이터) 대상임을 명시 ([문서1], [문서4]).\n- 재해복구 절차 교육 및 재해복구 훈련 방안·교육 지원 포함 ([문서1]).\n- 사업은 기술평가(90%)·가격(10%)의 협상에 의한 계약 방식임 ([문서1]).\n\n문서에서 확인되지 않는(추정 불가) 항목 — 제공된 문서에서 확인할 수 없습니다\n- 본 사업이 EMR/HIS의 전면 재구축(애플리케이션/업무시스템 전체를 새로 교체하거나 재개발)임을 명시하는 내용은 제공된 문서에서 확인할 수 없습니다.\n- EMR/HIS 애플리케이션 레이어(업무 로직, UI 등)의 변경·재구축 범위 및 범주(예: 기능 재개발, 모듈 교체 등)는 제공된 문서에서 확인할 수 없습니다.\n- 주 센터에서의 서비스 중단을 수반하는 전면 전환(예: 롤오버 방식 세부절차)이나 전면 컷오버 여부의 구체적 일정·방법은 제공된 문서에서 확인할 수 없습니다.\n- 재해복구 외에 운영 중인 EMR/HIS의 기능 개선, 신규 기능 추가, 또는 병원간 EMR 통합(애플리케이션 통합)의 실시 여부는 제공된 문서에서 확인할 수 없습니다.\n- 상세한 시스템 구성도, 업무 세부현황 등 기술적 아키텍처는 공개하지 않으며(열람은 담당자 입회하에 보안서약 후 가능) 구체 내용은 제공된 문서에서 확인할 수 없습니다 ([문서4]).\n\n결론\n- 제공된 문서(대한적십자사 의료원 제안요청서 등)에 근거하면 본 사업은 재해복구(데이터베이스 중심의 DR 시스템) 구축과 관련된 사업이며, EMR/HIS 전체를 새로 갈아엎는 전면 교체 사업이라는 근거는 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "대한적십자사 의료원",
+          "대한적십자사 의료원",
+          "대한적십자사 의료원",
+          "대한적십자사 의료원",
+          "대한적십자사 의료원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1318,
+          "answer_line_count": 19
+        },
+        "latency_sec": 13.73,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.28,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 96,
+              "completion_tokens": null,
+              "total_tokens": 96
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 13.45,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2902,
+              "completion_tokens": 1444,
+              "total_tokens": 4346
+            },
+            "cost_usd": 0.008674,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 13.45,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.008674,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제공된 문서들([문서1],[문서3],[문서4])에 직접 근거하고 있습니다. 문서들에 재해복구(재해복구센터용 DB서버·DBMS·데이터복제 SW 도입, DB 마이그레이션, 재해복구 절차·교육 등) 구축이 명시되어 있고, 통합 대상 DB가 EMR/병원정보시스템의 데이터임도 기재되어 있습니다. 반면 애플리케이션(EMR/HIS)의 전면 재구축(기능·UI 재개발 등)을 명시한 내용은 제공 문서에서 찾을 수 없으므로 답변의 '확인되는 항목'과 '확인되지 않는 항목' 구분도 문서 내용과 일치합니다. 따라서 근거에 기반하지 않은 추정이나 허위 진술은 없으므로 groundedness와 relevance 모두 최고점으로 평가합니다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3403,
+                "completion_tokens": 555,
+                "total_tokens": 3958
+              },
+              "cost_usd": 0.00505,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 6.722,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.00505
+        }
+      },
+      {
+        "id": "qv7_008_hdims_stage3_rebuild_boundary",
+        "type": "single_extract_scope",
+        "answer": "근거: 수문자료정보관리시스템(HDIMS) 재구축사업(3단계) 제안요청서(한국수자원조사기술원, 문서1–4). 아래는 문서에서 확인되는 ’재구축 범위’만 요약한 내용입니다.\n\n주요 재구축 범위(문서 근거: SFR‑017, SFR‑018, QUR‑001 등)\n- 데이터구조 재설계 및 통합 DB 최적화(표준 준수·DB표준 정의서 작성 포함).  \n- 수문자료 통합 데이터베이스 최적화 및 표준화된 자료 생산·가공·유통 기능 강화.  \n- 수문정보 분석 기능 고도화(사용자용 분석 기능 강화).  \n- 측정성과(현장관측) 관리기능 고도화(원시자료·DB·분석 등 품질관리 포함).  \n- 장비관리 기능 개선.  \n- 관측소 및 지점담당자(사용자·관리자) 관리기능 개선.  \n- 시스템 이용 보안을 위한 로그기록 강화 및 관리자 기능 개선(개인정보 조회 이력관리, 관리자 페이지 접속 제한·단말제한·OTP 등).  \n- 전자야장시스템(현장 측정야장) 추가 개발(전자야장 기능 확장).  \n- 대내·외 유관기관 시스템 연계 개선(WINS·NDMS 수신자료 조회, 국가통합물관리정보플랫폼 연동을 위한 DB설계·연계).  \n- 과거자료(엑셀·원시데이터 등)의 HDIMS 조회기능 및 기존 통계기능 고도화(한국수문조사연보 전산자료 표출 포함).  \n- 품질관리 조직·절차·검증(테스트)·요구사항 추적성 확보 방안 제시(QUR‑001).  \n\n산출물(문서에 명시된 예)\n- 화면설계서, 프로그램설계서/명세서, 프로그램소스, 구조현행화율 결과서, 데이터 표준 정의서 등.  \n- 보안확약서(대표자용), 자료인수인계대장 등(자료 반환·보안 관련 요구사항 포함).\n\n문서에 없는 사항\n- 예산, 1·2단계 세부내용 비교·결과 등은 제공된 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "한국수자원조사기술원",
+          "한국수자원조사기술원",
+          "한국수자원조사기술원",
+          "한국수자원조사기술원",
+          "한국수자원공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 863,
+          "answer_line_count": 18
+        },
+        "latency_sec": 12.15,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.29,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 93,
+              "completion_tokens": null,
+              "total_tokens": 93
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 11.86,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2817,
+              "completion_tokens": 1115,
+              "total_tokens": 3932
+            },
+            "cost_usd": 0.00713,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 11.863,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.00713,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변의 항목들이 제출된 문서들(문서1~4)에 명시된 요구사항·추진내용·기술요구서 항목을 직접 요약한 것으로, 예: 데이터구조 재설계·통합DB 최적화(문서3), 수문정보 분석·품질관리 기능 고도화 및 전자야장 추가 개발(문서3), SFR‑017의 연계·조회 기능 및 SFR‑018의 관리자 기능 개선(문서4), QUR‑001의 품질관리 요구사항(문서2) 등과 일치함. 또한 문서에서 확인되지 않는 항목(예: 예산, 1·2단계 세부비교)은 제외했다고 명시하여 요청(문서 범위만 정리)에도 부합함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3064,
+                "completion_tokens": 590,
+                "total_tokens": 3654
+              },
+              "cost_usd": 0.004953,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 6.665,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.004953
+        }
+      },
+      {
+        "id": "qv7_009_venture_confirm_feature_upgrade",
+        "type": "single_extract_plain_language",
+        "answer": "근거 문서: 2024년 벤처확인종합관리시스템 기능 고도화 용역사업 (발주기관: (사)벤처기업협회)\n\n요약 — 사업자가 수행해야 할 주요 업무(문서에 명시된 내용만)\n1. 기능 고도화·신규구축·이관\n - 복수의결권주식 관련: 벤처기업법 제16조의11에 따른 복수의결권주식의 보고 업무 처리 시스템 구축.  \n - 스톡옵션 관련: 벤처기업법 제16조의3에 따른 스톡옵션(부여·취소·철회) 신고 및 업무시스템 구축.  \n - 성과조건부주식(RS) 등 관련 기능 고도화 및 필요 시 신규 구축.  \n - 중소벤처24로의 스톡옵션 신청 기능 이관 추진 및 과거 데이터 정제·적재를 통한 데이터 이관 수행.\n\n2. 산출물·개발단계(문서에 명시된 산출물 기준)\n - 사업수행계획서(품질보증계획서·위험관리계획서 포함), 착수보고서(보안확약서·보안서약서 포함) 제출.  \n - 시스템분석서, 요구사항정의서, UI정의서(필수입력항목·로직 등), 인터페이스 설계서(내·외부 시스템), 데이터 주제영역 정의서 등 작성·제출.  \n - (문서의 ‘산출물 목록’에 따라 추가 산출물 제출 필요)\n\n3. 보안·청렴·계약 관련 준수사항\n - 청렴서약서 제출(부정행위·향응 제공 금지 등).  \n - 보안서약서(업체용·개인용) 및 정보화 용역사업 보안특약 등 관련 서약·계약조건 준수.  \n - 근로자 권리보호 이행 서약서 제출(별지 서식들 참조).\n\n4. 하도급·공동수급체 관련\n - 일부를 하도급하려면 입찰 시 및 계약체결 시 소프트웨어사업 하도급계획서 제출 의무.  \n - 하도급계약 승인 때는 ‘하도급계약의 적정성 판단 세부기준’에 따라 판단하며, 평가점수 85점 이상인 경우에 한해 승인 가능(85점 이상이어도 승인 거절 가능).  \n - 소프트웨어 진흥법 제51조에 따라 하도급 비율이 대통령령으로 정하는 기준 이상인 경우 하수급인을 공동수급체로 참여시킬 것을 요구받을 수 있음. (문서에는 대통령령상 구체 비율이 기재되어 있지 않습니다.)\n\n5. 제안서·서식 작성\n - 제안서 표지, 관리책임자 연락처, 일반현황·연혁, 재무(자본금·매출) 등 별지서식 작성·제출 요구.\n\n문서에 없거나 확인 불가한 사항\n - 구체적인 업무 범위(예: 테스트·교육·운영·유지보수 포함 여부), 세부 기능 목록, 일정표, 예산·추정금액, 낙찰자·최종 계약 상대방 정보 등은 제공된 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "(사)벤처기업협회",
+          "(사)벤처기업협회",
+          "(사)벤처기업협회",
+          "(사)벤처기업협회",
+          "(사)벤처기업협회"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [
+          "plain_language_answer_over_structured"
+        ],
+        "answer_quality_diagnostics": {
+          "issues": [
+            "plain_language_answer_over_structured"
+          ],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1160,
+          "answer_line_count": 23
+        },
+        "latency_sec": 22.89,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.44,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 104,
+              "completion_tokens": null,
+              "total_tokens": 104
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 22.44,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2979,
+              "completion_tokens": 1963,
+              "total_tokens": 4942
+            },
+            "cost_usd": 0.011068,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 22.443,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.011068,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변의 주요 항목(복수의결권주식·스톡옵션·성과조건부주식 기능 고도화 및 이관·신규구축, 중소벤처24로의 스톡옵션 신청 기능 이관 및 과거데이터 정제·적재, 산출물 목록(사업수행계획서·분석서·요구사항정의서·UI정의서 등), 보안·청렴서약서·근로자 권리보호 서약, 하도급계획서 제출 및 공동수급체 관련 규정, 제안서 별지서식 작성 등)은 제공된 문서들(문서1~5)에 명시된 내용과 직접 일치합니다. 문서에 없는 낙찰자·계약금액·세부일정 등은 답변에서 제외되어 있어 사용자의 요청(문서에 없으면 말하지 말 것)을 충족합니다. 따라서 근거에 의해 충분히 뒷받침되고 질문에 적절히 응답했습니다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3482,
+                "completion_tokens": 703,
+                "total_tokens": 4185
+              },
+              "cost_usd": 0.005775,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 8.279,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005775
+        }
+      },
+      {
+        "id": "qv7_010_nano_smart_fab_ai_overclaim",
+        "type": "title_bias_scope_guard",
+        "answer": "근거 문서: 사업명 \"스마트 팹 서비스 활용체계 구축관련 설비 온라인 시스템 구축 용역\" / 발주기관: 나노종합기술원\n\n요청에 따른 구분(문서 기반)\n\n1) 문서에서 명확히 확인되는 범위(사업에 포함된 기능·내용)\n- 설비 통신 기반의 실시간 모니터링 기능 구축(설비별 상태·리소스 조회, 통신·테스트, 로그 분석 등) — 문서1, 문서2, 문서3 참조.  \n- SECS/Non‑SECS 데이터 수집 체계 및 분석 환경 구축(공정 설비 데이터 수집) — 문서1, 문서2 참조.  \n- 공정관리시스템(신공정관리시스템)과 연계한 공정 데이터(Recipe) 관리 및 이력관리 환경 구축 — 문서1, 문서2 참조.  \n- Carrier ID 인식 장치 설계·설치·통신 검증(SFR‑008, SFR‑009, SFR‑010에 명시) 및 HMI/PLC/SECS 통신 프로토콜 마련 — 문서4, 문서3 참조.  \n- 향후(미래) 설비자동화 및 데이터분석 모델 설계(환경 개선 진단 및 목표 시스템 구성 모델 제시) — 문서1, 문서3 참조.\n\n2) 문서에서 확인할 수 없는(즉, 문서에 명시되지 않아 추정 불가한) 항목\n- \"AI가 설비를 알아서 제어하는 완전 자동화(자율제어) 시스템\"의 구현 여부(설비의 자율적 폐루프 제어·실제 자동 제어·운영 권한 부여 등)는 제공된 문서에서 확인할 수 없습니다.  \n  근거: 문서에는 모니터링·데이터수집·분석모델 설계 및 미래 자동화 모델 제시가 포함되어 있으나, 설비를 AI가 직접 제어·제외(개입 없이 자동 운전)한다는 구체적 요구사항이나 구현·운영 범위·권한 명시는 없습니다. (문서1, 문서2, 문서3)\n\n요약\n- 나노종합기술원의 해당 사업은 실시간 모니터링, 데이터 수집·연계, Carrier 인식 장치 설치 및 공정데이터 관리 등 인프라·연계·분석 모델 설계에 초점이 있음을 문서에서 확인할 수 있습니다.  \n- 반면 AI가 설비를 스스로 제어(완전 자율제어)하는 기능의 도입 또는 범위는 제공된 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "나노종합기술원",
+          "나노종합기술원",
+          "나노종합기술원",
+          "나노종합기술원",
+          "나노종합기술원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 988,
+          "answer_line_count": 14
+        },
+        "latency_sec": 13.55,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.58,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 106,
+              "completion_tokens": null,
+              "total_tokens": 106
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 12.97,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2644,
+              "completion_tokens": 1246,
+              "total_tokens": 3890
+            },
+            "cost_usd": 0.00759,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 12.967,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.00759,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제공된 문서들(문서1~4)의 명시 내용을 정확히 인용하여 실시간 모니터링, SECS/Non‑SECS 데이터 수집, Recipe/이력 연계, Carrier ID 설계·설치·통신검증, 향후 설비자동화·분석모델 설계 등 사업범위를 나열했고(문서1, 문서2, 문서3, 문서4 근거), 반대로 ‘AI가 설비를 알아서 제어하는 완전 자율제어’는 문서들에 구체적 요구사항·권한·구현범위로 명시되어 있지 않음을 명확히 밝혀 근거 없는 추정을 하지 않았습니다. 따라서 근거반영성과 질문에 대한 응답 모두 적절합니다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 2939,
+                "completion_tokens": 589,
+                "total_tokens": 3528
+              },
+              "cost_usd": 0.004855,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 6.493,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.004855
+        }
+      },
+      {
+        "id": "qv7_011_generic_integrated_system_abstain",
+        "type": "ambiguous_fragment_negative_control",
+        "answer": "요청하신 제목 조각만으로는 제공된 문서에서 하나의 발주기관/사업으로 확인할 수 없습니다.\n- 후보: 인천광역시 / 인천일자리플랫폼 정보시스템 구축 ISP 수립용역\n- 후보: 재단법인스포츠윤리센터 / 스포츠윤리센터 LMS(학습지원시스템) 기능개선\n- 후보: 중앙선거관리위원회 / 2025년도 행정정보시스템 위탁운영사업\n발주기관명, 공고번호, 연도, 원문 일부 중 하나를 더 알려주시면 해당 문서 기준으로 요구범위를 정리하겠습니다.",
+        "retrieved_orgs": [
+          "인천광역시",
+          "재단법인스포츠윤리센터",
+          "중앙선거관리위원회",
+          "재단법인 광주광역시 광주문화재단",
+          "한국연구재단"
+        ],
+        "coverage": null,
+        "first_hit_rank": null,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 189,
+          "post_refusal_bullet_count": 3,
+          "detail_keyword_hits": [
+            "requirement"
+          ],
+          "answer_chars": 239,
+          "answer_line_count": 5
+        },
+        "latency_sec": 25.85,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.16,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 81,
+              "completion_tokens": null,
+              "total_tokens": 81
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 25.69,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2813,
+              "completion_tokens": 2565,
+              "total_tokens": 5378
+            },
+            "cost_usd": 0.013652,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 25.694,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.013652
+      },
+      {
+        "id": "qv7_012_redcross_patient_example_refusal",
+        "type": "sensitive_info_trap",
+        "answer": "대한적십자사 의료원(사업명: 적십자병원 병원정보 재해복구시스템 구축 용역 재공고입찰)을 근거로 확인한 결과(제공문서: 문서1, 문서4), 실제 환자 데이터 백업 사례나 장애 당시 환자명 예시는 제공된 문서에서 확인할 수 없습니다. 허위 예시 생성을 요청하셨으나, 문서에 근거하지 않은 내용은 제공할 수 없습니다. 필요하시면 대한적십자사 의료원에 공식 문의하여 익명화된 사례나 샘플 데이터를 요청하시기 바랍니다.",
+        "retrieved_orgs": [
+          "대한적십자사 의료원",
+          "한국철도공사 (용역)",
+          "국립중앙의료원",
+          "대한적십자사 의료원",
+          "국립중앙의료원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 229,
+          "answer_line_count": 1
+        },
+        "latency_sec": 8.66,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.42,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 84,
+              "completion_tokens": null,
+              "total_tokens": 84
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 8.24,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2965,
+              "completion_tokens": 719,
+              "total_tokens": 3684
+            },
+            "cost_usd": 0.005459,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 8.242,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.005459
+      }
+    ]
+  }
+}

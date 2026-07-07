@@ -1,0 +1,196 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "l78_latency_red_review",
+  "task_id": "l78_latency_red_review",
+  "status": "proposal",
+  "summary": "Proposal-only red review after L77: reject the concise prompt latency candidate because it bought only a tiny latency change while breaking abstention, and run at most a tightly gated top_k latency diagnostic after the current guards, not a broad promotion sweep.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l76_v6_exposed_regression_final_guard_pass_baseline_default.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l76_v6_exposed_regression_final_guard_pass_baseline_default\\cost_summary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l77_v6_exposed_latency_prompt_concise_prompt_concise_verified_only.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l77_v6_exposed_latency_prompt_concise_prompt_concise_verified_only\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l77_v6_exposed_latency_prompt_concise_prompt_concise_verified_only\\cost_summary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l39_v6_goyang_order_depth_probe_topk_sweep.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_03_merge_decisions.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\loop_points.csv"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "Read-only local artifact inspection and proposal writing; no evaluator, generator, retriever, judge, API, or model call was run."
+  },
+  "budget_summary": {
+    "budget_ceiling_usd": 15.0,
+    "paid_api_calls_made": false,
+    "observed_cost_usd_for_this_review": 0.0,
+    "l76_observed_cost_usd": 0.141636,
+    "l77_observed_cost_usd": 0.145956,
+    "proposed_next_experiment_ceiling_usd": 0.25
+  },
+  "protected_paths_seen": [
+    "src/**",
+    "scripts/**",
+    "eval/experiment_log.md",
+    "업무일지.md",
+    "eval/next_improvement_tasks.md",
+    "loop_points.csv",
+    "summary/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l78_latency_red_review.contract.json",
+      "kind": "json",
+      "description": "Proposal-only contract for the safest next latency/cost experiment after L77."
+    }
+  ],
+  "proposal": {
+    "bottom_line": "Do not promote L77 and do not rerun prompt_concise_verified as a latency path. The next safest experiment is a small guarded top_k latency diagnostic using the L76 baseline prompt and current guards, with top_k treated as a candidate for reducing context/generation cost only if it preserves L76's exposed-regression correctness.",
+    "l77_failure_diagnosis": {
+      "decision": "reject_l77",
+      "cause": "L77 changed the prompt to concise_verified while keeping top_k=8 and the current retrieval guards. The change did not materially reduce latency or cost and weakened abstention behavior on the exposed v6 regression set.",
+      "result": {
+        "l76_edd": 97.13,
+        "l77_edd": 92.25,
+        "edd_delta": -4.88,
+        "l76_latency_avg_sec": 20.642,
+        "l77_latency_avg_sec": 20.112,
+        "latency_delta_sec": -0.53,
+        "latency_delta_pct": -2.57,
+        "l76_abstention_accuracy": 1.0,
+        "l77_abstention_accuracy": 0.5,
+        "l76_observed_cost_usd": 0.141636,
+        "l77_observed_cost_usd": 0.145956,
+        "cost_delta_usd": 0.00432,
+        "cost_delta_pct": 3.05
+      },
+      "insight": "L77 is a quality regression disguised as a tiny speed change. The failure is not retrieval coverage, groundedness, or relevance; those stayed saturated. The decisive failure is abstention accuracy collapse, specifically the ambiguous-fragment negative-control path answering instead of refusing. Generation remains the dominant latency/cost component, so prompt concision is not safe unless it preserves abstention first."
+    },
+    "top_k_sweep_after_current_guards": {
+      "worth_running": "conditional_yes_as_diagnostic_only",
+      "recommended_scope": "Run a narrow top_k micro-sweep after the current guards only if the orchestrator wants latency/cost evidence and accepts that exposed v6 is regression stability evidence, not fresh validation.",
+      "not_worth_running_as": [
+        "a broad paid sweep",
+        "a promotion run on exposed v6 alone",
+        "a repeat of L39 without current guards",
+        "a replacement for fresh holdout validation"
+      ],
+      "why_conditional": [
+        "Retrieval cost is near zero, but lower top_k may reduce context tokens, answer-generation time, judge prompt size, and total observed cost.",
+        "Prior L39 showed top_k alone did not fix qv6_007 and top12 lowered groundedness; therefore top_k is not a correctness strategy.",
+        "Prior top5 regression evidence from other loops warned that top_k can expose quality regressions despite apparent speed hopes.",
+        "After L76, the current guards changed the risk profile enough that a tiny top_k latency diagnostic is reasonable, but only with strict rejection gates."
+      ],
+      "next_safest_experiment": {
+        "suggested_loop_id": "L79",
+        "name": "guarded_topk_latency_micro_sweep_after_l77",
+        "type": "diagnostic_latency_cost_probe",
+        "suite": "topk_sweep",
+        "question_pack": "eval/questions_v6_metamorphic_frozen_first_run.json",
+        "prompt_variant": "baseline_default",
+        "top_k_values": [
+          5,
+          6,
+          8
+        ],
+        "control": "top_k=8 baseline_default, compare to L76",
+        "guards_required_before_interpretation": [
+          "current CSV/backfill guard clean",
+          "ambiguous abstention guard",
+          "same-project focus guard",
+          "qv6_007 claim/evidence-use gate",
+          "answer cleanup guards used by L76"
+        ],
+        "run_shape": "one small judged sweep only if budget preflight estimates the whole run below 0.25 USD; otherwise start with no-judge or saved-answer diagnostics and stop before paid expansion",
+        "expected_value": "Tests whether reducing retrieved context lowers generation/judge tokens without reopening the L77 abstention regression."
+      }
+    },
+    "acceptance_gates": [
+      {
+        "gate": "quality_floor_vs_l76",
+        "accept_if": "candidate EDD >= 97.13 or no worse than L76 on all raw safety-critical metrics, with abstention_accuracy exactly 1.0, groundedness_avg 5.0, relevance_avg 5.0, retrieval_coverage_avg 1.0, hit_all_targets_rate 1.0, false_abstention_rate 0.0, and empty_answer_rate 0.0",
+        "reject_if": "any abstention-sensitive case answers when it should abstain, any false abstention appears, any empty answer appears, or groundedness/relevance drops below L76"
+      },
+      {
+        "gate": "latency_materiality",
+        "accept_if": "latency_avg_sec improves by at least 10 percent versus L76, or improves by at least 2.0 seconds absolute while all quality gates pass",
+        "reject_if": "latency improvement is below 1.0 second, latency_avg_sec is worse than L76, or two or more individual shared cases regress by at least 5.0 seconds"
+      },
+      {
+        "gate": "cost_materiality",
+        "accept_if": "observed_cost_usd is below L76 by at least 5 percent, or token/cost decomposition shows answer_generation plus judge cost fell without quality loss",
+        "reject_if": "observed_cost_usd exceeds L76, cost ledger has missing usage, unknown price rows appear, or preflight projected spend exceeds the proposed 0.25 USD micro-sweep ceiling"
+      },
+      {
+        "gate": "claim_and_exposed_regression",
+        "accept_if": "qv6_007 claim/evidence-use gate remains 2/2 and all L76 guard-sensitive cases keep their expected labels",
+        "reject_if": "any guard that was clean in L76 becomes non-clean, especially qv6_010 ambiguous abstention or qv6_007 physical access-control inclusion"
+      },
+      {
+        "gate": "promotion_labeling",
+        "accept_if": "result is labeled diagnostic_only unless repeated on a fresh holdout or first-validation pack",
+        "reject_if": "exposed v6 top_k success is presented as general validation, a champion, or a broad correctness improvement"
+      }
+    ],
+    "rejection_gates": [
+      "Reject any candidate repeating L77's abstention_accuracy=0.5 pattern regardless of latency.",
+      "Reject any candidate whose EDD improvement is driven only by latency while safety or evidence-use metrics regress.",
+      "Reject top_k lower than 8 if it drops MRR, hit-all-targets, or target-only retrieval on any guard-sensitive case.",
+      "Reject any result with cost_summary missing, budget_ledger missing, usage_missing=true, or unknown_price_model=true.",
+      "Reject any run that modifies protected paths or updates scoreboards/logs from a proposal-only worker."
+    ],
+    "risks": {
+      "overfitting": [
+        "The v6 cohort is exposed and has been repeatedly tuned against through L76, so a top_k pass on it is regression stability evidence only.",
+        "qv6_007 and qv6_010 have named guards; optimizing top_k around them can hide unrelated fresh-case failures.",
+        "Near-ceiling EDD on exposed rows can make small latency wins look safer than they are."
+      ],
+      "exposed_regression": [
+        "A lower top_k may keep exposed target coverage while losing supporting evidence diversity needed for fresh or paraphrased cases.",
+        "The current guards may catch known failures but not new wrong-document, source-scope, or underanswering patterns.",
+        "Judge scores were previously blind to qv6_007-style incompleteness, so guard reports must override judge 5/5 when they disagree."
+      ],
+      "latency_cost_interpretation": [
+        "Retrieval is cheap; most latency and cost are generation/judge, so top_k only matters if it materially reduces context and completion tokens.",
+        "Single-run latency variance can exceed the 0.53s L77 apparent gain, so acceptance needs a material threshold.",
+        "A no-judge diagnostic can reduce spend but cannot promote a candidate without later judged verification."
+      ]
+    },
+    "recommended_cause_result_insight_record": {
+      "cause": "L77 tried prompt concision as a latency lever after L76 passed exposed regression guards.",
+      "result": "It reduced average latency by only 0.53s, increased observed cost by 0.00432 USD, and dropped abstention accuracy from 1.0 to 0.5, lowering EDD from 97.13 to 92.25.",
+      "insight": "The next latency experiment should change retrieval/context size, not refusal wording, and must make abstention and claim gates hard blockers before any speed/cost win is considered."
+    }
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-ChildItem -Force",
+      "rg --files",
+      "Get-ChildItem -Path eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight -Recurse -Force | Select-Object FullName,Length,LastWriteTime",
+      "rg -n \"parallel_team_worker_output|schema_version|L77|l77|top_k|topk|latency|cost\" eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight",
+      "Get-ChildItem -Path eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs -Force | Sort-Object Name | Select-Object Name,Length,LastWriteTime",
+      "rg -n \"parallel_team_worker_output.v1\" .",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l77_v6_exposed_latency_prompt_concise_prompt_concise_verified_only.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l76_v6_exposed_regression_final_guard_pass_baseline_default.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v9_latency_cost.contract.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l48_guard_red_review.contract.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l77_v6_exposed_latency_prompt_concise_prompt_concise_verified_only\\cost_summary.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l76_v6_exposed_regression_final_guard_pass_baseline_default\\cost_summary.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l39_v6_goyang_order_depth_probe_topk_sweep.json",
+      "Test-Path eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l78_latency_red_review.contract.json"
+    ],
+    "observed_results": [
+      "No paid API/model calls were made.",
+      "No evaluator, generator, retriever, or judge flow was run.",
+      "No protected paths were edited.",
+      "The target output file did not exist before this proposal was written.",
+      "L76 metrics: EDD 97.13, latency_avg_sec 20.642, abstention_accuracy 1.0, observed_cost_usd 0.141636.",
+      "L77 metrics: EDD 92.25, latency_avg_sec 20.112, abstention_accuracy 0.5, observed_cost_usd 0.145956.",
+      "L77 cost ledger had calls_recorded 28 and no missing cost rows, so the failure is not cost telemetry.",
+      "L39 prior top_k probe was diagnostic only and top_k alone did not fix the qv6_007 failure.",
+      "Existing proposal contracts use schema=parallel_team_worker_output.v1 and nested proposal fields; this contract follows that pattern."
+    ]
+  },
+  "created_at": "2026-07-07T01:35:00+09:00"
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "parallel_team_handoff.v1",
+  "objective": "L122 sparse-field guard and new-question gap insight recording",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_153900_L122-sparse-field-guard-and-new-question-gap-insight-recordi",
+  "completed": [
+    "Added scripts/run_sparse_field_guard.py",
+    "Ran no-API sparse-field guard",
+    "Captured CSV-vs-raw source-basis reversal",
+    "Collected worker contracts",
+    "Updated logs and diary",
+    "Passed worker smoke and JSON parse checks"
+  ],
+  "key_metrics": {
+    "case_count": 8,
+    "field_group_count": 31,
+    "raw_source_visible_groups": 31,
+    "raw_not_found_expected_groups": 0,
+    "csv_source_visible_groups": 4,
+    "csv_not_found_expected_groups": 27,
+    "worker_smoke_status": "pass",
+    "worker_output_count": 3
+  },
+  "decisions": [
+    "Do not claim L122 as EDD or answer-quality improvement.",
+    "Keep secondary variants diagnostic-only.",
+    "Do not use ADD secondary technical seed as a true sparse not-found test under raw source text.",
+    "Use raw documents or retrieval traces for source visibility where available."
+  ],
+  "next_actions": [
+    "Add aggregator/registry guard excluding secondary variants from ordinary EDD.",
+    "Find a truly sparse technical seed under raw source text.",
+    "Run only a small diagnostic resolved-one-turn smoke if cost is allowed."
+  ],
+  "protected_paths": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "eval/parallel_runs/20260707_152625_L121-selected-project-scripted-batch-builder/batch/*.json"
+  ]
+}

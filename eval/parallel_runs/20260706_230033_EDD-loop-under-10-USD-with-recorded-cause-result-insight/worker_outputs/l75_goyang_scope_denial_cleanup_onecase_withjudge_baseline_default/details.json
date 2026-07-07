@@ -1,0 +1,128 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 5.0,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 22.99
+    },
+    "edd_score": 86.59,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": [
+      {
+        "id": "qv6_007_goyang_facility_order_permutation",
+        "type": "metamorphic_pair_order_permutation",
+        "answer": "근거 문서: 고양도시관리공사 관산근린공원 다목적구장 회원 통합운영관리 시스템 구축(발주기관: 고양도시관리공사)\n\n결론 요약\n- 무인(무인화) 운영 프로그램: 포함되어 있습니다.  \n  근거: 제5장 사업범위에 \"무인화 운영을 위한 프로그램 및 기술 지원\" 명시 ([문서5]).\n\n- 출입통제시스템 포함 여부: 포함되어 있음. 근거: 참고 문서에 \"안내데스크 및 출입통제시스템 구매 및 설치\"가 명시되어 있음. (문서9) 다만 세부 방식, 장비 규격, 연동 대상은 제공된 문서에서 추가 확인이 필요합니다.\n\n요약 문장\n- 무인 운영 프로그램은 사업범위에 명시되어 포함됨([문서5]).",
+        "retrieved_orgs": [
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 325,
+          "answer_line_count": 7
+        },
+        "latency_sec": 22.99,
+        "context_backfill_count": 1,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 1.46,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 89,
+              "completion_tokens": null,
+              "total_tokens": 89
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 21.53,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4575,
+              "completion_tokens": 1453,
+              "total_tokens": 6028
+            },
+            "cost_usd": 0.00997,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 21.527,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.00997,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "무인 운영 프로그램 포함은 제5장 사업범위의 '무인화 운영을 위한 프로그램 및 기술 지원' 명시([문서5])로 문서 근거가 명확함. 출입통제시스템 포함은 검색된 요약([문서9])에 '안내데스크 및 출입통제시스템 구매 및 설치'로 기재되어 있어 근거가 존재함. 답변은 문서 내 명시 내용을 근거로 명확히 응답했고(다만 세부 방식·장비 규격 등 추가 정보는 제공 문서에 없음) 따라서 질문에 적절히 답함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4399,
+                "completion_tokens": 868,
+                "total_tokens": 5267
+              },
+              "cost_usd": 0.007205,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 14.232,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.007205
+        }
+      }
+    ]
+  }
+}

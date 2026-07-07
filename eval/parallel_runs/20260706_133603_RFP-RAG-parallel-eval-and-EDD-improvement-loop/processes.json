@@ -1,0 +1,18 @@
+[
+  {
+    "suite": "fetchk_sweep",
+    "returncode": 0,
+    "log": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_133603_RFP-RAG-parallel-eval-and-EDD-improvement-loop\\logs\\fetchk_sweep.log"
+  },
+  {
+    "suite": "filter_rewrite_ablation",
+    "returncode": 0,
+    "log": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_133603_RFP-RAG-parallel-eval-and-EDD-improvement-loop\\logs\\filter_rewrite_ablation.log"
+  },
+  {
+    "suite": "aggregate",
+    "returncode": 0,
+    "stdout": "{\n  \"rows\": 4,\n  \"summary\": \"I:\\\\0706\\\\rfp-rag-project\\\\eval\\\\parallel_runs\\\\20260706_133603_RFP-RAG-parallel-eval-and-EDD-improvement-loop\\\\summary\\\\summary.md\"\n}\n",
+    "stderr": ""
+  }
+]

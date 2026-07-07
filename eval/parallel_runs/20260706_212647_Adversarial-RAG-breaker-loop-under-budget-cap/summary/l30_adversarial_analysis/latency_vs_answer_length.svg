@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+<rect width="100%" height="100%" fill="#fff"/>
+<style>text{font-family:Arial,sans-serif;font-size:12px;fill:#27313d}.axis{stroke:#9aa4b2}.grid{stroke:#e8edf3}.dot{fill:#2f6f73;opacity:.85}.bad{fill:#b85c38;opacity:.9}</style>
+<line class="axis" x1="56" y1="288" x2="876" y2="288"/>
+<line class="axis" x1="56" y1="28" x2="56" y2="288"/>
+<text x="56" y="18" font-weight="700">Latency vs Answer Length</text>
+<text x="876" y="340" text-anchor="end">answer chars</text>
+<text x="12" y="28" transform="rotate(-90 12,28)">latency sec</text>
+<line class="grid" x1="261.0" y1="28" x2="261.0" y2="288"/>
+<line class="grid" x1="56" y1="93.0" x2="876" y2="93.0"/>
+<line class="grid" x1="466.0" y1="28" x2="466.0" y2="288"/>
+<line class="grid" x1="56" y1="158.0" x2="876" y2="158.0"/>
+<line class="grid" x1="671.0" y1="28" x2="671.0" y2="288"/>
+<line class="grid" x1="56" y1="223.0" x2="876" y2="223.0"/>
+<line class="grid" x1="876.0" y1="28" x2="876.0" y2="288"/>
+<line class="grid" x1="56" y1="288.0" x2="876" y2="288.0"/>
+<circle class="bad" cx="719.8" cy="28.0" r="5"><title>qv5_001_contam_university_portal_korea: ['slow_case']</title></circle>
+<circle class="bad" cx="200.4" cy="182.7" r="5"><title>qv5_002_title_bias_incheon_job_isp: ['high_context_contamination']</title></circle>
+<circle class="dot" cx="245.8" cy="164.1" r="5"><title>qv5_003_forbidden_final_vendor_trash_bag: []</title></circle>
+<circle class="bad" cx="261.7" cy="203.9" r="5"><title>qv5_004_scope_guard_laos_feasibility: ['high_context_contamination']</title></circle>
+<circle class="dot" cx="148.3" cy="202.6" r="5"><title>qv5_005_budget_vs_contract_airport_erp: []</title></circle>
+<circle class="bad" cx="652.5" cy="49.2" r="5"><title>qv5_006_plain_language_lms_sports_ethics: ['slow_case']</title></circle>
+<circle class="bad" cx="348.0" cy="160.1" r="5"><title>qv5_007_ismp_vs_rebuild_fish_market: ['high_context_contamination']</title></circle>
+<circle class="bad" cx="876.0" cy="54.5" r="5"><title>qv5_008_compare_disaster_bonghwa_chungbuk: ['slow_case']</title></circle>
+<circle class="dot" cx="218.8" cy="168.5" r="5"><title>qv5_009_sensitive_patient_data_emergency: []</title></circle>
+<circle class="bad" cx="768.6" cy="81.6" r="5"><title>qv5_010a_paraphrase_gas_safety_formal: ['slow_case']</title></circle>
+<circle class="bad" cx="242.5" cy="221.6" r="5"><title>qv5_010b_paraphrase_gas_safety_noisy: ['high_context_contamination']</title></circle>
+<circle class="bad" cx="216.2" cy="185.1" r="5"><title>qv5_010c_paraphrase_gas_safety_pushy: ['high_context_contamination', 'false_abstention']</title></circle>
+<circle class="dot" cx="247.8" cy="188.6" r="5"><title>qv5_011_title_only_honey_ai_prediction: []</title></circle>
+<circle class="dot" cx="220.1" cy="157.1" r="5"><title>qv5_012_private_contact_cryogenic: []</title></circle>
+</svg>

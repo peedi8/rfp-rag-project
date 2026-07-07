@@ -1,0 +1,123 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 5.0,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 15.71
+    },
+    "edd_score": 88.25,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": [
+      {
+        "id": "qv6_001_uicc_fragment_scope",
+        "type": "title_fragment_scope_recovery",
+        "answer": "근거 문서: 사업명 \"2024년 대학 산학협력활동 실태조사 시스템(UICC) 기능개선\", 발주기관 한국연구재단(제공문서 기준).\n\n요약(간결하게 문서별 근거 표기)\n\n1) 기능개선\n - 전반적 필요성: 사용자 요구·항목 지침 변경 반영 등으로 기능개선 필요(문서1 추진배경).\n - 구체 요구사항(문서2 SFR 목록):\n   - SFR-005: 사용자 관리 및 담당자 지정 기능 개선(미등록 ID 로그인 알림창 개선, 아이디찾기 시 탈퇴회원 메시지, 권한관리·담당자 지정 화면 통합).\n   - SFR-006: 실태조사 항목 지침 개선사항 반영(매년 조사항목·지침 변경 반영, 대상대학 설정·학교/학과 코드 현행화).\n   - SFR-007: 온라인 보고서 기능 개선(항목 확대, 최종 정제 데이터 기준 설정).\n\n2) 운영지원\n - 운영지원 항목(문서3): 실태조사 기간 중 시스템 오류 개선, 사용자 원활 이용을 위한 운영 지원, 클라우드 서버 운영 및 장애 사전 차단, 실태조사 데이터 오류 점검 및 대학정보공시 연계 지원.\n - 추진방안(문서2 추진전략)에서의 운영 안정성·유지보수·보안 준수 강조도 운영지원 관련 근거임.\n\n3) 대학정보공시 연계\n - 기능 요구(SFR-008, 문서2): 대학정보공시 연계플랫폼으로의 데이터 전송 및 관리 기능 개선(한국대학교육협의회와 협업), 특히 \"대학원 별 소속학과 없음\" 처리에 따른 데이터 전송 방법 개선 요구.\n - 운영지원 연계(문서3): 실태조사 데이터 오류 점검 및 대학정보공시 연계 지원 포함.\n\n문서에 없는 사항은 제공된 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "한국연구재단",
+          "한국연구재단",
+          "한국연구재단",
+          "한국연구재단"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 791,
+          "answer_line_count": 15
+        },
+        "latency_sec": 15.71,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 4,
+        "retrieval_sec": 1.13,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 117,
+              "completion_tokens": null,
+              "total_tokens": 117
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 14.57,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2298,
+              "completion_tokens": 1347,
+              "total_tokens": 3645
+            },
+            "cost_usd": 0.007785,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 14.575,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.007785,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "응답은 제공된 한국연구재단 문서(문서1~문서3)의 내용(SFR-005~SFR-008 항목, 추진배경·운영지원 등)을 그대로 요약하여 제시하고 있어 근거에 충실함. 문서 범위(한국연구재단 문서 기준)에도 맞춤. 단, 답변 중 문서 번호 언급에 작은 혼동(운영관련 추진방안 언급 시 문서 번호 표기 오류)이 있으나 내용 자체는 제공된 문서들에서 확인되는 사실만을 기술함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 2494,
+                "completion_tokens": 603,
+                "total_tokens": 3097
+              },
+              "cost_usd": 0.004584,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 9.491,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.004584
+        }
+      }
+    ]
+  }
+}

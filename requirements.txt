@@ -1,0 +1,14 @@
+# === RAG 시스템 (시나리오 B: LLM API 기반, GCP 불필요) ===
+openai>=1.40.0
+chromadb>=0.5.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+python-dotenv>=1.0.0
+tqdm>=4.66.0
+numpy>=1.24.0
+
+# --- 문서 원본 파싱이 필요할 때만 (CSV 텍스트로 충분하면 없어도 됨) ---
+# hwp 파싱
+olefile>=0.46
+# pdf 파싱
+pypdf>=4.0.0

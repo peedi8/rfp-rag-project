@@ -1,0 +1,98 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "D_persona_business_citation",
+  "task_id": "shard_d_manifest",
+  "status": "proposal",
+  "summary": "Merge with warnings only if the runner already enforces the trace wrapper for Q090-Q091 and the special gates for unsupported, usefulness, and recommendation rows.",
+  "inputs": [
+    "eval\\parallel_runs\\20260707_150641_L119-question-bank-64-runnable-manifest-seed-and-preflight-d\\inputs\\D_persona_business_citation_manifest_review_input.json",
+    "eval/question_bank64_runnable_manifest_20260707.json"
+  ],
+  "protected_paths_seen": [
+    "eval/question_bank64_runnable_manifest_20260707.json",
+    "eval/question_bank64_runnable_manifest_20260707.csv",
+    "eval/question_bank64_runnable_manifest_20260707.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "????.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260707_150641_L119-question-bank-64-runnable-manifest-seed-and-preflight-d\\worker_outputs\\D_persona_business_citation_manifest_review_contract.json",
+      "kind": "json",
+      "description": "standard worker proposal wrapper"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260707_150641_L119-question-bank-64-runnable-manifest-seed-and-preflight-d\\worker_outputs\\raw_reviews\\D_persona_business_citation_manifest_review_contract.json",
+      "kind": "json",
+      "description": "raw shard review content preserved before schema wrapping"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [],
+    "rejected_or_risky_items": [
+      {
+        "case_id": "Q077-Q081",
+        "severity": "medium",
+        "cause": "These unsupported_claim_boundary rows are about refusal of guarantees/current/live certainty, so ordinary EDD is not a sufficient success signal.",
+        "result": "A fluent but non-refusing answer can look retrieval-good while still being wrong for the task.",
+        "recommended_change": "Keep abstention_correctness and useful_safe_alternative as explicit gates, and do not rely on ordinary EDD aggregation for these rows."
+      },
+      {
+        "case_id": "Q082-Q089",
+        "severity": "medium",
+        "cause": "These persona/business usefulness rows are judged on contextual fit and usefulness, which EDD alone can miss.",
+        "result": "Plausible but unhelpful answers may pass retrieval quality while failing task usefulness.",
+        "recommended_change": "Require G_CONTEXTUAL_USEFULNESS and a calibrated judge/readback sample for these rows."
+      },
+      {
+        "case_id": "Q036-Q037",
+        "severity": "medium",
+        "cause": "These business recommendation rows need both multi-document comparison and explicit recommendation criteria; EDD alone does not test either.",
+        "result": "A single-doc or criterion-opaque answer could be over-accepted.",
+        "recommended_change": "Keep G_MULTI_DOC_COMPARISON and G_BUSINESS_RECOMMENDATION_CRITERIA as separate gates, with comparison coverage and criteria transparency checked explicitly."
+      }
+    ],
+    "needs_orchestrator_review": [
+      {
+        "case_id": "Q090-Q091",
+        "severity": "high",
+        "cause": "These are system_trace_audit rows, not ordinary answer rows; they require retrieval_trace, chunk_source_map, and citation span export before scoring.",
+        "result": "They are not runnable as plain EDD cases and will fail or mis-score without a trace-export wrapper.",
+        "recommended_change": "Add a pre-execution trace wrapper that exports the required artifacts and routes these rows to a dedicated trace audit path."
+      }
+    ],
+    "raw_status": "pass_with_warnings",
+    "reviewed_cases": [
+      "Q077",
+      "Q079",
+      "Q080",
+      "Q081",
+      "Q082",
+      "Q083",
+      "Q084",
+      "Q085",
+      "Q086",
+      "Q087",
+      "Q088",
+      "Q089",
+      "Q090",
+      "Q091",
+      "Q036",
+      "Q037"
+    ],
+    "next_step": "Wire the trace-export wrapper for Q090-Q091, then confirm the per-gate preflight path for Q077-Q081, Q082-Q089, and Q036-Q037 before execution."
+  },
+  "merge_risk": "high",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "direct JSON readback by worker; orchestrator schema wrap"
+    ],
+    "observed_results": [
+      "raw review JSON parsed and preserved",
+      "merge_risk=high"
+    ]
+  }
+}

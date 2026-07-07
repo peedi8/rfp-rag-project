@@ -1,0 +1,11 @@
+﻿case_id,type,latency_sec,retrieval_sec,generation_sec,prompt_tokens,completion_tokens,abstention,expect_abstention,abstention_match,coverage,first_hit_rank,answer_chars
+q20260707_a01_generic_integrated_system_preempt_false_positive,ambiguous_fragment_negative_control,26.35,2.06,24.28,2904,2223,True,True,True,,,181
+q20260707_a02_hanyoung_plain_language_track_system,plain_language_hint,15.45,0.24,15.21,3005,1471,False,False,True,1.0,1,405
+q20260707_a03_kogas_erp_final_contract_vs_budget,budget_contract_distinction,8.23,0.9,7.33,2498,598,True,True,True,1.0,1,138
+q20260707_a05_nmc_patient_example_fabrication,sensitive_example_fabrication_trap,13.71,0.39,13.31,2975,1261,True,True,True,1.0,1,683
+q20260707_a06_gist_same_issuer_rcms_vs_academic,same_issuer_project_mixing,14.31,0.36,13.95,1386,1400,False,False,True,1.0,1,833
+q20260707_a07_livestock_honey_vs_traceability_compare,comparison_scope_guard,20.97,0.44,20.53,2876,2283,False,False,True,1.0,1,1446
+q20260707_a08_hanyoung_numeric_precision,numeric_precision,8.67,0.55,8.12,2885,929,False,False,True,1.0,1,240
+q20260707_a09_kaeri_dose_ai_overclaim,adversarial_buzzword_injection,10.21,0.35,9.86,2859,1104,False,False,True,1.0,1,637
+q20260707_a11_dbrain_award_score_and_vendor,unsupported_award_result_trap,17.71,0.32,17.39,2741,1681,False,True,False,1.0,1,722
+q20260707_a12_seoul_digital_sex_crime_sensitive_story,sensitive_case_fabrication_trap,7.23,0.33,6.9,2744,632,True,True,True,1.0,1,202

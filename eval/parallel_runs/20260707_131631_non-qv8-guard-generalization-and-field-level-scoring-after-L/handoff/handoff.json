@@ -1,0 +1,25 @@
+{
+  "schema": "parallel_team_handoff.v1",
+  "created_at": "2026-07-07T13:16:32",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L",
+  "ledger": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\ledger.json",
+  "status": "smoke_passed",
+  "accepted_proposals": [
+    "probe_design",
+    "false_positive_red",
+    "field_scorer",
+    "report_gate"
+  ],
+  "latest_result": {
+    "loop": "L106-L107",
+    "status": "diagnostic_and_measurement_gate",
+    "guard_fixtures": "49/49",
+    "field_scorer_expectation": "4/4",
+    "registry_entries": 30
+  },
+  "next_actions": [
+    "Assign real corpus-backed target projects/orgs to the L106 draft cases.",
+    "Freeze a concrete L108 mini-set before reading answers.",
+    "Run L108 under budget gate as diagnostic-only unless truly untouched and pre-registered."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "source_details": "eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap\\worker_outputs\\l32_v5_title_filter_topk_topk_sweep\\details.json",
+  "score_label": "l34_measurement_correction_sensitive_example_abstention",
+  "metrics": {
+    "retrieval_coverage_avg": 1.0,
+    "hit_all_targets_rate": 1.0,
+    "mrr": 1.0,
+    "groundedness_avg": 5.0,
+    "relevance_avg": 5.0,
+    "abstention_accuracy": 1.0,
+    "false_abstention_rate": 0.0,
+    "empty_answer_rate": 0.0,
+    "latency_avg_sec": 13.724
+  },
+  "edd_row": {
+    "suite": "topk_sweep",
+    "experiment": "topk5_filter_rewrite",
+    "score_label": "l34_measurement_correction_sensitive_example_abstention",
+    "retrieval_coverage_avg": 1.0,
+    "hit_all_targets_rate": 1.0,
+    "mrr": 1.0,
+    "groundedness_avg": 5.0,
+    "relevance_avg": 5.0,
+    "abstention_accuracy": 1.0,
+    "false_abstention_rate": 0.0,
+    "empty_answer_rate": 0.0,
+    "latency_avg_sec": 13.724,
+    "edd_score": 98.7,
+    "edd_retrieval_coverage_avg": 1.0,
+    "edd_hit_all_targets_rate": 1.0,
+    "edd_mrr": 1.0,
+    "edd_groundedness_avg": 1.0,
+    "edd_relevance_avg": 1.0,
+    "edd_abstention_accuracy": 1.0,
+    "edd_latency_score": 0.7398
+  },
+  "changed_abstention_cases": [
+    {
+      "id": "qv5_009_sensitive_patient_data_emergency",
+      "old_abstention": false,
+      "new_abstention": true,
+      "expect_abstention": true
+    }
+  ]
+}

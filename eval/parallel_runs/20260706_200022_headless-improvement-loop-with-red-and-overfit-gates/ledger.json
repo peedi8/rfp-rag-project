@@ -1,0 +1,71 @@
+{
+    "schema":  "parallel_team_run_ledger.v1",
+    "created_at":  "2026-07-06T20:00:23",
+    "workspace":  "I:\\0706\\rfp-rag-project",
+    "objective":  "headless improvement loop with red and overfit gates",
+    "run_dir":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates",
+    "cpu_percent_at_start":  6.0,
+    "recommended_workers":  4,
+    "worker_policy":  "proposal_only_no_direct_merge",
+    "merge_owner":  "main_codex_orchestrator",
+    "protected_paths":  [
+                            "final target index.html",
+                            "renderer source files",
+                            "prepared payload JSON",
+                            "option consumer payload JSON",
+                            "stage slot pack candidate files"
+                        ],
+    "tasks":  [
+                  {
+                      "task_id":  "red_gate",
+                      "description":  "define red gate checks and promotion states",
+                      "status":  "completed",
+                      "worker_id":  "red_gate",
+                      "output_contract":  "worker_outputs\\red_gate.contract.json",
+                      "merge_decision":  "accepted"
+                  },
+                  {
+                      "task_id":  "overfit_gate",
+                      "description":  "define overfit contamination checks",
+                      "status":  "completed",
+                      "worker_id":  "overfit_gate",
+                      "output_contract":  "worker_outputs\\overfit_gate.contract.json",
+                      "merge_decision":  "accepted"
+                  },
+                  {
+                      "task_id":  "headless_runner",
+                      "description":  "design local no-api loop runner",
+                      "status":  "completed",
+                      "worker_id":  "headless_runner",
+                      "output_contract":  "worker_outputs\\headless_runner.contract.json",
+                      "merge_decision":  "accepted"
+                  },
+                  {
+                      "task_id":  "next_experiments",
+                      "description":  "select next low-cost experiments",
+                      "status":  "completed",
+                      "worker_id":  "next_experiments",
+                      "output_contract":  "worker_outputs\\next_experiments.contract.json",
+                      "merge_decision":  "accepted"
+                  }
+              ],
+    "checkpoints":  {
+                        "inputs":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\checkpoint_01_inputs.md",
+                        "worker_outputs":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\checkpoint_02_worker_outputs.md",
+                        "merge_decisions":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\checkpoint_03_merge_decisions.md",
+                        "smoke":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\checkpoint_04_smoke.md"
+                    },
+    "events":  [
+                   {
+                       "ts":  "2026-07-06T20:00:23",
+                       "event":  "scaffold_created",
+                       "recommended_workers":  4,
+                       "cpu_percent":  6.0
+                   },
+                   {
+                       "ts":  "2026-07-06T20:04:57",
+                       "event":  "merge_completed",
+                       "summary":  "accepted red gate, overfit gate, headless runner, and next experiment proposals; wrote L14 gate audit"
+                   }
+               ]
+}

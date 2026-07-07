@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="398" viewBox="0 0 1220 398">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" font-size="22" font-family="Segoe UI, Arial" font-weight="700">Metric heatmap</text>
+<text x="398" y="58" font-size="12" font-family="Segoe UI, Arial" font-weight="700">coverage</text>
+<text x="503" y="58" font-size="12" font-family="Segoe UI, Arial" font-weight="700">MRR</text>
+<text x="608" y="58" font-size="12" font-family="Segoe UI, Arial" font-weight="700">ground</text>
+<text x="713" y="58" font-size="12" font-family="Segoe UI, Arial" font-weight="700">relevance</text>
+<text x="818" y="58" font-size="12" font-family="Segoe UI, Arial" font-weight="700">abstain</text>
+<text x="923" y="58" font-size="12" font-family="Segoe UI, Arial" font-weight="700">latency</text>
+<text x="24" y="90" font-size="12" font-family="Segoe UI, Arial">topk_sweep · l32_v5_title_filter_topk_topk_sweep</text>
+<text x="315" y="90" font-size="12" font-family="Segoe UI, Arial" font-weight="700">98.24</text>
+<rect x="390" y="75" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="433" y="90" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="495" y="75" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="538" y="90" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="600" y="75" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="643" y="90" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="705" y="75" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="748" y="90" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="810" y="75" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="853" y="90" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="915" y="75" width="86" height="20" rx="3" fill="#f2c94c"/>
+<text x="958" y="90" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.65</text>
+<text x="24" y="122" font-size="12" font-family="Segoe UI, Arial">baseline_default · l33_v4_regression_title_filter_baseline_default</text>
+<text x="315" y="122" font-size="12" font-family="Segoe UI, Arial" font-weight="700">96.81</text>
+<rect x="390" y="107" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="433" y="122" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="495" y="107" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="538" y="122" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="600" y="107" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="643" y="122" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="705" y="107" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="748" y="122" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="810" y="107" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="853" y="122" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="915" y="107" width="86" height="20" rx="3" fill="#f59e0b"/>
+<text x="958" y="122" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.36</text>
+<text x="24" y="154" font-size="12" font-family="Segoe UI, Arial">topk_sweep · l35_v4_title_filter_topk_regression_topk_sweep</text>
+<text x="315" y="154" font-size="12" font-family="Segoe UI, Arial" font-weight="700">96.44</text>
+<rect x="390" y="139" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="433" y="154" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="495" y="139" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="538" y="154" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="600" y="139" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="643" y="154" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="705" y="139" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="748" y="154" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="810" y="139" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="853" y="154" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="915" y="139" width="86" height="20" rx="3" fill="#dc2626"/>
+<text x="958" y="154" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.29</text>
+<text x="24" y="186" font-size="12" font-family="Segoe UI, Arial">topk_sweep · l32_v5_title_filter_topk_topk_sweep</text>
+<text x="315" y="186" font-size="12" font-family="Segoe UI, Arial" font-weight="700">96.24</text>
+<rect x="390" y="171" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="433" y="186" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="495" y="171" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="538" y="186" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="600" y="171" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="643" y="186" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.90</text>
+<rect x="705" y="171" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="748" y="186" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="810" y="171" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="853" y="186" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="915" y="171" width="86" height="20" rx="3" fill="#f2c94c"/>
+<text x="958" y="186" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.65</text>
+<text x="24" y="218" font-size="12" font-family="Segoe UI, Arial">topk_sweep · l32_v5_title_filter_topk_topk_sweep</text>
+<text x="315" y="218" font-size="12" font-family="Segoe UI, Arial" font-weight="700">96.20</text>
+<rect x="390" y="203" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="433" y="218" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="495" y="203" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="538" y="218" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="600" y="203" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="643" y="218" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="705" y="203" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="748" y="218" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="810" y="203" width="86" height="20" rx="3" fill="#79b851"/>
+<text x="853" y="218" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.75</text>
+<rect x="915" y="203" width="86" height="20" rx="3" fill="#f2c94c"/>
+<text x="958" y="218" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.74</text>
+<text x="24" y="250" font-size="12" font-family="Segoe UI, Arial">baseline_default · l31_v5_title_filter_baseline_baseline_default</text>
+<text x="315" y="250" font-size="12" font-family="Segoe UI, Arial" font-weight="700">95.87</text>
+<rect x="390" y="235" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="433" y="250" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="495" y="235" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="538" y="250" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="600" y="235" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="643" y="250" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="705" y="235" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="748" y="250" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="810" y="235" width="86" height="20" rx="3" fill="#79b851"/>
+<text x="853" y="250" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.75</text>
+<rect x="915" y="235" width="86" height="20" rx="3" fill="#f2c94c"/>
+<text x="958" y="250" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.67</text>
+<text x="24" y="282" font-size="12" font-family="Segoe UI, Arial">topk_sweep · l35_v4_title_filter_topk_regression_topk_sweep</text>
+<text x="315" y="282" font-size="12" font-family="Segoe UI, Arial" font-weight="700">94.64</text>
+<rect x="390" y="267" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="433" y="282" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="495" y="267" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="538" y="282" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="600" y="267" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="643" y="282" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="705" y="267" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="748" y="282" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="810" y="267" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="853" y="282" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="915" y="267" width="86" height="20" rx="3" fill="#dc2626"/>
+<text x="958" y="282" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.26</text>
+<text x="24" y="314" font-size="12" font-family="Segoe UI, Arial">topk_sweep · l35_v4_title_filter_topk_regression_topk_sweep</text>
+<text x="315" y="314" font-size="12" font-family="Segoe UI, Arial" font-weight="700">92.77</text>
+<rect x="390" y="299" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="433" y="314" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="495" y="299" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="538" y="314" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="600" y="299" width="86" height="20" rx="3" fill="#79b851"/>
+<text x="643" y="314" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.84</text>
+<rect x="705" y="299" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="748" y="314" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="810" y="299" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="853" y="314" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="915" y="299" width="86" height="20" rx="3" fill="#dc2626"/>
+<text x="958" y="314" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.18</text>
+<text x="24" y="346" font-size="12" font-family="Segoe UI, Arial">baseline_default · l30_v5_adversarial_first_baseline_baseline_default</text>
+<text x="315" y="346" font-size="12" font-family="Segoe UI, Arial" font-weight="700">92.40</text>
+<rect x="390" y="331" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="433" y="346" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.93</text>
+<rect x="495" y="331" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="538" y="346" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.93</text>
+<rect x="600" y="331" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="643" y="346" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="705" y="331" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="748" y="346" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="810" y="331" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="853" y="346" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="915" y="331" width="86" height="20" rx="3" fill="#f59e0b"/>
+<text x="958" y="346" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.42</text>
+</svg>

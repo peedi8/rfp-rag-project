@@ -1,0 +1,66 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-06T21:26:48",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "Adversarial RAG breaker loop under budget cap",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap",
+  "cpu_percent_at_start": 1.0,
+  "recommended_workers": 4,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "final target index.html",
+    "renderer source files",
+    "prepared payload JSON",
+    "option consumer payload JSON",
+    "stage slot pack candidate files"
+  ],
+  "tasks": [
+    {
+      "task_id": "adversarial_questions",
+      "description": "design unseen adversarial question cohorts",
+      "status": "completed",
+      "worker_id": "question_builder",
+      "output_contract": "eval\\questions_v5_adversarial_frozen_first_run.manifest.json",
+      "merge_decision": "accepted"
+    },
+    {
+      "task_id": "contamination_removal",
+      "description": "design contamination and evidence-removal probes",
+      "status": "completed",
+      "worker_id": "l31_v5_title_filter_baseline",
+      "output_contract": "worker_outputs\\l31_v5_title_filter_baseline_baseline_default\\worker_output.json",
+      "merge_decision": "accepted_title_filter_not_fresh_validation"
+    },
+    {
+      "task_id": "reverse_verification",
+      "description": "build answer claim verification probes",
+      "status": "completed",
+      "worker_id": "measurement_recompute",
+      "output_contract": "analysis\\l34_l31_sensitive_abstention_recompute\\recomputed_metrics.json",
+      "merge_decision": "accepted_as_measurement_correction"
+    },
+    {
+      "task_id": "latency_frontier",
+      "description": "compare quality latency answer length frontier",
+      "status": "completed",
+      "worker_id": "l32_v5_title_filter_topk_and_l35_v4_topk",
+      "output_contract": "summary\\l30_l36_adversarial_loop_report.md",
+      "merge_decision": "top5_not_promoted"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap\\checkpoint_01_inputs.md",
+    "worker_outputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap\\checkpoint_02_worker_outputs.md",
+    "merge_decisions": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap\\checkpoint_03_merge_decisions.md",
+    "smoke": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap\\checkpoint_04_smoke.md"
+  },
+  "events": [
+    {
+      "ts": "2026-07-06T21:26:48",
+      "event": "scaffold_created",
+      "recommended_workers": 4,
+      "cpu_percent": 1.0
+    }
+  ]
+}

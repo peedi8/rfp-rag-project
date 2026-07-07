@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="138" viewBox="0 0 1100 138">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" font-size="22" font-family="Segoe UI, Arial" font-weight="700">EDD score by experiment</text>
+<text x="24" y="82" font-size="13" font-family="Segoe UI, Arial">topk_sweep · v3_targeted_top5_speed_quality_topk_sweep</text>
+<rect x="310" y="66" width="594.2" height="20" rx="3" fill="#2f6fed"/>
+<text x="912.2" y="82" font-size="13" font-family="Segoe UI, Arial">91.41</text>
+<text x="24" y="116" font-size="13" font-family="Segoe UI, Arial">baseline_default · v3_first_validation_top8_baseline_default</text>
+<rect x="310" y="100" width="583.0" height="20" rx="3" fill="#6b8fd6"/>
+<text x="901.0" y="116" font-size="13" font-family="Segoe UI, Arial">89.69</text>
+</svg>

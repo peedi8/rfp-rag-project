@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="360" viewBox="0 0 720 360">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="360.0" y="28" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700">Source-exposed diagnostic EDD trend</text>
+<line x1="56" y1="304" x2="664" y2="304" stroke="#333"/>
+<line x1="56" y1="56" x2="56" y2="304" stroke="#333"/>
+<line x1="56" y1="304.0" x2="664" y2="304.0" stroke="#e5e7eb"/>
+<text x="48" y="308.0" text-anchor="end" font-family="Arial" font-size="11">0.0</text>
+<line x1="56" y1="242.0" x2="664" y2="242.0" stroke="#e5e7eb"/>
+<text x="48" y="246.0" text-anchor="end" font-family="Arial" font-size="11">27.6</text>
+<line x1="56" y1="180.0" x2="664" y2="180.0" stroke="#e5e7eb"/>
+<text x="48" y="184.0" text-anchor="end" font-family="Arial" font-size="11">55.2</text>
+<line x1="56" y1="118.0" x2="664" y2="118.0" stroke="#e5e7eb"/>
+<text x="48" y="122.0" text-anchor="end" font-family="Arial" font-size="11">82.8</text>
+<line x1="56" y1="56.0" x2="664" y2="56.0" stroke="#e5e7eb"/>
+<text x="48" y="60.0" text-anchor="end" font-family="Arial" font-size="11">110.4</text>
+<polyline fill="none" stroke="#2563eb" stroke-width="3" points="56.0,85.1 258.7,83.8 461.3,84.2 664.0,82.6"/>
+<circle cx="56.0" cy="85.1" r="5" fill="#2563eb"/>
+<text x="56.0" y="75.1" text-anchor="middle" font-family="Arial" font-size="12">97.41</text>
+<text x="56.0" y="326" text-anchor="middle" font-family="Arial" font-size="12">L81</text>
+<circle cx="258.7" cy="83.8" r="5" fill="#2563eb"/>
+<text x="258.7" y="73.8" text-anchor="middle" font-family="Arial" font-size="12">98.00</text>
+<text x="258.7" y="326" text-anchor="middle" font-family="Arial" font-size="12">L85b</text>
+<circle cx="461.3" cy="84.2" r="5" fill="#2563eb"/>
+<text x="461.3" y="74.2" text-anchor="middle" font-family="Arial" font-size="12">97.82</text>
+<text x="461.3" y="326" text-anchor="middle" font-family="Arial" font-size="12">L91</text>
+<circle cx="664.0" cy="82.6" r="5" fill="#2563eb"/>
+<text x="664.0" y="72.6" text-anchor="middle" font-family="Arial" font-size="12">98.54</text>
+<text x="664.0" y="326" text-anchor="middle" font-family="Arial" font-size="12">L95</text>
+<text x="16" y="180.0" transform="rotate(-90 16 180.0)" text-anchor="middle" font-family="Arial" font-size="12">EDD</text>
+</svg>

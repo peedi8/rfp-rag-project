@@ -1,0 +1,86 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "l25_v4_first_baseline",
+  "task_id": "baseline_default",
+  "status": "proposal",
+  "summary": "baseline_default recomputed; best=baseline_default EDD=97.41",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v4_frozen_first_run.json",
+    "I:\\0706\\rfp-rag-project\\chroma_db",
+    "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py"
+  ],
+  "models": {
+    "answer_model": "",
+    "judge_model": ""
+  },
+  "protected_paths_seen": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "CLAUDE.md",
+    "config.py",
+    "src/**",
+    "chroma_db/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs\\l25_v4_first_baseline_baseline_default\\results.csv",
+      "kind": "data",
+      "description": "worker metrics with EDD score"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs\\l25_v4_first_baseline_baseline_default\\details.json",
+      "kind": "json",
+      "description": "question-level details and issue keys"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs\\l25_v4_first_baseline_baseline_default\\worker_output.json",
+      "kind": "json",
+      "description": "worker output contract"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "suite": "baseline_default",
+        "experiment": "baseline_default",
+        "retrieval_coverage_avg": 1.0,
+        "hit_all_targets_rate": 1.0,
+        "mrr": 1.0,
+        "groundedness_avg": 5.0,
+        "relevance_avg": 5.0,
+        "abstention_accuracy": 1.0,
+        "false_abstention_rate": 0.0,
+        "empty_answer_rate": 0.0,
+        "latency_avg_sec": 19.377,
+        "edd_score": 97.41,
+        "edd_retrieval_coverage_avg": 1.0,
+        "edd_hit_all_targets_rate": 1.0,
+        "edd_mrr": 1.0,
+        "edd_groundedness_avg": 1.0,
+        "edd_relevance_avg": 1.0,
+        "edd_abstention_accuracy": 1.0,
+        "edd_latency_score": 0.4829
+      }
+    ],
+    "rejected_or_risky_items": [],
+    "needs_orchestrator_review": [
+      "Compare EDD score with raw metrics before adopting any parameter.",
+      "Do not adopt a row if empty_answer or false_abstain issue keys dominate."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py --run-dir eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates --suite baseline_default --worker-id l25_v4_first_baseline --questions eval\\questions_v4_frozen_first_run.json --case-limit 10 --max-experiments 1"
+    ],
+    "observed_results": [
+      "index_count=11842",
+      "wrote_rows=1",
+      "metrics_recomputed_from_saved_details",
+      "metrics_recomputed_from_saved_details"
+    ]
+  },
+  "created_at": "2026-07-06T20:50:10"
+}

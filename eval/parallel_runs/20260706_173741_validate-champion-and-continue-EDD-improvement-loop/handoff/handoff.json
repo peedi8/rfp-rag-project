@@ -1,0 +1,14 @@
+{
+  "objective": "validate champion and continue EDD improvement loop",
+  "run_dir": "eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop",
+  "accepted": [
+    "holdout_after_backfill_abstain_balanced_judge",
+    "judge_bias_check",
+    "latency_candidate_review",
+    "quality_audit"
+  ],
+  "next_actions": [
+    "source-scope guard qv2_003/qv2_008",
+    "adaptive top_k tune+holdout"
+  ]
+}

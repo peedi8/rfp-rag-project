@@ -1,0 +1,119 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "generator_guard_candidate",
+  "task_id": "generator_guard_candidate",
+  "status": "proposal",
+  "summary": "Narrow proposal to add a final-award-result preempt/guard in src/generator.py for unsupported final evaluation score, selected vendor, and final award-result questions while preserving legitimate evaluation-criteria explanations and normal scope answers with final-result caveats.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\src\\generator.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\check_evidence_guard_fixtures.py",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_125809_qv8-unsupported-award-result-refusal-boundary-repair\\analysis\\a11_answer_compare.json"
+  ],
+  "protected_paths_seen": [
+    "I:\\0706\\rfp-rag-project\\src\\**",
+    "I:\\0706\\rfp-rag-project\\scripts\\**",
+    "I:\\0706\\rfp-rag-project\\eval\\question_exposure_registry.*",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\chroma_db\\**",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\**\\*"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_125809_qv8-unsupported-award-result-refusal-boundary-repair\\worker_outputs\\generator_guard_candidate.contract.json",
+      "kind": "json",
+      "description": "Required worker proposal contract for the unsupported award-result guard boundary repair."
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "component": "src/generator.py::_preempt_sensitive_abstention_answer",
+        "locations": [
+          "I:\\0706\\rfp-rag-project\\src\\generator.py:222-241",
+          "I:\\0706\\rfp-rag-project\\src\\generator.py:274-280"
+        ],
+        "recommendation": "Add a tighter award-result-specific preempt branch before the current generic sensitive preempt. Trigger only when the query combines unsupported final-result intent with procurement outcome intent, such as final evaluation score, selected vendor, final award result, or winner selection, and explicitly exclude criteria/rubric/breakdown explanations from this preempt path.",
+        "details": [
+          "Introduce a dedicated marker set for unsupported final-award-result questions instead of widening the existing generic sensitive marker list.",
+          "Gate the preempt on a result-intent + unsupported-result combination so normal scope answers that merely mention an award caveat still flow through the model.",
+          "Add explicit negative markers for criteria, scoring rubric, evaluation method, and selection basis language so legitimate evaluation-criteria explanations remain answerable."
+        ]
+      },
+      {
+        "component": "src/generator.py::_apply_sensitive_abstention_guard",
+        "locations": [
+          "I:\\0706\\rfp-rag-project\\src\\generator.py:285-298",
+          "I:\\0706\\rfp-rag-project\\src\\generator.py:441-443"
+        ],
+        "recommendation": "Keep the post-generation guard as a compression-only fallback for already-refusal answers, but do not let it reclassify or suppress criteria explanations. If the answer is about evaluation criteria or method, leave it untouched even when the query mentions final-result vocabulary.",
+        "details": [
+          "Preserve the current 'only shorten verbose refusals' behavior for unsupported award-result outputs.",
+          "Avoid adding any rewrite path that strips substantive evaluation-criteria content from normal scope answers.",
+          "Keep the guard downstream of generation so it can only clean up refusal length, not change answer intent."
+        ]
+      },
+      {
+        "component": "src/generator.py::generate_answer_with_trace",
+        "locations": [
+          "I:\\0706\\rfp-rag-project\\src\\generator.py:467-531"
+        ],
+        "recommendation": "Invoke the new award-result preempt before the OpenAI completion call, alongside the existing sensitive preempt, so unsupported final-result questions return the concise unavailable answer without spending a model call.",
+        "details": [
+          "This is the lowest-risk placement because it avoids changing retrieval, prompt construction, or answer shaping for unrelated questions.",
+          "It should not affect normal scope answers because only the unsupported final-result branch short-circuits the model call.",
+          "Leave the existing answer-guard stack intact for non-preempted queries."
+        ]
+      }
+    ],
+    "expected_latency_quality_effects": [
+      {
+        "scope": "Unsupported final evaluation score / selected vendor / final award-result questions",
+        "latency_effect": "Expected material latency reduction because the query returns before the completion call; the win is roughly one full generation round-trip for these cases.",
+        "quality_effect": "Expected quality improvement from eliminating long, off-scope, or over-refusing final-result answers while still returning the concise unavailable response."
+      },
+      {
+        "scope": "Evaluation-criteria and scoring-method questions",
+        "latency_effect": "No meaningful regression expected if the exclusion markers are implemented as proposed.",
+        "quality_effect": "Criteria explanations should stay intact, which is the main boundary the current proposal protects."
+      },
+      {
+        "scope": "Normal scope answers with a final-result caveat",
+        "latency_effect": "No material change expected because the new branch should not trigger.",
+        "quality_effect": "Normal answers should continue to include caveats without being collapsed into a refusal."
+      }
+    ],
+    "focused_rerun_plan": [
+      {
+        "step": "Run the existing guard fixture script to confirm the current sensitive-abstention and prompt-hint behavior still passes after the boundary change.",
+        "command": "python I:\\0706\\rfp-rag-project\\scripts\\check_evidence_guard_fixtures.py",
+        "expected_check": "Existing preempt and non-preempt boundary cases remain green, especially the current sensitive preempt and the non-adversarial boundary fixtures."
+      },
+      {
+        "step": "Add targeted smoke assertions for three query classes: unsupported final evaluation score, selected vendor / final award result, and evaluation-criteria explanation with the same vocabulary.",
+        "command": "Use a temporary local Python smoke or the repo's existing fixture harness to call src.generator._preempt_sensitive_abstention_answer on synthetic queries before any commit-level change.",
+        "expected_check": "Unsupported final-result queries short-circuit to the concise unavailable answer; criteria questions do not preempt; normal caveated scope questions still use the model path."
+      },
+      {
+        "step": "Re-run the local answer compare artifact for this run after the boundary change is implemented.",
+        "command": "Inspect I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_125809_qv8-unsupported-award-result-refusal-boundary-repair\\analysis\\a11_answer_compare.json for before/after shifts in refusal length and false positives.",
+        "expected_check": "Unsupported final-result cases get shorter and cleaner, while criteria cases and ordinary scope answers remain unchanged."
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Broadening the existing sensitive marker list without a separate final-result discriminator",
+        "risk": "That would over-trigger on criteria/rubric questions and suppress legitimate explanation requests."
+      },
+      {
+        "item": "Moving the refusal logic into the general answer guard only",
+        "risk": "That still spends a model call on unsupported final-result questions and can preserve verbose hallucinated answers."
+      },
+      {
+        "item": "Making the guard fire on any query that mentions awards, vendors, or evaluation",
+        "risk": "Those terms appear in legitimate scope and criteria questions, so the false-positive rate would rise."
+      }
+    ]
+  }
+}

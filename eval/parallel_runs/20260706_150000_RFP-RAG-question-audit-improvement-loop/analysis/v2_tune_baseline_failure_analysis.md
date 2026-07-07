@@ -1,0 +1,125 @@
+# v2 Tune Baseline Failure Analysis
+
+- source: `eval\parallel_runs\20260706_150000_RFP-RAG-question-audit-improvement-loop\worker_outputs\v2_tune_baseline_gpt5_judge_full_baseline_default\details.json`
+- EDD: **79.90**
+- retrieval_coverage_avg: **0.911**
+- hit_all_targets_rate: **0.812**
+- mrr: **1.0**
+- groundedness_avg: **3.125**
+- relevance_avg: **4.812**
+- abstention_accuracy: **0.5**
+- false_abstention_rate: **0.062**
+- empty_answer_rate: **0.0**
+- latency_avg_sec: **17.922**
+
+## Issue Counts
+- coverage_fail: 3
+- false_abstention_or_precise_value_missing: 1
+- low_groundedness: 10
+- missed_abstention: 1
+
+## Cases
+### qv2_001_single_elec_security (single_extract)
+- flags: low_groundedness
+- coverage/rank: 1.0 / 1
+- groundedness/relevance: 2 / 5
+- abstention expected/actual: False / False
+- judge reason: 질문 요구(보안모듈 적용/통신서버 구성/원격점검장치)를 구분해 요약해 답해 relevance는 높음. 다만 근거에 없는 세부정보(RabbitMQ 3.8.34, SFR-005/006, 통신서버 이원화, 리포트·위험계산, '저장 기능 호스트의 검증필 모듈 탑재' 등)를 포함해 groundedness가 낮아짐. 핵심 항목(KCMVP, TLS/Cipher, 인증서 전송 절차, FOTA-PSK, 서버 제공/취약점 점검, 원격지 개발 보안 등)은 근거와 부합함.
+
+### qv2_002_single_chungbuk_disaster_gis (single_extract)
+- flags: low_groundedness
+- coverage/rank: 1.0 / 1
+- groundedness/relevance: 2 / 5
+- abstention expected/actual: False / False
+- judge reason: 질문의 3개 범주(데이터 구축·연계, 취약지역 분석, 장비 도입·설치)로 구분해 답했고, 통합 DB 설계 요건, 재난정보 연계 출처 예시, 보안·반입 규정 등은 근거에 존재해 전반적으로 질문에는 잘 답했습니다. 다만 근거에 없는 세부(데이터 품질 모니터링·신속 수정 기능, 분석모델/주제도·보고서 출력, 전문가 검토 절차, 장비 정품·신제품 요구, WEB 서버 사양 등)를 단정적으로 제시하여 근거성은 낮습니다.
+
+### qv2_003_single_add_large_transfer (single_extract)
+- flags: low_groundedness
+- coverage/rank: 1.0 / 1
+- groundedness/relevance: 2 / 5
+- abstention expected/actual: False / False
+- judge reason: 요구사항을 세 분야로 정리한 점은 적절하나, 근거에 없는 세부사항(예: 50GB 한도, 병렬전송, 전용확장자 패키징, SSO/PKI·CC인증, UI 멈춤 방지, 아카이빙·조회통합 등)을 다수 포함해 근거 기반성이 낮습니다. 반면, 재연동·데이터 이관, 웹브라우저 기반, 3초 응답·100명 동시접속, 반입·반출 용량 확대 및 프로세스 개선, 외부반출 금지, 보안계획 수립·법령 준수 등은 근거에 부합합니다.
+
+### qv2_005_followup_sports_lms_instructor (followup)
+- flags: low_groundedness
+- coverage/rank: 1.0 / 1
+- groundedness/relevance: 3 / 5
+- abstention expected/actual: False / False
+- judge reason: 요청한 두 항목(강사파견 자동화, 학습자·관리자 페이지 고도화)을 중심으로 핵심 요구사항을 잘 요약했다(지역/요일 코드화, 과거매칭 기반 순위, 미승인시 차순위 자동재배정, 3일 전 수동전환, 교육등록 그룹 관리, 통계·연계 가이드 고도화 등). 다만 근거에 없는 내용(SFR-004 표기, 참여형 활동 통계 페이지, ‘재단법인’ 표기)을 포함해 일부 비근거 정보가 섞여 있어 groundedness가 다소 떨어진다.
+
+### qv2_006_followup_incheon_committee_security (followup)
+- flags: low_groundedness
+- coverage/rank: 1.0 / 1
+- groundedness/relevance: 3 / 5
+- abstention expected/actual: False / False
+- judge reason: 배경(수작업으로 인한 복잡성)과 연계해 권한관리, 자료반출 금지·암호화 전송, 산출물 회수·장비 데이터 영구삭제, 시큐어코딩 등 보안·자료관리 요구를 적절히 요약해 질문에 잘 답함. 다만 ‘사업참여 제한·위규자 교체·징계·보안위약금’ 같은 제재체계, 외부위원 계정관리 등의 세부는 근거에 직접적 근거가 보이지 않아 일부 확대/추정이 포함됨.
+
+### qv2_009_compare_learning_platforms (compare)
+- flags: coverage_fail, low_groundedness
+- coverage/rank: 0.75 / 1
+- groundedness/relevance: 2 / 4
+- abstention expected/actual: False / False
+- judge reason: 전북대 LRS의 목적·기능(xAPI, ADL Test Suite, 3,000명/초, GraphQL, 대시보드 등)과 상담·EIS 연동 기능 등 일부 내용은 근거에 있음. 그러나 MILE의 ‘운영현황 모니터링/교수·코디네이터별 화면’ 등과 LRS의 QTI·엑셀/CSV 수집 등은 근거에 없고, 을지대학교 비교과시스템으로의 특정 귀속도 근거 부족. 질문에는 대체로 답했으나(한영대학 미제공 명시 포함) 일부 세부는 추정/추가되어 근거성 낮음.
+
+### qv2_010_compare_disaster_safety_systems (compare)
+- flags: coverage_fail
+- coverage/rank: 0.5 / 1
+- groundedness/relevance: 5 / 4
+- abstention expected/actual: False / False
+- judge reason: 근거에 있는 NMC 차세대 응급의료 상황관리시스템의 세부 기능(SFR-015~019, DAR-008)과 산단 안전정보시스템의 목적·NDMS 연계·정책지원 등이 정확히 인용되었고, 봉화군/충북연구원 건은 근거 부재로 명시적으로 답변 불가 처리했다. 다만 질문은 4개 시스템 비교였으나 실제 비교는 2개에 한정되어 관련성은 약간 감소했다.
+
+### qv2_014_precise_elec_same_day_bid (precise_check)
+- flags: false_abstention_or_precise_value_missing
+- coverage/rank: 1.0 / 1
+- groundedness/relevance: 5 / 5
+- abstention expected/actual: False / True
+- judge reason: 검색된 근거에 입찰 시작일·마감일 정보가 없어 동일 여부를 확인할 수 없다는 답변은 근거와 일치하며, 질문에 직접 응답합니다.
+
+### qv2_015_precise_ntis_requirements_count (precise_check)
+- flags: low_groundedness
+- coverage/rank: 1.0 / 1
+- groundedness/relevance: 2 / 5
+- abstention expected/actual: False / False
+- judge reason: 요구사항 분류 10개는 근거의 목차에 명확히 나와 있어 타당하나, 사업기간은 근거에 '계약 후'까지만 보이고 '계약 후 5개월 이내'라는 구체 기간은 근거에 없음. 또한 발주기관을 '국가과학기술지식정보서비스'로 단정한 부분도 근거에 명시되지 않음(문서에는 한국한의학연구원 관련 문구가 보임). 질문에는 답했으나 일부 내용이 근거로 뒷받침되지 않음.
+
+### qv2_017_ambiguous_water_systems (ambiguous_org)
+- flags: low_groundedness
+- coverage/rank: 1.0 / 1
+- groundedness/relevance: 2 / 5
+- abstention expected/actual: False / False
+- judge reason: CMS 고도화는 근거 내 K-water 및 CMS/CTS 연계 내용이 나타나 비교적 뒷받침되지만, HDIMS 재구축의 발주기관을 '한국수자원조사기술원'로 특정한 근거는 제시된 문서에서 확인되지 않습니다. 용수공급 타당성조사는 근거 부재로 미확인이라고 답한 점은 적절합니다. 질문에는 세 항목 모두에 대해 응답했으므로 관련성은 높지만, HDIMS 발주기관 특정은 근거 부족으로 신뢰도가 낮습니다.
+
+### qv2_018_ambiguous_gwangju (ambiguous_org)
+- flags: coverage_fail, low_groundedness
+- coverage/rank: 0.3333333333333333 / 1
+- groundedness/relevance: 3 / 5
+- abstention expected/actual: False / False
+- judge reason: 제공 근거에 있는 GIST RCMS 연계(범위·사용현황·기대효과)와 GIST 학사시스템(범위·사업비·계약·요구사항·지침)은 잘 구분했고, 광주연구원 아카이브·광주문화재단 유지보수는 근거 부재로 명시한 점이 질문 의도에 부합합니다. 다만 답변 중 ‘보안/관리요구: 보안교육 연 2회, 취약점 점검 연 1회, 작업 로그 보관’ 등은 근거에 없는 내용이며, ‘문서1~8’ 인용도 실제 제시자료에 명확히 구분되지 않아 일부 비근거 정보가 포함되었습니다.
+
+### qv2_021_abstain_winning_vendor (abstention)
+- flags: missed_abstention
+- coverage/rank: None / None
+- groundedness/relevance: None / None
+- abstention expected/actual: True / False
+- judge reason: 
+
+### qv2_023_score_trap_health_info_duplicate (score_trap)
+- flags: low_groundedness
+- coverage/rank: 1.0 / 1
+- groundedness/relevance: 1 / 4
+- abstention expected/actual: False / False
+- judge reason: 제공된 근거에는 한국보건산업진흥원(RFP) 관련 내용만 있으며, BioIN이나 '(2차)' 표기는 나타나지 않습니다. 답변이 KHIDI 문서의 사업명·입찰방식·요구사항 등 일부는 근거와 일치하지만, BioIN 발주 및 '(2차)' 표기에 대한 언급과 '문서5·문서7' 등은 근거에서 확인되지 않아 비근거적입니다. 질문 취지(동일 사업 여부 및 문서상 구분)에 대해서는 방향성 있게 답했으나 핵심 비교의 근거 제시는 부족합니다.
+
+## Next Hypotheses
+- ?? ????? ?? ?? ???? ??? ?? ?? ??? ??? groundedness? ???.
+  - targets: qv2_001_single_elec_security, qv2_002_single_financial_system, qv2_023_score_trap_health_info_duplicate
+  - metric: groundedness_avg, contextual_quality/evidence_fit
+- ??/???? ???? ?? ??? ?? ???? coverage_fail? ????.
+  - targets: qv2_009_compare_learning_platforms, qv2_010_compare_disaster_safety_systems, qv2_018_ambiguous_gwangju
+  - metric: retrieval_coverage_avg, hit_all_targets_rate
+- ??? ??? ?? ???/?? ??/??? ?? ???? false abstention ??? ?????.
+  - targets: qv2_014_precise_elec_same_day_bid
+  - metric: abstention taxonomy accuracy
+- ?? ?? ??? ??? ???? ???? ?? ????? ??? ??? abstention ??? ???? ??.
+  - targets: qv2_021_abstain_winning_vendor
+  - metric: missed_abstention, wrong-document risk

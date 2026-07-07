@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="206" viewBox="0 0 1100 206">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" font-size="22" font-family="Segoe UI, Arial" font-weight="700">EDD score by experiment</text>
+<text x="24" y="82" font-size="13" font-family="Segoe UI, Arial">fetchk_sweep · fetch20_top8_filter_rewrite_control</text>
+<rect x="310" y="66" width="595.1" height="20" rx="3" fill="#2f6fed"/>
+<text x="913.1" y="82" font-size="13" font-family="Segoe UI, Arial">91.55</text>
+<text x="24" y="116" font-size="13" font-family="Segoe UI, Arial">filter_rewrite_ablation · filter_off_rewrite_off</text>
+<rect x="310" y="100" width="595.1" height="20" rx="3" fill="#6b8fd6"/>
+<text x="913.1" y="116" font-size="13" font-family="Segoe UI, Arial">91.55</text>
+<text x="24" y="150" font-size="13" font-family="Segoe UI, Arial">mmr_lambda_sweep · lambda03_top8_filter_rewrite</text>
+<rect x="310" y="134" width="595.1" height="20" rx="3" fill="#6b8fd6"/>
+<text x="913.1" y="150" font-size="13" font-family="Segoe UI, Arial">91.55</text>
+<text x="24" y="184" font-size="13" font-family="Segoe UI, Arial">topk_sweep · topk5_filter_rewrite</text>
+<rect x="310" y="168" width="595.1" height="20" rx="3" fill="#6b8fd6"/>
+<text x="913.1" y="184" font-size="13" font-family="Segoe UI, Arial">91.55</text>
+</svg>

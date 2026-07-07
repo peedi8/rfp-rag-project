@@ -1,0 +1,4 @@
+loop_id,source,claim_preservation_rate,claims_passed,claims_failed,gate_status,note
+L37,first_run_qv6_007,0.0,0,2,fail,Initial v6 run missed both unmanned-operation and physical access-control claims.
+L40,alias_retry_qv6_007,0.5,1,1,fail,Alias fix recovered unmanned-operation claim but still underanswered physical access-control.
+L44,judge_included_qv6_007,0.5,1,1,fail,Judge scored 5/5 but claim gate still catches physical access-control underanswer.

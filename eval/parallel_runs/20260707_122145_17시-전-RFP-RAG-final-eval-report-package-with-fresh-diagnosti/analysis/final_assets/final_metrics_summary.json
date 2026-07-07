@@ -1,0 +1,168 @@
+{
+  "selected_loop_metrics": [
+    {
+      "loop_id": "L81",
+      "name": "v7_source_exposed_prompt_diagnostic",
+      "type": "diagnostic_prompt_fresh_source_exposed",
+      "edd_score": "97.41",
+      "coverage": "1.0",
+      "mrr": "1.0",
+      "groundedness": "5.0",
+      "relevance": "5.0",
+      "abstention_accuracy": "1.0",
+      "latency_sec": "19.407",
+      "claim_status": "diagnostic_only",
+      "decision": "keep_as_quality_probe_not_validation",
+      "cause": "No fully unused source projects remained, so v7 could not honestly be strict held-out validation.",
+      "result": "Prompt-fresh diagnostic reached EDD 97.41, but qv7_006 showed a high-score answer with too much detail after refusal.",
+      "insight": "Saturated metrics still need human answer-quality review, especially for sensitive or unsupported-result prompts."
+    },
+    {
+      "loop_id": "L85b",
+      "name": "v7_source_exposed_topk8_control_shard",
+      "type": "diagnostic_latency_probe",
+      "edd_score": "98.00",
+      "coverage": "1.0",
+      "mrr": "1.0",
+      "groundedness": "5.0",
+      "relevance": "5.0",
+      "abstention_accuracy": "1.0",
+      "latency_sec": "16.794",
+      "claim_status": "diagnostic_only",
+      "decision": "keep_control_not_new_optimization",
+      "cause": "The current topk8 control was rerun as a shard after L84 timeout.",
+      "result": "After L86 measurement correction, topk8 had clean quality gates, best EDD among v7 shards, and max latency 23.46s.",
+      "insight": "This is source-exposed stability and runtime evidence, not fresh validation or a new setting."
+    },
+    {
+      "loop_id": "L91",
+      "name": "v7_source_exposed_hint_regression",
+      "type": "source_exposed_regression",
+      "edd_score": "97.82",
+      "coverage": "1.0",
+      "mrr": "1.0",
+      "groundedness": "5.0",
+      "relevance": "5.0",
+      "abstention_accuracy": "1.0",
+      "latency_sec": "17.613",
+      "claim_status": "quality_clean_candidate",
+      "decision": "keep_hint_candidate_not_fresh_validation",
+      "cause": "L89 fixed qv7_009 in one case, but needed a broader source-exposed regression check.",
+      "result": "Full v7 diagnostic stayed 5/5 with abstention 1.0 and no quality issues; qv7_009 stayed concise at 718 chars and 5 bullets.",
+      "insight": "The hint is a guarded quality candidate, not a fresh validation or speed win."
+    },
+    {
+      "loop_id": "L95",
+      "name": "sensitive_preempt_v7_regression",
+      "type": "source_exposed_regression",
+      "edd_score": "98.54",
+      "coverage": "1.0",
+      "mrr": "1.0",
+      "groundedness": "5.0",
+      "relevance": "5.0",
+      "abstention_accuracy": "1.0",
+      "latency_sec": "14.44",
+      "claim_status": "quality_clean_best_diagnostic",
+      "decision": "keep_as_source_exposed_candidate_not_validation",
+      "cause": "The two-case preempt speed win needed a full v7 source-exposed regression check.",
+      "result": "Full v7 reached EDD 98.54, latency 14.44s, abstention 1.0, quality issue rows 0/12; qv7_006 and qv7_012 preempted to sub-second latencies.",
+      "insight": "This is the strongest source-exposed diagnostic row, but still not fresh validation."
+    }
+  ],
+  "qv7_009_shape": [
+    {
+      "loop": "L81",
+      "chars": 1142,
+      "lines": 25,
+      "bullets": 20,
+      "issues": 1,
+      "latency": 25.21
+    },
+    {
+      "loop": "L85b",
+      "chars": 1294,
+      "lines": 42,
+      "bullets": 27,
+      "issues": 1,
+      "latency": 18.08
+    },
+    {
+      "loop": "L91",
+      "chars": 718,
+      "lines": 9,
+      "bullets": 5,
+      "issues": 0,
+      "latency": 17.66
+    },
+    {
+      "loop": "L95",
+      "chars": 651,
+      "lines": 9,
+      "bullets": 5,
+      "issues": 0,
+      "latency": 16.09
+    }
+  ],
+  "qv7_006_latency_breakdown": [
+    {
+      "loop": "L81",
+      "latency": 20.25,
+      "retrieval": 0.34,
+      "generation": 19.9,
+      "answer_chars": 528,
+      "issues": 1
+    },
+    {
+      "loop": "L85b",
+      "latency": 17.83,
+      "retrieval": 0.36,
+      "generation": 17.46,
+      "answer_chars": 179,
+      "issues": 0
+    },
+    {
+      "loop": "L91",
+      "latency": 28.81,
+      "retrieval": 0.32,
+      "generation": 28.49,
+      "answer_chars": 179,
+      "issues": 0
+    },
+    {
+      "loop": "L95",
+      "latency": 0.35,
+      "retrieval": 0.35,
+      "generation": 0,
+      "answer_chars": 179,
+      "issues": 0
+    }
+  ],
+  "cost_points": [
+    {
+      "loop": "L81",
+      "observed_cost_usd": 0.173302
+    },
+    {
+      "loop": "L85b",
+      "observed_cost_usd": 0.174094
+    },
+    {
+      "loop": "L91",
+      "observed_cost_usd": 0.171454
+    },
+    {
+      "loop": "L95",
+      "observed_cost_usd": 0.156359
+    }
+  ],
+  "charts": [
+    "edd_trend.svg",
+    "latency_trend.svg",
+    "qv7_009_answer_shape.svg",
+    "qv7_006_latency_breakdown.svg"
+  ],
+  "scoreboard_vs_diagnostic": {
+    "scoreboard_rows": 1,
+    "diagnostic_only_rows": 48
+  }
+}

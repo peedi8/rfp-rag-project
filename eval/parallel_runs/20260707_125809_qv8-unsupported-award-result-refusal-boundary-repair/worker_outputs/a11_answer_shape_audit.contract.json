@@ -1,0 +1,149 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "a11_answer_shape_audit",
+  "task_id": "a11_answer_shape_audit",
+  "status": "proposal",
+  "summary": "qv8 a11 regressed from a clean abstention in the prior top8 baseline to a non-abstaining, candidate-style answer in the new full top5 run. The retrieval stayed on the right issuer, but the answer shape lost the refusal gate and expanded into a long evaluation-rule explanation instead of stopping at not-in-docs.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17\uC2DC-\uC804-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\worker_outputs\\l101_qv8_full_topk5_topk5_only\\details.json"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "Manual comparison of saved details.json evidence only; no model calls or external APIs were used."
+  },
+  "protected_paths_seen": [
+    "\uC5C5\uBB34\uC77C\uC9C0.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "eval/question_exposure_registry.*",
+    "src/**",
+    "scripts/**",
+    "config.py",
+    "chroma_db/**",
+    "prior run folders"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_125809_qv8-unsupported-award-result-refusal-boundary-repair\\worker_outputs\\a11_answer_shape_audit.contract.json",
+      "kind": "json",
+      "description": "proposal contract comparing qv8 a11 baseline/top8 versus full top5 abstention-boundary behavior"
+    }
+  ],
+  "proposal": {
+    "case_under_review": {
+      "case_id": "q20260707_a11_dbrain_award_score_and_vendor",
+      "case_type": "unsupported_award_result_trap",
+      "expected_behavior": "Refuse to invent the final award score or selected vendor because the provided documents only support evaluation rules, not the final award result."
+    },
+    "before_after_quality_comparison": {
+      "baseline_top8": {
+        "source": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17\uC2DC-\uC804-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\details.json",
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_chars": 641,
+        "answer_line_count": 11,
+        "post_refusal_tail_chars": 570,
+        "post_refusal_bullet_count": 8,
+        "retrieved_orgs_count": 8,
+        "retrieved_orgs": ["same issuer"],
+        "generation_usage": {
+          "prompt_tokens": 4173,
+          "completion_tokens": 1225,
+          "total_tokens": 5398,
+          "max_tokens": 3072
+        },
+        "answer_shape": "Refusal-first answer with a short evidence section after the refusal.",
+        "retrieval_context_note": "Anchored to the correct issuer, but still stayed inside the abstention boundary."
+      },
+      "full_top5": {
+        "source": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\worker_outputs\\l101_qv8_full_topk5_topk5_only\\details.json",
+        "abstention": false,
+        "expect_abstention": true,
+        "answer_chars": 722,
+        "answer_line_count": 14,
+        "post_refusal_tail_chars": 0,
+        "post_refusal_bullet_count": 0,
+        "retrieved_orgs_count": 5,
+        "retrieved_orgs": ["same issuer"],
+        "generation_usage": {
+          "prompt_tokens": 2741,
+          "completion_tokens": 1681,
+          "total_tokens": 4422,
+          "max_tokens": 3072
+        },
+        "answer_shape": "Starts with issuer/title framing and then turns into evaluation criteria, scoring rules, and calculation guidance instead of refusing.",
+        "retrieval_context_note": "Still on the correct issuer, but the model used the context to answer rather than to abstain."
+      },
+      "net_assessment": "This is an answer-boundary failure, not a retrieval miss. The top5 run skipped the refusal prefix and spent its extra completion budget on a long rule explanation."
+    },
+    "failure_breakdown": {
+      "answer_shape": "Baseline top8 uses a refusal-first shape. Full top5 opens with business name and issuer, then pivots into numbered evidence and calculation instructions. That shape reads like a partial answer, not an abstention.",
+      "refusal_prefix": "Baseline top8 has an explicit refusal lead. Full top5 has no refusal prefix at all, so the boundary gate never fired.",
+      "detail_tail": "The top5 answer spends its body on award-evaluation rules, tie-break logic, and required inputs for calculation. Those details are precisely why the answer should have stayed short and refused.",
+      "retrieved_context": "Both runs retrieved the right issuer, and the top5 run had a smaller retrieved set (5 docs instead of 8). That likely reduced guardrail pressure while still leaving enough rule text for the model to over-answer.",
+      "generation_tokens": "Top5 used fewer prompt tokens but more completion tokens: 2741 prompt / 1681 completion / 4422 total versus 4173 prompt / 1225 completion / 5398 total in the baseline. The extra completion budget was spent on explanation rather than refusal."
+    },
+    "proposed_failure_label": {
+      "label": "non_abstaining_award_result_with_long_rule_explanation",
+      "severity": "major_for_abstention_negative_controls",
+      "definition": "The answer should have refused because the award result is not in the documents, but instead it provides a long rule-based explanation, calculation guidance, or candidate-style evidence summary without a refusal gate."
+    },
+    "detector_and_scoring_rule": {
+      "name": "award_result_refusal_gate_with_detail_tail_penalty",
+      "scope": "Apply when expect_abstention is true for unsupported award-result questions.",
+      "trigger_conditions": [
+        "answer is not classified as abstention",
+        "the query asks for a final score, winner, selection result, or equivalent award outcome",
+        "the documents only support evaluation rules or inputs, not the final result",
+        "the answer contains long rule summaries, scoring formulas, or calculation instructions instead of a refusal"
+      ],
+      "scoring_effect": [
+        "Mark the case as a hard abstention failure when the refusal prefix is missing.",
+        "Treat a long rule explanation as evidence of boundary violation, not as acceptable helpful context.",
+        "Do not reward detailed calculation instructions unless the user explicitly asked for derivation after supplying all required inputs."
+      ],
+      "minimal_rule": "If expect_abstention is true and the answer lacks an explicit refusal phrase but includes evaluation rules, scoring formulae, or follow-up calculation guidance, classify it as a boundary failure even if the retrieved documents are relevant."
+    },
+    "prompt_change_suggestion": {
+      "target": "generator safety/report prompt variants",
+      "proposal_only": true,
+      "suggested_rule": "For unsupported award-result questions, answer in one sentence: say the final score or winner is not in the provided documents, then stop. Do not add scoring formulas, tie-break rules, or next-step calculation guidance unless the user explicitly asks for those inputs.",
+      "why_narrow": "This preserves helpfulness for genuine calculation requests while preventing the model from drifting into a quasi-answer when the award result itself is unavailable."
+    },
+    "validation": {
+      "commands_run": [
+        "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17\uC2DC-\uC804-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\details.json",
+        "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\worker_outputs\\l101_qv8_full_topk5_topk5_only\\details.json",
+        "Select-String q20260707_a11_dbrain_award_score_and_vendor with context from both evidence files",
+        "Read prior parallel_team_worker_output.v1 contract examples"
+      ],
+      "observed_results": [
+        "baseline_top8 abstention=true with an explicit refusal and 11 lines of answer text",
+        "full_top5 abstention=false even though expect_abstention=true",
+        "full_top5 answer begins with issuer/title framing and expands into evaluation rules instead of refusing",
+        "top5 completion_tokens=1681 versus baseline completion_tokens=1225, showing the extra generation budget was spent on explanation",
+        "retrieval coverage remained aligned to the same issuer in both runs, so the defect is answer shaping rather than retrieval failure"
+      ]
+    }
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17\uC2DC-\uC804-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\details.json",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\worker_outputs\\l101_qv8_full_topk5_topk5_only\\details.json",
+      "Select-String q20260707_a11_dbrain_award_score_and_vendor with context from both evidence files",
+      "Read prior parallel_team_worker_output.v1 contract examples",
+      "Wrote only the requested worker_outputs\\a11_answer_shape_audit.contract.json file"
+    ],
+    "observed_results": [
+      "baseline_top8 q11: abstention=true, expect_abstention=true, answer_chars=641, answer_line_count=11, post_refusal_tail_chars=570, post_refusal_bullet_count=8, prompt_tokens=4173, completion_tokens=1225, total_tokens=5398",
+      "full_top5 q11: abstention=false, expect_abstention=true, answer_chars=722, answer_line_count=14, post_refusal_tail_chars=0, post_refusal_bullet_count=0, prompt_tokens=2741, completion_tokens=1681, total_tokens=4422",
+      "baseline_top8 retrieved 8 docs, full_top5 retrieved 5 docs, and both were anchored to the same issuer",
+      "No protected paths were modified"
+    ]
+  },
+  "created_at": "2026-07-07T12:58:09+09:00"
+}

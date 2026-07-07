@@ -1,0 +1,23 @@
+[
+  {
+    "suite": "baseline_default",
+    "returncode": 0,
+    "log": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_155335_L125-frozen-sparse-diagnostic-question-file\\logs\\baseline_default.log"
+  },
+  {
+    "suite": "topk_sweep",
+    "returncode": 0,
+    "log": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_155335_L125-frozen-sparse-diagnostic-question-file\\logs\\topk_sweep.log"
+  },
+  {
+    "suite": "prompt_sweep",
+    "returncode": 0,
+    "log": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_155335_L125-frozen-sparse-diagnostic-question-file\\logs\\prompt_sweep.log"
+  },
+  {
+    "suite": "aggregate",
+    "returncode": 0,
+    "stdout": "{\n  \"rows\": 8,\n  \"scoreboard_rows\": 0,\n  \"diagnostic_only_rows\": 8,\n  \"summary\": \"I:\\\\0706\\\\rfp-rag-project\\\\eval\\\\parallel_runs\\\\20260707_155335_L125-frozen-sparse-diagnostic-question-file\\\\summary\\\\summary.md\"\n}\n",
+    "stderr": ""
+  }
+]

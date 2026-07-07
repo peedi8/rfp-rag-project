@@ -1,0 +1,125 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 5.0,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 19.27
+    },
+    "edd_score": 87.44,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": [
+      {
+        "id": "qv6_007_goyang_facility_order_permutation",
+        "type": "metamorphic_pair_order_permutation",
+        "answer": "근거문서: 고양도시관리공사 관산근린공원 다목적구장 회원 통합운영관리 시스템 구축(발주기관: 고양도시관리공사)\n\n요약(핵심만)\n- 무인 운영 프로그램: 포함되어 있음.  \n  근거: [문서5] 사업범위 라. “무인화 운영을 위한 프로그램 및 기술 지원” 명시.\n\n- 출입통제(출입관리) 포함 여부: 제공된 문서에서 명확히 확인되지 않음.  \n  근거: 문서들에는 “운영시스템과의 하드웨어(H/W) 연동 프로그램 제공”(예: [문서3] ECR-001) 등 하드웨어 연동 요구가 있으나, “출입통제” 또는 “출입관리”라는 용어와 구체적 요구사항은 제공된 문서에서 확인할 수 없습니다. 추가로 확인 가능한 세부 규격이나 항목이 필요합니다.",
+        "retrieved_orgs": [
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "latency_sec": 19.27,
+        "retrieval_sec": 1.52,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 89,
+              "completion_tokens": null,
+              "total_tokens": 89
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 17.75,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4342,
+              "completion_tokens": 928,
+              "total_tokens": 5270
+            },
+            "cost_usd": 0.007432,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 17.75,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.007432,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "무인 운영 프로그램 포함 판단은 제공된 문서에 직접적 문구가 있어 뒷받침됩니다(문서5 사업범위 라. ‘무인화 운영을 위한 프로그램 및 기술 지원’). 출입통제(물리적 출입관리) 포함 여부는 제공된 문서들에서 명확히 명시되지 않습니다. 문서들에는 ‘운영시스템과의 H/W 연동 제공’(문서3/문서5) 및 관리자 권한·접근관리(문서2 SFR-012) 등 연관 기술·기능 요구는 있으나, ‘출입통제’·‘출입관리’라는 용어 및 구체 요구사항은 확인되지 않아 문서 근거만으로는 포함 여부를 확정할 수 없습니다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4190,
+                "completion_tokens": 580,
+                "total_tokens": 4770
+              },
+              "cost_usd": 0.005753,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 11.496,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005753
+        },
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 353,
+          "answer_line_count": 6
+        }
+      }
+    ]
+  }
+}

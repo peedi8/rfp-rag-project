@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="595" viewBox="0 0 1280 595">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Segoe UI,Arial,sans-serif;font-size:12px;fill:#243043}.title{font-size:22px;font-weight:700}.bar{fill:#2f6f73}.diag{fill:#9aa4b2}.reject{fill:#b85c38}.grid{stroke:#e6ebf0}.axis{stroke:#94a3b8}</style>
+<text class="title" x="28" y="36">Loop Points EDD</text>
+<text x="28" y="58">Raw scores, same-answer measurement corrections, and regression checks are labeled separately.</text>
+<line class="grid" x1="1028.0" y1="72" x2="1028.0" y2="540"/>
+<text x="1028.0" y="560" text-anchor="middle">80</text>
+<line class="grid" x1="1073.5" y1="72" x2="1073.5" y2="540"/>
+<text x="1073.5" y="560" text-anchor="middle">85</text>
+<line class="grid" x1="1119.0" y1="72" x2="1119.0" y2="540"/>
+<text x="1119.0" y="560" text-anchor="middle">90</text>
+<line class="grid" x1="1164.5" y1="72" x2="1164.5" y2="540"/>
+<text x="1164.5" y="560" text-anchor="middle">95</text>
+<line class="grid" x1="1210.0" y1="72" x2="1210.0" y2="540"/>
+<text x="1210.0" y="560" text-anchor="middle">100</text>
+<line class="axis" x1="300" y1="540" x2="1210" y2="540"/>
+<text x="28" y="97">L0 v3_first_validation_top8_raw</text>
+<rect class="bar" x="300" y="82" width="816.2" height="22" rx="2"/>
+<text x="1124.2" y="97">89.69 / 24.0s</text>
+<text x="28" y="126">L1 v3_top8_same_answers_recomputed</text>
+<rect class="diag" x="300" y="111" width="876.9" height="22" rx="2"/>
+<text x="1184.9" y="126">96.36 / 24.0s</text>
+<text x="28" y="155">L2 v3_top5_speed_probe_raw</text>
+<rect class="reject" x="300" y="140" width="831.8" height="22" rx="2"/>
+<text x="1139.8" y="155">91.41 / 21.4s</text>
+<text x="28" y="184">L3 v3_top5_same_answers_recomputed</text>
+<rect class="reject" x="300" y="169" width="862.1" height="22" rx="2"/>
+<text x="1170.1" y="184">94.74 / 21.4s</text>
+<text x="28" y="213">L25 v4_first_baseline_top8</text>
+<rect class="bar" x="300" y="198" width="886.4" height="22" rx="2"/>
+<text x="1194.4" y="213">97.41 / 19.4s</text>
+<text x="28" y="242">L26 v4_top5_speed_probe</text>
+<rect class="reject" x="300" y="227" width="883.8" height="22" rx="2"/>
+<text x="1191.8" y="242">97.12 / 18.7s</text>
+<text x="28" y="271">L27 v4_report_ready_prompt</text>
+<rect class="reject" x="300" y="256" width="864.5" height="22" rx="2"/>
+<text x="1172.5" y="271">95.00 / 30.7s</text>
+<text x="28" y="300">L28 v4_concise_verified_prompt_raw</text>
+<rect class="bar" x="300" y="285" width="786.4" height="22" rx="2"/>
+<text x="1094.4" y="300">86.42 / 23.8s</text>
+<text x="28" y="329">L29 v4_concise_verified_same_answers_recompute</text>
+<rect class="reject" x="300" y="314" width="877.4" height="22" rx="2"/>
+<text x="1185.4" y="329">96.42 / 23.8s</text>
+<text x="28" y="358">L30 v5_adversarial_first_baseline_top8</text>
+<rect class="bar" x="300" y="343" width="840.8" height="22" rx="2"/>
+<text x="1148.8" y="358">92.40 / 20.8s</text>
+<text x="28" y="387">L32 v5_title_filter_baseline_raw</text>
+<rect class="bar" x="300" y="372" width="872.4" height="22" rx="2"/>
+<text x="1180.4" y="387">95.87 / 15.2s</text>
+<text x="28" y="416">L33 v5_title_filter_baseline_same_answers_reco</text>
+<rect class="diag" x="300" y="401" width="895.2" height="22" rx="2"/>
+<text x="1203.2" y="416">98.37 / 15.2s</text>
+<text x="28" y="445">L34 v5_title_filter_top5_same_answers_recomput</text>
+<rect class="reject" x="300" y="430" width="898.2" height="22" rx="2"/>
+<text x="1206.2" y="445">98.70 / 13.7s</text>
+<text x="28" y="474">L35 v4_title_filter_baseline_regression</text>
+<rect class="bar" x="300" y="459" width="881.0" height="22" rx="2"/>
+<text x="1189.0" y="474">96.81 / 22.0s</text>
+<text x="28" y="503">L36 v4_title_filter_top5_regression</text>
+<rect class="reject" x="300" y="488" width="877.6" height="22" rx="2"/>
+<text x="1185.6" y="503">96.44 / 23.7s</text>
+</svg>

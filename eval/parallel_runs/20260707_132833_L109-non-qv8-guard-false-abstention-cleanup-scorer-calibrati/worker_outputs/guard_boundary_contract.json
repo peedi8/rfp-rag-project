@@ -1,0 +1,53 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "guard_boundary",
+  "task_id": "guard_boundary",
+  "status": "proposal",
+  "summary": "Current generator-side guard boundaries do not need a broad relaxation; the frozen L108 official-contact and evaluation-criteria boundary queries already bypass the preempt helper, and the post-trim helper preserves a boundary-safe partial official-contact answer. The remaining false-abstain signals in the baseline are therefore better handled by tighter regression coverage than by widening the sensitive marker net.",
+  "inputs": [
+    "src/generator.py",
+    "scripts/check_evidence_guard_fixtures.py",
+    "eval/questions_l108_nonqv8_grounded_guard_field_diagnostic_frozen.json",
+    "eval/parallel_runs/20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L/worker_outputs/l108_nonqv8_grounded_nojudge_baseline_default/details.json"
+  ],
+  "protected_paths_seen": [
+    "src/generator.py"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati/worker_outputs/guard_boundary_contract.json",
+      "kind": "json",
+      "description": "guard boundary proposal"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Add exact L108 regression coverage in scripts/check_evidence_guard_fixtures.py for q20260707_l108_004_kefi_official_contact_boundary and q20260707_l108_002_hanyoung_eval_criteria_vendor_caveat so the contract around official-contact answers and final-vendor/score caveats stays pinned to the frozen wording.",
+      "Keep the generator's sensitive-preempt and sensitive-post-trim logic narrowly scoped; do not broaden the marker lists globally just to eliminate the L108 false-abstain reports.",
+      "If a source change is still desired later, make it a symmetric, phrase-level exception rather than a blanket 'official contact' or 'evaluation criteria' exemption."
+    ],
+    "rejected_or_risky_items": [
+      "Do not relax all official-contact queries out of the sensitive guard; that would create a broad under-blocking hole for genuinely unsafe contact-fabrication prompts.",
+      "Do not treat every evaluation-criteria question as answerable; the exception should only apply when the query explicitly asks to withhold the final vendor/score and keep the scope-summary part only.",
+      "Do not change protected scoring logic in scripts/evaluate.py as part of this worker proposal."
+    ],
+    "needs_orchestrator_review": [
+      "Confirm whether the end-to-end false_abstain metric should stay driven by answer text classification in evaluate.py, since the generator-side helpers already return boundary-safe results on the frozen examples.",
+      "Decide whether the exact L108 regression cases should be mirrored in any downstream scorer calibration fixture once the proposal is accepted."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "python probe against src.generator._preempt_sensitive_abstention_answer and _apply_sensitive_abstention_guard using the frozen L108 official-contact and evaluation-criteria queries",
+      "python read of baseline_default/details.json to inspect the false_abstain list for the L108 batch"
+    ],
+    "observed_results": [
+      "_preempt_sensitive_abstention_answer returned None for q20260707_l108_001_hanyoung_budget_vs_final_contract, q20260707_l108_002_hanyoung_eval_criteria_vendor_caveat, and q20260707_l108_004_kefi_official_contact_boundary.",
+      "_apply_sensitive_abstention_guard preserved a boundary-safe partial official-contact answer on the frozen official-contact query (the returned string matched the input answer).",
+      "baseline_default/details.json still reports false_abstain entries for q20260707_l108_001_hanyoung_budget_vs_final_contract, q20260707_l108_002_hanyoung_eval_criteria_vendor_caveat, and q20260707_l108_004_kefi_official_contact_boundary."
+    ]
+  }
+}

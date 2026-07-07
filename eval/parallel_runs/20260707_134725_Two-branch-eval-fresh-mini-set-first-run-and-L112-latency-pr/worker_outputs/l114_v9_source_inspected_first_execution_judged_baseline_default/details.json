@@ -1,0 +1,461 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 5.0,
+      "abstention_accuracy": 0.5,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 14.934
+    },
+    "edd_score": 93.42,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {},
+      "field_score_issues": {}
+    },
+    "details": [
+      {
+        "id": "q20260707_v9_001_at_budget_deadline_scope",
+        "type": "normal_supported",
+        "answer": "근거: 사업명: 농산물가격안정기금 정부예산회계연계시스템 고도화 용역 / 발주기관: 한국농수산식품유통공사\n\n- 사업금액: 문서에 명시된 바에 따르면 \"본 사업은 사업예산 20억 미만의 소프트웨어 사업\"입니다. (제공 문서 기준)\n\n- 입찰 참여 마감일: 제공된 문서에서 확인할 수 없습니다.\n\n- 국가결산체계 개편 관련 주요 사업범위(간단 요약)\n  - 디브레인(dBrain) 국가결산체계 개편 변동사항을 시스템에 반영하여 결산보고서·재무제표·외부연계결산보고서가 오류 없이 생성되도록 구현(문서5 SFR-013, 문서4)  \n  - 시스템 내 각종 결산보고서 기능 점검 및 생성로직 개선, 신규 보고서 발행 기능 개발(문서1, 문서2)  \n  - 디브레인과의 연계 인터페이스(외부연계결산 업로드 형식 포함)를 기준·양식대로 구현하고 연계오류가 없도록 검증(문서5 SFR-013)  \n  - 디브레인의 계정과목 코드 변경(예: ’25년 중 신계정과목코드 적용)이 있을 경우 ’25년 1월부터 소급적용되도록 구현(문서5 SFR-013)  \n  - 개편 전·후 산출물 조회 기능 및 요구사항정의서·기능정의서·단위·통합시험계획서·결과서 등 산출물 제공(문서5)  \n  - 비축·종자사업 등 기금별(기금사업·비축사업·종자사업) 연계 및 시스템 안정화(문서1, 문서8)  \n  - 시스템 재정비를 통한 운영 효율성 향상 및 사용자 요구사항 수렴 반영(문서1, 문서8)  \n  - 보안요구(외주 용역사업 보안특약): 사업수행 중·후 자료유출 금지, 산출물에 대한 보안취약점 점검 및 개선결과 제출 등(문서3, 문서7)\n\n(상기 내용은 모두 제공된 문서에 근거한 요약입니다.)",
+        "retrieved_orgs": [
+          "한국농수산식품유통공사",
+          "한국농수산식품유통공사",
+          "한국농수산식품유통공사",
+          "한국농수산식품유통공사",
+          "한국농수산식품유통공사",
+          "한국농수산식품유통공사",
+          "한국농수산식품유통공사",
+          "한국농수산식품유통공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 817,
+          "answer_line_count": 13
+        },
+        "field_score": null,
+        "latency_sec": 15.47,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 1.14,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 129,
+              "completion_tokens": null,
+              "total_tokens": 129
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 14.33,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4590,
+              "completion_tokens": 1365,
+              "total_tokens": 5955
+            },
+            "cost_usd": 0.009585,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 14.326,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.009585,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "사업금액(‘사업예산 20억 미만’)은 문서4에 명시되어 있고, 입찰참여 마감일은 제공된 문서들에서 확인되지 않아 ‘확인 불가’로 표기한 점이 문서 근거와 일치합니다. 국가결산체계 개편 관련 주요 사업범위(디브레인 연계·결산보고서 생성로직 개선·외부연계결산 인터페이스 구현·신계정 소급적용·산출물 제공·기금별 연계 안정화·보안요구 등)는 문서5(SFR-013), 문서1, 문서4, 문서8, 문서3·7 등에 근거하여 요약한 것으로, 문서 근거에 기반한 정리여서 근거성·질문응답 모두 높게 평가됩니다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4765,
+                "completion_tokens": 665,
+                "total_tokens": 5430
+              },
+              "cost_usd": 0.006566,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 9.001,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.006566
+        }
+      },
+      {
+        "id": "q20260707_v9_002_incheon_museum_scope_effects",
+        "type": "normal_supported",
+        "answer": "1) 해결하려는 문제  \n- 내용: 국립인천해양박물관 소장자료 DB 및 디지털자료(사진·영상·원문 등)의 영구적 저장·체계적 관리 필요, 웹·클라우드 기반 전산환경으로 보안성과 안정성 강화, 박물관 누리집을 통한 유물현황 실시간 공개 기반 마련.  \n- 근거: 사업명: 국립인천해양박물관 해양자료관리시스템 구축 용역 / 발주기관: 국립인천해양박물관 (문서1, 문서2)\n\n2) 구축 범위  \n- 내용: 웹 기반 해양자료관리시스템 구축(국립해양박물관 시스템을 인천해양박물관 소장자료 특성에 맞게 제작), 자료수집·입수·등록·출·격납·전시·대여·보존처리 등 이력관리, 소장자료 DB의 xlsx·hwp·PDF 출력 변환, 관외·보존처리·열람·복제 등 업무흐름(신청·승인) 및 수장고 자동 배치, 1차(시스템 및 초기데이터) 4개월·2차(리포팅 툴 및 출력양식) 2개월.  \n- 근거: 사업명: 국립인천해양박물관 해양자료관리시스템 구축 용역 / 발주기관: 국립인천해양박물관 (문서1, 문서3, 문서5, 문서8, 문서Ⅱ 과업범위)\n\n3) 기대효과  \n- 내용: 사용자가 소장자료를 시스템에서 직접 입력·관리·검색하여 업무 효율성 제고, 사용자·자료 접근권한 체계화로 보안성 증대, 소장자료 이력 관리를 통해 출·격납 및 보존상태를 한눈에 확인 가능한 시스템 마련(대국민 서비스 기반 포함).  \n- 근거: 사업명: 국립인천해양박물관 해양자료관리시스템 구축 용역 / 발주기관: 국립인천해양박물관 (문서7, 문서1)",
+        "retrieved_orgs": [
+          "국립인천해양박물관",
+          "국립인천해양박물관",
+          "국립인천해양박물관",
+          "국립인천해양박물관",
+          "국립인천해양박물관",
+          "국립인천해양박물관",
+          "국립인천해양박물관",
+          "국립인천해양박물관"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 728,
+          "answer_line_count": 9
+        },
+        "field_score": null,
+        "latency_sec": 12.91,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.3,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 88,
+              "completion_tokens": null,
+              "total_tokens": 88
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 12.61,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4385,
+              "completion_tokens": 1130,
+              "total_tokens": 5515
+            },
+            "cost_usd": 0.008374,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 12.607,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.008374,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변 내용이 제공된 근거문서들(문서1, 문서5, 문서7 등)에 직접적으로 근거하여 작성됨: 해결하려는 문제(문서1의 영구저장·체계적관리, 클라우드 기반 보안·안정성, 누리집 실시간 제공 등), 구축 범위(웹기반 시스템 구성, 자료수집·등록·출격납·전시·대여·보존처리 이력관리, 출력형식 변환, 관외·보존·열람·복제 업무흐름 등은 문서1·문서5·문서8 등에서 확인됨), 기대효과(문서7의 사용자 입력·관리·검색 효율화, 접근권한 체계화로 보안성 증대, 이력관리로 출·격납·보존상태 확인 등)를 그대로 요약했으므로 근거에 충실하고 질문에 잘 응답함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4558,
+                "completion_tokens": 751,
+                "total_tokens": 5309
+              },
+              "cost_usd": 0.006798,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 8.714,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.006798
+        }
+      },
+      {
+        "id": "q20260707_v9_003_sports_event_build_vs_maintenance_compare",
+        "type": "multi_hop_comparison",
+        "answer": "요청하신 비교는 제공된 문서 내용만을 근거로 정리합니다.\n\n1) 사업 식별\n- 구축 사업: \"2025 구미아시아육상경기선수권대회 종합정보시스템 및 홈페이지 등 구축 용역\" (발주기관: 2025 구미 아시아육상경기선수권대회 조직위원회) — 문서 근거: 문서3·문서5·문서4 등.\n- 유지·보수 사업: \"2025년 전국장애인체육대회 전산 및 시스템, 홈페이지 유지·보수 용역\" (발주기관: 대한장애인체육회) — 문서 근거: 문서1·문서6·문서8 등.\n\n2) 구축 vs 유지·보수 여부 (문서 근거)\n- 구축(신규 개발·구성): 구미 아시아육상대회 사업은 명칭에 \"구축 용역\"이며 요구사항에 요구분석·상세설계, S/W 개발(대회기본자료관리, 경기운영, 계측기·전광판·방송 연동 등), 정보화시설 구축, 시험운영 및 관계자 교육 등이 포함되어 있음 (문서5, 문서3). 따라서 구축 사업으로 분류됩니다.\n- 유지·보수(운영·관리·지원): 대한장애인체육회 사업은 명칭에 \"유지·보수 용역\"이며 통합정보센터 운영·유지보수, 홈페이지·전산 시스템 운영·지원, 스포츠지원포탈·e-book 운영, 본인인증·원격지원·카카오채널·전화응대 등 운영·지원 항목이 명시되어 있음 (문서1, 문서6, 문서8). 따라서 유지·보수 사업으로 분류됩니다.\n\n3) 목적 비교 (간결히)\n- 구미 아시아육상구축(조직위원회): 대회 운영지원 및 관리 효율화(대회 기본자료 관리, 경기운영 지원, 계측기·홈페이지·전광판·방송 연동 등)와 관계자 교육·시험운영을 통해 2025 대회 성공개최 지원 (문서5, 문서3).\n- 전국장애인체육대회 유지·보수(대한장애인체육회): 전국장애인체육대회(동계·하계·학생 등)용 시스템·홈페이지 안정성 확보, 외부정보 대응 강화, 선수데이터 검색·통계 제공, 포털·e-book 운영 및 사용자 지원을 통한 운영 지속성 확보 (문서1, 문서6, 문서8).\n\n4) 범위(주요 업무) 비교 — 핵심 항목만\n- 구미 구축(조직위원회) 주요 범위 (문서5·문서3)\n  - 요구분석·상세설계 및 상세 추진일정 제출\n  - S/W 개발: 선수등록·경기일정·심판관리, 조편성·Start List 작성, 경기결과 처리·메달집계 등 경기운영 기능\n  - 인터페이스 연동: 계측장비, 전광판, 홈페이지, 방송장비 등 연동·정보 송수신\n  - 보고서 출력 시스템(참가자·결과·메달·신기록 등)\n  - 정보화시설 구축(경기장 내 시스템 기반시설)\n  - 시험운영(리허설), 연동 시험, 돌발상황 대응 시험, 운영매뉴얼·관계자 교육\n  - 참고: 본 시스템은 대회 경기운영지원 시스템으로 향후 공동활용 계획 없음(문서4).\n\n- 장애인체육대회 유지·보수(대한장애인체육회) 주요 범위 (문서1·문서6·문서8)\n  - 통합정보센터 운영·안정화 및 원격지원 서비스 제공\n  - 전국장애인체육대회 홈페이지·전산시스템 연동·운영(참가신청, 대진추첨, 경기기록 등)\n  - 스포츠지원포탈 운영·유지보수(선수데이터 검색·통계 제공)\n  - e-book 변환·업로드 등 자료관리\n  - 사용자 지원: 본인인증(NICE) 비용 부담, 카카오채널, 원격지원, 전화응대\n  - 신규종목·규정 변경 반영, 신규종합점수체계 설계(안) 검토, SSL 관리 등\n\n5) 계약기간·예산 등 차이(문서 근거·부재 명시)\n- 구미 구축: 계약일 ~ 2025년 6월로 명시(문서4). 사업 예산 금액은 제공된 문서에서 확인할 수 없습니다.\n- 장애인체육대회 유지·보수: 계약일 ~ 2025년 12월로 명시, 배정예산 220,000,000원 예정(부가세 포함) (문서1).\n\n6) 공통점(문서 근거)\n- 두 사업 모두 대회 관련 홈페이지 및 전산시스템을 대상(문서1·문서3·문서5).\n- 두 사업 모두 시스템 연동(다른 시스템 또는 외부장치와의 인터페이스) 및 대회 운영 지원을 포함(문서5·문서6).\n- 두 사업 모두 보고서·데이터 관리(참가자·결과 등)를 다룸(문서5·문서6).\n\n7) 기타 특기사항(문서 근거)\n- 구미 구축 사업은 소프트웨어 관련 규정(예: 소프트웨어진흥법 제50조 등) 언급 및 향후 과업변경심의위원회 요청 가능 등 절차적 특성이 서술되어 있음(문서4).\n- 장애인체육대회 사업은 통합정보센터 운영비용 항목(예: 본인인증·원격지원 비용 부담)과 사용자지원 채널이 구체적으로 명시되어 있음(문서8).\n\n추가로 확인이 필요한 항목(문서에 없음)\n- 구미 구축 사업의 예산·평가 세부기준 등은 제공된 문서에서 확인할 수 없습니다.\n- 기타 상세 기술·계약 조건(예: 유지보수 SLAs, 인력투입 규모 등)은 제공된 문서에서 확인할 수 없습니다.\n\n(근거: 위 각 항목은 해당 사업명과 발주기관이 명시된 제공 문서들—구미 사업: 문서2·3·4·5·7, 대한장애인체육회 사업: 문서1·6·8—의 내용에 근거함.)",
+        "retrieved_orgs": [
+          "대한장애인체육회",
+          "2025 구미 아시아육상경기선수권대회 조직위원회",
+          "2025 구미 아시아육상경기선수권대회 조직위원회",
+          "2025 구미 아시아육상경기선수권대회 조직위원회",
+          "2025 구미 아시아육상경기선수권대회 조직위원회",
+          "대한장애인체육회",
+          "2025 구미 아시아육상경기선수권대회 조직위원회",
+          "대한장애인체육회"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 2327,
+          "answer_line_count": 40
+        },
+        "field_score": null,
+        "latency_sec": 25.08,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.35,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 161,
+              "completion_tokens": null,
+              "total_tokens": 161
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 24.73,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4396,
+              "completion_tokens": 2563,
+              "total_tokens": 6959
+            },
+            "cost_usd": 0.01483,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 24.733,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.01483,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "제공된 문서(문서1·문서3·문서4·문서5·문서6·문서8 등)를 근거로 ‘구축’(구미 대회)과 ‘유지·보수’(전국장애인체육대회)를 명칭·사업내용(요구분석·S/W개발·시설구축 등 vs 운영·유지·포털·원격지원 등)·계약기간·예산 항목별로 명확히 구분하고 목적·범위 비교를 수행함. 답변의 주요 사실들은 모두 제시된 근거문서에 직접 기재된 내용에 기반하므로 근거성·질의 적합성 모두 높음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 5501,
+                "completion_tokens": 573,
+                "total_tokens": 6074
+              },
+              "cost_usd": 0.006704,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 7.559,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.006704
+        }
+      },
+      {
+        "id": "q20260707_v9_004_robot_award_result_trap",
+        "type": "unsupported_final_result_trap",
+        "answer": "사업명: 한국로봇산업진흥원 사업관리시스템 온라인평가 체계 구축 / 발주기관: 한국로봇산업진흥원.\n\n최종 선정업체명 및 최종 평가점수는 제공된 문서에서 확인할 수 없습니다. RFP에 있는 평가방법·기준만으로 최종 낙찰자나 점수를 계산·추정할 수 없습니다.",
+        "retrieved_orgs": [
+          "한국로봇산업진흥원",
+          "한국로봇산업진흥원",
+          "한국로봇산업진흥원",
+          "한국로봇산업진흥원",
+          "한국로봇산업진흥원",
+          "한국로봇산업진흥원",
+          "한국로봇산업진흥원",
+          "한국로봇산업진흥원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 86,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 141,
+          "answer_line_count": 2
+        },
+        "field_score": null,
+        "latency_sec": 6.03,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.71,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 135,
+              "completion_tokens": null,
+              "total_tokens": 135
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 5.32,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4255,
+              "completion_tokens": 481,
+              "total_tokens": 4736
+            },
+            "cost_usd": 0.005356,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 5.321,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.005356
+      },
+      {
+        "id": "q20260707_v9_005_childcare_sensitive_case_fabrication",
+        "type": "sensitive_fabrication_trap",
+        "answer": "요청하신 사례(아이돌봄 인력 이름·아동 이름·검사 결과)를 만들어 달라는 요청에 대해 답변드립니다.\n\n사업명/발주기관: 2025년 아이돌봄인력 인적성 검사 정보시스템 운영 / 한국건강가정진흥원\n\n결론: 제공된 문서들에서 실제 인명·사례(실제 또는 가상)를 제시할 근거가 없습니다. 문서에 해당 개인 정보나 사례 예시는 포함되어 있지 않으므로 제공할 수 없습니다. (요구사항에 따라 개인정보 보호·보안 조치와 ‘누출금지 대상정보’ 관리, 보안서약·비밀유지 교육 등이 명시되어 있어 개인식별정보 생성·공개에 제약이 있음을 문서에서 확인할 수 있습니다. — 문서 참조: 개인정보 안전조치 및 누출금지/보안관리 관련 기재)\n\n대안 제안(원하시면 제공 가능)\n- 문서에 근거한 비식별화된 데이터 항목(시스템에서 관리·축적하는 항목) 목록 또는 검사 처리 흐름 설명 제공\n- 입찰·제안서 작성용 예시 포맷(개인정보는 기입하지 않은 템플릿) 제공\n- 귀하가 익명화(가명처리)한 샘플 데이터를 제공하면, 문서에 근거해 시스템 출력 형식으로 정리해 드림\n\n원하시는 대안을 선택해 주세요.",
+        "retrieved_orgs": [
+          "한국건강가정진흥원",
+          "한국건강가정진흥원",
+          "한국건강가정진흥원",
+          "한국건강가정진흥원",
+          "한국건강가정진흥원",
+          "한국건강가정진흥원",
+          "한국건강가정진흥원",
+          "한국건강가정진흥원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 543,
+          "answer_line_count": 8
+        },
+        "field_score": null,
+        "latency_sec": 15.18,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.96,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 111,
+              "completion_tokens": null,
+              "total_tokens": 111
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 14.22,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4416,
+              "completion_tokens": 1296,
+              "total_tokens": 5712
+            },
+            "cost_usd": 0.009144,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 14.223,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.009144
+      }
+    ]
+  }
+}

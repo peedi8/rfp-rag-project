@@ -1,0 +1,70 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "sidecar_runner_review",
+  "task_id": "sidecar_runner_review",
+  "status": "proposal",
+  "summary": "Strictness labeling is honest; Q070 correctly reuses Q006 preflight routing; exact rows are separated from candidate/taxonomy rows.",
+  "inputs": [
+    "scripts/run_metadata_sidecar.py",
+    "eval/question_bank64_runnable_manifest_20260707.json",
+    "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/sidecar/metadata_sidecar_results.json",
+    "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/sidecar/metadata_sidecar_results.md",
+    "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/sidecar/answers/Q001_sidecar_answer.md",
+    "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/sidecar/answers/Q006_sidecar_answer.md",
+    "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/sidecar/answers/Q070_sidecar_answer.md",
+    "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/sidecar/answers/Q076_sidecar_answer.md"
+  ],
+  "protected_paths_seen": [
+    "scripts/run_metadata_sidecar.py",
+    "eval/question_bank64_runnable_manifest_20260707.json",
+    "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/sidecar/metadata_sidecar_results.json",
+    "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/sidecar/metadata_sidecar_results.md",
+    "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/sidecar/answers/Q001_sidecar_answer.md",
+    "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/sidecar/answers/Q006_sidecar_answer.md",
+    "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/sidecar/answers/Q070_sidecar_answer.md",
+    "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/sidecar/answers/Q076_sidecar_answer.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution/worker_outputs/sidecar_runner_review.contract.json",
+      "kind": "json",
+      "description": "Worker review contract stating proposal status, evidence-backed findings, and validation notes."
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Keep the current strictness labels: exact rows stay exact, candidate/taxonomy rows stay candidate-only.",
+      "Keep Q070 routed through preflight_answer_key_ref=metadata_expected_outputs.Q006; the alias is correct and intentional.",
+      "Keep semantic_accuracy_score null for candidate/taxonomy rows so they do not get overclaimed as strict gold.",
+      "Keep the candidate caveat in the rendered answers for Q001, Q006-Q011, Q054, Q055, and Q065."
+    ],
+    "rejected_or_risky_items": [
+      "Do not relabel candidate keyword lists as strict gold answers.",
+      "Do not merge exact cases into the candidate subtotal or vice versa.",
+      "Do not treat Q070 as a distinct answer-key family unless the manifest ref changes."
+    ],
+    "needs_orchestrator_review": []
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw scripts\\run_metadata_sidecar.py",
+      "Get-ChildItem -Recurse -File eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar",
+      "Get-Content -Raw eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\metadata_sidecar_results.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\metadata_sidecar_results.md",
+      "Get-Content -Raw eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\answers\\Q001_sidecar_answer.md",
+      "Get-Content -Raw eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\answers\\Q006_sidecar_answer.md",
+      "Get-Content -Raw eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\answers\\Q070_sidecar_answer.md",
+      "Get-Content -Raw eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\answers\\Q076_sidecar_answer.md",
+      "Select-String -Path eval\\question_bank64_runnable_manifest_20260707.json -Pattern '\"id\": \"Q070\"','\"id\": \"Q006\"','\"preflight_answer_key_ref\"' -Context 0,4"
+    ],
+    "observed_results": [
+      "Runner code classifies exact strictness labels separately from candidate/taxonomy labels and only assigns semantic_accuracy_score to exact strictness rows.",
+      "Q070 in the manifest points to preflight_answer_key_ref=metadata_expected_outputs.Q006, so the output sidecar_key_id=Q006 is correct routing, not a mismatch.",
+      "The sidecar results markdown and JSON keep exact rows (Q002-Q005, Q012, Q076) separate from candidate/taxonomy rows and preserve the candidate-list caveat.",
+      "Q001 and Q006/Q070 answer previews explicitly warn that candidate lists require row-level evidence review before semantic claims."
+    ]
+  }
+}

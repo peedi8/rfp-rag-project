@@ -1,0 +1,30 @@
+{
+  "schema": "parallel_team_handoff.v1",
+  "created_at": "2026-07-07T13:47:26",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr",
+  "ledger": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr\\ledger.json",
+  "status": "complete",
+  "objective": "Two-branch eval: v9 source-inspected first execution plus L112 latency profile",
+  "accepted_proposals": [
+    "fresh_question_design accepted with diagnostic-only modification",
+    "fresh_red_gate accepted",
+    "latency_profile accepted; no L113 speed candidate promoted",
+    "report_update accepted"
+  ],
+  "rejected_or_not_promoted": [
+    "L113 top5/top8/top12 not promoted because none beat L112 latency 7.184s",
+    "v9 not promoted to strict held-out validation",
+    "L115 not treated as a new model run"
+  ],
+  "next_actions": [
+    "Investigate q001 metadata usefulness gap",
+    "Freeze a new non-source-inspected set before any future strict performance claim"
+  ],
+  "final_smoke": [
+    "py_compile pass",
+    "guard fixtures 52/52",
+    "exposure registry 33 entries",
+    "worker smoke pass with worker_output_count=6 and issues=[]",
+    "no active run_experiment_worker.py process remained for this run"
+  ]
+}

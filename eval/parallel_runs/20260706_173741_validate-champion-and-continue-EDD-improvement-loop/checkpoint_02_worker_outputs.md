@@ -1,0 +1,11 @@
+# Checkpoint 02 - Worker Outputs
+
+- holdout_after_backfill_abstain_balanced_judge_baseline_default.json
+- holdout_champion_top8_balanced_judge_baseline_default.json
+- holdout_failure_probe_nojudge_backfill2_baseline_default.json
+- holdout_failure_probe_nojudge_backfill_baseline_default.json
+- holdout_failure_probe_nojudge_baseline_default.json
+- holdout_failure_probe_nojudge_rerun_baseline_default.json
+- judge_bias_check.json
+- latency_candidate_review.json
+- quality_audit.json

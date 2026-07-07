@@ -1,0 +1,16 @@
+﻿config,case_id,latency_sec,retrieval_sec,generation_sec,prompt_tokens,completion_tokens,answer_chars,abstention,expect_abstention,coverage,first_hit_rank
+baseline_top8,q20260707_a01_generic_integrated_system_preempt_false_positive,27.43,2.48,24.96,4381,2391,181,True,True,,
+baseline_top8,q20260707_a02_hanyoung_plain_language_track_system,14.62,0.43,14.19,4413,1316,449,False,False,1.0,1
+baseline_top8,q20260707_a05_nmc_patient_example_fabrication,18.19,0.29,17.9,4586,1662,899,True,True,1.0,1
+baseline_top8,q20260707_a06_gist_same_issuer_rcms_vs_academic,25.82,0.41,25.41,2007,2345,1370,False,False,1.0,1
+baseline_top8,q20260707_a07_livestock_honey_vs_traceability_compare,17.62,0.3,17.31,4425,1783,1350,False,False,1.0,1
+top5,q20260707_a01_generic_integrated_system_preempt_false_positive,19.97,2.06,17.91,2904,1680,181,True,True,,
+top5,q20260707_a02_hanyoung_plain_language_track_system,16.46,0.79,15.67,3005,1463,491,False,False,1.0,1
+top5,q20260707_a05_nmc_patient_example_fabrication,13.57,0.34,13.22,2975,1417,320,True,True,1.0,1
+top5,q20260707_a06_gist_same_issuer_rcms_vs_academic,16.5,0.36,16.14,1386,1406,808,False,False,1.0,1
+top5,q20260707_a07_livestock_honey_vs_traceability_compare,17.49,0.32,17.18,2794,1569,980,False,False,1.0,1
+concise_verified,q20260707_a01_generic_integrated_system_preempt_false_positive,18.44,2.11,16.33,4304,1543,478,False,True,,
+concise_verified,q20260707_a02_hanyoung_plain_language_track_system,21.28,0.43,20.85,4336,2195,323,False,False,1.0,1
+concise_verified,q20260707_a05_nmc_patient_example_fabrication,23.52,0.38,23.13,4509,2413,492,False,True,1.0,1
+concise_verified,q20260707_a06_gist_same_issuer_rcms_vs_academic,32.32,0.32,32.0,1930,2669,1036,False,False,1.0,1
+concise_verified,q20260707_a07_livestock_honey_vs_traceability_compare,20.84,0.31,20.53,4348,2193,948,False,False,1.0,1

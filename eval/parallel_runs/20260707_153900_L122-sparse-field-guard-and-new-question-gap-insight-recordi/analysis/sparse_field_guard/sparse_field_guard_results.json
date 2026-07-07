@@ -1,0 +1,984 @@
+{
+  "schema": "rfp_rag_sparse_field_guard.v1",
+  "created_at": "2026-07-07T15:44:10",
+  "claim": "No-API sparse-field readiness guard; not an answer run and not an EDD point.",
+  "source_batch": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_secondary_variants.json",
+  "source_corpus_csv": "data\\원본 데이터\\data_list.csv",
+  "summary": {
+    "case_count": 8,
+    "field_group_count": 31,
+    "source_visible_groups": 31,
+    "not_found_expected_groups": 0,
+    "csv_source_visible_groups": 4,
+    "csv_not_found_expected_groups": 27,
+    "cases_with_not_found_expected": 0,
+    "fixture_status": "pass"
+  },
+  "scoring_policy": {
+    "diagnostic_only": true,
+    "ordinary_edd_exclusion": true,
+    "failure_when": [
+      "answer invents unsupported detail for a not_found_expected group",
+      "answer omits an absence caveat for a requested group that is not found in the selected source document"
+    ],
+    "non_failure_when": [
+      "source text has no evidence for a requested group and the answer clearly says it is not found",
+      "answer gives present groups with source grounding and groups the remaining absent fields under a clear not-found statement"
+    ],
+    "source_basis_warning": "Sparse-field labels must use raw_file_text or retrieval trace where available. CSV-only text can mark fields absent that are visible in the raw HWP/PDF body."
+  },
+  "cases": [
+    {
+      "id": "l121_Q046_technical_add_transfer",
+      "source_case_id": "Q046",
+      "question": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 해당 RFP에서 외부 시스템 연계, API, 데이터 이관 요구사항을 찾아줘.",
+      "target_org": "국방과학연구소",
+      "target_biz": "대용량 자료전송시스템 고도화",
+      "source_found": true,
+      "source_filename": "국방과학연구소_대용량 자료전송시스템 고도화.hwp",
+      "source_text_length": 58583,
+      "source_basis": "raw_file_text",
+      "field_groups": [
+        {
+          "field_group": "external_integration",
+          "label": "외부 시스템 연계",
+          "tokens": [
+            "연계",
+            "연동",
+            "인터페이스",
+            "망간",
+            "망간전송"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "연계",
+            "연동",
+            "인터페이스",
+            "망간",
+            "망간전송"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 5,
+          "snippets": [
+            "모듈 재개발 - 노후 교체장비에 대한 정보체계 및 데이터 이관 - 개발범위 및 연계 정보체계의 정보 현행화 Ⅲ 제안요청 내용 요구사항 구분 및 총괄표 순번 요구",
+            "술 및 표준프레임워크 적용 2 STA-02 개발 방법론 3 STA-03 정보연계 방안 제시 기술 및 기능 요구사항 순번 항목 ID 요구사항 명칭 1 시스",
+            "인터페이스 INR-01 인터페이스 기준 준수 6 INR-02 정보 시스템 연계 사업관리 요구사항 순번 ID 요구사항 명칭 1 PMR-01 관리 방법론"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "api",
+          "label": "API",
+          "tokens": [
+            "API",
+            "OpenAPI",
+            "REST",
+            "SOAP",
+            "웹서비스"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "API",
+            "REST",
+            "SOAP",
+            "웹서비스"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 4,
+          "snippets": [
+            "소의 확장성 및 업데이트 등 환경변화를 고려한 내부 모듈 개선 메일발송을 위한 연동 API 개발 개선사항에 대해 연구소 정보체계 연동 기능 - 결재알람, 결재자 정보 및",
+            "AP 1.2, WSDL 2.0, XML 1.0 ○ - UDDI v3 ○ - RESTful ○ ｏ 비즈니스 프로세스 관리 - UML 2.0/BPMN 1.0 ○",
+            ". ○ 타기관과 공유 없음 세부 기술 지침 서비스 통합 ｏ 웹 서비스 - SOAP 1.2, WSDL 2.0, XML 1.0 ○ - UDDI v3 ○ - RE"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "data_migration",
+          "label": "데이터 이관",
+          "tokens": [
+            "데이터 이관",
+            "마이그레이션",
+            "연동모듈",
+            "재개발"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "데이터 이관",
+            "연동모듈",
+            "재개발"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "인한 체계관리기능 보강 필요 ▢ 자료송수신체계 노후 인프라 교체로 인한 재연동 및 데이터 이관 필요 주요 사업내용 ▢ 신규 자료송수신체계 인프라 연동모듈 재개발 및 데이터 이",
+            "이터 이관 필요 주요 사업내용 ▢ 신규 자료송수신체계 인프라 연동모듈 재개발 및 데이터 이관 ▢ 대용량자료 수집을 위한 자료전송(반입) 기능 개발 ▢ 안전메일(대용량 메일",
+            "후 교체 장비에 대한 시스템 연동모듈 재개발 - 노후 교체장비에 대한 정보체계 및 데이터 이관 - 개발범위 및 연계 정보체계의 정보 현행화 Ⅲ 제안요청 내용 요구사항 구분"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        }
+      ],
+      "present_group_count": 3,
+      "absent_group_count": 0,
+      "diagnostic_label": "secondary_sparse_technical_guarded_diagnostic",
+      "promotion_blocker": "diagnostic_only; do not aggregate into ordinary EDD unless sparse-field scorer is explicitly enabled",
+      "guard_pass_condition": "For every not_found_expected group, the answer must either give a nearby not-found caveat or use a clear global not-found statement for all remaining requested fields."
+    },
+    {
+      "id": "l121_Q047_technical_add_transfer",
+      "source_case_id": "Q047",
+      "question": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 서버, DB, 네트워크, 클라우드, 보안장비 등 인프라 요구사항을 정리해줘.",
+      "target_org": "국방과학연구소",
+      "target_biz": "대용량 자료전송시스템 고도화",
+      "source_found": true,
+      "source_filename": "국방과학연구소_대용량 자료전송시스템 고도화.hwp",
+      "source_text_length": 58583,
+      "source_basis": "raw_file_text",
+      "field_groups": [
+        {
+          "field_group": "server",
+          "label": "서버",
+          "tokens": [
+            "서버",
+            "인프라",
+            "H/W",
+            "하드웨어"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "서버",
+            "인프라",
+            "하드웨어"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "가이드」 활용 ◦ 송수신 정보의 무결성 및 기밀성 보장을 위해 사용자의 웹브라우저와 서버간(End-to-End 통신)에는 보안강도 256bit 이상의 SSL(Secure So",
+            "SIP ○ - Megaco(H.248) ○ 운영체제 및 기반 환경 ｏ 서버용(개방형) 운영 체제 및 기반환경 : - POSIX.0 ○ - UNIX",
+            "○ - 망간 자료전송 ○ - 안티 바이러스 ○ - 가상화(PC 또는 서버) ○ - 패치관리 ○ - 호스트 자료유출 방지(매체제어제품 포함, 자료저장"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "database",
+          "label": "DB",
+          "tokens": [
+            "DB",
+            "DBMS",
+            "데이터베이스"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "DB",
+            "DBMS",
+            "데이터베이스"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "킹, 누출, 위조, 변조, 훼손 방지를 위한 보안대책을 수립하고 실행함 ◦ 응용 및 DB 보안으로서 사용자 개인 인증 정보를 소스에 직접 하드코딩하지 않아야 함 ◦ 외부 시",
+            "결과 및 지적사항 조치 결과 제출 ◦ 인터넷망/소내망/국방망 데이터 보안관리 - DB 암호화 및 KCMVP 적용 - 임시파일에 대한 관리, 불필요 정보 통제를 통한 인",
+            "계까지 지속적으로 관리 할 수 있는 방안을 제시하여야 함 ◦ 시스템 구축 기간 동안 DB의 형상과 물리데이터 모델의 형상 일치 여부를 주기적으로 점검하고 보고하여야 함 ◦"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "network",
+          "label": "네트워크",
+          "tokens": [
+            "네트워크",
+            "망간",
+            "소내망",
+            "트래픽",
+            "VPN"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "네트워크",
+            "망간",
+            "소내망",
+            "트래픽",
+            "VPN"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 5,
+          "snippets": [
+            "등), 기술적보안(침입방지, 탐색, 자료보안기술, 노트북·USB 등 휴대용 저장매체, 네트워크 등)을 제시하여야 함 3. 원격지 개발에 따른 수행 장소 등에 대하여 구체적인 원",
+            "도입 현황 침입차단시스템ㆍ방지시스템(IPS) 등 정보보호시스템 및 라우터ㆍ스위치 등 네트워크 장비 설정 정보 「공공기관의 정보공개에 관한 법률」에 따라 비공개 대상 정보로 분류",
+            "설치되는 정보시스템과 호환성 및 확장성이 보장되어야 한다. ○ 세부 기술 지침 네트워크 ｏ 화상회의 및 멀티미디어 통신 : H.320~H.324, H.310 ○ ｏ 부"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "cloud",
+          "label": "클라우드",
+          "tokens": [
+            "클라우드",
+            "Cloud",
+            "CSAP"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "클라우드",
+            "CSAP"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 2,
+          "snippets": [
+            "보완계획, 완료 시기 등), 이행확약서 등을 사업수행계획 보고 시 제출해야 함. ◦ 클라우드컴퓨팅 서비스 이용 불가 - 본 시스템은 국방부 ｢영외시설 국방정보통신망 보안관리",
+            "연구소에서 지정한 군사제한구역에 설치/운영되어야 함. ※ ｢행정기관 및 공공기관의 클라우드컴퓨팅서비스 이용 기준 및 안전성 확보 등에 관한 고시(행정안전부고시 제2023-23호",
+            "확보 등에 관한 고시(행정안전부고시 제2023-23호, 2023.4.12.)｣ 제4조(클라우드컴퓨팅서비스 우선검토) 산출정보 관련요구사항 ▢ 데이터 요구사항 요구사항 분류"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "security_equipment",
+          "label": "보안장비",
+          "tokens": [
+            "보안장비",
+            "방화벽",
+            "침입방지",
+            "IPS",
+            "DLP",
+            "안티바이러스"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "보안장비",
+            "침입방지",
+            "IPS"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "서명 또는 행정전자서명을 기반으로 하여야 한다. ○ ｏ 네트워크 장비 및 네트워크 보안장비에 임의 접속이 가능한 악의적인 기능 등 설치된 백도어가 없도록 하여야 하고 보안기능",
+            "입보안, 원격개발 장소 및 장비운용, 침해시 보안자료 백업 장소운용 등), 기술적보안(침입방지, 탐색, 자료보안기술, 노트북·USB 등 휴대용 저장매체, 네트워크 등)을 제시하여야",
+            "CC인 경우 보안적합성 검증 필요) - (네트워크)침입차단 ○ - (네트워크)침입방지(침입탐지 포함) ○ - 통합보안관리 ○ - 웹 응용프로그램 침입차단 ○"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        }
+      ],
+      "present_group_count": 5,
+      "absent_group_count": 0,
+      "diagnostic_label": "secondary_sparse_technical_guarded_diagnostic",
+      "promotion_blocker": "diagnostic_only; do not aggregate into ordinary EDD unless sparse-field scorer is explicitly enabled",
+      "guard_pass_condition": "For every not_found_expected group, the answer must either give a nearby not-found caveat or use a clear global not-found statement for all remaining requested fields."
+    },
+    {
+      "id": "l121_Q048_technical_add_transfer",
+      "source_case_id": "Q048",
+      "question": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 데이터베이스, 코드, 통계, 로그, 이력관리 관련 요구사항을 찾아줘.",
+      "target_org": "국방과학연구소",
+      "target_biz": "대용량 자료전송시스템 고도화",
+      "source_found": true,
+      "source_filename": "국방과학연구소_대용량 자료전송시스템 고도화.hwp",
+      "source_text_length": 58583,
+      "source_basis": "raw_file_text",
+      "field_groups": [
+        {
+          "field_group": "database",
+          "label": "데이터베이스",
+          "tokens": [
+            "DB",
+            "DBMS",
+            "데이터베이스"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "DB",
+            "DBMS",
+            "데이터베이스"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "킹, 누출, 위조, 변조, 훼손 방지를 위한 보안대책을 수립하고 실행함 ◦ 응용 및 DB 보안으로서 사용자 개인 인증 정보를 소스에 직접 하드코딩하지 않아야 함 ◦ 외부 시",
+            "결과 및 지적사항 조치 결과 제출 ◦ 인터넷망/소내망/국방망 데이터 보안관리 - DB 암호화 및 KCMVP 적용 - 임시파일에 대한 관리, 불필요 정보 통제를 통한 인",
+            "계까지 지속적으로 관리 할 수 있는 방안을 제시하여야 함 ◦ 시스템 구축 기간 동안 DB의 형상과 물리데이터 모델의 형상 일치 여부를 주기적으로 점검하고 보고하여야 함 ◦"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "code",
+          "label": "코드",
+          "tokens": [
+            "코드",
+            "소스코드",
+            "프로그램"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "코드",
+            "소스코드",
+            "프로그램"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "시대에 발맞춘 자료유통 창구 제공 ▢ 사용자 편의를 고려한 보안기능 개선으로 악성코드 및 해킹공격으로부터 연구자료와 시스템을 보호 ▢ 노후 인프라 이관 및 교체로 안정",
+            "검 시 「소프트웨어 보안약점 진단가이드」, 「소프트웨어 개발 보안 가이드」에 따른 소스코드 보안성 확보를 위해 착수단계에서 표준 코딩스타일 정의 및 적절한 개발절차·개발방법론·",
+            "고/주의사항을 제공해야 함. ◦ 개발 완료 후 보안도구(제안사 제공)를 이용하여 소스코드 및 웹어플리케이션 취약점을 점검하고, 그 결과 조치를 이행해야 함 - SQL인젝션"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "statistics",
+          "label": "통계",
+          "tokens": [
+            "통계",
+            "현황",
+            "집계"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "source_visible",
+          "hit_tokens": [
+            "통계",
+            "현황"
+          ],
+          "csv_hit_tokens": [
+            "현황"
+          ],
+          "hit_count": 2,
+          "snippets": [
+            "등 형태로 조회내역 다운로드가 가능해야 함. ◦ 신규기능 개선에 따른 자료송수신체계 통계 기능 개선 - 통계자료는 pdf 또는 CSV형태로 다운로드 가능해야 함. 산출",
+            "로드가 가능해야 함. ◦ 신규기능 개선에 따른 자료송수신체계 통계 기능 개선 - 통계자료는 pdf 또는 CSV형태로 다운로드 가능해야 함. 산출정보 관련요구사항 요",
+            "1. 추진전략 2. 추진체계 및 역할 3. 추진일정 4. 대상 시스템 현황 5. 사업범위 Ⅲ. 제안요청 내용 7 1. 요구사항 구분 및 총괄표 2. 요"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "log_history",
+          "label": "로그/이력관리",
+          "tokens": [
+            "로그",
+            "이력",
+            "기록",
+            "사용이력",
+            "인증이력"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "로그",
+            "이력",
+            "기록",
+            "사용이력",
+            "인증이력"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 5,
+          "snippets": [
+            "및 실행파일 등에 대해 통제/로깅 기능 강화 - 사용자/관리자 계정관리 관리 및 로그기능 강화 - 사용자/관리자 기능개선(무단연람체계/결재자 관리/사용자 용량관리 등)",
+            "및 비활성화 되어야 함. ◦ 고도화 사업에 따른 연관된 조회기능 통합 개선 ◦ 감사로그 관리 - 관리자 계정의 작업기록 자동 저장 및 조회(계정생성/삭제 및 관리자변경/",
+            "통제를 통한 인터넷망 및 국방망 데이터 노출 최소화 방안 설계 및 구현 ◦ 국방망 “로그인 페이지”와 “대용량 첨부자료 다운로드 페이지” 등 용도에 따라 연구소 외부에서 접근"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        }
+      ],
+      "present_group_count": 4,
+      "absent_group_count": 0,
+      "diagnostic_label": "secondary_sparse_technical_guarded_diagnostic",
+      "promotion_blocker": "diagnostic_only; do not aggregate into ordinary EDD unless sparse-field scorer is explicitly enabled",
+      "guard_pass_condition": "For every not_found_expected group, the answer must either give a nearby not-found caveat or use a clear global not-found statement for all remaining requested fields."
+    },
+    {
+      "id": "l121_Q049_technical_add_transfer",
+      "source_case_id": "Q049",
+      "question": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 사용자 화면, 관리자 화면, 반응형 웹, 접근성, 편의성 요구사항을 정리해줘.",
+      "target_org": "국방과학연구소",
+      "target_biz": "대용량 자료전송시스템 고도화",
+      "source_found": true,
+      "source_filename": "국방과학연구소_대용량 자료전송시스템 고도화.hwp",
+      "source_text_length": 58583,
+      "source_basis": "raw_file_text",
+      "field_groups": [
+        {
+          "field_group": "user_screen",
+          "label": "사용자 화면",
+          "tokens": [
+            "사용자 화면",
+            "사용자 웹페이지",
+            "웹페이지",
+            "화면"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "사용자 웹페이지",
+            "웹페이지",
+            "화면"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "전송이 되는 구성을 적용하여 망간 자료전송 속도 개선 ◦ 사용자 자료 업로드 시, 사용자 웹페이지의 멈춤이 없어야 함. ◦ 1회 반입반출 용량은 최대 50GB까지 실시간 전송 가능해",
+            "되는 구성을 적용하여 망간 자료전송 속도 개선 ◦ 사용자 자료 업로드 시, 사용자 웹페이지의 멈춤이 없어야 함. ◦ 1회 반입반출 용량은 최대 50GB까지 실시간 전송 가능해",
+            "및 시큐어코딩 진단 시 자동화 진단 도구를 활용햐여야 함. - 관리자가 사용하는 화면에도 개인인증 정보를 그대로 노출시키지 않아야 함 - 취약점 점검 결과 및 지적사항"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "admin_screen",
+          "label": "관리자 화면",
+          "tokens": [
+            "관리자 화면",
+            "관리자",
+            "관리화면"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "관리자"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 1,
+          "snippets": [
+            "업자 사업 추진에 따른 계약의 이행 대상 시스템 구축 및 운영 방안 수립 사용자/관리자 교육 및 기술이전, 하자보수 시스템 오픈 준비 및 오픈 후 안정화 지원 등 추진일",
+            "선 - 반출입 압축파일 및 실행파일 등에 대해 통제/로깅 기능 강화 - 사용자/관리자 계정관리 관리 및 로그기능 강화 - 사용자/관리자 기능개선(무단연람체계/결재자 관",
+            "/로깅 기능 강화 - 사용자/관리자 계정관리 관리 및 로그기능 강화 - 사용자/관리자 기능개선(무단연람체계/결재자 관리/사용자 용량관리 등) ▢ 기타사항 - 노후"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "responsive_web",
+          "label": "반응형 웹",
+          "tokens": [
+            "반응형",
+            "웹 표준",
+            "모바일"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "모바일"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 1,
+          "snippets": [
+            "공공데이터 공통표준용어(행정안전부고시) ｏ 공공데이터 관리지침(행정안전부고시) ｏ 모바일 전자정부 서비스 관리 지침(행정안전부예규) ｏ 행정기관 및 공공기관 정보자원 통합",
+            "전자정부 웹사이트 품질관리 지침 ｏ 한국형 웹 콘텐츠 접근성 지침 2.1 ○ ｏ 모바일 전자정부 서비스 관리 지침 ○ 외부 접근 장치 ｏ 웹브라우저 관련 - H",
+            "- XML 1.0, XSL 1.0 ○ - ECMAScript 3rd ○ ｏ 모바일 관련 - 모바일 웹 콘텐츠 저작 지침 1.0 (KICS.KO-10.0307) ○"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "accessibility",
+          "label": "접근성",
+          "tokens": [
+            "접근성",
+            "웹 접근성",
+            "장애인"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "접근성",
+            "웹 접근성",
+            "장애인"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "시 교육하여야 함 ◦ 웹사이트 기능 개선 및 화면 개편 시 아래 지침을 준수하여 웹 접근성 및호환성을 위한 인터페이스 설계 및 품질 기준을 충족해야 함 - 행정기관 및 공공",
+            "부 기술 지침 관련규정 ｏ 전자정부 웹사이트 품질관리 지침 ｏ 한국형 웹 콘텐츠 접근성 지침 2.1 ○ ｏ 모바일 전자정부 서비스 관리 지침 ○ 외부 접근 장치",
+            "반드시 교육하여야 함 ◦ 웹사이트 기능 개선 및 화면 개편 시 아래 지침을 준수하여 웹 접근성 및호환성을 위한 인터페이스 설계 및 품질 기준을 충족해야 함 - 행정기관 및 공공"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "usability",
+          "label": "편의성",
+          "tokens": [
+            "편의성",
+            "사용성",
+            "간소화"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "편의성",
+            "사용성",
+            "간소화"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "다양한 환경의 사용자를 고려한 웹브라우저 기반의 서비스 제공 방식 개발 ▢ 사용자 편의성과 보안성을 향상을 충족하는 프로세스 검토 및 적용 ▢ 국방부 훈령 및 보안대책 요",
+            "업무분석 단계에서 보다 창의적인 방법으로 요구사항을 해석하여 사업에 반영하고, 사용자 편의성을 감안하여야 함 요구사항 상세 전략 및 방법론 요구사항 요구사항 분류 전략 및",
+            "한 시스템 인터페이스 구축 방안을 도출하였는지를 평가. 사용자 인터페이스 : 사용자 편의성을 고려하여 사용자 인터페이스의 분석ㆍ설계ㆍ구현ㆍ테스트 방안과 검토 계획을 구체적으로"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        }
+      ],
+      "present_group_count": 5,
+      "absent_group_count": 0,
+      "diagnostic_label": "secondary_sparse_technical_guarded_diagnostic",
+      "promotion_blocker": "diagnostic_only; do not aggregate into ordinary EDD unless sparse-field scorer is explicitly enabled",
+      "guard_pass_condition": "For every not_found_expected group, the answer must either give a nearby not-found caveat or use a clear global not-found statement for all remaining requested fields."
+    },
+    {
+      "id": "l121_Q050_technical_add_transfer",
+      "source_case_id": "Q050",
+      "question": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 개인정보, 권한관리, 로그관리, 암호화, 취약점 점검 관련 요구사항만 추려줘.",
+      "target_org": "국방과학연구소",
+      "target_biz": "대용량 자료전송시스템 고도화",
+      "source_found": true,
+      "source_filename": "국방과학연구소_대용량 자료전송시스템 고도화.hwp",
+      "source_text_length": 58583,
+      "source_basis": "raw_file_text",
+      "field_groups": [
+        {
+          "field_group": "privacy",
+          "label": "개인정보",
+          "tokens": [
+            "개인정보",
+            "개인 정보"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "source_visible",
+          "hit_tokens": [
+            "개인정보"
+          ],
+          "csv_hit_tokens": [
+            "개인정보"
+          ],
+          "hit_count": 1,
+          "snippets": [
+            "년) 【서식 4】 주요 사업실적 【서식 5】 사업 실적 증명서 【서식 6】 개인정보 수집 동의서 【서식 7】 자료열람 신청 및 열람 확인서 【서식 8】 서약서",
+            "24 제약 COR-01 전자정부 표준프레임워크 적용 25 COR-02 개인정보보호법 준수 26 COR-03 SW사업정보 저장소 데이터 제출 27 COR-0",
+            "야 함 ◦ 외부 시스템 연동 보안으로서 사전에 정해진 데이터 형식만 연동할 것 ◦ 개인정보 및 패스워드 암호화 저장 ◦ 전자우편 기능은 HTML 형식의 악성 스크립트 자동 실"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "permission_management",
+          "label": "권한관리",
+          "tokens": [
+            "권한",
+            "접근권한",
+            "소유권한",
+            "권한관리"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "권한",
+            "접근권한",
+            "소유권한",
+            "권한관리"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 4,
+          "snippets": [
+            "첨부자료 다운로드 시, 해당링크를 통해 연구소 외부 또는 다른 연구소원이 다운로드(소유권한에 따른 통제) 할 수 없어야 함. ◦ 악성 의심파일 보안담당자 검사 - 악성의심",
+            "등록기능 개선 - 조직도, 결재자 관리 기능 개선 ◦ 일반계정 및 관리자 계정의 권한을 분리 - 관리자 계정은 메일발송 등의 일반기능 사용을 못 하도록 기능 개선 ◦",
+            "을 못 하도록 기능 개선 ◦ 관리자 계정 등록 기능 개발 - 관리자 계정정보 및 권한, 담당자, 사용기한 등을 지정 - 관리자계정은 접근통제 IP를 등록 삭제할 수 있"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "log_management",
+          "label": "로그관리",
+          "tokens": [
+            "로그",
+            "이력",
+            "기록"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "로그",
+            "이력",
+            "기록"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "및 실행파일 등에 대해 통제/로깅 기능 강화 - 사용자/관리자 계정관리 관리 및 로그기능 강화 - 사용자/관리자 기능개선(무단연람체계/결재자 관리/사용자 용량관리 등)",
+            "및 비활성화 되어야 함. ◦ 고도화 사업에 따른 연관된 조회기능 통합 개선 ◦ 감사로그 관리 - 관리자 계정의 작업기록 자동 저장 및 조회(계정생성/삭제 및 관리자변경/",
+            "통제를 통한 인터넷망 및 국방망 데이터 노출 최소화 방안 설계 및 구현 ◦ 국방망 “로그인 페이지”와 “대용량 첨부자료 다운로드 페이지” 등 용도에 따라 연구소 외부에서 접근"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "encryption",
+          "label": "암호화",
+          "tokens": [
+            "암호화",
+            "암호",
+            "OTP"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "암호화",
+            "암호",
+            "OTP"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "템 연동 보안으로서 사전에 정해진 데이터 형식만 연동할 것 ◦ 개인정보 및 패스워드 암호화 저장 ◦ 전자우편 기능은 HTML 형식의 악성 스크립트 자동 실행 방지되도록 구성",
+            "및 지적사항 조치 결과 제출 ◦ 인터넷망/소내망/국방망 데이터 보안관리 - DB 암호화 및 KCMVP 적용 - 임시파일에 대한 관리, 불필요 정보 통제를 통한 인터넷망",
+            "준수- 개인정보 처리단계별 준수사항/개인정보 안전조치 의무기준 ◦ 개인정보 취급구간 암호화, 비밀번호 정보 단방향 암호화(SHA-256 이상) 및 고유식별정보 암호화 ◦ 개인"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "vulnerability",
+          "label": "취약점 점검",
+          "tokens": [
+            "취약점",
+            "보안약점",
+            "점검"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "source_visible",
+          "hit_tokens": [
+            "취약점",
+            "보안약점",
+            "점검"
+          ],
+          "csv_hit_tokens": [
+            "점검"
+          ],
+          "hit_count": 3,
+          "snippets": [
+            "그레이드가 가능해야 함. - 제안하는 SW는 최신 안정화 버전이어야 하며, 알려진 취약점이 해소된 버전을 납품해야 함.(납품 시기에 더 개선된 버전이 배포된다면 해당 버전을",
+            "성능저하가 되지 않도록 하여야 함 ◦ 도입 제품의 설치 및 테스트 시 장애발생, 보안취약점 발견, 기능미비 등으로 사용에 중대한 결함이 있다고 판단될 경우 도입제품의 교체 또는",
+            "함. ◦ 개발 완료 후 보안도구(제안사 제공)를 이용하여 소스코드 및 웹어플리케이션 취약점을 점검하고, 그 결과 조치를 이행해야 함 - SQL인젝션, 크로스사이트스크립팅,"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        }
+      ],
+      "present_group_count": 5,
+      "absent_group_count": 0,
+      "diagnostic_label": "secondary_sparse_technical_guarded_diagnostic",
+      "promotion_blocker": "diagnostic_only; do not aggregate into ordinary EDD unless sparse-field scorer is explicitly enabled",
+      "guard_pass_condition": "For every not_found_expected group, the answer must either give a nearby not-found caveat or use a clear global not-found statement for all remaining requested fields."
+    },
+    {
+      "id": "l121_Q051_technical_add_transfer",
+      "source_case_id": "Q051",
+      "question": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 테스트, 성능검증, 안정성, 장애 대응과 관련된 요구사항을 찾아줘.",
+      "target_org": "국방과학연구소",
+      "target_biz": "대용량 자료전송시스템 고도화",
+      "source_found": true,
+      "source_filename": "국방과학연구소_대용량 자료전송시스템 고도화.hwp",
+      "source_text_length": 58583,
+      "source_basis": "raw_file_text",
+      "field_groups": [
+        {
+          "field_group": "test",
+          "label": "테스트",
+          "tokens": [
+            "테스트",
+            "시험",
+            "검증"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "테스트",
+            "시험",
+            "검증"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "화 요구사항 도출 추진방향 점검 및 이슈사항 협의 등에 따른 의사결정 구축시스템 테스트 검증/확인 구축시스템 검사∘검수 정보체계 유지보수 업체 사업 수행 지원 사업",
+            "성능 및 품질 성능 요구사항 PER-OO 6 품질 요구사항 QUR-OO 테스트 요구사항 TER-OO 인터페이스 요구사항 INR-OO 4 사업 관리 사업",
+            "PER-01 시스템 성능 일반 2 품질 QUR-01 품질 관리 방안 3 테스트 TER-01 통합 시험 4 TER-02 검수 시험 5 인터페이스 INR"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "performance",
+          "label": "성능검증",
+          "tokens": [
+            "성능",
+            "응답시간",
+            "동시",
+            "지연"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "성능",
+            "동시",
+            "지연"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "사항 SER-OO 데이터 요구사항 DAR-OO 제약 사항 COR-OO 3 성능 및 품질 성능 요구사항 PER-OO 6 품질 요구사항 QUR-OO 테스트",
+            "O 데이터 요구사항 DAR-OO 제약 사항 COR-OO 3 성능 및 품질 성능 요구사항 PER-OO 6 품질 요구사항 QUR-OO 테스트 요구사항 TER",
+            "식재산권 공동소유 및 SW산출물 활용 촉진 28 COR-05 기술적용계획 제안 성능 및 품질 요구사항 순번 항목 ID 요구사항 명칭 1 성능 PER-01"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "stability",
+          "label": "안정성",
+          "tokens": [
+            "안정성",
+            "안정화",
+            "무중단"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "안정성",
+            "안정화",
+            "무중단"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "연계 방식에 대한 서비스 형태 및 프로토콜에 대한 규격 정의 - 데이터 정합성 및 안정성을 확보한 정보연계 표준 포맷을 정의 하고 도출된 기술적 연계 방안 설계 ◦ 자료송수",
+            "플리케이션에 대한 요구사항인 경우에는 적합한 프레임워크 설계․개발 및 커스터마이징으로 안정성을 확보해야 함 ◦ Non-ActiveX, Non-Flash 시스템 구축으로 정부 권",
+            "로 제시 ◦ 하자보수 방안에 지원 범위 및 지원 방법을 포함하여 제시 ◦ 시스템의 안정성 및 신뢰성 확보와 장애시간을 최소화하기 위하여 시스템을 단위 요소기술과 기능으로 구분"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "failure_response",
+          "label": "장애 대응",
+          "tokens": [
+            "장애",
+            "복구",
+            "오류",
+            "재시도"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "장애",
+            "복구",
+            "오류"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 3,
+          "snippets": [
+            "제가 없도록 구현 ◦ 현 이중화로 운영 중인 정보체계는 이중화 구성이 되어야 하며, 장애 시 정보체계 중단이 없이 운영될 수 있도록 개발하여야 함 ◦ 연구소에서 제공하는 H",
+            ", 이로 인해 성능저하가 되지 않도록 하여야 함 ◦ 도입 제품의 설치 및 테스트 시 장애발생, 보안취약점 발견, 기능미비 등으로 사용에 중대한 결함이 있다고 판단될 경우 도입",
+            "축·운영 지침(행정안전부) - 전자정부 웹사이트 품질관리 지침(행정안전부) - 장애인·고령자 등의 정보 접근 및 이용편의 증진을 위한 고시(과기부) 산출정보 관련요구"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        }
+      ],
+      "present_group_count": 4,
+      "absent_group_count": 0,
+      "diagnostic_label": "secondary_sparse_technical_guarded_diagnostic",
+      "promotion_blocker": "diagnostic_only; do not aggregate into ordinary EDD unless sparse-field scorer is explicitly enabled",
+      "guard_pass_condition": "For every not_found_expected group, the answer must either give a nearby not-found caveat or use a clear global not-found statement for all remaining requested fields."
+    },
+    {
+      "id": "l121_Q052_technical_add_transfer",
+      "source_case_id": "Q052",
+      "question": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 배포, 운영 전환, 모니터링, 장애 복구 요구사항이 있는지 알려줘.",
+      "target_org": "국방과학연구소",
+      "target_biz": "대용량 자료전송시스템 고도화",
+      "source_found": true,
+      "source_filename": "국방과학연구소_대용량 자료전송시스템 고도화.hwp",
+      "source_text_length": 58583,
+      "source_basis": "raw_file_text",
+      "field_groups": [
+        {
+          "field_group": "deployment",
+          "label": "배포",
+          "tokens": [
+            "배포",
+            "설치",
+            "납품",
+            "적용"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "source_visible",
+          "hit_tokens": [
+            "배포",
+            "설치",
+            "납품",
+            "적용"
+          ],
+          "csv_hit_tokens": [
+            "배포"
+          ],
+          "hit_count": 4,
+          "snippets": [
+            "화기술실 정보보호팀 042-821-2461 ※ 본 자료는 제안 내용의 설명을 위한 배포자료로, 이외의 목적으로 무단복제, 전달 및 사용하는 행위를 일절 금함. 목 차",
+            "야 하며, 알려진 취약점이 해소된 버전을 납품해야 함.(납품 시기에 더 개선된 버전이 배포된다면 해당 버전을 납품하여야 함) ◦ 제안요청 내용(시스템 구성 포함) 이외의 추가",
+            "제안에 포함해야 하며, 이로 인해 성능저하가 되지 않도록 하여야 함 ◦ 도입 제품의 설치 및 테스트 시 장애발생, 보안취약점 발견, 기능미비 등으로 사용에 중대한 결함이 있다"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "operation_transition",
+          "label": "운영 전환",
+          "tokens": [
+            "운영 전환",
+            "전환",
+            "안정화"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "전환",
+            "안정화"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 2,
+          "snippets": [
+            "파일 제공 - 오탐지 파일에 대한 보안담당자 파일복구 및 사용자 다운로드 가능 상태전환 - 오탐지 복구를 위한 악성파일 격리 기능 개발 산출정보 관련요구사항 요구사",
+            "이터 이관 시 안정적인 이관 방안 마련 및 이관에 대한 정합성 검증 확보 ◦ 데이터 전환 계획 및 검증 방법, 에러 데이터 처리 방법에 대해 구체적인 내용을 제시하며, 데이터",
+            "계획 및 검증 방법, 에러 데이터 처리 방법에 대해 구체적인 내용을 제시하며, 데이터 전환을 위한 계획 제시 산출정보 관련요구사항 요구사항 분류 데이터 요구사항 요구사"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "monitoring",
+          "label": "모니터링",
+          "tokens": [
+            "모니터링",
+            "감시",
+            "상시운영"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "모니터링",
+            "감시"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 2,
+          "snippets": [
+            "여 안정적 운영지원 및 사용자 지원 방안을 제시하여야 함 ◦ 시스템 개발 중 로그를 모니터링 하도록 하여, 성능 상 문제를 미리 파악하여 조치한 후 시스템을 오픈하여야 함 ◦",
+            "따른 제반 업무 수행 방안 제시 ◦ 목표시스템 가동 이후 일정한 기간 동안 가동상태 모니터링 및 기록, 예방점검 활동 실시, 교육, 비상 연락체계 가동 등 안정화 활동을 수행하여",
+            "도적 운영관리 대책 기술 ◦ 시스템 개발 및 운영에 필요한 내용으로 시스템의 운영, 감시 및 보안, 비상복구 방법 등 시스템 구성방법 및 장애 대처 방법, 기타 운영에 관한"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        },
+        {
+          "field_group": "disaster_recovery",
+          "label": "장애 복구",
+          "tokens": [
+            "장애 복구",
+            "복구",
+            "백업",
+            "DR"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "장애 복구",
+            "복구",
+            "백업",
+            "DR"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 4,
+          "snippets": [
+            "비스 오픈을 시점 이후를 기준으로 하며 발주사와 협의하여 적절한 기간을 지정함. - 장애 복구 방법, 관련 개발자 연락처 문서화 - 시스템 관리 매뉴얼 및 운영자 지침서 문서화",
+            "가 해당 파일을 분석할 수 있도록 파일 제공 - 오탐지 파일에 대한 보안담당자 파일복구 및 사용자 다운로드 가능 상태전환 - 오탐지 복구를 위한 악성파일 격리 기능 개발",
+            "탐지 파일에 대한 보안담당자 파일복구 및 사용자 다운로드 가능 상태전환 - 오탐지 복구를 위한 악성파일 격리 기능 개발 산출정보 관련요구사항 요구사항 분류 기능 요구"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        }
+      ],
+      "present_group_count": 4,
+      "absent_group_count": 0,
+      "diagnostic_label": "secondary_sparse_technical_guarded_diagnostic",
+      "promotion_blocker": "diagnostic_only; do not aggregate into ordinary EDD unless sparse-field scorer is explicitly enabled",
+      "guard_pass_condition": "For every not_found_expected group, the answer must either give a nearby not-found caveat or use a clear global not-found statement for all remaining requested fields."
+    },
+    {
+      "id": "l121_Q053_technical_add_transfer",
+      "source_case_id": "Q053",
+      "question": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 기존 데이터 이관 또는 마이그레이션 범위가 있으면 요약해줘.",
+      "target_org": "국방과학연구소",
+      "target_biz": "대용량 자료전송시스템 고도화",
+      "source_found": true,
+      "source_filename": "국방과학연구소_대용량 자료전송시스템 고도화.hwp",
+      "source_text_length": 58583,
+      "source_basis": "raw_file_text",
+      "field_groups": [
+        {
+          "field_group": "data_migration",
+          "label": "기존 데이터 이관/마이그레이션",
+          "tokens": [
+            "데이터 이관",
+            "마이그레이션",
+            "기존 데이터",
+            "이관"
+          ],
+          "source_status": "source_visible",
+          "csv_source_status": "not_found_expected",
+          "hit_tokens": [
+            "데이터 이관",
+            "이관"
+          ],
+          "csv_hit_tokens": [],
+          "hit_count": 2,
+          "snippets": [
+            "인한 체계관리기능 보강 필요 ▢ 자료송수신체계 노후 인프라 교체로 인한 재연동 및 데이터 이관 필요 주요 사업내용 ▢ 신규 자료송수신체계 인프라 연동모듈 재개발 및 데이터 이",
+            "이터 이관 필요 주요 사업내용 ▢ 신규 자료송수신체계 인프라 연동모듈 재개발 및 데이터 이관 ▢ 대용량자료 수집을 위한 자료전송(반입) 기능 개발 ▢ 안전메일(대용량 메일",
+            "후 교체 장비에 대한 시스템 연동모듈 재개발 - 노후 교체장비에 대한 정보체계 및 데이터 이관 - 개발범위 및 연계 정보체계의 정보 현행화 Ⅲ 제안요청 내용 요구사항 구분"
+          ],
+          "expected_answer_behavior": "answer may summarize only with cited source text"
+        }
+      ],
+      "present_group_count": 1,
+      "absent_group_count": 0,
+      "diagnostic_label": "secondary_sparse_technical_guarded_diagnostic",
+      "promotion_blocker": "diagnostic_only; do not aggregate into ordinary EDD unless sparse-field scorer is explicitly enabled",
+      "guard_pass_condition": "For every not_found_expected group, the answer must either give a nearby not-found caveat or use a clear global not-found statement for all remaining requested fields."
+    }
+  ],
+  "fixtures": {
+    "schema": "rfp_rag_sparse_field_guard_fixture_results.v1",
+    "created_at": "2026-07-07T15:44:10",
+    "summary": {
+      "fixtures": 3,
+      "passed": 3,
+      "failed": 0,
+      "status": "pass"
+    },
+    "fixtures": [
+      {
+        "id": "unsupported_absent_field_is_flagged",
+        "passed": true,
+        "observed": [
+          {
+            "field_group": "synthetic_absent_api",
+            "issue": "unsupported_padding_risk",
+            "detail": "answer mentions absent tokens without a nearby not-found caveat: API, REST"
+          },
+          {
+            "field_group": "synthetic_absent_cloud",
+            "issue": "unsupported_padding_risk",
+            "detail": "answer mentions absent tokens without a nearby not-found caveat: 클라우드"
+          }
+        ]
+      },
+      {
+        "id": "all_absent_fields_with_not_found_caveats_pass",
+        "passed": true,
+        "observed": []
+      },
+      {
+        "id": "global_not_found_caveat_passes",
+        "passed": true,
+        "observed": []
+      }
+    ]
+  }
+}

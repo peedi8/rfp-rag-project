@@ -1,0 +1,71 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-06T17:37:43",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "validate champion and continue EDD improvement loop",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop",
+  "cpu_percent_at_start": 5.0,
+  "recommended_workers": 4,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "final target index.html",
+    "renderer source files",
+    "prepared payload JSON",
+    "option consumer payload JSON",
+    "stage slot pack candidate files"
+  ],
+  "tasks": [
+    {
+      "task_id": "holdout_validation",
+      "description": "run champion top8 on held-out v2 questions",
+      "status": "completed",
+      "worker_id": "holdout_after_backfill_abstain_balanced_judge",
+      "output_contract": "eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\worker_outputs\\holdout_after_backfill_abstain_balanced_judge_baseline_default.json",
+      "merge_decision": "accepted_with_followup"
+    },
+    {
+      "task_id": "judge_bias_check",
+      "description": "rescore saved champion answers with old versus balanced judge contexts",
+      "status": "completed",
+      "worker_id": "main_rejudge_saved_answers",
+      "output_contract": "eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\worker_outputs\\judge_bias_check.json",
+      "merge_decision": "accepted_as_measurement_evidence"
+    },
+    {
+      "task_id": "latency_candidate_review",
+      "description": "analyze top5/adaptive top_k risk and speed tradeoff",
+      "status": "completed",
+      "worker_id": "latency_candidate_review",
+      "output_contract": "eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\worker_outputs\\latency_candidate_review.json",
+      "merge_decision": "accepted_as_next_experiment_proposal"
+    },
+    {
+      "task_id": "quality_audit",
+      "description": "audit high-risk answers for unsupported claims",
+      "status": "completed",
+      "worker_id": "quality_audit",
+      "output_contract": "eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\worker_outputs\\quality_audit.json",
+      "merge_decision": "accepted_reject_global_top5"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\checkpoint_01_inputs.md",
+    "worker_outputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\checkpoint_02_worker_outputs.md",
+    "merge_decisions": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\checkpoint_03_merge_decisions.md",
+    "smoke": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\checkpoint_04_smoke.md"
+  },
+  "events": [
+    {
+      "ts": "2026-07-06T17:37:43",
+      "event": "scaffold_created",
+      "recommended_workers": 4,
+      "cpu_percent": 5.0
+    },
+    {
+      "ts": "2026-07-06T17:57:42",
+      "event": "orchestrator_merge_decisions_recorded",
+      "contracts": 9
+    }
+  ]
+}

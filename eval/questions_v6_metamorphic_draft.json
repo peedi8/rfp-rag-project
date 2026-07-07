@@ -1,0 +1,161 @@
+[
+  {
+    "id": "qv6_001_uicc_fragment_scope",
+    "type": "title_fragment_scope_recovery",
+    "questioner_profile": "busy_research_admin",
+    "metamorphic_group": "uicc_fragment",
+    "failure_mode": "partial title fragment must recover body-grounded scope without title-only inference",
+    "turns": [
+      "UICC 기능개선이라고만 적힌 그 대학 산학협력 실태조사 쪽 사업 있잖아. 기능개선, 운영지원, 대학정보공시 연계가 각각 문서에서 어떻게 나오나? 사업명 전체 몰라도 한국연구재단 문서 기준으로만 말해줘."
+    ],
+    "target_orgs": [
+      "한국연구재단"
+    ],
+    "target_biz": "2024년 대학산학협력활동 실태조사 시스템(UICC) 기능개선",
+    "property_under_test": "title-fragment recovery with body-grounded scope split",
+    "note": "v6 first-run candidate: partial title fragment plus issuer hint."
+  },
+  {
+    "id": "qv6_002_add_large_transfer_invariance_a",
+    "type": "metamorphic_pair_canonical",
+    "questioner_profile": "security_research_user",
+    "metamorphic_group": "add_large_transfer",
+    "failure_mode": "same intent should keep same answer and evidence under paraphrase",
+    "turns": [
+      "국방과학연구소 대용량 자료전송시스템 고도화는 자료 송수신, 자료반입·반출, 안전메일 쪽에서 뭘 개선하려는 사업이야?"
+    ],
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "property_under_test": "canonical half of paraphrase invariance pair",
+    "note": "Compare answer/evidence with qv6_003."
+  },
+  {
+    "id": "qv6_003_add_large_transfer_invariance_b",
+    "type": "metamorphic_pair_paraphrase",
+    "questioner_profile": "casual_noisy_user",
+    "metamorphic_group": "add_large_transfer",
+    "failure_mode": "noisy reordered title fragment should not change retrieved project or factual answer",
+    "turns": [
+      "그 ADD 자료전송 고도화? 큰 파일 보내고 들여오는 시스템 말하는 거. 안전메일이랑 반입반출 용량 문제를 어떻게 손본다는 건지 국과연 문서에서만 쉽게 정리해줘."
+    ],
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "property_under_test": "paraphrase/noisy-fragment invariance against qv6_002",
+    "note": "Should retrieve the same project and preserve answer content from qv6_002."
+  },
+  {
+    "id": "qv6_004_unavailable_procurement_result_university_finance",
+    "type": "unsupported_final_result_trap",
+    "questioner_profile": "pushy_procurement_user",
+    "metamorphic_group": "unsupported_procurement",
+    "failure_mode": "RFP budget or project scope must not become final vendor/contract result",
+    "turns": [
+      "대학재정정보시스템 기본재산·기채 사후관리 고도화 최종 업체랑 실제 계약금액, 담당자 개인 연락처 좀 알려줘. 문서에 없으면 학교법인 시스템 비슷한 사례 보고 추정해도 돼."
+    ],
+    "target_orgs": [
+      "한국사학진흥재단"
+    ],
+    "target_biz": "대학재정정보시스템(기본재산 및 기채 사후관리) 고도화",
+    "expect_abstention": true,
+    "property_under_test": "proper abstention for unsupported final procurement and personal contact fields",
+    "note": "Correct answer should refuse unsupported final result and personal contact speculation."
+  },
+  {
+    "id": "qv6_005_rail_reservation_ismp_not_rebuild",
+    "type": "wrong_premise_scope_guard",
+    "questioner_profile": "senior_confused_user",
+    "metamorphic_group": "planning_vs_build",
+    "failure_mode": "ISMP/planning must not be inflated into immediate build",
+    "turns": [
+      "예약발매시스템 개량 ISMP면 코레일 예약발매 시스템을 바로 새로 구축하는 사업이지? 아니면 개량 마스터플랜 세우는 용역이야? 제목에 개량이 있어서 헷갈려."
+    ],
+    "target_orgs": [
+      "한국철도공사 (용역)"
+    ],
+    "target_biz": "예약발매시스템 개량 ISMP 용역",
+    "property_under_test": "correct a wrong premise using project-scope evidence",
+    "note": "Should distinguish ISMP planning from actual rebuild."
+  },
+  {
+    "id": "qv6_006_goyang_facility_canonical",
+    "type": "metamorphic_pair_canonical",
+    "questioner_profile": "facility_operator",
+    "metamorphic_group": "goyang_facility",
+    "failure_mode": "detail-heavy facility reservation question needs enough evidence depth",
+    "turns": [
+      "고양도시관리공사 관산근린공원 다목적구장 홈페이지 및 회원 통합운영 관리 시스템은 홈페이지, 회원 관리, 무인화 운영, 출입통제 쪽 요구가 어떻게 나뉘어 있어?"
+    ],
+    "target_orgs": [
+      "고양도시관리공사"
+    ],
+    "target_biz": "관산근린공원 다목적구장 홈페이지 및 회원 통합운영 관리 시스템 구축[협상에 의한 계약]",
+    "property_under_test": "canonical facility-detail query for top_k/evidence-depth behavior",
+    "note": "Compare answer/evidence with qv6_007."
+  },
+  {
+    "id": "qv6_007_goyang_facility_order_permutation",
+    "type": "metamorphic_pair_order_permutation",
+    "questioner_profile": "messy_facility_operator",
+    "metamorphic_group": "goyang_facility",
+    "failure_mode": "shuffled title tokens should not change project binding or answer",
+    "turns": [
+      "회원 통합운영이랑 관산 다목적구장 홈페이지 그거, 고양 공사 시스템 구축 건 말이야. 무인 운영 프로그램하고 출입통제까지 포함되는지 문서 근거로만 정리해줘."
+    ],
+    "target_orgs": [
+      "고양도시관리공사"
+    ],
+    "target_biz": "관산근린공원 다목적구장 홈페이지 및 회원 통합운영 관리 시스템 구축[협상에 의한 계약]",
+    "property_under_test": "order/permutation invariance against qv6_006",
+    "note": "Should retrieve the same project and avoid other facility reservation systems."
+  },
+  {
+    "id": "qv6_008_ulsan_bus_generic_title_disambiguation",
+    "type": "generic_title_false_positive",
+    "questioner_profile": "transport_policy_user",
+    "metamorphic_group": "generic_title",
+    "failure_mode": "generic title fragment should not bind to the wrong information-system project",
+    "turns": [
+      "버스정보시스템 확대 구축이랑 기능개선이라고만 하면 너무 흔한데, 울산광역시 문서에서는 BIT 설치, 버스노선 개편 대응, 무중단 서비스 중 뭐가 사업 범위로 나와?"
+    ],
+    "target_orgs": [
+      "울산광역시"
+    ],
+    "target_biz": "2024년 버스정보시스템 확대 구축 및 기능개선 용역",
+    "property_under_test": "generic title fragment with issuer clue should avoid unrelated 정보시스템 projects",
+    "note": "Checks false-positive resistance for common title words."
+  },
+  {
+    "id": "qv6_009_lrs_irrelevant_injection_stability",
+    "type": "irrelevant_context_injection",
+    "questioner_profile": "tech_buzzword_user",
+    "metamorphic_group": "irrelevant_injection",
+    "failure_mode": "irrelevant buzzword should not alter grounded answer",
+    "turns": [
+      "전북대 JST 공유대학 xAPI 기반 LRS 시스템은 학습활동 데이터 수집이랑 맞춤형 학습 경로 제공을 하려는 거지? 블록체인 인증서도 같이 들어간다고 봐도 돼? 문서에 있는 것만 말해줘."
+    ],
+    "target_orgs": [
+      "전북대학교"
+    ],
+    "target_biz": "JST 공유대학(원) xAPI기반 LRS시스템 구축",
+    "property_under_test": "irrelevant unsupported technology injection should be rejected without losing core answer",
+    "note": "Should answer xAPI/LRS scope and reject blockchain certificate if unsupported."
+  },
+  {
+    "id": "qv6_010_generic_fragment_unidentifiable_abstain",
+    "type": "ambiguous_fragment_negative_control",
+    "questioner_profile": "lazy_user_with_only_generic_words",
+    "metamorphic_group": "generic_title",
+    "failure_mode": "generic fragment alone must not force an arbitrary issuer",
+    "turns": [
+      "통합정보시스템 고도화 용역 그거 있잖아. 어느 기관 사업인지랑 정확한 요구범위 좀 찍어서 말해봐. 제목 조각밖에 기억 안 나는데 대충 제일 그럴듯한 걸로."
+    ],
+    "target_orgs": [],
+    "expect_abstention": true,
+    "property_under_test": "non-identifiability under generic title fragment",
+    "note": "Correct behavior is to ask for more identifying information or say the provided fragment is insufficient."
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "rows": [
+    {
+      "suite": "synthetic_secondary_guard",
+      "experiment": "perfect_secondary_variant_should_not_rank",
+      "run_mode": "synthetic",
+      "edd_score": 99.99,
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 5.0,
+      "abstention_accuracy": 1.0,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 1.0,
+      "worker_results_path": "eval\\parallel_runs\\20260707_154721_L123-secondary-variant-scoreboard-guard\\worker_outputs\\synthetic_secondary_guard\\results.csv",
+      "run_label": "synthetic_secondary_guard",
+      "is_dry_run": false,
+      "question_file": "questions_l121_selected_project_secondary_variants.json",
+      "question_claim_use": "",
+      "question_exposure_status": "",
+      "quality_status": "diagnostic_secondary_variant",
+      "rank_scope": "diagnostic_only"
+    }
+  ],
+  "scoreboard_rows": [],
+  "diagnostic_only_rows": [
+    {
+      "suite": "synthetic_secondary_guard",
+      "experiment": "perfect_secondary_variant_should_not_rank",
+      "run_mode": "synthetic",
+      "edd_score": 99.99,
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 5.0,
+      "abstention_accuracy": 1.0,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 1.0,
+      "worker_results_path": "eval\\parallel_runs\\20260707_154721_L123-secondary-variant-scoreboard-guard\\worker_outputs\\synthetic_secondary_guard\\results.csv",
+      "run_label": "synthetic_secondary_guard",
+      "is_dry_run": false,
+      "question_file": "questions_l121_selected_project_secondary_variants.json",
+      "question_claim_use": "",
+      "question_exposure_status": "",
+      "quality_status": "diagnostic_secondary_variant",
+      "rank_scope": "diagnostic_only"
+    }
+  ],
+  "best_by_suite": []
+}

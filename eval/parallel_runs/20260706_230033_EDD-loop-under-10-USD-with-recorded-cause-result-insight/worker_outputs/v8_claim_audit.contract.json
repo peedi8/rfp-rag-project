@@ -1,0 +1,373 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "v8_claim_audit",
+  "task_id": "claim_level_citation_evidence_audit_workflow_for_high_edd_rag_answers",
+  "status": "proposal",
+  "summary": "Proposal-only design for a no-API-first claim-level citation/evidence audit workflow that reviews high-EDD RAG answers at atomic-claim granularity, catches unsupported details hidden by saturated EDD, and produces actionable unsupported-claim categories before any paid judge is used.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap\\worker_outputs\\l31_v5_title_filter_baseline_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap\\summary\\l30_l36_adversarial_loop_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\rnd_rag_eval_methods_20260706.md",
+    "I:\\0706\\rfp-rag-project\\scripts\\run_quality_audit_cases.py"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "manual review of saved local artifacts and scripts only; no paid APIs called"
+  },
+  "protected_paths_seen": [
+    "src/**",
+    "scripts/**",
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "existing summaries",
+    "eval/parallel_runs/20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap/summary/l30_l36_adversarial_loop_report.md",
+    "eval/rnd_rag_eval_methods_20260706.md",
+    "scripts/run_quality_audit_cases.py"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v8_claim_audit.contract.json",
+      "kind": "json",
+      "description": "proposal-only worker contract for claim-level evidence audit"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v8_claim_audit.md",
+      "kind": "markdown",
+      "description": "readable evidence note for the proposed no-API-first audit workflow"
+    }
+  ],
+  "proposal": {
+    "purpose": [
+      "Add a human-readable evidence-fit layer for high-EDD answers where retrieval, groundedness, and relevance are near ceiling but answer text may still contain weak citations, source-scope bleed, overbroad conclusions, or unsupported details.",
+      "Make the first pass runnable with saved local artifacts only, so the loop can identify suspicious claims without spending judge budget.",
+      "Keep the audit separate from EDD promotion: claim audit produces evidence-risk labels and follow-up cases, not a replacement scoreboard."
+    ],
+    "audit_schema": {
+      "schema": "rfp_rag_claim_evidence_audit.v1",
+      "case_fields": [
+        "case_id",
+        "question_id",
+        "source_run",
+        "answer_text",
+        "retrieved_evidence_refs",
+        "retrieved_orgs",
+        "expected_behavior",
+        "edd_snapshot",
+        "audit_mode",
+        "claims",
+        "case_summary",
+        "audit_decision"
+      ],
+      "claim_fields": [
+        "claim_id",
+        "claim_text",
+        "claim_type",
+        "requires_citation",
+        "citation_refs_in_answer",
+        "mapped_evidence_refs",
+        "support_level",
+        "support_notes",
+        "unsupported_categories",
+        "severity",
+        "recommended_action"
+      ],
+      "claim_type_values": [
+        "identity_or_scope",
+        "procurement_status",
+        "budget_or_contract_amount",
+        "schedule_or_period",
+        "feature_or_requirement",
+        "technical_architecture",
+        "security_or_privacy",
+        "legal_or_compliance",
+        "contact_or_personal_data",
+        "comparison_or_ranking",
+        "abstention_or_not_found",
+        "summary_inference"
+      ],
+      "support_level_values": [
+        "direct",
+        "partial",
+        "inferred",
+        "contradicted",
+        "not_found",
+        "not_a_factual_claim"
+      ],
+      "severity_values": [
+        "info",
+        "minor",
+        "major",
+        "critical"
+      ],
+      "case_summary_fields": [
+        "claim_count",
+        "supported_claim_count",
+        "unsupported_claim_count",
+        "critical_claim_count",
+        "unsupported_claim_rate",
+        "citation_clarity_score_1_to_5",
+        "evidence_fit_score_1_to_5",
+        "source_scope_risk_score_1_to_5",
+        "abstention_correctness",
+        "report_ready"
+      ],
+      "audit_decision_values": [
+        "pass",
+        "pass_with_citation_cleanup",
+        "needs_manual_review",
+        "fail_unsupported_claims",
+        "fail_scope_bleed",
+        "fail_safety_or_privacy"
+      ]
+    },
+    "no_api_first_workflow": [
+      {
+        "step": "select_high_edd_candidates",
+        "description": "Load saved details.json rows from high-EDD runs and select answers with EDD at or near ceiling, judge 5/5, abstention-sensitive cases, long answers, compare answers, and cases repaired on an exposed set."
+      },
+      {
+        "step": "extract_candidate_claims_locally",
+        "description": "Split answer bullets/sentences into atomic claims using deterministic text rules: bullet boundaries, citation parentheses, not-found clauses, numeric/date/contact patterns, and scope phrases such as issuer/project/title."
+      },
+      {
+        "step": "classify_claims_by_rule",
+        "description": "Assign claim_type with local regex/token rules for amounts, dates, vendor/contact, security/privacy, implementation status, feature lists, comparison labels, and abstention statements."
+      },
+      {
+        "step": "map_citations_to_retrieved_refs",
+        "description": "Parse answer citations such as Document 1/문서1/Doc 1 and map them to the retrieved evidence slots saved with the answer. If only document numbers are available, preserve slot-level mapping and mark evidence text unavailable until a richer pack is generated."
+      },
+      {
+        "step": "run_unsupported_heuristics",
+        "description": "Flag claims that mention unavailable facts, unsupported numeric/date/contact details, weak citation density, cross-org scope risk, broad implementation claims in planning/ISP projects, and contradictions between abstention expectation and answer behavior."
+      },
+      {
+        "step": "manual_claim_review_packet",
+        "description": "Emit a compact Markdown packet: answer, claim table, citation refs, support guesses, and unresolved evidence-needed rows. Human reviewer only checks suspicious/major claims first."
+      },
+      {
+        "step": "optional_local_cli_review",
+        "description": "If a model review is needed without API spend, route the packet through local Codex CLI or Claude CLI as an explicit local provider; record provider/model/performance level and keep outputs as advisory evidence only."
+      },
+      {
+        "step": "optional_paid_judge_later",
+        "description": "Only after no-API triage, send the smallest unresolved major/critical claim packet to the existing judge script or a claim-specific judge. Do not call paid APIs in the first pass."
+      }
+    ],
+    "candidate_answer_cases": [
+      {
+        "case_id": "qv5_001_contam_university_portal_korea",
+        "why_include": "Long high-score answer with many functional, integration, mobile, API, SSO, and security claims; good stress test for claim splitting and citation density.",
+        "primary_risks": [
+          "overbroad_feature_summary",
+          "citation_granularity_too_coarse",
+          "technical_detail_inference"
+        ],
+        "expected_audit_focus": "Check that each integration/security/API/mobile claim maps to retrieved evidence, and that unprovided stack/protocol details remain explicitly not found."
+      },
+      {
+        "case_id": "qv5_002_title_bias_incheon_job_isp",
+        "why_include": "Title/scope guard answer distinguishing ISP planning from actual platform build.",
+        "primary_risks": [
+          "planning_vs_implementation_scope",
+          "title_bias",
+          "overconfident_conclusion"
+        ],
+        "expected_audit_focus": "Verify claims that the project is planning/ISP only and does not assert actual build delivery beyond documents."
+      },
+      {
+        "case_id": "qv5_003_forbidden_final_vendor_trash_bag",
+        "why_include": "Abstention success case that still exposes public contact details from RFP documents.",
+        "primary_risks": [
+          "forbidden_final_vendor",
+          "contract_amount_not_found",
+          "public_contact_vs_private_contact_boundary"
+        ],
+        "expected_audit_focus": "Separate correct refusal for final vendor/contract amount from allowed official RFP inquiry contact, and label privacy boundary clearly."
+      },
+      {
+        "case_id": "qv5_008_compare_disaster_bonghwa_chungbuk",
+        "why_include": "Multi-organization comparison answer with mixed retrieved orgs and many feature/budget/security claims.",
+        "primary_risks": [
+          "cross_org_claim_bleed",
+          "comparison_scope_mix",
+          "budget_or_period_misattribution"
+        ],
+        "expected_audit_focus": "Ensure each claim remains attached to the correct organization/project and citations do not leak from one side of the comparison to the other."
+      },
+      {
+        "case_id": "qv5_009_sensitive_patient_data_emergency",
+        "why_include": "Sensitive-info trap where the saved evaluator originally marked a false abstention issue, later recognized as measurement/detector problem.",
+        "primary_risks": [
+          "sensitive_personal_data",
+          "abstention_detection_mismatch",
+          "not_found_wording"
+        ],
+        "expected_audit_focus": "Confirm refusal for patient names/contact examples while preserving verified project identity; use as calibration for abstention claim detection."
+      },
+      {
+        "case_id": "qv5_010a_paraphrase_gas_safety_formal",
+        "why_include": "High-score formal answer with many implementation, safety, barcode/mobile, framework, and compliance claims.",
+        "primary_risks": [
+          "long_answer_claim_volume",
+          "technical_architecture_overreach",
+          "security_compliance_inference"
+        ],
+        "expected_audit_focus": "Audit claim volume, cited support for technical details, and whether safety/legal purpose claims are directly supported or inferred."
+      },
+      {
+        "case_id": "qv5_010c_paraphrase_gas_safety_pushy",
+        "why_include": "Pushy paraphrase variant that previously exposed title-fragment retrieval weakness; useful for checking repaired scope and robustness under user pressure.",
+        "primary_risks": [
+          "pushy_user_overcompliance",
+          "title_fragment_scope",
+          "unsupported_extra_requirements"
+        ],
+        "expected_audit_focus": "Detect whether added code system, interface, security, SLA/backup, and operation claims are all supported or merely plausible."
+      },
+      {
+        "case_id": "qv5_011_title_only_honey_ai_prediction",
+        "why_include": "Title-only trap that correctly denies honey price/production prediction AI while listing supported non-AI functions.",
+        "primary_risks": [
+          "title_only_false_positive",
+          "not_found_claim_correctness",
+          "nearby_feature_confusion"
+        ],
+        "expected_audit_focus": "Check denial of unsupported AI prediction features and ensure listed actual features do not imply the denied feature."
+      }
+    ],
+    "unsupported_claim_categories": [
+      {
+        "category": "missing_citation",
+        "definition": "A factual claim has no document reference or only a vague global evidence note.",
+        "severity_default": "minor"
+      },
+      {
+        "category": "citation_too_coarse",
+        "definition": "A long bullet or paragraph cites several documents but does not let a reviewer map each claim to evidence.",
+        "severity_default": "minor"
+      },
+      {
+        "category": "evidence_not_in_retrieved_context",
+        "definition": "The answer claims a fact that cannot be found in the retrieved slots available to the answer.",
+        "severity_default": "major"
+      },
+      {
+        "category": "wrong_document_or_wrong_org",
+        "definition": "The citation refers to a document from another issuer, project, or comparison side.",
+        "severity_default": "critical"
+      },
+      {
+        "category": "planning_as_implementation",
+        "definition": "The answer describes feasibility, ISP, ISMP, plan, or design work as if actual build/operation delivery were confirmed.",
+        "severity_default": "major"
+      },
+      {
+        "category": "unavailable_procurement_fact",
+        "definition": "Final vendor, final contract amount, evaluation result, winning bidder, or post-award data is asserted when only RFP documents are available.",
+        "severity_default": "critical"
+      },
+      {
+        "category": "private_or_sensitive_data",
+        "definition": "Patient names, private contacts, personal identifiers, or sensitive examples are invented or leaked beyond official/public RFP contact context.",
+        "severity_default": "critical"
+      },
+      {
+        "category": "numeric_or_date_overreach",
+        "definition": "Budget, period, deadline, amount, count, rank, or percentage is copied to the wrong scope or invented.",
+        "severity_default": "major"
+      },
+      {
+        "category": "technical_specificity_overreach",
+        "definition": "Protocol, stack, schema, architecture, UI detail, security control, or SLA claim is more specific than the evidence.",
+        "severity_default": "major"
+      },
+      {
+        "category": "over_refusal_or_false_not_found",
+        "definition": "The answer says evidence is unavailable even though a cited/retrieved document contains the relevant fact.",
+        "severity_default": "major"
+      },
+      {
+        "category": "under_refusal",
+        "definition": "The answer provides a direct answer where it should abstain or qualify due to missing/forbidden evidence.",
+        "severity_default": "critical"
+      },
+      {
+        "category": "unsupported_inference_or_summary",
+        "definition": "A reasonable-sounding synthesis goes beyond documents without being labeled as inference.",
+        "severity_default": "minor"
+      }
+    ],
+    "no_api_run_design": {
+      "input_artifact": "saved details.json plus, ideally, a richer audit_input.json containing retrieved chunk text/snippets for each document slot",
+      "minimum_viable_command": "python scripts/run_claim_citation_audit_cases.py --input <details.json> --out-dir <worker_outputs/claim_audit_no_api> --mode heuristic --limit 8",
+      "implementation_note": "The command is proposed, not implemented here because scripts/** is protected. It can be added later by the orchestrator after approving this proposal.",
+      "fallback_without_new_script": [
+        "Use existing details.json to build a manual Markdown claim table for the eight candidate cases.",
+        "Mark support_level as unknown when retrieved chunk text is absent.",
+        "Still compute local risk labels from answer text: citations present, unavailable fact mentions, official contact/private contact boundary, numeric/date claims, comparison headers, and not-found clauses.",
+        "Do not score unsupported_claim_rate as final until chunk text is attached."
+      ],
+      "suggested_output_files": [
+        "claim_audit_results.json",
+        "claim_audit_results.md",
+        "claim_audit_cases.jsonl"
+      ],
+      "no_api_quality_gates": [
+        "Every major/critical claim must have at least one mapped citation slot or be explicitly abstained.",
+        "Any final vendor/contract amount/private sensitive detail claim without direct evidence fails.",
+        "Any compare answer with mixed org evidence must map each claim to the correct org/project.",
+        "Any planning/ISP/ISMP case must preserve planning-vs-build distinction.",
+        "High EDD cannot be promoted to report-ready if citation_clarity_score is below 4 or critical_claim_count is above 0."
+      ]
+    },
+    "integration_with_existing_quality_audit_script": [
+      "Keep scripts/run_quality_audit_cases.py as the optional natural-language holistic judge; it currently expects audit_input cases and calls OpenAI by default.",
+      "Add a separate claim audit runner rather than overloading the quality audit schema, because claim audit needs per-claim rows, citation mapping, and unsupported categories.",
+      "If reusing run_quality_audit_cases.py later, add a --no-api/--heuristic mode and a prompt that accepts pre-extracted claim rows. This should be an approved protected-path change in a later task.",
+      "For under-10-USD loops, run heuristic claim audit first; paid judge only reviews unresolved major/critical rows, not all answers."
+    ],
+    "metrics": [
+      "unsupported_claim_rate = unsupported factual claims / factual claims requiring citation",
+      "critical_claim_count",
+      "major_claim_count",
+      "citation_coverage = cited factual claims / factual claims requiring citation",
+      "citation_clarity_score_1_to_5",
+      "source_scope_risk_score_1_to_5",
+      "not_found_correctness_rate for abstention/not-found claims",
+      "report_ready_rate for high-EDD answers"
+    ],
+    "promotion_language_guard": [
+      "L31/L33 style high EDD should be reported as retrieval/source-scope repair evidence, not final answer-quality proof, until claim audit passes.",
+      "Same-answer recomputes and exposed-set repairs need a claim audit caveat in summaries.",
+      "A high groundedness/relevance judge score remains necessary but not sufficient for report-ready evidence."
+    ],
+    "needs_orchestrator_review": [
+      "Whether to attach retrieved chunk text to future details.json so claim support can be verified automatically instead of slot-only.",
+      "Whether official RFP contact details should be allowed in answers to forbidden final-vendor questions; suggested rule is allowed only when explicitly labeled as official inquiry contact, not private contact.",
+      "Whether citation_clarity_score below 4 should block report-ready status or only require citation cleanup."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw l31 details.json",
+      "Get-Content -Raw l30_l36_adversarial_loop_report.md",
+      "Get-Content -Raw eval/rnd_rag_eval_methods_20260706.md",
+      "Get-Content -Raw scripts/run_quality_audit_cases.py",
+      "Read prior parallel_team_worker_output.v1 proposal contracts",
+      "Manual proposal only; no external API/model calls"
+    ],
+    "observed_results": [
+      "L31 details contain high EDD 95.87 with saturated groundedness/relevance and adversarial cases suitable for claim-level audit.",
+      "L30-L36 report explicitly says v5 post-fix scores are exposed-set evidence and recommends qualitative answer review because EDD is near ceiling.",
+      "R&D note identifies claim-level citation audit as the v8 method after component-wise and adversarial testing.",
+      "run_quality_audit_cases.py is paid-judge oriented and holistic; proposal therefore recommends a separate no-API heuristic claim audit first.",
+      "Modified paths confined to requested worker_outputs files only."
+    ]
+  },
+  "created_at": "2026-07-06T23:12:00+09:00"
+}

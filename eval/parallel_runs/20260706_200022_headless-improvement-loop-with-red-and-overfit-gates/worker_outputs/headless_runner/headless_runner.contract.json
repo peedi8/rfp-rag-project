@@ -1,0 +1,175 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "headless_runner",
+  "task_id": "headless_runner",
+  "status": "proposal",
+  "summary": "Proposal for a local headless improvement-loop runner that defaults to no-api planning and diagnostics, separates scored runs from recomputations and probes, applies red/overfit/budget gates before promotion, and emits append-only worker-local artifacts for later orchestrator merge.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\recompute_saved_eval.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\run_blind_judge_calibration.py",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_1825_timeboxed-red-loop-v3-validation\\loop_points.csv"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "proposal_method": "static design from local scripts and saved loop artifacts only",
+    "safe_default_mode": "no_api_first"
+  },
+  "protected_paths_seen": [
+    "I:\\0706\\rfp-rag-project\\src\\**",
+    "I:\\0706\\rfp-rag-project\\scripts\\**",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_1825_timeboxed-red-loop-v3-validation\\loop_points.csv",
+    "I:\\0706\\rfp-rag-project\\업무일지*",
+    "existing run outputs outside worker_outputs\\headless_runner\\**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs\\headless_runner\\headless_runner.contract.json",
+      "kind": "json",
+      "description": "required worker output contract containing the headless runner proposal"
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs\\headless_runner\\headless_runner.md",
+      "kind": "markdown",
+      "description": "readable design note for the local headless improvement loop runner"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "component": "runner_inputs",
+        "recommendation": "Use a run manifest JSON as the only mutable input to the headless runner. Required fields: run_dir, candidate_id, baseline_point_id, hypothesis, mode, suite, questions_path, case_limit, max_experiments, no_judge, no_api, dry_run, budget, gate_config, append_targets, and protected_paths.",
+        "details": [
+          "mode must be one of plan_only, diagnostic_no_api, recompute_saved, scored_eval, blind_calibration_no_api, blind_calibration_judge.",
+          "The default generated manifest should be plan_only or diagnostic_no_api with no_judge/no_api true, so a new loop can be rehearsed without OpenAI credentials or model calls.",
+          "Only scored_eval may call scripts/run_experiment_worker.py without --dry-run and without --no-judge; that transition must be explicit in the manifest and allowed by budget gates."
+        ]
+      },
+      {
+        "component": "state_machine",
+        "recommendation": "Represent each loop point as an append-only state transition: planned -> prepared -> ran -> measured -> gated -> promoted | rejected | diagnostic_only | needs_red_review | needs_overfit_review.",
+        "details": [
+          "planned records hypothesis, expected risk, target question pack, and baseline comparison.",
+          "prepared records exact command strings that would run and verifies output directories are under the current run_dir worker_outputs subtree.",
+          "ran records process exit code, elapsed seconds, and local artifact paths.",
+          "measured normalizes metric rows from results.csv, recomputed_metrics.csv, calibration_results.json, or diagnostic summaries into one loop-point row.",
+          "gated runs budget, red, and overfit checks before any point can become promoted.",
+          "diagnostic_only is mandatory for dry-run rows, no-judge rows, no-api calibration prep, local source evidence probes, and measurement corrections."
+        ]
+      },
+      {
+        "component": "budget_gates",
+        "recommendation": "Block or downgrade runs when budget limits are exceeded before process launch and again after measurement.",
+        "details": [
+          "Wall-clock gate: stop launching scored runs when now >= goal_end_minus_15_minutes; switch to summary, graphs, and pending-task emission.",
+          "Run-count gate: cap scored_eval launches per session and cap retries per candidate_id to avoid same-holdout overuse.",
+          "Question-set gate: disallow promotion when the same question pack has already been used for targeted fixes; allow only diagnostic_only or targeted_retry_score labels.",
+          "Latency gate: require candidate latency not to regress beyond configured tolerance unless quality gain is material and red/overfit gates are clean.",
+          "API gate: in no_api_first mode, refuse commands that would call chat_json or run_eval with judge enabled; emit a prepared command instead of executing it."
+        ]
+      },
+      {
+        "component": "red_gate",
+        "recommendation": "Require explicit safety and evidence-risk checks before promotion, with blind calibration as an optional scored gate only after no-api pack validation.",
+        "details": [
+          "Fail promotion if details show empty_answer, false_abstain on non-abstention cases, judge_low, source-scope bleed, wrong-document evidence, fabricated procurement amounts, fabricated vendor/contact/private data, or under-refusal/over-refusal clusters.",
+          "Use scripts/run_blind_judge_calibration.py --no-api as the default pack sanity check; only run judge mode when budget and external-call policy permit.",
+          "Treat judge calibration failures as blocker for judge-trusted promotion, not as a RAG performance score."
+        ]
+      },
+      {
+        "component": "overfit_gate",
+        "recommendation": "Separate first-validation score, targeted retry score, measurement correction, local diagnostic, and future untouched validation score in the loop schema.",
+        "details": [
+          "Never promote a candidate solely from same-holdout targeted retries or recompute_saved_eval output.",
+          "Require baseline_point_id and contamination_notes for every loop point.",
+          "Mark rows derived from L1/L3-style same-answer recomputations as measurement_correction_same_answers and exclude them from leaderboards.",
+          "Track per-question exposure counts and source of changes; repeated qv3_010-style probes remain diagnostic until verified on an untouched or explicitly fresh held-out pack."
+        ]
+      },
+      {
+        "component": "artifact_append_plan",
+        "recommendation": "Write all live runner artifacts under a new run-local worker output directory first, then let the main orchestrator merge approved rows into final eval files.",
+        "details": [
+          "Append loop_points_candidate.csv with one normalized row per point using the existing L0-L13 columns plus candidate_id, parent_point, mode, gate_status, red_status, overfit_status, contamination_label, artifact_dir, and command_hash.",
+          "Append runner_events.jsonl for state transitions, command previews, command exits, artifact checks, and gate decisions.",
+          "Append budget_ledger.jsonl for elapsed time, scored_eval count, no_api diagnostic count, retry count, and stop reasons.",
+          "Write graph source as loop_points_candidate.json and render loop_points_chart_candidate.svg from the candidate CSV; do not overwrite existing loop_points_chart.svg in proposal/worker mode.",
+          "Write merge_packet.md summarizing only promoted or rejected candidate rows for human/orchestrator review."
+        ]
+      },
+      {
+        "component": "safe_no_api_first_mode",
+        "recommendation": "Make no-api the runner's default behavior and require an explicit scored_eval allow flag for any command path that could call a model.",
+        "details": [
+          "Allowed by default: manifest validation, output-path guard checks, recompute_saved_eval on existing details, run_blind_judge_calibration --no-api, dry-run run_experiment_worker, graph regeneration from saved CSVs, and red/overfit static checks.",
+          "Blocked by default: run_experiment_worker without --dry-run when no_judge is false, run_blind_judge_calibration without --no-api, and any command that depends on OPENAI_API_KEY.",
+          "The runner should print and log blocked commands with the exact reason instead of silently skipping them."
+        ]
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "automatic promotion from highest EDD",
+        "risk": "Existing loop_points.csv shows L1 measurement correction beating L0 without being a new RAG run, and L2/L3 speed probes improving latency while reducing quality. Highest EDD alone is not a safe promotion rule."
+      },
+      {
+        "item": "writing final eval logs directly from worker mode",
+        "risk": "Parallel workers are proposal-only; final loop_points.csv, loop_report.md, experiment_log.md, and graphs should be updated only by the merge owner after reviewing gates."
+      },
+      {
+        "item": "judge calibration as performance score",
+        "risk": "Blind judge calibration validates the judge/rubric. It should affect trust in scoring, not count as RAG answer performance."
+      },
+      {
+        "item": "same question pack repeated until it passes",
+        "risk": "This creates targeted_retry_score contamination. The runner should label it and require an untouched validation set for generalization claims."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Choose the exact numeric budget defaults: max scored runs, max retries per candidate, latency tolerance, and promotion EDD delta.",
+      "Merge with the red_gate and overfit_gate workers' final gate taxonomies before implementation.",
+      "Decide whether the first implementation should be a standalone script, likely scripts/run_headless_improvement_loop.py, or a wrapper around existing scripts kept under eval tooling.",
+      "Confirm the final chart generation mechanism already used for loop_points_chart.svg before coding, so the runner regenerates candidate graphs consistently."
+    ],
+    "implementation_notes": {
+      "suggested_entrypoint": "python scripts/run_headless_improvement_loop.py --manifest eval/parallel_runs/<run_id>/manifest.json",
+      "suggested_default_manifest_mode": "diagnostic_no_api",
+      "initial_smoke_sequence": [
+        "validate manifest and path guard",
+        "run blind judge calibration with --no-api against an existing pack if configured",
+        "run run_experiment_worker with --dry-run --max-experiments 1 into a temp worker output folder",
+        "build candidate loop_points CSV and SVG from saved or dry-run rows",
+        "assert no protected paths changed"
+      ]
+    }
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py'",
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\scripts\\recompute_saved_eval.py'",
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\scripts\\run_blind_judge_calibration.py'",
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md'",
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_1825_timeboxed-red-loop-v3-validation\\loop_points.csv'",
+      "rg -n \"parallel_team_worker_output\\.v1|worker_output\" -S \"I:\\0706\\rfp-rag-project\"",
+      "Get-ChildItem -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs' -Force",
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\worker_outputs\\answer_quality\\answer_quality_review.json' -TotalCount 260",
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\ledger.json'",
+      "New-Item -ItemType Directory -Force -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs\\headless_runner'"
+    ],
+    "observed_results": [
+      "Existing run_experiment_worker already writes only under run_dir/worker_outputs and emits parallel_team_worker_output.v1 contracts.",
+      "recompute_saved_eval is measurement-correction only and explicitly must not be labeled as a new validation run.",
+      "run_blind_judge_calibration supports --no-api and writes expected/not_called rows without model calls.",
+      "loop_points.csv contains distinct score_type labels for first_validation_score_raw, measurement_correction_same_answers, targeted_speed_probe_raw, local diagnostics, no_judge probes, and local prompt candidates.",
+      "Target worker output folder existed/was created and no sibling worker output was modified."
+    ]
+  },
+  "created_at": "2026-07-06T20:10:00+09:00"
+}

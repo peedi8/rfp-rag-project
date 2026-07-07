@@ -1,0 +1,32 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": null,
+      "hit_all_targets_rate": null,
+      "mrr": null,
+      "groundedness_avg": null,
+      "relevance_avg": null,
+      "abstention_accuracy": null,
+      "false_abstention_rate": null,
+      "empty_answer_rate": null,
+      "latency_avg_sec": null
+    },
+    "edd_score": 0.0,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": []
+  }
+}

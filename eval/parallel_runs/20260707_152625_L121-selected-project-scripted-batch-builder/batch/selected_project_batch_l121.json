@@ -1,0 +1,1350 @@
+{
+  "schema": "l121_selected_project_batch.v1",
+  "created_at": "2026-07-07T15:30:26",
+  "claim": "No-API selected-project scripted batch builder; not an answer run and not an EDD point.",
+  "source_manifest": "eval\\question_bank64_runnable_manifest_20260707.json",
+  "case_count": 35,
+  "secondary_variant_count": 16,
+  "issues": [],
+  "seed_catalog_used": {
+    "S_PORTAL_KOREA_UNIV": {
+      "doc_id": "DOC008",
+      "row_index": 8,
+      "title": "차세대 포털·학사 정보시스템 구축사업",
+      "org": "고려대학교",
+      "amount_krw": 11270000000.0,
+      "format": "pdf",
+      "text_length": 2450,
+      "published_at": "2024-07-01 00:00:00",
+      "bid_start_at": "2024-07-05 11:00:00",
+      "bid_end_at": "2024-08-12 11:00:00",
+      "filename": "고려대학교_차세대 포털·학사 정보시스템 구축사업.pdf",
+      "why": "large PDF education/portal project; useful for procurement, evaluation, schedule, budget, and persona rewrite tests"
+    },
+    "S_KOGAS_ERP": {
+      "doc_id": "DOC048",
+      "row_index": 48,
+      "title": "[재공고]차세대 통합정보시스템(ERP) 구축",
+      "org": "한국가스공사",
+      "amount_krw": 14107009000.0,
+      "format": "hwp",
+      "text_length": 2114,
+      "published_at": "2024-08-08 00:00:00",
+      "bid_start_at": "",
+      "bid_end_at": "2024-09-09 15:00:00",
+      "filename": "한국가스공사_[재공고]차세대 통합정보시스템(ERP) 구축.hwp",
+      "why": "large ERP/backoffice build; useful for contract and integration/migration checks"
+    },
+    "S_BONGHWA_DISASTER": {
+      "doc_id": "DOC005",
+      "row_index": 5,
+      "title": "봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)",
+      "org": "경상북도 봉화군",
+      "amount_krw": 900000000.0,
+      "format": "hwp",
+      "text_length": 5840,
+      "published_at": "2024-04-18 16:33:28",
+      "bid_start_at": "2024-04-26 09:00:00",
+      "bid_end_at": "2024-04-30 17:00:00",
+      "filename": "경상북도 봉화군_봉화군 재난통합관리시스템 고도화 사업(협상)(긴급).hwp",
+      "why": "disaster integrated management project; useful for security, control, and operational risk checks"
+    },
+    "S_LMS_SPORTS_ETHICS": {
+      "doc_id": "DOC009",
+      "row_index": 9,
+      "title": "스포츠윤리센터 LMS(학습지원시스템) 기능개선",
+      "org": "재단법인스포츠윤리센터",
+      "amount_krw": 46445000.0,
+      "format": "hwp",
+      "text_length": 298,
+      "published_at": "2024-08-22 11:11:14",
+      "bid_start_at": "2024-08-22 14:00:00",
+      "bid_end_at": "2024-09-02 14:00:00",
+      "filename": "재단법인스포츠윤리센터_스포츠윤리센터 LMS(학습지원시스템) 기능개선.hwp",
+      "why": "compact LMS case for education follow-up expansion"
+    },
+    "S_INCHEON_JOB_ISP": {
+      "doc_id": "DOC030",
+      "row_index": 30,
+      "title": "인천일자리플랫폼 정보시스템 구축 ISP 수립용역",
+      "org": "인천광역시",
+      "amount_krw": 100000000.0,
+      "format": "hwp",
+      "text_length": 6166,
+      "published_at": "2025-01-24 10:36:45",
+      "bid_start_at": "2025-01-31 10:00:00",
+      "bid_end_at": "2025-02-11 16:00:00",
+      "filename": "인천광역시_인천일자리플랫폼 정보시스템 구축 ISP 수립용역.hwp",
+      "why": "dynamic L121 seed for ISP/ISMP follow-up terminology context"
+    }
+  },
+  "mode_counts": {
+    "selected_project_seeded_contract_rag": 8,
+    "selected_project_seeded_technical_rag": 8,
+    "conversation_seeded_followup_rag": 4,
+    "conversation_seeded_numeric_comparison": 1,
+    "conversation_seeded_domain_expansion": 1,
+    "unsupported_claim_boundary": 5,
+    "persona_or_business_usefulness_seeded_rag": 8
+  },
+  "turn_estimate": {
+    "multiturn_primary_llm_calls_if_executed": 71,
+    "resolved_primary_llm_calls_if_executed": 35,
+    "cost_saving_note": "Use resolved-primary for cheap retrieval smoke; use multiturn-primary for faithful follow-up memory tests."
+  },
+  "files": {
+    "primary_multiturn": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_multiturn_primary.json",
+    "primary_resolved_one_turn": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_resolved_primary.json",
+    "secondary_variants": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_secondary_variants.json",
+    "csv": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.csv",
+    "md": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.md",
+    "svg": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_modes.svg"
+  },
+  "prepared_cases": [
+    {
+      "id": "l121_Q038_primary",
+      "source_case_id": "Q038",
+      "type": "selected_project_seeded_contract_rag",
+      "questioner_profile": "계약/입찰",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "이 사업의 입찰 참여 마감일과 제출해야 할 주요 서류를 알려줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 이 사업의 입찰 참여 마감일과 제출해야 할 주요 서류를 알려줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_CONTRACT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contract_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q039_primary",
+      "source_case_id": "Q039",
+      "type": "selected_project_seeded_contract_rag",
+      "questioner_profile": "계약/입찰",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "선택한 RFP의 제안서 평가 기준과 배점이 있으면 찾아서 정리해줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 선택한 RFP의 제안서 평가 기준과 배점이 있으면 찾아서 정리해줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_CONTRACT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contract_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q040_primary",
+      "source_case_id": "Q040",
+      "type": "selected_project_seeded_contract_rag",
+      "questioner_profile": "계약/입찰",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "협상에 의한 계약인지, 긴급 공고인지, 재공고인지 확인해줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 협상에 의한 계약인지, 긴급 공고인지, 재공고인지 확인해줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_CONTRACT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contract_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q041_primary",
+      "source_case_id": "Q041",
+      "type": "selected_project_seeded_contract_rag",
+      "questioner_profile": "계약/입찰",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "입찰 참가 자격이나 제한 조건이 문서에 있으면 알려줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 입찰 참가 자격이나 제한 조건이 문서에 있으면 알려줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_CONTRACT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contract_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q042_primary",
+      "source_case_id": "Q042",
+      "type": "selected_project_seeded_contract_rag",
+      "questioner_profile": "계약/입찰",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "해당 사업의 사업 금액과 예산상 주의할 점을 알려줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 해당 사업의 사업 금액과 예산상 주의할 점을 알려줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_CONTRACT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contract_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q043_primary",
+      "source_case_id": "Q043",
+      "type": "selected_project_seeded_contract_rag",
+      "questioner_profile": "계약/입찰",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "과업 기간, 착수일, 완료일, 검수 일정이 문서에 있으면 찾아줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 과업 기간, 착수일, 완료일, 검수 일정이 문서에 있으면 찾아줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_CONTRACT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contract_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q044_primary",
+      "source_case_id": "Q044",
+      "type": "selected_project_seeded_contract_rag",
+      "questioner_profile": "계약/입찰",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "완료보고서, 설계서, 테스트 결과서 같은 산출물 요구사항을 찾아줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 완료보고서, 설계서, 테스트 결과서 같은 산출물 요구사항을 찾아줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_CONTRACT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contract_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q045_primary",
+      "source_case_id": "Q045",
+      "type": "selected_project_seeded_contract_rag",
+      "questioner_profile": "계약/입찰",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "무상 유지보수 기간이나 운영지원 요구사항이 있는지 확인해줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 무상 유지보수 기간이나 운영지원 요구사항이 있는지 확인해줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_CONTRACT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contract_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q046_primary",
+      "source_case_id": "Q046",
+      "type": "selected_project_seeded_technical_rag",
+      "questioner_profile": "기술검토",
+      "turns": [
+        "이 대화에서는 한국가스공사의 '[재공고]차세대 통합정보시스템(ERP) 구축' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(14,107,009,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "해당 RFP에서 외부 시스템 연계, API, 데이터 이관 요구사항을 찾아줘."
+      ],
+      "resolved_one_turn": "한국가스공사의 '[재공고]차세대 통합정보시스템(ERP) 구축' 기준으로, 해당 RFP에서 외부 시스템 연계, API, 데이터 이관 요구사항을 찾아줘.",
+      "target_orgs": [
+        "한국가스공사"
+      ],
+      "target_biz": "[재공고]차세대 통합정보시스템(ERP) 구축",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_KOGAS_ERP"
+      ],
+      "seed_titles": [
+        "[재공고]차세대 통합정보시스템(ERP) 구축"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_TECHNICAL_REQUIREMENT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "technical_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q047_primary",
+      "source_case_id": "Q047",
+      "type": "selected_project_seeded_technical_rag",
+      "questioner_profile": "기술검토",
+      "turns": [
+        "이 대화에서는 한국가스공사의 '[재공고]차세대 통합정보시스템(ERP) 구축' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(14,107,009,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "서버, DB, 네트워크, 클라우드, 보안장비 등 인프라 요구사항을 정리해줘."
+      ],
+      "resolved_one_turn": "한국가스공사의 '[재공고]차세대 통합정보시스템(ERP) 구축' 기준으로, 서버, DB, 네트워크, 클라우드, 보안장비 등 인프라 요구사항을 정리해줘.",
+      "target_orgs": [
+        "한국가스공사"
+      ],
+      "target_biz": "[재공고]차세대 통합정보시스템(ERP) 구축",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_KOGAS_ERP"
+      ],
+      "seed_titles": [
+        "[재공고]차세대 통합정보시스템(ERP) 구축"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_TECHNICAL_REQUIREMENT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "technical_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q048_primary",
+      "source_case_id": "Q048",
+      "type": "selected_project_seeded_technical_rag",
+      "questioner_profile": "기술검토",
+      "turns": [
+        "이 대화에서는 한국가스공사의 '[재공고]차세대 통합정보시스템(ERP) 구축' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(14,107,009,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "데이터베이스, 코드, 통계, 로그, 이력관리 관련 요구사항을 찾아줘."
+      ],
+      "resolved_one_turn": "한국가스공사의 '[재공고]차세대 통합정보시스템(ERP) 구축' 기준으로, 데이터베이스, 코드, 통계, 로그, 이력관리 관련 요구사항을 찾아줘.",
+      "target_orgs": [
+        "한국가스공사"
+      ],
+      "target_biz": "[재공고]차세대 통합정보시스템(ERP) 구축",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_KOGAS_ERP"
+      ],
+      "seed_titles": [
+        "[재공고]차세대 통합정보시스템(ERP) 구축"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_TECHNICAL_REQUIREMENT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "technical_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q049_primary",
+      "source_case_id": "Q049",
+      "type": "selected_project_seeded_technical_rag",
+      "questioner_profile": "기술검토",
+      "turns": [
+        "이 대화에서는 경상북도 봉화군의 '봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(900,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "사용자 화면, 관리자 화면, 반응형 웹, 접근성, 편의성 요구사항을 정리해줘."
+      ],
+      "resolved_one_turn": "경상북도 봉화군의 '봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)' 기준으로, 사용자 화면, 관리자 화면, 반응형 웹, 접근성, 편의성 요구사항을 정리해줘.",
+      "target_orgs": [
+        "경상북도 봉화군"
+      ],
+      "target_biz": "봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_BONGHWA_DISASTER"
+      ],
+      "seed_titles": [
+        "봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_TECHNICAL_REQUIREMENT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "technical_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q050_primary",
+      "source_case_id": "Q050",
+      "type": "selected_project_seeded_technical_rag",
+      "questioner_profile": "기술검토",
+      "turns": [
+        "이 대화에서는 경상북도 봉화군의 '봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(900,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "개인정보, 권한관리, 로그관리, 암호화, 취약점 점검 관련 요구사항만 추려줘."
+      ],
+      "resolved_one_turn": "경상북도 봉화군의 '봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)' 기준으로, 개인정보, 권한관리, 로그관리, 암호화, 취약점 점검 관련 요구사항만 추려줘.",
+      "target_orgs": [
+        "경상북도 봉화군"
+      ],
+      "target_biz": "봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_BONGHWA_DISASTER"
+      ],
+      "seed_titles": [
+        "봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_TECHNICAL_REQUIREMENT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "technical_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q051_primary",
+      "source_case_id": "Q051",
+      "type": "selected_project_seeded_technical_rag",
+      "questioner_profile": "기술검토",
+      "turns": [
+        "이 대화에서는 경상북도 봉화군의 '봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(900,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "테스트, 성능검증, 안정성, 장애 대응과 관련된 요구사항을 찾아줘."
+      ],
+      "resolved_one_turn": "경상북도 봉화군의 '봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)' 기준으로, 테스트, 성능검증, 안정성, 장애 대응과 관련된 요구사항을 찾아줘.",
+      "target_orgs": [
+        "경상북도 봉화군"
+      ],
+      "target_biz": "봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_BONGHWA_DISASTER"
+      ],
+      "seed_titles": [
+        "봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_TECHNICAL_REQUIREMENT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "technical_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q052_primary",
+      "source_case_id": "Q052",
+      "type": "selected_project_seeded_technical_rag",
+      "questioner_profile": "기술검토",
+      "turns": [
+        "이 대화에서는 경상북도 봉화군의 '봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(900,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "배포, 운영 전환, 모니터링, 장애 복구 요구사항이 있는지 알려줘."
+      ],
+      "resolved_one_turn": "경상북도 봉화군의 '봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)' 기준으로, 배포, 운영 전환, 모니터링, 장애 복구 요구사항이 있는지 알려줘.",
+      "target_orgs": [
+        "경상북도 봉화군"
+      ],
+      "target_biz": "봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_BONGHWA_DISASTER"
+      ],
+      "seed_titles": [
+        "봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_TECHNICAL_REQUIREMENT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "technical_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q053_primary",
+      "source_case_id": "Q053",
+      "type": "selected_project_seeded_technical_rag",
+      "questioner_profile": "기술검토",
+      "turns": [
+        "이 대화에서는 한국가스공사의 '[재공고]차세대 통합정보시스템(ERP) 구축' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(14,107,009,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "기존 데이터 이관 또는 마이그레이션 범위가 있으면 요약해줘."
+      ],
+      "resolved_one_turn": "한국가스공사의 '[재공고]차세대 통합정보시스템(ERP) 구축' 기준으로, 기존 데이터 이관 또는 마이그레이션 범위가 있으면 요약해줘.",
+      "target_orgs": [
+        "한국가스공사"
+      ],
+      "target_biz": "[재공고]차세대 통합정보시스템(ERP) 구축",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_KOGAS_ERP"
+      ],
+      "seed_titles": [
+        "[재공고]차세대 통합정보시스템(ERP) 구축"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_TECHNICAL_REQUIREMENT_FIELDS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "technical_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q067_primary",
+      "source_case_id": "Q067",
+      "type": "conversation_seeded_followup_rag",
+      "questioner_profile": "후속질문",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "그럼 그 사업에서 유지보수나 운영지원 조건도 있어?"
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 그럼 그 사업에서 유지보수나 운영지원 조건도 있어?",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_FOLLOWUP_CONTEXT_MEMORY"
+      ],
+      "metric_routes": [
+        "EDD",
+        "followup_memory",
+        "answer_rewrite_or_term_quality",
+        "groundedness"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q069_primary",
+      "source_case_id": "Q069",
+      "type": "conversation_seeded_numeric_comparison",
+      "questioner_profile": "후속질문",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업'과 재단법인스포츠윤리센터의 '스포츠윤리센터 LMS(학습지원시스템) 기능개선' 두 공고를 비교 대상으로 볼게. 먼저 두 공고의 기관, 사업명, 사업금액을 문서 기준으로 확인해줘.",
+        "둘 중 예산 규모가 더 큰 사업은 어느 쪽이고 몇 배 차이나?"
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업'과 재단법인스포츠윤리센터의 '스포츠윤리센터 LMS(학습지원시스템) 기능개선' 중 예산 규모가 더 큰 사업은 어느 쪽이고 몇 배 차이나?",
+      "target_orgs": [
+        "고려대학교",
+        "재단법인스포츠윤리센터"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업 / 스포츠윤리센터 LMS(학습지원시스템) 기능개선",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV",
+        "S_LMS_SPORTS_ETHICS"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업",
+        "스포츠윤리센터 LMS(학습지원시스템) 기능개선"
+      ],
+      "seed_policy": "explicit_comparison_seed_pair",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_NUMERIC_COMPARISON"
+      ],
+      "metric_routes": [
+        "EDD",
+        "numeric_ratio_accuracy",
+        "comparison_coverage"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q070_primary",
+      "source_case_id": "Q070",
+      "type": "conversation_seeded_domain_expansion",
+      "questioner_profile": "후속질문",
+      "turns": [
+        "이 대화에서는 재단법인스포츠윤리센터의 '스포츠윤리센터 LMS(학습지원시스템) 기능개선' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(46,445,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "그와 비슷한 교육 또는 학습 관련 사업을 다른 기관에서도 찾아줘."
+      ],
+      "resolved_one_turn": "재단법인스포츠윤리센터의 '스포츠윤리센터 LMS(학습지원시스템) 기능개선'과 비슷한 교육 또는 학습 관련 사업을 다른 기관에서도 찾아줘.",
+      "target_orgs": [
+        "재단법인스포츠윤리센터"
+      ],
+      "target_biz": "스포츠윤리센터 LMS(학습지원시스템) 기능개선",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_LMS_SPORTS_ETHICS"
+      ],
+      "seed_titles": [
+        "스포츠윤리센터 LMS(학습지원시스템) 기능개선"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_FOLLOWUP_DOMAIN_EXPANSION"
+      ],
+      "metric_routes": [
+        "EDD",
+        "followup_memory",
+        "domain_expansion_recall"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q071_primary",
+      "source_case_id": "Q071",
+      "type": "conversation_seeded_followup_rag",
+      "questioner_profile": "후속질문",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "그 사업에서 외부 시스템 연계나 데이터 이관이 있으면 따로 정리해줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 그 사업에서 외부 시스템 연계나 데이터 이관이 있으면 따로 정리해줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_FOLLOWUP_CONTEXT_MEMORY"
+      ],
+      "metric_routes": [
+        "EDD",
+        "followup_memory",
+        "answer_rewrite_or_term_quality",
+        "groundedness"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q072_primary",
+      "source_case_id": "Q072",
+      "type": "conversation_seeded_followup_rag",
+      "questioner_profile": "후속질문",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "선택한 사업의 핵심 범위, 일정/예산, 주요 위험을 문서 근거로 먼저 요약해줘.",
+        "위 내용을 임원 보고용으로 5줄만 요약해줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업'의 핵심 내용을 임원 보고용으로 5줄만 요약해줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_FOLLOWUP_CONTEXT_MEMORY"
+      ],
+      "metric_routes": [
+        "EDD",
+        "followup_memory",
+        "answer_rewrite_or_term_quality",
+        "groundedness"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q073_primary",
+      "source_case_id": "Q073",
+      "type": "conversation_seeded_followup_rag",
+      "questioner_profile": "후속질문",
+      "turns": [
+        "이 대화에서는 인천광역시의 '인천일자리플랫폼 정보시스템 구축 ISP 수립용역' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(100,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "선택한 ISP/ISMP 관련 공고에서 ISP와 ISMP라는 용어가 어떤 맥락으로 나오는지 먼저 설명해줘.",
+        "방금 말한 ISMP랑 ISP가 무슨 차이인지 쉽게 설명해줘."
+      ],
+      "resolved_one_turn": "인천광역시의 '인천일자리플랫폼 정보시스템 구축 ISP 수립용역' 문서 맥락을 기준으로 ISMP와 ISP가 무슨 차이인지 쉽게 설명해줘.",
+      "target_orgs": [
+        "인천광역시"
+      ],
+      "target_biz": "인천일자리플랫폼 정보시스템 구축 ISP 수립용역",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_INCHEON_JOB_ISP"
+      ],
+      "seed_titles": [
+        "인천일자리플랫폼 정보시스템 구축 ISP 수립용역"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_FOLLOWUP_CONTEXT_MEMORY"
+      ],
+      "metric_routes": [
+        "EDD",
+        "followup_memory",
+        "answer_rewrite_or_term_quality",
+        "groundedness"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q075_primary",
+      "source_case_id": "Q075",
+      "type": "unsupported_claim_boundary",
+      "questioner_profile": "부정질문",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "이 공고가 지금도 입찰 가능한지 최신 상태를 알려줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 이 공고가 지금도 입찰 가능한지 최신 상태를 알려줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": true,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_UNSUPPORTED_CLAIM_BOUNDARY"
+      ],
+      "metric_routes": [
+        "EDD",
+        "abstention_correctness",
+        "unsupported_claim_severity",
+        "useful_safe_alternative"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q077_primary",
+      "source_case_id": "Q077",
+      "type": "unsupported_claim_boundary",
+      "questioner_profile": "부정질문",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "이 RFP에 참여하면 법적으로 아무 문제가 없는지 보장해줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 이 RFP에 참여하면 법적으로 아무 문제가 없는지 보장해줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": true,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_UNSUPPORTED_CLAIM_BOUNDARY"
+      ],
+      "metric_routes": [
+        "EDD",
+        "abstention_correctness",
+        "unsupported_claim_severity",
+        "useful_safe_alternative"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q079_primary",
+      "source_case_id": "Q079",
+      "type": "unsupported_claim_boundary",
+      "questioner_profile": "부정질문",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "이 사업은 무조건 3개월 안에 개발 가능한지 단정해줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 이 사업은 무조건 3개월 안에 개발 가능한지 단정해줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": true,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_UNSUPPORTED_CLAIM_BOUNDARY"
+      ],
+      "metric_routes": [
+        "EDD",
+        "abstention_correctness",
+        "unsupported_claim_severity",
+        "useful_safe_alternative"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q080_primary",
+      "source_case_id": "Q080",
+      "type": "unsupported_claim_boundary",
+      "questioner_profile": "부정질문",
+      "turns": [
+        "가장 수익성이 높은 사업 하나만 확실하게 골라줘."
+      ],
+      "resolved_one_turn": "가장 수익성이 높은 사업 하나만 확실하게 골라줘.",
+      "target_orgs": [],
+      "target_biz": "corpus-wide profitability boundary",
+      "expect_abstention": true,
+      "seed_refs": [],
+      "seed_titles": [],
+      "seed_policy": "corpus_wide_no_seed",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_UNSUPPORTED_CLAIM_BOUNDARY"
+      ],
+      "metric_routes": [
+        "EDD",
+        "abstention_correctness",
+        "unsupported_claim_severity",
+        "useful_safe_alternative"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q081_primary",
+      "source_case_id": "Q081",
+      "type": "unsupported_claim_boundary",
+      "questioner_profile": "부정질문",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "이 사업이 모든 보안 인증을 이미 통과했는지 알려줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 이 사업이 모든 보안 인증을 이미 통과했는지 알려줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": true,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_UNSUPPORTED_CLAIM_BOUNDARY"
+      ],
+      "metric_routes": [
+        "EDD",
+        "abstention_correctness",
+        "unsupported_claim_severity",
+        "useful_safe_alternative"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q082_primary",
+      "source_case_id": "Q082",
+      "type": "persona_or_business_usefulness_seeded_rag",
+      "questioner_profile": "사용자수준",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "RFP가 뭔지 잘 모르는 사람도 이해할 수 있게 이 사업을 쉽게 설명해줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, RFP가 뭔지 잘 모르는 사람도 이해할 수 있게 이 사업을 쉽게 설명해줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_CONTEXTUAL_USEFULNESS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contextual_quality",
+        "usefulness",
+        "evidence_fit",
+        "groundedness"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q083_primary",
+      "source_case_id": "Q083",
+      "type": "persona_or_business_usefulness_seeded_rag",
+      "questioner_profile": "사용자수준",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "이 RFP를 제안 준비 관점에서 할 일 체크리스트로 바꿔줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 이 RFP를 제안 준비 관점에서 할 일 체크리스트로 바꿔줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_CONTEXTUAL_USEFULNESS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contextual_quality",
+        "usefulness",
+        "evidence_fit",
+        "groundedness"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q084_primary",
+      "source_case_id": "Q084",
+      "type": "persona_or_business_usefulness_seeded_rag",
+      "questioner_profile": "사용자수준",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "개발팀 관점에서 일정 지연이나 난이도 리스크가 될 수 있는 요구사항을 찾아줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 개발팀 관점에서 일정 지연이나 난이도 리스크가 될 수 있는 요구사항을 찾아줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_CONTEXTUAL_USEFULNESS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contextual_quality",
+        "usefulness",
+        "evidence_fit",
+        "groundedness"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q085_primary",
+      "source_case_id": "Q085",
+      "type": "persona_or_business_usefulness_seeded_rag",
+      "questioner_profile": "사용자수준",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "입찰 참여 여부를 판단할 수 있게 기회 요인과 위험 요인을 5개씩 정리해줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 입찰 참여 여부를 판단할 수 있게 기회 요인과 위험 요인을 5개씩 정리해줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_CONTEXTUAL_USEFULNESS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contextual_quality",
+        "usefulness",
+        "evidence_fit",
+        "groundedness"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q086_primary",
+      "source_case_id": "Q086",
+      "type": "persona_or_business_usefulness_seeded_rag",
+      "questioner_profile": "사용자수준",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "우리 회사가 웹서비스 개발 경험만 있다면 이 사업에 참여해도 될지 문서 근거로 판단해줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 우리 회사가 웹서비스 개발 경험만 있다면 이 사업에 참여해도 될지 문서 근거로 판단해줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_CONTEXTUAL_USEFULNESS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contextual_quality",
+        "usefulness",
+        "evidence_fit",
+        "groundedness"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q087_primary",
+      "source_case_id": "Q087",
+      "type": "persona_or_business_usefulness_seeded_rag",
+      "questioner_profile": "사용자수준",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "이 문서에 나오는 협상에 의한 계약, ISP, ISMP, PMC 같은 용어를 쉽게 풀어줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 이 문서에 나오는 협상에 의한 계약, ISP, ISMP, PMC 같은 용어를 쉽게 풀어줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_CONTEXTUAL_USEFULNESS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contextual_quality",
+        "usefulness",
+        "evidence_fit",
+        "groundedness"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q088_primary",
+      "source_case_id": "Q088",
+      "type": "persona_or_business_usefulness_seeded_rag",
+      "questioner_profile": "사용자수준",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "고객사에게 보낼 수 있게 이 공고를 1문단 추천 메시지로 작성해줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 고객사에게 보낼 수 있게 이 공고를 1문단 추천 메시지로 작성해줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_CONTEXTUAL_USEFULNESS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contextual_quality",
+        "usefulness",
+        "evidence_fit",
+        "groundedness"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    },
+    {
+      "id": "l121_Q089_primary",
+      "source_case_id": "Q089",
+      "type": "persona_or_business_usefulness_seeded_rag",
+      "questioner_profile": "사용자수준",
+      "turns": [
+        "이 대화에서는 고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(11,270,000,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+        "이 사업에서 우리 제안서가 강조해야 할 기술영업 포인트를 문서 근거로 뽑아줘."
+      ],
+      "resolved_one_turn": "고려대학교의 '차세대 포털·학사 정보시스템 구축사업' 기준으로, 이 사업에서 우리 제안서가 강조해야 할 기술영업 포인트를 문서 근거로 뽑아줘.",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "target_biz": "차세대 포털·학사 정보시스템 구축사업",
+      "expect_abstention": false,
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "seed_titles": [
+        "차세대 포털·학사 정보시스템 구축사업"
+      ],
+      "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+      "execution_status": "prepared_no_api_not_answered",
+      "ordinary_edd_candidate": true,
+      "gates": [
+        "G_CONTEXTUAL_USEFULNESS"
+      ],
+      "metric_routes": [
+        "EDD",
+        "contextual_quality",
+        "usefulness",
+        "evidence_fit",
+        "groundedness"
+      ],
+      "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw."
+    }
+  ]
+}

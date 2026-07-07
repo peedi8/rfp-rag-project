@@ -1,0 +1,403 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "shard_b_review_contract",
+  "task_id": "shard_b_review",
+  "status": "proposal",
+  "summary": "Shard B is coherent as a contract/technical extraction shard if executed as two labeled lanes: 3 ordinary single-document extraction cases plus 13 selected-project contract/technical cases that must receive fixed project seeds before answer execution. No rows should be removed or swapped before the first frozen run.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\B_contract_technical_extract.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\A_metadata_corpus.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\C_technical_followup_boundary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\D_persona_business_citation.json",
+    "I:\\0706\\rfp-rag-project\\eval\\question_bank64_shards_20260707.md",
+    "I:\\0706\\rfp-rag-project\\eval\\question_bank_gap_review_20260707.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\worker_outputs\\gate_design_contract.json"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "Read-only local artifact inspection and proposal writing; no answer generation, retriever, evaluator, judge, or paid API/model call was run."
+  },
+  "budget_summary": {
+    "paid_api_calls_made": false,
+    "observed_cost_usd_for_this_review": 0.0,
+    "proposed_next_execution": "lane-specific frozen answer run after seed and sidecar preflight",
+    "budget_note": "This worker did not estimate paid execution cost because it did not run the answer harness."
+  },
+  "protected_paths_seen": [
+    "eval/question_bank64_shards_20260707.*",
+    "eval/question_bank_gap_review_20260707.*",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md",
+    "src/**",
+    "scripts/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\worker_outputs\\shard_b_review_contract.json",
+      "kind": "json",
+      "description": "Proposal-only review of shard B case placement, seed requirements, sidecar metrics, and scoring risks."
+    }
+  ],
+  "proposal": {
+    "bottom_line": "Accept shard B as currently composed. Keep Q024, Q026, Q027 as ordinary single-document extraction controls and keep Q038-Q050 as one selected-project contract/technical mini-suite. Do not merge these rows into one undifferentiated EDD claim, and do not execute Q038-Q050 until the seed project identity is fixed and logged.",
+    "accepted_recommendations": [
+      {
+        "recommendation": "keep_all_16_cases_in_shard_b",
+        "accepted_case_ids": [
+          "Q024",
+          "Q026",
+          "Q027",
+          "Q038",
+          "Q039",
+          "Q040",
+          "Q041",
+          "Q042",
+          "Q043",
+          "Q044",
+          "Q045",
+          "Q046",
+          "Q047",
+          "Q048",
+          "Q049",
+          "Q050"
+        ],
+        "reason": "The shard consistently tests procurement contract fields and technical requirement extraction. The first three rows are concrete single-document controls; the remaining rows are selected-project extraction questions spanning bid, contract, schedule, deliverable, maintenance, API, infrastructure, data, UI/UX, and security requirements."
+      },
+      {
+        "recommendation": "execute_as_two_labeled_lanes",
+        "accepted": true,
+        "lane_groups": [
+          {
+            "lane": "ordinary_rag_text",
+            "case_ids": [
+              "Q024",
+              "Q026",
+              "Q027"
+            ],
+            "execution_requirement": "No seed turn required, but preflight body-visible support and exact target document identity before strict scoring."
+          },
+          {
+            "lane": "conversation_or_selected_project_rag",
+            "case_ids": [
+              "Q038",
+              "Q039",
+              "Q040",
+              "Q041",
+              "Q042",
+              "Q043",
+              "Q044",
+              "Q045",
+              "Q046",
+              "Q047",
+              "Q048",
+              "Q049",
+              "Q050"
+            ],
+            "execution_requirement": "A fixed selected-project seed is required before every answer. Record the seed project title, organization, source document identifiers, and seed-turn text in the runnable manifest."
+          }
+        ],
+        "reason": "A combined aggregate score would hide the different failure modes: ordinary rows mainly test target retrieval and missing claims, while selected-project rows mainly test context retention and field-level extraction."
+      },
+      {
+        "recommendation": "freeze_and_register_before_answer_execution",
+        "accepted": true,
+        "reason": "The shard plan and gap review both state that these are diagnostic candidates until the runnable file, manifest, and exposure entry are fixed before first answer inspection."
+      }
+    ],
+    "remove_swap_or_move_review": {
+      "remove": [],
+      "swap": [],
+      "move_to_other_shard": [],
+      "watch_but_keep": [
+        {
+          "case_id": "Q046",
+          "risk": "It overlaps conceptually with C shard Q053 and Q071 because all touch external integration or data migration.",
+          "decision": "keep_in_B",
+          "reason": "Q046 is a primary selected-project technical extraction row; C's related rows continue technical follow-up or boundary behavior, so moving Q046 would weaken B's contract-to-technical coverage."
+        },
+        {
+          "case_id": "Q049",
+          "risk": "It overlaps with Q026 on accessibility terms.",
+          "decision": "keep_in_B",
+          "reason": "Q026 is a concrete single-document accessibility consulting control, while Q049 asks for selected-project UI/UX requirements including screens, responsiveness, accessibility, and convenience."
+        },
+        {
+          "case_id": "Q042",
+          "risk": "Business amount fields may be metadata-only or coarse in some RFP bodies.",
+          "decision": "keep_in_B_with_preflight",
+          "reason": "Budget/amount extraction is core procurement behavior, but strict scoring must not punish the answer for CSV-only fields unless the field is visible in retrievable RFP text."
+        }
+      ]
+    },
+    "seed_project_requirements_before_execution": {
+      "seed_required_case_ids": [
+        "Q038",
+        "Q039",
+        "Q040",
+        "Q041",
+        "Q042",
+        "Q043",
+        "Q044",
+        "Q045",
+        "Q046",
+        "Q047",
+        "Q048",
+        "Q049",
+        "Q050"
+      ],
+      "minimum_seed_record": [
+        "selected_project_title",
+        "selected_project_org",
+        "target_doc_ids_or_filenames",
+        "seed_turn_text given to the system before the question",
+        "expected retrievable fields per case",
+        "whether each expected field is in RFP body text, metadata only, or absent"
+      ],
+      "recommended_seed_strategy": "Use one fixed, body-rich selected RFP for the 13 selected-project cases if it visibly contains contract, schedule, deliverable, maintenance, technical, UI, data, and security sections. If no single project covers those fields, split into two declared seed cohorts: one contract/procurement seed for Q038-Q045 and one technical seed for Q046-Q050. Do not let the retriever silently choose a different project per question.",
+      "seed_failure_is_blocking_for": [
+        "Q038",
+        "Q039",
+        "Q040",
+        "Q041",
+        "Q042",
+        "Q043",
+        "Q044",
+        "Q045",
+        "Q046",
+        "Q047",
+        "Q048",
+        "Q049",
+        "Q050"
+      ],
+      "non_seed_case_preflight": [
+        {
+          "case_id": "Q024",
+          "requirement": "Confirm 부산국제영화제 BIFF & ACFM 온라인서비스 재개발 body chunks include submission method or proposal-condition text."
+        },
+        {
+          "case_id": "Q026",
+          "requirement": "Confirm 한국재정정보원 e나라도움 업무시스템 웹 접근성 컨설팅 body chunks include consulting scope text."
+        },
+        {
+          "case_id": "Q027",
+          "requirement": "Confirm 대한적십자사 의료원 병원정보 재해복구시스템 구축 body chunks include DR or backup requirements."
+        }
+      ]
+    },
+    "sidecar_metrics_before_execution": [
+      {
+        "metric_or_flag": "context_target_retention",
+        "applies_to": [
+          "Q038-Q050"
+        ],
+        "pass_rule": "The answer must stay on the seeded project; retrieved chunks and cited evidence should match the seed project identity.",
+        "hard_blocker": true
+      },
+      {
+        "metric_or_flag": "project_mixing",
+        "applies_to": [
+          "Q024",
+          "Q026",
+          "Q027",
+          "Q038-Q050"
+        ],
+        "pass_rule": "No budget, schedule, requirement, deliverable, or technical field may be transferred from a different project.",
+        "hard_blocker": true
+      },
+      {
+        "metric_or_flag": "missing_required_claim",
+        "applies_to": [
+          "Q024",
+          "Q026",
+          "Q027",
+          "Q038-Q050"
+        ],
+        "pass_rule": "For each case, define 2-5 required claim slots before execution and fail the sidecar if answer omits a retrievable requested field.",
+        "hard_blocker": true
+      },
+      {
+        "metric_or_flag": "missing_field_caveat",
+        "applies_to": [
+          "Q038-Q050"
+        ],
+        "pass_rule": "When the seeded RFP lacks a requested field, the answer should state that the field was not found in the provided/retrieved document instead of fabricating it.",
+        "hard_blocker": true
+      },
+      {
+        "metric_or_flag": "usefulness_exact_value_missing",
+        "applies_to": [
+          "Q038",
+          "Q039",
+          "Q042",
+          "Q043"
+        ],
+        "pass_rule": "If a retrievable exact deadline, score, amount, period, start date, completion date, or inspection schedule exists, the answer should include the exact value rather than a coarse paraphrase.",
+        "hard_blocker": true
+      },
+      {
+        "metric_or_flag": "csv_only_metadata_requested",
+        "applies_to": [
+          "Q042"
+        ],
+        "pass_rule": "If amount or budget caution is only in CSV/list metadata and not RFP body text, mark the case metadata_diagnostic or provide separate metadata tooling; do not count it as a strict RFP-body answering miss.",
+        "hard_blocker": true
+      },
+      {
+        "metric_or_flag": "source_availability_preflight",
+        "applies_to": [
+          "Q024-Q027",
+          "Q038-Q050"
+        ],
+        "pass_rule": "Before the run, label each expected field as body_visible, metadata_visible, absent, or ambiguous.",
+        "hard_blocker": true
+      },
+      {
+        "metric_or_flag": "latency_tail_exceeds_gate",
+        "applies_to": [
+          "Q024-Q027",
+          "Q038-Q050"
+        ],
+        "pass_rule": "Keep normal answer latency under the current gate target and flag any single case above 30 seconds even if average latency passes.",
+        "hard_blocker": false
+      }
+    ],
+    "case_level_notes": [
+      {
+        "case_id": "Q024",
+        "review": "Coherent ordinary control for submission/proposal-condition extraction. Risk is answer drifting into generic procurement checklist instead of BIFF & ACFM evidence."
+      },
+      {
+        "case_id": "Q026",
+        "review": "Coherent ordinary control for domain-specific accessibility consulting scope. Risk is hallucinating generic WCAG/accessibility obligations beyond stated consulting scope."
+      },
+      {
+        "case_id": "Q027",
+        "review": "Coherent ordinary control for DR/backup extraction. Risk is over-broad security summary if DR or backup phrases are sparse."
+      },
+      {
+        "case_id": "Q038",
+        "review": "Keep as selected-project bid-submission extraction. Requires exact deadline/document-list availability preflight."
+      },
+      {
+        "case_id": "Q039",
+        "review": "Keep as selected-project evaluation-criteria extraction. Must distinguish proposal evaluation criteria from final award result or actual scores."
+      },
+      {
+        "case_id": "Q040",
+        "review": "Keep as selected-project contract-type extraction. Must not infer negotiated/emergency/rebid status from title alone unless source evidence supports it."
+      },
+      {
+        "case_id": "Q041",
+        "review": "Keep as selected-project eligibility/restriction extraction. Needs required-claim slots for qualifications, restrictions, and caveats."
+      },
+      {
+        "case_id": "Q042",
+        "review": "Keep with preflight. It is low difficulty only if exact amount/budget caveat is body-visible or metadata tooling is allowed."
+      },
+      {
+        "case_id": "Q043",
+        "review": "Keep as schedule/period extraction. Must support partial absence: answer period if present and caveat missing start/completion/inspection dates."
+      },
+      {
+        "case_id": "Q044",
+        "review": "Keep as deliverable/inspection extraction. Risk is missing non-obvious deliverables such as reports, designs, test results, manuals, training, or operation documents."
+      },
+      {
+        "case_id": "Q045",
+        "review": "Keep as maintenance/operation support extraction. Must distinguish warranty/free maintenance period from ongoing operation support scope."
+      },
+      {
+        "case_id": "Q046",
+        "review": "Keep as selected-project integration/API/data-transfer extraction. Overlaps with C follow-up rows but is the right primary technical gate for B."
+      },
+      {
+        "case_id": "Q047",
+        "review": "Keep as infrastructure architecture extraction. Sidecar should catch invented cloud/server/security-equipment requirements."
+      },
+      {
+        "case_id": "Q048",
+        "review": "Keep as backend/data requirement extraction. Define required claim slots carefully because the prompt bundles database, code, statistics, logs, and history management."
+      },
+      {
+        "case_id": "Q049",
+        "review": "Keep as frontend/UI requirement extraction. Should not be moved to Q026's accessibility lane because this asks selected-project UI/UX breadth."
+      },
+      {
+        "case_id": "Q050",
+        "review": "Keep as high-difficulty security checklist extraction. Must avoid generic security best-practice padding and cite only 개인정보, 권한관리, 로그관리, 암호화, 취약점 점검 evidence."
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Run Q038-Q050 without a seed project",
+        "risk": "The target is undefined, so high EDD could reward whichever project the retriever happens to surface.",
+        "recommendation": "block execution until seed_project_required is satisfied."
+      },
+      {
+        "item": "One merged score for all 16 shard B cases",
+        "risk": "The ordinary controls and selected-project rows have different answerability sources and sidecar blockers.",
+        "recommendation": "report at least ordinary_rag_text and selected_project subrows, then optionally show a labeled diagnostic aggregate."
+      },
+      {
+        "item": "Treat evaluation criteria as final evaluation or award result in Q039",
+        "risk": "This would look useful but invent unsupported procurement outcomes.",
+        "recommendation": "add unsupported_final_result/evaluation_criteria_misused_as_final_score check."
+      },
+      {
+        "item": "Use body-RAG only for Q042 if amount is metadata-only",
+        "risk": "The answer may be penalized for data the retriever cannot see, or may fabricate an amount.",
+        "recommendation": "preflight body visibility and mark metadata_diagnostic when appropriate."
+      },
+      {
+        "item": "Generic technical best-practice answers for Q046-Q050",
+        "risk": "Judge relevance may appear high while the answer lacks source-specific claims.",
+        "recommendation": "make required claims and missing_required_claim sidecar override judge-only pass."
+      }
+    ],
+    "overfit_and_scoring_risks": [
+      "The selected-project mini-suite reuses the same context pattern for 13 rows; if one seed is used, results measure deep extraction from that seed more than broad generalization.",
+      "If two seeds are used, the run becomes less compact but more robust; seed splits must be declared before answer execution to avoid post-hoc cherry-picking.",
+      "Case wording often asks 'if present' or '있는지', so whole-answer refusal is usually wrong when some fields are supported; field-level scoring is needed.",
+      "High groundedness/relevance judge scores can miss exact-value omissions, especially deadlines, amounts, periods, and score tables.",
+      "Current rows are diagnostic candidates, not strict validation, until frozen and registered before answer inspection."
+    ],
+    "merge_owner_actions": [
+      "Accept B shard composition as-is.",
+      "Add or require a runnable manifest field for selected_project_seed before executing Q038-Q050.",
+      "Preflight source availability for every exact or bundled field before strict scoring.",
+      "Report B as two lane groups and keep sidecar blockers beside EDD.",
+      "Do not update protected final question-bank files from this worker output directly; merge owner should decide."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-ChildItem -Force I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review",
+      "Get-ChildItem -Recurse -File I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review | Select-Object FullName",
+      "rg -n \"parallel_team_worker_output|worker_output|schema\" I:\\0706\\rfp-rag-project\\eval I:\\0706\\rfp-rag-project -g \"*.json\" -g \"*.md\"",
+      "Get-Content -Raw -Encoding UTF8 I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\B_contract_technical_extract.json",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\ledger.json",
+      "Get-Content -Raw -Encoding UTF8 I:\\0706\\rfp-rag-project\\eval\\question_bank64_shards_20260707.md",
+      "Get-Content -Raw -Encoding UTF8 I:\\0706\\rfp-rag-project\\eval\\question_bank_gap_review_20260707.md",
+      "Get-Content -Raw -Encoding UTF8 I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\worker_outputs\\gate_design_contract.json",
+      "Python summary of all current input shard IDs, lanes, seed flags, segments, intents, and questions",
+      "Test-Path I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\worker_outputs\\shard_b_review_contract.json"
+    ],
+    "observed_results": [
+      "Shard B contains exactly 16 rows: Q024, Q026, Q027, and Q038-Q050.",
+      "Lane split is ordinary_rag_text=3 and conversation_or_selected_project_rag=13.",
+      "Q038-Q050 all have seed_required=true and answerability_source=requires_seeded_context_then_rag_text.",
+      "Q024, Q026, and Q027 have seed_required=false and answerability_source=rag_text.",
+      "Neighbor shard C starts the continuation/follow-up/boundary technical rows Q051-Q055 and Q067-Q073, so no B row needs to move there before first execution.",
+      "Neighbor shard D covers unsupported/persona/business/citation/instrumentation rows, so no B row needs to move there.",
+      "No paid API/model calls were made.",
+      "No answer harness, retriever, evaluator, or judge was run.",
+      "No protected paths were edited.",
+      "The target output file did not exist before this proposal was written."
+    ]
+  },
+  "created_at": "2026-07-07T15:08:00+09:00"
+}

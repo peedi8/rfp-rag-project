@@ -1,0 +1,45 @@
+{
+  "source_details": "eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap\\worker_outputs\\l35_v4_title_filter_topk_regression_topk_sweep\\details.json",
+  "score_label": "l36_measurement_correction_procurement_marker_narrowing",
+  "metrics": {
+    "retrieval_coverage_avg": 1.0,
+    "hit_all_targets_rate": 1.0,
+    "mrr": 1.0,
+    "groundedness_avg": 5.0,
+    "relevance_avg": 5.0,
+    "abstention_accuracy": 1.0,
+    "false_abstention_rate": 0.0,
+    "empty_answer_rate": 0.0,
+    "latency_avg_sec": 24.273
+  },
+  "edd_row": {
+    "suite": "topk_sweep",
+    "experiment": "topk8_filter_rewrite_control",
+    "score_label": "l36_measurement_correction_procurement_marker_narrowing",
+    "retrieval_coverage_avg": 1.0,
+    "hit_all_targets_rate": 1.0,
+    "mrr": 1.0,
+    "groundedness_avg": 5.0,
+    "relevance_avg": 5.0,
+    "abstention_accuracy": 1.0,
+    "false_abstention_rate": 0.0,
+    "empty_answer_rate": 0.0,
+    "latency_avg_sec": 24.273,
+    "edd_score": 96.3,
+    "edd_retrieval_coverage_avg": 1.0,
+    "edd_hit_all_targets_rate": 1.0,
+    "edd_mrr": 1.0,
+    "edd_groundedness_avg": 1.0,
+    "edd_relevance_avg": 1.0,
+    "edd_abstention_accuracy": 1.0,
+    "edd_latency_score": 0.2603
+  },
+  "changed_abstention_cases": [
+    {
+      "id": "qv4_001_kusf_athlete_record_metrics",
+      "old_abstention": true,
+      "new_abstention": false,
+      "expect_abstention": false
+    }
+  ]
+}

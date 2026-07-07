@@ -1,0 +1,127 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 5.0,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 16.7
+    },
+    "edd_score": 88.02,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": [
+      {
+        "id": "qv7_009_venture_confirm_feature_upgrade",
+        "type": "single_extract_plain_language",
+        "answer": "쉽게 말하면, (사)벤처기업협회 '2024년 벤처확인종합관리시스템 기능 고도화' 사업자는 복수의결권주식·스톡옵션·성과조건부주식의 신고·조회·관리 기능을 전산화·고도화하고 데이터 이관·보안·운영체계까지 구축·인계해야 합니다.\n\n- 복수의결권주식: 비상장 벤처기업 조회→발행·변경 보고→접수(보완)→공시·고시 전산처리 및 감독기관 전용 백오피스 연계 기능 구축. (발주기관: (사)벤처기업협회)\n- 스톡옵션: 부여·취소·철회 신고·접수 기능 구현, 중소벤처24 신청 기능 이관 및 과거 데이터 정제·적재. (발주기관: (사)벤처기업협회)\n- 성과조건부주식: 조회·신고·관리 기능 구축. (발주기관: (사)벤처기업협회)\n- 운영·통계·연계: 본부·13개 지방청 관리 기능, 통계·타기관 API 연계, 입력·서류제출 간소화 적용. (발주기관: (사)벤처기업협회)\n- 보안·산출물·절차: 정보보안 솔루션 적용·보안서약서 제출, UX/UI·중소벤처24 개발가이드 준수, 사업수행계획서·착수보고서·시스템분석서·요구사항정의서·UI·인터페이스·데이터정의서 등 산출물 제출 및 하자담보(문서 기준). (발주기관: (사)벤처기업협회)\n\n최종 낙찰업체나 계약 결과는 제공된 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "(사)벤처기업협회",
+          "(사)벤처기업협회",
+          "(사)벤처기업협회",
+          "(사)벤처기업협회",
+          "(사)벤처기업협회",
+          "(사)벤처기업협회",
+          "(사)벤처기업협회",
+          "(사)벤처기업협회"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 605,
+          "answer_line_count": 7
+        },
+        "latency_sec": 16.7,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 1.39,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 104,
+              "completion_tokens": null,
+              "total_tokens": 104
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 15.31,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4698,
+              "completion_tokens": 1453,
+              "total_tokens": 6151
+            },
+            "cost_usd": 0.010062,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 15.307,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.010062,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변 내용이 검색된 문서들(문서1, 문서6, 문서3, 문서8 등)에 명시된 범위와 산출물·요구사항을 그대로 요약함. 복수의결권·스톡옵션·성과조건부주식의 조회·신고·관리 기능 고도화, 중소벤처24 이관·과거데이터 정제, 감독기관용 백오피스·본부·13개 지방청 관리·통계·타기관 API 연계, 정보보안 적용, 산출물(사업수행계획서·시스템분석서·요구사항정의서 등) 제출 및 하자담보 등은 문서에서 직접 확인되는 항목으로 근거 기반 설명이며, 문서에 없는 최종 낙찰업체·계약결과는 언급하지 않음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4602,
+                "completion_tokens": 860,
+                "total_tokens": 5462
+              },
+              "cost_usd": 0.007321,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 9.82,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.007321
+        }
+      }
+    ]
+  }
+}

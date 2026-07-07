@@ -1,0 +1,8 @@
+launching topk_sweep: C:\Python314\python.exe -X utf8 -m scripts.run_experiment_worker --run-dir I:\0706\rfp-rag-project\eval\parallel_runs\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix --suite topk_sweep --worker-id topk_sweep
+launching mmr_lambda_sweep: C:\Python314\python.exe -X utf8 -m scripts.run_experiment_worker --run-dir I:\0706\rfp-rag-project\eval\parallel_runs\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix --suite mmr_lambda_sweep --worker-id mmr_lambda_sweep
+finished mmr_lambda_sweep: rc=0
+launching fetchk_sweep: C:\Python314\python.exe -X utf8 -m scripts.run_experiment_worker --run-dir I:\0706\rfp-rag-project\eval\parallel_runs\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix --suite fetchk_sweep --worker-id fetchk_sweep
+finished topk_sweep: rc=0
+launching filter_rewrite_ablation: C:\Python314\python.exe -X utf8 -m scripts.run_experiment_worker --run-dir I:\0706\rfp-rag-project\eval\parallel_runs\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix --suite filter_rewrite_ablation --worker-id filter_rewrite_ablation
+finished fetchk_sweep: rc=0
+finished filter_rewrite_ablation: rc=0

@@ -1,0 +1,107 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-07T12:21:46",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "17시 전 RFP-RAG final eval/report package with fresh/diagnostic caveats",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti",
+  "cpu_percent_at_start": 0.0,
+  "recommended_workers": 4,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "eval/question_exposure_registry.json",
+    "eval/question_exposure_registry.md",
+    "src/**",
+    "scripts/**",
+    "config.py",
+    "chroma_db/**",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/**"
+  ],
+  "tasks": [
+    {
+      "task_id": "fresh_questions",
+      "description": "propose fresh or semi-fresh validation/diagnostic questions and labels",
+      "status": "completed",
+      "worker_id": "019f3a99-7f53-7a41-b929-22f3e98de7ed",
+      "output_contract": "eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\fresh_questions.contract.json",
+      "merge_decision": "accepted: produced qv8 diagnostic candidate set; 10 cases frozen, 2 excluded for scoring risk/redundancy"
+    },
+    {
+      "task_id": "guard_false_positive",
+      "description": "propose preempt/plain-language false-positive test cases",
+      "status": "completed",
+      "worker_id": "019f3a99-c082-7612-a0f8-94196b7e0a60",
+      "output_contract": "eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\guard_false_positive.contract.json",
+      "merge_decision": "accepted after contract normalization: proposals informed L97/L99 fixture expansion"
+    },
+    {
+      "task_id": "quality_redteam",
+      "description": "audit high-score answers and reporting caveats",
+      "status": "completed",
+      "worker_id": "019f3a99-f2b7-7ef2-97a6-5f16668b6b59",
+      "output_contract": "eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\quality_redteam.contract.json",
+      "merge_decision": "accepted: caveats incorporated into final report"
+    },
+    {
+      "task_id": "report_graphs",
+      "description": "plan final report tables and graphs from loop data",
+      "status": "completed",
+      "worker_id": "019f3a9a-29fb-77d1-af7a-3612bc76c01e",
+      "output_contract": "eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\report_graphs.contract.json",
+      "merge_decision": "accepted: graph specs implemented in final_assets"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\checkpoint_01_inputs.md",
+    "worker_outputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\checkpoint_02_worker_outputs.md",
+    "merge_decisions": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\checkpoint_03_merge_decisions.md",
+    "smoke": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\checkpoint_04_smoke.md"
+  },
+  "events": [
+    {
+      "ts": "2026-07-07T12:21:46",
+      "event": "scaffold_created",
+      "recommended_workers": 4,
+      "cpu_percent": 0.0
+    },
+    {
+      "ts": "2026-07-07T12:22:30",
+      "event": "workers_spawned",
+      "workers": {
+        "fresh_questions": "019f3a99-7f53-7a41-b929-22f3e98de7ed",
+        "guard_false_positive": "019f3a99-c082-7612-a0f8-94196b7e0a60",
+        "quality_redteam": "019f3a99-f2b7-7ef2-97a6-5f16668b6b59",
+        "report_graphs": "019f3a9a-29fb-77d1-af7a-3612bc76c01e"
+      }
+    },
+    {
+      "ts": "2026-07-07T12:37:27",
+      "event": "l97_fixture_expansion",
+      "fixtures": "33/33"
+    },
+    {
+      "ts": "2026-07-07T12:37:27",
+      "event": "l98_qv8_diagnostic_run",
+      "raw_edd": 95.81,
+      "latency_avg_sec": 17.645,
+      "observed_cost_usd": 0.126294
+    },
+    {
+      "ts": "2026-07-07T12:37:27",
+      "event": "l99_measurement_recompute",
+      "recomputed_edd": 97.81,
+      "changed_cases": [
+        "q20260707_a12_seoul_digital_sex_crime_sensitive_story"
+      ]
+    }
+  ],
+  "final_outputs": {
+    "final_report": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\summary\\final_report_draft.md",
+    "qv8_summary": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\analysis\\final_assets\\qv8_final_summary.json",
+    "l97_report": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\analysis\\l97_guard_fixture_expansion_report.md",
+    "l99_recompute": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\analysis\\l99_qv8_abstention_recompute\\recomputed_metrics.md"
+  }
+}

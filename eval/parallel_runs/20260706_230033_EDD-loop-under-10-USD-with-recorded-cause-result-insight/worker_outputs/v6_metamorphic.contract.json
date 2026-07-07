@@ -1,0 +1,177 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "v6_metamorphic",
+  "task_id": "v6_metamorphic",
+  "status": "proposal",
+  "summary": "Proposed an unseen v6 RAG evaluation cohort focused on title-fragment generalization, paraphrase invariance, abstention under unsupported fragments, and evidence-stability properties without calling paid APIs.",
+  "inputs": [
+    "eval\\questions_v5_adversarial_frozen_first_run.json",
+    "eval\\questions_v4_frozen_first_run.json",
+    "eval\\question_exposure_registry.json",
+    "eval\\rnd_rag_eval_methods_20260706.md",
+    "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\ledger.json"
+  ],
+  "models": {
+    "answer_model": "",
+    "judge_model": ""
+  },
+  "protected_paths_seen": [
+    "eval\\questions_v5_adversarial_frozen_first_run.json",
+    "eval\\questions_v4_frozen_first_run.json",
+    "eval\\question_exposure_registry.json",
+    "eval\\rnd_rag_eval_methods_20260706.md",
+    "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\ledger.json"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v6_metamorphic.contract.json",
+      "kind": "json",
+      "description": "proposal-only worker output contract for the v6 unseen title-fragment and metamorphic/property evaluation cohort"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v6_metamorphic.md",
+      "kind": "md",
+      "description": "optional human-readable evidence and merge notes for the v6 proposal"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "proposal_id": "v6_unseen_title_fragment_metamorphic_cohort",
+        "recommended_case_count": 10,
+        "selection_policy": {
+          "freeze_before_run": true,
+          "exclude_question_files": [
+            "eval\\questions_v4_frozen_first_run.json",
+            "eval\\questions_v5_adversarial_frozen_first_run.json"
+          ],
+          "exclude_exposed_ids_and_targets": true,
+          "select_from_corpus_by_deterministic_hash": "Use a fixed seed and record title/document ids after selection; do not inspect generated answers before freezing.",
+          "minimum_title_fragment_overlap": "Each non-negative case should use 2-5 contiguous title tokens or a noisy abbreviation from a real unseen project title, but ask for a bounded business fact that requires retrieved body evidence.",
+          "metamorphic_grouping": "At least four cases should be paired or grouped so equivalent or property-preserving variants can be compared for answer and citation stability."
+        },
+        "proposed_cases": [
+          {
+            "id": "qv6_001_fragment_only_scope_recovery",
+            "intent": "Given only a short unseen title fragment plus one organization hint, recover the correct project and summarize documented scope without over-reading the title.",
+            "expected_behavior": "Answer should identify uncertainty if the fragment is insufficient, use retrieved evidence from one matching project, separate documented scope from plausible title inference, and avoid importing similar projects.",
+            "why_not_just_question_diversification": "This tests whether retrieval and generation can generalize from partial title evidence to body-grounded scope rather than simply answering another normal full-title question.",
+            "cost_risk": "low"
+          },
+          {
+            "id": "qv6_002_fragment_synonym_invariance_a",
+            "intent": "First member of a metamorphic pair: ask about an unseen project using the official title fragment and a narrow deliverable request.",
+            "expected_behavior": "Return the same core deliverables and citations as qv6_003, with no unsupported expansion beyond the retrieved evidence.",
+            "why_not_just_question_diversification": "The score should compare invariance across paired prompts, not just single-case correctness.",
+            "cost_risk": "low"
+          },
+          {
+            "id": "qv6_003_fragment_synonym_invariance_b",
+            "intent": "Second member of the pair: ask the same thing as qv6_002 using colloquial synonyms, dropped particles, and a rearranged title fragment.",
+            "expected_behavior": "Retrieve the same project as qv6_002, preserve the same factual answer, and tolerate noisy wording without changing citations or adding facts.",
+            "why_not_just_question_diversification": "The value comes from the metamorphic property that semantically equivalent fragment prompts should yield equivalent grounded answers.",
+            "cost_risk": "low"
+          },
+          {
+            "id": "qv6_004_title_fragment_negative_control",
+            "intent": "Provide a generic title fragment shared by multiple unseen RFPs and ask for a specific final procurement result that is not present in RFP evidence.",
+            "expected_behavior": "Abstain from final vendor, final contract amount, private contact, or award result claims; mention that the available evidence is RFP/planning material only if supported.",
+            "why_not_just_question_diversification": "This is a property test for non-identifiability and unsupported-result abstention under ambiguous title fragments.",
+            "cost_risk": "low"
+          },
+          {
+            "id": "qv6_005_fragment_plus_wrong_domain_injection",
+            "intent": "Ask about a real unseen title fragment but add a leading assumption from a different domain, such as treating an operation/support project as a new-build AI system.",
+            "expected_behavior": "Correct the premise using retrieved evidence, keep the answer inside the matched project, and explicitly decline the injected unsupported domain assumption.",
+            "why_not_just_question_diversification": "It tests robustness to adversarial premise injection while the title fragment remains partially useful.",
+            "cost_risk": "medium"
+          },
+          {
+            "id": "qv6_006_subtitle_fragment_component_split",
+            "intent": "Use two short fragments from different parts of one unseen title and ask the system to split business goals, system functions, and excluded/non-evidenced items.",
+            "expected_behavior": "Correctly bind both fragments to one project, distinguish goals from functions, and label absent claims as not found rather than filling from title semantics.",
+            "why_not_just_question_diversification": "It probes compositional title-fragment binding and claim typing, not another broad summary.",
+            "cost_risk": "medium"
+          },
+          {
+            "id": "qv6_007_fragment_order_permutation",
+            "intent": "Repeat an unseen title-fragment query with the same key tokens in reversed or shuffled order.",
+            "expected_behavior": "Retrieve the same project and produce materially equivalent answer and citations compared with the canonical-order variant selected by the merge owner.",
+            "why_not_just_question_diversification": "The evaluated property is order-invariance for title fragments, which exposes brittle lexical matching.",
+            "cost_risk": "low"
+          },
+          {
+            "id": "qv6_008_near_duplicate_title_disambiguation",
+            "intent": "Use a title fragment that matches at least two unseen near-duplicate projects and add one body-only clue that should disambiguate the correct one.",
+            "expected_behavior": "Prefer the project supported by the body-only clue, avoid mixing requirements from the distractor title, and state the distinguishing evidence.",
+            "why_not_just_question_diversification": "This isolates title-fragment false positives and tests whether body evidence can override superficial title similarity.",
+            "cost_risk": "medium"
+          },
+          {
+            "id": "qv6_009_irrelevant_context_stability",
+            "intent": "Ask a normal unseen fragment question, then inject an irrelevant but plausible extra sentence naming a different organization or technology.",
+            "expected_behavior": "The answer should remain stable against the injected sentence unless retrieved evidence supports it; citations should stay on the original matching project.",
+            "why_not_just_question_diversification": "This is a metamorphic irrelevant-input test: adding irrelevant text should not change the grounded answer.",
+            "cost_risk": "medium"
+          },
+          {
+            "id": "qv6_010_evidence_removal_expected_abstain",
+            "intent": "Run a controlled variant where the only supporting chunk for an unseen fragment-specific claim is withheld or marked unavailable by the harness.",
+            "expected_behavior": "The system should abstain or say the documents do not contain enough evidence, instead of reconstructing the answer from the title fragment.",
+            "why_not_just_question_diversification": "This directly tests the evidence-removal property recommended in the R&D note and catches title-only hallucination.",
+            "cost_risk": "high"
+          }
+        ],
+        "recommended_metrics": [
+          "retrieval_hit_correct_project",
+          "near_duplicate_contamination_flag",
+          "answer_equivalence_within_metamorphic_group",
+          "citation_overlap_within_metamorphic_group",
+          "unsupported_title_inference_count",
+          "abstention_accuracy_for_negative_controls",
+          "fragment_order_invariance_pass"
+        ],
+        "freeze_and_exposure_notes": [
+          "Freeze the concrete instantiated questions before any scored run.",
+          "Record selection seed, selected document ids, and title fragments in a manifest.",
+          "After answer inspection, mark the v6 cohort as first-run-only or regression-only in the exposure registry."
+        ]
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Reusing v4/v5 exposed organizations or exact failure prompts",
+        "reason": "Would make v6 another regression set rather than unseen validation."
+      },
+      {
+        "item": "Judging only aggregate EDD",
+        "reason": "Metamorphic failures can hide behind high single-answer groundedness and relevance scores."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Instantiate concrete Korean prompts from unseen corpus titles using deterministic selection and freeze before execution.",
+      "Decide whether qv6_010 evidence-removal should be executed in v6 or deferred to v7 if harness support is not yet available.",
+      "Add pair/group-aware scoring so qv6_002/qv6_003 and order/irrelevant-context variants are compared against each other, not only judged independently."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\questions_v5_adversarial_frozen_first_run.json'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\questions_v4_frozen_first_run.json'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\question_exposure_registry.json'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\rnd_rag_eval_methods_20260706.md'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\ledger.json'",
+      "rg -n \"parallel_team_worker_output\\.v1|worker_outputs\" -S \"I:\\0706\\rfp-rag-project\\eval\""
+    ],
+    "observed_results": [
+      "No paid APIs called.",
+      "Protected source, script, log, task, and existing question-set paths were not modified.",
+      "v4/v5 exposed IDs and failure themes were reviewed to avoid direct reuse.",
+      "Proposal contains 10 cases, within requested 8-12 range."
+    ]
+  },
+  "created_at": "2026-07-06T23:18:00+09:00"
+}

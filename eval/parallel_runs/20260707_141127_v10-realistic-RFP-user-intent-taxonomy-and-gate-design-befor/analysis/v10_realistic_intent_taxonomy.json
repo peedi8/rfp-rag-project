@@ -1,0 +1,105 @@
+{
+  "schema": "rfp_rag_realistic_intent_taxonomy.v1",
+  "created_at": "2026-07-07T14:19:30+09:00",
+  "gate_version": "rfp_rag_user_intent_gate_v10.0.0",
+  "run_dir": "eval/parallel_runs/20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor",
+  "claim": "taxonomy_and_gate_design_only_no_answer_run",
+  "answerability_sources": [
+    "rag_text",
+    "metadata_visible_in_body",
+    "csv_metadata_only",
+    "unsupported_absent",
+    "mixed"
+  ],
+  "claim_labels": [
+    "raw_first_execution",
+    "saved_answer_measurement_correction",
+    "diagnostic_repair_or_source_exposed",
+    "strict_validation_first_run",
+    "same_cohort_latency_only",
+    "field_level_diagnostic"
+  ],
+  "intent_families": [
+    {
+      "id": "single_project_scope_overview",
+      "cases_recommended": 2,
+      "expected_answer_shape": "supported_scope_summary",
+      "sidecar_flags": ["project_mixing", "unsupported_final_result", "answer_too_verbose_for_summary"]
+    },
+    {
+      "id": "module_level_requirement_split",
+      "cases_recommended": 2,
+      "expected_answer_shape": "claim_preserving_requirement_split",
+      "sidecar_flags": ["missing_required_claim", "unsupported_scope_transfer"]
+    },
+    {
+      "id": "plain_language_usefulness",
+      "cases_recommended": 1,
+      "expected_answer_shape": "concise_plain_language",
+      "sidecar_flags": ["answer_too_verbose_for_summary", "plain_language_answer_over_structured"]
+    },
+    {
+      "id": "contextual_followup_refinement",
+      "cases_recommended": 1,
+      "expected_answer_shape": "same_target_followup_answer",
+      "sidecar_flags": ["context_target_lost", "project_mixing"]
+    },
+    {
+      "id": "same_issuer_or_near_topic_comparison",
+      "cases_recommended": 2,
+      "expected_answer_shape": "separate_then_compare",
+      "sidecar_flags": ["project_mixing", "missing_compare_axis"]
+    },
+    {
+      "id": "project_stage_scope_boundary",
+      "cases_recommended": 2,
+      "expected_answer_shape": "stage_boundary_answer",
+      "sidecar_flags": ["unsupported_scope_transfer", "title_bias_overclaim"]
+    },
+    {
+      "id": "exact_supported_field_extraction",
+      "cases_recommended": 2,
+      "expected_answer_shape": "exact_value_or_context_caveat",
+      "sidecar_flags": ["usefulness_exact_value_missing", "csv_only_metadata_requested", "coarse_value_when_exact_requested"]
+    },
+    {
+      "id": "unsupported_final_result_or_calculation",
+      "cases_recommended": 1,
+      "expected_answer_shape": "unsupported_final_result_refusal",
+      "sidecar_flags": ["unsupported_final_result", "evaluation_criteria_misused_as_final_score"]
+    },
+    {
+      "id": "sensitive_private_or_fabricated_example",
+      "cases_recommended": 1,
+      "expected_answer_shape": "sensitive_or_private_refusal",
+      "sidecar_flags": ["private_contact_leak", "sensitive_case_fabricated", "sensitive_refusal_detail_tail"]
+    },
+    {
+      "id": "ambiguous_title_fragment_identification",
+      "cases_recommended": 1,
+      "expected_answer_shape": "ask_clarify_or_abstain",
+      "sidecar_flags": ["ambiguous_query_answered_without_clarification"]
+    },
+    {
+      "id": "wrong_premise_or_buzzword_correction",
+      "cases_recommended": 1,
+      "expected_answer_shape": "correct_wrong_premise_then_answer_supported_core",
+      "sidecar_flags": ["buzzword_overclaim", "marker_text_misread_as_feature"]
+    },
+    {
+      "id": "semantic_stability_noisy_paraphrase",
+      "cases_recommended": 2,
+      "expected_answer_shape": "stable_grounded_core_across_paraphrases",
+      "sidecar_flags": ["metamorphic_claim_drift", "project_mixing"]
+    }
+  ],
+  "recommended_next_cohort_size": "12-16",
+  "must_do_before_answer_run": [
+    "assign answerability_source to every case",
+    "run exposure registry dedup",
+    "confirm body-visible support for exact budget/deadline cases",
+    "run retrieval-only preview",
+    "write manifest before answer inspection",
+    "preserve raw first execution before any repair"
+  ]
+}

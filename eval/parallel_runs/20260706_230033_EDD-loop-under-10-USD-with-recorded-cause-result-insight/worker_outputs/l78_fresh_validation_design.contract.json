@@ -1,0 +1,249 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "l78_fresh_validation_design",
+  "task_id": "fresh_v7_v8_validation_cohort_strategy_no_external_api_spend",
+  "status": "proposal",
+  "summary": "Proposal-only strategy for fresh, non-overfit v7/v8 RAG validation cohorts after exposed v6 loops, designed so question files can be created later without external API spending.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\question_exposure_registry.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v3_validation.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v4_frozen_first_run.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v5_adversarial_draft.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v5_adversarial_frozen_first_run.manifest.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v6_metamorphic_frozen_first_run.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v6_metamorphic_frozen_first_run.manifest.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_03_merge_decisions.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\ledger.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v7_perturbation.contract.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v8_claim_audit.contract.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l76_v6_exposed_regression_final_guard_pass_baseline_default\\worker_output.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l77_v6_exposed_latency_prompt_concise_prompt_concise_verified_only.json"
+  ],
+  "models": {
+    "answer_model": null,
+    "judge_model": null,
+    "external_api_or_model_calls": false,
+    "notes": "This worker only inspected local files and wrote a proposal. No RAG answer runs, judge calls, embeddings, or paid/external APIs were used."
+  },
+  "protected_paths_seen": [
+    "eval\\question_exposure_registry.json",
+    "eval\\questions_v3_validation.json",
+    "eval\\questions_v4_frozen_first_run.json",
+    "eval\\questions_v5_adversarial_draft.json",
+    "eval\\questions_v5_adversarial_frozen_first_run.manifest.json",
+    "eval\\questions_v6_metamorphic_frozen_first_run.json",
+    "eval\\questions_v6_metamorphic_frozen_first_run.manifest.json",
+    "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_03_merge_decisions.md",
+    "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\ledger.json",
+    "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\*.json"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l78_fresh_validation_design.contract.json",
+      "kind": "json",
+      "description": "proposal-only worker contract for a fresh v7/v8 validation cohort strategy"
+    }
+  ],
+  "proposal": {
+    "recommended_size_split": {
+      "total_cases": 24,
+      "primary_first_run_cases": 16,
+      "diagnostic_only_cases": 8,
+      "recommended_files": [
+        {
+          "file": "eval\\questions_v7_fresh_first_run_draft.json",
+          "case_count": 16,
+          "label": "draft_unscored_candidate",
+          "purpose": "Fresh untouched validation cohort that should be frozen before any answer/retrieval inspection.",
+          "use_for_claims": "candidate_until_frozen_then_first_scored_run_only"
+        },
+        {
+          "file": "eval\\questions_v7_fresh_frozen_first_run.json",
+          "case_count": 16,
+          "label": "frozen_first_run",
+          "purpose": "Single strict validation run after manifest hash creation; later reruns become regression-only.",
+          "use_for_claims": "strict_validation_only_until_answers_or_failures_are_inspected"
+        },
+        {
+          "file": "eval\\questions_v8_fresh_diagnostic_draft.json",
+          "case_count": 8,
+          "label": "diagnostic_draft",
+          "purpose": "No-API or limited-run probes for decoy, ablation, claim-audit, and fixture confirmation.",
+          "use_for_claims": "diagnostic_only"
+        }
+      ],
+      "split_rationale": "Sixteen first-run cases are enough to cover new organizations, answer styles, abstention, compare, and metamorphic mini-pairs without making a paid run expensive. Eight diagnostic-only cases can deliberately target the known repair surfaces from v6 without contaminating the strict first-run score.",
+      "budget_fit_without_external_spend": "Question creation, exposure labeling, hashing, manual review, and deterministic first-run/diagnostic labels require no external API. The first actual scored run can be deferred or routed through existing local/recorded flows."
+    },
+    "adversarial_question_types": [
+      {
+        "type": "fresh_org_single_extract",
+        "recommended_count": 3,
+        "description": "Use organizations and project titles not present in v3/v4/v6 exposed sets; ask for bounded body-supported requirements, not broad summaries.",
+        "failure_mode_targeted": "basic retrieval binding after many exposed-loop repairs"
+      },
+      {
+        "type": "same_issuer_different_project_guard",
+        "recommended_count": 3,
+        "description": "Same issuing organization has multiple similar projects; include one body-only clue and require the answer to avoid mixing rows.",
+        "failure_mode_targeted": "qv6_001-style same-issuer project mixing"
+      },
+      {
+        "type": "near_duplicate_cross_org_compare",
+        "recommended_count": 2,
+        "description": "Compare two similar-domain RFPs from different organizations and require side-by-side attribution.",
+        "failure_mode_targeted": "cross-org claim bleed and wrong-side citations"
+      },
+      {
+        "type": "generic_title_nonidentifiable_abstention",
+        "recommended_count": 2,
+        "description": "Give only a generic title fragment with no unique issuer or body clue and require abstention or a request for more identifying information.",
+        "failure_mode_targeted": "qv6_010-style arbitrary project selection or long candidate-summary over-answer"
+      },
+      {
+        "type": "unsupported_final_result_or_private_contact",
+        "recommended_count": 2,
+        "description": "Ask for winning vendor, final contract amount, award score, patient/person example, or private contact that should not exist in RFP evidence.",
+        "failure_mode_targeted": "budget-as-contract and forbidden-personal-data hallucination"
+      },
+      {
+        "type": "planning_vs_build_scope_guard",
+        "recommended_count": 2,
+        "description": "Use ISP, ISMP, feasibility, operation/support, or improvement projects and ask whether the documents prove actual build/delivery.",
+        "failure_mode_targeted": "title bias and implementation-scope inflation"
+      },
+      {
+        "type": "metamorphic_paraphrase_pair",
+        "recommended_count": 4,
+        "description": "Two semantic pairs: canonical prompt plus noisy/order-shuffled variant. The score should include answer/citation equivalence, not only per-answer EDD.",
+        "failure_mode_targeted": "fragile lexical retrieval and high-EDD hidden inconsistency"
+      },
+      {
+        "type": "decoy_or_gold_ablation_diagnostic",
+        "recommended_count": 6,
+        "description": "Diagnostic-only cases that run against a local shadow corpus or manually withheld evidence to test decoy attraction and abstention under evidence removal.",
+        "failure_mode_targeted": "overfitting to v6 guards and unsafe CSV/backfill generalization"
+      }
+    ],
+    "avoid_contamination_after_previous_loops": [
+      "Exclude exact IDs, prompts, target projects, and target organizations from eval/questions.json, v2, v3, v4, and v6 exposed sets for the 16-case strict v7 first-run cohort.",
+      "Do not derive v7 first-run prompts from qv6_001, qv6_007, qv6_010, Goyang facility, UICC, ADD transfer, or any one-case l38/l39/l61/l65 probe theme. Similar failure classes are allowed only with different organizations/projects and new wording.",
+      "Treat v5 adversarial as semi-exposed design inspiration only. If v5 has already been inspected elsewhere, do not promote it as fresh; if it is run first, label it first-run for v5 only and not as v7 fresh validation.",
+      "Select candidate projects with a deterministic local seed from the corpus metadata, then freeze the selected IDs and prompts before any answer, retrieval chunk, failure, or judge result is inspected.",
+      "Create a manifest for every frozen file with sha256, created_at, case_count, selection seed, excluded source files, and allowed_use. Any edit after hashing invalidates first-run status.",
+      "Keep all diagnostic probes in a separate v8 file or run-local worker output directory. Never mix targeted failure probes into the strict v7 aggregate.",
+      "For decoy/ablation work, use only run-local shadow corpus/index paths under worker_outputs and mark synthetic documents as perturbation_decoy; never ingest them into production chroma_db or raw corpus.",
+      "After first-run answers are inspected, immediately update exposure metadata in the next merge-owner step so future reruns are regression-only."
+    ],
+    "first_run_vs_diagnostic_labeling": {
+      "first_run_labels": [
+        "draft_unscored_candidate: prompt file exists but has not been run or inspected",
+        "frozen_first_run: hash-manifested file ready for exactly one strict scored run",
+        "first_validation_exposed: answers/retrieval/failures have been inspected after the first run",
+        "first_run_and_regression_only: allowed historical first-run evidence plus future regression use"
+      ],
+      "diagnostic_only_labels": [
+        "targeted_failure_probe_exposed: built from a known failure or repair surface",
+        "diagnostic_only: used for one-case probes, no-judge runs, decoy/ablation checks, or claim-audit calibration",
+        "shadow_corpus_diagnostic: relies on synthetic decoys, removed evidence, or altered retrieval state",
+        "exposed_regression: rerun of any inspected first-run file"
+      ],
+      "labeling_rules": [
+        "A file can support strict validation only if it is frozen, hash-manifested, and run before anyone inspects answer text, retrieved chunks, or failure causes.",
+        "Any question generated from a known failing question, explicit source-code repair, or exposed row must be diagnostic-only even if the wording is changed.",
+        "No-judge, one-case, targeted, shadow-corpus, decoy, ablation, and claim-audit runs must be excluded from the primary scoreboard.",
+        "If a first-run file is partially run and the results are inspected, the remaining unrun cases should be split into a new frozen file before they can claim untouched status.",
+        "The aggregate report should show two numbers: strict first-run EDD on v7_fresh_frozen_first_run and diagnostic pass/fail counts for v8 probes."
+      ]
+    },
+    "candidate_file_names": {
+      "strict_validation": [
+        "eval\\questions_v7_fresh_first_run_draft.json",
+        "eval\\questions_v7_fresh_frozen_first_run.json",
+        "eval\\questions_v7_fresh_frozen_first_run.manifest.json"
+      ],
+      "diagnostic_and_property": [
+        "eval\\questions_v8_fresh_diagnostic_draft.json",
+        "eval\\questions_v8_decoy_ablation_shadow_plan.json",
+        "eval\\questions_v8_claim_audit_cases.json"
+      ],
+      "run_local_outputs_only": [
+        "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v8_shadow_corpus\\questions_v8_shadow_runtime.json",
+        "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v8_claim_audit_no_api\\claim_audit_cases.jsonl"
+      ],
+      "registry_followup": [
+        "eval\\question_exposure_registry.json should be updated only by the merge owner after files are created/frozen/run; this proposal did not modify it."
+      ]
+    },
+    "creation_workflow_no_external_api_spend": [
+      "Use local file inspection and deterministic sampling to choose candidate projects, with a fixed seed and exclusion list from question_exposure_registry.json.",
+      "Manually author Korean prompts from project titles/body clues without asking an external model. If model help is desired later, use local Codex CLI or Claude CLI and record it as local advisory assistance, not paid API validation.",
+      "Run a no-answer preflight linter only: JSON schema validity, unique IDs, no overlap with exposed IDs/orgs/projects, expected_abstention present for unsupported cases, metamorphic_group present for pairs, and manifest hash matches.",
+      "Freeze v7 before any RAG call. Keep v8 diagnostics unfrozen or explicitly diagnostic because they are meant to be inspected and iterated.",
+      "When a paid or local scored run is eventually approved, run v7 once as the strict first-run cohort, then move all follow-up debugging to v8 diagnostic files."
+    ],
+    "promotion_gates": [
+      "Promote v7 only if strict first-run labeling is intact and no post-freeze edits occurred.",
+      "Report v7 aggregate separately from exposed v6 L76 and from v8 diagnostics.",
+      "Require at least 0.90 hit_all_targets_rate, 0.90 abstention_accuracy, zero critical forbidden-info claims, and no repeated same-issuer project-mix failures before claiming generalization.",
+      "For metamorphic pairs, require same target project, materially equivalent claims, and no citation-side flip; a high single-answer judge score is not enough.",
+      "Treat any shadow-corpus decoy citation, gold-ablation overclaim, or private-contact hallucination as a blocking diagnostic failure even if EDD remains high."
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Calling v6 L76 or L77 fresh validation",
+        "reason": "The v6 cohort and its failures were inspected and repaired; later rows are exposed regression or latency diagnostics."
+      },
+      {
+        "item": "Putting targeted v6-like probes into the primary v7 first-run file",
+        "reason": "That would overfit the validation cohort to known guards and inflate the perceived generalization score."
+      },
+      {
+        "item": "Creating decoys in production corpus or chroma_db",
+        "reason": "It would contaminate future retrieval and make later first-run claims untrustworthy."
+      },
+      {
+        "item": "Using v5 as both first-run validation and design source after answer/failure inspection",
+        "reason": "Once inspected, v5 can remain useful as adversarial regression but not as fresh v7 validation."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Approve the 16 strict / 8 diagnostic split or adjust case count to match the next actual budget cap.",
+      "Decide whether v5 has any remaining uninspected first-run status in the current team state; if uncertain, keep it out of v7 strict validation.",
+      "Choose the deterministic project-selection seed and run the overlap linter before freezing any new v7 file.",
+      "Add pair-aware and diagnostic-only aggregation labels before reporting v7/v8 side by side."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-ChildItem -Force",
+      "Get-ChildItem -Recurse -File eval | Select-Object -ExpandProperty FullName",
+      "Get-ChildItem -Recurse -File eval\\parallel_runs | Select-Object -ExpandProperty FullName",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_150000_RFP-RAG-question-audit-improvement-loop\\worker_output_contract.md",
+      "Get-Content -Raw eval\\question_exposure_registry.json",
+      "Get-Content -Raw eval\\questions_v6_metamorphic_frozen_first_run.manifest.json",
+      "Get-Content -Raw eval\\questions_v5_adversarial_frozen_first_run.manifest.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l76_v6_exposed_regression_final_guard_pass_baseline_default\\worker_output.json",
+      "Get-Content -Raw eval\\questions_v5_adversarial_draft.json",
+      "Get-Content -Raw eval\\questions_v6_metamorphic_frozen_first_run.json",
+      "Get-Content -Raw eval\\questions_v4_frozen_first_run.json",
+      "Get-Content -Raw eval\\questions_v3_validation.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_03_merge_decisions.md",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v7_perturbation.contract.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v8_claim_audit.contract.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\ledger.json"
+    ],
+    "observed_results": [
+      "Exposure registry says v2/v3/v4/v6 are exposed or spent for strict validation; v6 frozen first run is now first_run_and_regression_only.",
+      "L76 reports v6 exposed regression EDD 97.13, but checkpoint decisions explicitly say not to promote L60/L64/L68/L73/L76 as fresh validation.",
+      "L77 is a latency/prompt diagnostic on the exposed v6 set and should not be treated as fresh quality evidence.",
+      "Existing v7/v8 contracts propose perturbation and claim-audit workflows; this l78 proposal narrows the next action to a fresh cohort split and exposure labeling strategy.",
+      "No question files, source files, scripts, experiment logs, task lists, summaries, or diary files were created or modified by this worker.",
+      "No external API spending occurred."
+    ]
+  },
+  "created_at": "2026-07-07T01:34:00+09:00"
+}

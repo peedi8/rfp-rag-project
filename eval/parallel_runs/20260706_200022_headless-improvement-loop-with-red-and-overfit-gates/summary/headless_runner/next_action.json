@@ -1,0 +1,6 @@
+{
+  "state": "pending_cost_gate",
+  "next_candidate": "Run blind judge calibration before trusting another near-ceiling judge score.",
+  "reason": "The next useful scored gate needs judge/API cost, but this manifest is no-api.",
+  "safe_no_api_followup": "Maintain gates, prepare manifests, update logs, or create a fresh question draft without scoring."
+}

@@ -1,0 +1,298 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "worker_d_report_update_plan",
+  "task_id": "report_update_plan",
+  "status": "proposal",
+  "summary": "Proposal-only update plan for the next latency loop report package. Keep the scoreboard strictly separate from diagnostic evidence: L37 remains the only strict validation row at EDD 86.25; L95 remains the best source-exposed diagnostic row at EDD 98.54; qv8 raw 95.81 and recomputed 97.81 are diagnostic-only measurement evidence, not scoreboard promotion.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\ledger.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\handoff\\handoff.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\checkpoint_01_inputs.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\checkpoint_02_worker_outputs.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\checkpoint_03_merge_decisions.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\checkpoint_04_smoke.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\analysis\\final_assets\\qv8_final_summary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\analysis\\final_assets\\final_metrics_summary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\업무일지.md"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "proposal_method": "static inspection of local run artifacts, diary text, and prior final asset summaries only",
+    "paid_api_calls_made": false
+  },
+  "protected_paths_seen": [
+    "I:\\0706\\rfp-rag-project\\업무일지.md",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\eval\\question_exposure_registry.*",
+    "I:\\0706\\rfp-rag-project\\src\\**",
+    "I:\\0706\\rfp-rag-project\\scripts\\**",
+    "I:\\0706\\rfp-rag-project\\config.py",
+    "I:\\0706\\rfp-rag-project\\chroma_db\\**",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\previous run folders"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\worker_outputs\\report_update_plan.contract.json",
+      "kind": "json",
+      "description": "required Worker D proposal contract for report, diary, and graph updates"
+    }
+  ],
+  "proposal": {
+    "before_after_table_fields": {
+      "table_id": "table_qv8_diagnostic_before_after",
+      "title": "qv8 raw vs recomputed diagnostic delta",
+      "purpose": "Show the measurement correction explicitly and keep the diagnostic-only status visible.",
+      "row_labels": [
+        "before_raw_qv8",
+        "after_recomputed_qv8"
+      ],
+      "columns": [
+        "row_label",
+        "run_label",
+        "run_mode",
+        "rank_scope",
+        "question_claim_use",
+        "question_exposure_status",
+        "edd_score",
+        "latency_avg_sec",
+        "retrieval_coverage_avg",
+        "mrr",
+        "groundedness_avg",
+        "relevance_avg",
+        "abstention_accuracy",
+        "false_abstention_rate",
+        "empty_answer_rate",
+        "observed_cost_usd",
+        "changed_case_id",
+        "change_reason",
+        "report_label"
+      ],
+      "before_row": {
+        "row_label": "before_raw_qv8",
+        "run_label": "l98_qv8_semi_fresh_diagnostic_baseline_default",
+        "run_mode": "scored",
+        "rank_scope": "diagnostic_only",
+        "question_claim_use": "diagnostic_only",
+        "question_exposure_status": "semi_fresh_deadline_diagnostic",
+        "edd_score": 95.81,
+        "latency_avg_sec": 17.645,
+        "retrieval_coverage_avg": 1.0,
+        "mrr": 1.0,
+        "groundedness_avg": 5.0,
+        "relevance_avg": 5.0,
+        "abstention_accuracy": 0.8,
+        "false_abstention_rate": 0.0,
+        "empty_answer_rate": 0.0,
+        "observed_cost_usd": 0.126294,
+        "changed_case_id": "",
+        "change_reason": "raw deadline diagnostic with one abstention false negative on q20260707_a12_seoul_digital_sex_crime_sensitive_story",
+        "report_label": "diagnostic_only_raw"
+      },
+      "after_row": {
+        "row_label": "after_recomputed_qv8",
+        "run_label": "l99_qv8_semi_fresh_diagnostic_recompute",
+        "run_mode": "measurement_correction",
+        "rank_scope": "diagnostic_only",
+        "question_claim_use": "diagnostic_only",
+        "question_exposure_status": "semi_fresh_deadline_diagnostic",
+        "edd_score": 97.81,
+        "latency_avg_sec": 17.645,
+        "retrieval_coverage_avg": 1.0,
+        "mrr": 1.0,
+        "groundedness_avg": 5.0,
+        "relevance_avg": 5.0,
+        "abstention_accuracy": 1.0,
+        "false_abstention_rate": 0.0,
+        "empty_answer_rate": 0.0,
+        "observed_cost_usd": 0.126294,
+        "changed_case_id": "q20260707_a12_seoul_digital_sex_crime_sensitive_story",
+        "change_reason": "narrow evaluator repair for sensitive victim-story refusal, not a model improvement",
+        "report_label": "diagnostic_only_recomputed"
+      }
+    },
+    "accepted_fields_or_changes": [
+      {
+        "spec_id": "report_section_scoreboard_vs_diagnostic_labels",
+        "kind": "table_spec",
+        "title": "Scoreboard vs diagnostic labels",
+        "purpose": "Keep the strict scoreboard and diagnostic evidence visually and textually separate in the final report.",
+        "required_columns": [
+          "label_class",
+          "loop_id",
+          "run_label",
+          "edd_score",
+          "latency_avg_sec",
+          "rank_scope",
+          "question_claim_use",
+          "question_exposure_status",
+          "why_this_row_is_not_comparable"
+        ],
+        "rows_to_include": [
+          {
+            "label_class": "strict_scoreboard",
+            "loop_id": "L37",
+            "edd_score": 86.25,
+            "latency_avg_sec": null,
+            "rank_scope": "scoreboard",
+            "question_claim_use": "strict_validation",
+            "note": "Only first-run held-out evidence."
+          },
+          {
+            "label_class": "source_exposed_diagnostic",
+            "loop_id": "L95",
+            "edd_score": 98.54,
+            "latency_avg_sec": 14.44,
+            "rank_scope": "diagnostic_only",
+            "question_claim_use": "diagnostic_only",
+            "note": "Best source-exposed diagnostic row, not fresh validation."
+          },
+          {
+            "label_class": "deadline_diagnostic_raw",
+            "loop_id": "L98",
+            "edd_score": 95.81,
+            "latency_avg_sec": 17.645,
+            "rank_scope": "diagnostic_only",
+            "question_claim_use": "diagnostic_only",
+            "note": "Raw qv8 diagnostic evidence."
+          },
+          {
+            "label_class": "deadline_diagnostic_recomputed",
+            "loop_id": "L99",
+            "edd_score": 97.81,
+            "latency_avg_sec": 17.645,
+            "rank_scope": "diagnostic_only",
+            "question_claim_use": "diagnostic_only",
+            "note": "Measurement repair only; do not present as model gain."
+          }
+        ],
+        "caption_note": "The table should say, plainly, that qv8 is diagnostic-only and that L37 remains the only strict validation row."
+      },
+      {
+        "spec_id": "fig_01_qv8_case_latency_overlay",
+        "kind": "graph_spec",
+        "title": "qv8 case latency and abstention outcome",
+        "recommended_chart_type": "horizontal bar chart with generation overlay and abstention markers",
+        "purpose": "Show the tail-latency pattern that motivated the next loop and preserve the one-case measurement correction context.",
+        "source_files": [
+          "analysis\\final_assets\\qv8_final_summary.json"
+        ],
+        "required_columns": [
+          "case_id",
+          "latency_sec",
+          "generation_sec",
+          "abstention",
+          "expect_abstention",
+          "status",
+          "tail_flag"
+        ],
+        "row_rules": [
+          "highlight q20260707_a01 and q20260707_a02 as the slowest tails",
+          "highlight q20260707_a12 as the only changed abstention case between raw and recomputed runs",
+          "show abstention expectation and observed outcome together so the reader can see the measurement fix"
+        ],
+        "caption_note": "This is diagnostic evidence only. It is a latency and evaluator-granularity story, not a claim that qv8 is a fresh scored cohort."
+      },
+      {
+        "spec_id": "fig_02_scoreboard_vs_diagnostic_comparison",
+        "kind": "graph_spec",
+        "title": "Strict scoreboard vs diagnostic comparison",
+        "recommended_chart_type": "small bar comparison with explicit label bands",
+        "purpose": "Make the label boundary impossible to miss: strict scoreboard, source-exposed diagnostic, and deadline diagnostic must stay separate.",
+        "source_files": [
+          "eval\\experiment_log.md",
+          "업무일지.md",
+          "analysis\\final_assets\\final_metrics_summary.json"
+        ],
+        "required_columns": [
+          "label_class",
+          "loop_id",
+          "edd_score",
+          "latency_avg_sec",
+          "rank_scope",
+          "why_separated"
+        ],
+        "bars_to_include": [
+          {
+            "label_class": "strict_scoreboard",
+            "loop_id": "L37",
+            "edd_score": 86.25
+          },
+          {
+            "label_class": "best_source_exposed_diagnostic",
+            "loop_id": "L95",
+            "edd_score": 98.54
+          },
+          {
+            "label_class": "deadline_diagnostic_raw",
+            "loop_id": "L98",
+            "edd_score": 95.81
+          },
+          {
+            "label_class": "deadline_diagnostic_recomputed",
+            "loop_id": "L99",
+            "edd_score": 97.81
+          }
+        ],
+        "caption_note": "Do not sort these as a single performance ladder. The visual should communicate label class first and score second."
+      },
+      {
+        "spec_id": "report_diary_cause_result_insight_next",
+        "kind": "diary_spec",
+        "title": "Diary update with cause-result-insight-next structure",
+        "purpose": "Give the next latency loop a crisp, auditable one-paragraph diary entry that records the measurement story without overclaiming.",
+        "cause": "qv8 was built as a semi-fresh diagnostic run after prior source-exposed work, and the first pass exposed a sensitive-story abstention false negative plus tail latency.",
+        "result": "Raw qv8 scored EDD 95.81 with abstention accuracy 0.8 at 17.645s, then the evaluator repair raised recomputed EDD to 97.81 and abstention accuracy to 1.0 without changing latency.",
+        "insight": "The gap was not a model failure; it was a measurement-granularity failure around sensitive victim-story refusal. Tail latency still matters even when coverage, MRR, and judge scores look perfect.",
+        "next": "Keep qv8 diagnostic-only, preserve L37 as the only strict scoreboard row, and use the next loop to decompose latency tails and design field-level scoring for mixed public/private information questions."
+      }
+    ],
+    "caveats": [
+      "qv8 raw 95.81 and recomputed 97.81 are both diagnostic-only; neither should be described as strict validation.",
+      "L37 remains the only strict scoreboard row at EDD 86.25.",
+      "L95 remains the strongest source-exposed diagnostic row at EDD 98.54, but it is still not fresh validation.",
+      "The qv8 recompute is a measurement correction on q20260707_a12_seoul_digital_sex_crime_sensitive_story, not a model improvement.",
+      "Averages alone hide the tail: the report should still call out the 31s, 27s, 25s, and 20s-ish qv8 case latencies."
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Merge qv8 raw or recomputed rows into the scoreboard table",
+        "reason": "That would blur diagnostic-only evidence with strict validation and contradict the current label policy."
+      },
+      {
+        "item": "Present L98 and L99 as if the model improved between runs",
+        "reason": "The changed case is an evaluator repair; the latency and retrieval behavior did not change."
+      },
+      {
+        "item": "Show one EDD ladder without explicit label classes",
+        "reason": "Readers would likely read qv8 and L95 as comparable promoted scores, which they are not."
+      },
+      {
+        "item": "Drop tail latency or case-level notes because the average looks fine",
+        "reason": "The qv8 run exists because the tail and the field-level abstention bug mattered."
+      }
+    ],
+    "validation": {
+      "commands_run": [
+        "Get-ChildItem -Path I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep -Recurse -File",
+        "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\ledger.json",
+        "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\handoff\\handoff.json",
+        "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\analysis\\final_assets\\qv8_final_summary.json",
+        "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\analysis\\final_assets\\final_metrics_summary.json",
+        "rg -n \"strict validation|diagnostic-only|EDD 86.25|95.81|97.81|98.54|qv8|L37|L95\" I:\\0706\\rfp-rag-project\\eval\\experiment_log.md I:\\0706\\rfp-rag-project\\업무일지.md"
+      ],
+      "observed_results": [
+        "Current run ledger marks report_update_plan as pending and policy as proposal_only_no_direct_merge.",
+        "qv8 raw is diagnostic_only with EDD 95.81, latency 17.645s, abstention accuracy 0.8, and observed cost 0.126294.",
+        "qv8 recomputed is measurement_correction with EDD 97.81 and abstention accuracy 1.0; only q20260707_a12 changed.",
+        "Repo diary and experiment log explicitly preserve L37 as strict scoreboard 86.25, L95 as strongest source-exposed diagnostic 98.54, and qv8 as diagnostic-only.",
+        "No protected paths were modified."
+      ]
+    }
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "created_at": "2026-07-07T12:45:42+09:00"
+}

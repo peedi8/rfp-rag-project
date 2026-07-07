@@ -1,0 +1,293 @@
+{
+  "schema": "rfp_rag_headless_gate_report.v1",
+  "created_at": "2026-07-06T20:16:01",
+  "loop_points_path": "eval\\parallel_runs\\20260706_1825_timeboxed-red-loop-v3-validation\\loop_points.csv",
+  "row_count": 19,
+  "classifications": [
+    {
+      "loop_point": "L0",
+      "label": "v3_first_validation_top8_raw",
+      "state": "first_validation_evidence",
+      "edd": 89.69,
+      "promotion_allowed": true,
+      "flags": [
+        "metric_saturation_risk",
+        "latency_risk"
+      ],
+      "decision": "keep_as_first_evidence"
+    },
+    {
+      "loop_point": "L1",
+      "label": "v3_top8_same_answers_recomputed",
+      "state": "measurement_correction",
+      "edd": 96.36,
+      "promotion_allowed": false,
+      "flags": [
+        "not_model_improvement",
+        "near_ceiling_score",
+        "metric_saturation_risk",
+        "latency_risk"
+      ],
+      "decision": "current_best_quality_point"
+    },
+    {
+      "loop_point": "L2",
+      "label": "v3_top5_speed_probe_raw",
+      "state": "scored_evidence",
+      "edd": 91.41,
+      "promotion_allowed": false,
+      "flags": [
+        "targeted_or_reused_case",
+        "latency_risk"
+      ],
+      "decision": "reject_global_default"
+    },
+    {
+      "loop_point": "L3",
+      "label": "v3_top5_same_answers_recomputed",
+      "state": "measurement_correction",
+      "edd": 94.74,
+      "promotion_allowed": false,
+      "flags": [
+        "not_model_improvement",
+        "latency_risk"
+      ],
+      "decision": "reject_global_default"
+    },
+    {
+      "loop_point": "L4",
+      "label": "qv3_010_admin_alias_filter_fix",
+      "state": "diagnostic_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [],
+      "decision": "keep_for_next_probe"
+    },
+    {
+      "loop_point": "L5",
+      "label": "short_alias_false_positive_guard",
+      "state": "diagnostic_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [],
+      "decision": "keep_patch"
+    },
+    {
+      "loop_point": "L6",
+      "label": "qv3_010_filtered_source_evidence_probe",
+      "state": "diagnostic_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [
+        "targeted_or_reused_case"
+      ],
+      "decision": "keep_for_targeted_rerun"
+    },
+    {
+      "loop_point": "L7",
+      "label": "blind_judge_calibration_pack",
+      "state": "diagnostic_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [],
+      "decision": "keep_for_future_judge_run"
+    },
+    {
+      "loop_point": "L8",
+      "label": "blind_judge_calibration_runner_no_api",
+      "state": "diagnostic_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [],
+      "decision": "ready_for_optional_judge_run"
+    },
+    {
+      "loop_point": "L9",
+      "label": "qv3_010_top5_targeted_answer_probe",
+      "state": "diagnostic_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [
+        "targeted_or_reused_case",
+        "no_judge_not_performance"
+      ],
+      "decision": "reject_top5_for_pg_detail"
+    },
+    {
+      "loop_point": "L10",
+      "label": "qv3_010_top8_targeted_answer_probe",
+      "state": "diagnostic_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [
+        "targeted_or_reused_case",
+        "no_judge_not_performance"
+      ],
+      "decision": "prefer_top8_for_qv3_010"
+    },
+    {
+      "loop_point": "L11",
+      "label": "adaptive_top_k_facility_payment_guard",
+      "state": "diagnostic_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [],
+      "decision": "keep_for_future_adaptive_eval"
+    },
+    {
+      "loop_point": "L12",
+      "label": "representative_answer_quality_review_matrix",
+      "state": "qualitative_evidence",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [],
+      "decision": "keep_for_report_and_next_prompt_loop"
+    },
+    {
+      "loop_point": "L13",
+      "label": "report_ready_prompt_candidate",
+      "state": "candidate_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [
+        "needs_scored_validation"
+      ],
+      "decision": "keep_for_future_scored_prompt_sweep"
+    },
+    {
+      "loop_point": "L14",
+      "label": "headless_red_overfit_gate_audit",
+      "state": "diagnostic_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [],
+      "decision": "keep_as_headless_gate"
+    },
+    {
+      "loop_point": "L15",
+      "label": "headless_runner_no_api_self_check",
+      "state": "diagnostic_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [],
+      "decision": "keep_runner_pending_cost_gate"
+    },
+    {
+      "loop_point": "L16",
+      "label": "fresh_v4_validation_draft_noapi",
+      "state": "candidate_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [
+        "needs_scored_validation"
+      ],
+      "decision": "keep_as_unscored_validation_candidate"
+    },
+    {
+      "loop_point": "L17",
+      "label": "question_exposure_registry_noapi",
+      "state": "diagnostic_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [],
+      "decision": "keep_for_overfit_gate"
+    },
+    {
+      "loop_point": "L18",
+      "label": "registry_connected_gate_classifier_fix",
+      "state": "diagnostic_only",
+      "edd": null,
+      "promotion_allowed": false,
+      "flags": [],
+      "decision": "keep_gate_fix"
+    }
+  ],
+  "summary": {
+    "promotable_count": 1,
+    "diagnostic_or_qualitative_count": 13,
+    "candidate_only_count": 2,
+    "measurement_correction_count": 2,
+    "best_promotable": {
+      "loop_point": "L0",
+      "label": "v3_first_validation_top8_raw",
+      "state": "first_validation_evidence",
+      "edd": 89.69,
+      "promotion_allowed": true,
+      "flags": [
+        "metric_saturation_risk",
+        "latency_risk"
+      ],
+      "decision": "keep_as_first_evidence"
+    },
+    "best_corrected_or_measurement": {
+      "loop_point": "L1",
+      "label": "v3_top8_same_answers_recomputed",
+      "state": "measurement_correction",
+      "edd": 96.36,
+      "promotion_allowed": false,
+      "flags": [
+        "not_model_improvement",
+        "near_ceiling_score",
+        "metric_saturation_risk",
+        "latency_risk"
+      ],
+      "decision": "current_best_quality_point"
+    },
+    "human_quality_avg": 3.62,
+    "evidence_safety_score_avg": 3.47,
+    "red_flags": [
+      "latency_risk",
+      "metric_saturation_risk",
+      "near_ceiling_score",
+      "needs_scored_validation",
+      "no_judge_not_performance",
+      "not_model_improvement",
+      "targeted_or_reused_case",
+      "human_quality_gap",
+      "evidence_safety_gap"
+    ],
+    "exposure_summary": {
+      "entry_count": 12,
+      "strict_candidate_files": [
+        "questions_v4_draft_noapi.json",
+        "questions_v4_frozen_first_run.json"
+      ],
+      "spent_or_diagnostic_files": [
+        "questions_qv3_010_targeted.json",
+        "questions_v2.json",
+        "questions_v2_compare_probe.json",
+        "questions_v2_groundedness_probe.json",
+        "questions_v2_holdout.json",
+        "questions_v2_holdout_failure_probe.json"
+      ]
+    }
+  },
+  "gate_rules": {
+    "promote": "Only first-run or scored validation rows with judge results and no targeted/reuse flags.",
+    "hold": "Near-ceiling or measurement-corrected rows that need calibration/new validation.",
+    "diagnostic_only": "Local checks, no-judge answer probes, source probes, static checks, and qualitative reviews.",
+    "candidate_only": "Code/prompt/routing candidates that passed local checks but lack scored eval evidence.",
+    "overfit_risk": "Rows produced after inspecting failures on the same cohort, same-answer recomputations, or targeted retries.",
+    "needs_new_validation": "Any final/generalization claim after using the current cohort to guide fixes."
+  },
+  "recommendations": [
+    {
+      "priority": 1,
+      "action": "Run blind judge calibration before trusting another near-ceiling judge score.",
+      "reason": "Existing loop points include near-ceiling automated scores plus planted pass/fail calibration artifacts.",
+      "cost_mode": "optional_paid_judge"
+    },
+    {
+      "priority": 2,
+      "action": "Run a small scored prompt_sweep comparing prompt_report_ready against existing prompt variants.",
+      "reason": "report_ready is candidate-only and must not be promoted from static checks.",
+      "cost_mode": "paid_judge_small"
+    },
+    {
+      "priority": 3,
+      "action": "Create a fresh validation cohort before claiming generalization beyond v3.",
+      "reason": "Existing v2 holdout/v3 sets have already informed targeted fixes and diagnostics.",
+      "cost_mode": "no_api_question_generation_then_paid_eval"
+    }
+  ]
+}

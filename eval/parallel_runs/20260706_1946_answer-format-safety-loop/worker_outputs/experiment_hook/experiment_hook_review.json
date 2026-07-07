@@ -1,0 +1,59 @@
+{
+  "schema": "experiment_hook_worker.v1",
+  "recommendation": "Add a new answer-format prompt candidate through the existing prompt_variant hook, but classify it as proposal-only until a later scored run. The current path is already suitable: scripts/run_experiment_worker.py prompt_sweep entries pass prompt_variant params into RAGPipeline, src/rag.py forwards prompt_variant to generate_answer, and src/generator.py resolves variants through PROMPT_VARIANTS/get_system_prompt. The lowest-risk experiment hook is therefore a new generator prompt constant plus a PROMPT_VARIANTS key, and a new prompt_sweep suite row such as prompt_answer_format_safety. Do not edit defaults or claim score improvement from no-api validation.",
+  "suggested_suite_entries": [
+    {
+      "suite": "prompt_sweep",
+      "experiment": "prompt_answer_format_safety",
+      "params": {
+        "use_mmr": true,
+        "top_k": 8,
+        "mmr_lambda": 0.5,
+        "fetch_k": 20,
+        "auto_filter": true,
+        "rewrite_query": true,
+        "prompt_variant": "answer_format_safety"
+      },
+      "purpose": "Compare an answer-format safety prompt against default, strict_evidence, and concise_verified under the same control retrieval settings.",
+      "adoption_status": "candidate_only_until_scored"
+    },
+    {
+      "suite": "baseline_default",
+      "experiment": "baseline_default",
+      "params": {
+        "use_mmr": true,
+        "top_k": 8,
+        "mmr_lambda": 0.5,
+        "fetch_k": 20,
+        "auto_filter": true,
+        "rewrite_query": true
+      },
+      "purpose": "Keep the existing baseline unchanged so a later scored run can separate prompt-only effects from retrieval changes.",
+      "adoption_status": "control"
+    }
+  ],
+  "no_api_validation_checks": [
+    "Static import/compile check for src/generator.py and src/rag.py after adding the prompt constant and PROMPT_VARIANTS key.",
+    "No-API unit-style check that get_system_prompt('answer_format_safety') returns the new prompt and get_system_prompt('unknown') still falls back to SYSTEM_PROMPT.",
+    "No-API monkeypatch check of src.generator._client.chat.completions.create to assert generate_answer(..., prompt_variant='answer_format_safety') places the new system prompt in messages[0] without making a network call.",
+    "No-API monkeypatch check of src.rag.generate_answer/retrieve/rewrite_query to assert RAGPipeline(params={'prompt_variant':'answer_format_safety'}).ask(...) forwards prompt_variant exactly once and preserves the existing result shape.",
+    "Dry-run run_experiment_worker invocation for prompt_sweep with --dry-run --max-experiments limited after the suite row is added, verifying results.csv/details.json/worker_output.json serialize the new experiment row without touching final logs.",
+    "Confirm no default-control mutation: DEFAULT_PARAMS prompt_variant remains default, CONTROL values remain unchanged, and baseline_default emits no prompt_variant override."
+  ],
+  "future_scored_eval_plan": [
+    "Run the updated prompt_sweep on the current tune question set with judge enabled and the same retrieval controls as the existing prompt candidates.",
+    "Treat the new prompt candidate as adopted only if EDD improves or is statistically tied while answer quality review shows better directness, citation clarity, source-scope discipline, or concision.",
+    "Run the candidate on holdout/validation separately from tune; do not reuse targeted retry scores as final generalization evidence.",
+    "Review case-level failures before promotion, especially source-scope bleed, false abstention, missed abstention, overlong answers, unsupported details, and answers that hide missing fields behind vague phrasing.",
+    "If latency changes, report it as observed secondary behavior only; the prompt hook should not be bundled with adaptive_top_k or retrieval parameter changes in the same scored claim.",
+    "Record first_validation_score separately from measurement corrections or targeted reruns, following the loop_points.csv distinction between first evidence and recomputation/diagnostic points."
+  ],
+  "risks": [
+    "A format-focused prompt can improve apparent readability while lowering evidence fit if it encourages summarization beyond retrieved chunks.",
+    "A stricter missing-field instruction can increase false abstention on answerable cases unless evaluated case by case.",
+    "Adding the suite row without a no-api dry run could break worker CSV/JSON output shape even before any model call.",
+    "Changing SYSTEM_PROMPT or DEFAULT_PARAMS would confound prompt-candidate scoring with baseline behavior.",
+    "Claiming improvement from no-api checks, dry-run rows, or targeted examples would repeat the documented risk of mixing diagnostics with scored validation.",
+    "The later scored run may be affected by judge calibration issues already called out in next_improvement_tasks.md, so blind calibration or stricter unsupported-audit review should remain part of promotion criteria."
+  ]
+}

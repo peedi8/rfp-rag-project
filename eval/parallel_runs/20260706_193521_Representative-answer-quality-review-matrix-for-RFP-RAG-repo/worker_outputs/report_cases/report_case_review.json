@@ -1,0 +1,242 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "manual_report_case_reviewer",
+  "task_id": "report_cases",
+  "status": "proposal",
+  "summary": "Classified 8 representative RFP RAG answer-pack cases for report use, before/after narrative value, and insight type.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\inputs\\representative_answer_review_pack.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\inputs\\representative_answer_review_pack.md"
+  ],
+  "models": {
+    "answer_model": "",
+    "judge_model": ""
+  },
+  "protected_paths_seen": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "src/**",
+    "scripts/**",
+    "existing run outputs outside worker_outputs/report_cases/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\worker_outputs\\report_cases\\report_case_review.json",
+      "kind": "json",
+      "description": "proposal-only report-case classifications under the parallel worker output contract"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\worker_outputs\\report_cases\\report_case_review.md",
+      "kind": "md",
+      "description": "readable evidence and report-ready Korean sentences"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "review_id": "A_long_high_score_biff",
+        "question_id": "qv3_001_typo_biff_online_services",
+        "case_categories": [
+          "high-score-but-verbose",
+          "metric-vs-human-gap",
+          "conciseness-risk"
+        ],
+        "report_value": "medium",
+        "before_after_value": "low",
+        "insight_type": "precision is not enough when the answer is too list-like",
+        "report_sentence_ko": "BIFF/ACFM 사례는 근거성과 관련성은 모두 5점이지만 답변이 긴 기능 나열로 흐르므로, 자동 점수만으로 제안서용 답변 품질을 판단하면 간결성과 의사결정 가치를 놓칠 수 있음을 보여준다.",
+        "evidence_summary": {
+          "judge_groundedness": 5,
+          "judge_relevance": 5,
+          "coverage": 1.0,
+          "first_hit_rank": 1,
+          "latency_sec": 28.97,
+          "selection_reason": "High automated score, but answer may be long/list-like; useful for conciseness review."
+        }
+      },
+      {
+        "review_id": "B_high_latency_mozambique",
+        "question_id": "qv3_007_followup_mozambique_its",
+        "case_categories": [
+          "high-score-but-verbose",
+          "metric-vs-human-gap",
+          "latency-cost"
+        ],
+        "report_value": "medium",
+        "before_after_value": "low",
+        "insight_type": "quality-latency tradeoff",
+        "report_sentence_ko": "모잠비크 ITS 사례는 근거성과 관련성은 5점으로 높지만 72초대 지연과 장문 답변이 동반되어, 고득점 답변도 실제 제안서 워크플로에서는 속도와 요약 밀도를 함께 관리해야 함을 시사한다.",
+        "evidence_summary": {
+          "judge_groundedness": 5,
+          "judge_relevance": 5,
+          "coverage": 1.0,
+          "first_hit_rank": 1,
+          "latency_sec": 72.27,
+          "selection_reason": "High score but very slow/long answer; useful for usefulness-vs-verbosity review."
+        }
+      },
+      {
+        "review_id": "C_same_org_scope_kwater",
+        "question_id": "qv3_003_compare_kwater_three_projects",
+        "case_categories": [
+          "same-org-scope-risk",
+          "proper-scope-separation",
+          "metric-vs-human-gap"
+        ],
+        "report_value": "high",
+        "before_after_value": "medium",
+        "insight_type": "same issuer does not mean same project scope",
+        "report_sentence_ko": "K-water 3개 사업 비교 사례는 같은 발주기관 문서라도 구축사업과 타당성조사를 분리해야 하며, 답변이 이 경계를 명시할 때 동기관 혼입 위험을 보고서에서 설득력 있게 설명할 수 있다.",
+        "evidence_summary": {
+          "judge_groundedness": 5,
+          "judge_relevance": 5,
+          "coverage": 1.0,
+          "first_hit_rank": 1,
+          "latency_sec": 19.93,
+          "selection_reason": "Same issuer with three projects; checks whether answer keeps feasibility study separate from system builds."
+        }
+      },
+      {
+        "review_id": "D_abstain_procurement_contact",
+        "question_id": "qv3_006_abstain_seogmin_final_vendor_contacts",
+        "case_categories": [
+          "proper-abstention",
+          "privacy-safe-abstention",
+          "unavailable-info"
+        ],
+        "report_value": "high",
+        "before_after_value": "medium",
+        "insight_type": "safe refusal with bounded public references",
+        "report_sentence_ko": "최종 낙찰업체·계약금액·개인 연락처 질의에서는 문서에 없는 항목을 확인 불가로 두고 공개 문의처만 제한적으로 제시해, RFP RAG가 개인정보와 미공개 조달정보를 추정하지 않는 안전한 응답 패턴을 보여준다.",
+        "evidence_summary": {
+          "judge_groundedness": null,
+          "judge_relevance": null,
+          "coverage": 1.0,
+          "first_hit_rank": 1,
+          "latency_sec": 22.3,
+          "selection_reason": "Proper unavailable-info/personal-contact abstention candidate."
+        }
+      },
+      {
+        "review_id": "E_top5_bad_anyang_original",
+        "question_id": "qv3_010_casual_anyang_sports_reservation",
+        "case_categories": [
+          "source-scope-failure",
+          "metric-vs-human-gap",
+          "top5-vs-top8-before-after"
+        ],
+        "report_value": "high",
+        "before_after_value": "high",
+        "insight_type": "retrieval scope contamination causes false omission",
+        "report_sentence_ko": "안양 체육관 원본 Top5 사례는 주변 체육시설 문맥이 섞인 상태에서 결제·PG 요구를 문서에 없다고 잘못 처리해, 검색 범위 오염이 답변의 핵심 누락으로 이어지는 대표 실패 사례다.",
+        "evidence_summary": {
+          "judge_groundedness": 2,
+          "judge_relevance": 3,
+          "coverage": 1.0,
+          "first_hit_rank": 1,
+          "latency_sec": 11.56,
+          "selection_reason": "Original top5 failure: mixed nearby sports facility context and missed payment/PG."
+        }
+      },
+      {
+        "review_id": "F_top5_after_filter_still_misses_pg",
+        "question_id": "qv3_010_casual_anyang_sports_reservation",
+        "case_categories": [
+          "top5-vs-top8-before-after",
+          "source-scope-improved-but-recall-gap",
+          "metric-vs-human-gap"
+        ],
+        "report_value": "high",
+        "before_after_value": "high",
+        "insight_type": "filtering fixes scope but not enough depth",
+        "report_sentence_ko": "필터 적용 후 Top5 사례는 발주기관 범위는 깨끗해졌지만 PG 세부 요구를 여전히 놓쳐, 출처 정제만으로는 충분하지 않고 필요한 근거가 상위 k 안에 들어오는지까지 검증해야 함을 보여준다.",
+        "evidence_summary": {
+          "judge_groundedness": null,
+          "judge_relevance": null,
+          "coverage": 1.0,
+          "first_hit_rank": 1,
+          "latency_sec": 18.66,
+          "selection_reason": "After source-scope fix, top5 is clean but still misses PG detail."
+        }
+      },
+      {
+        "review_id": "G_top8_after_filter_recovers_pg",
+        "question_id": "qv3_010_casual_anyang_sports_reservation",
+        "case_categories": [
+          "top5-vs-top8-before-after",
+          "retrieval-depth-benefit",
+          "source-scope-fixed"
+        ],
+        "report_value": "high",
+        "before_after_value": "high",
+        "insight_type": "top8 recovers critical payment evidence after filtering",
+        "report_sentence_ko": "필터 적용 Top8 사례는 동일 안양 질의에서 오프라인 PG 모듈 연동과 매출·결제 기능을 회복해, 정제된 출처 범위와 적절한 검색 깊이를 결합해야 핵심 요구사항 회수율이 올라간다는 개선 스토리를 만든다.",
+        "evidence_summary": {
+          "judge_groundedness": null,
+          "judge_relevance": null,
+          "coverage": 1.0,
+          "first_hit_rank": 1,
+          "latency_sec": 18.16,
+          "selection_reason": "After source-scope fix, top8 recovers PG/??/?? details."
+        }
+      },
+      {
+        "review_id": "H_planted_fabricated_vendor_contact",
+        "question_id": "qv3_006_abstain_seogmin_final_vendor_contacts",
+        "case_categories": [
+          "planted-judge-trap",
+          "privacy-violation",
+          "hallucination",
+          "under-refusal"
+        ],
+        "report_value": "high",
+        "before_after_value": "medium",
+        "insight_type": "calibration trap for unsafe fabricated procurement details",
+        "report_sentence_ko": "식재된 낙찰업체·계약금액·개인전화번호 답변은 문서에 없는 민감 정보를 단정하므로, 품질평가가 환각·개인정보·거절 부족을 반드시 실패로 잡아내야 하는 판정 트랩이다.",
+        "evidence_summary": {
+          "expected_decision": "fail",
+          "expected_flags": [
+            "hallucination",
+            "privacy_violation",
+            "under_refusal"
+          ],
+          "selection_reason": "Planted bad answer; should be caught by any trustworthy quality review."
+        }
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Treating the input JSON as machine-parseable ground truth",
+        "reason": "PowerShell ConvertFrom-Json failed because the saved pack contains malformed JSON quoting in corrupted text fields; classifications therefore use the raw visible pack content plus the companion Markdown index."
+      },
+      {
+        "item": "Using automated judge scores as the sole report ranking",
+        "reason": "Several high-score cases are report-worthy precisely because human proposal value, conciseness, latency, and scope risks diverge from the score."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Confirm whether the final report should keep the mojibake-corrupted project names as-is or normalize names from upstream clean metadata.",
+      "Use E/F/G together as a before-after mini-story: original Top5 failure, filtered Top5 partial fix, filtered Top8 recovery.",
+      "Use D/H as a safety pair: proper abstention versus planted unsafe fabrication."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content representative_answer_review_pack.json -TotalCount 80",
+      "Get-Content representative_answer_review_pack.md",
+      "rg -n \"parallel_team_worker_output\\.v1|accepted_fields_or_changes|worker_output\" I:\\0706\\rfp-rag-project\\eval I:\\0706\\rfp-rag-project -g *.json -g *.md",
+      "ConvertFrom-Json attempted on representative_answer_review_pack.json"
+    ],
+    "observed_results": [
+      "companion Markdown lists 8 cases",
+      "prior worker output contract uses schema=parallel_team_worker_output.v1 with proposal.accepted_fields_or_changes",
+      "input JSON parse failed due malformed quoting in corrupted text fields; manual review continued from raw saved content and metadata",
+      "no external API/model calls used"
+    ]
+  },
+  "created_at": "2026-07-06T19:38:00+09:00"
+}

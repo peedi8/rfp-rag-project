@@ -1,0 +1,127 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-07T13:47:26",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "Two-branch eval: fresh mini-set first-run and L112 latency profiling under budget",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr",
+  "cpu_percent_at_start": 4.0,
+  "recommended_workers": 4,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "final target index.html",
+    "renderer source files",
+    "prepared payload JSON",
+    "option consumer payload JSON",
+    "stage slot pack candidate files"
+  ],
+  "tasks": [
+    {
+      "task_id": "fresh_question_design",
+      "description": "propose unused-project mini-set without reading answers",
+      "status": "completed",
+      "worker_id": "019f3ae7-4ffd-7ee0-ab21-6dbe0b50a53a",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr\\worker_outputs\\fresh_question_design_contract.json",
+      "merge_decision": "accepted_with_modification_diagnostic_only"
+    },
+    {
+      "task_id": "fresh_red_gate",
+      "description": "audit exposure labels and contamination risks",
+      "status": "completed",
+      "worker_id": "019f3ae7-880e-7ff0-8f42-824a92f257ea",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr\\worker_outputs\\fresh_red_gate_contract.json",
+      "merge_decision": "accepted"
+    },
+    {
+      "task_id": "latency_profile",
+      "description": "design same-cohort top_k latency-only profiling",
+      "status": "completed",
+      "worker_id": "019f3ae7-c220-7560-9af0-3bfaa9cc5323",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr\\worker_outputs\\latency_profile_contract.json",
+      "merge_decision": "accepted_no_latency_candidate_promoted"
+    },
+    {
+      "task_id": "report_update",
+      "description": "prepare cause-result-next-basis record plan",
+      "status": "completed",
+      "worker_id": "019f3ae7-f9c8-7e92-afc3-4ef9fef0071d",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr\\worker_outputs\\report_update_contract.json",
+      "merge_decision": "accepted"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr\\checkpoint_01_inputs.md",
+    "worker_outputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr\\checkpoint_02_worker_outputs.md",
+    "merge_decisions": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr\\checkpoint_03_merge_decisions.md",
+    "smoke": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr\\checkpoint_04_smoke.md"
+  },
+  "events": [
+    {
+      "ts": "2026-07-07T13:47:26",
+      "event": "scaffold_created",
+      "recommended_workers": 4,
+      "cpu_percent": 4.0
+    },
+    {
+      "ts": "2026-07-07T13:48:10",
+      "event": "workers_assigned",
+      "worker_count": 4,
+      "tasks": [
+        "fresh_question_design",
+        "fresh_red_gate",
+        "latency_profile",
+        "report_update"
+      ]
+    },
+    {
+      "ts": "2026-07-07T13:53:00",
+      "event": "branch_b_l113_completed",
+      "label": "same-cohort latency-only diagnostic",
+      "baseline_l112_latency_sec": 7.184,
+      "topk5_latency_sec": 8.598,
+      "topk8_latency_sec": 8.369,
+      "topk12_latency_sec": 14.89,
+      "decision": "keep_l112_top8; no L113 candidate promoted"
+    },
+    {
+      "ts": "2026-07-07T13:56:00",
+      "event": "branch_a_l114_completed",
+      "label": "v9 source-inspected first execution diagnostic",
+      "edd": 93.42,
+      "abstention_accuracy": 0.5,
+      "latency_avg_sec": 14.934,
+      "cost_usd": 0.06737,
+      "decision": "record raw; inspect abstention detector miss"
+    },
+    {
+      "ts": "2026-07-07T13:58:00",
+      "event": "l115_measurement_correction_completed",
+      "label": "saved-answer measurement correction",
+      "edd": 98.42,
+      "abstention_accuracy": 1.0,
+      "changed_case": "q20260707_v9_005_childcare_sensitive_case_fabrication",
+      "decision": "record as measurement correction, not fresh model improvement"
+    },
+    {
+      "ts": "2026-07-07T14:03:20",
+      "event": "merge_completed",
+      "accepted_tasks": [
+        "fresh_question_design",
+        "fresh_red_gate",
+        "latency_profile",
+        "report_update"
+      ],
+      "strict_scoreboard_change": false,
+      "spend_after_l114_usd": 3.733435
+    },
+    {
+      "ts": "2026-07-07T14:03:27",
+      "event": "final_smoke_passed",
+      "worker_output_count": 6,
+      "issues": [],
+      "guard_fixtures": "52/52",
+      "exposure_registry_entries": 33,
+      "active_run_experiment_worker": false
+    }
+  ]
+}

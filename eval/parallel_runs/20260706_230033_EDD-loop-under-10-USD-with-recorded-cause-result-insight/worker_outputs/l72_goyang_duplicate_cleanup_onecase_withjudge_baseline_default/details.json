@@ -1,0 +1,128 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 5.0,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 14.27
+    },
+    "edd_score": 88.58,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": [
+      {
+        "id": "qv6_007_goyang_facility_order_permutation",
+        "type": "metamorphic_pair_order_permutation",
+        "answer": "사업명/발주기관: 관산근린공원 다목적구장 회원 통합운영관리 시스템 구축 / 고양도시관리공사\n\n답변(근거 문서만으로 정리)\n\n- 무인 운영 프로그램 포함 여부: 포함되어 있음.  \n  근거: 문서5(사업범위) 라항에 \"무인화 운영을 위한 프로그램 및 기술 지원\" 명시. 또한 문서3(ECR-001)에는 \"운영시스템과의 하드웨어(H/W) 연동 프로그램 제공\"이 요구되어 하드웨어 연동 측면도 포함됨을 확인할 수 있음.\n\n- 출입통제시스템 포함 여부: 포함되어 있음. 근거: 참고 문서에 \"안내데스크 및 출입통제시스템 구매 및 설치\"가 명시되어 있음. (문서9) 다만 세부 방식, 장비 규격, 연동 대상은 제공된 문서에서 추가 확인이 필요합니다.",
+        "retrieved_orgs": [
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 358,
+          "answer_line_count": 5
+        },
+        "latency_sec": 14.27,
+        "context_backfill_count": 1,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 1.47,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 89,
+              "completion_tokens": null,
+              "total_tokens": 89
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 12.79,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4575,
+              "completion_tokens": 1287,
+              "total_tokens": 5862
+            },
+            "cost_usd": 0.009223,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 12.794,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.009223,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제공된 문서들에 직접 근거하여 작성됨. 무인운영 프로그램 포함 근거로 문서5의 사업범위 라항('무인화 운영을 위한 프로그램 및 기술 지원')을 인용했고, 하드웨어 연동 관점은 문서3(ECR-001)의 '운영시스템과의 하드웨어(H/W) 연동 프로그램 제공'으로 뒷받침됨. 출입통제 포함 근거로는 문서9 요약에 명시된 '안내데스크 및 출입통제시스템 구매 및 설치'를 인용하고 있음. 추가로 세부 방식·장비 규격 등은 제공된 문서들에서 명확히 기술되지 않아 별도 확인이 필요하다고 명시한 점도 근거 기반임.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4415,
+                "completion_tokens": 651,
+                "total_tokens": 5066
+              },
+              "cost_usd": 0.006241,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 6.197,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.006241
+        }
+      }
+    ]
+  }
+}

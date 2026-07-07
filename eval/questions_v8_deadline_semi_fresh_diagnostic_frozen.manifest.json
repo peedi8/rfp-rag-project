@@ -1,0 +1,15 @@
+{
+  "schema": "rfp_rag_frozen_question_set_manifest.v1",
+  "created_at": "2026-07-07T12:29:48",
+  "label": "v8_deadline_semi_fresh_diagnostic",
+  "source": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\fresh_questions.contract.json",
+  "dest": "eval\\questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+  "sha256": "0eec2ac6399284966c85ccf050b0d0dbc40197b1974c459d497c1b2b0ddb25ef",
+  "case_count": 10,
+  "allowed_use": "diagnostic_only_semi_fresh_questioner_probe",
+  "rule": "Generated after prior loop insights and includes some exposed/source-derived risk modes; do not report as strict held-out validation.",
+  "excluded_candidates": [
+    "q20260707_a04_kesco_official_vs_personal_contact: mixed field-level scoring not supported by current aggregate metrics",
+    "q20260707_a10_kitech_procurement_vs_gas_safety: redundant source-exposed comparison case for this deadline run"
+  ]
+}

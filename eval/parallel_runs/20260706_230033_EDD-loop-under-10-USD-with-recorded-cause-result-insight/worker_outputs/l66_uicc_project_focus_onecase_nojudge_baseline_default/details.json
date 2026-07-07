@@ -1,0 +1,99 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": null,
+      "relevance_avg": null,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 20.29
+    },
+    "edd_score": 47.21,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": [
+      {
+        "id": "qv6_001_uicc_fragment_scope",
+        "type": "title_fragment_scope_recovery",
+        "answer": "사업명/발주기관: 2024년 대학 산학협력활동 실태조사 시스템(UICC) 기능개선 / 한국연구재단(근거: 제안요청서 문서)\n\n요청하신 항목별 문서상 내용(간결·핵심)\n\n1) 기능개선\n - 일반목적: 사용자 요구 반영 및 이용 편의성 개선, 항목 지침 변경에 신속 대응 등 시스템 기능 개선 필요성 명시. (근거: 문서1, II 추진목표·추진전략)\n - 구체요구사항(기능요구사항으로 제시된 항목들): \n   · 사용자관리 및 담당자지정 개선(미등록 ID 로그인 시 알림창 처리, 탈퇴회원 메시지 등, 권한관리·담당자지정 화면 통합). (근거: 문서2 SFR-005)  \n   · 실태조사 항목 지침 반영(연간 조사항목·대상대학 변경 반영, 대학명·학교/학과코드 현행화). (근거: 문서2 SFR-006)  \n   · 온라인 보고서 기능 개선(보고서 항목 확대, 최종 정제 데이터 기준 설정). (근거: 문서2 SFR-007)\n\n2) 운영지원\n - 운영지원 범위: 실태조사 기간 중 발생하는 시스템 오류 개선, 사용자 원활 이용 지원, 클라우드 서버 운영 및 장애 사전 차단, 실태조사 데이터 오류 점검 및 대학정보공시 연계 지원 등. (근거: 문서3 운영 지원 및 문서1 추진목적·기대효과)\n\n3) 대학정보공시 연계\n - 연계 기능 개선 내용: 대학정보공시 연계플랫폼으로의 데이터 전송·관리 기능 개선(한국대학교육협의회 협업), 특히 대학원 별 소속학과 없음 처리 방법에 따른 데이터 전송 기능 개선 등. 또한 운영지원 항목에 대학정보공시 연계 지원 명시. (근거: 문서2 SFR-008, 문서3 운영 지원)\n\n참고: 추가 세부사항(예: 구현 방식, 일정 세부항목 등)은 제공된 문서에 더 구체적으로 명시되지 않으면 \"제공된 문서에서 확인할 수 없습니다.\"",
+        "retrieved_orgs": [
+          "한국연구재단",
+          "한국연구재단",
+          "한국연구재단",
+          "한국연구재단"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 870,
+          "answer_line_count": 13
+        },
+        "latency_sec": 20.29,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 4,
+        "retrieval_sec": 1.17,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 117,
+              "completion_tokens": null,
+              "total_tokens": 117
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 19.13,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2298,
+              "completion_tokens": 1479,
+              "total_tokens": 3777
+            },
+            "cost_usd": 0.008379,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 19.127,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.008379
+      }
+    ]
+  }
+}

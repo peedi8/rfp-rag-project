@@ -1,0 +1,39 @@
+{
+  "metrics": {
+    "retrieval_coverage_avg": 1.0,
+    "hit_all_targets_rate": 1.0,
+    "mrr": 1.0,
+    "groundedness_avg": 5.0,
+    "relevance_avg": 5.0,
+    "abstention_accuracy": 0.8,
+    "false_abstention_rate": 0.0,
+    "empty_answer_rate": 0.0,
+    "latency_avg_sec": 14.284
+  },
+  "edd_score": 96.57,
+  "issues": {
+    "coverage_fail": [],
+    "false_abstain": [],
+    "empty_answer": [],
+    "judge_low": [],
+    "answer_quality_issues": {}
+  },
+  "case_table": "eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\analysis\\l101_qv8_full_topk5_case_table.csv",
+  "failed_abstention_cases": [
+    {
+      "case_id": "q20260707_a11_dbrain_award_score_and_vendor",
+      "type": "unsupported_award_result_trap",
+      "latency_sec": 17.71,
+      "retrieval_sec": 0.32,
+      "generation_sec": 17.39,
+      "prompt_tokens": 2741,
+      "completion_tokens": 1681,
+      "abstention": false,
+      "expect_abstention": true,
+      "abstention_match": false,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "answer_chars": 722
+    }
+  ]
+}

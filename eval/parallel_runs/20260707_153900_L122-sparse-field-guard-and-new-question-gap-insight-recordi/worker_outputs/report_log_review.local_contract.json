@@ -1,0 +1,56 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "main_codex_local_review",
+  "task_id": "report_log_review",
+  "status": "proposal",
+  "summary": "The third review role could not be spawned because the agent thread limit was reached, so the orchestrator performed a local wording and promotion-label review. The log should record new-question gaps as evaluation/runner findings, not as confirmed model-answer failures.",
+  "inputs": [
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md",
+    "eval/parallel_runs/20260707_153900_L122-sparse-field-guard-and-new-question-gap-insight-recordi/analysis/sparse_field_guard/sparse_field_guard_results.json"
+  ],
+  "protected_paths_seen": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "local_orchestrator_review",
+      "kind": "md",
+      "description": "local proposal replacing the unspawned report/log review role"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Record Q090-Q091 as trace-wrapper blockers.",
+      "Record metadata/corpus rows as sidecar rows rather than ordinary EDD rows.",
+      "Record Q070 as an intentional Q006 sidecar alias.",
+      "Record selected-project seed binding and resolved-vs-multiturn distinction.",
+      "Record that CSV-only source inspection can misclassify sparse fields compared with raw HWP/PDF text."
+    ],
+    "rejected_or_risky_items": [
+      "Do not claim L122 improved answer performance or EDD.",
+      "Do not describe secondary variants as held-out validation.",
+      "Do not claim sparse-field failure until an actual answer run is executed and raw retrieval evidence is inspected."
+    ],
+    "needs_orchestrator_review": [
+      "Ensure 업무일지.md avoids the forbidden Korean words.",
+      "Label next answer run as small smoke or diagnostic-only unless a new untouched set is frozen."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Local rg review of L119-L121 log entries.",
+      "Local inspection of L122 sparse field guard output."
+    ],
+    "observed_results": [
+      "New-question gaps were partially recorded in L119-L121 but needed a grouped L122 insight entry.",
+      "No files were modified by this local review contract."
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "A_metadata_corpus",
+  "task_id": "shard_a_manifest",
+  "status": "proposal",
+  "summary": "Merge shard A as runnable for metadata/corpus sidecar execution, with Q033-Q035 retained in-place but excluded from the metadata subtotal and reported under the quarantined comparison subtotal.",
+  "inputs": [
+    "eval\\parallel_runs\\20260707_150641_L119-question-bank-64-runnable-manifest-seed-and-preflight-d\\inputs\\A_metadata_corpus_manifest_review_input.json",
+    "eval/question_bank64_runnable_manifest_20260707.json"
+  ],
+  "protected_paths_seen": [
+    "eval/question_bank64_runnable_manifest_20260707.json",
+    "eval/question_bank64_runnable_manifest_20260707.csv",
+    "eval/question_bank64_runnable_manifest_20260707.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "????.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260707_150641_L119-question-bank-64-runnable-manifest-seed-and-preflight-d\\worker_outputs\\A_metadata_corpus_manifest_review_contract.json",
+      "kind": "json",
+      "description": "standard worker proposal wrapper"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260707_150641_L119-question-bank-64-runnable-manifest-seed-and-preflight-d\\worker_outputs\\raw_reviews\\A_metadata_corpus_manifest_review_contract.json",
+      "kind": "json",
+      "description": "raw shard review content preserved before schema wrapping"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "case_id": "Q001-Q012,Q065",
+        "severity": "low",
+        "cause": "These rows are explicitly marked execution_mode=metadata_corpus_sidecar with ordinary_edd_included=false and runner notes that exclude ordinary target-org RAG.",
+        "result": "Ordinary EDD exclusion is correct; they should be scored only through the metadata sidecar path.",
+        "recommended_change": "Keep them out of the ordinary EDD subtotal and preserve the sidecar-only gate."
+      },
+      {
+        "case_id": "Q033-Q035",
+        "severity": "low",
+        "cause": "These comparison rows are physically inside shard A but are labeled ordinary_rag_text with source_execution_subtotal=ordinary_rag_text_cluster_comparison_quarantined_inside_A and ordinary_edd_included=true.",
+        "result": "They should remain in A physically, but be subtotaled separately from the metadata/corpus sidecar cases.",
+        "recommended_change": "Keep the quarantine boundary intact and do not merge their scores into the metadata corpus subtotal."
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "case_id": "Q006-Q011,Q065",
+        "severity": "medium",
+        "cause": "Several prompts are broad cross-domain or acronym-heavy searches, so keyword-only preflight can over-match unrelated rows even when the sidecar key is correct.",
+        "result": "Metadata sidecar keys are sufficient for routing, but preflight filtering is vulnerable to false positives if it leans on terms like ERP, ODA, education, or general governance language.",
+        "recommended_change": "Use computed_sidecar_key plus row-level metadata filters, not keyword match alone, before judging readiness."
+      }
+    ],
+    "needs_orchestrator_review": [],
+    "raw_status": "pass_with_warnings",
+    "reviewed_cases": [
+      "Q001",
+      "Q002",
+      "Q003",
+      "Q004",
+      "Q005",
+      "Q006",
+      "Q007",
+      "Q008",
+      "Q009",
+      "Q010",
+      "Q011",
+      "Q012",
+      "Q065",
+      "Q033",
+      "Q034",
+      "Q035"
+    ],
+    "next_step": "Run the sidecar harness using computed_sidecar_key and corpus visibility, then aggregate only the metadata_corpus_sidecar rows into the metadata subtotal."
+  },
+  "merge_risk": "medium",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "direct JSON readback by worker; orchestrator schema wrap"
+    ],
+    "observed_results": [
+      "raw review JSON parsed and preserved",
+      "merge_risk=medium"
+    ]
+  }
+}

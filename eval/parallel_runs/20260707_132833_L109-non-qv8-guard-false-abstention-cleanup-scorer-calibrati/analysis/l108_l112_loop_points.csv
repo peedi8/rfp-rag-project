@@ -1,0 +1,6 @@
+loop,question_file,purpose,false_abstention_rate,abstention_accuracy,field_score_issues,latency_avg_sec,observed_cost_usd,claim_label
+L108,questions_l108_nonqv8_grounded_guard_field_diagnostic_frozen.json,grounded non-qv8 baseline after L105,0.6,1.0,hidden_by_coarse_scorer,7.481,0.038770,diagnostic_only
+L109,questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json,q001/q004 rescue plus stricter field expectations,0.2,1.0,marker_corruption_noise,9.386,0.041409,diagnostic_only
+L110,questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json,partial answer guard preservation,0.0,1.0,q004_scorer_wording_too_strict,9.085,0.043025,diagnostic_only
+L111,questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json,scorer expectation clean rerun,0.2,1.0,private_label_false_leak,9.137,0.042805,diagnostic_only
+L112,questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json,current scorer confirmation,0.0,1.0,none,7.184,0.040586,diagnostic_only

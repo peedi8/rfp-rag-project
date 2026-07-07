@@ -1,0 +1,258 @@
+﻿{
+  "schema": "rfp_rag_question_proposals.v1",
+  "created_at": "2026-07-06T15:00:00+09:00",
+  "model_or_worker": "gpt-5.5 question_generator",
+  "strategy": "기존 10문항이 단일 추출, 후속 맥락, 비교, 부정확 기관명, 환각방지를 이미 포함하므로 v2는 실제 메타데이터의 유사 기관/유사 사업명을 활용해 고난도 검색-생성 결합 실패를 유도한다. 특히 검색 hit는 좋아도 답변이 범위 혼합, 추론 과잉, 수치 오독, 명시 여부 판단 실패를 보일 수 있는 score_trap과 precise_check를 포함하고, multi-document synthesis는 compare 및 score_trap 문항의 rationale에 명시했다. 질문 메타데이터는 평가 라벨로만 사용하고 답변 모델에는 직접 제공하지 않는다는 프로젝트 원칙을 따른다.",
+  "questions": [
+    {
+      "id": "qv2_001_single_elec_security",
+      "type": "single_extract",
+      "turns": ["한국전기안전공사의 전기안전 관제시스템 보안 모듈 개발 용역에서 보안모듈 적용, 통신서버 구성, 원격점검장치 관련 요구사항을 구분해서 정리해 줘."],
+      "target_orgs": ["한국전기안전공사"],
+      "target_biz": "전기안전 관제시스템 보안 모듈",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "한 문서 안에서 보안, 서버, 장치 컨설팅이 섞여 있어 단순 요약보다 요구사항 분류 능력을 본다.",
+      "expected_failure_mode": "검색은 맞지만 보안모듈, 통신서버, 원격점검장치 요구를 한 덩어리로 섞거나 문서에 없는 보안 인증 세부사항을 만들어낼 수 있다."
+    },
+    {
+      "id": "qv2_002_single_chungbuk_disaster_gis",
+      "type": "single_extract",
+      "turns": ["재단법인충북연구원의 GIS/통계 기반 재난안전데이터 분석·관리 시스템 구축 용역에서 데이터 구축, 취약지역 분석, 장비 도입 범위를 나눠 설명해 줘."],
+      "target_orgs": ["재단법인충북연구원"],
+      "target_biz": "GIS/통계 기반 재난안전데이터 분석ㆍ관리 시스템",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "재난안전이라는 넓은 키워드가 여러 문서에 등장하므로 정확한 기관 필터와 세부 범위 추출이 필요하다.",
+      "expected_failure_mode": "봉화군 재난통합관리시스템이나 다른 안전 시스템 문서의 내용을 끌어와 사업 범위를 혼합할 수 있다."
+    },
+    {
+      "id": "qv2_003_single_add_large_transfer",
+      "type": "single_extract",
+      "turns": ["국방과학연구소 대용량 자료전송시스템 고도화 사업에서 자료 송수신, 자료 반입·반출, 보안 기능 개선 요구를 각각 정리해 줘."],
+      "target_orgs": ["국방과학연구소"],
+      "target_biz": "대용량 자료전송시스템 고도화",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "하나의 사업 안에 데이터 유통, 보안, 인프라 교체 요구가 함께 있어 항목별 근거 정리가 중요하다.",
+      "expected_failure_mode": "자료전송과 기록관리시스템 보안 환경 구축 문서를 혼동하거나, 보안 개선을 일반론으로 확장할 수 있다."
+    },
+    {
+      "id": "qv2_004_single_achievement_longitudinal",
+      "type": "single_extract",
+      "turns": ["서울시립대학교 학업성취도 다차원 종단분석 통합시스템 1차 고도화 용역의 추진 목적과 주요 기능 개선 요구를 문서 근거 중심으로 요약해 줘."],
+      "target_orgs": ["서울시립대학교"],
+      "target_biz": "학업성취도 다차원 종단분석 통합시스템",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "교육·학습 계열 문서가 많아 retrieval이 흔들리기 쉽고, 목적과 기능 요구를 구분하는 생성 품질을 본다.",
+      "expected_failure_mode": "한영대학, 전북대, 대전대 같은 교육 플랫폼 문서와 섞어 일반적인 학습 플랫폼 설명으로 답할 수 있다."
+    },
+    {
+      "id": "qv2_005_followup_sports_lms_instructor",
+      "type": "followup",
+      "turns": ["재단법인스포츠윤리센터의 LMS 기능개선 사업에서 주요 개선 범위를 알려 줘.", "그중 강사파견 시스템 자동화와 학습자·관리자 페이지 고도화 요구만 따로 설명해 줘."],
+      "target_orgs": ["재단법인스포츠윤리센터"],
+      "target_biz": "LMS(학습지원시스템) 기능개선",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "두 번째 턴에서 기관명과 사업명을 생략하고 세부 모듈만 요구하므로 query rewrite와 맥락 유지가 필요하다.",
+      "expected_failure_mode": "후속 질문을 독립 질의로 재작성하지 못해 일반 LMS 문서나 국민연금 이러닝 문서로 검색이 이동할 수 있다."
+    },
+    {
+      "id": "qv2_006_followup_incheon_committee_security",
+      "type": "followup",
+      "turns": ["인천광역시 도시계획위원회 통합관리시스템 구축용역은 어떤 배경에서 추진됐는지 알려 줘.", "그 배경과 연결해서 자료 관리와 보안 문제를 개선하려는 요구가 어떻게 나타나는지 설명해 줘."],
+      "target_orgs": ["인천광역시"],
+      "target_biz": "도시계획위원회 통합관리시스템",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "후속 턴이 원 질문의 배경을 전제로 하며, 단순 기능 목록이 아니라 문제-요구 연결을 설명해야 한다.",
+      "expected_failure_mode": "위원회 운영 지원 기능만 나열하고 자료관리·보안 개선이라는 이유-요구 연결을 놓칠 수 있다."
+    },
+    {
+      "id": "qv2_007_followup_rail_ismp_not_build",
+      "type": "followup",
+      "turns": ["한국철도공사의 예약발매시스템 개량 ISMP 용역은 무엇을 하려는 사업이야?", "그러면 이 문서는 실제 시스템 구축 사업인지, 정보화계획 수립 사업인지 구분해서 답해 줘."],
+      "target_orgs": ["한국철도공사 (용역)"],
+      "target_biz": "예약발매시스템 개량 ISMP",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "ISMP와 구축을 구분해야 하는 질문으로, 검색보다 답변의 범위판단이 중요하다.",
+      "expected_failure_mode": "시스템 개량이라는 단어만 보고 실제 개발·구축 요구로 과장하거나 한국철도공사의 다른 시스템 개량 문서와 혼합할 수 있다."
+    },
+    {
+      "id": "qv2_008_followup_pension_social_insurance",
+      "type": "followup",
+      "turns": ["국민연금공단의 사업장 사회보험료 지원 고시 개정 관련 정보시스템 보완 개발 사업이 어떤 업무 변화에 대응하는지 알려 줘.", "그중 고시 개정 반영 범위와 기존 시스템 보완 범위를 분리해서 설명해 줘."],
+      "target_orgs": ["국민연금공단"],
+      "target_biz": "사업장 사회보험료 지원 고시 개정 정보시스템 보완 개발",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "기존 q1/q2의 국민연금 이러닝 문서와 같은 기관이지만 다른 사업이어서 기관 필터만으로는 부족하다.",
+      "expected_failure_mode": "국민연금공단 기관 필터는 맞지만 이러닝시스템 문서를 끌어와 엉뚱한 답변을 만들 수 있다."
+    },
+    {
+      "id": "qv2_009_compare_learning_platforms",
+      "type": "compare",
+      "turns": ["한영대학 트랙운영 학사정보시스템, 전북대학교 xAPI 기반 LRS, 대전대학교 MILE 플랫폼, 을지대학교 비교과시스템은 각각 어떤 교육·학습 업무를 지원하려는지 비교해 줘."],
+      "target_orgs": ["한영대학", "전북대학교", "대전대학교", "을지대학교"],
+      "target_biz": "교육·학습 플랫폼 비교",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "multi-document synthesis 문항으로, 유사한 교육 키워드 속에서 각 사업의 목적과 지원 업무를 분리해야 한다.",
+      "expected_failure_mode": "네 문서 중 일부만 검색해도 coverage가 높아 보일 수 있으나, 답변은 모든 사업을 같은 학습관리시스템으로 뭉개버릴 수 있다."
+    },
+    {
+      "id": "qv2_010_compare_disaster_safety_systems",
+      "type": "compare",
+      "turns": ["봉화군 재난통합관리시스템, 충북연구원 재난안전데이터 분석·관리 시스템, 국립중앙의료원 차세대 응급의료 상황관리시스템, 한국산업단지공단 산단 안전정보시스템은 재난·안전이라는 공통점 안에서 목적과 데이터 활용 방식이 어떻게 다른지 비교해 줘."],
+      "target_orgs": ["경상북도 봉화군", "재단법인충북연구원", "국립중앙의료원", "한국산업단지공단"],
+      "target_biz": "재난·안전 시스템 비교",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "multi-document synthesis와 near-topic 비교를 동시에 요구해 자동 필터, top-k 여유, 생성 구조화가 모두 필요하다.",
+      "expected_failure_mode": "재난/안전 키워드만 맞춘 채 각 시스템의 운영 대상과 데이터 성격을 구분하지 못할 수 있다."
+    },
+    {
+      "id": "qv2_011_compare_korail_three_projects",
+      "type": "compare",
+      "turns": ["한국철도공사의 예약발매시스템 개량 ISMP, 모바일오피스 시스템 고도화, 운행정보기록 자동분석시스템 개량은 각각 계획 수립, 업무지원, 데이터 분석 중 어디에 가까운지 근거와 함께 비교해 줘."],
+      "target_orgs": ["한국철도공사 (용역)"],
+      "target_biz": "철도 시스템 개량 사업 비교",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "같은 발주기관의 여러 문서를 구분해야 하므로 기관 필터만 성공해도 충분하지 않은 케이스다.",
+      "expected_failure_mode": "모든 문서를 '철도 시스템 고도화'로 합쳐 세 사업의 산출물 차이를 놓칠 수 있다."
+    },
+    {
+      "id": "qv2_012_compare_public_platforms",
+      "type": "compare",
+      "turns": ["서울특별시 지도정보 플랫폼 고도화, 인천광역시 인천일자리플랫폼 ISP, 부산관광공사 경영정보시스템 기능개선은 모두 플랫폼/정보시스템 사업인데 사용자 대상과 구축 성격이 어떻게 다른지 비교해 줘."],
+      "target_orgs": ["서울특별시", "인천광역시", "부산관광공사"],
+      "target_biz": "공공 플랫폼·정보시스템 비교",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "공공 플랫폼이라는 넓은 질의에서 도시계획위원회 문서까지 오염될 가능성이 있어 문서 식별과 비교 구조가 중요하다.",
+      "expected_failure_mode": "인천광역시의 다른 도시계획위원회 문서를 가져오거나, ISP와 기능개선을 같은 구축 단계로 오답 처리할 수 있다."
+    },
+    {
+      "id": "qv2_013_precise_uicc_amount_deadline",
+      "type": "precise_check",
+      "turns": ["한국연구재단의 2024년 대학산학협력활동 실태조사 시스템(UICC) 기능개선 사업에서 사업 금액과 입찰 참여 마감일을 정확히 확인해 줘. 문서나 메타데이터에 없으면 없다고 해 줘."],
+      "target_orgs": ["한국연구재단"],
+      "target_biz": "UICC 기능개선",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "수치·일시 확인은 retrieval hit보다 메타데이터/본문의 정확한 복사가 중요하다.",
+      "expected_failure_mode": "다른 한국연구재단 사업의 날짜나 금액을 가져오거나, 마감일을 공개일자와 혼동할 수 있다."
+    },
+    {
+      "id": "qv2_014_precise_elec_same_day_bid",
+      "type": "precise_check",
+      "turns": ["한국전기안전공사 전기안전 관제시스템 보안 모듈 개발 용역의 입찰 참여 시작일과 마감일이 같은 날짜인지 정확히 확인해 줘."],
+      "target_orgs": ["한국전기안전공사"],
+      "target_biz": "전기안전 관제시스템 보안 모듈",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "날짜 비교가 필요한 precise_check로, 답변 모델이 추출값을 그대로 비교해야 한다.",
+      "expected_failure_mode": "검색 문서는 맞지만 시작/마감 시각을 누락하거나 날짜 비교를 하지 않고 일반적인 입찰 안내로 답할 수 있다."
+    },
+    {
+      "id": "qv2_015_precise_ntis_requirements_count",
+      "type": "precise_check",
+      "turns": ["국가과학기술지식정보서비스 통합정보시스템 고도화 용역에서 요구사항 분류가 총 몇 개인지, 그리고 사업기간이 명시되어 있는지 정확히 확인해 줘."],
+      "target_orgs": ["국가과학기술지식정보서비스"],
+      "target_biz": "통합정보시스템 고도화",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "요구사항 수와 기간처럼 작은 수치가 포함되어 있어 원문 근거와 생성 정확도를 함께 검증한다.",
+      "expected_failure_mode": "통합정보시스템이라는 흔한 사업명을 따라 한국한의학연구원이나 다른 기관 문서를 가져와 수치를 오염시킬 수 있다."
+    },
+    {
+      "id": "qv2_016_precise_korea_univ_pdf_budget",
+      "type": "precise_check",
+      "turns": ["고려대학교 차세대 포털·학사 정보시스템 구축사업의 사업 금액과 입찰 참여 마감일을 정확히 확인하고, 값의 출처가 메타데이터인지 문서 본문인지 구분해 줘."],
+      "target_orgs": ["고려대학교"],
+      "target_biz": "차세대 포털·학사 정보시스템",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "PDF 문서와 메타데이터가 함께 있는 케이스에서 수치 출처를 구분해야 하므로 단순 검색 점수와 답변 품질이 분리된다.",
+      "expected_failure_mode": "광주과학기술원 학사시스템 기능개선과 섞이거나, 출처 구분 없이 숫자만 제시할 수 있다."
+    },
+    {
+      "id": "qv2_017_ambiguous_water_systems",
+      "type": "ambiguous_org",
+      "turns": ["수자원 쪽 시스템 사업 중에서 CMS 고도화, 용수공급 타당성조사, 수문자료정보관리시스템 재구축이 각각 어느 기관 사업인지 구분해서 알려 줘."],
+      "target_orgs": ["한국수자원공사", "한국수자원조사기술원"],
+      "target_biz": "수자원 관련 시스템·조사 사업 구분",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "사용자가 기관명을 느슨하게 말하고 여러 유사 발주기관·사업명을 섞어 묻는 모호기관 케이스다.",
+      "expected_failure_mode": "한국수자원공사와 한국수자원조사기술원을 같은 기관처럼 처리하거나 세 사업의 발주기관을 뒤바꿀 수 있다."
+    },
+    {
+      "id": "qv2_018_ambiguous_gwangju",
+      "type": "ambiguous_org",
+      "turns": ["광주 쪽에서 발주한 시스템 사업들을 찾아서, 광주과학기술원 학사시스템·RCMS 연계, 광주연구원 아카이브, 광주문화재단 플랫폼 유지보수를 서로 구분해 줘."],
+      "target_orgs": ["광주과학기술원", "재단법인 광주연구원", "재단법인 광주광역시 광주문화재단"],
+      "target_biz": "광주 관련 시스템 사업 구분",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "광주라는 지역/기관명 공통 토큰이 여러 문서에 들어가므로 조직명 정규화와 다중 검색이 중요하다.",
+      "expected_failure_mode": "광주과학기술원 문서만 검색해 모든 답을 채우거나, 연구원과 문화재단을 같은 기관으로 합칠 수 있다."
+    },
+    {
+      "id": "qv2_019_ambiguous_rail_upgrade",
+      "type": "ambiguous_org",
+      "turns": ["철도공사에서 시스템 개량한다고 한 문서들이 여러 개인 것 같은데, 예약발매시스템, 모바일오피스, 운행정보기록 자동분석시스템 문서를 각각 찾아서 헷갈리지 않게 구분해 줘."],
+      "target_orgs": ["한국철도공사 (용역)"],
+      "target_biz": "철도공사 시스템 개량 문서 구분",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "기관은 같지만 사업명이 유사한 모호사업 케이스로, 필터링 성공 이후의 문서 선택 능력을 평가한다.",
+      "expected_failure_mode": "첫 번째로 검색된 한국철도공사 문서 하나의 내용만 반복하거나 세 문서의 범위를 혼합할 수 있다."
+    },
+    {
+      "id": "qv2_020_abstain_quantum_drug_platform",
+      "type": "abstention",
+      "turns": ["이 RFP 묶음 안에 양자컴퓨터 기반 신약 후보물질 자동설계 플랫폼 구축 사업이 있나요? 있으면 요구사항을 알려 줘."],
+      "target_orgs": [],
+      "target_biz": "양자컴퓨터 기반 신약 후보물질 자동설계 플랫폼",
+      "expect_abstention": true,
+      "why_this_tests_the_system": "의료기기·보건·AI 키워드가 일부 문서에 있어 그럴듯한 검색결과가 나올 수 있는 명시 부재 케이스다.",
+      "expected_failure_mode": "한국보건산업진흥원, BioIN, 서울 디지털성범죄 AI 삭제지원 문서를 끌어와 없는 신약 플랫폼 요구를 환각할 수 있다."
+    },
+    {
+      "id": "qv2_021_abstain_winning_vendor",
+      "type": "abstention",
+      "turns": ["각 사업의 최종 낙찰 업체명, 최종 계약금액, 제안서 평가점수를 알려 줘. RFP 문서에 있으면 표로 정리해 줘."],
+      "target_orgs": [],
+      "target_biz": "낙찰 업체·계약 결과·평가점수",
+      "expect_abstention": true,
+      "why_this_tests_the_system": "RFP에는 평가 기준은 있을 수 있지만 사후 낙찰 결과는 없을 가능성이 높아 근거 부재 판단이 필요하다.",
+      "expected_failure_mode": "평가기준표나 사업금액을 최종 평가점수·계약금액처럼 오해해 답변할 수 있다."
+    },
+    {
+      "id": "qv2_022_abstain_personal_contacts",
+      "type": "abstention",
+      "turns": ["이 RFP들에 나온 각 사업별 투입 개발자 실명, 개인 휴대전화, 개인 이메일을 추출해 줘."],
+      "target_orgs": [],
+      "target_biz": "투입 개발자 개인정보",
+      "expect_abstention": true,
+      "why_this_tests_the_system": "문서에 담당부서나 문의처는 있을 수 있지만 투입 개발자 개인정보 추출 요구는 부재 또는 부적절할 수 있어 abstention 품질을 본다.",
+      "expected_failure_mode": "담당자 문의처나 부서 정보를 개발자 개인정보로 오인하거나, 없는 개인 정보를 만들어낼 수 있다."
+    },
+    {
+      "id": "qv2_023_score_trap_health_info_duplicate",
+      "type": "score_trap",
+      "turns": ["한국보건산업진흥원의 의료기기산업 종합정보시스템 기능개선 사업과 BioIN의 같은 이름 2차 사업은 동일한 사업인지, 1차/2차 또는 발주기관 차이가 문서상 어떻게 드러나는지 근거 중심으로 구분해 줘."],
+      "target_orgs": ["한국보건산업진흥원", "BioIN"],
+      "target_biz": "의료기기산업 종합정보시스템 기능개선",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "metric-trap 케이스다. 같은 사업명이 반복되어 retrieval coverage는 좋아 보일 수 있지만 답변은 중복/차수/기관 차이를 신중히 구분해야 한다.",
+      "expected_failure_mode": "두 문서를 완전히 동일하다고 단정하거나, 2차라는 단서만으로 문서에 없는 변경 내용을 추론할 수 있다."
+    },
+    {
+      "id": "qv2_024_score_trap_kwater_scope_bleed",
+      "type": "score_trap",
+      "turns": ["한국수자원공사의 건설통합시스템(CMS) 고도화와 용인 첨단 시스템반도체 국가산단 용수공급사업 타당성조사는 둘 다 '시스템' 또는 '수자원' 키워드가 보이는데, 사업 범위를 섞지 말고 각각 핵심 산출물을 3개 이내로만 정리해 줘."],
+      "target_orgs": ["한국수자원공사"],
+      "target_biz": "CMS 고도화와 용수공급 타당성조사 구분",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "같은 기관의 서로 다른 성격 사업을 비교하는 metric-trap으로, 검색은 같은 기관 hit가 높아도 생성에서 범위 오염이 쉽게 발생한다.",
+      "expected_failure_mode": "용수공급 타당성조사를 정보시스템 구축처럼 설명하거나 CMS 기능개선에 산단 용수공급 계획 내용을 섞을 수 있다."
+    },
+    {
+      "id": "qv2_025_score_trap_performance_requirements",
+      "type": "score_trap",
+      "turns": ["고려대학교 차세대 포털·학사 정보시스템, 광주과학기술원 학사시스템 기능개선, 한영대학 트랙운영 학사정보시스템에서 응답시간이나 성능 기준이 명시된 문서만 골라서 비교해 줘. 명시가 없으면 추정하지 말고 없다고 표시해 줘."],
+      "target_orgs": ["고려대학교", "광주과학기술원", "한영대학"],
+      "target_biz": "학사정보시스템 성능·응답시간 요구 비교",
+      "expect_abstention": false,
+      "why_this_tests_the_system": "retrieval은 교육/학사 시스템 세 문서를 잘 찾을 수 있어도 답변 품질은 '명시된 요구'와 일반 성능 기대를 구분하는 데 달려 있다.",
+      "expected_failure_mode": "문서에 없는 응답시간 수치를 상식적으로 만들어내거나, 한 문서의 성능 요구를 세 문서 모두에 전파할 수 있다."
+    }
+  ]
+}

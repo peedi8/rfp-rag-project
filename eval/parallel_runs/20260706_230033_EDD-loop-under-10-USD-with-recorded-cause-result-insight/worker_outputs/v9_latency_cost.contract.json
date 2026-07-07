@@ -1,0 +1,306 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "v9_latency_cost",
+  "task_id": "EDD-loop-under-10-USD-with-recorded-cause-result-insight",
+  "status": "proposal",
+  "summary": "Design proposal for latency and cost decomposition in the RAG EDD loop: add per-stage timers, token/cost ledgers, preflight spend gates, and promotion blockers that prevent low-quality or slower candidates from advancing under a hard 10 USD cap.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\ask.py",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs\\l25_v4_first_baseline_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap\\summary\\l30_l36_adversarial_loop_report.md"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "proposal_method": "static review of local scripts and saved eval artifacts only",
+    "paid_api_calls_made": false
+  },
+  "protected_paths_seen": [
+    "I:\\0706\\rfp-rag-project\\src\\**",
+    "I:\\0706\\rfp-rag-project\\scripts\\**",
+    "I:\\0706\\rfp-rag-project\\업무일지.md",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v9_latency_cost.contract.json",
+      "kind": "json",
+      "description": "required worker contract containing the latency/cost decomposition proposal"
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v9_latency_cost.md",
+      "kind": "markdown",
+      "description": "human-readable evidence note for the proposal"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "component": "per_case_timer_decomposition",
+        "recommendation": "Replace single latency_sec-only observation with a structured per-case timer tree while preserving latency_sec as the total wall-clock answer latency.",
+        "fields": [
+          "case_id",
+          "experiment",
+          "question_pack",
+          "turn_count",
+          "attempt_id",
+          "cache_state",
+          "started_at",
+          "ended_at",
+          "latency_total_sec",
+          "latency_by_stage_sec.pipeline_init",
+          "latency_by_stage_sec.query_rewrite",
+          "latency_by_stage_sec.filter_inference",
+          "latency_by_stage_sec.vector_retrieval",
+          "latency_by_stage_sec.rerank_or_mmr",
+          "latency_by_stage_sec.context_formatting",
+          "latency_by_stage_sec.answer_generation",
+          "latency_by_stage_sec.judge_generation",
+          "latency_by_stage_sec.metric_aggregation",
+          "latency_by_stage_sec.artifact_write",
+          "latency_by_stage_sec.other_unattributed",
+          "retrieval_count",
+          "retrieved_chunk_count",
+          "context_chars",
+          "answer_chars",
+          "judge_context_chars",
+          "timeout_or_retry_count"
+        ],
+        "reasoning": "The current saved details expose only case-level latency_sec, and run_experiment_worker aggregates only latency_avg_sec. The L30-L36 loop showed promotion decisions can depend on whether latency changed for retrieval, generation, or judge overhead, so the next EDD loop should record where time was spent."
+      },
+      {
+        "component": "aggregate_latency_metrics",
+        "recommendation": "Emit robust latency metrics in results.csv/details.json and include them in gate decisions, not only the mean.",
+        "fields": [
+          "latency_avg_sec",
+          "latency_median_sec",
+          "latency_p75_sec",
+          "latency_p90_sec",
+          "latency_max_sec",
+          "latency_stddev_sec",
+          "latency_trimmed_mean_sec",
+          "latency_fastest_case_id",
+          "latency_slowest_case_id",
+          "latency_regression_case_ids",
+          "stage_avg_sec.query_rewrite",
+          "stage_avg_sec.vector_retrieval",
+          "stage_avg_sec.answer_generation",
+          "stage_avg_sec.judge_generation"
+        ],
+        "reasoning": "L25 baseline averaged 19.377s, L30 v5 first baseline averaged 20.776s, L33/L34 targeted evidence improved to 15.151s/13.724s, but L35/L36 v4 regression worsened to 22.035s/23.683s. Mean alone hides case-specific regressions and repeated-run variance."
+      },
+      {
+        "component": "cost_ledger",
+        "recommendation": "Add append-only budget_ledger.jsonl and per-run cost_summary.json under each worker output directory; every possible model call path must reserve estimated spend before launch and reconcile observed usage after completion.",
+        "fields": [
+          "run_id",
+          "worker_id",
+          "experiment",
+          "case_id",
+          "operation",
+          "model",
+          "provider",
+          "is_paid_api",
+          "api_call_allowed",
+          "cache_hit",
+          "prompt_tokens_estimated",
+          "completion_tokens_estimated",
+          "total_tokens_estimated",
+          "prompt_tokens_observed",
+          "completion_tokens_observed",
+          "total_tokens_observed",
+          "cost_usd_estimated",
+          "cost_usd_observed",
+          "cost_basis",
+          "reserved_before_usd",
+          "spent_before_usd",
+          "spent_after_usd",
+          "remaining_after_usd",
+          "hard_cap_usd",
+          "stop_reason",
+          "artifact_path"
+        ],
+        "reasoning": "evaluate.py currently calls answer generation through RAGPipeline and optional judge calls, but no token/cost data is persisted. A ledger lets the orchestrator know whether a candidate consumed budget, whether judge spend dominated, and whether a run stayed within the hard cap."
+      },
+      {
+        "component": "hard_10_usd_budget_policy",
+        "recommendation": "Use a three-layer budget gate: preflight estimate, per-case reservation, and post-run reconciliation. Stop launching scored cases before projected spend can exceed 9.00 USD and reserve the last 1.00 USD for summary/retry/error margin.",
+        "policy": {
+          "hard_cap_usd": 10.0,
+          "launch_ceiling_usd": 9.0,
+          "reserve_usd": 1.0,
+          "default_mode": "no_api_first",
+          "paid_api_default": "blocked",
+          "allowed_without_budget_debit": [
+            "static proposal writing",
+            "dry-run run_experiment_worker",
+            "saved-details recomputation",
+            "local metric aggregation",
+            "graph/report generation from existing artifacts"
+          ],
+          "preflight_required_for": [
+            "answer generation",
+            "judge generation",
+            "blind judge calibration with API",
+            "any retry that could call OpenAI"
+          ],
+          "stop_conditions": [
+            "spent_after_usd >= 9.00",
+            "spent_before_usd + reserved_before_usd + next_case_estimated_usd > 9.00",
+            "observed cost for any case exceeds 2x estimate",
+            "missing usage data on a paid call when cost estimation is required",
+            "more than one retry for the same case without orchestrator approval"
+          ]
+        },
+        "reasoning": "The task asks for a hard 10 USD cap. Keeping a 1 USD reserve avoids crossing the cap due to token-estimation error, retries, or model pricing mismatch."
+      },
+      {
+        "component": "spend_reduction_plan",
+        "recommendation": "Order work so cheap and cached evidence is exhausted before any paid scoring, and isolate judge calls from answer calls.",
+        "steps": [
+          "Start every candidate as diagnostic_no_api or no_judge where possible.",
+          "Run retrieval-only and saved-answer recomputation before fresh generation.",
+          "Score a small representative slice first; expand only if correctness and latency gates pass.",
+          "Use judge calls only for non-abstention cases and only after retrieval/abstention static checks pass.",
+          "Abort the remaining cases if early cases reveal a promotion-blocking quality regression.",
+          "Reuse exact saved answers for measurement corrections instead of regenerating.",
+          "Record no_api, dry_run, no_judge, and recompute_saved rows as non-promotable unless a later scored run validates them."
+        ],
+        "expected_effect": "Most bad candidates should be rejected by retrieval diagnostics, no-judge answer checks, or early quality gates before consuming the full run budget."
+      },
+      {
+        "component": "latency_promotion_blockers",
+        "recommendation": "Block promotion when latency regresses beyond tolerance unless the candidate fixes a material correctness or safety failure and still passes red/overfit gates.",
+        "blockers": [
+          "candidate latency_avg_sec > baseline latency_avg_sec * 1.10 and EDD improvement < 1.0",
+          "candidate latency_p90_sec > baseline latency_p90_sec * 1.15",
+          "candidate latency_max_sec > baseline latency_max_sec * 1.25",
+          "two or more shared case_ids regress by >= 5.0 seconds versus baseline",
+          "any safety_sensitive or abstain case regresses by >= 8.0 seconds without improving abstention correctness",
+          "answer_generation stage regresses by >= 20 percent when answer_chars/context_chars do not increase materially",
+          "judge_generation stage dominates more than 40 percent of total scored run time and the candidate is not a judge-calibration task",
+          "candidate is slower than L25 v4 baseline 19.377s and does not improve correctness on a fresh or first-validation set"
+        ],
+        "contextual_examples": [
+          "L36 v4 top5 regression at 23.683s should block top5 as a global default despite saturated correctness.",
+          "L35 v4 title-filter regression at 22.035s needs a latency note and should not be claimed as a speed gain.",
+          "L33/L34 speed gains were targeted/exposed-set evidence and should not override fresh-holdout requirements."
+        ]
+      },
+      {
+        "component": "quality_first_override_rules",
+        "recommendation": "Never accept latency savings that degrade core EDD safety or evidence quality.",
+        "blockers": [
+          "retrieval_coverage_avg drops below baseline on any first-validation or regression pack",
+          "hit_all_targets_rate drops below 1.0 when baseline is 1.0",
+          "abstention_accuracy drops below baseline or below 1.0 on current abstention-sensitive packs",
+          "false_abstention_rate rises above baseline",
+          "empty_answer_rate rises above 0",
+          "groundedness_avg or relevance_avg drops below 4.5 when baseline is saturated at 5.0",
+          "any individual non-abstention case has groundedness <= 3 or relevance <= 3",
+          "red-gate source-scope bleed, fabricated procurement facts, fabricated contact/private data, or wrong-document evidence appears"
+        ],
+        "reasoning": "The adversarial report explicitly rejected global top5 despite attractive v5 latency because v4 did not confirm a latency/quality win. Cost and speed are secondary to groundedness and safe abstention."
+      },
+      {
+        "component": "edd_loop_output_contract_extensions",
+        "recommendation": "Keep parallel_team_worker_output.v1 compatible while adding nested proposal/runtime evidence fields under proposal.accepted_fields_or_changes and validation.observed_results.",
+        "fields": [
+          "budget_summary.hard_cap_usd",
+          "budget_summary.spent_usd_observed",
+          "budget_summary.spent_usd_estimated",
+          "budget_summary.remaining_usd",
+          "budget_summary.paid_api_calls",
+          "latency_summary.baseline_avg_sec",
+          "latency_summary.candidate_avg_sec",
+          "latency_summary.delta_avg_sec",
+          "latency_summary.delta_pct",
+          "latency_summary.regression_case_ids",
+          "promotion_gate.latency_status",
+          "promotion_gate.cost_status",
+          "promotion_gate.quality_status",
+          "promotion_gate.overfit_status",
+          "promotion_gate.red_status",
+          "promotion_gate.final_status"
+        ],
+        "reasoning": "These fields can be added to worker artifacts without changing protected scripts first; later implementation can normalize them into CSV/JSON reports."
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "promotion by EDD score alone",
+        "risk": "A candidate can have near-ceiling EDD while being slower or measured on exposed same-answer evidence. Promotion must consider freshness, latency, cost, and red/overfit labels."
+      },
+      {
+        "item": "running full judged sweeps before diagnostics",
+        "risk": "Full judged sweeps spend budget on candidates that retrieval-only or no-judge checks could reject cheaply."
+      },
+      {
+        "item": "single aggregate latency_avg_sec as the only timing field",
+        "risk": "It cannot distinguish vectorstore overhead, query rewrite cost, answer-generation cost, judge cost, or artifact-write overhead."
+      },
+      {
+        "item": "using observed token usage only after the run",
+        "risk": "Post-run accounting can prove the cap was exceeded but cannot prevent overspend. Preflight reservations are required."
+      },
+      {
+        "item": "treating no-judge/no-api/dry-run rows as promotable",
+        "risk": "These are useful budget-preserving diagnostics but lack the scored evidence needed for final promotion."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Confirm the exact pricing table or local cost_basis file to use for model-specific token estimates before implementation.",
+      "Choose whether the first implementation should add timing inside RAGPipeline.ask or wrap calls externally in evaluate.py; internal timing gives better stage attribution but touches protected src/**.",
+      "Decide whether latency thresholds should be absolute as proposed or calibrated from repeated baseline runs to account for machine variance.",
+      "Approve the 9.00 USD launch ceiling and 1.00 USD reserve policy for all future EDD loops under a hard 10 USD cap."
+    ],
+    "implementation_notes": {
+      "suggested_artifacts": [
+        "worker_outputs/<worker>/<experiment>/budget_ledger.jsonl",
+        "worker_outputs/<worker>/<experiment>/timing_ledger.jsonl",
+        "worker_outputs/<worker>/<experiment>/cost_summary.json",
+        "worker_outputs/<worker>/<experiment>/latency_summary.json"
+      ],
+      "minimal_no_protected_path_start": [
+        "For this proposal-only run, emit the design contract and Markdown note only.",
+        "For later implementation, first add a wrapper-level ledger around run_eval calls before modifying src/RAGPipeline internals.",
+        "After wrapper ledger works, add optional stage timers inside RAGPipeline.ask for precise attribution."
+      ],
+      "baseline_numbers_from_read_artifacts": {
+        "l25_v4_first_baseline_latency_avg_sec": 19.377,
+        "l25_v4_first_baseline_edd": 97.41,
+        "l30_v5_first_baseline_latency_avg_sec": 20.776,
+        "l33_v5_recomputed_latency_avg_sec": 15.151,
+        "l34_v5_top5_recomputed_latency_avg_sec": 13.724,
+        "l35_v4_title_filter_regression_latency_avg_sec": 22.035,
+        "l36_v4_top5_regression_latency_avg_sec": 23.683
+      }
+    }
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py' -Raw",
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\scripts\\evaluate.py' -Raw",
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\scripts\\ask.py' -Raw",
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs\\l25_v4_first_baseline_baseline_default\\details.json' -Raw",
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap\\summary\\l30_l36_adversarial_loop_report.md' -Raw",
+      "Get-Content prior parallel_team_worker_output.v1 examples",
+      "New-Item -ItemType Directory -Force -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs'"
+    ],
+    "observed_results": [
+      "No paid APIs were called.",
+      "No protected paths were modified.",
+      "run_experiment_worker currently persists latency_avg_sec but not cost ledger or stage timing.",
+      "evaluate.py currently records per-case latency_sec from RAGPipeline.ask and optional judge calls, but no token/cost usage fields.",
+      "ask.py displays only answer latency and has no persisted ledger.",
+      "L25 saved baseline has EDD 97.41 and latency_avg_sec 19.377.",
+      "L30-L36 report shows latency-sensitive decisions: L33/L34 were faster targeted evidence, but L35/L36 v4 regression blocked broad top5 promotion."
+    ]
+  },
+  "created_at": "2026-07-06T23:00:33+09:00"
+}

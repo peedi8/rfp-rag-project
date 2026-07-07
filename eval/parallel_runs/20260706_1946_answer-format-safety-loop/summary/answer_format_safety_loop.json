@@ -1,0 +1,31 @@
+{
+  "schema": "rfp_rag_answer_format_safety_loop.v1",
+  "created_at": "2026-07-06T19:50:00+09:00",
+  "run_dir": "eval\\parallel_runs\\20260706_1946_answer-format-safety-loop",
+  "score_type": "local_prompt_candidate_and_no_api_validation",
+  "edd_score": null,
+  "model_api_calls": 0,
+  "accepted_changes": [
+    "Added src.generator REPORT_READY_PROMPT.",
+    "Added PROMPT_VARIANTS['report_ready'].",
+    "Added scripts.run_experiment_worker prompt_sweep row prompt_report_ready."
+  ],
+  "unchanged_controls": [
+    "DEFAULT_PARAMS prompt_variant remains default.",
+    "Baseline/control retrieval settings remain unchanged.",
+    "No scored performance claim is made from this loop."
+  ],
+  "accepted_insights": [
+    "High automated score and human answer quality are separate; concise report-ready structure is now a prompt candidate.",
+    "Safety formatting must separate verified public RFP facts from unavailable final procurement/private-contact fields.",
+    "Formatting cannot compensate for missing retrieval evidence; E/F/G remains a retrieval-depth and source-scope lesson."
+  ],
+  "validation": {
+    "py_compile": "pass",
+    "static_prompt_check": "pass",
+    "generate_answer_no_api_check": "pass",
+    "rag_forwarding_no_api_check": "pass",
+    "prompt_sweep_check": "pass"
+  },
+  "next_scored_step": "Run prompt_sweep on a small mixed set with judge enabled only when cost is acceptable; compare report_ready without changing retrieval settings."
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "main_codex",
+  "task_id": "aggregator_guard",
+  "status": "proposal",
+  "summary": "Patched scripts/aggregate_parallel_eval.py to force secondary variant question files and case payloads into diagnostic_only rank scope.",
+  "inputs": [
+    "scripts/aggregate_parallel_eval.py",
+    "eval/parallel_runs/20260707_152625_L121-selected-project-scripted-batch-builder/batch/questions_l121_selected_project_secondary_variants.json"
+  ],
+  "protected_paths_seen": [
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "scripts/aggregate_parallel_eval.py",
+      "kind": "code",
+      "description": "secondary variant diagnostic-only guard"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Detect question file names containing secondary variant markers.",
+      "Inspect question files for variant_claim, secondary diagnostic_label, or promotion_blocker markers.",
+      "Set quality_status=diagnostic_secondary_variant and rank_scope=diagnostic_only before normal scoreboard rules."
+    ],
+    "rejected_or_risky_items": [],
+    "needs_orchestrator_review": [
+      "Run aggregate smoke on a synthetic full-quality row."
+    ]
+  },
+  "merge_risk": "medium",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "python -m py_compile scripts/aggregate_parallel_eval.py"
+    ],
+    "observed_results": [
+      "py_compile passed"
+    ]
+  }
+}

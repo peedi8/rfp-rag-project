@@ -1,0 +1,56 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "secondary_variant_red_review",
+  "task_id": "secondary_variant_red_review",
+  "status": "proposal",
+  "summary": "L121 secondary variants are useful stress probes but high-risk for score contamination because all 16 carry ordinary_edd_candidate=true and EDD in metric_routes. They should stay diagnostic-only, subtotaled separately, and blocked from promotion until exclusions and guards exist.",
+  "inputs": [
+    "eval/parallel_runs/20260707_152625_L121-selected-project-scripted-batch-builder/batch/selected_project_batch_l121.json",
+    "eval/parallel_runs/20260707_152625_L121-selected-project-scripted-batch-builder/batch/questions_l121_selected_project_secondary_variants.json",
+    "eval/next_improvement_tasks.md"
+  ],
+  "protected_paths_seen": [
+    "eval/next_improvement_tasks.md",
+    "eval/experiment_log.md",
+    "eval/parallel_runs/20260707_152625_L121-selected-project-scripted-batch-builder/batch/*.json"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "agent_final_message",
+      "kind": "json",
+      "description": "proposal-only red-team review"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Label all secondary variants as diagnostic_only secondary_stress_probe.",
+      "Keep persona/usefulness transfer and sparse technical not-found probes in separate subtotals.",
+      "Use L121 resolved primary only for cheap smoke and multiturn primary for memory claims."
+    ],
+    "rejected_or_risky_items": [
+      "Do not let secondary variants enter ordinary EDD, champion ranking, headline graphs, or main cohort denominators.",
+      "Do not count duplicated source_case_id rows as independent performance cases.",
+      "Do not promote persona usefulness rows without manual evidence-fit review."
+    ],
+    "needs_orchestrator_review": [
+      "Add or verify registry labels before any L122 answer execution.",
+      "Add an aggregator smoke check proving secondary_variant rows cannot enter the scoreboard.",
+      "Decide whether to patch ordinary_edd_candidate=false or enforce exclusion at registry/aggregator level."
+    ]
+  },
+  "merge_risk": "high",
+  "blocking_reason": "Secondary variants should not be promoted or scored as performance evidence until diagnostic-only exclusions and sparse-field guards are enforced.",
+  "validation": {
+    "commands_run": [
+      "Subagent parsed selected_project_batch_l121.json.",
+      "Subagent parsed questions_l121_selected_project_secondary_variants.json.",
+      "Subagent reviewed eval/next_improvement_tasks.md L121 section."
+    ],
+    "observed_results": [
+      "Primary prepared cases=35; secondary variants=16.",
+      "All 16 secondary variants have expect_abstention=false, ordinary_edd_candidate=true, and EDD in metric_routes.",
+      "No files were modified by the worker."
+    ]
+  }
+}

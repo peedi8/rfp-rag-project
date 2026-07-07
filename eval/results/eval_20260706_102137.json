@@ -1,0 +1,229 @@
+{
+  "params": "default",
+  "metrics": {
+    "retrieval_coverage_avg": 0.5,
+    "hit_all_targets_rate": 0.375,
+    "mrr": 0.531,
+    "groundedness_avg": null,
+    "relevance_avg": null,
+    "abstention_accuracy": 1.0,
+    "latency_avg_sec": 11.229
+  },
+  "details": [
+    {
+      "id": "q1_single_extract",
+      "type": "단일문서-요구사항정리",
+      "answer": "",
+      "retrieved_orgs": [
+        "국민연금공단",
+        "수협중앙회",
+        "한국교육과정평가원",
+        "인천광역시",
+        "한국생산기술연구원"
+      ],
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 15.32,
+      "judge": {
+        "groundedness": null,
+        "relevance": null,
+        "reason": "judge실패: Expecting value: line 1 column 1 (char 0)"
+      }
+    },
+    {
+      "id": "q2_followup",
+      "type": "후속질문-맥락유지",
+      "answer": "",
+      "retrieved_orgs": [
+        "(사)부산국제영화제",
+        "한국철도공사 (용역)",
+        "국방과학연구소",
+        "한국철도공사 (용역)",
+        "한국교육과정평가원"
+      ],
+      "coverage": 0.0,
+      "first_hit_rank": null,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 11.84,
+      "judge": {
+        "groundedness": null,
+        "relevance": null,
+        "reason": "judge실패: Expecting value: line 1 column 1 (char 0)"
+      }
+    },
+    {
+      "id": "q3_multi_topic",
+      "type": "멀티문서-종합",
+      "answer": "",
+      "retrieved_orgs": [
+        "서울시립대학교",
+        "국민연금공단",
+        "인천광역시 동구",
+        "한국교육과정평가원",
+        "한국사학진흥재단"
+      ],
+      "coverage": null,
+      "first_hit_rank": null,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 16.24,
+      "judge": {
+        "groundedness": null,
+        "relevance": null,
+        "reason": "judge실패: Expecting value: line 1 column 1 (char 0)"
+      }
+    },
+    {
+      "id": "q4_single_check",
+      "type": "단일문서-정보확인",
+      "answer": "제공된 문서들(문서1: 모바일오피스 시스템 고도화 용역·한국철도공사, 문서2: 스마트 팹 설비온라인 시스템 구축 용역·나노종합기술원, 문서3: 평택시 강소형 스마트시티 영상감시 시스템·케빈랩, 문서4: 서울 디지털성범죄 안심지원센터 통합·서울특별시 여성가족재단, 문서5: 선량평가시스템 고도화·한국원자력연구원)에는 '기초과학연구원 극저온시스템' 사업 또는 해당 사업의 요구사항이 포함되어 있지 않습니다.  \n따라서 기초과학연구원 극저온시스템 사업에서 AI 기반 예측 요구사항이 있는지는 제공된 문서에서 확인할 수 없습니다.",
+      "retrieved_orgs": [
+        "한국철도공사 (용역)",
+        "나노종합기술원",
+        "케빈랩 주식회사",
+        "서울특별시 여성가족재단",
+        "한국원자력연구원"
+      ],
+      "coverage": 0.0,
+      "first_hit_rank": null,
+      "abstention": true,
+      "expect_abstention": false,
+      "latency_sec": 9.49,
+      "judge": {
+        "groundedness": null,
+        "relevance": null,
+        "reason": "judge실패: Expecting value: line 1 column 1 (char 0)"
+      }
+    },
+    {
+      "id": "q5_followup",
+      "type": "후속질문-맥락유지",
+      "answer": "",
+      "retrieved_orgs": [
+        "한국교육과정평가원",
+        "국민연금공단",
+        "한국건강가정진흥원",
+        "파주도시관광공사",
+        "수협중앙회"
+      ],
+      "coverage": 0.0,
+      "first_hit_rank": null,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 11.96,
+      "judge": {
+        "groundedness": null,
+        "relevance": null,
+        "reason": "judge실패: Expecting value: line 1 column 1 (char 0)"
+      }
+    },
+    {
+      "id": "q6_purpose",
+      "type": "단일문서-목적파악",
+      "answer": "목적(요약)\n- 규제요건 준수: 원자력안전위원회고시 제2019-10호 제16조에 따른 제한구역 경계 연간선량 확인 체계 구축 필요. 또한 ICRP60 기반 평가장기 개선 필요.  \n- 액체유출물 대응: 액체유출물에 의한 주민 피폭 선량평가 기능 추가 필요.  \n- 업무생산성 향상: UI 개선 및 출력 기능 고도화를 통한 업무 효율성 및 신속한 의사결정 환경 구축.  \n- 기대효과: 정상운전 시 선량평가 관련 규제 수요에 대응.\n\n근거: 사업명: 한국원자력연구원 선량평가시스템 고도화 / 발주기관: 한국원자력연구원 (제공된 문서)",
+      "retrieved_orgs": [
+        "한국원자력연구원",
+        "한국보건산업진흥원",
+        "한국수자원조사기술원",
+        "한국재정정보원",
+        "대한상공회의소"
+      ],
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 9.88,
+      "judge": {
+        "groundedness": null,
+        "relevance": null,
+        "reason": "judge실패: Expecting value: line 1 column 1 (char 0)"
+      }
+    },
+    {
+      "id": "q7_compare",
+      "type": "멀티문서-비교",
+      "answer": "요청하신 비교는 제공된 문서의 범위로만 답변해야 하므로 아래와 같이 안내드립니다.\n\n- 근거 문서: 고려대학교 차세대 포털·학사 정보시스템 구축사업 / 발주기관: 고려대학교 (제공된 문서: [문서1])\n- 요청사항인 \"광주과학기술원 학사 시스템 기능개선 사업\" 관련 문서는 제공되지 않았습니다. 따라서 비교할 수 없습니다.\n\n결론: 광주과학기술원 관련 문서가 제공되지 않아 비교 불가합니다. (제공된 문서에서 확인할 수 없습니다.)  \n원하시면 광주과학기술원 사업 관련 문서를 제공해 주시면 비교해 드리겠습니다.",
+      "retrieved_orgs": [
+        "고려대학교",
+        "나노종합기술원",
+        "을지대학교",
+        "한국원자력연구원",
+        "서영대학교 산학협력단"
+      ],
+      "coverage": 0.5,
+      "first_hit_rank": 1,
+      "abstention": true,
+      "expect_abstention": false,
+      "latency_sec": 6.91,
+      "judge": {
+        "groundedness": null,
+        "relevance": null,
+        "reason": "judge실패: Expecting value: line 1 column 1 (char 0)"
+      }
+    },
+    {
+      "id": "q8_compare_precise",
+      "type": "멀티문서-비교/정확성",
+      "answer": "- 고려대학교: 제공된 문서([문서1]~[문서5])에 고려대학교 관련 사업 자료가 없어 응답 시간 요구사항을 확인할 수 없습니다. (근거: 제공된 문서 내에 고려대학교 명시 없음)\n\n- 광주과학기술원: 실시간통합연구비관리시스템(RCMS) 연계 모듈 변경 사업(발주기관: 광주과학기술원, 문서4)에서는 응답 시간(처리지연/응답속도)에 대한 요구사항이 명시되어 있지 않습니다. (근거: 문서4의 사업·추진일정·추진체계 등 내용만 포함)",
+      "retrieved_orgs": [
+        "을지대학교",
+        "한영대학",
+        "한국원자력연구원",
+        "광주과학기술원",
+        "한국연구재단"
+      ],
+      "coverage": 0.5,
+      "first_hit_rank": 4,
+      "abstention": true,
+      "expect_abstention": false,
+      "latency_sec": 11.9,
+      "judge": {
+        "groundedness": null,
+        "relevance": null,
+        "reason": "judge실패: Expecting value: line 1 column 1 (char 0)"
+      }
+    },
+    {
+      "id": "q9_imprecise_org",
+      "type": "메타필터-부정확입력대응",
+      "answer": "",
+      "retrieved_orgs": [
+        "한국원자력연구원",
+        "울산광역시",
+        "수협중앙회",
+        "한국원자력연구원",
+        "한국원자력연구원"
+      ],
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 12.21,
+      "judge": {
+        "groundedness": null,
+        "relevance": null,
+        "reason": "judge실패: Expecting value: line 1 column 1 (char 0)"
+      }
+    },
+    {
+      "id": "q10_abstention",
+      "type": "환각방지-없는정보",
+      "answer": "제공된 문서에서 확인할 수 없습니다. 근거 문서 및 발주기관: (사)부산국제영화제의 \"2024년 BIFF & ACFM 온라인서비스 재개발…\" (문서1), 한국발명진흥회의 \"2024년 건설기술…관리시스템 개편\" (문서2), 을지대학교의 \"비교과시스템 개발\" (문서3), 수협중앙회의 \"수산물사이버직매장 시스템 재구축…\" (문서4), 전북 정읍시의 \"정읍체육트레이닝센터 통합운영관리시스템 구축\" (문서5).",
+      "retrieved_orgs": [
+        "(사)부산국제영화제",
+        "한국발명진흥회 입찰공고",
+        "을지대학교",
+        "수협중앙회",
+        "전북특별자치도 정읍시"
+      ],
+      "coverage": null,
+      "first_hit_rank": null,
+      "abstention": true,
+      "expect_abstention": true,
+      "latency_sec": 6.54
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "main_rejudge_saved_answers",
+  "task_id": "judge_bias_check",
+  "status": "proposal",
+  "summary": "rejudged 7 saved answers; old_g=2.0 balanced_g=4.714",
+  "inputs": [
+    "eval\\parallel_runs\\20260706_150000_RFP-RAG-question-audit-improvement-loop\\worker_outputs\\v2_tune_after_filter_abstain_balanced_judge_full_baseline_default\\details.json",
+    "eval\\questions_v2_tune.json"
+  ],
+  "protected_paths_seen": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "config.py",
+    "src/**",
+    "scripts/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\worker_outputs\\judge_bias_check\\rejudge_summary.json",
+      "kind": "json",
+      "description": "same-answer judge comparison"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\worker_outputs\\judge_bias_check\\rejudge_summary.md",
+      "kind": "md",
+      "description": "human-readable judge comparison"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\worker_outputs\\judge_bias_check\\rejudge_results.jsonl",
+      "kind": "data",
+      "description": "per-case checkpointed rejudge rows"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "old_groundedness_avg": 2.0,
+        "balanced_groundedness_avg": 4.714,
+        "old_relevance_avg": 4.857,
+        "balanced_relevance_avg": 4.857,
+        "unsupported_severity_avg": 0.0,
+        "checked_cases": 7
+      }
+    ],
+    "rejected_or_risky_items": [],
+    "needs_orchestrator_review": [
+      "If balanced scores rise but strict unsupported audit flags concrete claims, treat the gain as suspect.",
+      "Do not claim model improvement from judge-context-only changes."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "scripts\\rejudge_saved_answers.py --details eval\\parallel_runs\\20260706_150000_RFP-RAG-question-audit-improvement-loop\\worker_outputs\\v2_tune_after_filter_abstain_balanced_judge_full_baseline_default\\details.json --experiment baseline_default --questions eval\\questions_v2_tune.json --out-dir eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\worker_outputs\\judge_bias_check --case-ids qv2_001_single_elec_security,qv2_002_single_chungbuk_disaster_gis,qv2_003_single_add_large_transfer,qv2_009_compare_learning_platforms,qv2_010_compare_disaster_safety_systems,qv2_018_ambiguous_gwangju,qv2_023_score_trap_health_info_duplicate --top-k 8"
+    ],
+    "observed_results": [
+      "checked_cases=7"
+    ]
+  },
+  "created_at": "2026-07-06T17:48:48"
+}

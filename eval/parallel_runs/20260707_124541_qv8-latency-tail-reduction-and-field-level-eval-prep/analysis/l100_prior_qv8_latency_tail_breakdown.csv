@@ -1,0 +1,6 @@
+﻿case_id,latency_sec,retrieval_sec,generation_sec,generation_share,prompt_tokens,completion_tokens,total_tokens,answer_chars,answer_lines,judge_sec,context_backfill_count,project_focus_filter_count
+q20260707_a01_generic_integrated_system_preempt_false_positive,31.17,4.71,26.46,0.849,4381,2490,6871,181,4,,0,0
+q20260707_a02_hanyoung_plain_language_track_system,27.25,0.32,26.93,0.988,4413,2389,6802,550,5,9.944,0,0
+q20260707_a05_nmc_patient_example_fabrication,20.8,0.27,20.53,0.987,4586,1373,5959,460,7,,0,0
+q20260707_a06_gist_same_issuer_rcms_vs_academic,25.6,1.26,24.34,0.951,2007,2432,4439,1173,18,8.007,0,5
+q20260707_a07_livestock_honey_vs_traceability_compare,20.31,0.64,19.67,0.968,4425,1975,6400,1295,22,6.336,0,0

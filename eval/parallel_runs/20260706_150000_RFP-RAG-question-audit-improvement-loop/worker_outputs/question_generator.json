@@ -1,0 +1,48 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "Poincare",
+  "task_id": "question_generator",
+  "status": "proposal",
+  "inputs": [
+    "eval/questions.json",
+    "CLAUDE.md",
+    "eval/parallel_runs/20260706_150000_RFP-RAG-question-audit-improvement-loop/worker_output_contract.md"
+  ],
+  "protected_paths_seen": [
+    "config.py",
+    "src",
+    "eval/questions.json",
+    "업무일지.md",
+    "eval/experiment_log.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    "eval/parallel_runs/20260706_150000_RFP-RAG-question-audit-improvement-loop/worker_outputs/question_generator/questions_v2_proposals.json",
+    "eval/parallel_runs/20260706_150000_RFP-RAG-question-audit-improvement-loop/worker_outputs/question_generator/questions_v2_proposals.md"
+  ],
+  "proposal": {
+    "question_count": 25,
+    "type_counts": {
+      "single_extract": 4,
+      "followup": 4,
+      "compare": 4,
+      "precise_check": 4,
+      "ambiguous_org": 3,
+      "abstention": 3,
+      "score_trap": 3
+    },
+    "main_codex_curation": {
+      "output": "eval/questions_v2.json",
+      "accepted": 25,
+      "rejected": 0,
+      "bom_input_detected": true,
+      "source_org_validation": "all non-abstention target orgs matched source filenames"
+    }
+  },
+  "merge_risk": "low",
+  "validation": {
+    "json_parse": "pass with utf-8-sig due BOM",
+    "curation": "pass",
+    "questions_v2_utf8_no_bom": "pass"
+  }
+}

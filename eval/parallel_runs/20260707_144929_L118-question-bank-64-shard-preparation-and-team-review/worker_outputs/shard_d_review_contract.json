@@ -1,0 +1,392 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "shard_d_review",
+  "task_id": "shard_d_review",
+  "status": "proposal",
+  "summary": "Shard D is coherent as a persona/business/citation shard if it is treated as a mixed diagnostic shard rather than one strict EDD lane. Recommend keeping all 16 cases, with special execution gates for seeded selected-project prompts, whole-corpus business recommendations, unsupported-guarantee refusals, and system-trace citation probes.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\D_persona_business_citation.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\A_metadata_corpus.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\B_contract_technical_extract.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\C_technical_followup_boundary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\ledger.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\checkpoint_01_inputs.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\checkpoint_02_worker_outputs.md"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "Read-only inspection of shard JSON and neighboring shard inputs with PowerShell Get-Content; no answer generation, retriever, judge, evaluator, API, or model call was run."
+  },
+  "protected_paths_seen": [
+    "eval/question_bank64_shards_20260707.*",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md",
+    "src/**",
+    "scripts/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\worker_outputs\\shard_d_review_contract.json",
+      "kind": "json",
+      "description": "Read-only shard D review proposal contract."
+    }
+  ],
+  "proposal": {
+    "bottom_line": "Keep shard D's 16 cases together, but execute and score it as four sublanes: unsupported legal/business guarantee boundary, persona transformation/usefulness, system instrumentation/citation transparency, and business recommendation with evidence boundary. Do not aggregate these as one ordinary strict RAG score.",
+    "accepted_fields_or_changes": [
+      {
+        "type": "shard_membership",
+        "recommendation": "keep_all_16_cases",
+        "case_ids": [
+          "Q077",
+          "Q079",
+          "Q080",
+          "Q081",
+          "Q082",
+          "Q083",
+          "Q084",
+          "Q085",
+          "Q086",
+          "Q087",
+          "Q088",
+          "Q089",
+          "Q090",
+          "Q091",
+          "Q036",
+          "Q037"
+        ],
+        "reason": "The shard is not a pure persona shard, but the selected cases form a useful diagnostic bundle around persona-tailored output, business judgment boundaries, and citation/transparency behavior. Q036/Q037 would superficially fit shard A comparison, and Q090/Q091 would fit a system instrumentation shard, but keeping them here gives the shard its intended business/citation coverage."
+      },
+      {
+        "type": "execution_grouping",
+        "recommendation": "split_metrics_by_sublane_before_reporting",
+        "groups": [
+          {
+            "name": "unsupported_guarantee_boundary",
+            "case_ids": [
+              "Q077",
+              "Q079",
+              "Q080",
+              "Q081"
+            ],
+            "expected_behavior": "Refuse unsupported guarantees or exact claims while still giving useful document-grounded next checks."
+          },
+          {
+            "name": "persona_usefulness_transformation",
+            "case_ids": [
+              "Q082",
+              "Q083",
+              "Q084",
+              "Q085",
+              "Q086",
+              "Q087",
+              "Q088",
+              "Q089"
+            ],
+            "expected_behavior": "Transform retrieved RFP facts into audience-appropriate explanations, checklists, risks, messages, or sales points without losing evidence boundaries."
+          },
+          {
+            "name": "system_citation_transparency",
+            "case_ids": [
+              "Q090",
+              "Q091"
+            ],
+            "expected_behavior": "Expose top-k document/chunk provenance or answer-to-evidence mapping from system trace; these are not normal answer-quality rows."
+          },
+          {
+            "name": "business_recommendation_boundary",
+            "case_ids": [
+              "Q036",
+              "Q037"
+            ],
+            "expected_behavior": "Recommend or classify projects using explicit criteria, cited evidence, and caveats against profit/success certainty."
+          }
+        ],
+        "reason": "The existing lane metadata already marks unsupported_absent_or_mixed, ordinary_rag_text_or_mixed, system_instrumentation, and mixed. Reporting one average would hide whether the system improved useful persona behavior versus refusal or instrumentation."
+      },
+      {
+        "type": "seed_context_setup",
+        "recommendation": "define explicit seed fixtures before answer execution",
+        "seed_requirements": [
+          {
+            "case_ids": [
+              "Q077",
+              "Q079",
+              "Q081",
+              "Q082",
+              "Q083",
+              "Q084",
+              "Q085",
+              "Q086",
+              "Q088",
+              "Q089"
+            ],
+            "seed": "single selected RFP with stable project title/org/doc id in conversation state",
+            "risk_if_missing": "The model may answer generically, retrieve the wrong project, or get unfairly penalized for not knowing which RFP 'this 사업' means."
+          },
+          {
+            "case_ids": [
+              "Q087"
+            ],
+            "seed": "selected RFP that actually contains at least some target terms such as 협상에 의한 계약, ISP, ISMP, or PMC, or explicitly run as whole-corpus term extraction",
+            "risk_if_missing": "A correct answer may say terms are absent, while the expected answer assumes term explanation."
+          },
+          {
+            "case_ids": [
+              "Q080",
+              "Q036",
+              "Q037"
+            ],
+            "seed": "whole-corpus metadata/body access plus a declared evaluation criterion set; Q080 should not need a selected-project seed despite current seed_required=true",
+            "risk_if_missing": "Business recommendation cases can become pure opinion questions or over-refusal probes instead of evidence-bound comparisons."
+          },
+          {
+            "case_ids": [
+              "Q090",
+              "Q091"
+            ],
+            "seed": "system trace fixture containing the original user query, retrieved top-k chunks, source document ids/titles, chunk ids or page/section labels, and generated answer spans when available",
+            "risk_if_missing": "The questions are self-referential and cannot be fairly scored from retrieved text alone."
+          }
+        ]
+      },
+      {
+        "type": "sidecar_metrics",
+        "recommendation": "attach sidecar checks before execution",
+        "metrics": [
+          {
+            "name": "unsupported_guarantee_refusal",
+            "case_ids": [
+              "Q077",
+              "Q079",
+              "Q080",
+              "Q081"
+            ],
+            "pass_condition": "Answer does not guarantee legal safety, fixed delivery feasibility, highest profitability, or completed security certifications unless directly evidenced."
+          },
+          {
+            "name": "useful_next_checks",
+            "case_ids": [
+              "Q077",
+              "Q079",
+              "Q080",
+              "Q081"
+            ],
+            "pass_condition": "Answer gives concrete verification items or criteria after refusing unsupported certainty."
+          },
+          {
+            "name": "over_refusal",
+            "case_ids": [
+              "Q077",
+              "Q079",
+              "Q080",
+              "Q081"
+            ],
+            "pass_condition": "Answer preserves supported document facts and does not collapse into a bare refusal."
+          },
+          {
+            "name": "persona_fit",
+            "case_ids": [
+              "Q082",
+              "Q083",
+              "Q084",
+              "Q085",
+              "Q086",
+              "Q087",
+              "Q088",
+              "Q089"
+            ],
+            "pass_condition": "Tone, structure, and detail level match the named persona and expected answer type."
+          },
+          {
+            "name": "evidence_based_recommendation",
+            "case_ids": [
+              "Q082",
+              "Q083",
+              "Q084",
+              "Q085",
+              "Q086",
+              "Q087",
+              "Q088",
+              "Q089",
+              "Q036",
+              "Q037"
+            ],
+            "pass_condition": "Recommendations, risks, and messages are tied to retrieved document facts or declared criteria."
+          },
+          {
+            "name": "overlong_answer",
+            "case_ids": [
+              "Q082",
+              "Q083",
+              "Q084",
+              "Q085",
+              "Q086",
+              "Q087",
+              "Q088",
+              "Q089"
+            ],
+            "pass_condition": "Persona outputs remain concise enough for the requested audience and format."
+          },
+          {
+            "name": "citation_trace_present",
+            "case_ids": [
+              "Q090",
+              "Q091"
+            ],
+            "pass_condition": "Output includes source document title/id plus chunk/page/section identifiers for retrieved evidence or per-answer support."
+          },
+          {
+            "name": "instrumentation_available",
+            "case_ids": [
+              "Q090",
+              "Q091"
+            ],
+            "pass_condition": "Runner exposes retrieval/citation trace fields; if not available, mark blocked rather than score as model answer failure."
+          },
+          {
+            "name": "ordinary_edd_exclusion",
+            "case_ids": [
+              "Q090",
+              "Q091"
+            ],
+            "pass_condition": "Instrumentation rows are reported separately from ordinary answer-quality EDD."
+          },
+          {
+            "name": "business_judgment_boundary",
+            "case_ids": [
+              "Q036",
+              "Q037"
+            ],
+            "pass_condition": "Answer states criteria and limitations instead of presenting recommendation as guaranteed win/profit/outcome."
+          },
+          {
+            "name": "unsupported_profit_certainty",
+            "case_ids": [
+              "Q080",
+              "Q036",
+              "Q037"
+            ],
+            "pass_condition": "Answer avoids asserting profitability or business success beyond document evidence."
+          }
+        ]
+      },
+      {
+        "type": "metadata_cleanup_proposal",
+        "recommendation": "consider changing Q080 seed_required from true to false or add an explicit business-context seed note",
+        "case_ids": [
+          "Q080"
+        ],
+        "reason": "Q080 targets 전체 데이터 and asks for the most profitable project; it is better treated as whole-corpus business-boundary/recommendation with criteria, not as a selected-project follow-up. If kept seed_required=true, the seed should define a business profile or evaluation criteria, not a selected RFP."
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "case_id": "Q090",
+        "risk": "Self-referential query says '이 질문' but no actual underlying query is present in the case. It should be run only with an explicit trace fixture or wrapper query.",
+        "recommendation": "Keep in shard D, but block ordinary execution if top-k provenance is not available."
+      },
+      {
+        "case_id": "Q091",
+        "risk": "Citation accuracy cannot be judged unless answer spans and source mappings are emitted or reconstructable.",
+        "recommendation": "Keep in shard D, but require citation_trace_present and instrumentation_available sidecar metrics."
+      },
+      {
+        "case_id": "Q088",
+        "risk": "A one-paragraph customer recommendation can become promotional copy without enough evidence or caveats.",
+        "recommendation": "Keep, but score evidence-based recommendation and unsupported certainty more heavily than fluency."
+      },
+      {
+        "case_id": "Q080",
+        "risk": "High chance of overfitting to a generic refusal: a bare 'cannot know profitability' answer may pass safety while failing usefulness.",
+        "recommendation": "Require useful criteria such as budget, domain fit, complexity, deadline, required experience, and missing data caveat."
+      },
+      {
+        "case_ids": [
+          "Q077",
+          "Q079",
+          "Q081"
+        ],
+        "risk": "Unsupported-guarantee questions can be scored too generously if any refusal is accepted.",
+        "recommendation": "Require both refusal of certainty and a project-specific checklist grounded in the selected RFP."
+      },
+      {
+        "case_ids": [
+          "Q036",
+          "Q037"
+        ],
+        "risk": "These overlap with shard A's comparison/corpus analytics cases, so cross-shard reports may double-count business comparison performance.",
+        "recommendation": "Keep in D as business recommendation cases, but tag separately from A's metadata/corpus comparison scores."
+      }
+    ],
+    "remove_swap_or_move_decisions": [
+      {
+        "decision": "no_remove",
+        "case_ids": [
+          "Q077",
+          "Q079",
+          "Q080",
+          "Q081",
+          "Q082",
+          "Q083",
+          "Q084",
+          "Q085",
+          "Q086",
+          "Q087",
+          "Q088",
+          "Q089",
+          "Q090",
+          "Q091",
+          "Q036",
+          "Q037"
+        ],
+        "reason": "No case is incoherent enough to drop before first answer execution."
+      },
+      {
+        "decision": "no_swap",
+        "case_ids": [
+          "Q036",
+          "Q037",
+          "Q090",
+          "Q091"
+        ],
+        "reason": "These are the only mildly out-of-lane cases, but they supply the shard's business and citation anchors. Moving them would make D mostly persona/refusal and weaken the intended persona/business/citation coverage."
+      },
+      {
+        "decision": "conditional_quarantine",
+        "case_ids": [
+          "Q090",
+          "Q091"
+        ],
+        "condition": "If the runner cannot expose retrieval/citation trace artifacts, do not execute these as ordinary RAG answer rows; mark blocked or move to a later instrumentation-only run."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Confirm whether the final 64-case runner can provide per-case selected-project seeds for Q077-Q089 and trace artifacts for Q090-Q091.",
+      "Decide whether Q080's seed_required metadata should be normalized before final freeze, because it currently targets 전체 데이터 but says seed_required=true.",
+      "Ensure final reporting groups D sublanes separately to avoid comparing refusal/citation/business recommendation cases as one strict EDD metric."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-ChildItem current run dir and worker_outputs",
+      "rg -n parallel_team_worker_output.v1 and prior worker contracts",
+      "Get-Content -Raw -Encoding UTF8 D_persona_business_citation.json",
+      "Get-Content -Raw -Encoding UTF8 ledger.json",
+      "Get-Content -Raw -Encoding UTF8 checkpoint_01_inputs.md and checkpoint_02_worker_outputs.md",
+      "Get-Content -Raw -Encoding UTF8 A_metadata_corpus.json, B_contract_technical_extract.json, and C_technical_followup_boundary.json for neighboring-shard fit comparison"
+    ],
+    "observed_results": [
+      "D shard contains exactly 16 cases: Q077, Q079, Q080, Q081, Q082-Q091, Q036, and Q037.",
+      "Neighboring shards already cover pure metadata/corpus analytics, selected-project contract/technical extraction, and technical follow-up/boundary cases.",
+      "Worker output directory was empty before writing this contract.",
+      "No protected paths were modified.",
+      "No generator, retriever, judge, evaluator, API, or model call was run."
+    ]
+  },
+  "created_at": "2026-07-07T15:02:00+09:00"
+}

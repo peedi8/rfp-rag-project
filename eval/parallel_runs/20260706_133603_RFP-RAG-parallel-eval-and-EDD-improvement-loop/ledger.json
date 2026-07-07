@@ -1,0 +1,67 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-06T13:36:05",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "RFP RAG parallel eval and EDD improvement loop",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_133603_RFP-RAG-parallel-eval-and-EDD-improvement-loop",
+  "cpu_percent_at_start": 5.0,
+  "recommended_workers": 4,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "I:\\0706\\rfp-rag-project\\업무일지.md",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\CLAUDE.md",
+    "I:\\0706\\rfp-rag-project\\config.py",
+    "I:\\0706\\rfp-rag-project\\src\\**",
+    "I:\\0706\\rfp-rag-project\\chroma_db\\**"
+  ],
+  "tasks": [
+    {
+      "task_id": "topk_sweep",
+      "description": "Run top_k 5/8/12 against frozen raw index",
+      "status": "pending",
+      "worker_id": "",
+      "output_contract": "",
+      "merge_decision": "undecided"
+    },
+    {
+      "task_id": "mmr_lambda_sweep",
+      "description": "Run mmr_lambda 0.3/0.5/0.7 against frozen raw index",
+      "status": "pending",
+      "worker_id": "",
+      "output_contract": "",
+      "merge_decision": "undecided"
+    },
+    {
+      "task_id": "fetchk_sweep",
+      "description": "Run fetch_k 20/40 against frozen raw index",
+      "status": "pending",
+      "worker_id": "",
+      "output_contract": "",
+      "merge_decision": "undecided"
+    },
+    {
+      "task_id": "filter_rewrite_ablation",
+      "description": "Run auto_filter on/off x rewrite_query on/off ablation",
+      "status": "pending",
+      "worker_id": "",
+      "output_contract": "",
+      "merge_decision": "undecided"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_133603_RFP-RAG-parallel-eval-and-EDD-improvement-loop\\checkpoint_01_inputs.md",
+    "worker_outputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_133603_RFP-RAG-parallel-eval-and-EDD-improvement-loop\\checkpoint_02_worker_outputs.md",
+    "merge_decisions": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_133603_RFP-RAG-parallel-eval-and-EDD-improvement-loop\\checkpoint_03_merge_decisions.md",
+    "smoke": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_133603_RFP-RAG-parallel-eval-and-EDD-improvement-loop\\checkpoint_04_smoke.md"
+  },
+  "events": [
+    {
+      "ts": "2026-07-06T13:36:05",
+      "event": "scaffold_created",
+      "recommended_workers": 4,
+      "cpu_percent": 5.0
+    }
+  ]
+}

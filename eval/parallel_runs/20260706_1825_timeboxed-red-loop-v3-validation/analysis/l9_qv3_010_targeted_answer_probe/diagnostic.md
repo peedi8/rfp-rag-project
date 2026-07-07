@@ -1,0 +1,45 @@
+# L9 qv3_010 Targeted Answer Probe
+
+- judge call: false
+- scope: one qv3_010 top_k=5 answer after L4-L8 source/judge safeguards
+- coverage: 1.0
+- first_hit_rank: 1
+- latency_sec: 18.66
+- retrieved_orgs: ['경기도 안양시', '경기도 안양시', '경기도 안양시', '경기도 안양시', '경기도 안양시']
+- all_retrieved_orgs_target: True
+- manual_read_flags: source_scope_clean, payment_generic_present, pg_not_recovered, top5_still_insufficient_for_pg_detail
+
+## Term Presence
+- 예약: True
+- 결제: True
+- PG: False
+- 회원: True
+- 키오스크: True
+- 발권: False
+- 매출: True
+
+## Manual Read Decision
+
+The source-scope fix worked: all retrieved organizations are ??? ???. However, top_k=5 still did not recover the PG detail in the generated answer, even though L6 proved PG evidence exists in the issuer scope. This supports rejecting global top_k=5 and suggests qv3_010 needs top8 or targeted evidence selection for payment/PG details.
+
+## Answer
+
+근거: 사업명 "호계체육관 배드민턴장 및 탁구장 예약 시스템 구축" / 발주기관: 경기도 안양시 (참고문서: 문서1·문서3·문서4)
+
+요약(짧게)
+
+- 회원통합운영(회원관리) 요구사항(문서3·문서1)
+  - 회원 등록·수정·삭제·상태변경 기능 제공.  
+  - 2년간 이용 이력 없는 회원은 이메일 통보 후 DB에서 완전 삭제.  
+  - 주기적 개인정보 활용 동의 프로세스 구현(회원이 인지·동의하도록).  
+  - 중복회원 발생 차단 및 운영담당자가 확인·관리 가능하도록 구현.  
+  - 운영자가 신속 관리할 수 있도록 성명·전화번호 뒷자리 등 다양한 화면에서 검색 기능 제공.  
+  - 개인정보 보호를 위한 시큐어 코딩 적용(문서1).
+
+- 예약·결제(매출/회계) 요구사항(문서1·문서3·문서4)
+  - 웹서비스 및 키오스크에서 예약 및 사용신청 가능하도록 구축(문서1·문서4).  
+  - 매출(회계)관리: 당일·당월 매출 관리, 담당자별 마감 기능, 매출통계(발주기관 양식 반영), 대사(검증) 정보 제공(문서3 SFR-004).  
+  - 기존 운영 중인 홈페이지 및 키오스크와 상호 연계 가능하도록 구현(문서4).
+
+- 제공문서에서 확인 불가(명시 필요 시)
+  - 결제수단(신용카드·간편결제 등), 예약 상세흐름(예약시간관리·취소·환불 규정) 등 구체적 기능·화면·지불처리 방식은 제공된 문서에서 확인할 수 없습니다.

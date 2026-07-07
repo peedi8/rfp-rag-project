@@ -1,0 +1,28 @@
+[
+  {
+    "suite": "mmr_lambda_sweep",
+    "returncode": 0,
+    "log": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\logs\\mmr_lambda_sweep.log"
+  },
+  {
+    "suite": "topk_sweep",
+    "returncode": 0,
+    "log": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\logs\\topk_sweep.log"
+  },
+  {
+    "suite": "fetchk_sweep",
+    "returncode": 0,
+    "log": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\logs\\fetchk_sweep.log"
+  },
+  {
+    "suite": "filter_rewrite_ablation",
+    "returncode": 0,
+    "log": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\logs\\filter_rewrite_ablation.log"
+  },
+  {
+    "suite": "aggregate",
+    "returncode": 0,
+    "stdout": "{\n  \"rows\": 12,\n  \"summary\": \"I:\\\\0706\\\\rfp-rag-project\\\\eval\\\\parallel_runs\\\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\\\summary\\\\summary.md\"\n}\n",
+    "stderr": ""
+  }
+]

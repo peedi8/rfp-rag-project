@@ -1,0 +1,594 @@
+[
+  {
+    "id": "l121_Q082_persona_add_transfer",
+    "source_case_id": "Q082",
+    "type": "persona_or_business_usefulness_seeded_rag",
+    "questioner_profile": "사용자수준",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "RFP가 뭔지 잘 모르는 사람도 이해할 수 있게 이 사업을 쉽게 설명해줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, RFP가 뭔지 잘 모르는 사람도 이해할 수 있게 이 사업을 쉽게 설명해줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_CONTEXTUAL_USEFULNESS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "contextual_quality",
+      "usefulness",
+      "evidence_fit",
+      "groundedness"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary persona/usefulness variant on a technical-upgrade seed"
+  },
+  {
+    "id": "l121_Q083_persona_add_transfer",
+    "source_case_id": "Q083",
+    "type": "persona_or_business_usefulness_seeded_rag",
+    "questioner_profile": "사용자수준",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "이 RFP를 제안 준비 관점에서 할 일 체크리스트로 바꿔줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 이 RFP를 제안 준비 관점에서 할 일 체크리스트로 바꿔줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_CONTEXTUAL_USEFULNESS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "contextual_quality",
+      "usefulness",
+      "evidence_fit",
+      "groundedness"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary persona/usefulness variant on a technical-upgrade seed"
+  },
+  {
+    "id": "l121_Q084_persona_add_transfer",
+    "source_case_id": "Q084",
+    "type": "persona_or_business_usefulness_seeded_rag",
+    "questioner_profile": "사용자수준",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "개발팀 관점에서 일정 지연이나 난이도 리스크가 될 수 있는 요구사항을 찾아줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 개발팀 관점에서 일정 지연이나 난이도 리스크가 될 수 있는 요구사항을 찾아줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_CONTEXTUAL_USEFULNESS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "contextual_quality",
+      "usefulness",
+      "evidence_fit",
+      "groundedness"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary persona/usefulness variant on a technical-upgrade seed"
+  },
+  {
+    "id": "l121_Q085_persona_add_transfer",
+    "source_case_id": "Q085",
+    "type": "persona_or_business_usefulness_seeded_rag",
+    "questioner_profile": "사용자수준",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "입찰 참여 여부를 판단할 수 있게 기회 요인과 위험 요인을 5개씩 정리해줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 입찰 참여 여부를 판단할 수 있게 기회 요인과 위험 요인을 5개씩 정리해줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_CONTEXTUAL_USEFULNESS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "contextual_quality",
+      "usefulness",
+      "evidence_fit",
+      "groundedness"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary persona/usefulness variant on a technical-upgrade seed"
+  },
+  {
+    "id": "l121_Q086_persona_add_transfer",
+    "source_case_id": "Q086",
+    "type": "persona_or_business_usefulness_seeded_rag",
+    "questioner_profile": "사용자수준",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "우리 회사가 웹서비스 개발 경험만 있다면 이 사업에 참여해도 될지 문서 근거로 판단해줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 우리 회사가 웹서비스 개발 경험만 있다면 이 사업에 참여해도 될지 문서 근거로 판단해줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_CONTEXTUAL_USEFULNESS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "contextual_quality",
+      "usefulness",
+      "evidence_fit",
+      "groundedness"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary persona/usefulness variant on a technical-upgrade seed"
+  },
+  {
+    "id": "l121_Q087_persona_add_transfer",
+    "source_case_id": "Q087",
+    "type": "persona_or_business_usefulness_seeded_rag",
+    "questioner_profile": "사용자수준",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "이 문서에 나오는 협상에 의한 계약, ISP, ISMP, PMC 같은 용어를 쉽게 풀어줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 이 문서에 나오는 협상에 의한 계약, ISP, ISMP, PMC 같은 용어를 쉽게 풀어줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_CONTEXTUAL_USEFULNESS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "contextual_quality",
+      "usefulness",
+      "evidence_fit",
+      "groundedness"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary persona/usefulness variant on a technical-upgrade seed"
+  },
+  {
+    "id": "l121_Q088_persona_add_transfer",
+    "source_case_id": "Q088",
+    "type": "persona_or_business_usefulness_seeded_rag",
+    "questioner_profile": "사용자수준",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "고객사에게 보낼 수 있게 이 공고를 1문단 추천 메시지로 작성해줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 고객사에게 보낼 수 있게 이 공고를 1문단 추천 메시지로 작성해줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_CONTEXTUAL_USEFULNESS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "contextual_quality",
+      "usefulness",
+      "evidence_fit",
+      "groundedness"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary persona/usefulness variant on a technical-upgrade seed"
+  },
+  {
+    "id": "l121_Q089_persona_add_transfer",
+    "source_case_id": "Q089",
+    "type": "persona_or_business_usefulness_seeded_rag",
+    "questioner_profile": "사용자수준",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "이 사업에서 우리 제안서가 강조해야 할 기술영업 포인트를 문서 근거로 뽑아줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 이 사업에서 우리 제안서가 강조해야 할 기술영업 포인트를 문서 근거로 뽑아줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_CONTEXTUAL_USEFULNESS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "contextual_quality",
+      "usefulness",
+      "evidence_fit",
+      "groundedness"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary persona/usefulness variant on a technical-upgrade seed"
+  },
+  {
+    "id": "l121_Q046_technical_add_transfer",
+    "source_case_id": "Q046",
+    "type": "selected_project_seeded_technical_rag",
+    "questioner_profile": "기술검토",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "해당 RFP에서 외부 시스템 연계, API, 데이터 이관 요구사항을 찾아줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 해당 RFP에서 외부 시스템 연계, API, 데이터 이관 요구사항을 찾아줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_SELECTED_PROJECT_MEMORY",
+      "G_TECHNICAL_REQUIREMENT_FIELDS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "technical_field_coverage",
+      "groundedness",
+      "latency"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary sparse-technical seed to test not-found behavior"
+  },
+  {
+    "id": "l121_Q047_technical_add_transfer",
+    "source_case_id": "Q047",
+    "type": "selected_project_seeded_technical_rag",
+    "questioner_profile": "기술검토",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "서버, DB, 네트워크, 클라우드, 보안장비 등 인프라 요구사항을 정리해줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 서버, DB, 네트워크, 클라우드, 보안장비 등 인프라 요구사항을 정리해줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_SELECTED_PROJECT_MEMORY",
+      "G_TECHNICAL_REQUIREMENT_FIELDS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "technical_field_coverage",
+      "groundedness",
+      "latency"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary sparse-technical seed to test not-found behavior"
+  },
+  {
+    "id": "l121_Q048_technical_add_transfer",
+    "source_case_id": "Q048",
+    "type": "selected_project_seeded_technical_rag",
+    "questioner_profile": "기술검토",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "데이터베이스, 코드, 통계, 로그, 이력관리 관련 요구사항을 찾아줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 데이터베이스, 코드, 통계, 로그, 이력관리 관련 요구사항을 찾아줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_SELECTED_PROJECT_MEMORY",
+      "G_TECHNICAL_REQUIREMENT_FIELDS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "technical_field_coverage",
+      "groundedness",
+      "latency"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary sparse-technical seed to test not-found behavior"
+  },
+  {
+    "id": "l121_Q049_technical_add_transfer",
+    "source_case_id": "Q049",
+    "type": "selected_project_seeded_technical_rag",
+    "questioner_profile": "기술검토",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "사용자 화면, 관리자 화면, 반응형 웹, 접근성, 편의성 요구사항을 정리해줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 사용자 화면, 관리자 화면, 반응형 웹, 접근성, 편의성 요구사항을 정리해줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_SELECTED_PROJECT_MEMORY",
+      "G_TECHNICAL_REQUIREMENT_FIELDS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "technical_field_coverage",
+      "groundedness",
+      "latency"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary sparse-technical seed to test not-found behavior"
+  },
+  {
+    "id": "l121_Q050_technical_add_transfer",
+    "source_case_id": "Q050",
+    "type": "selected_project_seeded_technical_rag",
+    "questioner_profile": "기술검토",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "개인정보, 권한관리, 로그관리, 암호화, 취약점 점검 관련 요구사항만 추려줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 개인정보, 권한관리, 로그관리, 암호화, 취약점 점검 관련 요구사항만 추려줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_SELECTED_PROJECT_MEMORY",
+      "G_TECHNICAL_REQUIREMENT_FIELDS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "technical_field_coverage",
+      "groundedness",
+      "latency"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary sparse-technical seed to test not-found behavior"
+  },
+  {
+    "id": "l121_Q051_technical_add_transfer",
+    "source_case_id": "Q051",
+    "type": "selected_project_seeded_technical_rag",
+    "questioner_profile": "기술검토",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "테스트, 성능검증, 안정성, 장애 대응과 관련된 요구사항을 찾아줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 테스트, 성능검증, 안정성, 장애 대응과 관련된 요구사항을 찾아줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_SELECTED_PROJECT_MEMORY",
+      "G_TECHNICAL_REQUIREMENT_FIELDS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "technical_field_coverage",
+      "groundedness",
+      "latency"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary sparse-technical seed to test not-found behavior"
+  },
+  {
+    "id": "l121_Q052_technical_add_transfer",
+    "source_case_id": "Q052",
+    "type": "selected_project_seeded_technical_rag",
+    "questioner_profile": "기술검토",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "배포, 운영 전환, 모니터링, 장애 복구 요구사항이 있는지 알려줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 배포, 운영 전환, 모니터링, 장애 복구 요구사항이 있는지 알려줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_SELECTED_PROJECT_MEMORY",
+      "G_TECHNICAL_REQUIREMENT_FIELDS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "technical_field_coverage",
+      "groundedness",
+      "latency"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary sparse-technical seed to test not-found behavior"
+  },
+  {
+    "id": "l121_Q053_technical_add_transfer",
+    "source_case_id": "Q053",
+    "type": "selected_project_seeded_technical_rag",
+    "questioner_profile": "기술검토",
+    "turns": [
+      "이 대화에서는 국방과학연구소의 '대용량 자료전송시스템 고도화' 공고를 선택한 사업으로 볼게. 먼저 이 공고의 발주기관, 사업명, 사업금액(316,800,000원), 입찰 마감일을 문서 기준으로 확인해줘.",
+      "기존 데이터 이관 또는 마이그레이션 범위가 있으면 요약해줘."
+    ],
+    "resolved_one_turn": "국방과학연구소의 '대용량 자료전송시스템 고도화' 기준으로, 기존 데이터 이관 또는 마이그레이션 범위가 있으면 요약해줘.",
+    "target_orgs": [
+      "국방과학연구소"
+    ],
+    "target_biz": "대용량 자료전송시스템 고도화",
+    "expect_abstention": false,
+    "seed_refs": [
+      "S_ADD_LARGE_TRANSFER"
+    ],
+    "seed_titles": [
+      "대용량 자료전송시스템 고도화"
+    ],
+    "seed_policy": "one_fixed_seed_per_run_no_cross_seed_synthesis",
+    "execution_status": "prepared_no_api_not_answered",
+    "ordinary_edd_candidate": true,
+    "gates": [
+      "G_SELECTED_PROJECT_MEMORY",
+      "G_TECHNICAL_REQUIREMENT_FIELDS"
+    ],
+    "metric_routes": [
+      "EDD",
+      "technical_field_coverage",
+      "groundedness",
+      "latency"
+    ],
+    "note": "L121 prepared batch only. Use resolved_one_turn for cheaper smoke; use turns for faithful follow-up/memory evaluation. Preserve first answer run raw.",
+    "variant_claim": "secondary sparse-technical seed to test not-found behavior"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "schema": "rfp_rag_l118_handoff.v1",
+  "created_at": "2026-07-07T14:56:17",
+  "objective": "L118 question bank 64 shard preparation and team review",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review",
+  "ledger": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\ledger.json",
+  "accepted_outputs": [
+    "eval/question_bank64_shards_20260707.json",
+    "eval/question_bank64_shards_20260707.csv",
+    "eval/question_bank64_shards_20260707.md",
+    "eval/question_bank64_shards_20260707.manifest.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\worker_outputs\\shard_a_review_contract.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\worker_outputs\\shard_b_review_contract.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\worker_outputs\\shard_c_review_contract.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\worker_outputs\\shard_d_review_contract.json"
+  ],
+  "excluded_from_64": [
+    "Q092",
+    "Q093",
+    "Q094",
+    "Q095"
+  ],
+  "decision": "64-case physical split retained after review; no answer run yet",
+  "next_actions": [
+    "Build runnable manifests for four shards with seed projects and seed turns.",
+    "Preflight body-visible versus metadata-only fields.",
+    "Do not run Q090-Q091 without retrieval/citation traces.",
+    "Report sublane scores beside EDD, not one merged score."
+  ],
+  "diary_constraint": "Do not write Korean forbidden words ?? or ?? in ????.md."
+}

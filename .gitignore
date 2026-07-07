@@ -1,0 +1,32 @@
+# === 보안: 절대 커밋 금지 (API 키, SSH 키) ===
+.env
+.env/
+.env.local
+key.txt
+gpt.txt
+*.key
+*.pem
+secrets/
+
+# === NDA: 원본 RFP 데이터 커밋 금지 ===
+data/
+*.hwp
+*.pdf
+data_list*.csv
+data_list*.xlsx
+# 단, 제출용 보고서 PDF는 커밋 허용 (원본 데이터 아님)
+!보고서.pdf
+
+# === 생성물 ===
+chroma_db/
+*.index
+*.faiss
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

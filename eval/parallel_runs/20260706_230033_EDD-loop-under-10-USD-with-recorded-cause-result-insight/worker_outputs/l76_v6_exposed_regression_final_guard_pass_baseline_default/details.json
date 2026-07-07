@@ -1,0 +1,920 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 5.0,
+      "abstention_accuracy": 1.0,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 20.642
+    },
+    "edd_score": 97.13,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": [
+      {
+        "id": "qv6_001_uicc_fragment_scope",
+        "type": "title_fragment_scope_recovery",
+        "answer": "사업명/발주기관: 2024년 대학 산학협력활동 실태조사 시스템(UICC) 기능개선 / 한국연구재단.\n\n요약(문서 근거 표기)\n- 기능개선: 시스템 전반의 사용자 편의성 강화 및 항목·화면 개선 요구(문서1: 추진배경). 상세 요구사항으로는\n  - 사용자관리·담당자지정 기능 개선(미등록 ID 로그인 시 알림창, 탈퇴회원 메시지, 권한관리·담당자 지정 화면 통합) — SFR-005 (문서2).\n  - 실태조사 항목·지침 변경사항 반영(연간 조사항목·대상대학 설정 및 교체·교정, 대학명·코드 현행화) — SFR-006 (문서2).\n  - 온라인 보고서 기능 개선(항목 확대, 최종 정제 데이터 기준 설정) — SFR-007 (문서2).\n\n- 운영지원: 실태조사 기간 중 시스템 오류 개선 및 사용자 지원, 클라우드 서버 운영·장애 예방, 실태조사 데이터 오류 점검 및 대학정보공시 연계 지원 등 운영·유지관리 업무 수행(문서3, 추진목표/전략 관련 문서1·문서2).\n\n- 대학정보공시 연계: 대학정보공시 연계 플랫폼으로의 데이터 전송·관리 기능 개선(한국대학교육협의회와 협업), 특히 대학원 소속학과 없음 처리에 따른 데이터 전송 방식 개선 등 구체적 전송기능 보완 요구 — SFR-008 (문서2). 문서3에서도 연계 지원 업무 명시.\n\n참고: 위 내용은 제공된 한국연구재단 제안요청서(문서1~3)의 기술요구·운영지원 항목에 근거한 요약입니다. 제공된 문서에서 확인할 수 없는 추가 세부사항은 기재하지 않았습니다.",
+        "retrieved_orgs": [
+          "한국연구재단",
+          "한국연구재단",
+          "한국연구재단",
+          "한국연구재단"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 736,
+          "answer_line_count": 9
+        },
+        "latency_sec": 19.21,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 4,
+        "retrieval_sec": 1.15,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 117,
+              "completion_tokens": null,
+              "total_tokens": 117
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 18.06,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2298,
+              "completion_tokens": 1401,
+              "total_tokens": 3699
+            },
+            "cost_usd": 0.008028,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 18.061,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.008028,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "제공된 문서(문서1~3)의 내용과 SFR 항목(SFR-005~SFR-008)을 근거로 기능개선·운영지원·대학정보공시 연계 각각의 기술사항을 그대로 요약·인용하고 있음. 문서 밖의 추정이나 허구적 내용은 포함하지 않았고, 요청한 세 항목을 한국연구재단 문서 기준으로 직접 답하고 있어 근거충실성과 질문응답성이 모두 높음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 2484,
+                "completion_tokens": 650,
+                "total_tokens": 3134
+              },
+              "cost_usd": 0.004788,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 9.197,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.004788
+        }
+      },
+      {
+        "id": "qv6_002_add_large_transfer_invariance_a",
+        "type": "metamorphic_pair_canonical",
+        "answer": "사업명: 대용량 자료전송시스템 고도화 / 발주기관: 국방과학연구소\n\n요약(자료 송수신 · 자료반입·반출 · 안전메일별 개선점)\n- 자료 송수신 체계\n  - 노후 인프라 교체 및 재연동, 데이터 이관(신규 인프라 연동모듈 재개발) (문서1, 문서4)\n  - 망간 전송 시 전송/복제/저장 중복 간소화 및 병렬 전송 구성으로 속도 개선(문서5)\n  - 동시 이용자·트래픽 통제 설계로 최대 트래픽 회피(문서5)\n\n- 자료 반입·반출(대용량 전송)\n  - 대용량 자료 수집(반입) 기능 개발 및 반입·반출 용량 확대(문서1, 문서4)\n  - 1회 반입·반출 최대 50GB 실시간 전송 지원, 평균 동시 접속자 100명 이상 지원(문서5)\n  - 대용량 전송 시 동시 이동량 통제하여 저용량 전송 성능 저하 방지(문서5)\n  - 업로드 이어보내기(재개속) 기능, 사용자 웹페이지 멈춤 방지(문서3, 문서5)\n\n- 안전메일(대용량 메일 포함)\n  - 안전메일 이용 절차 간소화 및 전송 프로세스 개선(문서1, 문서4)\n  - 관리자 정책에 따른 발송 최대 용량 관리, 수신자 정보·사용기한 입력, 결재자 등록 및 기존 결재 프로세스 연계한 자동 발송(실시간 망간 전송) (문서3)\n  - 발송된 안전메일 조회·재전송 기능 및 외부사용자 다운로드 통제(문서3)\n  - 업로드 링크 자동 파기 등 정책 기반 링크 관리(문서3)\n\n- 보안·관리 측면(안전메일·반입·송수신 공통)\n  - 악성파일 검사 자동화(백신검사/차단), 차단 시 사용자 안내 및 다운로드 차단(문서3)\n  - 악성의심 파일에 대한 보안담당자 분석·격리·복구(오탐 복구) 및 사용자 재검사 신청 절차(문서3)\n  - 감사기록·계정관리 등 체계관리 기능 보강(문서1, 문서4)\n  - 국방부 훈령·보안대책 요구사항 반영한 안전한 시스템 구축(문서4)\n\n참고: 상기 항목들은 제공된 문서(문서1~문서5)에 근거하여 요약한 내용입니다.",
+        "retrieved_orgs": [
+          "국방과학연구소",
+          "국방과학연구소",
+          "국방과학연구소",
+          "국방과학연구소",
+          "국방과학연구소"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 943,
+          "answer_line_count": 22
+        },
+        "latency_sec": 16.72,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 3,
+        "retrieval_sec": 0.66,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 71,
+              "completion_tokens": null,
+              "total_tokens": 71
+            },
+            "cost_usd": 1e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 1e-06,
+        "generation_sec": 16.06,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2715,
+              "completion_tokens": 1199,
+              "total_tokens": 3914
+            },
+            "cost_usd": 0.007432,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 16.06,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.007432,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변 내용이 제공된 근거문서들(문서1~문서5)의 문구와 요구사항을 직접 요약·정리한 형태로, 근거에 없는 사실을 첨가하지 않았음. 예: 인프라 교체·재연동·데이터 이관(문서1,4), 전송 병렬화·중복 간소화·트래픽 통제(문서5), 반입·반출용량 확대·1회 50GB·동시접속 지원(문서1,4,5), 업로드 이어보내기·웹페이지 멈춤 방지(문서3,5), 안전메일 절차 간소화·결재 연동·발송·조회·링크파기(문서1,3,4), 악성파일 검사·격리·복구·감사·계정관리 강화(문서3,1,4). 따라서 답변은 근거에 잘 기반하며 질문에 직접적으로 응답함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3084,
+                "completion_tokens": 825,
+                "total_tokens": 3909
+              },
+              "cost_usd": 0.006025,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 12.085,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.006025
+        }
+      },
+      {
+        "id": "qv6_003_add_large_transfer_invariance_b",
+        "type": "metamorphic_pair_paraphrase",
+        "answer": "근거: 국방과학연구소, 사업명 \"대용량 자료전송시스템 고도화\" (제공 문서 기준)\n\n핵심 정리(문서에 명시된 내용만)\n- 실시간 망간 전송: 반입 신청된 사항은 실시간으로 소내망 간 전송을 수행해야 함.  \n- 병렬처리 요구: 대용량 자료 이동으로 인해 다른 요청이 지연되지 않도록 병렬처리로 처리해야 함(“타 요청건 지연이 발생하지 않아야 함(병렬처리)”).  \n- 외부 다운로드 제어: 안전메일 다운로드 링크 접속 시 OTP 인증 수행, 인증 기한·시도 횟수는 관리자 정책으로 조정하고 인증 실패 시 링크 파기.  \n- 이어받기(재개) 지원: 자료 다운로드 시 이어받기 기능(재개)이 가능해야 함.  \n- 링크·자료 수명관리: 지정된 정책(기한 만료 등)에 따라 안전메일 다운로드 링크를 파기해야 함.  \n- 악성파일 처리: 악성 의심 파일 차단·사용자 안내, 보안담당자가 파일 분석하도록 파일 제공, 오탐인 경우 보안담당자가 반입 허용 가능.  \n- 조회·로깅 강화: 반출입 메일·자료(압축 내부 목록 포함)에 대한 로깅·조회 기능과 안전메일 사용·인증 이력 등 감사로그 관리 및 CSV/PDF 등으로 다운로드 가능해야 함.\n\n문서에 없는 내용(추가 기술적 구현 관련)\n- 구체적인 기술적 방법(예: 파일 분할/청크 전송, 전송 프로토콜, 대역폭 제어, 큐잉·우선순위 정책, 동시 전송 수치, 서버·스토리지 요구사항 등)은 제공된 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "국방과학연구소",
+          "울산광역시",
+          "그랜드코리아레저(주)",
+          "국민연금공단",
+          "울산광역시",
+          "한국수자원공사",
+          "국방과학연구소",
+          "한국건강가정진흥원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 708,
+          "answer_line_count": 11
+        },
+        "latency_sec": 15.86,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.91,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 88,
+              "completion_tokens": null,
+              "total_tokens": 88
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 14.94,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4144,
+              "completion_tokens": 1119,
+              "total_tokens": 5263
+            },
+            "cost_usd": 0.008143,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 14.944,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.008143,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 국방과학연구소의 '대용량 자료전송시스템 고도화' 문서(문서1, 문서7)에 명시된 항목들만을 정리함: 실시간 망간 전송, 병렬처리(타 요청 지연 방지)로 대용량 반입·전송 처리, 안전메일 다운로드에 대한 OTP 인증·인증기한·시도횟수 관리 및 인증실패 시 링크 파기, 이어받기(재개) 지원, 링크 수명관리, 악성파일 차단·보안담당자 검사·오탐 반입 허용, 로깅·조회 기능 강화 등 문서에 없는 구체적 기술적 구현(파일 분할·전송 프로토콜·대역폭 제어 등)은 별도로 명시되어 있지 않음을 명확히 밝혔음. 따라서 근거에 충실하고 질문(안전메일·반입반출 용량 문제 관련 정리)에 직접적으로 답하고 있음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4307,
+                "completion_tokens": 508,
+                "total_tokens": 4815
+              },
+              "cost_usd": 0.005516,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 8.724,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005516
+        }
+      },
+      {
+        "id": "qv6_004_unavailable_procurement_result_university_finance",
+        "type": "unsupported_final_result_trap",
+        "answer": "근거 사업: 대학재정정보시스템(기본재산 및 기채 사후관리) 고도화 / 발주기관: 한국사학진흥재단(제공문서 기준)\n\n1) 최종 낙찰업체(최종 업체)\n- 제공된 문서에서 확인할 수 없습니다.\n\n2) 실제(최종) 계약금액\n- 제공된 문서에서 최종 계약금액은 확인할 수 없습니다.\n- 참고로 제안요청서상 기재된 사업금액(사업개요)은 211,000,000원(VAT 포함)입니다(근거: 제공문서 문서4·문서8). 단, 이 금액을 최종 계약금액 또는 낙찰 결과로 단정할 수는 없습니다.\n\n3) 담당자 연락처(문서에 기재된 연락처, 공식 연락처로 표기됨)\n- 한국사학진흥재단 제안요청서 기재 담당자 및 전화번호(근거: 문서8):\n  - 박선국(대학정보화지원부 부장) 053-770-2540\n  - 이재연(책임 행정관) 053-770-2547\n  - 김경호(재정통계분석부 주무 행정관) 053-770-2622\n  - 서준호(경영관리부 주무 행정관) 053-770-2553\n- 개인 휴대전화·개인 이메일 및 사후 계약 담당자 연락처는 제공된 문서에서 확인할 수 없습니다.\n\n추가 요청이 있으시면(예: 낙찰자/최종 계약정보 확인 방법 안내 요청) 문서 근거 범위 내에서 안내해 드리겠습니다.",
+        "retrieved_orgs": [
+          "한국사학진흥재단",
+          "한국사학진흥재단",
+          "한국사학진흥재단",
+          "한국사학진흥재단",
+          "한국사학진흥재단",
+          "한국사학진흥재단",
+          "한국사학진흥재단",
+          "한국사학진흥재단"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 524,
+          "post_refusal_bullet_count": 12,
+          "detail_keyword_hits": [
+            "budget"
+          ],
+          "answer_chars": 599,
+          "answer_line_count": 14
+        },
+        "latency_sec": 23.88,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.35,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 105,
+              "completion_tokens": null,
+              "total_tokens": 105
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 23.54,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4360,
+              "completion_tokens": 1604,
+              "total_tokens": 5964
+            },
+            "cost_usd": 0.010488,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 23.538,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.010488
+      },
+      {
+        "id": "qv6_005_rail_reservation_ismp_not_rebuild",
+        "type": "wrong_premise_scope_guard",
+        "answer": "근거 사업명·발주기관: 예약발매시스템 개량 ISMP 용역 / 한국철도공사\n\n답변: 제공된 문서에 따르면 본 사업은 즉시 시스템을 새로 구축하는 공사(시스템 구축사업)가 아니라, 예약발매시스템의 개량을 위한 정보시스템 마스터플랜(ISMP) 수립 용역(컨설팅)입니다. 근거 문서 내용:\n\n- 사업명에 \"ISMP 용역\" 표기 및 사업기간 \"체결일로부터 5개월\", 사업비·계약형태 등 용역 조건 명시(문서1, 문서3).  \n- 제안요청서에 \"본 제안요청서는 『예약발매시스템 개량 ISMP 용역』을 위한 것\" 및 제안서에 ISMP 수립·추진계획 제출 요구(문서3).  \n- 과업 범위에 \"정보시스템 구축 사업계획 구성\", \"분리 발주 가능성 평가 및 요구사항 검토\", \"소요자원 및 예산 산출\", \"제안요청서 및 과업지시서 제작\", \"시스템 구축 업체 선정·평가 지원\" 등 계획·컨설팅 항목 명시(문서3).  \n- NIA의 ISP·ISMP 가이드 준수 등 ISMP 수립 관련 상세 요구사항 제시(문서2).\n\n따라서 문서상으로는 개량을 위한 마스터플랜 수립 용역이며, 즉시 전체 시스템 재구축을 수행하는 사업으로 확인되지는 않습니다.",
+        "retrieved_orgs": [
+          "한국철도공사 (용역)",
+          "한국철도공사 (용역)",
+          "한국철도공사 (용역)",
+          "한국철도공사 (용역)",
+          "한국철도공사 (용역)"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 572,
+          "answer_line_count": 7
+        },
+        "latency_sec": 11.54,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 3,
+        "retrieval_sec": 0.79,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 96,
+              "completion_tokens": null,
+              "total_tokens": 96
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 10.76,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2823,
+              "completion_tokens": 993,
+              "total_tokens": 3816
+            },
+            "cost_usd": 0.006586,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 10.757,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.006586,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 검색된 근거(문서1~3 등)에 직접 근거함: 사업명이 반복적으로 '예약발매시스템 개량 ISMP 용역'으로 표기되고(문서1·3), 사업기간이 '체결일로부터 5개월', 사업비·계약형태가 용역 형태로 명시되어 있으며(문서1), 과업 범위에 ISMP 수립·분석·제안요청서 작성·구축업체 선정 지원 등 컨설팅·계획 수립 항목이 포함되어 있음(문서2·3). 반면 즉시 시스템 전면 재구축을 지시하거나 구축 납품을 요구하는 내용은 제시된 근거에 없음. 따라서 답변은 근거에 잘 부합하고 질문에 정확히 응답함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 2872,
+                "completion_tokens": 465,
+                "total_tokens": 3337
+              },
+              "cost_usd": 0.004247,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 6.533,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.004247
+        }
+      },
+      {
+        "id": "qv6_006_goyang_facility_canonical",
+        "type": "metamorphic_pair_canonical",
+        "answer": "근거: 고양도시관리공사 관산근린공원 다목적구장 회원 통합운영관리 시스템 구축(발주기관: 고양도시관리공사) — (제공문서: 문서2, 문서6, 문서3, 문서5, 문서7 등)\n\n요약(분야별 요구사항 분류)\n\n1) 홈페이지 관련 요구\n- 통합예약 홈페이지(yeyak.gys.or.kr)와 연계하여 수강신청·대관신청 구현(온라인·오프라인 모두) 및 회원·매출·강좌·대관 정보의 연속성 유지(문서6 SFR-015).  \n- 발주기관 지정 P/G 연계하여 사업장별 온·오프라인 결제 가능, 다양한 결제수단(계좌이체·카드 등) 및 환불 기능 제공(문서2 SFR-011, 문서6 SFR-015).  \n- 비대면 자격확인 서비스(행정안전부) 연동 및 사전동의/로그(시간·동의여부·동의자·결과값) 보관·조회 기능(문서6 SFR-016).  \n- 자동 알림 메시지 발송(강습반 대기승인, 대관승인, 개인정보파기, 비밀번호 찾기 등)(문서2).  \n- 기존 고양도시관리공사 운영시스템(통합예약·고객정보통합시스템)을 100% 이용해 구현(전제조건)(문서8).  \n- 전자정부프레임워크(3.9 이상 2레벨 호환) 적용 및 기술스택 제시(Oracle12c, Tomcat8.5, Java/JSP) (문서3, 문서5).\n\n2) 회원관리(고객정보통합시스템) 관련 요구\n- 사용자(관리자) 생성·삭제·조회 등 사용자 관리 기능 제공(문서2 SFR-012).  \n- 비밀번호는 단방향 암호화(해시) 보관, 비밀번호 변경 시 사용자에게 알림 발송, 발주기관 비밀번호 규칙 준수(문서2 SFR-012).  \n- 접속기록(이름·작업내용·시간·IP 등)을 시간순으로 저장·조회 가능(문서2 SFR-012).  \n- 시스템 메뉴/기능별 접근권한 부여·회수·변경 기능 및 변경 기록 저장·조회(보관기간 3년 이상)(문서2 SFR-012).  \n- 권한 묶음(그룹) 관리, 사용자 등급별 권한 차등화 기능(문서2 SFR-012).  \n- 홈페이지·예약·결제 등과의 회원 정보 연속성 유지(문서6 SFR-015).\n\n3) 무인화 운영 관련 요구\n- 무인화 운영을 위한 프로그램 및 기술 지원 제공(문서5 사업범위).  \n- 안내데스크 부가장비 및 무인발권기 제공·구매·설치(무인발권기 2SET) 및 관련 연동(문서5, 문서6 추진일정).  \n- 운영시스템과의 H/W 연동 프로그램 제공(문서5 사업범위).  \n- 무인화 관련 프로그램·취약점 발생 시 수정·하자보수 등(문서4/문서5).\n\n4) 출입통제 관련 요구\n- 입퇴장 출입통제시스템 구매·설치(2SET), 중계서버 및 부가장비 일체 제공(문서5).  \n- 출입통제 시스템과 운영시스템(H/W) 연동 프로그램 제공 및 통합 테스트 필요(문서5, 문서3 추진일정).  \n\n5) 보안·개인정보보호(횡단 요구)\n- 관리자 접근권한 차등부여·권한변경·말소 구현으로 개인정보보호·보안 기능 강화(문서5).  \n- 로그·접근통제 등 보안·암호화·침입탐지·DRM 등 다양한 보안제품·기능 목록 언급(문서7).  \n\n제공문서에서 확인할 수 없는 항목은 별도 명시해야 합니다(예: 구체적 API, 통신규격, SMS(PG) 공급사명 등은 문서에 기재되어 있지 않음).",
+        "retrieved_orgs": [
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1540,
+          "answer_line_count": 28
+        },
+        "latency_sec": 35.83,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.59,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 91,
+              "completion_tokens": null,
+              "total_tokens": 91
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 35.24,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4441,
+              "completion_tokens": 2511,
+              "total_tokens": 6952
+            },
+            "cost_usd": 0.01463,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 35.238,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.01463,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제시된 근거문서(문서2, 문서6, 문서5, 문서3, 문서7 등)에 명시된 요구사항(SFR-011, SFR-012, SFR-015, SFR-016 및 사업범위/무인화·출입통제 항목)을 분야별로 정확히 추출·분류하여 제시하고 있음. 각 항목(홈페이지 연계·결제·비대면검증·알림, 회원관리의 권한·로그·암호화, 무인발권기·H/W 연동·기술지원, 출입통제시스템 설치·중계서버, 보안요구 등)은 근거문서에 직접 근거가 있으며, 문서에 없는 상세 API나 공급사 명칭 등은 별도 표기하여 과잉추정이 없음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 5013,
+                "completion_tokens": 797,
+                "total_tokens": 5810
+              },
+              "cost_usd": 0.007346,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 9.333,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.007346
+        }
+      },
+      {
+        "id": "qv6_007_goyang_facility_order_permutation",
+        "type": "metamorphic_pair_order_permutation",
+        "answer": "근거 문서: 고양도시관리공사 관산근린공원 다목적구장 회원 통합운영관리 시스템 구축(발주기관: 고양도시관리공사) — [문서1],[문서3],[문서5],[문서9]\n\n정리(문서 근거만):\n- 무인 운영 프로그램 포함 여부: 포함되어 있음.  \n  근거: 사업범위에 “무인화 운영을 위한 프로그램 및 기술 지원” 및 “운영시스템과의 하드웨어(H/W) 연동 프로그램 제공” 명시 ([문서1]/[문서5]/[문서3]).\n\n- 출입통제시스템 포함 여부: 포함되어 있음. 근거: 참고 문서에 \"안내데스크 및 출입통제시스템 구매 및 설치\"가 명시되어 있음. (문서9) 다만 세부 방식, 장비 규격, 연동 대상은 제공된 문서에서 추가 확인이 필요합니다.",
+        "retrieved_orgs": [
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사",
+          "고양도시관리공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 353,
+          "answer_line_count": 5
+        },
+        "latency_sec": 22.39,
+        "context_backfill_count": 1,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.32,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 89,
+              "completion_tokens": null,
+              "total_tokens": 89
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 22.08,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4575,
+              "completion_tokens": 1584,
+              "total_tokens": 6159
+            },
+            "cost_usd": 0.010559,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 22.075,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.010559,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제공된 문서들에 직접 근거함. ‘무인 운영 프로그램 포함’은 [문서5]의 사업범위에 명시된 \"무인화 운영을 위한 프로그램 및 기술 지원\"과 [문서5]/[문서3]의 H/W 연동·운영시스템 연계 요구사항으로 뒷받침됨. ‘출입통제시스템 포함’은 [문서9] 요약에 명시된 \"안내데스크 및 출입통제시스템 구매 및 설치\"로 근거가 있음. 단, 제공된 문서들에는 출입통제의 세부 방식·장비 규격·연동 대상 등 기술적 세부사항은 포함되어 있지 않음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4419,
+                "completion_tokens": 831,
+                "total_tokens": 5250
+              },
+              "cost_usd": 0.007054,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 10.026,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.007054
+        }
+      },
+      {
+        "id": "qv6_008_ulsan_bus_generic_title_disambiguation",
+        "type": "generic_title_false_positive",
+        "answer": "사업명/발주기관: 2024년 버스정보시스템 확대 구축 및 기능개선 용역 / 울산광역시\n\n결론: 질문하신 3가지 모두 사업 범위에 포함되어 있습니다.\n\n근거:\n- BIT 설치: 사업범위에 \"버스정보안내단말기 130대 제작 및 설치(신설 60, 교체 70)\" 명시(문서1).\n- 버스노선 개편 대응: \"시내버스 노선 전면 개편에 유연하게 대응하기 위해... 문자 혼용 노선번호를 표출할 수 있도록 소프트웨어를 개선\" 등 명시(문서1, 문서3, 문서7).\n- 무중단 서비스: \"노후 BIT를 교체하여 무중단 버스정보 서비스 제공기반을 구축\" 명시(문서1).",
+        "retrieved_orgs": [
+          "울산광역시",
+          "울산광역시",
+          "울산광역시",
+          "울산광역시",
+          "울산광역시",
+          "울산광역시",
+          "울산광역시",
+          "울산광역시"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 308,
+          "answer_line_count": 6
+        },
+        "latency_sec": 14.38,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.7,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 94,
+              "completion_tokens": null,
+              "total_tokens": 94
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 13.69,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4338,
+              "completion_tokens": 1030,
+              "total_tokens": 5368
+            },
+            "cost_usd": 0.007888,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 13.687,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.007888,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "제공된 근거에 각각의 항목이 직접적으로 명시되어 있음. BIT 설치: 문서1의 '버스정보안내단말기 130대 제작 및 설치(신설 60, 교체 70)'. 버스노선 개편 대응: 문서1의 '시내버스 노선 전면 개편에 유연하게 대응... 문자 혼용 노선번호를 표출할 수 있도록 소프트웨어를 개선' 및 문서7의 기능요구사항(문자혼용 노선번호 표출). 무중단 서비스: 문서1의 '노후 BIT를 교체하여 무중단 버스정보 서비스 제공기반을 구축'.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4167,
+                "completion_tokens": 626,
+                "total_tokens": 4793
+              },
+              "cost_usd": 0.005942,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 7.322,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005942
+        }
+      },
+      {
+        "id": "qv6_009_lrs_irrelevant_injection_stability",
+        "type": "irrelevant_context_injection",
+        "answer": "요약 답변(근거: 사업명: JST 공유대학(원) xAPI기반 LRS시스템 구축 / 발주기관: 전북대학교)\n\n1) 목적 확인: 예. 제공된 문서에서 학습활동 데이터 수집(xAPI 기반) 및 분석을 통해 학습자 맞춤형 학습경로 제공을 사업목적 및 기대효과로 명시하고 있습니다. (근거: 문서1 사업목적, 문서6 사업내용·기대효과 등)\n\n2) 블록체인 인증서 포함 여부: 제공된 문서에서 확인할 수 없습니다. (제공된 문서들(문서1~문서8)에 블록체인 또는 블록체인 기반 인증서 관련 언급 없음)",
+        "retrieved_orgs": [
+          "전북대학교",
+          "전북대학교",
+          "전북대학교",
+          "전북대학교",
+          "전북대학교",
+          "전북대학교",
+          "전북대학교",
+          "전북대학교"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 274,
+          "answer_line_count": 3
+        },
+        "latency_sec": 9.72,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.64,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 99,
+              "completion_tokens": null,
+              "total_tokens": 99
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 9.08,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 3892,
+              "completion_tokens": 751,
+              "total_tokens": 4643
+            },
+            "cost_usd": 0.006299,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 9.076,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.006299,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제공된 문서들에 근거함: 문서1과 문서6(및 문서2, 문서4, 문서5 등 사업설명 전반)에서 xAPI 기반 학습활동 데이터 수집 및 분석을 통해 학습자 맞춤형 학습경로 제공이 사업목적·기대효과로 명시되어 있음. 제공된 문서들(문서1~문서8)에는 '블록체인' 또는 블록체인 기반 인증서 관련 언급이 없어 블록체인 포함 여부는 문서에서 확인되지 않음. 따라서 답변은 문서에 있는 것만 근거로 직접적으로 응답하고 있음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3776,
+                "completion_tokens": 627,
+                "total_tokens": 4403
+              },
+              "cost_usd": 0.005653,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 8.052,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005653
+        }
+      },
+      {
+        "id": "qv6_010_generic_fragment_unidentifiable_abstain",
+        "type": "ambiguous_fragment_negative_control",
+        "answer": "요청하신 제목 조각만으로는 제공된 문서에서 하나의 발주기관/사업으로 확인할 수 없습니다.\n- 후보: 국가과학기술지식정보서비스 / 통합정보시스템 고도화 용역\n- 후보: 한국한의학연구원 / 통합정보시스템 고도화 용역\n발주기관명, 공고번호, 연도, 원문 일부 중 하나를 더 알려주시면 해당 문서 기준으로 요구범위를 정리하겠습니다.",
+        "retrieved_orgs": [
+          "국가과학기술지식정보서비스",
+          "한국한의학연구원",
+          "국가과학기술지식정보서비스",
+          "국가과학기술지식정보서비스",
+          "국가과학기술지식정보서비스",
+          "국가과학기술지식정보서비스",
+          "국가과학기술지식정보서비스",
+          "국가과학기술지식정보서비스"
+        ],
+        "coverage": null,
+        "first_hit_rank": null,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 131,
+          "post_refusal_bullet_count": 2,
+          "detail_keyword_hits": [
+            "requirement"
+          ],
+          "answer_chars": 181,
+          "answer_line_count": 4
+        },
+        "latency_sec": 36.89,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.34,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 93,
+              "completion_tokens": null,
+              "total_tokens": 93
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 36.55,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4210,
+              "completion_tokens": 2630,
+              "total_tokens": 6840
+            },
+            "cost_usd": 0.014993,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 36.545,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.014993
+      }
+    ]
+  }
+}

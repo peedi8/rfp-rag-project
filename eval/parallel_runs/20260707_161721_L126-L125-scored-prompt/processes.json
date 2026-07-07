@@ -1,0 +1,18 @@
+﻿[
+  {
+    "suite": "baseline_default",
+    "returncode": 0,
+    "log": "eval\\parallel_runs\\20260707_161721_L126-L125-scored-prompt\\logs\\baseline_default.log"
+  },
+  {
+    "suite": "prompt_sweep",
+    "returncode": 0,
+    "log": "eval\\parallel_runs\\20260707_161721_L126-L125-scored-prompt\\logs\\prompt_sweep.log"
+  },
+  {
+    "suite": "aggregate",
+    "returncode": 0,
+    "stdout": "{\n  \"rows\": 5,\n  \"scoreboard_rows\": 0,\n  \"diagnostic_only_rows\": 5,\n  \"summary\": \"eval\\\\parallel_runs\\\\20260707_161721_L126-L125-scored-prompt\\\\summary\\\\summary.md\"\n}\n",
+    "stderr": ""
+  }
+]

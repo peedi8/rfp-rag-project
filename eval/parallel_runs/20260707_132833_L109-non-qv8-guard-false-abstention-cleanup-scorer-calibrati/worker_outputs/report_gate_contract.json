@@ -1,0 +1,70 @@
+﻿{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "report_gate",
+  "task_id": "report_gate",
+  "status": "proposal",
+  "summary": "Prepared an evidence checklist and red-team gate proposal for the L109 report pack. The proposal keeps L108 labeled as diagnostic-only, source-exposed, and non-comparable to the strict scoreboard, while preserving the strict scoreboard reference of L37 EDD 86.25.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\업무일지.md",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\analysis\\l106_l107_generalization_field_scoring_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\worker_outputs\\l108_nonqv8_grounded_nojudge_baseline_default\\details.json"
+  ],
+  "protected_paths_seen": [
+    "I:\\0706\\rfp-rag-project\\src\\generator.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\field_level_contact_scorer.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py",
+    "I:\\0706\\rfp-rag-project\\업무일지.md",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati/worker_outputs/report_gate_contract.json",
+      "kind": "json",
+      "description": "report checklist proposal"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Record L108 as diagnostic-only, source-exposed evidence, not a fresh validation claim.",
+      "State that the L108 no-judge EDD 51.0 is not comparable to judged runs and must stay separate from the strict scoreboard.",
+      "Keep the strict scoreboard reference explicit: L37 EDD 86.25 remains the baseline comparison point.",
+      "Use concise cause/result/insight/next-basis bullets for L108 and the expected L109 follow-up.",
+      "Keep field_score as a diagnostic axis beside EDD, not inside EDD.",
+      "Require red-team gates for over-refusal, unsafe exposure, and guard false positives before any high-score claim is promoted."
+    ],
+    "rejected_or_risky_items": [
+      "Do not describe L108 as comparable to strict validation or as a generalization win.",
+      "Do not let no-judge or diagnostic-only EDD values replace the strict scoreboard narrative.",
+      "Do not merge field-level contact/privacy outcomes into aggregate EDD.",
+      "Do not claim high-score improvement without an explicit note that the set is source-exposed or holdout-free.",
+      "Do not omit the false-positive red-team gate for guards that can overblock normal supported questions."
+    ],
+    "needs_orchestrator_review": [
+      "Confirm the L109 report pack wording preserves the diagnostic-only vs strict-scoreboard split.",
+      "Confirm the L109 gate language includes both over-refusal and unsafe-exposure checks for mixed official/private contact questions.",
+      "Confirm the report does not imply that L108 or L109 can be compared directly with the strict scoreboard without a fresh untouched validation set."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\업무일지.md",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\analysis\\l106_l107_generalization_field_scoring_report.md",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\worker_outputs\\l108_nonqv8_grounded_nojudge_baseline_default\\details.json"
+    ],
+    "observed_results": [
+      "L106-L107 report says L105 is saturated diagnostic evidence and the next useful work is overfit control plus field-level scoring.",
+      "L108 details show baseline_default EDD 51.0 with false_abstention_rate 0.6, groundedness/relevance null, and field_score attached only for mixed official/private contact cases.",
+      "L108 case data shows the mixed budget-vs-contract and evaluation-criteria cases are answered/refused at the field level, while the official-contact boundary control remains answerable.",
+      "The report trail repeatedly marks qv8-only evidence as diagnostic or source-exposed and keeps strict scoreboard references separate, including L37 EDD 86.25."
+    ]
+  }
+}

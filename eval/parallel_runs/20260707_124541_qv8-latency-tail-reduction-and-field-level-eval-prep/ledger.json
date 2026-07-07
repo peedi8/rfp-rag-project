@@ -1,0 +1,66 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-07T12:45:42",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "qv8 latency-tail reduction and field-level eval prep",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep",
+  "cpu_percent_at_start": 1.0,
+  "recommended_workers": 4,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "final target index.html",
+    "renderer source files",
+    "prepared payload JSON",
+    "option consumer payload JSON",
+    "stage slot pack candidate files"
+  ],
+  "tasks": [
+    {
+      "task_id": "latency_trace_audit",
+      "description": "inspect qv8 high-latency saved details and identify root causes",
+      "status": "pending",
+      "worker_id": "",
+      "output_contract": "",
+      "merge_decision": "undecided"
+    },
+    {
+      "task_id": "candidate_latency_fixes",
+      "description": "propose narrow low-risk latency fixes and rerun plan",
+      "status": "pending",
+      "worker_id": "",
+      "output_contract": "",
+      "merge_decision": "undecided"
+    },
+    {
+      "task_id": "field_level_eval_design",
+      "description": "design field-level scoring fixtures for mixed public/private info questions",
+      "status": "pending",
+      "worker_id": "",
+      "output_contract": "",
+      "merge_decision": "undecided"
+    },
+    {
+      "task_id": "report_update_plan",
+      "description": "propose report/graph updates for next latency loop",
+      "status": "pending",
+      "worker_id": "",
+      "output_contract": "",
+      "merge_decision": "undecided"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\checkpoint_01_inputs.md",
+    "worker_outputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\checkpoint_02_worker_outputs.md",
+    "merge_decisions": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\checkpoint_03_merge_decisions.md",
+    "smoke": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\checkpoint_04_smoke.md"
+  },
+  "events": [
+    {
+      "ts": "2026-07-07T12:45:42",
+      "event": "scaffold_created",
+      "recommended_workers": 4,
+      "cpu_percent": 1.0
+    }
+  ]
+}

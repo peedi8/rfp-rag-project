@@ -1,0 +1,146 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "candidate_latency_fixes",
+  "task_id": "candidate_latency_fixes",
+  "status": "proposal",
+  "summary": "qv8 is already saturated on retrieval and judge quality; the latency tail is mostly generation-heavy. Propose three narrow, low-risk fixes: adaptive top-k, a narrower sensitive refusal preemption, and a refusal-only prompt concision fallback.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\cost_summary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\analysis\\l98_l99_qv8_diagnostic_report.md",
+    "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py",
+    "I:\\0706\\rfp-rag-project\\src\\rag.py",
+    "I:\\0706\\rfp-rag-project\\src\\generator.py",
+    "I:\\0706\\rfp-rag-project\\src\\retriever.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\edd_score.py"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "proposal_method": "static review of local source and saved qv8 artifacts only",
+    "paid_api_calls_made": false
+  },
+  "protected_paths_seen": [
+    "I:\\0706\\rfp-rag-project\\업무일지.md",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\eval\\question_exposure_registry.*",
+    "I:\\0706\\rfp-rag-project\\src\\**",
+    "I:\\0706\\rfp-rag-project\\scripts\\**",
+    "I:\\0706\\rfp-rag-project\\config.py",
+    "I:\\0706\\rfp-rag-project\\chroma_db\\**",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\previous run folders"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\worker_outputs\\candidate_latency_fixes.contract.json",
+      "kind": "json",
+      "description": "proposal-only worker contract"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "candidate_id": "adaptive_top_k_5",
+        "title": "Adaptive top-k default cut",
+        "change_summary": "Lower the default top_k from 8 to 5, but keep adaptive_top_k enabled so detail-heavy facility questions can still lift back to 8.",
+        "expected_latency_effect": "Small-to-moderate reduction on average. On qv8-style packs I would expect a few percent to roughly 10 percent lower generation time for shorter questions, with the best effect on refusal-heavy and single-document cases. The tail benefit is modest rather than dramatic.",
+        "quality_edd_risk": "Low quality risk, medium EDD risk. The main failure mode is losing a supporting chunk on compare or same-issuer questions, which can hurt grounding even if the average looks fine. Because qv8 retrieval is already saturated, this is a conservative knob, not a score booster.",
+        "exact_files_functions_that_would_change_if_accepted": [
+          "I:\\0706\\rfp-rag-project\\src\\rag.py::_effective_top_k",
+          "I:\\0706\\rfp-rag-project\\src\\rag.py::DEFAULT_PARAMS",
+          "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py::CONTROL",
+          "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py::SUITES['baseline_default']",
+          "I:\\0706\\rfp-rag-project\\scripts\\run_experiments.py::preset suites that mirror the worker defaults"
+        ],
+        "small_rerun_plan": [
+          "Run `topk5_only` and `topk8_only` on `eval\\questions_v8_deadline_semi_fresh_diagnostic_frozen.json`.",
+          "Compare `latency_avg_sec`, `retrieval_coverage_avg`, `mrr`, `abstention_accuracy`, and the per-case latencies for q20260707_a02, q20260707_a05, q20260707_a06, and q20260707_a12.",
+          "Adopt only if latency drops without any coverage loss or new false abstentions."
+        ]
+      },
+      {
+        "candidate_id": "narrow_sensitive_preempt",
+        "title": "Narrow refusal preemption",
+        "change_summary": "Expand the existing sensitive-abstention preempt path so obvious victim-story, invented-person, and personal-detail fabrication prompts short-circuit before the model generates a long refusal.",
+        "expected_latency_effect": "High reduction on the tail cases this is meant to catch. For qv8-like sensitive fabrication prompts, this should cut generation latency sharply, often turning a 10-20s response into a near-instant abstention path once the trigger matches. Average-pack savings will be small unless more queries hit the trigger, but the worst-case tail should improve a lot.",
+        "quality_edd_risk": "Low-to-medium quality risk. The win is real only if the trigger stays narrow. Over-broad markers could over-abstain on legitimate requests and hurt utility, but the current qv8 miss is exactly the kind of case this should fix. This is a correction, not an intended score inflation lever.",
+        "exact_files_functions_that_would_change_if_accepted": [
+          "I:\\0706\\rfp-rag-project\\src\\generator.py::_SENSITIVE_ABSTENTION_QUERY_MARKERS",
+          "I:\\0706\\rfp-rag-project\\src\\generator.py::_SENSITIVE_ABSTENTION_PREEMPT_MARKERS",
+          "I:\\0706\\rfp-rag-project\\src\\generator.py::_preempt_sensitive_abstention_answer",
+          "I:\\0706\\rfp-rag-project\\src\\generator.py::_apply_sensitive_abstention_guard",
+          "I:\\0706\\rfp-rag-project\\src\\generator.py::_sensitive_unavailable_answer"
+        ],
+        "small_rerun_plan": [
+          "Run the frozen qv8 pack plus the targeted sensitive probes around q20260707_a05 and q20260707_a12.",
+          "Check `latency_sec`, `generation_sec`, `abstention_accuracy`, and any new false-abstention cases.",
+          "Keep the change only if the a12-style miss flips to a clean abstention and the compare / numeric cases stay untouched."
+        ]
+      },
+      {
+        "candidate_id": "refusal_prompt_concision",
+        "title": "Refusal-only prompt concision",
+        "change_summary": "Route refusal-heavy or ambiguity-heavy queries to the concise_verified or report_ready prompt variant so the model emits shorter, tighter answers without changing the default prompt for normal questions.",
+        "expected_latency_effect": "Moderate reduction on long refusal tails, especially where the current answer is verbose but still correct. This should help cases like qv8_a05-style and qv8_a11-style long refusals more than the already-short answers. The average effect is likely smaller than the preempt fix but broader than the pure trigger path.",
+        "quality_edd_risk": "Medium quality risk. Shorter refusals can become too terse and can shave off useful grounding text on complex compare questions if the routing is too wide. EDD risk is moderate because the prompt change affects answer shape, not just speed, so it should stay query-specific.",
+        "exact_files_functions_that_would_change_if_accepted": [
+          "I:\\0706\\rfp-rag-project\\src\\generator.py::PROMPT_VARIANTS",
+          "I:\\0706\\rfp-rag-project\\src\\generator.py::get_system_prompt",
+          "I:\\0706\\rfp-rag-project\\src\\generator.py::_apply_query_prompt_hint",
+          "I:\\0706\\rfp-rag-project\\src\\generator.py::generate_answer_with_trace",
+          "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py::prompt_sweep definitions"
+        ],
+        "small_rerun_plan": [
+          "Run `prompt_concise_verified_only` and `prompt_report_ready_only` on the qv8 frozen pack.",
+          "Compare `answer_chars`, `answer_line_count`, `generation_sec`, `latency_avg_sec`, and judge scores on the non-abstention cases.",
+          "Adopt only if refusal tails shrink without lowering groundedness/relevance on the normal questions."
+        ]
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Global prompt shortening for every query",
+        "risk": "It would probably trim some answers that are already good and makes it harder to tell whether the latency gain came from a real tail fix or just a broad answer-shape change."
+      },
+      {
+        "item": "Raising `fetch_k` or widening retrieval for the qv8 pack",
+        "risk": "That is more likely to add latency than remove it on this run, and qv8 already showed perfect retrieval coverage and MRR."
+      },
+      {
+        "item": "Changing EDD scoring weights or latency normalization",
+        "risk": "That would change the score surface instead of the runtime behavior, which is exactly the kind of inflation the task should avoid."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Choose one primary fix to test first. My recommendation is the sensitive refusal preempt, because it attacks the worst tail case with the least blast radius.",
+      "If you want a retrieval-side change as well, keep it to adaptive top_k rather than a global top-k cut.",
+      "Do not combine the prompt-concision change with the refusal preempt in the first rerun. Test them separately so any score change is easy to attribute."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\src\\generator.py",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\src\\rag.py",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\src\\retriever.py",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\scripts\\edd_score.py",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\cost_summary.json",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\analysis\\l98_l99_qv8_diagnostic_report.md"
+    ],
+    "observed_results": [
+      "qv8 raw result: EDD 95.81, retrieval_coverage_avg 1.0, mrr 1.0, groundedness_avg 5.0, relevance_avg 5.0, abstention_accuracy 0.8, latency_avg_sec 17.645.",
+      "qv8 tail cases include q20260707_a02 at 27.25s, q20260707_a05 at 20.8s, q20260707_a06 at 25.6s, q20260707_a11 at 15.7s, and q20260707_a12 at 9.93s.",
+      "The slow tail is dominated by generation time, not retrieval time, so runtime fixes should focus on prompt length or preemption rather than broader retrieval expansion.",
+      "The existing code already has an `_effective_top_k` hook and a sensitive refusal preempt path, which makes the proposed changes narrow and low-risk.",
+      "No protected paths were modified and no paid API calls were made."
+    ]
+  },
+  "created_at": "2026-07-07T13:00:00+09:00"
+}

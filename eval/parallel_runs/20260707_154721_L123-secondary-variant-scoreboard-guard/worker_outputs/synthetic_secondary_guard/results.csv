@@ -1,0 +1,2 @@
+suite,experiment,run_mode,edd_score,retrieval_coverage_avg,hit_all_targets_rate,mrr,groundedness_avg,relevance_avg,abstention_accuracy,false_abstention_rate,empty_answer_rate,latency_avg_sec
+synthetic_secondary_guard,perfect_secondary_variant_should_not_rank,synthetic,99.99,1.0,1.0,1.0,5.0,5.0,1.0,0.0,0.0,1.0

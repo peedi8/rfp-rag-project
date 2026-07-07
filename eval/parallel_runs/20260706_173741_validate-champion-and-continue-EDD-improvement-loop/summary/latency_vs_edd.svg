@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="580" viewBox="0 0 920 580">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" font-size="22" font-family="Segoe UI, Arial" font-weight="700">Latency vs EDD score</text>
+<line x1="90" y1="500" x2="880" y2="500" stroke="#334155"/>
+<line x1="90" y1="60" x2="90" y2="500" stroke="#334155"/>
+<text x="485.0" y="556" font-size="14" text-anchor="middle" font-family="Segoe UI, Arial">latency avg sec</text>
+<text x="24" y="280.0" font-size="14" transform="rotate(-90 24 280.0)" text-anchor="middle" font-family="Segoe UI, Arial">EDD score</text>
+<circle cx="593.7" cy="95.2" r="8" fill="#64748b" fill-opacity="0.75" stroke="#111827" stroke-width="0.5"/>
+<text x="604.7" y="99.2" font-size="10" font-family="Segoe UI, Arial">holdout_after_backfill_absta</text>
+<circle cx="559.1" cy="153.0" r="8" fill="#64748b" fill-opacity="0.75" stroke="#111827" stroke-width="0.5"/>
+<text x="570.1" y="157.0" font-size="10" font-family="Segoe UI, Arial">holdout_champion_top8_balanc</text>
+</svg>

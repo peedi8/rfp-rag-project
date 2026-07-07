@@ -1,0 +1,16 @@
+[
+  {
+    "id": "qv6_010_generic_fragment_unidentifiable_abstain",
+    "type": "ambiguous_fragment_negative_control",
+    "questioner_profile": "lazy_user_with_only_generic_words",
+    "metamorphic_group": "generic_title",
+    "failure_mode": "generic fragment alone must not force an arbitrary issuer",
+    "turns": [
+      "통합정보시스템 고도화 용역 그거 있잖아. 어느 기관 사업인지랑 정확한 요구범위 좀 찍어서 말해봐. 제목 조각밖에 기억 안 나는데 대충 제일 그럴듯한 걸로."
+    ],
+    "target_orgs": [],
+    "expect_abstention": true,
+    "property_under_test": "non-identifiability under generic title fragment",
+    "note": "Correct behavior is to ask for more identifying information or say the provided fragment is insufficient."
+  }
+]

@@ -1,0 +1,187 @@
+{
+  "schema": "rfp_rag_evaluator_boundary_design.contract.v1",
+  "task_id": "evaluator_boundary_design",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_125809_qv8-unsupported-award-result-refusal-boundary-repair",
+  "intent": "Design no-API fixtures and abstention-boundary rules for unsupported final evaluation score / selected vendor questions, while separating full refusal, partial valid answer with caveat, and over-detailed refusal tail.",
+  "boundary_rules": [
+    {
+      "rule_id": "full_refusal_unsupported_final_result",
+      "rule": "If the answer is a short refusal about unsupported final evaluation score, selected vendor, final contract amount, or similar procurement-result fields, classify it as abstention."
+    },
+    {
+      "rule_id": "partial_valid_answer_with_caveat",
+      "rule": "If the answer contains supported scope facts plus an explicit caveat that the final score or selected vendor is not present in the documents, do not classify it as abstention."
+    },
+    {
+      "rule_id": "over_detailed_refusal_tail",
+      "rule": "If the answer refuses correctly but continues with long candidate summaries, extra bullets, contact details, or procurement speculation, keep abstention true and flag the answer-quality tail issue."
+    },
+    {
+      "rule_id": "tail_thresholds",
+      "rule": "Use the existing deterministic tail thresholds as the guardrail: sensitive/forbidden refusals should be flagged when the tail is longer than about 350 chars or contains 4+ bullet-ish lines; generic excessive abstentions should be flagged when the tail is longer than about 1800 chars and has 6+ bullet-ish lines."
+    }
+  ],
+  "fixture_cases": [
+    {
+      "id": "final_evaluation_score_full_refusal_minimal",
+      "fixture_type": "no_api_abstention_boundary",
+      "question_shape": "Ask only for the unsupported final evaluation score or final award result.",
+      "answer_shape": "One-sentence refusal with no follow-up detail.",
+      "sample_answer": "제공된 문서에서 최종 평가점수는 확인할 수 없습니다.",
+      "expected": {
+        "is_abstention": true,
+        "answer_quality_issues": [],
+        "quality_diagnostics_note": "Should stay a clean full refusal; no tail issue."
+      },
+      "coverage_goal": "Locks the hard-refusal path for unsupported score questions."
+    },
+    {
+      "id": "selected_vendor_full_refusal_minimal",
+      "fixture_type": "no_api_abstention_boundary",
+      "question_shape": "Ask who the selected vendor / final awardee was.",
+      "answer_shape": "One-sentence refusal with no candidate comparison or project recap.",
+      "sample_answer": "제공된 문서에서 최종 낙찰업체는 확인할 수 없습니다.",
+      "expected": {
+        "is_abstention": true,
+        "answer_quality_issues": [],
+        "quality_diagnostics_note": "Should be treated as abstention, but not over-detailed."
+      },
+      "coverage_goal": "Locks the hard-refusal path for selected-vendor questions."
+    },
+    {
+      "id": "partial_scope_with_final_score_caveat_not_abstention",
+      "fixture_type": "no_api_abstention_boundary",
+      "question_shape": "Ask for scope and final score together.",
+      "answer_shape": "Supported scope summary plus a final-line caveat that the score is unavailable.",
+      "sample_answer": "문서에서 확인되는 범위는 사업 범위와 주요 기능입니다. 최종 평가점수는 제공된 문서에서 확인할 수 없습니다.",
+      "expected": {
+        "is_abstention": false,
+        "answer_quality_issues": [],
+        "quality_diagnostics_note": "Valid partial answer with caveat should not flip into abstention."
+      },
+      "coverage_goal": "Distinguishes a partial valid answer from a refusal."
+    },
+    {
+      "id": "partial_scope_with_selected_vendor_caveat_not_abstention",
+      "fixture_type": "no_api_abstention_boundary",
+      "question_shape": "Ask for project scope and selected vendor together.",
+      "answer_shape": "Supported scope bullets plus a short caveat that the selected vendor is unavailable.",
+      "sample_answer": "문서에서 확인되는 범위는 시스템 구축과 운영 지원입니다. 최종 선정업체는 문서에서 확인할 수 없습니다.",
+      "expected": {
+        "is_abstention": false,
+        "answer_quality_issues": [],
+        "quality_diagnostics_note": "The caveat is allowed because the answer still contains substantive supported facts."
+      },
+      "coverage_goal": "Protects useful mixed answers from being over-classified as refusals."
+    },
+    {
+      "id": "overdetailed_refusal_tail_flagged",
+      "fixture_type": "no_api_abstention_boundary",
+      "question_shape": "Ask for unsupported final award result plus sensitive procurement details.",
+      "answer_shape": "Refusal first, then a long tail with candidate summaries, contact details, or speculative procurement content.",
+      "sample_answer": "제공된 문서에서 최종 낙찰업체는 확인할 수 없습니다.\n- 후보 기관 A의 요약...\n- 후보 기관 B의 요약...\n- 담당자 연락처 추정...\n- 계약금액 추정...",
+      "expected": {
+        "is_abstention": true,
+        "answer_quality_issues": [
+          "sensitive_or_forbidden_refusal_with_detail_tail"
+        ],
+        "quality_diagnostics_note": "Refusal stays a refusal, but the extra tail should be flagged."
+      },
+      "coverage_goal": "Separates correct abstention from over-detailed refusal behavior."
+    }
+  ],
+  "false_positive_risks": [
+    {
+      "risk_id": "mixed_answer_misread_as_refusal",
+      "risk": "A concise answer that starts with a supported scope summary and then says the final score or selected vendor is unavailable can be misread if the refusal tokens dominate the prefix."
+    },
+    {
+      "risk_id": "plain_language_overstructure_collision",
+      "risk": "A legitimate mixed answer may be marked as over-structured if it is routed through the plain-language case type and exceeds the current structured-answer threshold."
+    },
+    {
+      "risk_id": "procurement_keyword_overlap",
+      "risk": "Keywords such as '낙찰', '계약금액', and '선정업체' are broad enough to fire on valid scope summaries that merely mention unavailable final-result fields."
+    },
+    {
+      "risk_id": "tail_length_only_flagging",
+      "risk": "The tail-length heuristics can flag a refusal that is still correct but naturally includes several justified bullets, especially in sensitive/procurement cases."
+    },
+    {
+      "risk_id": "guard_repair_overreach",
+      "risk": "The generator-side refusal repair helpers can collapse or rewrite a partially valid answer into a shorter refusal if the guard trigger is too aggressive."
+    }
+  ],
+  "functions_that_might_change": [
+    {
+      "file": "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+      "function": "is_abstention",
+      "why": "This is the primary abstention gate. The new fixtures should lock the non-abstention path for partial valid answers with caveats and the abstention path for unsupported final-result refusals."
+    },
+    {
+      "file": "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+      "function": "answer_quality_diagnostics",
+      "why": "This is where over-detailed refusal tails should be flagged deterministically without changing the abstention truth value."
+    },
+    {
+      "file": "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+      "function": "answer_quality_issues",
+      "why": "Wrapper surface for downstream reporting; may need to expose any new boundary issues consistently."
+    },
+    {
+      "file": "I:\\0706\\rfp-rag-project\\scripts\\check_evidence_guard_fixtures.py",
+      "function": "run_fixtures",
+      "why": "Add the no-API boundary cases here so the fixture harness can assert the three-way distinction directly."
+    },
+    {
+      "file": "I:\\0706\\rfp-rag-project\\src\\generator.py",
+      "function": "_preempt_sensitive_abstention_answer",
+      "why": "This pre-answer path can preemptively refuse unsupported procurement-result questions; the boundary should not trigger on mixed valid answers."
+    },
+    {
+      "file": "I:\\0706\\rfp-rag-project\\src\\generator.py",
+      "function": "_apply_sensitive_abstention_guard",
+      "why": "This is the post-generation trim path for sensitive refusals; it should shorten the refusal tail without deleting valid caveats in mixed answers."
+    },
+    {
+      "file": "I:\\0706\\rfp-rag-project\\src\\generator.py",
+      "function": "_apply_evidence_use_guards",
+      "why": "Relevant for supported-scope-plus-caveat answers; it should repair under-answers without collapsing them into a pure refusal."
+    },
+    {
+      "file": "I:\\0706\\rfp-rag-project\\src\\generator.py",
+      "function": "_apply_query_prompt_hint",
+      "why": "Plain-language hints can increase the chance of over-structured refusal tails, so the fixture set should ensure it respects negated '쉽게 말하지 말고' requests."
+    },
+    {
+      "file": "I:\\0706\\rfp-rag-project\\src\\generator.py",
+      "function": "_apply_ambiguous_title_guard",
+      "why": "Ambiguous-title logic already trims refusal content; it is adjacent to this work because it shares the same refusal-vs-detail boundary."
+    },
+    {
+      "file": "I:\\0706\\rfp-rag-project\\src\\rag.py",
+      "function": "_single_project_focus_filter",
+      "why": "Project-focus filtering can reduce false ambiguities and prevent downstream refusal handling from being invoked unnecessarily."
+    },
+    {
+      "file": "I:\\0706\\rfp-rag-project\\src\\rag.py",
+      "function": "_csv_summary_backfill",
+      "why": "CSV backfill can supply the supported scope facts that make a partial answer valid instead of a full refusal."
+    }
+  ],
+  "recommended_fixture_strategy": {
+    "mode": "direct_function_no_api",
+    "assertions": [
+      "Call scripts.evaluate.is_abstention on each crafted answer string.",
+      "Call scripts.evaluate.answer_quality_diagnostics for the over-detailed refusal case.",
+      "Keep the partial-answer fixtures outside the abstention case types that would auto-flag them as over-structured unless that behavior is specifically under test.",
+      "Use short, concrete Korean answer strings that look like the production refusals and caveats the evaluator already sees."
+    ]
+  },
+  "expected_outcome": {
+    "full_refusal": "abstention=true, quality issues empty or tail-only depending on length.",
+    "partial_valid_with_caveat": "abstention=false, no refusal-tail issue.",
+    "over_detailed_refusal_tail": "abstention=true, quality issue present."
+  }
+}

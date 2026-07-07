@@ -1,0 +1,38 @@
+{
+  "schema": "rfp_rag_sparse_field_guard_fixture_results.v1",
+  "created_at": "2026-07-07T15:44:10",
+  "summary": {
+    "fixtures": 3,
+    "passed": 3,
+    "failed": 0,
+    "status": "pass"
+  },
+  "fixtures": [
+    {
+      "id": "unsupported_absent_field_is_flagged",
+      "passed": true,
+      "observed": [
+        {
+          "field_group": "synthetic_absent_api",
+          "issue": "unsupported_padding_risk",
+          "detail": "answer mentions absent tokens without a nearby not-found caveat: API, REST"
+        },
+        {
+          "field_group": "synthetic_absent_cloud",
+          "issue": "unsupported_padding_risk",
+          "detail": "answer mentions absent tokens without a nearby not-found caveat: 클라우드"
+        }
+      ]
+    },
+    {
+      "id": "all_absent_fields_with_not_found_caveats_pass",
+      "passed": true,
+      "observed": []
+    },
+    {
+      "id": "global_not_found_caveat_passes",
+      "passed": true,
+      "observed": []
+    }
+  ]
+}

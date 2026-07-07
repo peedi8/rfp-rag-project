@@ -1,0 +1,59 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "contract_seed_batch_review",
+  "task_id": "contract_seed_batch_review",
+  "status": "proposal",
+  "summary": "Q038-Q045 are consistent with the single-seed contract batch: one fixed seed per run, seed/title alignment, and a sensible cost note. The main review risk is file-level integrity of the generated question JSONs, which did not round-trip cleanly as complete files during validation.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_multiturn_primary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_resolved_primary.json"
+  ],
+  "protected_paths_seen": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_multiturn_primary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_resolved_primary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\worker_outputs\\contract_seed_batch_review.contract.json"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\worker_outputs\\contract_seed_batch_review.contract.json",
+      "kind": "json",
+      "description": "Contract review for Q038-Q045 seed batch"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "One fixed seed per run is respected in Q038-Q045: each row uses only S_PORTAL_KOREA_UNIV and does not introduce cross-seed synthesis.",
+      "S_PORTAL_KOREA_UNIV is a reasonable primary seed for this block: the org/title/project all point at the same Korean university portal procurement, which matches the contract-field focus.",
+      "The cost note is good and actionable: resolved-primary for cheap smoke, multiturn-primary for faithful follow-up and memory tests.",
+      "The selected-project contract fields are broadly suitable for these six cases: target_orgs, target_biz, expect_abstention, seed_refs, gates, and metric_routes all line up with the intended evaluation mode."
+    ],
+    "rejected_or_risky_items": [
+      "The generated primary/resolved question files should get a final integrity pass as complete artifacts; full-file JSON parsing failed during review even though the Q038-Q045 slice looked coherent.",
+      "All reviewed cases reuse the same seed, so the batch is narrow by design; that is fine for a fixed-seed contract review, but not for diversity coverage.",
+      "Q043-Q045 are a slightly softer fit than Q038-Q042 for strict contract-field probing, so they are acceptable but not the strongest examples in the slice."
+    ],
+    "needs_orchestrator_review": [
+      "Confirm whether the generated question files are intended to be complete JSON artifacts or only partial review fixtures; if complete, rerun validation on the full files before downstream use."
+    ]
+  },
+  "merge_risk": "medium",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.json' -TotalCount 280",
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_multiturn_primary.json' -TotalCount 40",
+      "Get-Content -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_resolved_primary.json' -TotalCount 40",
+      "Select-String -Path 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_multiturn_primary.json' -Pattern '\"source_case_id\": \"Q038\"|\"source_case_id\": \"Q039\"|\"source_case_id\": \"Q040\"|\"source_case_id\": \"Q041\"|\"source_case_id\": \"Q042\"|\"source_case_id\": \"Q043\"|\"source_case_id\": \"Q044\"|\"source_case_id\": \"Q045\"'",
+      "Select-String -Path 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_resolved_primary.json' -Pattern '\"source_case_id\": \"Q038\"|\"source_case_id\": \"Q039\"|\"source_case_id\": \"Q040\"|\"source_case_id\": \"Q041\"|\"source_case_id\": \"Q042\"|\"source_case_id\": \"Q043\"|\"source_case_id\": \"Q044\"|\"source_case_id\": \"Q045\"'",
+      "ConvertFrom-Json attempted on both generated question files"
+    ],
+    "observed_results": [
+      "Q038-Q045 entries are present in both generated files with matching source_case_id values and matching seed_refs/seed_titles.",
+      "The batch manifest shows the same one-fixed-seed policy and the cost note for the run.",
+      "Full-file ConvertFrom-Json failed on both generated question files, so the overall artifact integrity still needs a pass."
+    ]
+  }
+}

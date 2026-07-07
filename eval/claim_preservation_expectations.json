@@ -1,0 +1,88 @@
+{
+  "schema": "rfp_rag_claim_preservation_expectations.v1",
+  "created_at": "2026-07-07",
+  "description": "No-API claim-preservation checks for exposed metamorphic diagnostic cases. These gates are diagnostic only and must not be treated as fresh validation.",
+  "cases": [
+    {
+      "id": "qv6_007_goyang_facility_order_permutation",
+      "canonical_id": "qv6_006_goyang_facility_canonical",
+      "metamorphic_group": "goyang_facility",
+      "claim_scope": "diagnostic_only_exposed_case",
+      "target_org_any": [
+        "고양도시관리공사"
+      ],
+      "source_search": {
+        "file_glob": "data/*/data_list.csv",
+        "required_any": [
+          "고양도시관리공사",
+          "관산근린공원",
+          "다목적구장"
+        ]
+      },
+      "claims": [
+        {
+          "claim_key": "unmanned_operation_program",
+          "description": "The project includes an unmanned operation program and H/W linkage support.",
+          "source_any": [
+            "무인화 운영을 위한 프로그램",
+            "무인화 운영 프로그램 제공",
+            "무인발권기",
+            "하드웨어 연동",
+            "하드웨어(H/W) 연동",
+            "H/W 연동 프로그램"
+          ],
+          "answer_any": [
+            "무인 운영 프로그램 포함 여부: 포함",
+            "무인화 운영을 위한 프로그램",
+            "무인 운영 프로그램",
+            "H/W 연동 프로그램"
+          ],
+          "underanswer_near": [
+            "무인 운영 프로그램 포함 여부",
+            "무인 운영",
+            "무인화"
+          ],
+          "underanswer_any": [
+            "제공된 문서에서 확인할 수 없습니다",
+            "확인할 수 없습니다",
+            "확인 불가"
+          ]
+        },
+        {
+          "claim_key": "physical_access_control_system",
+          "description": "The project includes physical access-control-system purchase/installation, not only account/access-permission security.",
+          "source_any": [
+            "출입통제시스템 구매 및 설치",
+            "출입통제시스템",
+            "무인발권기, 출입통제시스템",
+            "중계서버"
+          ],
+          "answer_any": [
+            "출입통제시스템",
+            "출입통제 시스템",
+            "출입통제시스템 구매",
+            "출입통제시스템 설치",
+            "무인발권기, 출입통제시스템",
+            "중계서버"
+          ],
+          "underanswer_near": [
+            "출입통제 포함 여부",
+            "출입통제",
+            "물리적 시설 출입통제"
+          ],
+          "underanswer_any": [
+            "제공된 문서에서 확인할 수 없습니다",
+            "확인할 수 없습니다",
+            "확인 불가"
+          ],
+          "false_friend_any": [
+            "시스템 차원의 접근통제",
+            "접근권한",
+            "접속기록",
+            "네트워크 접근통제"
+          ]
+        }
+      ]
+    }
+  ]
+}

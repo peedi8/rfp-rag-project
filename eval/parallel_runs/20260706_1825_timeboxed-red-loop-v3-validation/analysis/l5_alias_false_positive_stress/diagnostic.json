@@ -1,0 +1,64 @@
+{
+  "diagnostic": "L5_short_alias_false_positive_stress",
+  "no_answer_or_judge_call": true,
+  "groups": [
+    {
+      "group": "false_positive_expected_none",
+      "rows": [
+        {
+          "key": "anyang_university",
+          "query": "안양대학교 학사관리 시스템 고도화 요구사항",
+          "auto_filter": null
+        },
+        {
+          "key": "pyeongtaek_university",
+          "query": "평택대학교 학사행정 시스템 구축 요구",
+          "auto_filter": null
+        },
+        {
+          "key": "bonghwasan_station",
+          "query": "봉화산역 교통 안내 시스템 요구",
+          "auto_filter": null
+        },
+        {
+          "key": "anyangcheon_water",
+          "query": "안양천 수질관리 플랫폼 구축 요구",
+          "auto_filter": null
+        }
+      ]
+    },
+    {
+      "group": "valid_expected_filter",
+      "rows": [
+        {
+          "key": "valid_anyang_facility",
+          "query": "안양 호계체육관 예약결제 요구",
+          "auto_filter": {
+            "발주 기관": "경기도 안양시"
+          }
+        },
+        {
+          "key": "valid_pyeongtaek_bis",
+          "query": "평택 버스정보시스템 정류장 안내기 요구",
+          "auto_filter": {
+            "발주 기관": "경기도 평택시"
+          }
+        },
+        {
+          "key": "valid_bonghwa_smartfarm",
+          "query": "봉화 스마트팜 작물관리 장비연계 요구",
+          "auto_filter": {
+            "발주 기관": "경상북도 봉화군"
+          }
+        },
+        {
+          "key": "valid_jeongeup_center",
+          "query": "정읍체육트레이닝센터 통합예약 결제 PG 연동 요구",
+          "auto_filter": {
+            "발주 기관": "전북특별자치도 정읍시"
+          }
+        }
+      ]
+    }
+  ]
+}

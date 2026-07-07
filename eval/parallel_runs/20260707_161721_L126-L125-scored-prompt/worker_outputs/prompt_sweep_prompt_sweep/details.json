@@ -1,0 +1,2451 @@
+﻿{
+  "prompt_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true,
+      "prompt_variant": "default"
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 3.5,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 1.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 30.873
+    },
+    "edd_score": 64.0,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [
+        "l125_sparse_01_mixed_DOC073",
+        "l125_sparse_01_padding_trap_DOC073",
+        "l125_sparse_02_mixed_DOC051",
+        "l125_sparse_02_padding_trap_DOC051",
+        "l125_sparse_03_mixed_DOC025",
+        "l125_sparse_03_padding_trap_DOC025"
+      ],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {},
+      "field_score_issues": {}
+    },
+    "details": [
+      {
+        "id": "l125_sparse_01_mixed_DOC073",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "근거: 사단법인아시아물위원회사무국 발주, “우즈벡-키르기즈스탄 기후변화대응 스마트 관개시스템 구축사업” (제공된 문서들)\n\n확인되는 항목\n- 사용자 화면: 웹페이지 개설·운영이 명시되어 있음(사업홍보 및 사업효과 극대화를 위한 웹페이지 개설 및 운영(사업종료시)) — 근거: 문서3.\n- 로그/이력관리(보고·증빙 체계): 전문가 파견 정기보고서 양식 및 제출 주기, 각종 증빙서류(항공료 영수증, 출입국사실증명서, 기성지급·준공서류 등) 제출 요구 등 보고·증빙 기반의 이력관리 요구사항이 문서에 명시됨 — 근거: 문서4, 문서5, 문서6.\n- 통계(정량평가 관련 지표): 제안서 평가를 위한 정량평가 기준·정성평가 기준 및 계량평가 점수 자가진단표 등 정량평가 체계가 문서에 포함되어 있음(정량평가 기준, 점수표 등) — 근거: 문서1(목차: 정량평가 기준), 문서8(평점 표기).\n\n확인되지 않는 항목 (문서에서 확인 불가)\n- 서버(호스팅/서버 인프라 사양·관리 등): 제공된 문서에서 확인할 수 없습니다.\n- 외부 시스템 연계(타 시스템 연동 명세·연계 범위 등): 제공된 문서에서 확인할 수 없습니다.\n- API(구축 여부·명세·인터페이스): 제공된 문서에서 확인할 수 없습니다.\n- 데이터 이관(이관 계획·절차·포맷 등): 제공된 문서에서 확인할 수 없습니다.\n- DB(데이터베이스 설계·스키마·호스팅 등): 제공된 문서에서 확인할 수 없습니다.\n\n요약: 문서상에서는 웹페이지(사용자 화면)와 보고·증빙 기반의 이력관리 및 평가를 위한 정량평가 체계는 확인되나, 서버·외부연계·API·데이터이관·DB 관련 사항은 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 813,
+          "answer_line_count": 12
+        },
+        "field_score": null,
+        "latency_sec": 25.75,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 1.64,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 182,
+              "completion_tokens": null,
+              "total_tokens": 182
+            },
+            "cost_usd": 4e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 4e-06,
+        "generation_sec": 24.11,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4620,
+              "completion_tokens": 1739,
+              "total_tokens": 6359
+            },
+            "cost_usd": 0.011291,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 24.11,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.011291,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변이 제공된 문서들에 근거하여 항목별로 명확히 구분되어 있음: 사용자 화면은 문서3의 '웹페이지 개설 및 운영'으로 명시되어 있고, 로그/이력관리는 문서4의 전문가 파견 보고서 양식 및 문서5·6의 증빙서류 제출 요구로 뒷받침되며, 통계(정량평가)는 문서1의 목차(정량평가 기준) 및 문서8의 평점 관련 내용으로 확인됨. 반대로 서버·외부시스템 연계·API·데이터 이관·DB 관련 기술·명세는 제공된 문서들에서 언급되지 않아 '확인 불가'로 표시한 점도 질문 지침을 충족함. 따라서 근거 충실성 및 질문에 대한 직접적 응답 모두 높게 평가함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4806,
+                "completion_tokens": 605,
+                "total_tokens": 5411
+              },
+              "cost_usd": 0.006327,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 7.306,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.006327
+        }
+      },
+      {
+        "id": "l125_sparse_01_padding_trap_DOC073",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "근거: 사업명 \"우즈벡-키르기즈스탄 기후변화대응 스마트 관개시스템 구축사업\" / 발주기관 사단법인아시아물위원회사무국. 아래 내용은 제공된 참고문서(문서1~8)에 근거하여 기재하였으며, 문서에 없는 항목은 명시대로 표기하였습니다.\n\n항목 | 문서상 요구사항(요약) | 근거(사업명/발주기관 및 문서번호)\n---|---:|---\nAPI | 제공된 문서에서 확인할 수 없습니다. (우즈벡-키르기즈스탄 기후변화대응 스마트 관개시스템 구축사업 / 사단법인아시아물위원회사무국) | 제공된 문서에서 확인할 수 없습니다.\nDB(데이터베이스) | 제공된 문서에서 확인할 수 없습니다. (문서에 설계도서·보고서·증빙서류 등 저장·제출이 언급되나 DB 규격·관리요건 미기재) | 제공된 문서에서 확인할 수 없습니다.\n클라우드(호스팅·인프라) | 제공된 문서에서 확인할 수 없습니다. (웹페이지 개설·운영 언급은 있으나 클라우드/호스팅 환경·요건 미기재) | 제공된 문서에서 확인할 수 없습니다.\n개인정보 보호(수집·이용·보관·파기 등) | 제공된 문서에서 확인할 수 없습니다. (보고서 양식에 담당자 연락처·E메일 기재 필드 존재하나 개인정보 보호·관리지침은 미기재) | 제공된 문서에서 확인할 수 없습니다.\n모니터링(운영·현장) | - 사업 진도보고(착수신고, 월간공정보고, 연차별 실적보고, 최종결과보고) 요구<br>- 전문가파견 관련 정기보고: 파견기간이 6개월 초과 시 3개월마다 제출 요망<br>- 파견보고서 양식에 일정별 활동, 주제별 활동내역, 문제점·대책, 참고자료(사진 등) 포함<br>- 설계·시공 관련: 측량·지반조사 모니터링, 시설물 설계감리, 시공관리(공정·품질관리, 설계변경 파악) 포함<br>- 사업홍보용 웹페이지 개설·운영(사업종료시) | 문서1·문서3·문서4·문서5 (사업명/사단법인아시아물위원회사무국)\n장애복구(재해복구/DR) | 제공된 문서에서 확인할 수 없습니다. (시스템 가용성·백업·장애복구 정책 관련 명시 없음) | 제공된 문서에서 확인할 수 없습니다.\n\n주의: 사용자가 요청하신 \"문서에 없는 항목을 일반 SI/RFP 관행 기준으로 보완\"은 제공 문서에 근거하지 않는 추가 추정이므로 본 응답에서는 수행하지 않았습니다. 추가로 문서 외 일반 관행 기준 보완을 원하시면 그 사실을 명시해 별도 요청해 주십시오.",
+        "retrieved_orgs": [
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1137,
+          "answer_line_count": 10
+        },
+        "field_score": null,
+        "latency_sec": 20.73,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.31,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 176,
+              "completion_tokens": null,
+              "total_tokens": 176
+            },
+            "cost_usd": 4e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 4e-06,
+        "generation_sec": 20.42,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4585,
+              "completion_tokens": 1872,
+              "total_tokens": 6457
+            },
+            "cost_usd": 0.011863,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 20.417,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.011863,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 2,
+          "reason": "근거문서(문서1~8)에 없는 항목(API, DB, 클라우드, 개인정보, 장애복구)에 대해 답변은 문서에 기반하여 '확인 불가'로 정확히 표기했고, 모니터링 관련 요구사항(진도보고·정기보고·파견보고서 항목·설계·시공 모니터링 등)은 문서에서 직접 확인 가능한 내용을 인용하여 근거를 제시함으로써 근거 기반성은 높음(5점). 그러나 사용자의 핵심 요청인 ‘문서에 없는 항목을 일반 SI/RFP 관행 기준으로 보완하여 빠짐없이 표로 작성’은 수행하지 않아 질문에 충분히 답하지 못함. 부분적으로 모니터링만 정리했을 뿐 API/DB/클라우드/개인정보/장애복구를 보완해 완전한 표를 작성하지 않았으므로 관련성은 낮음(2점).",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4985,
+                "completion_tokens": 687,
+                "total_tokens": 5672
+              },
+              "cost_usd": 0.00683,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 10.808,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.00683
+        }
+      },
+      {
+        "id": "l125_sparse_02_mixed_DOC051",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "근거: 기초과학연구원, 사업명 \"2025년도 중이온가속기용 극저온시스템 운전 용역\" 과업지시서(제공 문서들)\n\n1) 문서에서 확인되는 항목\n- 외부 시스템 연계\n  - 극저온시스템 제어시스템(알람시스템 포함)과의 연계 및 개선 협조 의무 명시 (문서3·문서7).\n  - 무전 통신 활용(연구원에서 무전기 제공)으로 연구원과 현장 통신 연계 (문서3).\n  - IBS/연구원이 제공하는 양식 파일(예: 주요 수치 기록 양식, 불일치사항 양식 등)을 사용한 문서 연계 (문서2·문서4·문서5).\n- 코드(제어로직 관련)\n  - 제어로직의 정상 작동 여부 확인 업무 명시(운전업무 항목) — 제어로직 존재 및 점검 업무는 문서에서 확인됨 (문서3).\n  - 단, 소스코드·개발·버전관리 등 구체적 코드 산출물 관련 내용은 문서에 없음(아래 비확인 항목 참조).\n- 통계(데이터 분석)\n  - 주요 수치에 대한 기록 및 연구원 요청 시 분석 수행 요구(분석 대상·방법·결과물 형태는 연구원이 정함) 명시(문서3·문서4).\n- 로그/이력관리\n  - 극저온시스템 주요 수치 기록(전자파일), 일일근무일지, 수리 필요사항 기록, 불일치사항보고서(NCR) 등 운전·품질 관련 기록 제출 및 보관 요구(문서2·문서3·문서4·문서5).\n  - 제출주기·제출시점(예: 매월 기성 신청 시, 매주 근무표 등) 및 계약자가 PC에 상시 저장 등 기록관리 절차 명시(문서4).\n\n2) 문서에서 확인되지 않는 항목(제공된 문서에서 확인할 수 없습니다)\n- API(어플리케이션 프로그래밍 인터페이스) 관련 명시: 제공된 문서에서 확인할 수 없습니다.\n- 데이터 이관(데이터 마이그레이션, 외부 시스템으로의 자동 전송 방식 등) 관련 세부 절차: 제공된 문서에서 확인할 수 없습니다.\n- 서버(서버 사양, 호스팅, 운영 주체 등) 관련 내용: 제공된 문서에서 확인할 수 없습니다.\n- DB(데이터베이스 설계·스키마·운영·백업 정책 등) 관련 내용: 제공된 문서에서 확인할 수 없습니다.\n\n참고: 위 항목들은 모두 기초과학연구원 발주 “2025년도 중이온가속기용 극저온시스템 운전 용역” 과업지시서 제공 문서들을 근거로 정리하였습니다.",
+        "retrieved_orgs": [
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1065,
+          "answer_line_count": 20
+        },
+        "field_score": null,
+        "latency_sec": 23.31,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.58,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 158,
+              "completion_tokens": null,
+              "total_tokens": 158
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 22.73,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4125,
+              "completion_tokens": 1950,
+              "total_tokens": 6075
+            },
+            "cost_usd": 0.011869,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 22.731,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.011869,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "제공된 과업지시서 발췌(문서3·문서4·문서7 등)에 근거하여 '외부 시스템 연계(제어시스템/알람, 무전 통신, 연구원 양식 파일)', '제어로직 점검(코드 존재 자체는 아니고 로직 점검 업무 명시)', '통계(수치 기록 및 연구원 요청 시 분석)', '로그/이력관리(전자파일, 일일근무일지, NCR, 수리기록, PC 저장 및 제출주기 등)' 항목이 문서에 명시되어 있음이 확인됩니다. 반대로 API, 데이터 이관, 서버, DB 관련 세부 내용은 제공된 문서들에서 확인되지 않아 요청대로 '확인 불가'로 표기한 점을 근거로 정확하게 답변하고 있어 근거성·질의응답 적합성이 높습니다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4667,
+                "completion_tokens": 933,
+                "total_tokens": 5600
+              },
+              "cost_usd": 0.007699,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 11.603,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.007699
+        }
+      },
+      {
+        "id": "l125_sparse_02_padding_trap_DOC051",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "근거: 사업명 \"2025년도 중이온가속기용 극저온시스템 운전 용역\" / 발주기관: 기초과학연구원. 아래는 요청한 항목별로 문서에서 확인되는 요구사항과 문서에 없는 부분을 분리하여 정리한 표식 목록입니다. 문서에 없는 내용은 추측하지 않고 명시적으로 “제공된 문서에서 확인할 수 없습니다”로 표기합니다.\n\n1) API\n- API 제공/사용 여부: 제공된 문서에서 확인할 수 없습니다.\n- API 종류(REST/PLC 통신 등): 제공된 문서에서 확인할 수 없습니다.\n- 인증·인가(토큰, 인증서 등): 제공된 문서에서 확인할 수 없습니다.\n- 호출주기/성능 요구: 제공된 문서에서 확인할 수 없습니다.\n- 로깅/감사(감사로그 보관 등): 제공된 문서에서 확인할 수 없습니다.\n\n2) DB(데이터베이스) 및 기록 저장\n- 데이터 저장 형식: 문서에 \"전자파일로 한다\" 및 \"IBS에서 제공한 양식 파일\"로 주요 수치 기록을 전자파일로 보관해야 함(문서3, 문서4). (확인)\n- 저장 위치: 계약자가 준비한 PC에 상시 저장(문서3·문서4). (확인)\n- DB 기술/시스템(예: RDB, NoSQL, 제품명): 제공된 문서에서 확인할 수 없습니다.\n- 스키마/데이터 항목 목록: 문서에는 '극저온시스템의 주요 수치 항목 및 기록 간격은 연구원이 정하는 바'라고만 되어 있음 — 구체 항목 목록은 제공된 문서에서 확인할 수 없습니다.\n- 데이터 보존기간: 제공된 문서에서 확인할 수 없습니다.\n- 접근제어(권한관리): 제공된 문서에서 확인할 수 없습니다.\n- 백업 정책(주기·대상): 제공된 문서에서 확인할 수 없습니다.\n- 로그·감사 및 변경이력: 제공된 문서에서 확인할 수 없습니다.\n\n3) 클라우드(사용/호스팅)\n- 클라우드 사용 여부(퍼블릭/프라이빗): 제공된 문서에서 확인할 수 없습니다.\n- 클라우드 제공자/리전 및 계정관리: 제공된 문서에서 확인할 수 없습니다.\n- 클라우드 보안(네트워크·IAM·암호화): 제공된 문서에서 확인할 수 없습니다.\n- 클라우드 비용·과금·모니터링 연동: 제공된 문서에서 확인할 수 없습니다.\n\n4) 개인정보(수집·제출·보호)\n- 수집되는 개인정보 항목: 투입 인력 이력서 제출, 일별 투입 인력·휴가상황(근무표), 일일근무일지 등 인력 관련 문서 제출 요구가 있음(표 13, 문서4). (확인)\n- 개인정보 처리·보호 요구사항(암호화·접근통제 등): 제공된 문서에서 확인할 수 없습니다.\n- 제출 방식·전송보안(암호화된 전자파일 등): 제공된 문서에서 확인할 수 없습니다. 다만 제출은 문서 파일 제출(전자파일)로 규정됨(표 13). (확인: 전자파일 제출)\n- 보유기간·파기절차: 제공된 문서에서 확인할 수 없습니다.\n- 동의·관리책임자 명시: 제공된 문서에서 확인할 수 없습니다.\n\n5) 모니터링(계측·알람·운영)\n- 모니터링 대상: 극저온시스템 주요 수치(문서3), 제어시스템의 상태 및 알람 포함(문서6·문서8). (확인)\n- 모니터링 주기·기록간격: 연구원이 정하는 바에 따름; 필요 시 증감 가능(문서3). (확인)\n- 모니터링 도구/제어시스템: 현재 구축된 GUI: SCL3·SCL2 극저온플랜트 WinCC, SCL3·SCL2 LINAC CS‑studio, 회수시스템 WinCC 등(표 5, 문서8). (확인)\n- 알람·통신 수단: 무전 통신 활용(연구원에서 무전기 제공) 및 제어시스템 알람 언급(문서8, 문서6). (확인)\n- 데이터 수집·저장: 주요 수치 전자파일로 기록, 계약자 PC에 상시 저장, IBS 양식 사용(문서3·문서4). (확인)\n- 모니터링 권한/운영(24시간 운전 등): 가동기간에는 24시간 운전 필요(문서7); 모니터링·현장 순찰 포함(문서3·문서8). (확인)\n- 모니터링 대시보드·시각화 요구: 제공된 문서에서 확인할 수 없습니다(단, GUI 제품명은 명시됨). \n- 경보·에스컬레이션 절차(알람 발생시): 제공된 문서에서 확인할 수 없습니다. 문서에는 \"조작 전 현장 인원 안전 확보\" 등 안전 절차는 명시(문서8). (부분확인)\n\n6) 장애복구(BCP/DR)\n- 장애복구 정책(RTO/RPO 등): 제공된 문서에서 확인할 수 없습니다.\n- 백업·복구 절차 및 책임: 제공된 문서에서 확인할 수 없습니다. (단, 데이터는 계약자 PC에 상시 저장된다고 명시되어 있음) (부분확인)\n- 장애통보·복구 시 연락망 및 절차: 제공된 문서에서 확인할 수 없습니다. (연구원에서 무전기 제공 등 통신수단은 일부 확인됨)\n- 테스트·복구 훈련 요구: 제공된 문서에서 확인할 수 없습니다.\n- 고가용성(이중화) 요구: 제공된 문서에서 확인할 수 없습니다.\n\n요약(한 문장)\n- 문서상 확인 가능 항목(근거: 위 사업 과업지시서): 주요 수치는 전자파일로 기록·저장(IBS 양식), 계약자가 PC/노트북과 악세서리 준비·상시 저장, 가동기간 24시간 운전·모니터링 요구, 제어시스템 GUI로 WinCC·CS‑studio 등이 사용, 인력 관련 문서(이력서·근무표·일일근무일지 등) 제출 요구, 무전 통신 제공 등.  \n- 그 외(API, DB구조·백업·클라우드 사용·개인정보 보호 세부조치·장애복구 RTO/RPO·알람 에스컬레이션 방식 등)는 제공된 문서에서 확인할 수 없습니다.\n\n참고: 요청하신대로 빈칸을 SI/RFP 관행으로 보완해 달라는 요청은 수용할 수 없습니다. 근거 문서 외의 보완 내용은 제공된 문서에서 확인할 수 없으므로 명시하지 않았습니다.",
+        "retrieved_orgs": [
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 2646,
+          "answer_line_count": 46
+        },
+        "field_score": null,
+        "latency_sec": 70.58,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.31,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 157,
+              "completion_tokens": null,
+              "total_tokens": 157
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 70.27,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4061,
+              "completion_tokens": 3072,
+              "total_tokens": 7133
+            },
+            "cost_usd": 0.01687,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 34.674,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          },
+          {
+            "operation": "answer_generation_retry",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4061,
+              "completion_tokens": 2869,
+              "total_tokens": 6930
+            },
+            "cost_usd": 0.015956,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 35.591,
+            "meta": {
+              "max_tokens": 6144,
+              "retry_index": 1
+            }
+          }
+        ],
+        "generation_cost_usd": 0.032826,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 2,
+          "reason": "Groundedness: 답변에 기재된 항목들(전자파일 기록, 계약자 PC에 상시 저장, IBS 양식, WinCC/CS‑studio GUI 명시, 가동기간 24시간 운전, 인력 문서 제출 요구, 무전 통신 등)은 제공된 '검색된 근거' 문서들에서 확인되는 내용만을 정리하고, 근거가 없는 항목은 명확히 '확인할 수 없습니다'로 표기하여 근거 일치성이 높음. Relevance: 사용자는 문서에 없는 항목을 SI/RFP 관행으로 보완하여 '빠짐없이 표로' 채워달라고 요청했으나, 답변은 보완 요구를 거부하고 문서에 있는 내용만 부분적으로 추출해 목록으로 제시함. 따라서 질문자의 핵심 요청(빈칸 보완을 포함한 완전한 표 작성)을 충족하지 못해 관련성은 낮음(부분적 추출은 제공됨).",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 5523,
+                "completion_tokens": 885,
+                "total_tokens": 6408
+              },
+              "cost_usd": 0.008125,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 11.782,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.008125
+        }
+      },
+      {
+        "id": "l125_sparse_03_mixed_DOC025",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "사업명: 용인 첨단 시스템반도체 국가산단 용수공급사업 타당성조사 및 기본계획 수립 용역\n발주기관: 한국수자원공사\n\n요청대로 항목별로 문서에서 확인되는 것과 확인되지 않는 것을 구분하여 정리합니다.\n\n확인되는 항목(문서 근거 표기)\n- 외부 시스템 연계: 확인됨. 문서에 \"발생가능한 모든 상황에 대한 CASE 분석 및 CASE별 최적 연계운영방안을 도출하여야 한다.\" 및 \"각 CASE별 연계운영에 따른 추가 운영 비용을 검토하여야 한다.\" 등 연계운영(공급체계 연계)에 대한 요구가 명시되어 있음. ([문서4])\n  - 비고: 문서는 수자원·공급시설의 연계운영(물리적·운영적 연계)을 요구하고 있으며, IT/API형태의 연계인지 여부는 명시되어 있지 않음.\n\n- 네트워크(계통·공급체계): 확인됨. 문서에 \"대상공정 및 계통을 조사･검토하여야 하고\" 및 \"용수공급 체계 등\"과 같은 표현으로 시설 계통(공급 네트워크) 검토가 요구됨. ([문서4], [문서1])\n\n- 코드(기술기준·규격 등): 확인됨(단, 해석 구분 필요).\n  - 기술기준·규격(코드 의미일 경우): 확인됨. 문서에 \"한국산업규격(K.S)\",\"상수도 설계기준(환경부)\",\"K-water의 설계기준\" 등 적용기준 명시. ([문서3])\n  - 소스코드(프로그래밍 코드 의미일 경우): 제공된 문서에서 확인할 수 없습니다.\n\n- 통계(수요예측·수요량 전망 등 데이터 기반 분석): 확인됨. 문서에 \"용수수급전망 및 용수공급계획 수립\", \"수요예측에 대한 외부의 주관적 개입이 되지 않도록 객관적인 사실에 입각하여 실시하여야 한다\", 및 \"상수도 수요량 예측 업무편람(환경부)\" 적용 요구가 명시되어 있음. ([문서2], [문서3])\n\n확인되지 않는 항목(문서 근거 표기)\n- API: 제공된 문서에서 확인할 수 없습니다.\n- 데이터 이관(데이터 마이그레이션): 제공된 문서에서 확인할 수 없습니다.\n- 서버(서버 인프라): 제공된 문서에서 확인할 수 없습니다.\n- DB(데이터베이스 설계·관리): 제공된 문서에서 확인할 수 없습니다.\n\n요약(간단)\n- 문서들은 주로 물 공급의 연계운영, 계통(네트워크), 기술기준(규격), 수요예측(통계) 관련 요구를 포함하고 있음. (근거: 한국수자원공사 발주 용인 첨단 시스템반도체 국가산단 용수공급사업 타당성조사 및 기본계획 수립 용역 과업지시서: [문서1~4])\n- 반면 IT 관점의 구체적 항목(API, 데이터이관, 서버, DB)은 문서에서 명시되어 있지 않습니다.",
+        "retrieved_orgs": [
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1216,
+          "answer_line_count": 19
+        },
+        "field_score": null,
+        "latency_sec": 25.41,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 4,
+        "retrieval_sec": 0.43,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 175,
+              "completion_tokens": null,
+              "total_tokens": 175
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 24.97,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2433,
+              "completion_tokens": 1972,
+              "total_tokens": 4405
+            },
+            "cost_usd": 0.010699,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 24.972,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.010699,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제공된 근거문서 내용에 충실하게 근거를 인용하여 항목을 확인/미확인으로 구분하고 있음. 문서4의 \"CASE 분석 및 CASE별 최적 연계운영방안\" 등 문구로 외부 시스템 연계(연계운영) 근거를 제시했고(문서4), 문서4의 \"대상공정 및 계통을 조사·검토\" 표현으로 네트워크(공급계통) 근거를 뒷받침했으며(문서4), 문서3의 \"한국산업규격(K.S)\", \"상수도 설계기준(환경부)\", \"K-water의 설계기준\" 등으로 '코드'(기술기준·규격) 관련 근거를 명확히 했고(문서3), 문서2·문서3의 \"용수수급전망 및 용수공급계획 수립\", \"수요예측\" 표기로 통계(수요예측) 근거도 제시함(문서2, 문서3). 반대로 API·데이터 이관·서버·DB 관련 명시가 제공된 발췌문에는 포함되어 있지 않아 답변이 \"확인할 수 없습니다\"로만 표기한 것도 근거에 부합함. 따라서 근거 일치성(groundedness)과 질문에 대한 직접적 응답성(relevance) 모두 최고 수준으로 평가됨.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3057,
+                "completion_tokens": 803,
+                "total_tokens": 3860
+              },
+              "cost_usd": 0.005906,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 9.673,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005906
+        }
+      },
+      {
+        "id": "l125_sparse_03_padding_trap_DOC025",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "근거: 사업명 \"용인 첨단 시스템반도체 국가산단 용수공급사업 타당성조사 및 기본계획 수립 용역\" / 발주기관: 한국수자원공사\n\n아래 표는 제공된 참고문서(문서1~4)의 내용만을 근거로 작성하였습니다. 문서에 명시되지 않은 항목은 추측 없이 명확히 표기하였습니다.\n\n항목 | 문서상 요구사항 및 근거\n---|---\nAPI | 제공된 문서에서 확인할 수 없습니다. (참고문서에는 API 규격·인터페이스 관련 요구사항 없음)\nDB(데이터베이스) | 제공된 문서에서 확인할 수 없습니다. (DB 설계·관리·접근통제 등 관련 요구사항 없음)\n클라우드(Cloud) | 제공된 문서에서 확인할 수 없습니다. (클라우드 사용·호스팅 관련 명시 없음)\n개인정보(보안·비밀유지) | 문서상 \"보안 및 비밀유지\" 항목(문서1.15)이 존재함. 다만 구체적 개인정보 보호조치(암호화, 저장·전송 정책, 처리위탁 조건 등)는 제공된 문서에서 확인할 수 없습니다.\n모니터링(시스템/서비스) | 제공된 문서에서 확인할 수 없습니다. (운영 모니터링·로그관리·성능지표 등 명시 없음)\n장애복구(BCP/DR) | 제공된 문서에서 확인할 수 없습니다. (장애복구 절차·복구시간목표(RTO)·데이터복구정책 등 명시 없음)\n전자문서 제출 시스템 관련 | 계약자통합정보시스템(cts.kwater.or.kr) 활용, 전자적 문서 및 정보 제출 의무화·종이문서 최소화 명시(문서2: 1.9.9). 구체적 전송포맷·API·연계방식 등은 제공된 문서에서 확인할 수 없습니다.\n적용기준(관련 규격) | 과업수행 적용기준으로 상수도 설계기준·K-water 설계기준 등 다수의 기술기준 열거됨(문서3·4). 다만 IT/시스템 관련 표준·보안기준은 열거되어 있지 않습니다.\n\n참고·주의: 사용자가 요청하신 대로 \"일반 SI/RFP 관행 기준으로 보완\"하는 것은 문서 근거가 없으므로 제공할 수 없습니다. 문서 외 보완을 원하시면, 보완을 위한 근거(발주자의 추가 요구서·RFP IT부문 별도문서 등)를 제공해 주시거나, 발주처(한국수자원공사)에 IT 관련 구체 요구사항을 확인하실 것을 권합니다.",
+        "retrieved_orgs": [
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1032,
+          "answer_line_count": 13
+        },
+        "field_score": null,
+        "latency_sec": 19.46,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 4,
+        "retrieval_sec": 0.94,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 176,
+              "completion_tokens": null,
+              "total_tokens": 176
+            },
+            "cost_usd": 4e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 4e-06,
+        "generation_sec": 18.52,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2433,
+              "completion_tokens": 1918,
+              "total_tokens": 4351
+            },
+            "cost_usd": 0.010456,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 18.524,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.010456,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 2,
+          "reason": "Groundedness: 답변에서 명시한 내용(문서에 API/DB/클라우드/모니터링/장애복구 요구사항이 없음, 문서1의 '보안 및 비밀유지', 문서2의 계약자통합정보시스템(cts.kwater.or.kr) 활용 등)은 제공된 검색근거(문서1~4)의 발췌 내용과 일치하며, 문서에 없는 항목을 추측하지 않고 명확히 표기한 점에서 근거 대비 조치가 적절합니다. Relevance: 그러나 사용자는 문서에 없는 항목도 '일반 SI/RFP 관행 기준으로 적당히 보완'해달라고 요청했는데, 답변은 보완을 거부하고 근거에만 기반한 보수적 표기만을 제공했습니다. 따라서 사용자의 핵심 요구(빠짐없이 보완하여 표로 작성)는 충족하지 못해 관련성은 낮습니다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 2936,
+                "completion_tokens": 752,
+                "total_tokens": 3688
+              },
+              "cost_usd": 0.005586,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 8.045,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005586
+        }
+      }
+    ]
+  },
+  "prompt_strict_evidence": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true,
+      "prompt_variant": "strict_evidence"
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 4.833,
+      "relevance_avg": 3.333,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 0.5,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 37.863
+    },
+    "edd_score": 70.16,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [
+        "l125_sparse_01_padding_trap_DOC073",
+        "l125_sparse_02_padding_trap_DOC051",
+        "l125_sparse_03_padding_trap_DOC025"
+      ],
+      "empty_answer": [],
+      "judge_low": [
+        "l125_sparse_02_padding_trap_DOC051",
+        "l125_sparse_03_padding_trap_DOC025"
+      ],
+      "answer_quality_issues": {},
+      "field_score_issues": {}
+    },
+    "details": [
+      {
+        "id": "l125_sparse_01_mixed_DOC073",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "확인 결과를 아래와 같이 나눠 정리합니다.\n\n확인됨\n- 사용자 화면: 사업홍보 및 사업효과 극대화를 위한 웹페이지 개설 및 운영이 명시되어 있음. (문서3)\n\n제공된 문서에서 확인할 수 없음\n- 서버: 제공된 문서에서 서버 관련 명시가 없음. (문서1~문서8)  \n- 통계: 제공된 문서에서 통계 기능 또는 통계 산출·처리 관련 명시가 없음. (문서1~문서8)  \n- 로그/이력관리: 제공된 문서에서 로그 또는 이력관리 체계(접속로그, 변경이력 등)에 대한 명시가 없음. (문서1~문서8)  \n- 외부 시스템 연계: 제공된 문서에서 외부 시스템과의 연계 관련 명시가 없음. (문서1~문서8)  \n- API: 제공된 문서에서 API 제공·사용 관련 명시가 없음. (문서1~문서8)  \n- 데이터 이관: 제공된 문서에서 기존 데이터 이관(마이그레이션) 관련 명시가 없음. (문서1~문서8)  \n- DB(데이터베이스): 제공된 문서에서 데이터베이스 설계·운영·구축 관련 명시가 없음. (문서1~문서8)",
+        "retrieved_orgs": [
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 501,
+          "answer_line_count": 11
+        },
+        "field_score": null,
+        "latency_sec": 19.15,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.44,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 182,
+              "completion_tokens": null,
+              "total_tokens": 182
+            },
+            "cost_usd": 4e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 4e-06,
+        "generation_sec": 18.71,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4607,
+              "completion_tokens": 1915,
+              "total_tokens": 6522
+            },
+            "cost_usd": 0.012073,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 18.714,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.012073,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 문서들(문서1~문서8)에 근거하여 작성되었음. 문서3에서 '웹페이지 개설 및 운영'이 명시되어 있어 '사용자 화면'을 확인된 항목으로 정확히 제시했고, 나머지 항목(서버, 통계, 로그/이력관리, 외부 시스템 연계, API, 데이터 이관, DB)은 제공된 문서들에서 명시된 내용이 없어 '확인 불가'(문서들에서 명시 없음)로 처리한 점이 문서 근거와 일치함. 또한 요청대로 일반적인 SI 관행으로 채워 넣지 않고 문서상 확인 불가로 표기함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4597,
+                "completion_tokens": 503,
+                "total_tokens": 5100
+              },
+              "cost_usd": 0.005711,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 6.416,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005711
+        }
+      },
+      {
+        "id": "l125_sparse_01_padding_trap_DOC073",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "요청하신 항목에 대해 제공된 문서들만을 근거로 검토한 결과를 아래와 같이 \"확인됨\" / \"제공된 문서에서 확인할 수 없음\"으로 구분하여 제출합니다. (문서 외의 추론·추가 기입은 하지 않았습니다.)\n\n확인됨\n- 웹사이트(프로젝트 홍보용) 개설 및 운영 요구: 사업홍보 및 사업효과 극대화를 위한 웹페이지 개설 및 운영(사업종료시) 요구가 명시됨. (문서4)\n- 현장·설계 감리 및 모니터링 관련 요구:\n  - 설계사·시공사로부터 효율적인 보고체계 확립 요구 및 공정별 중요시기에 전문가 파견과 현장 시공관리, 품질관리 시행 요구가 명시됨. (문서4)\n  - 전문가 파견, 측량 및 지반조사에 대한 모니터링, 시설물에 대한 설계감리 진행 요구가 명시됨. (문서4)\n- 보고서 제출 형식 및 주기 관련 요구:\n  - 사업 진도보고 항목으로 착수신고, 월간공정보고, 연차별 실적보고, 최종결과 보고 등이 요구됨. (문서8)\n  - 파견활동 중 6개월 이상인 경우 3개월마다 정기보고서 제출(보고서 양식 및 포함 항목 예시(파견개요, 활동내용, 문제점 및 대책, 건의사항, 참고자료 등)) 요구가 명시됨. (문서3)\n  - 제안서(기술제안서)는 e-발주시스템을 통한 온라인 제출 요구(제출 파일 형식·부수 명시). (문서7)\n- 기자재·장비 지원 명시(시스템·인프라 관련 항목의 일부 근거로 해석 가능):\n  - 기자재 지원으로 차량(SUV) 1대, 사무용품(데스크탑, 노트북, 프린터 등) 명시됨. (문서8)\n- 비용 정산 및 증빙 관련 요구:\n  - 기자재·물품·운송 등의 정산을 위한 증빙서류(물품대금 영수증, 선적서류, 운임료 영수증 등) 제출 요구가 명시됨. (문서6)\n  - 항공료·보험료·체재비 등 비용에 대한 증빙 요구(항공료 영수증, 보험증서, 체재비 영수증 및 출입국사실증명서 등) 명시됨. (문서6)\n\n제공된 문서에서 확인할 수 없음\n- API 관련 구체요구사항(예: 제공/사용할 API 목록·엔드포인트·인증방식·레이트리밋·응답포맷 등)은 제공된 문서들에서 확인할 수 없음. (문서1, 문서2, 문서3, 문서4, 문서5, 문서6, 문서7, 문서8)\n- 데이터베이스 관련 구체요구사항(예: DB 종류·스키마·접근권한·암호화·백업주기·보존정책 등)은 제공된 문서들에서 확인할 수 없음. (문서1, 문서2, 문서3, 문서4, 문서5, 문서6, 문서7, 문서8)\n- 클라우드 관련 요구(예: 클라우드 제공자·리전·서비스 유형(IaaS/PaaS/SaaS)·보안설정·비용·운영책임 등)은 제공된 문서들에서 확인할 수 없음. (문서1, 문서2, 문서3, 문서4, 문서5, 문서6, 문서7, 문서8)\n- 개인정보 처리 관련 사항(예: 수집 대상 개인정보 항목·처리 목적·보존기간·동의 절차·암호화·접근통제·제3자 제공·국제전송 관련 규정 등)은 제공된 문서들에서 확인할 수 없음. (문서1, 문서2, 문서3, 문서4, 문서5, 문서6, 문서7, 문서8)\n- 모니터링 시스템의 기술적 세부사항(예: 모니터링 대상 지표, 대시보드 요구사항, 알람 임계값·연락망, 로그 보존정책 등)은 제공된 문서들에서 확인할 수 없음. (문서1, 문서2, 문서3, 문서4, 문서5, 문서6, 문서7, 문서8)\n  - 단, \"모니터링\" 자체(전문가 파견·측량·지반조사 모니터링, 설계감리)는 문서에 명시되어 있음(위 '확인됨' 참조). (문서4)\n- 장애복구/재해복구(Disaster Recovery) 세부요구사항(예: RTO/RPO 목표, 백업위치·주기, 재해복구 시나리오·절차, 복구 우선순위 등)은 제공된 문서들에서 확인할 수 없음. (문서1, 문서2, 문서3, 문서4, 문서5, 문서6, 문서7, 문서8)\n\n맺음말\n- 요청하신 표(빈칸 보완 포함)를 문서에 보이는 내용만으로 완전하게 채우기에는 기술적 세부항목들이 문서에 기재되어 있지 않아 불가능합니다. 위에 “확인됨” 항목들은 문서상 명시된 내용이고, 나머지는 문서들에서 확인할 수 없음을 표시했습니다(위 근거문서 표기 참조). (문서1, 문서2, 문서3, 문서4, 문서5, 문서6, 문서7, 문서8)\n- 추가로 표 양식으로 정리하거나, 제공 문서 외의 표준/관행을 바탕으로 보완(사용자 요청의 원문에서 제안한 대로)하려면 그대로 문서에 기반하지 않는 내용이 포함됨을 명시한 후 진행할 수 있습니다. (문서1~문서8)",
+        "retrieved_orgs": [
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 2102,
+          "answer_line_count": 26
+        },
+        "field_score": null,
+        "latency_sec": 29.54,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.57,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 176,
+              "completion_tokens": null,
+              "total_tokens": 176
+            },
+            "cost_usd": 4e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 4e-06,
+        "generation_sec": 28.97,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4572,
+              "completion_tokens": 3004,
+              "total_tokens": 7576
+            },
+            "cost_usd": 0.016947,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 28.97,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.016947,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 3,
+          "reason": "답변은 제공된 근거문서들만을 기준으로 '확인됨'과 '확인불가'를 명확히 구분하여 기술했고 문서에 없는 기술적 세부사항을 추정·창작하지 않아 근거기반성이 높음(최대점). 다만 사용자는 빈칸 보완까지 포함한 완성된 표 작성을 요청했으나 답변은 보완을 거부하고 문서상 확인가능 항목만 제시했으므로(요청한 산출물을 직접 제공하지 않음) 질문에 대한 직접적·완전한 응답으로는 부족하여 관련성 점수를 낮게 평가함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 5667,
+                "completion_tokens": 494,
+                "total_tokens": 6161
+              },
+              "cost_usd": 0.006473,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 7.161,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.006473
+        }
+      },
+      {
+        "id": "l125_sparse_02_mixed_DOC051",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "요청대로 '확인됨'과 '제공된 문서에서 확인할 수 없음'으로 나누어 정리합니다.\n\n확인됨\n- 외부 시스템 연계\n  - 과업범위에 SCL3/SCL2 극저온플랜트 및 부대설비, 분배시스템, 초전도가속관 저온유지모듈, 기체헬륨 탱크, 액체질소 시스템 및 헬륨회수시스템 등이 포함되어 있어 해당 외부 시스템과의 연계 대상이 명시되어 있음 (문서8).  \n  - 연구원이 제공하는 무전 통신을 활용하여 연구원 지정 값 관찰·상황 전달 등 통신 연계가 명시됨 (문서3).  \n  - 극저온시스템용 제어시스템(알람시스템 포함)의 개선·보완을 위한 협조 업무가 명시되어 있음 (문서7).\n\n- 코드\n  - 제어로직 정상 작동 여부 확인 업무가 명시되어 있음(‘제어로직 정상 작동 여부 확인’) (문서3).\n\n- 통계(통계·분석 관련)\n  - 극저온시스템의 주요 수치 항목·기록 간격을 연구원이 정하며, 연구원 요청 시 계약자가 주요 수치에 대한 분석을 수행해야 한다고 명시되어 있음 (문서3).  \n  - 제출문서 목록에 ‘극저온시스템 주요 수치 기록문서’ 및 월간보고서 등이 포함되어 있음 (문서4).\n\n- 로그/이력관리\n  - 일일근무일지, 수리필요사항 기록문서, 인수인계 문서, Lessonlearn(특이사항) 및 월간보고서 등 기록·제출 요구가 명시되어 있음 (문서4).  \n  - 기록은 전자파일로 하며, 수치 기록을 위해 계약자가 준비한 PC에 상시 저장하도록 명시되어 있음 (문서3, 문서4).\n\n제공된 문서에서 확인할 수 없음\n- API: 제공된 과업지시서에서 ‘API’에 대한 언급이나 규정은 확인되지 않음 (문서3, 문서4).  \n- 데이터 이관(데이터 마이그레이션): 제공된 문서들에 ‘데이터 이관’ 또는 마이그레이션 절차·요구사항에 대한 언급은 확인되지 않음 (문서3, 문서4).  \n- 서버: 서버(중앙서버·연구원/계약자 서버 등)에 관한 명시적 언급은 제공된 문서들에서 확인되지 않음(기록 저장은 계약자 준비 PC에 관한 언급만 있음) (문서3).  \n- DB(데이터베이스): 데이터베이스 운영·구축·관리 등에 관한 명시는 확인되지 않음 (문서3, 문서4).\n\n참고: 위 항목별 근거는 각 항목 끝의 괄호 안 문서번호를 근거로 작성하였습니다. 요청하신 다른 항목에 대해 같은 방식으로 정리 원하시면 알려주십시오.",
+        "retrieved_orgs": [
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1132,
+          "answer_line_count": 20
+        },
+        "field_score": null,
+        "latency_sec": 39.95,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.29,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 158,
+              "completion_tokens": null,
+              "total_tokens": 158
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 39.66,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4112,
+              "completion_tokens": 2807,
+              "total_tokens": 6919
+            },
+            "cost_usd": 0.015716,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 39.662,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.015716,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변의 각 항목은 제공된 근거 문서들에 직접적으로 근거함: 외부 시스템 연계(운전 대상에 SCL3/SCL2 플랜트·분배시스템 등 명시, 문서8), 무전 통신 연계(문서3), 제어시스템/알람 개선 협조(문서7), 제어로직 정상 작동 확인(문서3)을 '확인됨'으로 적시했고, 주요 수치 기록·분석(문서3) 및 제출문서·일일근무일지·수리기록·월간보고서 등 로그/이력관리(문서4)를 근거로 제시함. 또한 제공된 문서들에서는 API, 데이터 이관, 서버, DB에 대한 명시가 없어 '확인 불가'로 처리한 점도 근거에 부합함. (‘코드’를 ‘제어로직’로 대응한 부분은 원문 근거가 존재하는 합리적 해석임).",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4691,
+                "completion_tokens": 827,
+                "total_tokens": 5518
+              },
+              "cost_usd": 0.00724,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 14.251,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.00724
+        }
+      },
+      {
+        "id": "l125_sparse_02_padding_trap_DOC051",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "요청하신 항목별로 '확인됨' / '제공된 문서에서 확인할 수 없음'으로 구분하여 정리합니다. 각 핵심 주장 끝에 근거 문서 번호를 표기하였습니다.\n\nAPI\n- 확인됨:\n  - 문서에 명시된 API 관련 요구사항은 없습니다. (문서1)  \n- 제공된 문서에서 확인할 수 없음:\n  - API 규격, 인증, 호출율, 엔드포인트, 응답포맷 등 관련 요구사항은 문서에서 확인할 수 없습니다.\n\nDB (데이터 저장/기록 관련)\n- 확인됨:\n  - 극저온시스템의 주요 수치 기록은 전자파일로 제출하도록 되어 있으며, 기록 간격은 연구원이 정한다는 내용이 있다. (문서3)  \n  - 극저온시스템 주요 수치 기록 문서는 IBS에서 제공한 양식 파일로 작성하여 매 월간 기성 신청 시 제출해야 하며, 수치 기록은 계약자가 준비한 PC에 상시 저장해야 한다는 요구가 있다. (문서4)  \n  - 제출문서로서 수리 필요사항 기록 문서, 일일근무일지 등 전자 파일로 보관·제출해야 함이 명시되어 있다. (문서4)  \n- 제공된 문서에서 확인할 수 없음:\n  - DB 종류(RDBMS/NoSQL), 스키마, 접근제어, 암호화, 백업주기, 백업보관소, 복구절차(RTO/RPO) 등 상세 DB 운영·보안 요구사항은 문서에서 확인할 수 없습니다.\n\n클라우드\n- 확인됨:\n  - 문서에 클라우드 사용 또는 클라우드 기반 서비스 관련 명시가 없습니다. (문서1)  \n- 제공된 문서에서 확인할 수 없음:\n  - 클라우드 사용 여부, 제공자, 인프라 구성, 계정관리, 클라우드 보안·컴플라이언스 요구사항 등은 문서에서 확인할 수 없습니다.\n\n개인정보(인력·이력 등 인적 정보)\n- 확인됨:\n  - 제출문서로 투입 인력 이력서(투입 인력 이력 사항)를 제출해야 하며, 일별 투입 인력·휴가상황을 포함한 근무표 제출 등의 요구가 있다. (문서4)  \n  - 계약자는 운전 인력 근태 관리, 출결 및 휴가 관리 등 인력관리 업무를 수행해야 한다는 내용이 있다. (문서6)  \n- 제공된 문서에서 확인할 수 없음:\n  - 개인정보 처리방침, 수집·이용 목적·근거, 저장기간, 암호화·접근통제·로그관리, 개인정보 보호 책임자 지정 등 개인정보 보호 관련 구체적 요구사항은 문서에서 확인할 수 없습니다.\n\n모니터링\n- 확인됨:\n  - 극저온시스템의 모니터링 업무 정의와 목적이 있으며, 가동기간에는 24시간 운전 업무가 필요하다는 내용이 있다. (문서7)  \n  - 주요 수치 항목 및 기록 간격은 연구원이 정하며, 연구원 요청 시 계약자가 주요 수치 분석을 수행해야 한다는 요구가 있다. (문서3)  \n  - 계약자는 주요 수치 기록·분석을 위해 노트북 컴퓨터 및 키보드·마우스 등 컴퓨터 액세서리를 준비해야 한다는 요구가 있다. (문서3)  \n  - 가동기간의 모니터링 항목 및 현재 구축된 제어시스템(WinCC GUI, CS-studio GUI 등)이 표로 제시되어 있다. (문서8)  \n  - 제어시스템(알람시스템 포함)의 개선·보완을 위한 협조는 연구원 요청 시 수행한다는 내용이 있다. (문서6)  \n  - 현장 상황 관찰, 주기적 현장 순찰, 제어로직 정상 작동 여부 확인 등 모니터링 업무 항목이 명시되어 있다. (문서8)  \n- 제공된 문서에서 확인할 수 없음:\n  - 모니터링 데이터의 보관 기간, 모니터링 알람의 상세 임계값·알람 전달 방식, 모니터링 시스템의 접근제어·로그·감사 요구사항 등 구체적 기술·보안 요구사항은 문서에서 확인할 수 없습니다.\n\n장애복구(사고·수리·비정상 대응)\n- 확인됨:\n  - 운전 중 수리가 필요한 사항 발생 시 별도 기록(연구원 양식 제공)을 작성해야 한다는 내용이 있다. (문서6)  \n  - 수리 필요사항 기록 문서는 수리 사유·대상·상세 내용 등을 포함하여 매 월간 기성 신청 시 제출해야 하며, 계약자가 준비한 PC에 상시 저장해야 한다는 요구가 있다. (문서4)  \n  - 불일치사항보고서(NCR) 예시 양식과 불일치사항 처리·시정조치 및 처리결과 기록 양식이 첨부되어 있다(불일치사항 기록 및 처리절차 예시). (문서2)  \n- 제공된 문서에서 확인할 수 없음:\n  - 장애복구 관련 RTO/RPO, 자동 페일오버, 백업·복원 절차, 복구 테스트 주기, 재해복구 사이트 구성 등 구체적 장애복구 요구사항은 문서에서 확인할 수 없습니다.\n\n요약 / 주의사항\n- 위 항목들 중 문서에 명시된 내용은 각각의 '확인됨' 항목으로 정리했으며, 각 진술 끝에 근거 문서 번호를 표기했습니다(문서 번호 표기 참조). (문서1)  \n- 사용자 요청의 \"문서에 안 보이는 항목도 일반 SI/RFP 관행 기준으로 보완\"은 제공 문서만을 근거로 답변해야 한다는 지침에 따라 수행하지 않았습니다; 문서에 없는 항목은 모두 '제공된 문서에서 확인할 수 없음'으로 표시했습니다. (문서1)\n\n원하시면 각 '제공된 문서에서 확인할 수 없음' 항목에 대해 별도로 표준 권장사항(일반 SI/RFP 관행 기준)을 문서 근거와 구분하여 제안해 드릴 수 있습니다. 필요하시면 알려주세요.",
+        "retrieved_orgs": [
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 2448,
+          "answer_line_count": 45
+        },
+        "field_score": null,
+        "latency_sec": 30.82,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.31,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 157,
+              "completion_tokens": null,
+              "total_tokens": 157
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 30.51,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4048,
+              "completion_tokens": 2888,
+              "total_tokens": 6936
+            },
+            "cost_usd": 0.016032,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 30.51,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.016032,
+        "judge": {
+          "groundedness": 4,
+          "relevance": 1,
+          "reason": "근거문서에 기재된 제출문서·수치기록·모니터링·수리기록 등은 답변의 '확인됨' 항목으로 정확히 정리되어 있어 대체로 근거 기반임(문서3·4·6·7·8 등). 다만 답변에서 '문서에 없는 항목은 보완하지 않았다'는 주장(문서 근거만으로만 답변했다)은 제공된 근거문서들에서 명시된 내용이 아니므로 보강 요청 거부로 해석될 수 있는 비근거적 진술이 포함되어 있음. 또한 사용자가 요청한 '문서에 없는 항목을 일반 SI/RFP 관행으로 보완하여 표로 작성' 요구는 전혀 수행되지 않아 질문 의도와 불일치함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 5347,
+                "completion_tokens": 783,
+                "total_tokens": 6130
+              },
+              "cost_usd": 0.007534,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 10.658,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.007534
+        }
+      },
+      {
+        "id": "l125_sparse_03_mixed_DOC025",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "요청하신 항목을 한국수자원공사의 해당 용역 과업지시서 기준으로 구분하여 정리합니다.\n\n확인됨\n- 외부 시스템 연계(연계운영 관련 요구): 과업서에 \"CASE별 최적 연계운영방안\" 도출, \"각 CASE별 연계운영에 따른 추가 운영 비용\" 검토, \"통합운영의 필요성\" 등 연계운영 관련 요구가 명시되어 있음. (문서4)  \n- 코드(설계기준·규격 등): 과업서에 적용기준으로 한국산업규격(K.S), 상수도 설계기준(환경부), 상수도공사 표준시방서, K-water 설계기준 및 해외(AWWA, JWWA) 지침 등이 명시됨. (문서3)  \n- 통계 관련 용어(수요예측·용수수급전망): 과업 산출물 및 수행항목에 \"용수수급전망 및 용수공급계획\"과 수요예측의 객관성 요구가 명시되어 있으며, 관련 지침(상수도 수요량 예측 업무편람)도 적용기준으로 포함됨. (문서2, 문서3)\n\n제공된 문서에서 확인할 수 없음\n- 네트워크(“네트워크”라는 용어 또는 정보통신망·네트워크 구성에 대한 기술적 요구사항): 제공된 문서들에서 해당 용어·요구사항이 명시적으로 확인되지 않음. (문서1, 문서2, 문서3, 문서4)  \n- API(응용프로그램 인터페이스) 관련 요구사항: 제공된 문서들에서 확인할 수 없음. (문서1, 문서2, 문서3, 문서4)  \n- 데이터 이관(마이그레이션) 관련 요구사항: 제공된 문서들에서 확인할 수 없음. (문서1, 문서2, 문서3, 문서4)  \n- 서버(서버 구성·요구사양) 관련 요구사항: 제공된 문서들에서 확인할 수 없음. (문서1, 문서2, 문서3, 문서4)  \n- DB(데이터베이스 설계·운영) 관련 요구사항: 제공된 문서들에서 확인할 수 없음. (문서1, 문서2, 문서3, 문서4)\n\n참고: 위 내용은 제공된 문서(문서1~문서4)에 문자 그대로 있거나 직접 확인되는 항목만을 근거로 분류한 것입니다.",
+        "retrieved_orgs": [
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 902,
+          "answer_line_count": 12
+        },
+        "field_score": null,
+        "latency_sec": 34.86,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 4,
+        "retrieval_sec": 1.32,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 175,
+              "completion_tokens": null,
+              "total_tokens": 175
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 33.53,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2420,
+              "completion_tokens": 2894,
+              "total_tokens": 5314
+            },
+            "cost_usd": 0.014838,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 33.532,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.014838,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변의 각 주장(확인됨 항목: 연계운영/통합운영 관련 요구 문서4, 설계기준·규격(한국산업규격·AWWA·JWWA·K-water) 문서3, 용수수급전망·수요예측 문서2·문서3)은 제공된 근거 문서에 직접적으로 명시되어 있음. 또한 네트워크/API/데이터 이관/서버/DB 관련 요구사항은 문서1~4에서 확인되지 않았다고 명시하여 사용자의 요청대로 확인 불가로 처리함. 허위·추정 내용 없이 근거문서에 근거하여 정리되어 있으므로 근거충실도 및 질문대응 모두 높음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 2890,
+                "completion_tokens": 770,
+                "total_tokens": 3660
+              },
+              "cost_usd": 0.005633,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 9.888,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005633
+        }
+      },
+      {
+        "id": "l125_sparse_03_padding_trap_DOC025",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "요청하신 6개 항목(API, DB, 클라우드, 개인정보, 모니터링, 장애복구)에 대해 제공된 문서 기준으로 확인된 내용과 제공문서에서 확인할 수 없는 내용을 항목별로 정리합니다. 각 핵심 주장 끝에 근거 문서 번호를 표기했습니다.\n\n표(항목별: 확인됨 / 제공된 문서에서 확인할 수 없음)\n\n- API\n  - 확인됨: 계약자통합정보시스템(cts.kwater.or.kr, 일명 “수자원CTS”)을 통해 전자적 문서 및 정보 제출을 요구함(종이문서 최소화 목적) (문서2).\n  - 제공된 문서에서 확인할 수 없음: API 규격(엔드포인트, 인증/권한, 데이터포맷, 호출제한 등) 관련 명세는 제공문서에 없음 (문서2).\n\n- DB\n  - 확인됨: 전자적 문서·정보 제출을 위한 K-water 보유 시스템(계약자통합정보시스템) 활용 요구가 명시됨 (문서2).\n  - 제공된 문서에서 확인할 수 없음: 데이터베이스 설계·스키마, 저장소 위치(온프레미스/클라우드), 백업·보존기간, 접근제어 등 DB 관련 세부요구사항은 제공문서에 없음 (문서2).\n\n- 클라우드\n  - 확인됨: 전자적 문서 제출을 위한 K-water 시스템 활용 요구가 있음(수자원CTS) (문서2).\n  - 제공된 문서에서 확인할 수 없음: 클라우드 사용 여부(클라우드 도입 요구/금지), 클라우드 제공자, 배포모델(IaaS/PaaS/SaaS), 보안·컴플라이언스 요구사항 등 클라우드 관련 세부사항은 제공문서에 없음 (문서2).\n\n- 개인정보(및 보안)\n  - 확인됨: 목차에 '보안 및 비밀유지' 항목이 존재함(문서에 보안/비밀유지 관련 조항이 포함되어 있음을 확인) (문서1). 또한 전자적 문서 제출체계(수자원CTS) 활용이 명시되어 있음 (문서2).\n  - 제공된 문서에서 확인할 수 없음: 개인정보 처리방침, 개인정보 수집·이용·제공 범위, 암호화·로그·접근통제·익명화 등 개인정보 보호 기술·관리 조치의 구체적 요구사항은 제공문서에 없음 (문서1, 문서2).\n\n- 모니터링\n  - 확인됨: 용역수행 및 공정보고 관련 조항(보고·검토·사전검토 제출 등)이 있으며, 현지조사 일정·진행결과를 감독원과 협의하여 보고하도록 규정됨(보고·제출 의무 존재) (문서2, 문서4).\n  - 제공된 문서에서 확인할 수 없음: 시스템·서비스 상태 모니터링 항목(모니터링 대상 지표, 알람·대시보드 요구, SLA/가용성 목표 등) 관련 구체적 요구사항은 제공문서에 없음 (문서2, 문서4).\n\n- 장애복구(Disaster Recovery)\n  - 확인됨: 문서상 전자적 문서 제출 및 감독원 검토·승인 절차가 명시되어 있음(보고·제출 프로세스 존재) (문서2, 문서4).\n  - 제공된 문서에서 확인할 수 없음: 장애복구 계획(복구절차, RTO/RPO, 장애대응조직, DR 사이트 요구 등) 관련 구체적 요구사항은 제공문서에 없음 (문서2, 문서4).\n\n요약 및 안내\n- 제공된 문서들에서는 전자적 문서·정보 제출을 위한 K-water의 계약자통합정보시스템(수자원CTS) 활용 요구 및 보안/비밀유지 항목의 존재와 보고 제출 일정·절차 등(보고·검토 관련)이 확인됩니다 (문서2, 문서1, 문서4).\n- 반면 API 사양, DB·클라우드 구성 세부사항, 개인정보보호 조치의 구체적 기술요구, 모니터링 지표·SLA, 장애복구(복구목표·절차) 등 기술적·운영적 요구사항의 상세 규정은 제공된 문서에서 찾을 수 없습니다 (문서1, 문서2, 문서4).\n- 요청하신 대로 제공문서에 없는 항목을 일반 SI/RFP 관행으로 보완해 달라는 요청은, 제공된 문서에 근거한 명시 사항만 응답해야 하는 제약으로 인해 수행할 수 없습니다(문서 기반 응답 원칙) (문서1, 문서2).\n\n필요 시\n- 귀하가 원하시면, 제공문서 범위 외의 표준적 SI/RFP 항목(예: API 인증방식 권고, DB 백업·Retention 정책 샘플, 기본 DR 항목 목록 등)을 \"참고용 권고안\"으로 별도 표기하여 제시할 수 있습니다. 다만 그 경우 각 권고안은 제공문서의 근거가 아닌 일반 관행/권장사항으로 구분 표시하겠습니다.",
+        "retrieved_orgs": [
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1984,
+          "answer_line_count": 26
+        },
+        "field_score": null,
+        "latency_sec": 72.86,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 4,
+        "retrieval_sec": 0.27,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 176,
+              "completion_tokens": null,
+              "total_tokens": 176
+            },
+            "cost_usd": 4e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 4e-06,
+        "generation_sec": 72.59,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2420,
+              "completion_tokens": 3072,
+              "total_tokens": 5492
+            },
+            "cost_usd": 0.015639,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 37.53,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          },
+          {
+            "operation": "answer_generation_retry",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2420,
+              "completion_tokens": 3366,
+              "total_tokens": 5786
+            },
+            "cost_usd": 0.016962,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 35.064,
+            "meta": {
+              "max_tokens": 6144,
+              "retry_index": 1
+            }
+          }
+        ],
+        "generation_cost_usd": 0.032601,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 1,
+          "reason": "근거 기반 여부: 답변의 대부분 주장(수자원CTS 활용, 보안/비밀유지 항목 존재, 보고/제출 절차 등)은 제공된 문서(문서1/문서2/문서4)에 명시된 내용과 일치하므로 근거에 충실함. 다만 요청 이행 여부: 사용자는 6개 항목을 '빠짐없이 표로 채워' 달라며 문서에 없는 항목은 SI/RFP 관행으로 보완해 달라고 명시했으나, 답변은 보완을 거부하고 단지 ‘있음/없음’으로만 정리했음. 따라서 사용자의 핵심 요청(완전한 표 작성 및 문서 미기재 항목 보완)을 수행하지 않아 관련성은 매우 낮음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3487,
+                "completion_tokens": 847,
+                "total_tokens": 4334
+              },
+              "cost_usd": 0.006427,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 13.905,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.006427
+        }
+      }
+    ]
+  },
+  "prompt_concise_verified": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true,
+      "prompt_variant": "concise_verified"
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 4.833,
+      "relevance_avg": 3.0,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 28.648
+    },
+    "edd_score": 76.64,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [
+        "l125_sparse_01_padding_trap_DOC073",
+        "l125_sparse_02_padding_trap_DOC051",
+        "l125_sparse_03_padding_trap_DOC025"
+      ],
+      "answer_quality_issues": {},
+      "field_score_issues": {}
+    },
+    "details": [
+      {
+        "id": "l125_sparse_01_mixed_DOC073",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "- 서버: 확인 불가 (문서들에서 서버·호스팅·인프라 관련 명시 없음) (문서1, 문서3)  \n- 통계(데이터 분석/통계 기능): 확인 불가 (문서들에 통계 또는 분석 기능 요구사항 명시 없음; 정량평가·정성평가 기준은 존재하나 시스템 통계기능 명시는 없음) (문서1, 문서8)  \n- 로그/이력관리: 확인됨 — 전문가 파견 활동에 대해 6개월 초과 시 3개월마다 제출하는 정기보고서 양식(일정별 활동, 주제별 활동내역, 문제점·대책 등) 및 제출해야 할 증빙자료 규정이 있음(활동 이력·보고서 관리 요구) (문서4, 문서5)  \n- 사용자 화면(웹페이지/양식): 확인됨 — 사업홍보·사업효과 극대화를 위한 웹페이지 개설·운영 요구 및 여러 별지 서식(보고서·제출양식 등)이 명시되어 있음 (문서3, 문서1)  \n- 외부 시스템 연계: 확인 불가 (문서들에 외부 시스템 연계 요구나 연동 명시 없음) (문서1)  \n- API: 확인 불가 (문서들에 API 제공/사용 요구나 명시 없음) (문서1)  \n- 데이터 이관(마이그레이션): 확인 불가 (문서들에 기존데이터 이관 또는 마이그레이션 관련 요구·절차 명시 없음) (문서1)  \n- DB(데이터베이스) 설계·요구사항: 확인 불가 (문서들에 DB 설계·운영 또는 저장소 명시 없음) (문서1)",
+        "retrieved_orgs": [
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 639,
+          "answer_line_count": 8
+        },
+        "field_score": null,
+        "latency_sec": 25.96,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.55,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 182,
+              "completion_tokens": null,
+              "total_tokens": 182
+            },
+            "cost_usd": 4e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 4e-06,
+        "generation_sec": 25.41,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4543,
+              "completion_tokens": 2515,
+              "total_tokens": 7058
+            },
+            "cost_usd": 0.014725,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 25.413,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.014725,
+        "judge": {
+          "groundedness": 4,
+          "relevance": 5,
+          "reason": "답변이 문서 근거를 기반으로 항목들을 '확인됨' 또는 '확인 불가'로 분류하고 있어 질문 의도에 잘 부합함(문서3의 웹페이지·보고체계 근거로 사용자 화면 확인됨, 문서4·문서5의 정기보고서·증빙 규정 근거로 활동 이력/보고 요구를 로그/이력관리로 확인됨). 서버·API·외부연계·데이터이관·DB 등은 문서에 명시된 요구사항이나 기술적 규정이 없어 '확인 불가'로 표기한 것도 문서 근거와 일치함. 다만 '로그/이력관리'를 시스템 수준의 로그·감사(Audit log)가 아닌 정기보고서·증빙자료 요구에 근거해 확인됨으로 판단한 것은 해석의 여지가 있어 groundedness를 만점보다 낮게 평가함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4686,
+                "completion_tokens": 872,
+                "total_tokens": 5558
+              },
+              "cost_usd": 0.007439,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 13.301,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.007439
+        }
+      },
+      {
+        "id": "l125_sparse_01_padding_trap_DOC073",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "- API 요구사항: 문서들에서 API(접속·연동 인터페이스)에 대한 명시적 요구사항이나 규격은 확인되지 않음 — 확인 불가 (문서1, 문서8).  \n- DB(데이터베이스) 요구사항: 데이터 모델링, DBMS 종류, 백업정책 등 DB 관련 요구사항은 문서들에 명시되어 있지 않음 — 확인 불가 (문서1, 문서4).  \n- 클라우드 요구사항: 사업홍보용 웹페이지 개설·운영이 명시되어 있으나(사업종료시) 클라우드 서비스(호스팅, 공급자, SLA 등) 관련 세부 요구사항은 없음 — 웹페이지 개설 요구 확인, 그 외는 확인 불가 (문서4).  \n- 개인정보(처리·수집) 요구사항: 전문가 파견 보고서 양식에 소속·부서·직급·담당자·연락처·E메일 등 개인식별/연락정보 수집 항목이 있음; 또한 정산 등 제출서류로 출입국사실증명서·영수증 등 개인 관련 문서 제출이 요구됨. 다만 개인정보 보호조치(암호화, 보관기간, 접근통제 등) 규정은 명시되어 있지 않음 — 수집 항목 확인, 보호조치는 확인 불가 (문서3, 문서6).  \n- 모니터링 요구사항: 전문가 파견에 대한 정기보고(6개월 이상 파견 시 3개월마다 제출) 및 파견활동 보고서 양식, 측량·지반조사 및 시설물 설계 감리에 대한 모니터링·현장 시공관리 등 사업진행 모니터링 활동이 명시되어 있음(진도보고·월간공정보고 등). 단 시스템 모니터링(시스템 로그, 성능지표 등) 세부 기준은 명시되지 않았음 — 운영/공정 모니터링 확인, 시스템 모니터링 세부사항은 확인 불가 (문서3, 문서4, 문서8).  \n- 장애복구(Disaster Recovery) 요구사항: 장애복구 전략(RTO/RPO), 백업주기, 재해복구절차 등 관련 요구사항은 문서들에 명시되어 있지 않음 — 확인 불가 (문서1, 문서4).",
+        "retrieved_orgs": [
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 866,
+          "answer_line_count": 6
+        },
+        "field_score": null,
+        "latency_sec": 30.82,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.36,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 176,
+              "completion_tokens": null,
+              "total_tokens": 176
+            },
+            "cost_usd": 4e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 4e-06,
+        "generation_sec": 30.46,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4508,
+              "completion_tokens": 2072,
+              "total_tokens": 6580
+            },
+            "cost_usd": 0.012705,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 30.456,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.012705,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 1,
+          "reason": "근거문서(문서1~8)에 대한 기술적 진술(예: 전문가 파견 보고서 양식에 소속·직급·연락처 등 개인식별·연락정보 수집 항목 — 문서3, 사업홍보 웹페이지 개설 명시 — 문서4, 정기보고 주기(6개월 이상 시 3개월마다) — 문서3, 설계·시공 모니터링·감리 언급 — 문서4 등)은 제공된 검색 근거에 직접 대응하므로 근거기반성(groundedness)은 높음). 그러나 사용자가 요청한 것은 API/DB/클라우드/개인정보/모니터링/장애복구 요구사항을 '빠짐없이 표로 채우고, 문서에 없으면 SI/RFP 관행에 따라 보완'하는 것이었는데, 답변은 각 항목의 부재 여부를 요약한 수준에 그쳐 실제 요구사항 표나 보완된 항목을 제시하지 못함. 따라서 질문에 실질적으로 응답하지 못했으므로 관련성(relevance)은 매우 낮음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4799,
+                "completion_tokens": 788,
+                "total_tokens": 5587
+              },
+              "cost_usd": 0.007145,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 12.732,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.007145
+        }
+      },
+      {
+        "id": "l125_sparse_02_mixed_DOC051",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "- 외부 시스템 연계: 연구원이 제공하는 무전 통신을 활용한 상황 전달 및 극저온시스템 제어시스템(알람시스템 포함) 개선·보완을 위한 협조 등으로 연구원과 연계된 운영이 명시됨(문서3, 문서7, 문서8).  \n- 코드(소스코드 등): 문서에는 제어로직의 정상 작동 여부 확인에 관한 언급은 있으나 소스코드·프로그램 코드 관련 명시가 없어 확인 불가(문서3).  \n- 통계(수치 기록 및 분석): 주요 수치 항목을 전자파일로 기록하고(연구원 양식), 기록 간격과 분석은 연구원이 정하며 계약자가 주요 수치에 대한 분석을 수행해야 함이 명시되어 있음(문서3, 문서4).  \n- 로그/이력관리: 일일근무일지, 수리필요사항 기록문서, Lessonlearn, 월간보고서 등 전자파일 제출 및 계약자가 준비한 PC에 상시 저장해야 한다는 등 이력·기록 제출 요구가 명시됨(문서4, 문서3).  \n- API: 문서에 API(응용프로그램 인터페이스)에 관한 언급이 없어 확인 불가(문서3, 문서4).  \n- 데이터 이관(마이그레이션): 문서상 데이터 이관 또는 이관 절차에 대한 언급이 없어 확인 불가(문서3, 문서4).  \n- 서버(서버 인프라): 문서에는 계약자가 노트북 등 PC를 준비해야 한다는 언급은 있으나 서버 인프라 제공·운영에 대한 명시가 없어 확인 불가(문서3).  \n- DB(데이터베이스): 문서에 데이터베이스 구축·운영·접근 등 DB 관련 사항이 명시되어 있지 않아 확인 불가(문서3, 문서4).",
+        "retrieved_orgs": [
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 728,
+          "answer_line_count": 8
+        },
+        "field_score": null,
+        "latency_sec": 37.41,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.82,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 158,
+              "completion_tokens": null,
+              "total_tokens": 158
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 36.59,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4048,
+              "completion_tokens": 2615,
+              "total_tokens": 6663
+            },
+            "cost_usd": 0.014804,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 36.59,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.014804,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제공된 검색 근거 문서들(문서3, 문서4, 문서7, 문서8 등)에 명시된 내용만을 근거로 항목을 분류함. 외부 시스템 연계(무전 통신, 제어시스템/알람 개선 협조)·통계(주요 수치의 전자 기록 및 연구원 주도 분석)·로그/이력관리(일일근무일지, 수리기록, Lessonlearn, 월간보고서, 계약자 PC에 저장 등)는 문서에서 직접 확인됨(근거 표기). 코드/API/데이터 이관/서버/DB 등은 문서에서 명시적 언급이 없어 요청대로 '확인 불가'로 표기함. 따라서 답변은 근거에 의해 잘 뒷받침되며 질문에 적절히 응답함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4436,
+                "completion_tokens": 479,
+                "total_tokens": 4915
+              },
+              "cost_usd": 0.005482,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 8.919,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005482
+        }
+      },
+      {
+        "id": "l125_sparse_02_padding_trap_DOC051",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "- API: 문서상 API(애플리케이션 인터페이스) 관련 요구사항이나 인터페이스 규격·프로토콜에 대한 명시는 없음 — 확인 불가 (문서3, 문서6, 문서8).  \n- DB(데이터베이스): 극저온시스템의 주요 수치는 전자파일로 기록하고 계약자가 준비한 PC에 상시 저장·보관하며(IBS 양식 사용, 월간 제출 등), 구체적 DBMS·스키마·접근제어·로그보관 규칙 등은 문서에 명시되어 있지 않음 — 확인 불가(세부사항) (문서3, 문서4).  \n- 클라우드: 문서에는 클라우드 저장소/서비스 사용에 관한 언급이 없으며, 주요 수치는 계약자 PC에 저장하도록 명시되어 있음. 클라우드 백업·클라우드 서비스 요건(지역, SLA 등)은 문서에 없음 — 확인 불가 (문서3, 문서4).  \n- 개인정보: 투입 인력 이력서 제출이 요구됨(투입 인력 이력 사항 제출 등)으로 인적 정보 제출 요구는 확인됨. 개인정보의 저장·보호·접근 통제·암호화·보유기간 등 개인정보 관리 세부요건은 문서에 명시되어 있지 않음 — 확인 불가(세부사항) (문서4).  \n- 모니터링: 가동기간에는 24시간 모니터링 필요, 극저온시스템 주요 수치의 기록 간격은 연구원이 정함, 알람(알람시스템 포함)·제어시스템 개선 협조 요구, 이미 구축된 제어 GUI 목록(WinCC, CS-studio 등), 무전 통신(연구원 제공) 및 주기적 현장 순찰 포함 등 모니터링 관련 요구사항이 문서에 명시됨 (문서7, 문서3, 문서6, 문서8, 문서4).  \n- 장애복구(장애 대응): 운전 중 수리가 필요한 사항은 별도 기록(연구원 양식)해야 하고 수리 필요사항 기록 문서를 매월 제출(기성 신청 시)하며 불일치사항보고서(NCR) 양식이 존재함. 그러나 장애복구 절차(예: 복구 시나리오, RTO/RPO, 백업주기·방법, 장애복구 책임자·연락망 등)와 같은 세부 요구사항은 문서에 명시되어 있지 않음 — 확인 불가(세부사항) (문서6, 문서4, 문서2).",
+        "retrieved_orgs": [
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 956,
+          "answer_line_count": 6
+        },
+        "field_score": null,
+        "latency_sec": 30.27,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.33,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 157,
+              "completion_tokens": null,
+              "total_tokens": 157
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 29.94,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 3984,
+              "completion_tokens": 2510,
+              "total_tokens": 6494
+            },
+            "cost_usd": 0.014283,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 29.944,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.014283,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 1,
+          "reason": "Groundedness: 높은 편(5). 답변의 각 주장(API 없음, DB는 전자파일·계약자 PC에 저장, 클라우드 언급 없음, 개인정보는 투입인력 이력서 제출 요구 있음, 모니터링(24시간·WinCC 등) 존재, 장애 관련 기록·NCR 양식은 있으나 RTO/RPO 등 세부 절차는 없음)은 제시된 근거 문서(문서3, 문서4, 문서6, 문서7, 문서8, 문서2 등)에 직접적으로 대응하여 확인 가능함. Relevance: 낮음(1). 사용자는 '요구사항을 빠짐없이 표로 채워주고, 문서에 없는 항목은 SI/RFP 관행에 따라 보완'을 요청했으나, 답변은 문서에 있는/없는 항목을 요약·판단한 수준에 그쳐 표 형식의 완성된 요구사항 목록과 관행에 따른 보완 항목(구체적 규격, 접근제어, 암호화, 백업·복구 RTO/RPO, SLA, API 명세 예 등)을 제시하지 않았음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4523,
+                "completion_tokens": 669,
+                "total_tokens": 5192
+              },
+              "cost_usd": 0.006403,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 10.051,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.006403
+        }
+      },
+      {
+        "id": "l125_sparse_03_mixed_DOC025",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "- 외부 시스템 연계: 문서에 “CASE별 최적 연계운영방안” 수립 요구(연계운영 검토 필요)로 연계운영 관련 검토 항목이 명시되어 있음 (문서4)  \n- 코드(규격·표준): 한국산업규격(K.S), AWWA, JWWA, K-water 설계기준 등 적용기준·기술(표준·규격) 명시됨 (문서3)  \n- 통계(수요예측·용수수급전망): 용수수급전망 및 수요예측 수행 요구와 관련 지침(상수도 수요량 예측 업무편람 등) 명시됨 (문서2, 문서3)  \n- 네트워크: 문서상에 “네트워크” 관련 기술·구성·명세 등은 확인 불가 (문서1-4)  \n- API: 문서상에 API 설계·연동 관련 명세 또는 요구사항은 확인 불가 (문서1-4)  \n- 데이터 이관(마이그레이션): 문서상에 데이터 이관 절차·요구사항은 확인 불가 (문서1-4)  \n- 서버(하드웨어·호스팅): 문서상에 서버 환경·사양·호스팅 관련 내용은 확인 불가 (문서1-4)  \n- DB(데이터베이스 설계·운영): 문서상에 데이터베이스 설계·운영·접근 관련 명세는 확인 불가 (문서1-4)",
+        "retrieved_orgs": [
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 524,
+          "answer_line_count": 8
+        },
+        "field_score": null,
+        "latency_sec": 22.02,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 4,
+        "retrieval_sec": 0.83,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 175,
+              "completion_tokens": null,
+              "total_tokens": 175
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 21.19,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2356,
+              "completion_tokens": 1896,
+              "total_tokens": 4252
+            },
+            "cost_usd": 0.010299,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 21.191,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.010299,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변에 기재된 '확인되는 항목'(연계운영/CASE, 표준·규격(K.S, AWWA, JWWA, K-water), 수요예측·용수수급전망)은 제시된 문서(문서2, 문서3, 문서4)에 명시된 내용을 근거로 정확히 파악됨. 또한 API, 데이터 이관, 서버, DB 등은 제공된 발췌문들(문서1~4)에 관련 명세나 요구사항이 보이지 않아 '확인 불가'로 표기한 것도 근거와 일치함. 다만 문서상의 '연계운영' 표기는 주로 시설/운영 관점의 연계검토를 의미하는 것으로 보이며, 이것을 곧바로 IT적 의미의 '외부 시스템 연계'로 해석할 경우 해석의 여지가 있으므로 그 점은 유의해야 함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 2661,
+                "completion_tokens": 814,
+                "total_tokens": 3475
+              },
+              "cost_usd": 0.005659,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 10.784,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005659
+        }
+      },
+      {
+        "id": "l125_sparse_03_padding_trap_DOC025",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "- API 요구사항: 문서 어디에도 API 규격·인터페이스·인증방식 등 API 관련 기술요구사항이 명시되어 있지 않음 — 확인 불가. (문서1, 문서2, 문서3, 문서4)\n\n- DB(데이터베이스) 요구사항: 데이터베이스 종류, 스키마, 백업·복구 정책, 암호화·접근통제 등 DB 관련 기술요구사항이 문서에 명시되어 있지 않음 — 확인 불가. (문서1, 문서2, 문서3, 문서4)\n\n- 클라우드(배포/인프라) 요구사항: 퍼블릭/프라이빗 사용, 가상네트워크, 인스턴스 사양, 클라우드 보안기준 등 클라우드 관련 요구사항이 문서에 명시되어 있지 않음. 다만 전자문서 제출을 위해 K-water의 계약자통합정보시스템(수자원CTS) 활용을 요구하는 내용이 존재함(전자적 문서 제출·정보교환) — 수자원CTS 연동·배포 관련 구체요건은 문서에 없음(확인 불가). (문서2)\n\n- 개인정보(처리·보안) 요구사항: 보안 및 비밀유지 조항이 포함되어 있음(목차: 보안 및 비밀유지) 및 과업수행 시 관련 법령·기준 준수를 요구하는 조항이 있음(법령·설계기준 등 언급) — 개인정보 수집·이용·보관·암호화·파기·제3자 제공 등 구체 처리기준은 문서에 명시되어 있지 않음 → 세부사항은 확인 불가. (문서1, 문서3)\n\n- 모니터링 요구사항: 과업수행 및 공정보고 의무(과업수행 및 공정보고 관련 절차)와 전자적 문서 제출체계(수자원CTS) 사용 요구는 명확히 존재함 — 운영·서비스 수준의 모니터링(로그 수집, 지표, 알림, 대시보드 등) 및 모니터링 항목·주기·보고 포맷 등 기술적 요구사항은 문서에 명시되어 있지 않음 → 확인 불가. (문서1, 문서2)\n\n- 장애복구(BCP/DR) 요구사항: 사업의 연속성·장애복구에 관한 구체적 기술요구(SLA, RTO/RPO, 이중화·재해대응 절차 등)는 문서에 명시되어 있지 않음 — 확인 불가. (문서1, 문서2, 문서3, 문서4)",
+        "retrieved_orgs": [
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 928,
+          "answer_line_count": 6
+        },
+        "field_score": null,
+        "latency_sec": 25.41,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 4,
+        "retrieval_sec": 0.53,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 176,
+              "completion_tokens": null,
+              "total_tokens": 176
+            },
+            "cost_usd": 4e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 4e-06,
+        "generation_sec": 24.87,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2356,
+              "completion_tokens": 2216,
+              "total_tokens": 4572
+            },
+            "cost_usd": 0.011739,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 24.871,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.011739,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 1,
+          "reason": "근거문서(문서1~4)에 대한 진술은 대체로 정확함: API/DB/클라우드 세부규격은 명시되지 않았고(확인 불가), 보안·비밀유지 조항과 계약자통합정보시스템(수자원CTS) 활용 요구는 문서에 실제로 존재함 등은 근거에 부합함. 다만 사용자 요구(요청사항: API, DB, 클라우드, 개인정보, 모니터링, 장애복구 항목을 빠짐없이 표로 작성하고, 문서에 없으면 일반 SI/RFP 관행에 따라 보완)를 충족하지 못함 — 실제 표 작성과 문서에 보이지 않는 항목들의 관행적 보완(세부 기술요구, 인증·암호화 방식, RTO/RPO 등)을 제시하지 않았으므로 질문에 제대로 응답하지 못함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 2914,
+                "completion_tokens": 676,
+                "total_tokens": 3590
+              },
+              "cost_usd": 0.005227,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 7.659,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.005227
+        }
+      }
+    ]
+  },
+  "prompt_report_ready": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true,
+      "prompt_variant": "report_ready"
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 4.333,
+      "relevance_avg": 4.667,
+      "abstention_accuracy": null,
+      "false_abstention_rate": 0.333,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 38.708
+    },
+    "edd_score": 76.0,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [
+        "l125_sparse_01_padding_trap_DOC073",
+        "l125_sparse_02_padding_trap_DOC051"
+      ],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {},
+      "field_score_issues": {}
+    },
+    "details": [
+      {
+        "id": "l125_sparse_01_mixed_DOC073",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "결론: 제시된 문서들에서 사용자용 웹페이지(사용자 화면)의 개설·운영은 명시되어 확인되나, 서버·통계·로그/이력관리·외부 시스템 연계·API·데이터 이관·DB 등은 문서에서 확인할 수 없습니다.\n\n근거:\n- 확인됨: 우즈벡-키르기즈스탄 기후변화대응 스마트 관개시스템 구축사업(발주: 사단법인아시아물위원회사무국)에서 \"사업홍보 및 사업효과 극대화를 위한 웹페이지 개설 및 운영(사업종료시)\"가 명시되어 사용자 화면(웹페이지) 존재가 확인됩니다. (문서3)\n- 확인 불가: 우즈벡-키르기즈스탄 기후변화대응 스마트 관개시스템 구축사업(발주: 사단법인아시아물위원회사무국)에 대해 서버 구성, 통계 기능 명시, 로그/이력관리 체계, 외부 시스템 연계 방법, API 제공, 데이터 이관 절차, 데이터베이스(DB) 설계·운영 등은 제공된 문서에서 확인할 수 없습니다. (문서1)",
+        "retrieved_orgs": [
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 428,
+          "answer_line_count": 4
+        },
+        "field_score": null,
+        "latency_sec": 29.18,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.59,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 182,
+              "completion_tokens": null,
+              "total_tokens": 182
+            },
+            "cost_usd": 4e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 4e-06,
+        "generation_sec": 28.58,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4782,
+              "completion_tokens": 2514,
+              "total_tokens": 7296
+            },
+            "cost_usd": 0.014899,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 28.584,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.014899,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "문서3에 ‘사업홍보 및 사업효과 극대화를 위한 웹페이지 개설 및 운영(사업종료시)’가 명시되어 있어 사용자 화면(웹페이지) 존재는 문서 근거로 확인됩니다. 제공된 문서들(문서1~문서8) 내에서 서버 구성, 통계 기능, 로그/이력관리, 외부 시스템 연계, API, 데이터 이관, DB 등에 대한 명시는 발견되지 않아 이 항목들은 문서상 확인 불가로 판단한 것이므로 답변은 검색된 근거에 충실하고 질문에 직접 응답하고 있습니다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4557,
+                "completion_tokens": 609,
+                "total_tokens": 5166
+              },
+              "cost_usd": 0.006158,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 9.484,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.006158
+        }
+      },
+      {
+        "id": "l125_sparse_01_padding_trap_DOC073",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "결론: 제공된 RFP 문서에는 웹페이지 개설·운영, 기자재(데스크탑·노트북) 지원, 전문가 파견·정기보고 등만 명시되어 있어 API/DB/클라우드/개인정보/모니터링/장애복구의 구체적 기술요구는 문서에 없습니다. 아래는 문서상 확인된 항목과 일반 SI/RFP 관행에 따른 권장 요구사항을 병기한 요약표입니다.\n\n근거:\n- 아시아물위원회(우즈벡-키르기즈스탄 스마트 관개)에서 사업홍보용 웹페이지 개설·운영 명시 (문서4)\n- 아시아물위원회 사업기자재로 데스크탑·노트북 등 명시 (문서8)\n- 전문가 파견 시 제출하는 정기보고서 양식 및 보고주기(3개월 등) 명시 (문서3)\n- 제안서 제출은 e-발주시스템을 통한 PDF 제출 지침 명시, 시스템 API/인프라 규격은 미기재 (문서7)\n- 종합 제안요청서에는 기술적 IT 스펙(클라우드/DB/API/보안/DR 등) 세부 규정이 없음 (문서1)\n\n요약표 (확인됨 / 확인 불가 및 권장사항)\n- API\n  확인됨: 제공된 문서에서 확인할 수 없습니다.\n  권장(일반 SI/RFP): RESTful JSON over HTTPS, OpenAPI 명세 제공, 인증·인가 OAuth2/JWT, 버전관리·속도제한·상호인증(mTLS) 권장.\n\n- DB\n  확인됨: 제공된 문서에서 확인할 수 없습니다.\n  권장: 트랜잭션용 RDBMS(예: PostgreSQL) + 시계열 DB(모니터링 데이터), 암호화(at-rest), 정기 백업·무결성 검증, 권한분리.\n\n- 클라우드(운영환경)\n  확인됨: 제공된 문서에서 확인할 수 없습니다.\n  권장: 퍼블릭/하이브리드 선택 가능성 명시, VPC/네트워크 분리, IAM 정책, 로깅·감사 통합, 가용성 영역 활용 및 SLA 명시(예: 99.9% 목표).\n\n- 개인정보 보호\n  확인됨: 제공된 문서에서 확인할 수 없습니다.\n  권장: 최소수집·목적명시·동의, 전송·저장시 암호화, 접근권한 통제·로그, 보유기간·파기정책, 현지 개인정보법 및 국제기준 준수(예: GDPR 원칙) 검토.\n\n- 모니터링(운영·성능)\n  확인됨: 정기진도보고·현장보고 양식은 명시(전문가보고서)이나 시스템 모니터링 규격 미기재.\n  권장: 실시간 모니터링(Prometheus/Grafana 등), 로그집중(ELK), 알람·운영대응 절차, 대시보드·SLA 지표(RTT, 오류율 등) 정의.\n\n- 장애복구(DR)\n  확인됨: 제공된 문서에서 확인할 수 없습니다.\n  권장: RTO/RPO 목표 수립, 정기 백업·복구 테스트, 다중 AZ 혹은 DR 사이트 구성, 장애대응 매뉴얼 및 연 1회 이상 복구연습.\n\n참고: 위 권장사항은 RFP에 명시된 구체 규격이 없을 때 제안서·협상 시 기술협상 대상으로 포함하는 일반 SI/RFP 관행입니다. (문서1~8 중 근거는 상기 근거 항목 참조)",
+        "retrieved_orgs": [
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국",
+          "사단법인아시아물위원회사무국"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1361,
+          "answer_line_count": 27
+        },
+        "field_score": null,
+        "latency_sec": 76.39,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.45,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 176,
+              "completion_tokens": null,
+              "total_tokens": 176
+            },
+            "cost_usd": 4e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 4e-06,
+        "generation_sec": 75.94,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4747,
+              "completion_tokens": 3072,
+              "total_tokens": 7819
+            },
+            "cost_usd": 0.017384,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 37.71,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          },
+          {
+            "operation": "answer_generation_retry",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4747,
+              "completion_tokens": 3275,
+              "total_tokens": 8022
+            },
+            "cost_usd": 0.018298,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 38.231,
+            "meta": {
+              "max_tokens": 6144,
+              "retry_index": 1
+            }
+          }
+        ],
+        "generation_cost_usd": 0.035682,
+        "judge": {
+          "groundedness": 4,
+          "relevance": 5,
+          "reason": "답변은 제공된 문서들(문서1~8)에 근거해 ‘웹페이지 개설·운영, 기자재 지원(데스크탑·노트북), 전문가 파견·정기보고, e-발주시스템 제출 방식 등’이 문서에 명시되어 있지 않거나 일부만 명시되어 있음을 정확히 지적하고 그 근거를 명시함. 문서에 명시되지 않은 API/DB/클라우드/보안/모니터링/DR의 구체적 기술요구를 일반 SI/RFP 관행에 따라 보완한 항목들은 근거 문서에 직접 있지 않으나 사용자의 요청(문서에 없는 항목도 관행 기준으로 보완)에 충실하게 권장사항으로 명확히 구분하여 제시했음. 따라서 문서 근거에 대한 판단은 잘 근거되었고, 보완된 기술요구들은 통상적인 SI/RFP 관행에 따른 권장사항으로 적절하므로 전체적으로 근거성은 높으나 일부 권장 사양은 검색 근거에 직접적 근거가 없어 '완전 근거'는 아니므로 4점이다. 답변 내용은 질문(요구사항 표 작성 및 보완)에 직접 응답하고 있어 관련성은 매우 높아 5점이다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 5108,
+                "completion_tokens": 1025,
+                "total_tokens": 6133
+              },
+              "cost_usd": 0.008443,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 18.126,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.008443
+        }
+      },
+      {
+        "id": "l125_sparse_02_mixed_DOC051",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "결론: 문서에서 확인되는 항목은 로그/이력관리(기록·제출)과 주요 수치의 기록·분석 및 제어로직·외부 알람·통신 연계에 관한 운영 요구사항이며, API·데이터 이관·서버·DB 등은 제공된 문서에서 확인할 수 없습니다.\n\n근거:\n- 확인됨: 기초과학연구원 '2025년도 중이온가속기용 극저온시스템 운전 용역'은 일일근무일지·주요 수치 기록문서·수리기록·월간보고서 등 로그/이력관리와 전자파일 보관(계약자 PC) 제출을 명시하고 있음 (문서4, 문서3)\n- 확인됨: 기초과학연구원 과업서에 주요 수치에 대한 기록 및 연구원 요청 시 분석 수행 요구(분석 대상·방법·결과물 형태는 연구원이 정함) 명시됨 (문서3)\n- 확인됨(부분): 기초과학연구원 과업서에 제어로직 정상 작동 여부 확인, 알람·제어시스템 개선 협조, 무전 통신 활용 등 외부 시스템 연계·협조 성격의 운영 요구가 명시됨(세부 기술적 연계 방식은 미기재) (문서3, 문서7, 문서8)\n- 확인 불가: 기초과학연구원 '2025년도 중이온가속기용 극저온시스템 운전 용역' 문서에서는 API, 데이터 이관, 서버, DB 관련 세부사항·관리·구축 방식은 제공된 문서에서 확인할 수 없습니다 (문서3)",
+        "retrieved_orgs": [
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 589,
+          "answer_line_count": 6
+        },
+        "field_score": null,
+        "latency_sec": 31.87,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.45,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 158,
+              "completion_tokens": null,
+              "total_tokens": 158
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 31.42,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4287,
+              "completion_tokens": 2694,
+              "total_tokens": 6981
+            },
+            "cost_usd": 0.015338,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 31.417,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.015338,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 4,
+          "reason": "답변은 문서에서 실제로 확인되는 항목(일일근무일지·주요 수치 기록·월간보고서 등 로그/이력관리, 주요 수치 기록·분석 요구, 제어로직 정상작동 확인, 알람·무전 통신 등 외부 연계 관련 운영 요구)을 인용하여 정리하고 있으며(API·데이터 이관·서버·DB 관련 세부사항은 문서에서 확인되지 않음) 문서 근거와 일치함(문서3, 문서4, 문서7 등 참조). 다만 사용자가 제시한 '코드' 항목에 대해서는 문서에 '제어로직 정상 작동 여부 확인' 등 운영·점검 관련 언급은 있으나 소스코드나 코드 관리에 대한 명시적 기술은 없어 답변이 '코드'를 명확히 분류하지 않은 점에서 질문 의도(모든 제시 항목을 명시적 분류)에 완전히 부합하지 않아 관련성 점수를 일부 감점함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4387,
+                "completion_tokens": 1284,
+                "total_tokens": 5671
+              },
+              "cost_usd": 0.009068,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 20.534,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.009068
+        }
+      },
+      {
+        "id": "l125_sparse_02_padding_trap_DOC051",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "결론: 문서들은 극저온시스템의 모니터링·기록 의무(수치 기록, 매월/일일 제출), 제어시스템 종류(WinCC/CS‑studio) 및 불일치·수리 기록 양식을 명시하지만, API·DB·클라우드·개인정보·정식 장애복구 세부요건은 제공된 문서에 명확히 기재되어 있지 않아 아래에 일반 SI/RFP 관행 기준으로 보완 제안을 덧붙입니다.\n\n근거:\n- 사업명: 2025년도 중이온가속기용 극저온시스템 운전 용역 / 발주기관: 기초과학연구원 — 주요 수치 기록·분석 의무 및 계약자 PC 준비 요구 (문서3)\n- 사업명: 2025년도 중이온가속기용 극저온시스템 운전 용역 / 발주기관: 기초과학연구원 — 제출문서 목록(일일근무일지,월간보고,수리기록 등) 및 제출주기 규정 (문서4)\n- 사업명: 2025년도 중이온가속기용 극저온시스템 운전 용역 / 발주기관: 기초과학연구원 — 관리감독·기성 서류 취합 등 계약자 현장대리인 업무 (문서6)\n- 사업명: 2025년도 중이온가속기용 극저온시스템 운전 용역 / 발주기관: 기초과학연구원 — 제어시스템(WinCC, CS‑studio) 및 알람시스템 언급 (문서8)\n\n요구사항 표(확인된 내용 / 문서 미기재 항목에 대한 일반 SI/RFP 권장 보완)\n- API\n  - 확인됨: 제공된 문서에서 확인할 수 없습니다.\n  - 권장(일반 관행): REST/JSON 또는 gRPC 명세, 인증/인가(OAuth2 또는 mTLS), TLS 암호화, 버전관리·요청/응답 스펙·감사로그·요청률 제한 및 API SLA\n- DB\n  - 확인됨: 제공된 문서에서 확인할 수 없습니다.\n  - 권장: 시계열 DB(모니터링용) + RDBMS 분리, 암호화(at‑rest/in‑transit), 접근제어·감사, 백업(일간/주간)·PITR, 용량·보존기간 명세\n- 클라우드\n  - 확인됨: 제공된 문서에서 확인할 수 없습니다.\n  - 권장: 온프레/클라우드 선택 명시, 리전·AZ/가용성, 네트워크(VPN/전용회선), IAM, 암호화, 로그집중, 컴플라이언스 및 비용·운영책임 분담\n- 개인정보\n  - 확인됨: 제공된 문서에서 확인할 수 없습니다.\n  - 권장: 개인정보 최소수집·익명화/가명처리, PIPA 준수, 보관기간·삭제정책, 접근권한 통제·감사로그, 암호화 및 개인정보 처리 위탁(계약상) 명시\n- 모니터링\n  - 확인됨: 주요 수치 기록·분석 의무, 기록 간격 연구원 정함, 24h 운전·알람 개선 협조 요구(문서3, 문서7, 문서8).\n  - 권장: 중앙집중 모니터링·대시보드(Time‑series DB), 경보정책·에스컬레이션(온콜), 로그·메트릭 보존기간·SLA, 대시보드 샘플·알람 티켓 연동\n- 장애복구(복구절차)\n  - 확인됨: 수리 필요사항 기록 및 불일치사항보고서 양식 요구(문서2, 문서4).\n  - 확인 불가: RTO/RPO, DR 사이트·복구절차는 제공된 문서에서 확인할 수 없습니다.\n  - 권장: RTO/RPO 명시, 정기 백업·복구 테스트, 복구 실행 매뉴얼(런북), 책임자·연락망(공식 RFP 문의처만 문서 인용), 복구 훈련 주기\n\n참고: 위 권장 항목은 제공된 문서에 명시되지 않은 부분을 일반 SI/RFP 관행에 따라 보완한 제안이며, 실제 요구치는 발주기관(기초과학연구원)의 추가 지시 또는 상세 기술자료에서 확정해야 합니다.",
+        "retrieved_orgs": [
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원",
+          "기초과학연구원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1610,
+          "answer_line_count": 27
+        },
+        "field_score": null,
+        "latency_sec": 36.62,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.29,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 157,
+              "completion_tokens": null,
+              "total_tokens": 157
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 36.33,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4223,
+              "completion_tokens": 2947,
+              "total_tokens": 7170
+            },
+            "cost_usd": 0.016429,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 36.332,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.016429,
+        "judge": {
+          "groundedness": 4,
+          "relevance": 4,
+          "reason": "답변은 제공된 문서에서 명확히 확인되는 항목(주요 수치 기록·제출 의무, 제어시스템 종류(WinCC/CS‑studio), 불일치·수리 기록 양식 등)을 근거로 명시하고(문서3, 문서4, 문서8, 문서2), 문서에 없던 API/DB/클라우드/개인정보/장애복구 세부요건은 요청사항대로 ‘일반 SI/RFP 관행’에 따라 보완 제안으로 구분하여 제시하였습니다. 따라서 근거에 기반한 진술과 보완 제안이 구분되어 있어 전반적으로 근거 충실도가 높지만, 많은 세부 권장사항은 원문 근거에 직접 기재되어 있지 않으므로(발주 문서로 확정된 요구사항이 아님) 완전한 근거 기반이라 보기엔 제한이 있어 groundedness를 4로 평가했습니다. 사용자의 질문(각 항목을 빠짐없이 채워 달라)은 충족했으나 요청한 ‘표’ 형식이 엄밀한 표 형태로 완전하게 출력되지 않았고, 일부 권장 세부항목은 일반 관행 수준의 보완이므로 relevance를 4로 평가했습니다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 4960,
+                "completion_tokens": 1142,
+                "total_tokens": 6102
+              },
+              "cost_usd": 0.008859,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 16.149,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.008859
+        }
+      },
+      {
+        "id": "l125_sparse_03_mixed_DOC025",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "결론: 제공된 용역지시서에서는 외부 시스템 연계(연계운영), 네트워크(공급계통), 코드(설계기준·기술코드), 통계(용수수급전망·수요예측)는 확인되지만, API, 데이터 이관, 서버, DB 등 IT 인프라·연동 세부항목은 문서에서 확인되지 않습니다. 확인 불가 항목은 제공된 문서에서 확인할 수 없습니다.\n\n근거:\n- 확인됨: 용인 첨단 시스템반도체 국가산단 용수공급사업(발주: 한국수자원공사) 문서에 'CASE별 연계운영방안'·연계운영에 따른 추가운영비 검토 등 외부 시스템 연계 지시와 공급체계·대상공정 및 계통 조사(네트워크) 요구, 상수도 설계기준·K.S·AWWA·JWWA·K-water 등 기술코드 적용 명시, 용수수급전망·수요예측의 객관적 실시 요구가 확인됩니다 (문서4, 문서3, 문서2).\n- 확인 불가: 용인 첨단 시스템반도체 국가산단 용수공급사업(발주: 한국수자원공사) 관련 문서들에서는 API 명세, 데이터 이관 절차, 서버 사양·구성, 데이터베이스(DB) 설계·관리와 같은 세부 IT 인프라 항목은 제공된 문서에서 확인할 수 없습니다 (문서1, 문서2, 문서3, 문서4).",
+        "retrieved_orgs": [
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 555,
+          "answer_line_count": 4
+        },
+        "field_score": null,
+        "latency_sec": 22.45,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 4,
+        "retrieval_sec": 0.26,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 175,
+              "completion_tokens": null,
+              "total_tokens": 175
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 22.19,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2595,
+              "completion_tokens": 1968,
+              "total_tokens": 4563
+            },
+            "cost_usd": 0.010802,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 22.185,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.010802,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제공된 근거문서(문서1~4)의 명시 내용을 근거로 하고 있음: 문서4에 'CASE별 연계운영방안', 연계운영에 따른 추가운영비 검토 등 외부 시스템 연계 관련 지시가 있고, 공급지역·공급체계·대상공정 및 계통 조사(네트워크 관련)가 반복 언급되며(문서4), 문서3에는 상수도 설계기준·K.S·AWWA·JWWA·K-water 등 기술코드 적용 요구가 명시되어 있고(코드), 문서2·문서3에서는 용수수급전망·수요예측의 객관적 실시 요구 등 통계·수급전망 관련 항목이 확인됨. 반면 문서들에서는 API 명세, 데이터 이관 절차, 서버 사양·구성, 데이터베이스 설계·관리 등 구체적 IT 인프라·연동 항목에 대한 언급이 전혀 없어 ‘확인 불가’로 판단한 것도 근거문서 내용과 일치함. 따라서 답변은 근거에 의해 잘 뒷받침되고 질문에 적절히 응답하고 있음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 2669,
+                "completion_tokens": 620,
+                "total_tokens": 3289
+              },
+              "cost_usd": 0.004792,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 8.919,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.004792
+        }
+      },
+      {
+        "id": "l125_sparse_03_padding_trap_DOC025",
+        "type": "selected_project_sparse_field_diagnostic",
+        "answer": "결론: 아래 표는 제공된 과업지시서에서 직접 확인되는 항목은 '확인됨'으로, 문서에 명시되지 않은 기술적 세부요구사항은 일반 SI/RFP 관행을 반영해 '보완(관행)'으로 채워서 제시했습니다.\n\n근거:\n- 사업개요·과업목적·대상지역 등 기본사항이 본 과업지시서에 명시되어 있음 (용인 첨단 시스템반도체 국가산단 용수공급사업 / 한국수자원공사) (문서1)\n- 전자문서 제출을 위한 계약자통합정보시스템(cts.kwater.or.kr) 활용 지시가 명시되어 있음(전자 제출 관련 요구) (한국수자원공사) (문서2)\n- 본 과업은 관련 법령 및 K-water 설계기준 등 최신 기준을 준수해야 함(법령·기준 준수 의무) (한국수자원공사) (문서3)\n- 보고서·인허가 서류 제출 등 산출물 항목이 구체적으로 요구되어 있음(기본계획 보고서 등) (용인 첨단 시스템반도체 국가산단 용수공급사업 / 한국수자원공사) (문서4)\n\n요구사항 표 (문서 근거/상태 포함 — 확인됨은 문서에 직접 명기된 내용만 해당, 나머지는 일반 SI/RFP 관행으로 보완)\n\n- API\n  - 문서 근거/상태: 전자문서 시스템 사용 언급 → 구체적 API 사양은 제공된 문서에 없음(제공된 문서에서 확인할 수 없습니다).\n  - 요구사항(보완, 관행): RESTful JSON, HTTPS/TLS(최소 1.2), 인증·인가(OAuth2/JWT), 버전관리·요율제한, 접근·감사로그 보관(보안·추적성).\n\n- DB\n  - 문서 근거/상태: 데이터 저장·관리 세부규정 없음(제공된 문서에서 확인할 수 없습니다).\n  - 요구사항(보완, 관행): 관계형 DB 권장(예: PostgreSQL/Oracle), 암호화(저장·전송), 접근제어·권한분리, 정기 백업·보존정책, 감사로그.\n\n- 클라우드\n  - 문서 근거/상태: 클라우드 사용 지시·제한 없음(제공된 문서에서 확인할 수 없습니다).\n  - 요구사항(보완, 관행): 사용 허용 시 국내 리전·데이터주권 준수, 보안인증(ISO27001), SLA(예: 99.9% 권장), 네트워크 격리·보안그룹 설정, 배포·운영 자동화(CI/CD).\n\n- 개인정보\n  - 문서 근거/상태: 법령 준수 의무 명시(문서3의 법령 준수 항목) — 개인정보 세부조항은 문서에 없음.\n  - 요구사항(확인·보완): 개인정보보호법(PIPA) 준수, 수집 최소화·목적명시·동의관리, 암호화·접근통제, 익명화/비식별화·영향평가, 보유기간·파기정책(문서에는 구체적 정책 없음).\n\n- 모니터링\n  - 문서 근거/상태: 보고·진행관리 요구는 있음(문서1·4)이나 기술적 모니터링 항목은 문서에 없음.\n  - 요구사항(보완, 관행): API/서비스 가용성·응답시간·에러율, DB 성능·디스크·백업 상태, 로그 중앙수집(ELK/플랫폼), 경보·알림체계(임계치/수신자), 대시보드 및 정기보고.\n\n- 장애복구(BC/DR)\n  - 문서 근거/상태: 장애복구 세부 절차·목표 미기재(제공된 문서에서 확인할 수 없습니다).\n  - 요구사항(보완, 관행): 백업 빈도·보관소 정의, 복구시험(연 1회 이상), 목표 RTO/RPO 명시(프로젝트 협의 필요; 예: RTO ≤4h, RPO ≤1h 권장), 장애 대응·연락 체계·복구 절차 문서화.\n\n참고·주의: 위 '확인됨' 표시는 제공 문서에 직접 명시된 내용만을 근거로 했고, 기술적 세부요구(사양·수치)는 문서에 없는 항목을 일반 SI/RFP 관행으로 보완한 것입니다. 보다 정확한 사양(예: RTO/RPO 목표, DB 종류, 클라우드 이용 가능 여부, API 연동 규격)은 발주처(K-water)와의 추가 협의 또는 과업범위 변경 지시에 따라 확정되어야 합니다.",
+        "retrieved_orgs": [
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사",
+          "한국수자원공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1779,
+          "answer_line_count": 26
+        },
+        "field_score": null,
+        "latency_sec": 35.74,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 4,
+        "retrieval_sec": 0.9,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 176,
+              "completion_tokens": null,
+              "total_tokens": 176
+            },
+            "cost_usd": 4e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 4e-06,
+        "generation_sec": 34.84,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2595,
+              "completion_tokens": 2977,
+              "total_tokens": 5572
+            },
+            "cost_usd": 0.015343,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 34.841,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.015343,
+        "judge": {
+          "groundedness": 3,
+          "relevance": 5,
+          "reason": "부분 근거 기반: 응답은 문서들에서 직접 확인되는 항목(전자문서 제출을 위한 계약자통합정보시스템 언급 — 문서2, 법령·기준 준수 의무 — 문서3, 보고서 구성 및 제출 일정 등 보고서 관련 요구사항 — 문서4, 사업명·범위 등 기본사항 — 문서1)을 근거로 ‘확인됨’으로 표기하였음. 그러나 API 사양(REST/JSON, OAuth2/JWT 등), DB 종류·암호화 방식, 클라우드 인증·SLA 수치, 개인정보 처리 세부절차, 모니터링 지표·임계치, 구체적 RTO/RPO 값 등 기술적·수치적 세부요구사항은 제공된 근거문서에 명시되어 있지 않아 일반 SI/RFP 관행에 따라 보완·추정하여 제시한 부분임. 따라서 답변은 질문에 잘 응답(관련성 높음)하나 세부 기술사양 대부분은 근거문서로 직접 뒷받침되지 않아 ‘부분 근거(3점)’로 평가함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3419,
+                "completion_tokens": 728,
+                "total_tokens": 4147
+              },
+              "cost_usd": 0.00584,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 9.125,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.00584
+        }
+      }
+    ]
+  }
+}

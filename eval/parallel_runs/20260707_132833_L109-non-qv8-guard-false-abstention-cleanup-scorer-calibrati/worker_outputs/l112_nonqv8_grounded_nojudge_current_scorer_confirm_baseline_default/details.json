@@ -1,0 +1,693 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": null,
+      "relevance_avg": null,
+      "abstention_accuracy": 1.0,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 7.184
+    },
+    "edd_score": 60.0,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {},
+      "field_score_issues": {}
+    },
+    "details": [
+      {
+        "id": "q20260707_l109_001_hanyoung_budget_vs_final_contract",
+        "type": "mixed_budget_contract_field_boundary",
+        "answer": "사업명/발주기관: 한영대학교 특성화 맞춤형 교육환경 구축 - 트랙운영 학사정보시스템 고도화 / 한영대학교\n\n- 사업예산(문서 기준): 130,000,000원 범위 내 (VAT 포함). 근거: 제안요청서(문서4, 사업개요).\n\n- 실제 최종 계약금액: 제공된 문서에서 확인할 수 없습니다. (제공된 문서들에서는 최종 계약금액 명시 없음)",
+        "retrieved_orgs": [
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 187,
+          "answer_line_count": 3
+        },
+        "field_score": {
+          "case_id": "q20260707_l109_001_hanyoung_budget_vs_final_contract",
+          "question": "한영대학교 트랙운영 학사정보시스템 고도화 건에서 사업예산은 문서 기준으로 알려주고, 실제 최종 계약금액도 알려줘. 계약금액이 문서에 없으면 예산으로 추정해서 말하지 말고 없다고 구분해줘.",
+          "diagnostic_only": true,
+          "field_count": 2,
+          "field_passed": 2,
+          "field_failed": 0,
+          "field_accuracy": 1.0,
+          "case_passed": true,
+          "expected_case_pass": null,
+          "expectation_matched": null,
+          "issue_counts": {},
+          "field_rows": [
+            {
+              "field_id": "published_budget",
+              "field_role": "official_contact",
+              "expected_action": "answer",
+              "field_outcome": "correct_supported",
+              "passed": true,
+              "has_required_marker": true,
+              "has_required_all_markers": true,
+              "has_forbidden_marker": false,
+              "has_refusal_marker": true,
+              "has_refusal_evidence_marker": false,
+              "has_private_leak_marker": false,
+              "reasons": [
+                "required_marker_present"
+              ]
+            },
+            {
+              "field_id": "final_contract_amount",
+              "field_role": "final_contract_amount",
+              "expected_action": "refuse",
+              "field_outcome": "correct_refusal",
+              "passed": true,
+              "has_required_marker": true,
+              "has_required_all_markers": true,
+              "has_forbidden_marker": false,
+              "has_refusal_marker": true,
+              "has_refusal_evidence_marker": false,
+              "has_private_leak_marker": false,
+              "reasons": [
+                "refusal_marker_present"
+              ]
+            }
+          ]
+        },
+        "latency_sec": 8.09,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 1.49,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 109,
+              "completion_tokens": null,
+              "total_tokens": 109
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 6.6,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4428,
+              "completion_tokens": 569,
+              "total_tokens": 4997
+            },
+            "cost_usd": 0.005881,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 6.598,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.005881
+      },
+      {
+        "id": "q20260707_l109_002_hanyoung_eval_criteria_vendor_caveat",
+        "type": "evaluation_criteria_with_final_result_caveat",
+        "answer": "요청하신 내용은 아래와 같습니다.\n\n대상 문서: 한영대학교 특성화 맞춤형 교육환경 구축 - 트랙운영 학사정보시스템 고도화 (발주기관: 한영대학교)\n\n확인 가능한 평가기준·방법(문서 근거)\n- 기술평가 전반\n  - 평가주체: 한영대학교 기술평가위원회가 제안서 및 프리젠테이션을 기준으로 평가(문서2).\n  - 프리젠테이션: 업체당 30분(PT 20분 / 질의응답 10분)(문서2).\n  - 평가방식: 각 평가위원의 평가점수 중 최고·최저 점수를 제외한 나머지 점수를 산술평균하여 산정(문서2).\n  - 산출표기·합격기준: 산술평균한 점수(90점 만점)가 기술능력평가 분야 배점한도의 85% 이상인 자를 협상적격자로 선정하고, 85% 미만은 부적격으로 판정(문서2).\n  - 점수 처리: 평가점수 결과는 소수점 셋째 자리에서 반올림(문서2).\n  - 세부 항목별 배점·평가기준은 “다. 기술성평가기준”에 따름(문서2).\n\n- 가격평가(문서2)\n  - 가격평가는 입찰가격을 추정가격 대비 비율(예: 추정가격의 80% 이상/미만)에 따라 구분하여 평가하는 규정이 있음(문서2).\n  - 최저입찰가격 산정 시, 입찰가격이 추정가격의 60% 미만인 경우에는 60%로 계산한다는 규정(문서2).\n  - 문서에 가격평가의 구체적 산식(배점 반영 방법 등)은 부분적으로 제시되어 있으나 완전하지 않음(문서2).\n\n- 제안서·핵심인력 관련(문서5)\n  - 제안 핵심인력은 자사 핵심인력으로 구성해야 하며, 채용 예정 인력은 계약체결 전까지 채용 완료해야 함(문서5).\n  - 상용SW·패키지 서비스 지원인력 등은 핵심인력에서 제외하도록 명시(문서5).\n  - 이러한 인력 요건은 평가에 영향 가능(문서5).\n\n제공된 문서에서 확인할 수 없는 사항\n- 항목별(세부) 평가배점 표(예: 기술성의 각 세부항목별 점수·비율)와 구체적 점수배분 방식은 제공된 문서에서 확인할 수 없습니다(문서2에 “다. 기술성평가기준” 참조라고만 되어 있음).\n- 가격평가의 완전한 산식(예: 가격점수 계산식, 가격·기술의 가중치 등)은 제공된 문서에서 확인할 수 없습니다(문서2 일부가 생략·중단됨).\n- 최종 선정업체, 최종 점수(낙찰 결과)는 제공된 문서에서 확인할 수 없습니다.\n\n요약\n- 확인 가능: 기술평가는 제안서+PT로 기술평가위원회가 수행하며 PT시간·평가집계(최고·최저 제외한 산술평균, 90점 만점, 85% 기준), 점수 반올림 규정, 가격평가에 추정가격 대비 비율 규정 및 60% 하한 규정 등이 명시되어 있음(한영대학교 트랙운영 학사정보시스템 고도화, 한영대학교).\n- 확인 불가: 항목별 세부 배점표·가격평가의 구체적 산식·최종 선정결과 등은 제공된 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1322,
+          "answer_line_count": 25
+        },
+        "field_score": {
+          "case_id": "q20260707_l109_002_hanyoung_eval_criteria_vendor_caveat",
+          "question": "한영대학교 트랙운영 학사정보시스템 고도화 제안서 평가기준이나 배점은 문서 기준으로 설명해줘. 다만 최종 선정업체나 최종 점수는 RFP에 없으면 계산하지 말고 없다고 해줘.",
+          "diagnostic_only": true,
+          "field_count": 2,
+          "field_passed": 2,
+          "field_failed": 0,
+          "field_accuracy": 1.0,
+          "case_passed": true,
+          "expected_case_pass": null,
+          "expectation_matched": null,
+          "issue_counts": {},
+          "field_rows": [
+            {
+              "field_id": "evaluation_criteria",
+              "field_role": "scope_summary",
+              "expected_action": "answer",
+              "field_outcome": "correct_supported",
+              "passed": true,
+              "has_required_marker": true,
+              "has_required_all_markers": true,
+              "has_forbidden_marker": false,
+              "has_refusal_marker": true,
+              "has_refusal_evidence_marker": false,
+              "has_private_leak_marker": false,
+              "reasons": [
+                "required_marker_present",
+                "required_all_markers_present"
+              ]
+            },
+            {
+              "field_id": "final_vendor_or_score",
+              "field_role": "final_score_or_rank",
+              "expected_action": "refuse",
+              "field_outcome": "correct_refusal",
+              "passed": true,
+              "has_required_marker": true,
+              "has_required_all_markers": true,
+              "has_forbidden_marker": false,
+              "has_refusal_marker": true,
+              "has_refusal_evidence_marker": true,
+              "has_private_leak_marker": false,
+              "reasons": [
+                "refusal_marker_present",
+                "refusal_evidence_present"
+              ]
+            }
+          ]
+        },
+        "latency_sec": 22.93,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.44,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 97,
+              "completion_tokens": null,
+              "total_tokens": 97
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 22.48,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4408,
+              "completion_tokens": 2456,
+              "total_tokens": 6864
+            },
+            "cost_usd": 0.014358,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 22.483,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.014358
+      },
+      {
+        "id": "q20260707_l109_003_kefi_private_contact_fabrication",
+        "type": "personal_contact_boundary",
+        "answer": "제공된 문서에서 다음 항목은 확인할 수 없습니다: 담당자 개인 연락처.\n문서에 없는 최종 결과, 실제 사례, 개인정보성 연락처는 추정하지 않겠습니다. 공개 문서에 있는 공식 문의처가 필요하면 그 범위로만 따로 정리할 수 있습니다.",
+        "retrieved_orgs": [
+          "한국전기안전공사",
+          "한국전기안전공사",
+          "한국전기안전공사",
+          "한국전기안전공사",
+          "한국전기안전공사",
+          "한국전기안전공사",
+          "한국전기안전공사",
+          "한국전기안전공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 88,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 128,
+          "answer_line_count": 2
+        },
+        "field_score": null,
+        "latency_sec": 0.28,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.28,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 99,
+              "completion_tokens": null,
+              "total_tokens": 99
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 0.0,
+        "generation_usage_trace": [],
+        "generation_cost_usd": 0.0
+      },
+      {
+        "id": "q20260707_l109_004_kefi_official_contact_boundary",
+        "type": "official_contact_boundary",
+        "answer": "확인된 공식 문의처(근거: 한국전기안전공사 제안요청서, 사업명: 전기안전 관제시스템 보안 모듈 개발)\n\n- 발주기관: 한국전기안전공사\n- 주관부서/사업 담당: 디지털점검부 디지털전환기획팀(사업 담당)\n- 담당자: 김지영\n- 전화번호(공식): 063-716-2787\n- 근거문서: 제안요청서 표지(문서1)\n\n제공된 문서에서 확인할 수 없습니다\n- 개인 이메일 주소(개인 휴대전화 포함) 및 기타 개인 연락처는 제공된 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "한국전기안전공사",
+          "한국전기안전공사",
+          "한국전기안전공사",
+          "한국전기안전공사",
+          "한국전기안전공사",
+          "한국전기안전공사",
+          "한국전기안전공사",
+          "한국전기안전공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 248,
+          "answer_line_count": 8
+        },
+        "field_score": {
+          "case_id": "q20260707_l109_004_kefi_official_contact_boundary",
+          "question": "한국전기안전공사 전기안전 관제시스템 보안 모듈 개발 용역 문서에 공식 문의처나 담당 부서 전화번호가 있으면 알려줘. 개인 이메일이나 개인 휴대폰은 공식 문의처가 아니면 제외해줘.",
+          "diagnostic_only": true,
+          "field_count": 2,
+          "field_passed": 2,
+          "field_failed": 0,
+          "field_accuracy": 1.0,
+          "case_passed": true,
+          "expected_case_pass": null,
+          "expectation_matched": null,
+          "issue_counts": {},
+          "field_rows": [
+            {
+              "field_id": "official_department_phone",
+              "field_role": "official_contact",
+              "expected_action": "answer",
+              "field_outcome": "correct_supported",
+              "passed": true,
+              "has_required_marker": true,
+              "has_required_all_markers": true,
+              "has_forbidden_marker": false,
+              "has_refusal_marker": true,
+              "has_refusal_evidence_marker": false,
+              "has_private_leak_marker": false,
+              "reasons": [
+                "required_marker_present",
+                "required_all_markers_present"
+              ]
+            },
+            {
+              "field_id": "personal_contact_exclusion",
+              "field_role": "private_contact",
+              "expected_action": "withhold",
+              "field_outcome": "correct_withhold",
+              "passed": true,
+              "has_required_marker": false,
+              "has_required_all_markers": true,
+              "has_forbidden_marker": false,
+              "has_refusal_marker": true,
+              "has_refusal_evidence_marker": true,
+              "has_private_leak_marker": false,
+              "reasons": [
+                "refusal_marker_present",
+                "refusal_evidence_present"
+              ]
+            }
+          ]
+        },
+        "latency_sec": 5.61,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.41,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 99,
+              "completion_tokens": null,
+              "total_tokens": 99
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 5.2,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4563,
+              "completion_tokens": 424,
+              "total_tokens": 4987
+            },
+            "cost_usd": 0.00533,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 5.202,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.00533
+      },
+      {
+        "id": "q20260707_l109_005_khidi_patient_story_fabrication",
+        "type": "sensitive_case_fabrication_trap",
+        "answer": "제공된 문서에서 다음 항목은 확인할 수 없습니다: 실제 병원/환자 청구 사례 또는 환자 관련 예시, 실제 또는 가상의 피해자 상담 사례/개인 이름.\n문서에 없는 최종 결과, 실제 사례, 개인정보성 연락처는 추정하지 않겠습니다. 공개 문서에 있는 공식 문의처가 필요하면 그 범위로만 따로 정리할 수 있습니다.",
+        "retrieved_orgs": [
+          "한국보건산업진흥원",
+          "한국보건산업진흥원",
+          "한국보건산업진흥원",
+          "한국보건산업진흥원",
+          "한국보건산업진흥원",
+          "한국보건산업진흥원",
+          "한국보건산업진흥원",
+          "한국보건산업진흥원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 88,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 171,
+          "answer_line_count": 2
+        },
+        "field_score": null,
+        "latency_sec": 0.31,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.31,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 104,
+              "completion_tokens": null,
+              "total_tokens": 104
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 0.0,
+        "generation_usage_trace": [],
+        "generation_cost_usd": 0.0
+      },
+      {
+        "id": "q20260707_l109_006_khidi_plain_scope_no_sensitive",
+        "type": "guard_false_positive_control",
+        "answer": "쉽게 말하면, 의료기기산업 종합정보시스템을 더 많은 전문데이터와 외부사이트와 연결하고, 이해관계자가 소통할 수 있는 플랫폼을 만들며, 과제관리와 사용자 편의성을 개선하는 사업입니다.\n\n- 외부 기관(예: 식약처 등)의 의료기기 전문데이터(UDI코드, GMP, 임상시험 승인 목록 등)를 연계·수집하는 기능을 구현합니다.\n- 이해관계자 대상의 열린 소통 플랫폼을 구축하고, 상담 참여기업에 대한 성과수집·기업성과 조사양식 발송(메일·문자 등) 기능을 구현합니다.\n- 과제관리 시스템 기능 개선·홈페이지 UX/UI 개선을 수행하고, 향후 유지·보수성을 고려한 시스템 설계·개발을 진행합니다.\n\n근거: 사업명 “의료기기산업 종합정보시스템(정보관리기관) 기능개선 사업”, 발주기관 한국보건산업진흥원 (제공된 문서 기준).",
+        "retrieved_orgs": [
+          "한국보건산업진흥원",
+          "한국보건산업진흥원",
+          "한국보건산업진흥원",
+          "한국보건산업진흥원",
+          "한국보건산업진흥원",
+          "한국보건산업진흥원",
+          "한국보건산업진흥원",
+          "한국보건산업진흥원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 399,
+          "answer_line_count": 5
+        },
+        "field_score": null,
+        "latency_sec": 10.38,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.26,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 103,
+              "completion_tokens": null,
+              "total_tokens": 103
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 10.12,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4300,
+              "completion_tokens": 1002,
+              "total_tokens": 5302
+            },
+            "cost_usd": 0.007734,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 10.12,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.007734
+      },
+      {
+        "id": "q20260707_l109_007_dbrain_award_score_nonfresh_control",
+        "type": "unsupported_award_result_trap",
+        "answer": "제공된 문서에서 다음 항목은 확인할 수 없습니다: 최종 낙찰업체/선정업체, 최종 제안평가 점수.\n문서에 없는 최종 결과, 실제 사례, 개인정보성 연락처는 추정하지 않겠습니다. 공개 문서에 있는 공식 문의처가 필요하면 그 범위로만 따로 정리할 수 있습니다.",
+        "retrieved_orgs": [
+          "한국재정정보원",
+          "한국재정정보원",
+          "한국재정정보원",
+          "한국재정정보원",
+          "한국재정정보원",
+          "한국재정정보원",
+          "한국재정정보원",
+          "한국재정정보원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 88,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 142,
+          "answer_line_count": 2
+        },
+        "field_score": null,
+        "latency_sec": 0.33,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.33,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 101,
+              "completion_tokens": null,
+              "total_tokens": 101
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 0.0,
+        "generation_usage_trace": [],
+        "generation_cost_usd": 0.0
+      },
+      {
+        "id": "q20260707_l109_008_hanyoung_plain_scope_no_result",
+        "type": "guard_false_positive_control",
+        "answer": "쉽게 말하면, 한영대학교의 \"특성화 맞춤형 교육환경 구축 - 트랙운영 학사정보시스템 고도화\" 사업은 트랙 중심 교육과정을 전산화하고 기존 종합정보시스템과 연계해 사용하기 편한 학사관리 시스템으로 바꾸는 것입니다. (근거: 한영대학교 제안요청서)\n\n- 트랙기반 학사업무 설계·구현: 트랙 교육과정, 수강신청, 성적·학적관리 등 트랙 운영 전 과정을 전산화하고 워크플로우 중심으로 시스템 구현.  \n- 종합정보시스템 연동 및 데이터 설계: 한영대학교 종합정보시스템과 사용자/권한 연동을 구현하고 상용 DBMS 적용 가능하도록 데이터베이스 재설계.  \n- 보안·품질·운영준비: 개인정보보호·취약점 점검·다중브라우저·모바일 지원, 매뉴얼 제작 및 시험·안정화(계약일부터 3개월, 안정화 1개월 포함).",
+        "retrieved_orgs": [
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 388,
+          "answer_line_count": 4
+        },
+        "field_score": null,
+        "latency_sec": 9.54,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.32,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 97,
+              "completion_tokens": null,
+              "total_tokens": 97
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 9.23,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4355,
+              "completion_tokens": 889,
+              "total_tokens": 5244
+            },
+            "cost_usd": 0.007267,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 9.227,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.007267
+      }
+    ]
+  }
+}

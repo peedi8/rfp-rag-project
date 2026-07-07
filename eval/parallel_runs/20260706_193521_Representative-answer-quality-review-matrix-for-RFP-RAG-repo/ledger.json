@@ -1,0 +1,68 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-06T19:35:23",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "Representative answer quality review matrix for RFP RAG report",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo",
+  "cpu_percent_at_start": 4.0,
+  "recommended_workers": 4,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "final target index.html",
+    "renderer source files",
+    "prepared payload JSON",
+    "option consumer payload JSON",
+    "stage slot pack candidate files"
+  ],
+  "tasks": [
+    {
+      "task_id": "answer_quality",
+      "description": "review saved answers for contextual quality usefulness conciseness",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\worker_outputs\\answer_quality_review.contract.json",
+      "merge_decision": "accepted_into_summary_matrix"
+    },
+    {
+      "task_id": "evidence_quality",
+      "description": "review evidence fit citation clarity source-scope risks",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\worker_outputs\\evidence_quality_review.contract.json",
+      "merge_decision": "accepted_into_summary_matrix"
+    },
+    {
+      "task_id": "report_cases",
+      "description": "classify cases for report-ready insights and before-after story",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\worker_outputs\\report_case_review.contract.json",
+      "merge_decision": "accepted_into_summary_matrix"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\checkpoint_01_inputs.md",
+    "worker_outputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\checkpoint_02_worker_outputs.md",
+    "merge_decisions": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\checkpoint_03_merge_decisions.md",
+    "smoke": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\checkpoint_04_smoke.md"
+  },
+  "events": [
+    {
+      "ts": "2026-07-06T19:35:23",
+      "event": "scaffold_created",
+      "recommended_workers": 4,
+      "cpu_percent": 4.0
+    },
+    {
+      "ts": "2026-07-06T19:42:42",
+      "event": "worker_outputs_smoke_passed",
+      "worker_output_count": 3
+    },
+    {
+      "ts": "2026-07-06T19:42:42",
+      "event": "summary_matrix_created",
+      "path": "eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\summary\\answer_quality_review_matrix.md"
+    }
+  ]
+}

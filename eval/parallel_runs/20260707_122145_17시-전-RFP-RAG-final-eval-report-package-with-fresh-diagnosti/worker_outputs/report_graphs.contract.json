@@ -1,0 +1,420 @@
+﻿{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "worker_d_report_graphs",
+  "task_id": "final_eval_report_tables_graphs_from_loop_metrics",
+  "status": "proposal",
+  "summary": "Proposal-only final report graph/table package from prior EDD loop metrics. Keep scoreboard rows separate from diagnostic-only evidence; use L81/L85/L91/L95 as the main source-exposed diagnostic trend and include focused qv7_009 and qv7_006 case panels.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\loop_points.csv",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\summary\\summary.csv",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\summary\\summary.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_03_merge_decisions.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\ledger.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l81_v7_source_exposed_prompt_diagnostic_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l83_sensitive_guard_probe_nojudge_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l88_plain_language_format_probe_prompt_sweep\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l89_plain_language_prompt_hint_probe_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l91_plain_language_hint_v7_regression_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l94_sensitive_preempt_latency_probe_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l95_sensitive_preempt_v7_regression_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\*\\cost_summary.json"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "proposal_method": "static inspection of saved local CSV/JSON/Markdown artifacts only",
+    "paid_api_calls_made": false
+  },
+  "protected_paths_seen": [
+    "I:\\0706\\rfp-rag-project\\업무일지.md",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\eval\\question_exposure_registry.*",
+    "I:\\0706\\rfp-rag-project\\src\\**",
+    "I:\\0706\\rfp-rag-project\\scripts\\**",
+    "I:\\0706\\rfp-rag-project\\config.py",
+    "I:\\0706\\rfp-rag-project\\chroma_db\\**",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\previous run folders"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\report_graphs.contract.json",
+      "kind": "json",
+      "description": "required Worker D output contract with final report graph/table specifications"
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\report_graphs.summary.md",
+      "kind": "markdown",
+      "description": "optional short human-readable summary of recommended report exhibits"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "spec_id": "fig_01_edd_trend_l81_l85_l91_l95",
+        "kind": "graph_spec",
+        "title": "Source-exposed diagnostic EDD trend: L81 to L95",
+        "recommended_chart_type": "line chart with point markers; use a small grouped inset for L85 topk5/topk8/topk12 variants",
+        "purpose": "Show that source-exposed diagnostic EDD improved from L81 to L95 while keeping the rank-scope caveat visible.",
+        "source_files": ["loop_points.csv", "summary/summary.csv", "worker_outputs/*/cost_summary.json"],
+        "required_columns": [
+          "loop_id",
+          "run_label",
+          "suite",
+          "experiment",
+          "edd_score",
+          "retrieval_coverage_avg",
+          "hit_all_targets_rate",
+          "mrr",
+          "groundedness_avg",
+          "relevance_avg",
+          "abstention_accuracy",
+          "false_abstention_rate",
+          "empty_answer_rate",
+          "latency_avg_sec",
+          "question_file",
+          "question_claim_use",
+          "question_exposure_status",
+          "quality_status",
+          "rank_scope",
+          "observed_cost_usd",
+          "quality_issue_rows"
+        ],
+        "filter": "Main line: loop_id in [L81, L85_topk8_control, L91, L95]. L85 inset/table should also include topk5 and topk12.",
+        "anchor_values": [
+          {"loop_id": "L81", "edd_score": 97.41, "latency_avg_sec": 19.407, "quality_issue_rows": 2, "observed_cost_usd": 0.173302, "rank_scope": "diagnostic_only"},
+          {"loop_id": "L85_topk8", "edd_score": 98.00, "latency_avg_sec": 16.794, "quality_issue_rows": 1, "observed_cost_usd": 0.174094, "rank_scope": "diagnostic_only"},
+          {"loop_id": "L91", "edd_score": 97.82, "latency_avg_sec": 17.613, "quality_issue_rows": 0, "observed_cost_usd": 0.171454, "rank_scope": "diagnostic_only"},
+          {"loop_id": "L95", "edd_score": 98.54, "latency_avg_sec": 14.44, "quality_issue_rows": 0, "observed_cost_usd": 0.156359, "rank_scope": "diagnostic_only"}
+        ],
+        "caption_note": "Do not label these as fresh validation; all four are source-exposed diagnostic rows. L95 is strongest diagnostic evidence, not a promoted scoreboard champion."
+      },
+      {
+        "spec_id": "fig_02_latency_trend",
+        "kind": "graph_spec",
+        "title": "Latency trend and candidate tradeoff",
+        "recommended_chart_type": "dual-axis line chart: latency_avg_sec on left axis, EDD on right axis; annotate L94 as latency-only/non-comparable",
+        "purpose": "Make the speed story explicit: L81 19.407s, L85 topk8 16.794s, L91 17.613s, L95 14.44s, plus L94 2.065s as abstention-only latency evidence.",
+        "source_files": ["summary/summary.csv", "worker_outputs/*/details.json"],
+        "required_columns": [
+          "loop_id",
+          "run_label",
+          "suite",
+          "experiment",
+          "latency_avg_sec",
+          "edd_score",
+          "latency_score",
+          "rank_scope",
+          "quality_status",
+          "case_count",
+          "max_latency_sec",
+          "p90_latency_sec"
+        ],
+        "derived_columns": [
+          "max_latency_sec = max(details[].latency_sec)",
+          "p90_latency_sec = percentile(details[].latency_sec, 90)",
+          "latency_delta_vs_l81_sec = latency_avg_sec - 19.407",
+          "latency_delta_vs_l81_pct = latency_delta_vs_l81_sec / 19.407"
+        ],
+        "anchor_values": [
+          {"loop_id": "L81", "latency_avg_sec": 19.407},
+          {"loop_id": "L85_topk5", "latency_avg_sec": 16.865},
+          {"loop_id": "L85_topk8", "latency_avg_sec": 16.794},
+          {"loop_id": "L85_topk12", "latency_avg_sec": 19.922},
+          {"loop_id": "L91", "latency_avg_sec": 17.613},
+          {"loop_id": "L94", "latency_avg_sec": 2.065, "comparability": "latency/cost only"},
+          {"loop_id": "L95", "latency_avg_sec": 14.44}
+        ]
+      },
+      {
+        "spec_id": "fig_03_quality_issue_count_trend",
+        "kind": "graph_spec",
+        "title": "Quality issue count trend",
+        "recommended_chart_type": "stacked bar chart by issue_type, with total issue rows as a line overlay",
+        "purpose": "Show that hidden answer-quality issues dropped from L81 to zero by L91/L95 despite high automated metrics throughout.",
+        "source_files": ["worker_outputs/*/details.json", "ledger.json"],
+        "required_columns": [
+          "loop_id",
+          "run_label",
+          "case_id",
+          "answer_quality_issues",
+          "issue_type",
+          "issue_count",
+          "quality_issue_rows",
+          "case_count",
+          "quality_issue_rate"
+        ],
+        "derived_columns": [
+          "issue_type = explode(answer_quality_issues)",
+          "quality_issue_rows = count(cases where answer_quality_issues length > 0)",
+          "quality_issue_rate = quality_issue_rows / case_count"
+        ],
+        "anchor_values": [
+          {"loop_id": "L81", "case_count": 12, "quality_issue_rows": 2, "issue_types": ["sensitive_or_forbidden_refusal_with_detail_tail", "plain_language_answer_over_structured"]},
+          {"loop_id": "L85_topk8", "case_count": 12, "quality_issue_rows": 1, "issue_types": ["plain_language_answer_over_structured"]},
+          {"loop_id": "L91", "case_count": 12, "quality_issue_rows": 0},
+          {"loop_id": "L95", "case_count": 12, "quality_issue_rows": 0}
+        ],
+        "caption_note": "This is the key diagnostic-only lesson: EDD was already high at L81, but two human-facing quality defects remained."
+      },
+      {
+        "spec_id": "fig_04_qv7_009_answer_length_list_count",
+        "kind": "graph_spec",
+        "title": "qv7_009 plain-language repair: length and list-count change",
+        "recommended_chart_type": "grouped bar chart for answer_chars and list_item_count_derived; overlay markers for quality issue present/cleared",
+        "purpose": "Show the over-structured plain-language answer shrinking into a usable answer without losing judge 5/5 quality.",
+        "source_files": [
+          "worker_outputs/l81_v7_source_exposed_prompt_diagnostic_baseline_default/details.json",
+          "worker_outputs/l88_plain_language_format_probe_prompt_sweep/details.json",
+          "worker_outputs/l89_plain_language_prompt_hint_probe_baseline_default/details.json",
+          "worker_outputs/l91_plain_language_hint_v7_regression_baseline_default/details.json",
+          "worker_outputs/l95_sensitive_preempt_v7_regression_baseline_default/details.json"
+        ],
+        "required_columns": [
+          "loop_id",
+          "variant_label",
+          "case_id",
+          "answer_chars",
+          "answer_line_count",
+          "list_item_count_derived",
+          "answer_quality_issues",
+          "quality_issue_count",
+          "latency_sec",
+          "generation_sec",
+          "groundedness",
+          "relevance",
+          "generation_cost_usd",
+          "judge_cost_usd"
+        ],
+        "derived_columns": [
+          "list_item_count_derived = count(answer lines matching bullet/numbered-list prefixes)",
+          "quality_issue_count = len(answer_quality_issues)",
+          "length_delta_vs_l81_chars = answer_chars - 1142",
+          "list_delta_vs_l81 = list_item_count_derived - 20"
+        ],
+        "anchor_values": [
+          {"loop_id": "L81", "variant_label": "baseline prompt", "answer_chars": 1142, "answer_line_count": 23, "list_item_count_derived": 20, "quality_issue_count": 1, "latency_sec": 25.21},
+          {"loop_id": "L88_default", "variant_label": "default probe", "answer_chars": 1228, "answer_line_count": 34, "list_item_count_derived": 29, "quality_issue_count": 1, "latency_sec": 18.8},
+          {"loop_id": "L88_report_ready", "variant_label": "report-ready prompt", "answer_chars": 644, "answer_line_count": 7, "list_item_count_derived": 5, "quality_issue_count": 0, "latency_sec": 50.94},
+          {"loop_id": "L89", "variant_label": "query-specific plain-language hint", "answer_chars": 605, "answer_line_count": 7, "list_item_count_derived": 5, "quality_issue_count": 0, "latency_sec": 16.7},
+          {"loop_id": "L91", "variant_label": "full v7 with hint", "answer_chars": 718, "answer_line_count": 7, "list_item_count_derived": 5, "quality_issue_count": 0, "latency_sec": 17.66},
+          {"loop_id": "L95", "variant_label": "preempt+hint full v7", "answer_chars": 651, "answer_line_count": 7, "list_item_count_derived": 5, "quality_issue_count": 0, "latency_sec": 16.09}
+        ],
+        "caption_note": "Use L89 as the concise repair example; use L91/L95 as full-regression confirmation that the issue stayed cleared."
+      },
+      {
+        "spec_id": "fig_05_qv7_006_latency_breakdown",
+        "kind": "graph_spec",
+        "title": "qv7_006 forbidden-info refusal: latency and generation breakdown",
+        "recommended_chart_type": "stacked horizontal bar chart with retrieval_sec, generation_sec, judge_elapsed_sec, and unattributed latency; annotate generation_cost_usd",
+        "purpose": "Show why preemptive sensitive abstention mattered: qv7_006 moved from slow generated refusal tails to zero generation in L94/L95.",
+        "source_files": [
+          "worker_outputs/l81_v7_source_exposed_prompt_diagnostic_baseline_default/details.json",
+          "worker_outputs/l83_sensitive_guard_probe_nojudge_baseline_default/details.json",
+          "worker_outputs/l91_plain_language_hint_v7_regression_baseline_default/details.json",
+          "worker_outputs/l94_sensitive_preempt_latency_probe_baseline_default/details.json",
+          "worker_outputs/l95_sensitive_preempt_v7_regression_baseline_default/details.json"
+        ],
+        "required_columns": [
+          "loop_id",
+          "case_id",
+          "latency_sec",
+          "retrieval_sec",
+          "generation_sec",
+          "judge_elapsed_sec",
+          "unattributed_sec",
+          "retrieval_cost_usd",
+          "generation_cost_usd",
+          "judge_cost_usd",
+          "answer_chars",
+          "answer_line_count",
+          "answer_quality_issues",
+          "quality_issue_count"
+        ],
+        "derived_columns": [
+          "judge_elapsed_sec = judge.usage_trace[0].elapsed_sec when present else 0",
+          "unattributed_sec = max(latency_sec - retrieval_sec - generation_sec, 0) for no-judge rows; if judge timing is outside latency_sec, display judge separately as evaluation overhead",
+          "quality_issue_count = len(answer_quality_issues)"
+        ],
+        "anchor_values": [
+          {"loop_id": "L81", "latency_sec": 20.25, "generation_sec": 19.90, "generation_cost_usd": 0.009889, "answer_chars": 528, "answer_line_count": 12, "quality_issue_count": 1},
+          {"loop_id": "L83", "latency_sec": 20.51, "generation_sec": 18.92, "generation_cost_usd": 0.011770, "answer_chars": 179, "answer_line_count": 2, "quality_issue_count": 0},
+          {"loop_id": "L91", "latency_sec": 28.81, "generation_sec": 28.49, "generation_cost_usd": 0.010259, "answer_chars": 179, "answer_line_count": 2, "quality_issue_count": 0},
+          {"loop_id": "L94", "latency_sec": 3.27, "generation_sec": 0.0, "generation_cost_usd": 0.0, "answer_chars": 179, "answer_line_count": 2, "quality_issue_count": 0},
+          {"loop_id": "L95", "latency_sec": 0.35, "generation_sec": 0.0, "generation_cost_usd": 0.0, "answer_chars": 179, "answer_line_count": 2, "quality_issue_count": 0}
+        ],
+        "caption_note": "Keep L94 as latency/cost evidence only; L95 is the full source-exposed diagnostic row showing the same zero-generation behavior inside the 12-case pack."
+      },
+      {
+        "spec_id": "table_01_scoreboard_vs_diagnostic_only",
+        "kind": "table_spec",
+        "title": "Scoreboard rows vs diagnostic-only rows",
+        "recommended_chart_type": "summary table plus stacked count bar",
+        "purpose": "Prevent diagnostic evidence from being presented as promoted held-out performance.",
+        "source_files": ["summary/summary.csv", "summary/summary.md", "checkpoint_03_merge_decisions.md"],
+        "required_columns": [
+          "rank_scope",
+          "quality_status",
+          "question_claim_use",
+          "question_exposure_status",
+          "suite",
+          "run_label",
+          "experiment",
+          "edd_score",
+          "latency_avg_sec",
+          "why_separated"
+        ],
+        "rows_to_include": [
+          {"section": "scoreboard", "count": 1, "rule": "rank_scope != diagnostic_only and groundedness/relevance comparable"},
+          {"section": "diagnostic_only", "count": 48, "rule": "source-exposed, targeted failure probe, no-judge, dry-run, or otherwise non-comparable"}
+        ],
+        "caption_note": "Final report should preserve L37 as the only scoreboard row from this prior run and place L81/L85/L91/L95 in a diagnostic evidence section."
+      },
+      {
+        "spec_id": "fig_06_observed_cost_trend",
+        "kind": "graph_spec",
+        "title": "Observed cost trend under the 10 USD cap",
+        "recommended_chart_type": "waterfall or cumulative step chart; use bars for run observed_cost_usd and line for cumulative spent_after_usd when available",
+        "purpose": "Show that later diagnostic gains were obtained at low observed marginal cost and that L94 preempt probe eliminated generation spend.",
+        "source_files": ["worker_outputs/*/cost_summary.json", "worker_outputs/*/budget_ledger.jsonl", "ledger.json"],
+        "required_columns": [
+          "loop_id",
+          "run_label",
+          "suite",
+          "experiment",
+          "calls_with_observed_cost",
+          "observed_cost_usd",
+          "spent_before_usd",
+          "spent_after_usd",
+          "spent_observed_usd",
+          "effective_case_count",
+          "cost_per_case_usd",
+          "generation_cost_usd_total",
+          "judge_cost_usd_total",
+          "retrieval_cost_usd_total",
+          "missing_cost_rows",
+          "unledgered_cost_risk"
+        ],
+        "derived_columns": [
+          "cost_per_case_usd = observed_cost_usd / effective_case_count when effective_case_count is present, else observed_cost_usd / case_count",
+          "operation totals = sum(budget_ledger.jsonl cost_usd by operation)",
+          "unledgered_cost_risk = true for L84 timeout note; false when cost_summary.missing_cost_rows is empty"
+        ],
+        "anchor_values": [
+          {"loop_id": "L81", "observed_cost_usd": 0.173302, "calls_with_observed_cost": 33},
+          {"loop_id": "L85_topk5", "observed_cost_usd": 0.154740, "calls_with_observed_cost": 33},
+          {"loop_id": "L85_topk8", "observed_cost_usd": 0.174094, "calls_with_observed_cost": 33},
+          {"loop_id": "L85_topk12", "observed_cost_usd": 0.211768, "calls_with_observed_cost": 33},
+          {"loop_id": "L88_prompt_sweep", "observed_cost_usd": 0.111066, "spent_after_usd": 2.341959},
+          {"loop_id": "L89", "observed_cost_usd": 0.017385, "spent_after_usd": 2.359344},
+          {"loop_id": "L91", "observed_cost_usd": 0.171454, "spent_after_usd": 2.530798},
+          {"loop_id": "L94", "observed_cost_usd": 0.000004, "spent_after_usd": 2.530802},
+          {"loop_id": "L95", "observed_cost_usd": 0.156359, "spent_after_usd": 2.687161}
+        ],
+        "caption_note": "Mention possible L84 unledgered cost risk from timeout separately; do not include L84 as a clean observed-cost bar unless recovered from API billing or logs."
+      },
+      {
+        "spec_id": "table_02_final_report_rows",
+        "kind": "table_spec",
+        "title": "Final report metric table for L81/L85/L91/L95",
+        "recommended_chart_type": "compact comparison table",
+        "purpose": "Give readers exact numeric context beside the trend graphs.",
+        "source_files": ["summary/summary.csv", "worker_outputs/*/cost_summary.json", "worker_outputs/*/details.json"],
+        "required_columns": [
+          "loop_id",
+          "short_label",
+          "experiment",
+          "rank_scope",
+          "question_exposure_status",
+          "edd_score",
+          "latency_avg_sec",
+          "quality_issue_rows",
+          "observed_cost_usd",
+          "key_result",
+          "promotion_status"
+        ],
+        "recommended_rows": [
+          {"loop_id": "L81", "short_label": "v7 source-exposed baseline", "edd_score": 97.41, "latency_avg_sec": 19.407, "quality_issue_rows": 2, "observed_cost_usd": 0.173302, "promotion_status": "diagnostic_only"},
+          {"loop_id": "L85_topk8", "short_label": "topk8 shard control", "edd_score": 98.00, "latency_avg_sec": 16.794, "quality_issue_rows": 1, "observed_cost_usd": 0.174094, "promotion_status": "diagnostic_only"},
+          {"loop_id": "L91", "short_label": "plain-language hint full v7", "edd_score": 97.82, "latency_avg_sec": 17.613, "quality_issue_rows": 0, "observed_cost_usd": 0.171454, "promotion_status": "guarded diagnostic candidate"},
+          {"loop_id": "L95", "short_label": "preemptive sensitive abstention full v7", "edd_score": 98.54, "latency_avg_sec": 14.44, "quality_issue_rows": 0, "observed_cost_usd": 0.156359, "promotion_status": "strongest source-exposed diagnostic; needs fresh validation"}
+        ]
+      },
+      {
+        "spec_id": "table_03_case_evidence_appendix",
+        "kind": "table_spec",
+        "title": "Case evidence appendix: hidden quality defects and repairs",
+        "recommended_chart_type": "appendix table",
+        "purpose": "Make the report auditable by linking aggregate changes to qv7_006 and qv7_009 case-level behavior.",
+        "source_files": ["worker_outputs/*/details.json", "checkpoint_03_merge_decisions.md"],
+        "required_columns": [
+          "case_id",
+          "loop_id",
+          "variant_label",
+          "answer_quality_issues",
+          "answer_chars",
+          "answer_line_count",
+          "list_item_count_derived",
+          "latency_sec",
+          "generation_sec",
+          "generation_cost_usd",
+          "judge_groundedness",
+          "judge_relevance",
+          "human_report_note"
+        ],
+        "recommended_cases": [
+          "qv7_006_insurance_claim_forbidden_result_contact",
+          "qv7_009_venture_confirm_feature_upgrade",
+          "qv7_012_redcross_patient_example_refusal as companion preempt latency case"
+        ]
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "single combined ranking graph mixing scoreboard and diagnostic-only rows",
+        "risk": "It would imply L81/L85/L91/L95 are promoted held-out results. They are useful source-exposed diagnostic evidence only."
+      },
+      {
+        "item": "plotting L94 EDD 60 beside fully judged EDD rows without annotation",
+        "risk": "L94 is abstention-only latency/cost evidence with missing groundedness/relevance comparability; its latency is important but its EDD is not comparable."
+      },
+      {
+        "item": "using EDD alone as the final story",
+        "risk": "L81 already scored 97.41 but had two answer-quality defects. The report needs quality issue and case-level panels."
+      },
+      {
+        "item": "omitting L84 timeout/unledgered cost caveat",
+        "risk": "Observed cumulative cost excludes possible calls before the failed monolithic sweep wrote summaries."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Choose whether L85 headline should use topk8 control only or show all topk5/topk8/topk12 as a grouped inset. Worker D recommends topk8 as the headline diagnostic control.",
+      "Confirm the final report wording for L95: strongest source-exposed diagnostic row, not fresh validation or promoted champion.",
+      "Confirm whether to compute p90/max latency for final graphics from details.json during report generation; the columns are available but not in loop_points.csv."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content eval-loop-orchestrator SKILL.md",
+      "Get-ChildItem current run and worker_outputs folders",
+      "rg --files eval | rg loop_points/summary/contract artifacts",
+      "Import-Csv prior loop_points.csv and summary.csv to inspect available columns",
+      "Get-Content prior summary.md and checkpoint_03_merge_decisions.md",
+      "Structured JSON extraction from selected details.json and cost_summary.json artifacts for qv7_006, qv7_009, L81, L85, L91, L94, L95",
+      "Write report_graphs.contract.json and report_graphs.summary.md under the fresh run worker_outputs folder only"
+    ],
+    "observed_results": [
+      "No external API or model calls were made.",
+      "No protected paths were modified.",
+      "loop_points.csv contains loop-level columns: loop_id, name, type, edd_score, coverage, mrr, groundedness, relevance, abstention_accuracy, latency_sec, claim_status, decision, cause, result, insight.",
+      "summary.csv contains report-ready aggregate columns including edd_score, latency_avg_sec, question_claim_use, question_exposure_status, quality_status, and rank_scope.",
+      "Final prior summary has scoreboard_rows=1 and diagnostic_only_rows=48.",
+      "L81/L85/L91/L95 are diagnostic_only/source-exposed rows and should not be merged into the promoted scoreboard.",
+      "qv7_009 list_item_count is not stored directly; it should be derived from answer bullet/numbered-list prefixes. Derived anchors: L81=20, L88_default=29, L89=5, L91=5, L95=5.",
+      "qv7_006 preemptive abstention evidence: L81 generation_sec=19.90 and generation_cost_usd=0.009889 with a quality issue; L94/L95 generation_sec=0 and generation_cost_usd=0 with no quality issue."
+    ]
+  },
+  "created_at": "2026-07-07T12:21:45+09:00"
+}

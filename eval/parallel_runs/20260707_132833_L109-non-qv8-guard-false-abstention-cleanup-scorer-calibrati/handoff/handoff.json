@@ -1,0 +1,30 @@
+{
+  "schema": "parallel_team_handoff.v1",
+  "created_at": "2026-07-07T13:28:35",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati",
+  "ledger": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati\\ledger.json",
+  "status": "completed",
+  "best_diagnostic_loop": "L112",
+  "best_diagnostic_metrics": {
+    "false_abstention_rate": 0.0,
+    "abstention_accuracy": 1.0,
+    "field_score_issues": {},
+    "latency_avg_sec": 7.184,
+    "observed_cost_usd": 0.040586,
+    "spent_observed_usd": 3.511722
+  },
+  "strict_scoreboard": {
+    "unchanged": true,
+    "representative_row": "L37",
+    "edd_score": 86.25
+  },
+  "warnings": [
+    "L112 is diagnostic-only and source-exposed.",
+    "L112 no-judge EDD 60.0 is not comparable to judged EDD rows.",
+    "Do not promote L108-L112 to strict validation."
+  ],
+  "next_actions": [
+    "Build an untouched mini-set before making a new performance claim.",
+    "Use the same 8-case cohort only for latency profiling if needed."
+  ]
+}

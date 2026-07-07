@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="520" viewBox="0 0 980 520">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="70" y="34" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">Answer Quality Review Matrix</text>
+<text x="70" y="54" font-family="Arial, sans-serif" font-size="12" fill="#6b7280">Manual/no-API review: human quality vs evidence safety. Higher is better.</text>
+<text x="260" y="64" font-family="Arial, sans-serif" font-size="11" fill="#374151">human quality</text>
+<text x="520" y="64" font-family="Arial, sans-serif" font-size="11" fill="#374151">evidence safety</text>
+<text x="70" y="88" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">A</text>
+<text x="95" y="88" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">high_score_human_quality_cau</text>
+<rect x="260" y="70" width="143.0" height="16" rx="3" fill="#f97316" opacity="0.85"/>
+<text x="409.0" y="82" font-family="Arial, sans-serif" font-size="10" fill="#374151">3.25</text>
+<rect x="520" y="70" width="165.0" height="16" rx="3" fill="#f59e0b" opacity="0.85"/>
+<text x="691.0" y="82" font-family="Arial, sans-serif" font-size="10" fill="#374151">3.75</text>
+<text x="70" y="126" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">B</text>
+<text x="95" y="126" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">high_score_human_quality_cau</text>
+<rect x="260" y="108" width="154.0" height="16" rx="3" fill="#f97316" opacity="0.85"/>
+<text x="420.0" y="120" font-family="Arial, sans-serif" font-size="10" fill="#374151">3.5</text>
+<rect x="520" y="108" width="176.0" height="16" rx="3" fill="#2563eb" opacity="0.85"/>
+<text x="702.0" y="120" font-family="Arial, sans-serif" font-size="10" fill="#374151">4.0</text>
+<text x="70" y="164" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">C</text>
+<text x="95" y="164" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">high_score_human_quality_cau</text>
+<rect x="260" y="146" width="176.0" height="16" rx="3" fill="#15803d" opacity="0.85"/>
+<text x="442.0" y="158" font-family="Arial, sans-serif" font-size="10" fill="#374151">4.0</text>
+<rect x="520" y="146" width="165.0" height="16" rx="3" fill="#f59e0b" opacity="0.85"/>
+<text x="691.0" y="158" font-family="Arial, sans-serif" font-size="10" fill="#374151">3.75</text>
+<text x="810" y="158" font-family="Arial, sans-serif" font-size="10" fill="#7c2d12">report-high</text>
+<text x="70" y="202" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">D</text>
+<text x="95" y="202" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">safe_abstention_pattern</text>
+<rect x="260" y="184" width="209.0" height="16" rx="3" fill="#15803d" opacity="0.85"/>
+<text x="475.0" y="196" font-family="Arial, sans-serif" font-size="10" fill="#374151">4.75</text>
+<rect x="520" y="184" width="209.0" height="16" rx="3" fill="#2563eb" opacity="0.85"/>
+<text x="735.0" y="196" font-family="Arial, sans-serif" font-size="10" fill="#374151">4.75</text>
+<text x="810" y="196" font-family="Arial, sans-serif" font-size="10" fill="#7c2d12">report-high</text>
+<text x="70" y="240" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">E</text>
+<text x="95" y="240" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">failure_case</text>
+<rect x="260" y="222" width="121.0" height="16" rx="3" fill="#dc2626" opacity="0.85"/>
+<text x="387.0" y="234" font-family="Arial, sans-serif" font-size="10" fill="#374151">2.75</text>
+<rect x="520" y="222" width="77.0" height="16" rx="3" fill="#dc2626" opacity="0.85"/>
+<text x="603.0" y="234" font-family="Arial, sans-serif" font-size="10" fill="#374151">1.75</text>
+<text x="810" y="234" font-family="Arial, sans-serif" font-size="10" fill="#7c2d12">report-high</text>
+<text x="70" y="278" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">F</text>
+<text x="95" y="278" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">partial_fix_still_insufficie</text>
+<rect x="260" y="260" width="176.0" height="16" rx="3" fill="#15803d" opacity="0.85"/>
+<text x="442.0" y="272" font-family="Arial, sans-serif" font-size="10" fill="#374151">4.0</text>
+<rect x="520" y="260" width="165.0" height="16" rx="3" fill="#f59e0b" opacity="0.85"/>
+<text x="691.0" y="272" font-family="Arial, sans-serif" font-size="10" fill="#374151">3.75</text>
+<text x="810" y="272" font-family="Arial, sans-serif" font-size="10" fill="#7c2d12">report-high</text>
+<text x="70" y="316" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">G</text>
+<text x="95" y="316" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">best_before_after_success</text>
+<rect x="260" y="298" width="209.0" height="16" rx="3" fill="#15803d" opacity="0.85"/>
+<text x="475.0" y="310" font-family="Arial, sans-serif" font-size="10" fill="#374151">4.75</text>
+<rect x="520" y="298" width="220.0" height="16" rx="3" fill="#2563eb" opacity="0.85"/>
+<text x="746.0" y="310" font-family="Arial, sans-serif" font-size="10" fill="#374151">5.0</text>
+<text x="810" y="310" font-family="Arial, sans-serif" font-size="10" fill="#7c2d12">report-high</text>
+<text x="70" y="354" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#111827">H</text>
+<text x="95" y="354" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">judge_calibration_fail_trap</text>
+<rect x="260" y="336" width="88.0" height="16" rx="3" fill="#dc2626" opacity="0.85"/>
+<text x="354.0" y="348" font-family="Arial, sans-serif" font-size="10" fill="#374151">2.0</text>
+<rect x="520" y="336" width="44.0" height="16" rx="3" fill="#dc2626" opacity="0.85"/>
+<text x="570.0" y="348" font-family="Arial, sans-serif" font-size="10" fill="#374151">1.0</text>
+<text x="810" y="348" font-family="Arial, sans-serif" font-size="10" fill="#7c2d12">report-high</text>
+<text x="70" y="488" font-family="Arial, sans-serif" font-size="11" fill="#6b7280">Use E/F/G as before-after story; use D/H as safety calibration pair.</text>
+</svg>

@@ -1,0 +1,3 @@
+﻿case_id,claim_key,status,issue,source_supported,answer_supported,underanswered,source_hits,answer_hits,false_friend_hits
+qv6_007_goyang_facility_order_permutation,unmanned_operation_program,pass,,True,True,False,무인화 운영 프로그램 제공; 하드웨어 연동,무인화 운영을 위한 프로그램; 무인 운영 프로그램,
+qv6_007_goyang_facility_order_permutation,physical_access_control_system,pass,,True,True,False,출입통제시스템 구매 및 설치; 출입통제시스템,출입통제시스템; 출입통제 시스템; 출입통제시스템 구매,

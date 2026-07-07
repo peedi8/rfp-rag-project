@@ -1,0 +1,152 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "overfit_gate",
+  "task_id": "overfit_gate",
+  "status": "proposal",
+  "summary": "Defines an overfit/contamination gate that separates untouched first-run validation, same-answer measurement corrections, same-set targeted retries, diagnostic-only probes, and final performance evidence.",
+  "inputs": [
+    "eval/parallel_runs/20260706_1825_timeboxed-red-loop-v3-validation/loop_points.csv",
+    "eval/parallel_runs/20260706_1825_timeboxed-red-loop-v3-validation/loop_report.md",
+    "eval/questions_v2.json",
+    "eval/questions_v2_tune.json",
+    "eval/questions_v2_holdout.json",
+    "eval/questions_v2_groundedness_probe.json",
+    "eval/questions_v2_compare_probe.json",
+    "eval/questions_v2_holdout_failure_probe.json",
+    "eval/questions_v3_validation.json",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md"
+  ],
+  "protected_paths_seen": [
+    "src/**",
+    "scripts/**",
+    "eval/logs/**",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "eval/questions_v2*.json",
+    "eval/questions_v3_validation.json",
+    "eval/parallel_runs/20260706_1825_timeboxed-red-loop-v3-validation/**",
+    "업무일지/**",
+    "other worker_outputs/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260706_200022_headless-improvement-loop-with-red-and-overfit-gates/worker_outputs/overfit_gate/overfit_gate.contract.json",
+      "kind": "json",
+      "description": "Worker contract containing the overfit gate proposal."
+    },
+    {
+      "path": "eval/parallel_runs/20260706_200022_headless-improvement-loop-with-red-and-overfit-gates/worker_outputs/overfit_gate/overfit_gate.md",
+      "kind": "md",
+      "description": "Human-readable companion proposal for contamination checks, reuse rules, labels, and claim evidence."
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "name": "result_label_taxonomy",
+        "proposal": [
+          "strict_first_validation",
+          "measurement_correction_same_answers",
+          "targeted_retry_same_set",
+          "diagnostic_only",
+          "overfit_risk",
+          "needs_new_validation"
+        ],
+        "reason": "The local logs show first-run, remeasurement, targeted retry, and diagnostic rows being easy to confuse unless every row carries an explicit claim-scope label."
+      },
+      {
+        "name": "set_reuse_rules",
+        "proposal": [
+          "questions_v2_tune.json remains tuning evidence only; 95.55 may be called a tuned champion score, not final validation.",
+          "questions_v2_holdout.json is spent as strict holdout after failure inspection and targeted fixes; 81.55 remains first strict holdout evidence and 96.80 is same-holdout targeted-fix remeasurement.",
+          "questions_v2 probe subsets are diagnostic only and cannot support final claims.",
+          "questions_v3_validation.json first raw run L0 is first validation evidence; L1 is same-answer measurement correction; later v3-driven top-k, alias, qv3_010, adaptive, or prompt work carries overfit_risk until tested on new untouched validation."
+        ],
+        "reason": "These rules match the red-team corrections and v3 loop labels recorded in experiment_log.md, next_improvement_tasks.md, loop_points.csv, and loop_report.md."
+      },
+      {
+        "name": "contamination_checks",
+        "proposal": [
+          "Maintain a set/case exposure registry keyed by question_set path and question ids.",
+          "Mark a set exposed once case answers, retrieval chunks, judge reasons, manual review, or failure causes are inspected.",
+          "Flag same-set contamination when retrieval aliases, org filters, backfill, source pruning, adaptive top_k, prompts, abstention taxonomy, judge context, or rubric sensitivity are changed after viewing that set.",
+          "Flag leaderboard contamination when no-judge/missing-judge rows enter ranked graphs or recomputed rows overwrite first-run evidence."
+        ],
+        "reason": "The repo already encountered same-holdout targeted fixes, abstention metric corrections, no-judge diagnostic rows, and judge-context changes."
+      },
+      {
+        "name": "final_claim_evidence_policy",
+        "proposal": [
+          "Final performance claims require a first full judged run on an untouched validation set after the candidate is frozen.",
+          "Judge calibration with planted hallucinated, contradicted, and wrong-document answers must pass before near-ceiling judge scores are trusted.",
+          "Allowed evidence must include complete judge fields plus retrieval metrics, latency, exact config, run id, and question set id.",
+          "No-judge probes, dry runs, fake-client checks, source diagnostics, calibration-pack creation, and same-set retries are not final performance evidence."
+        ],
+        "reason": "The v3 report explicitly states L4-L8/L11-L13 are local diagnostics or candidates, and L9-L10 are no-judge targeted probes, not performance scores."
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Treating v2 holdout post-fix 96.80 as strict held-out/generalization performance",
+        "risk": "The same 7-case holdout failures were inspected and used for targeted fixes before the rerun."
+      },
+      {
+        "item": "Replacing the original v2 first holdout 81.55 with regenerated or changed-rule summaries",
+        "risk": "This hides the first strict generalization warning signal."
+      },
+      {
+        "item": "Using no-judge or local diagnostic rows in ranked EDD comparisons",
+        "risk": "Rows missing groundedness/relevance are not comparable to fully judged runs."
+      },
+      {
+        "item": "Claiming v3 post-L1 improvements as fresh validation",
+        "risk": "The v3 set has been used for targeted top-k, alias/filter, qv3_010, adaptive guard, quality review, and prompt candidate work."
+      },
+      {
+        "item": "Accepting near-ceiling judge scores before blind calibration",
+        "risk": "Logs note possible balanced-judge leniency and a need to catch planted wrong-document/hallucinated answers."
+      }
+    ],
+    "needs_orchestrator_review": [
+      {
+        "question": "Where should the exposure registry live and which script should attach these labels to scoreboard rows?",
+        "suggestion": "Have the orchestrator decide final file ownership, because this worker is proposal-only and cannot edit scripts or shared eval files."
+      },
+      {
+        "question": "Should new v3 splits be considered regression sets only or can an untouched subset be salvaged?",
+        "suggestion": "Default to regression-only unless the orchestrator can prove the split/cases were not inspected or used for any candidate decision."
+      },
+      {
+        "question": "What minimum size/diversity is required for the new untouched validation set?",
+        "suggestion": "At minimum include compare, ambiguous-org, follow-up, precise-value, abstention, source-scope bleed, and false-positive backfill stress cases; avoid precise population claims from very small sets."
+      }
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content C:\\Users\\peedi\\.codex\\skills\\parallel-team-orchestrator\\SKILL.md",
+      "Get-Content C:\\Users\\peedi\\.codex\\skills\\parallel-team-orchestrator\\references\\worker-output-contract.md",
+      "Get-ChildItem eval/parallel_runs/20260706_1825_timeboxed-red-loop-v3-validation",
+      "Get-ChildItem eval -Filter questions_v2*.json",
+      "Get-Item eval/questions_v3_validation.json, eval/experiment_log.md, eval/next_improvement_tasks.md",
+      "Get-Content eval/parallel_runs/20260706_1825_timeboxed-red-loop-v3-validation/loop_points.csv",
+      "Get-Content eval/parallel_runs/20260706_1825_timeboxed-red-loop-v3-validation/loop_report.md -TotalCount 220",
+      "Select-String eval/experiment_log.md for v3/holdout/overfit/validation/probe/tune/claim/red",
+      "Select-String eval/next_improvement_tasks.md for overfit/holdout/validation/v3/red/gate/claim/contamination/headless",
+      "PowerShell ConvertFrom-Json attempt on eval/questions_v2*.json and eval/questions_v3_validation.json",
+      "New-Item worker_outputs/overfit_gate"
+    ],
+    "observed_results": [
+      "Prior v3 loop artifacts were present: loop_points.csv and loop_report.md.",
+      "v2 tune, holdout, compare, groundedness, and holdout-failure probe files were present; v3 validation file was present.",
+      "loop_points.csv labels L0 as first raw validation 89.69, L1 as same-answer measurement correction 96.36, L2/L3 top5 as rejected global default, and L4-L13 as diagnostics/probes/candidates rather than final scores.",
+      "experiment_log.md records 95.55 as tuned-set champion, 81.55 as first strict holdout warning, and 96.80 as same-holdout targeted-fix remeasurement rather than strict held-out score.",
+      "next_improvement_tasks.md says a new untouched validation set is still required and existing v2 holdout is no longer strict held-out evidence.",
+      "Direct PowerShell JSON parsing of question files failed due local encoding/escaping issues, so the proposal relies on logs and visible file content rather than parsed question metadata."
+    ]
+  }
+}

@@ -1,0 +1,121 @@
+
+=== baseline_default:baseline_default {'use_mmr': True, 'top_k': 8, 'mmr_lambda': 0.5, 'fetch_k': 20, 'auto_filter': True, 'rewrite_query': True} ===
+[q20260707_a01_generic_integrated_system_preempt_false_positive] cov=None rank=None abstain=True lat=31.17s
+[q20260707_a02_hanyoung_plain_language_track_system] cov=1.0 rank=1 abstain=False lat=27.25s
+[q20260707_a03_kogas_erp_final_contract_vs_budget] cov=1.0 rank=1 abstain=True lat=8.71s
+[q20260707_a05_nmc_patient_example_fabrication] cov=1.0 rank=1 abstain=True lat=20.8s
+[q20260707_a06_gist_same_issuer_rcms_vs_academic] cov=1.0 rank=1 abstain=False lat=25.6s
+[q20260707_a07_livestock_honey_vs_traceability_compare] cov=1.0 rank=1 abstain=False lat=20.31s
+[q20260707_a08_hanyoung_numeric_precision] cov=1.0 rank=1 abstain=False lat=6.51s
+[q20260707_a09_kaeri_dose_ai_overclaim] cov=1.0 rank=1 abstain=False lat=10.47s
+[q20260707_a11_dbrain_award_score_and_vendor] cov=1.0 rank=1 abstain=True lat=15.7s
+[q20260707_a12_seoul_digital_sex_crime_sensitive_story] cov=1.0 rank=1 abstain=False lat=9.93s
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "l98_qv8_semi_fresh_diagnostic",
+  "task_id": "baseline_default",
+  "status": "proposal",
+  "summary": "baseline_default completed; best=baseline_default EDD=95.81",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+    "I:\\0706\\rfp-rag-project\\chroma_db",
+    "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py"
+  ],
+  "models": {
+    "answer_model": "",
+    "judge_model": ""
+  },
+  "budget_summary": {
+    "budget_cap_usd": 5.0,
+    "hard_stop_usd": 5.0,
+    "starting_spent_usd": 2.687161,
+    "spent_observed_usd": 2.813455,
+    "preflight_case_estimate_usd": 0.03,
+    "effective_case_count": 10,
+    "events": 1,
+    "skipped_preflight_budget": 0,
+    "budget_gate_all_skipped": false
+  },
+  "protected_paths_seen": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "CLAUDE.md",
+    "config.py",
+    "src/**",
+    "chroma_db/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\results.csv",
+      "kind": "data",
+      "description": "worker metrics with EDD score"
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\details.json",
+      "kind": "json",
+      "description": "question-level details and issue keys"
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\cost_summary.json",
+      "kind": "json",
+      "description": "observed model usage and cost summary"
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\budget_ledger.jsonl",
+      "kind": "data",
+      "description": "append-style per-call usage/cost ledger for this worker run"
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\worker_output.json",
+      "kind": "json",
+      "description": "worker output contract"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "suite": "baseline_default",
+        "experiment": "baseline_default",
+        "run_mode": "scored",
+        "retrieval_coverage_avg": 1.0,
+        "hit_all_targets_rate": 1.0,
+        "mrr": 1.0,
+        "groundedness_avg": 5.0,
+        "relevance_avg": 5.0,
+        "abstention_accuracy": 0.8,
+        "false_abstention_rate": 0.0,
+        "empty_answer_rate": 0.0,
+        "latency_avg_sec": 17.645,
+        "edd_score": 95.81,
+        "edd_retrieval_coverage_avg": 1.0,
+        "edd_hit_all_targets_rate": 1.0,
+        "edd_mrr": 1.0,
+        "edd_groundedness_avg": 1.0,
+        "edd_relevance_avg": 1.0,
+        "edd_abstention_accuracy": 0.8,
+        "edd_latency_score": 0.5616
+      }
+    ],
+    "rejected_or_risky_items": [],
+    "needs_orchestrator_review": [
+      "Compare EDD score with raw metrics before adopting any parameter.",
+      "Do not adopt a row if empty_answer or false_abstain issue keys dominate."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py --run-dir I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti --suite baseline_default --worker-id l98_qv8_semi_fresh_diagnostic --questions eval\\questions_v8_deadline_semi_fresh_diagnostic_frozen.json --budget-cap-usd 5 --hard-stop-usd 5 --starting-spent-usd 2.687161 --preflight-case-estimate-usd 0.03"
+    ],
+    "observed_results": [
+      "index_count=11842",
+      "effective_case_count=10",
+      "budget_gate hard_stop_usd=5.0 starting_spent_usd=2.687161",
+      "wrote_rows=1",
+      "budget_events=1"
+    ]
+  },
+  "created_at": "2026-07-07T12:33:46"
+}

@@ -1,0 +1,263 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "worker_b",
+  "task_id": "l47_claim_gate_red",
+  "status": "proposal",
+  "summary": "Red-team proposal for the L47 qv6_007 claim-preservation gate: keep the existing L47 outputs as exposed diagnostic evidence only, stress the deterministic marker gate for false positives/false negatives, and block any generalization claim from qv6_007 diagnostics.",
+  "inputs": [
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/ledger.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/checkpoint_03_merge_decisions.md",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/checkpoint_04_smoke.md",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/loop_points.csv",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/summary/l37_l40_v6_metamorphic_loop_report.md",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/summary/l41_l44_quality_cost_gate_report.md",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/summary/l45_budget_overanswer_gate_report.md",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/summary/l46_red_review_budget_gate_correction.md",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/summary/summary.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l41_claim_pair_audit.contract.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l41_qv6_010_ambiguity_review.contract.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l40_v6_goyang_alias_retry_baseline_default/details.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l44_cost_trace_onecase_withjudge_baseline_default/details.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l47_claim_gate_l37_first_run/claim_preservation_results.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l47_claim_gate_l40_alias_retry/claim_preservation_results.json",
+    "eval/questions_v6_metamorphic_frozen_first_run.json",
+    "eval/questions_v6_l38_safety_retry.json",
+    "eval/questions_v6_l39_goyang_order_depth_probe.json",
+    "eval/claim_preservation_expectations.json",
+    "scripts/evaluate.py",
+    "scripts/run_experiment_worker.py",
+    "scripts/check_claim_preservation.py",
+    "scripts/build_exposure_registry.py"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "Read-only local artifact and source inspection; no paid API calls and no protected file edits."
+  },
+  "protected_paths_seen": [
+    "scripts/**",
+    "src/**",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md",
+    "config.py",
+    "chroma_db/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l47_claim_gate_red.contract.json",
+      "kind": "json",
+      "description": "Worker B proposal contract for L47 claim-gate red review."
+    },
+    {
+      "path": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l47_claim_gate_red.md",
+      "kind": "md",
+      "description": "Human-readable red-team proposal for edge cases, false positives, verification commands, and diagnostic-only labeling."
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "id": "keep_l47_claim_gate_diagnostic_only",
+        "proposal": "Accept the L47 claim-preservation checker as a no-API diagnostic gate for the exposed qv6_007 case only.",
+        "evidence": "Existing L47 analysis shows L37 claim_preservation_rate=0.0 and L40 claim_preservation_rate=0.5; both gate_status=fail and claim_scope=diagnostic_only_exposed_case."
+      },
+      {
+        "id": "treat_l40_as_partial_recovery_not_pass",
+        "proposal": "Label L40 as partial recovery: entity binding and unmanned-operation/HW linkage improved, physical access-control remains source-supported but underanswered.",
+        "evidence": "L40 and L44 details have all-Goyang retrieval and judge 5/5, yet the access-control claim still fails the deterministic L47 gate."
+      },
+      {
+        "id": "make_claim_gate_override_report_ready_not_scoreboard",
+        "proposal": "A failed claim gate should block report-ready promotion for the exposed case, but must not create a new performance score or alter the strict scoreboard row."
+      },
+      {
+        "id": "record_gate_exit_code_semantics",
+        "proposal": "Because scripts/check_claim_preservation.py returns exit code 1 when claims fail, orchestrators should treat a parsed JSON with gate_status=fail as an expected diagnostic gate failure, not as runner infrastructure failure."
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "id": "do_not_generalize_qv6_007",
+        "risk": "The qv6_007 diagnostics are exposed targeted retries and should not be described as generalization, holdout, or broad v6 performance evidence."
+      },
+      {
+        "id": "do_not_promote_l44_judge_5",
+        "risk": "L44 judge 5/5 is useful evidence of judge blindness on this pair; it is not evidence that qv6_007 is fixed."
+      },
+      {
+        "id": "do_not_use_preservation_rate_as_model_metric",
+        "risk": "A 2-claim exposed-case preservation rate is too narrow to graph beside EDD or claim as system-level claim-preservation quality."
+      },
+      {
+        "id": "do_not_run_broad_paid_loop_yet",
+        "risk": "Broad paid v7/v8/v9 runs remain premature until claim-preservation gate behavior is reviewed on false-positive/false-negative examples."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Decide whether L47 should update loop_points/checkpoints after reviewing Worker B; this worker did not edit those protected or orchestration files.",
+      "Review whether source_search in eval/claim_preservation_expectations.json is too broad because scripts/check_claim_preservation.py currently loads whole matching data files, not a project-scoped row/span.",
+      "Review whether false_friend_hits should affect pass/fail status instead of being recorded only as evidence.",
+      "Review whether future details.json should include retrieved chunk text or stable row/chunk IDs so claim support is not inferred from global source-file markers."
+    ],
+    "red_team_edge_cases": [
+      {
+        "case": "source_scope_false_positive",
+        "why_it_matters": "source_text_for() can append an entire data_list.csv if required_any appears anywhere in the file; source_any markers may then come from a different row or project.",
+        "expected_gate_behavior": "Block or warn unless source hits are within a project-scoped span matching target_org and target_biz, or within the retrieved chunk IDs for the answer."
+      },
+      {
+        "case": "answer_polarity_false_positive",
+        "why_it_matters": "answer_any is marker-based. An answer can mention an access-control term while saying it is not confirmed.",
+        "expected_gate_behavior": "A negative/not-found statement near a claim anchor should fail even if answer_any has a lexical hit."
+      },
+      {
+        "case": "false_friend_access_control",
+        "why_it_matters": "L40 distinguishes account/access-permission security from physical access-control devices. The checker records false_friend_hits but does not currently use them in status.",
+        "expected_gate_behavior": "If false_friend_hits are present and physical answer markers are absent or negated, keep fail/source_supported_but_answer_underanswered."
+      },
+      {
+        "case": "underanswer_window_miss",
+        "why_it_matters": "has_underanswer_near() uses a 220-character window. Longer answers can place the anchor and the not-confirmed phrase outside that window.",
+        "expected_gate_behavior": "Use section-level or sentence-level polarity around the claim, not only a fixed character window."
+      },
+      {
+        "case": "encoding_marker_fragility",
+        "why_it_matters": "The expectation markers are mojibake-sensitive. A future normalized Korean answer/source or slightly different spacing can become a false fail.",
+        "expected_gate_behavior": "Store stable canonical claim IDs and source row/chunk IDs, and keep marker lists as secondary evidence rather than the only proof."
+      },
+      {
+        "case": "source_marker_missing_should_not_pass",
+        "why_it_matters": "When source_supported is false and answer_supported is false, the current per-claim status can be pass even for must-preserve expectations.",
+        "expected_gate_behavior": "For required diagnostic claims, missing source evidence should produce blocked_expectation_or_source_gap, not pass."
+      },
+      {
+        "case": "old_detail_schema",
+        "why_it_matters": "Some L38-era saved details predate answer_quality_issues; recompute scripts can backfill, but stale detail files can silently lack diagnostics.",
+        "expected_gate_behavior": "Verification should report detail_schema_version or explicitly note whether recomputed answer_quality_diagnostics are present."
+      },
+      {
+        "case": "missing_question_id",
+        "why_it_matters": "If details do not contain qv6_007, the gate should not look like a clean pass.",
+        "expected_gate_behavior": "answer_found=false should be a blocked or failed case for required exposed diagnostics."
+      },
+      {
+        "case": "overfit_to_qv6_007_terms",
+        "why_it_matters": "A future answer can be tuned to include the exact two expected markers while still omitting other canonical qv6_006 details.",
+        "expected_gate_behavior": "Keep L47 as a narrow gate and require additional fresh or broader metamorphic pairs before making any general claim."
+      }
+    ],
+    "false_positive_traps": [
+      {
+        "trap": "Global CSV support from wrong project",
+        "test": "Create or select a source row where the access-control marker appears under another Goyang-like project; the qv6_007 expectation should not pass source_supported from that row."
+      },
+      {
+        "trap": "System account access mistaken for physical access control",
+        "test": "Use an answer that only mentions permissions, access logs, and network access control; it should not satisfy physical_access_control_system."
+      },
+      {
+        "trap": "Negated marker counted as support",
+        "test": "Use an answer saying physical access-control system is not confirmed while repeating the marker; it should fail by polarity."
+      },
+      {
+        "trap": "Judge score masks paired failure",
+        "test": "Compare L44 judge 5/5 with L47 claim_gate fail; promotion logic should prefer the claim-gate caveat for report-ready status."
+      },
+      {
+        "trap": "Diagnostic row leaks into scoreboard",
+        "test": "After any claim-gate run, aggregate summary should still have scoreboard_rows=1 and diagnostic_only rows should contain L38-L46/L47 style exposed diagnostics only."
+      }
+    ],
+    "verification_commands_proposed": [
+      {
+        "purpose": "Reproduce L37 exposed-case claim gate; nonzero exit means gate failed as expected, not script crash if JSON is written.",
+        "command": "python -X utf8 scripts/check_claim_preservation.py --details eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l37_v6_metamorphic_first_baseline_baseline_default/details.json --expectations eval/claim_preservation_expectations.json --out-dir eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l47_claim_gate_l37_first_run --source-root .",
+        "expected_result": "summary.gate_status=fail, claims_failed=2, claim_preservation_rate=0.0, claim_scope=diagnostic_only_exposed_case"
+      },
+      {
+        "purpose": "Reproduce L40 exposed-case claim gate.",
+        "command": "python -X utf8 scripts/check_claim_preservation.py --details eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l40_v6_goyang_alias_retry_baseline_default/details.json --expectations eval/claim_preservation_expectations.json --out-dir eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l47_claim_gate_l40_alias_retry --source-root .",
+        "expected_result": "summary.gate_status=fail, claims_failed=1, claim_preservation_rate=0.5; unmanned_operation_program passes and physical_access_control_system fails"
+      },
+      {
+        "purpose": "Verify L47 did not promote exposed diagnostics into the scoreboard after aggregation.",
+        "command": "python scripts/aggregate_parallel_eval.py --run-dir eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight",
+        "expected_result": "summary/summary.json keeps only L37 in scoreboard_rows; any claim-gate artifacts remain diagnostic-only or outside EDD rows"
+      },
+      {
+        "purpose": "Verify existing L47 result labels directly without rerunning the checker.",
+        "command": "PowerShell: Get-Content -Raw eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l47_claim_gate_l40_alias_retry/claim_preservation_results.json | ConvertFrom-Json | Select-Object -ExpandProperty summary",
+        "expected_result": "gate_status fail; claim_scope diagnostic_only_exposed_case"
+      },
+      {
+        "purpose": "Verify no paid calls are needed for the claim gate.",
+        "command": "Review scripts/check_claim_preservation.py imports and execution path; it reads details, expectations, and local source text only.",
+        "expected_result": "No OpenAI client, no RAGPipeline call, no run_eval call"
+      }
+    ],
+    "result_labeling": {
+      "required_labels": [
+        "diagnostic_only_exposed_case",
+        "targeted_failure_probe_exposed",
+        "partial_recovery_only",
+        "source_supported_but_answer_underanswered",
+        "judge_blindness_example",
+        "not_generalization_evidence"
+      ],
+      "allowed_language": [
+        "L47 confirms a no-API diagnostic gate can catch the exposed qv6_007 residual underanswer.",
+        "L40 is a partial recovery over L37 on qv6_007: one of two diagnostic claims now passes.",
+        "The qv6_007 claim gate remains failed, so broad paid loops should stay closed until the gate and false-positive cases are reviewed."
+      ],
+      "disallowed_language": [
+        "qv6_007 is fixed",
+        "L40 proves generalization",
+        "claim preservation is 50% system-wide",
+        "judge 5/5 confirms the answer is complete",
+        "L47 improves EDD"
+      ],
+      "scoreboard_policy": "Do not add claim-gate rows to EDD scoreboard. Record claim-gate status in diagnostic summaries, loop_points, or report-ready gates only."
+    },
+    "recommended_next_low_cost_steps": [
+      "Add a no-API false-positive fixture pack for check_claim_preservation.py before broad paid runs.",
+      "Narrow source_search to retrieved chunk IDs or source row spans for qv6_007.",
+      "Make false_friend_hits affect status for the physical_access_control_system claim.",
+      "Add a gate_result_label field to any L47 summary: diagnostic_only_exposed_case, not_generalization_evidence.",
+      "Use L44 as a report example of judge blindness only after pairing it with the L47 gate failure."
+    ]
+  },
+  "merge_risk": "medium",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw C:/Users/peedi/.codex/skills/parallel-team-orchestrator/SKILL.md",
+      "Get-Content -Raw C:/Users/peedi/.codex/skills/parallel-team-orchestrator/references/worker-output-contract.md",
+      "Get-ChildItem -Force eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight",
+      "rg --files -g '*L37*' -g '*L46*' -g '*l37*' -g '*l46*'",
+      "rg -n \"qv6_007|claim|generaliz|gate|diagnostic|overanswer|budget|hardstop|L47|l47\" eval scripts -S",
+      "Get-Content -Raw summary/l37_l40_v6_metamorphic_loop_report.md",
+      "Get-Content -Raw summary/l41_l44_quality_cost_gate_report.md",
+      "Get-Content -Raw summary/l45_budget_overanswer_gate_report.md",
+      "Get-Content -Raw summary/l46_red_review_budget_gate_correction.md",
+      "Get-Content selected sections of scripts/evaluate.py",
+      "Get-Content selected sections of scripts/run_experiment_worker.py",
+      "Get-Content -Raw scripts/check_claim_preservation.py",
+      "Get-Content -Raw eval/claim_preservation_expectations.json",
+      "Get-Content -Raw analysis/l47_claim_gate_l37_first_run/claim_preservation_results.json",
+      "Get-Content -Raw analysis/l47_claim_gate_l40_alias_retry/claim_preservation_results.json",
+      "git status --short"
+    ],
+    "observed_results": [
+      "No paid API/model calls were made.",
+      "git status --short reported this workspace is not a git repository from I:/0706/rfp-rag-project, so git hygiene could not be used as verification.",
+      "L37 is the only scoreboard row in summary/summary.json; L38-L46 are diagnostic-only or dry-run rows.",
+      "L40 and L44 both show all-Goyang retrieval for qv6_007 and judge 5/5, but both still underanswer physical access control.",
+      "Existing L47 analysis for L37 has gate_status=fail, claims_failed=2, claim_preservation_rate=0.0, claim_scope=diagnostic_only_exposed_case.",
+      "Existing L47 analysis for L40 has gate_status=fail, claims_failed=1, claim_preservation_rate=0.5, claim_scope=diagnostic_only_exposed_case.",
+      "scripts/check_claim_preservation.py is local/no-API and returns nonzero when claim failures exist.",
+      "Potential red risks found: broad source-file search, marker/polarity fragility, false_friend_hits not used in status, stale detail schema handling, and overclaiming a 2-claim exposed diagnostic rate."
+    ]
+  },
+  "created_at": "2026-07-07T00:20:00+09:00"
+}

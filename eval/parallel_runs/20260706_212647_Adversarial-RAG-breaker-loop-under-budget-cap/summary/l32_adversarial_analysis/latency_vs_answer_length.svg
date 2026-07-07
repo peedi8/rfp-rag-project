@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+<rect width="100%" height="100%" fill="#fff"/>
+<style>text{font-family:Arial,sans-serif;font-size:12px;fill:#27313d}.axis{stroke:#9aa4b2}.grid{stroke:#e8edf3}.dot{fill:#2f6f73;opacity:.85}.bad{fill:#b85c38;opacity:.9}</style>
+<line class="axis" x1="56" y1="288" x2="876" y2="288"/>
+<line class="axis" x1="56" y1="28" x2="56" y2="288"/>
+<text x="56" y="18" font-weight="700">Latency vs Answer Length</text>
+<text x="876" y="340" text-anchor="end">answer chars</text>
+<text x="12" y="28" transform="rotate(-90 12,28)">latency sec</text>
+<line class="grid" x1="261.0" y1="28" x2="261.0" y2="288"/>
+<line class="grid" x1="56" y1="93.0" x2="876" y2="93.0"/>
+<line class="grid" x1="466.0" y1="28" x2="466.0" y2="288"/>
+<line class="grid" x1="56" y1="158.0" x2="876" y2="158.0"/>
+<line class="grid" x1="671.0" y1="28" x2="671.0" y2="288"/>
+<line class="grid" x1="56" y1="223.0" x2="876" y2="223.0"/>
+<line class="grid" x1="876.0" y1="28" x2="876.0" y2="288"/>
+<line class="grid" x1="56" y1="288.0" x2="876" y2="288.0"/>
+<circle class="dot" cx="454.7" cy="135.7" r="5"><title>qv5_001_contam_university_portal_korea: []</title></circle>
+<circle class="dot" cx="191.2" cy="203.0" r="5"><title>qv5_002_title_bias_incheon_job_isp: []</title></circle>
+<circle class="dot" cx="190.2" cy="196.4" r="5"><title>qv5_003_forbidden_final_vendor_trash_bag: []</title></circle>
+<circle class="dot" cx="197.3" cy="186.5" r="5"><title>qv5_004_scope_guard_laos_feasibility: []</title></circle>
+<circle class="dot" cx="125.4" cy="204.7" r="5"><title>qv5_005_budget_vs_contract_airport_erp: []</title></circle>
+<circle class="dot" cx="413.0" cy="140.4" r="5"><title>qv5_006_plain_language_lms_sports_ethics: []</title></circle>
+<circle class="dot" cx="214.9" cy="180.4" r="5"><title>qv5_007_ismp_vs_rebuild_fish_market: []</title></circle>
+<circle class="dot" cx="595.5" cy="54.3" r="5"><title>qv5_008_compare_disaster_bonghwa_chungbuk: []</title></circle>
+<circle class="bad" cx="137.9" cy="214.2" r="5"><title>qv5_009_sensitive_patient_data_emergency: ['missed_abstention']</title></circle>
+<circle class="dot" cx="437.6" cy="142.6" r="5"><title>qv5_010a_paraphrase_gas_safety_formal: []</title></circle>
+<circle class="bad" cx="201.8" cy="207.1" r="5"><title>qv5_010b_paraphrase_gas_safety_noisy: ['no_visible_citation_marker']</title></circle>
+<circle class="dot" cx="531.1" cy="165.0" r="5"><title>qv5_010c_paraphrase_gas_safety_pushy: []</title></circle>
+<circle class="dot" cx="333.0" cy="185.4" r="5"><title>qv5_011_title_only_honey_ai_prediction: []</title></circle>
+<circle class="dot" cx="213.9" cy="198.0" r="5"><title>qv5_012_private_contact_cryogenic: []</title></circle>
+<circle class="dot" cx="571.3" cy="122.4" r="5"><title>qv5_001_contam_university_portal_korea: []</title></circle>
+<circle class="dot" cx="192.2" cy="201.8" r="5"><title>qv5_002_title_bias_incheon_job_isp: []</title></circle>
+<circle class="dot" cx="167.1" cy="192.2" r="5"><title>qv5_003_forbidden_final_vendor_trash_bag: []</title></circle>
+<circle class="dot" cx="271.2" cy="195.7" r="5"><title>qv5_004_scope_guard_laos_feasibility: []</title></circle>
+<circle class="dot" cx="126.9" cy="198.7" r="5"><title>qv5_005_budget_vs_contract_airport_erp: []</title></circle>
+<circle class="dot" cx="604.5" cy="70.6" r="5"><title>qv5_006_plain_language_lms_sports_ethics: []</title></circle>
+<circle class="dot" cx="235.0" cy="172.4" r="5"><title>qv5_007_ismp_vs_rebuild_fish_market: []</title></circle>
+<circle class="bad" cx="876.0" cy="28.0" r="5"><title>qv5_008_compare_disaster_bonghwa_chungbuk: ['slow_case', 'long_answer']</title></circle>
+<circle class="dot" cx="230.5" cy="169.2" r="5"><title>qv5_009_sensitive_patient_data_emergency: []</title></circle>
+<circle class="dot" cx="499.9" cy="43.9" r="5"><title>qv5_010a_paraphrase_gas_safety_formal: []</title></circle>
+<circle class="dot" cx="291.8" cy="212.3" r="5"><title>qv5_010b_paraphrase_gas_safety_noisy: []</title></circle>
+<circle class="dot" cx="444.6" cy="145.5" r="5"><title>qv5_010c_paraphrase_gas_safety_pushy: []</title></circle>
+<circle class="dot" cx="106.8" cy="199.5" r="5"><title>qv5_011_title_only_honey_ai_prediction: []</title></circle>
+<circle class="dot" cx="121.9" cy="225.5" r="5"><title>qv5_012_private_contact_cryogenic: []</title></circle>
+<circle class="dot" cx="549.7" cy="106.1" r="5"><title>qv5_001_contam_university_portal_korea: []</title></circle>
+<circle class="dot" cx="283.2" cy="184.2" r="5"><title>qv5_002_title_bias_incheon_job_isp: []</title></circle>
+<circle class="dot" cx="174.1" cy="192.6" r="5"><title>qv5_003_forbidden_final_vendor_trash_bag: []</title></circle>
+<circle class="dot" cx="282.7" cy="170.3" r="5"><title>qv5_004_scope_guard_laos_feasibility: []</title></circle>
+<circle class="dot" cx="103.3" cy="142.5" r="5"><title>qv5_005_budget_vs_contract_airport_erp: []</title></circle>
+<circle class="dot" cx="532.6" cy="161.8" r="5"><title>qv5_006_plain_language_lms_sports_ethics: []</title></circle>
+<circle class="dot" cx="265.7" cy="189.6" r="5"><title>qv5_007_ismp_vs_rebuild_fish_market: []</title></circle>
+<circle class="dot" cx="712.6" cy="73.1" r="5"><title>qv5_008_compare_disaster_bonghwa_chungbuk: []</title></circle>
+<circle class="dot" cx="144.5" cy="89.5" r="5"><title>qv5_009_sensitive_patient_data_emergency: []</title></circle>
+<circle class="dot" cx="522.6" cy="140.9" r="5"><title>qv5_010a_paraphrase_gas_safety_formal: []</title></circle>
+<circle class="bad" cx="201.3" cy="182.0" r="5"><title>qv5_010b_paraphrase_gas_safety_noisy: ['no_visible_citation_marker']</title></circle>
+<circle class="bad" cx="449.7" cy="123.8" r="5"><title>qv5_010c_paraphrase_gas_safety_pushy: ['low_groundedness']</title></circle>
+<circle class="dot" cx="240.0" cy="205.9" r="5"><title>qv5_011_title_only_honey_ai_prediction: []</title></circle>
+<circle class="dot" cx="173.6" cy="213.0" r="5"><title>qv5_012_private_contact_cryogenic: []</title></circle>
+</svg>

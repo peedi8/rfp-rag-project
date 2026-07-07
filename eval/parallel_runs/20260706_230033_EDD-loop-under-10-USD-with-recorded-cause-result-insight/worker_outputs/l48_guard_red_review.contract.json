@@ -1,0 +1,224 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "l48_guard_red_review",
+  "task_id": "l48_guard_red_review",
+  "status": "proposal",
+  "summary": "Red-review of the proposed evidence-use guard for qv6_007-style failures. The guard is worth pursuing only as a narrow diagnostic/reporting gate for source-supported-but-underanswered physical access-control evidence, with explicit source/retrieval scope and false-positive fixtures before any broad paid loop reopens.",
+  "inputs": [
+    "src/generator.py",
+    "src/retriever.py",
+    "scripts/check_claim_preservation.py",
+    "eval/claim_preservation_expectations.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/summary/l47_claim_preservation_gate_report.md",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l47_claim_gate_l44_judge_blindness/claim_preservation_results.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l47_claim_gate_red.contract.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l47_claim_gate_schema.contract.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l44_cost_trace_onecase_withjudge_baseline_default/details.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l40_v6_goyang_alias_retry_baseline_default/details.json"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "Read-only local artifact/source inspection and proposal writing; no generator, retriever, judge, API, or model calls were run."
+  },
+  "protected_paths_seen": [
+    "src/generator.py",
+    "src/retriever.py",
+    "scripts/check_claim_preservation.py",
+    "eval/claim_preservation_expectations.json"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l48_guard_red_review.contract.json",
+      "kind": "json",
+      "description": "Contract output for the L48 evidence-use guard red review."
+    },
+    {
+      "path": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l48_guard_red_review.md",
+      "kind": "markdown",
+      "description": "Human-readable red review of overfitting risks, false-positive cases, labels, and proof bar."
+    }
+  ],
+  "proposal": {
+    "bottom_line": "Do not implement a broad generator-time rule that forces confirmation whenever any access-control marker appears. Implement, if reopened, a narrow no-API evidence-use diagnostic that fires only when target-scoped retrieved/source evidence supports physical access-control inclusion and the generated answer denies or cannot-confirm that inclusion.",
+    "accepted_risks": [
+      {
+        "id": "narrow_exposed_case_guard",
+        "accepted": true,
+        "risk": "A qv6_007-specific guard can overfit to an exposed case.",
+        "why_acceptable": "Acceptable only if labeled diagnostic_only_exposed_case and not counted as EDD, generalization, holdout, or system-wide claim-preservation evidence."
+      },
+      {
+        "id": "marker_based_triage",
+        "accepted": true,
+        "risk": "Literal markers are brittle under mojibake, spacing, and paraphrase.",
+        "why_acceptable": "Acceptable for no-API triage if marker hits are reported as evidence, not hidden authority, and a fixture pack covers negation, false friends, missing source, and source leakage."
+      },
+      {
+        "id": "hard_report_gate",
+        "accepted": true,
+        "risk": "A failed guard can block report-ready promotion even when judge scores are high.",
+        "why_acceptable": "L44 shows judge 5/5 while the physical access-control claim is still source_supported_but_answer_underanswered; the reporting caveat is the point of the guard."
+      }
+    ],
+    "rejected_risks": [
+      {
+        "id": "broad_access_control_keyword_rule",
+        "rejected": true,
+        "risk": "Treating any access-control term in retrieved/source context as proof that the answer must confirm physical access-control inclusion.",
+        "reason": "The codebase already distinguishes physical access-control from system/account/network access false friends; a keyword-only rule would create false positives."
+      },
+      {
+        "id": "source_file_global_support",
+        "rejected": true,
+        "risk": "Using whole-file source hits from data_list.csv as support for the target case.",
+        "reason": "scripts/check_claim_preservation.py can gather text from matching source files/rows; future guard proof should bind hits to retrieved chunks or project-scoped rows before blaming generation."
+      },
+      {
+        "id": "retrieval_agnostic_generation_blame",
+        "rejected": true,
+        "risk": "Calling a failure evidence-use when target evidence was not retrieved or retrieval scope was mixed/off-target.",
+        "reason": "src/retriever.py can auto-filter, MMR, rerank, and ensure org coverage. Guard labels must separate target_missing/mixed_org retrieval failures from generation evidence-use failures."
+      },
+      {
+        "id": "positive_marker_beats_negation",
+        "rejected": true,
+        "risk": "Passing an answer merely because it repeats the physical access-control marker while saying it cannot be confirmed.",
+        "reason": "Existing L47 logic correctly gives underanswer polarity priority over marker presence."
+      },
+      {
+        "id": "claim_gate_as_scoreboard_metric",
+        "rejected": true,
+        "risk": "Promoting the qv6_007 two-claim diagnostic into an EDD or system-wide preservation score.",
+        "reason": "The L47 report explicitly labels the gate diagnostic_only_exposed_case; broad paid runs remain closed."
+      }
+    ],
+    "false_positive_cases_to_require": [
+      {
+        "case": "system_or_account_access_only",
+        "setup": "Retrieved/source context and answer mention access permissions, account roles, connection logs, server/network access control, or security products, but no physical entry/exit access-control purchase/install evidence.",
+        "expected_label": "no_guard_fire_false_friend_only"
+      },
+      {
+        "case": "physical_access_control_detail_unknown_but_inclusion_confirmed",
+        "setup": "Answer confirms physical access-control purchase/install inclusion but says RFID/card/biometric/vendor/interface details are not confirmed.",
+        "expected_label": "pass_narrow_unknown_boundary"
+      },
+      {
+        "case": "wrong_project_source_leak",
+        "setup": "The physical access-control marker appears in another organization or another Goyang-like project, while qv6_007 retrieved chunks do not contain target-bound support.",
+        "expected_label": "blocked_source_scope_not_generation"
+      },
+      {
+        "case": "retrieval_target_missing",
+        "setup": "Answer cannot confirm physical access control because retrieved_orgs lacks the target Goyang organization.",
+        "expected_label": "retrieval_scope_fail_not_evidence_use_fail"
+      },
+      {
+        "case": "mixed_org_retrieval",
+        "setup": "Retrieved context includes target and non-target facility records with access-control language.",
+        "expected_label": "mixed_org_warning_or_fail_by_strict_mode"
+      },
+      {
+        "case": "negated_marker_echo",
+        "setup": "Answer repeats the access-control-system marker in a sentence saying it is not confirmed.",
+        "expected_label": "source_supported_but_answer_underanswered"
+      },
+      {
+        "case": "answer_says_not_included",
+        "setup": "Source supports purchase/install but answer says the physical access-control system is absent or not included.",
+        "expected_label": "source_supported_but_answer_contradicted"
+      },
+      {
+        "case": "source_supported_answer_missing_without_negation",
+        "setup": "Source and retrieval support the physical access-control claim but answer omits it entirely.",
+        "expected_label": "source_supported_but_answer_missing_claim"
+      }
+    ],
+    "reporting_labels": {
+      "primary_failure_labels": [
+        "source_supported_but_answer_underanswered",
+        "source_supported_but_answer_missing_claim",
+        "source_supported_but_answer_contradicted",
+        "false_friend_substitution_system_access_for_physical_access",
+        "retrieval_scope_target_missing",
+        "retrieval_scope_mixed_orgs",
+        "source_scope_unbound_or_leaked",
+        "blocked_expectation_or_source_gap"
+      ],
+      "result_scope_labels": [
+        "diagnostic_only_exposed_case",
+        "not_generalization_evidence",
+        "not_edd_scoreboard",
+        "report_ready_blocker",
+        "judge_blindness_example",
+        "partial_recovery_only"
+      ],
+      "allowed_summary_language": [
+        "The guard catches a qv6_007-style residual evidence-use failure when target-scoped physical access-control evidence is available but the answer says it cannot be confirmed.",
+        "The result is diagnostic-only and blocks report-ready promotion for this exposed case.",
+        "Broad paid loops remain closed until false-positive fixtures and target-scoped proof pass locally."
+      ],
+      "disallowed_summary_language": [
+        "qv6_007 is fixed",
+        "physical access-control guard improves EDD",
+        "claim preservation is generally solved",
+        "judge 5/5 validates the answer",
+        "any access-control evidence should always be confirmed"
+      ]
+    },
+    "proof_required_before_reopening_broad_paid_loops": [
+      "A no-API fixture pack with at least the false-positive cases listed here, including false friends, narrow unknown detail boundary, wrong-project leakage, target-missing retrieval, mixed-org retrieval, negated marker echo, and source-supported omission.",
+      "A same-cohort qv6_007 rerun or saved-detail replay where retrieved_orgs is target_only, physical access-control source support is bound to retrieved chunk IDs or project-scoped source rows, and the answer confirms inclusion while keeping unknown details narrow.",
+      "A parsed guard report showing zero critical failures, no source_scope_unbound_or_leaked cases, and explicit diagnostic_only_exposed_case/not_edd_scoreboard labels.",
+      "A regression check proving the guard does not convert system/account/network access-control language into physical access-control support.",
+      "A reporting/aggregation check proving claim-guard artifacts do not enter EDD scoreboard rows and that judge 5/5 cannot override a critical claim-gate failure.",
+      "Cost/budget dry-run evidence showing the next loop would run the frozen cohort intended, with no broad paid expansion triggered by a diagnostic-only pass alone."
+    ],
+    "implementation_guidance_if_reopened": [
+      "Prefer an offline post-generation/report gate over a generator prompt mutation until false positives are cleared.",
+      "Require target-bound evidence: retrieved chunk IDs, project-scoped CSV rows, or source spans matching target_org and project terms.",
+      "Evaluate retrieval_scope_status before generation labels; do not blame generation when target evidence was absent or ambiguous.",
+      "Use polarity-aware sentence/bullet checks so 'inclusion confirmed, method unknown' passes while 'inclusion cannot be confirmed' fails.",
+      "Keep false_friend_hits status-affecting for this claim when no physical access-control counter-marker is present."
+    ]
+  },
+  "merge_risk": "medium",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -LiteralPath 'C:/Users/peedi/.codex/skills/eval-loop-orchestrator/SKILL.md'",
+      "Get-Location; git status --short",
+      "Get-Content -LiteralPath 'src/generator.py'",
+      "Get-Content -LiteralPath 'src/retriever.py'",
+      "Get-Content -LiteralPath 'scripts/check_claim_preservation.py'",
+      "Get-Content -LiteralPath 'eval/claim_preservation_expectations.json'",
+      "Get-Content -LiteralPath 'eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/summary/l47_claim_preservation_gate_report.md'",
+      "Get-Content -LiteralPath 'eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l47_claim_gate_l44_judge_blindness/claim_preservation_results.json'",
+      "Get-ChildItem -LiteralPath 'eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs' -Force | Select-Object Name,Length,LastWriteTime",
+      "Get-Content -LiteralPath 'eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l47_claim_gate_red.contract.json'",
+      "Get-Content -LiteralPath 'eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l47_claim_gate_schema.contract.json'",
+      "Get-Content -LiteralPath 'eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l44_cost_trace_onecase_withjudge_baseline_default/details.json'",
+      "Get-Content -LiteralPath 'eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l40_v6_goyang_alias_retry_baseline_default/details.json'",
+      "$p='eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l48_guard_red_review.contract.json'; $j=Get-Content -Raw -LiteralPath $p | ConvertFrom-Json; $j.schema; $j.task_id; $j.validation.commands_run.Count",
+      "Get-Item -LiteralPath 'eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l48_guard_red_review.contract.json','eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l48_guard_red_review.md' | Select-Object Name,Length,LastWriteTime",
+      "Select-String -LiteralPath 'eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l48_guard_red_review.md' -Pattern 'Proof Before Broad Paid Loops','No API/model calls were made'"
+    ],
+    "observed_results": [
+      "No paid API/model calls were made.",
+      "No protected paths were edited.",
+      "The workspace path I:/0706/rfp-rag-project is not a git repository, so git status could not provide dirty-worktree verification.",
+      "src/generator.py builds prompts and calls OpenAI for generation; this review did not invoke it.",
+      "src/retriever.py can auto-filter orgs, retrieve with MMR/rerank, and preserve multi-org coverage; guard labels must account for retrieval scope.",
+      "scripts/check_claim_preservation.py is a local deterministic checker and currently uses marker, underanswer, false-friend, and retrieval-scope fields.",
+      "L47 report says the existing gate is diagnostic_only_exposed_case and broad paid v7/v8/v9 runs remain closed.",
+      "L44 claim-preservation result shows target_only retrieval, 1/2 claims passed, physical_access_control_system failed as source_supported_but_answer_underanswered, while the saved L44 judge score was 5/5.",
+      "Prior L47 red/schema outputs already warn about source-scope false positives, false friends, polarity, and overclaiming qv6_007 diagnostics."
+      ,
+      "The L48 contract parsed as JSON with schema=parallel_team_worker_output.v1 and task_id=l48_guard_red_review.",
+      "Both allowed L48 output files exist under worker_outputs.",
+      "The markdown output contains the required proof-before-paid-loops section and no-API verification note."
+    ]
+  },
+  "created_at": "2026-07-07T00:00:00+09:00"
+}

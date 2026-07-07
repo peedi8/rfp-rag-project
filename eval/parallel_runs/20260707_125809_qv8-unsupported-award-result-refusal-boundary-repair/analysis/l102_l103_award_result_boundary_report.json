@@ -1,0 +1,68 @@
+{
+  "historic": {
+    "L98_qv8_raw_top8": {
+      "edd": 95.81,
+      "abstention": 0.8,
+      "latency": 17.645
+    },
+    "L99_qv8_recomputed_top8": {
+      "edd": 97.81,
+      "abstention": 1.0,
+      "latency": 17.645
+    },
+    "L101_qv8_full_top5_before_guard": {
+      "edd": 96.57,
+      "abstention": 0.8,
+      "latency": 14.284
+    }
+  },
+  "current_rows": [
+    {
+      "suite": "topk5_only",
+      "experiment": "topk5_filter_rewrite",
+      "run_mode": "scored",
+      "edd_score": "60.0",
+      "retrieval_coverage_avg": "1.0",
+      "hit_all_targets_rate": "1.0",
+      "mrr": "1.0",
+      "groundedness_avg": "",
+      "relevance_avg": "",
+      "abstention_accuracy": "1.0",
+      "false_abstention_rate": "",
+      "empty_answer_rate": "0.0",
+      "latency_avg_sec": "2.44",
+      "edd_retrieval_coverage_avg": "1.0",
+      "edd_hit_all_targets_rate": "1.0",
+      "edd_mrr": "1.0",
+      "edd_groundedness_avg": "0.0",
+      "edd_relevance_avg": "0.0",
+      "edd_abstention_accuracy": "1.0",
+      "edd_latency_score": "1.0",
+      "worker": "l102_a11_topk5_guard_topk5_only"
+    },
+    {
+      "suite": "topk5_only",
+      "experiment": "topk5_filter_rewrite",
+      "run_mode": "scored",
+      "edd_score": "98.71",
+      "retrieval_coverage_avg": "1.0",
+      "hit_all_targets_rate": "1.0",
+      "mrr": "1.0",
+      "groundedness_avg": "5.0",
+      "relevance_avg": "5.0",
+      "abstention_accuracy": "1.0",
+      "false_abstention_rate": "0.0",
+      "empty_answer_rate": "0.0",
+      "latency_avg_sec": "13.656",
+      "edd_retrieval_coverage_avg": "1.0",
+      "edd_hit_all_targets_rate": "1.0",
+      "edd_mrr": "1.0",
+      "edd_groundedness_avg": "1.0",
+      "edd_relevance_avg": "1.0",
+      "edd_abstention_accuracy": "1.0",
+      "edd_latency_score": "0.7429",
+      "worker": "l103_qv8_full_topk5_guard_topk5_only"
+    }
+  ],
+  "decision": "diagnostic improvement confirmed on qv8; do not promote to strict validation"
+}

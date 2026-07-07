@@ -1,0 +1,14 @@
+[
+  {
+    "id": "qv3_010_casual_anyang_sports_reservation",
+    "type": "single_extract",
+    "turns": [
+      "안양 호계체육관 배드민턴/탁구 예약시스템, 회원통합운영이랑 예약/결제 쪽 요구 뭐야? 좀 짧게."
+    ],
+    "target_orgs": [
+      "경기도 안양시"
+    ],
+    "target_biz": "호계체육관 배드민턴장 및 탁구장 예약시스템 구축",
+    "note": "v3 first_validation: 짧고 구어체인 질문에서 체육시설 예약/회원/결제 요구를 과도하게 장황하지 않게 답하는지 본다."
+  }
+]

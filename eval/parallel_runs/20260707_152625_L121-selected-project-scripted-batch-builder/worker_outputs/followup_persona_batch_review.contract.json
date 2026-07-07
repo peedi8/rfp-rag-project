@@ -1,0 +1,59 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "followup_persona_batch_review",
+  "task_id": "followup_persona_batch_review",
+  "status": "proposal",
+  "summary": "Accepted: Q067-Q072 are aligned with prior-turn follow-up, and Q070 matches the sidecar domain-expansion intent. Accepted: Q073 correctly preserves the ISP/ISMP dynamic-seed thread, with the resolved one-turn variant trading fidelity for cheaper smoke coverage. Accepted: Q075-Q081 are labeled as abstention cases and the prompts are boundary-style unsupported claims. Risky: Q082-Q089 are broadly useful persona/business rewrites, but a few are generic enough that grounded usefulness may hinge on the earlier transcript quality. Needs review: the resolved_one_turn variants are intentionally shorter and may under-test memory-sensitive behavior compared with multiturn.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_multiturn_primary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_resolved_primary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\answers\\Q070_sidecar_answer.md"
+  ],
+  "protected_paths_seen": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_multiturn_primary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_resolved_primary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\answers\\Q070_sidecar_answer.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\worker_outputs\\followup_persona_batch_review.contract.json",
+      "kind": "json",
+      "description": "standard worker proposal wrapper"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\worker_outputs\\raw_reviews\\followup_persona_batch_review.contract.json",
+      "kind": "json",
+      "description": "raw worker review preserved before schema normalization"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Keep Q067-Q072 prior-turn follow-up structure.",
+      "Keep Q070 aligned with L120 sidecar domain-expansion intent.",
+      "Keep Q073 dynamic S_INCHEON_JOB_ISP seed for ISP/ISMP terminology context.",
+      "Keep Q075-Q081 as unsupported-boundary abstention cases.",
+      "Keep resolved-one-turn as cheaper smoke and multiturn as faithful memory evaluation."
+    ],
+    "rejected_or_risky_items": [
+      "Q082-Q089 usefulness depends on earlier transcript quality, so judge/readback must include usefulness/evidence-fit gates.",
+      "Resolved-one-turn variants under-test memory-sensitive behavior compared with multiturn."
+    ],
+    "needs_orchestrator_review": [
+      "Choose resolved-one-turn only for low-cost smoke; use multiturn for memory claims."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "raw review parsed by orchestrator",
+      "schema normalized by orchestrator"
+    ],
+    "observed_results": [
+      "Reviewed the requested Q067, Q069-Q073, Q075, Q077, Q079-Q081, and Q082-Q089 entries directly from the batch and question files, plus the Q070 sidecar note. No external files were edited."
+    ]
+  }
+}

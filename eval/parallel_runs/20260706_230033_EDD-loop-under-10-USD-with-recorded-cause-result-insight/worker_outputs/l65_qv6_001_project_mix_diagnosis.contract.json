@@ -1,0 +1,228 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "l65_qv6_001_project_mix_diagnosis",
+  "task_id": "diagnose_l64_qv6_001_groundedness_4_source_project_mixing",
+  "status": "proposal",
+  "summary": "No-API diagnosis of L64 qv6_001: retrieval hit the correct issuer and target UICC project, but the generated answer also used same-issuer chunks from another 한국연구재단 project, causing a groundedness=4 project-scope bleed.",
+  "inputs": [
+    "I:/0706/rfp-rag-project/eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l64_v6_exposed_regression_ambiguous_guard_baseline_default/details.json",
+    "I:/0706/rfp-rag-project/eval/questions_v6_metamorphic_frozen_first_run.json",
+    "I:/0706/rfp-rag-project/src/rag.py",
+    "I:/0706/rfp-rag-project/src/generator.py",
+    "I:/0706/rfp-rag-project/scripts/evaluate.py"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "manual read-only diagnosis of saved L64 details, frozen qv6 question definition, and local source files only"
+  },
+  "protected_paths_seen": [
+    "src/rag.py",
+    "src/generator.py",
+    "scripts/evaluate.py",
+    "eval/questions_v6_metamorphic_frozen_first_run.json",
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "src/**",
+    "scripts/**",
+    "eval/*.json",
+    "chroma_db/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l65_qv6_001_project_mix_diagnosis.contract.json",
+      "kind": "json",
+      "description": "worker output contract containing no-API qv6_001 project-mixing diagnosis"
+    },
+    {
+      "path": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l65_qv6_001_project_mix_diagnosis.md",
+      "kind": "markdown",
+      "description": "readable companion note for qv6_001 project-mixing diagnosis"
+    }
+  ],
+  "proposal": {
+    "case": {
+      "run": "l64_v6_exposed_regression_ambiguous_guard_baseline_default",
+      "suite": "baseline_default",
+      "question_id": "qv6_001_uicc_fragment_scope",
+      "question_type": "title_fragment_scope_recovery",
+      "target_orgs": [
+        "한국연구재단"
+      ],
+      "target_biz": "2024년 대학산학협력활동 실태조사 시스템(UICC) 기능개선",
+      "user_turn": "UICC 기능개선이라고만 적힌 그 대학 산학협력 실태조사 쪽 사업 있잖아. 기능개선, 운영지원, 대학정보공시 연계가 각각 문서에서 어떻게 나오나? 사업명 전체 몰라도 한국연구재단 문서 기준으로만 말해줘.",
+      "observed_metrics": {
+        "retrieval_coverage": 1.0,
+        "first_hit_rank": 1,
+        "retrieved_orgs_all": "한국연구재단",
+        "context_backfill_count": 0,
+        "abstention": false,
+        "judge_groundedness": 4,
+        "judge_relevance": 5
+      }
+    },
+    "root_cause": {
+      "short_label": "same-issuer multi-project context bleed",
+      "diagnosis": "The retriever/evaluator confirmed only issuer-level success for 한국연구재단, while the generator was given, or at least cited, chunks from multiple 사업명 values under that same issuer. The default prompt tells the model to answer from the provided documents and disclose 사업명/발주기관, but unlike the stricter prompt variants it does not explicitly require row/project-level separation when the same issuer has several projects. The ambiguous-title guard is not triggered because qv6_001 has a usable issuer hint and all retrieved orgs collapse to one org, so unrelated same-org project chunks remain eligible for synthesis.",
+      "why_groundedness_dropped": "The answer's main UICC claims were supported, but it added 운영/관리 details from 문서3/문서5/문서7 that the saved judge identified as 기초학문자료센터-related rather than UICC-specific. That is not a fabricated fact in isolation; it is a project-scope error caused by mixing same-issuer sources.",
+      "not_the_primary_cause": [
+        "Not an org-level retrieval miss: retrieved_orgs were eight 한국연구재단 entries and first_hit_rank was 1.",
+        "Not caused by CSV summary backfill: context_backfill_count was 0.",
+        "Not caught by answer_quality_diagnostics: qv6_001 is non-abstention and the deterministic diagnostics are mostly abstention-tail checks.",
+        "Not caught by ambiguous-title guard: generator.py only applies that guard for explicit ambiguous-title markers plus at least two retrieved orgs."
+      ]
+    },
+    "affected_answer_snippets": [
+      {
+        "kind": "supported_target_scope",
+        "snippet": "기능개선: 사용자관리 개선, 조사항목/대학/코드 현행화, 온라인 보고서 항목 확대 및 최종 정제데이터 기준 설정을 SFR-005/SFR-006/SFR-007 근거로 요약.",
+        "assessment": "Looks target-bound to the UICC project."
+      },
+      {
+        "kind": "supported_target_scope",
+        "snippet": "대학정보공시 연계: SFR-008의 연계플랫폼 데이터 전송·관리 기능 개선 및 대학원별 소속학과 없음 처리 방법에 따른 데이터 전송 개선 요구.",
+        "assessment": "Looks target-bound to the UICC project."
+      },
+      {
+        "kind": "suspected_project_mix",
+        "snippet": "운영지원 근거문서: 문서4(운영 지원), 문서1(추진배경), 문서5·문서7(운영·관리 관련 제시사항 일부)",
+        "assessment": "The 문서5·문서7 part is the first visible project-mixing marker."
+      },
+      {
+        "kind": "suspected_project_mix",
+        "snippet": "사업 단계별 착수·중간·완료보고회, 품질보증·프로젝트 관리 방안 제출 등 운영·관리 요구(문서3·문서7의 관련 조항; 문서1의 추진전략·추진체계 참조).",
+        "assessment": "Judge reason explicitly attributes these generic 운영/관리 claims to 기초학문자료센터-related documents, not UICC-only evidence."
+      }
+    ],
+    "code_path_evidence": [
+      {
+        "file": "src/rag.py",
+        "lines": "149-156",
+        "observation": "RAGPipeline.ask retrieves chunks, then passes all chunks to generation. There is no business-title precision filter between retrieve() and generate_answer_with_trace()."
+      },
+      {
+        "file": "src/rag.py",
+        "lines": "35-51",
+        "observation": "_effective_top_k only adjusts top_k for detail-heavy facility questions. It does not constrain multiple 사업명 values for same-issuer retrieval."
+      },
+      {
+        "file": "src/generator.py",
+        "lines": "10-18",
+        "observation": "The default SYSTEM_PROMPT has a generic 'provided documents only' rule and a title-fragment ambiguity rule, but no explicit same-issuer/multiple-project non-mixing rule."
+      },
+      {
+        "file": "src/generator.py",
+        "lines": "20-28 and 30-36",
+        "observation": "strict_evidence and concise_verified variants already contain the missing principle: do not mix different 사업/기관 and answer only requested items. L64 baseline_default did not use those variants."
+      },
+      {
+        "file": "src/generator.py",
+        "lines": "173-185",
+        "observation": "_should_apply_ambiguous_title_guard requires ambiguous-title markers and len(_chunk_orgs(chunks)) >= 2, so same-org multi-project leakage for 한국연구재단 is out of scope."
+      },
+      {
+        "file": "scripts/evaluate.py",
+        "lines": "35-50 and 331-350",
+        "observation": "Evaluation records org coverage/rank, not retrieved project-title precision or source-business mixing, so qv6_001 can have perfect retrieval metrics while still feeding unrelated same-org chunks to generation/judge."
+      }
+    ],
+    "proposed_narrow_fix": {
+      "preferred_patch_shape": "Add a deterministic same-issuer project-scope guard before generation, not a broad prompt-only rewrite.",
+      "concrete_change": [
+        "In src/rag.py after retrieve() and CSV backfill, compute distinct non-empty metadata['사업명'] values.",
+        "When retrieved chunks share one 발주기관 but multiple 사업명 values, and the query contains a unique discriminative title fragment matching exactly one retrieved 사업명 or its chunk text, filter or rank generation context to that project before calling generate_answer_with_trace().",
+        "Use conservative title tokens: uppercase acronyms such as UICC, quoted/full title substrings, and rare Hangul fragments from the query such as 대학산학협력/실태조사. Do not filter on generic terms like 기능개선, 운영지원, 고도화, 시스템.",
+        "If zero or multiple project-title candidates match, do not choose. Preserve existing ambiguous behavior and let the answer ask for more identifiers.",
+        "Optionally add a generator-side prompt line to SYSTEM_PROMPT mirroring strict_evidence rule 6: if 참고 문서 contains different 사업명 values under the same 발주기관, do not combine their requirements; answer from the uniquely identified project only or say more identification is needed."
+      ],
+      "why_this_is_narrow": [
+        "It targets only same-org, multi-title contexts where a unique title fragment exists.",
+        "It leaves qv6_010-style true ambiguous fragments alone because no unique title candidate should be selected.",
+        "It avoids changing protected data, index, or broad retrieval defaults.",
+        "It reduces the model's chance to synthesize unrelated same-issuer operational boilerplate."
+      ],
+      "suggested_observability": [
+        "Add returned fields such as retrieved_projects, selected_project_title, project_filter_reason, and project_mix_candidate_count to RAGPipeline.ask() and details.json.",
+        "Add an answer-quality issue key such as source_project_mixing_suspected when answer cites document numbers whose metadata 사업명 differs from selected_project_title."
+      ]
+    },
+    "no_api_fixture_ideas": [
+      {
+        "name": "unique_fragment_filters_same_org_distractor",
+        "fixture": "Construct chunks with 발주기관=한국연구재단 for two 사업명 values: target '2024년 대학산학협력활동 실태조사 시스템(UICC) 기능개선' and distractor '기초학문자료센터 ...'. Query contains UICC, 한국연구재단, 기능개선, 운영지원, 대학정보공시 연계.",
+        "assertion": "The proposed pure helper selects only the UICC 사업명 and excludes distractor chunks before context formatting."
+      },
+      {
+        "name": "generic_terms_do_not_overselect",
+        "fixture": "Same chunks, but query contains only generic terms such as 기능개선/운영지원 without UICC or 대학산학협력.",
+        "assertion": "The helper returns no selected project and does not silently drop candidates; downstream should ask for more identifier or keep ambiguity guard behavior."
+      },
+      {
+        "name": "multi_candidate_fragment_preserves_ambiguity",
+        "fixture": "Two same-org 사업명 values both contain 통합정보시스템 고도화 or another generic title fragment.",
+        "assertion": "The helper refuses to pick one project and reports multiple candidates."
+      },
+      {
+        "name": "answer_mix_detector_flags_distractor_doc_refs",
+        "fixture": "Saved qv6_001 answer text plus synthetic doc-number-to-사업명 mapping where 문서3/문서5/문서7 map to the distractor project.",
+        "assertion": "A pure diagnostic helper emits source_project_mixing_suspected and names the offending doc refs without any model call."
+      },
+      {
+        "name": "evaluate_records_project_precision",
+        "fixture": "Synthetic result['chunks'] with all retrieved_orgs matching 한국연구재단 but two 사업명 values.",
+        "assertion": "scripts/evaluate.py-style record includes retrieved_projects and project_mix_candidate_count so org-level coverage cannot hide same-issuer project mixing."
+      }
+    ],
+    "risks": [
+      {
+        "risk": "Over-filtering legitimate multi-project comparison questions.",
+        "mitigation": "Only apply the filter when the user asks about one project and a unique discriminative title fragment maps to one 사업명; skip when the query asks to compare or says 후보/둘/여러."
+      },
+      {
+        "risk": "Korean token matching may pick generic words like 시스템, 기능개선, 고도화.",
+        "mitigation": "Maintain a small stoplist of generic procurement/title words and prefer acronyms, numeric years, quoted text, and long rare n-grams."
+      },
+      {
+        "risk": "Metadata 사업명 may be noisy or truncated.",
+        "mitigation": "Allow corroboration from chunk text, but require uniqueness. If uniqueness is not clear, abstain rather than filter."
+      },
+      {
+        "risk": "Prompt-only fix may reduce but not eliminate mixing.",
+        "mitigation": "Use deterministic context selection as the primary fix, with the prompt line as defense in depth."
+      },
+      {
+        "risk": "Details.json currently omits chunks/sources, limiting no-API postmortems.",
+        "mitigation": "Add lightweight retrieved_projects/source metadata to evaluation details rather than full chunk text if artifact size is a concern."
+      }
+    ],
+    "recommended_next_action_proposal_only": [
+      "Implement the project-scope guard as a pure helper with no model dependency and cover it with synthetic fixtures before touching paid evals.",
+      "Run qv6_001 and qv6_010 no-judge/smoke first to verify the guard fixes same-issuer UICC leakage without breaking true ambiguity.",
+      "Only then rerun a small judged subset if budget policy allows."
+    ]
+  },
+  "merge_risk": "medium",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "rg --line-number \"worker_output_contract|contract\" eval/parallel_runs -g \"*.json\" -g \"*.md\"",
+      "Get-Content -Raw -LiteralPath eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l64_v6_exposed_regression_ambiguous_guard_baseline_default/details.json",
+      "rg --line-number \"qv6_001|001\" eval/questions_v6_metamorphic_frozen_first_run.json",
+      "Get-Content -Raw -LiteralPath eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l41_claim_pair_audit.contract.json",
+      "Get-Content -Raw -Encoding UTF8 -LiteralPath eval/questions_v6_metamorphic_frozen_first_run.json | ConvertFrom-Json | Where-Object id -eq qv6_001_uicc_fragment_scope",
+      "rg --line-number \"auto_filter|rewrite_query|backfill|ambiguous|org|title|source|project|metadata|retriev|generate_answer|context|document\" src/rag.py src/generator.py scripts/evaluate.py",
+      "Get-Content -Encoding UTF8 selected line ranges from src/rag.py, src/generator.py, and scripts/evaluate.py",
+      "Extracted qv6_001 answer and judge reason from L64 details.json via ConvertFrom-Json"
+    ],
+    "observed_results": [
+      "No API/model call was made.",
+      "qv6_001 target_orgs is 한국연구재단 and target_biz is the UICC 기능개선 project.",
+      "L64 qv6_001 retrieved_orgs are all 한국연구재단, coverage=1.0, first_hit_rank=1, context_backfill_count=0.",
+      "L64 qv6_001 judge assigned groundedness=4 and relevance=5.",
+      "Judge reason identifies the penalty as 운영·관리 claims sourced from 기초학문자료센터-related documents rather than strict UICC-only evidence.",
+      "Default generator prompt lacks a same-issuer multi-project non-mixing rule; stricter prompt variants contain that rule but were not used by baseline_default.",
+      "No protected path was edited."
+    ]
+  },
+  "created_at": "2026-07-07T00:00:00+09:00"
+}

@@ -1,0 +1,151 @@
+[
+  {
+    "id": "qv3_001_typo_biff_online_services",
+    "type": "single_extract",
+    "turns": [
+      "부산국제영화제 온라인서비스 재개발 있잖아, BIFF랑 ACFM 쪽에서 참가자/행사 지원 기능 뭐 바꾸는지 대충 정리해줘."
+    ],
+    "target_orgs": [
+      "(사)부산국제영화제"
+    ],
+    "target_biz": "BIFF & ACFM 온라인서비스 재개발 및 행사지원",
+    "note": "v3 first_validation: 약칭(BIFF/ACFM)과 구어체 질문에서 정확한 영화제 문서를 찾고 온라인서비스 재개발 범위를 분리하는지 본다."
+  },
+  {
+    "id": "qv3_002_followup_pyeongtaek_bis",
+    "type": "followup",
+    "turns": [
+      "평택시 버스정보시스템 구축사업은 뭘 새로 구축하는 거야?",
+      "정류장 안내기랑 센터/통신 쪽 요구만 따로 빼서 말해줘."
+    ],
+    "target_orgs": [
+      "경기도 평택시"
+    ],
+    "target_biz": "평택시 버스정보시스템(BIS) 구축사업",
+    "note": "v3 first_validation: 후속 질문에서 기관명과 사업명을 생략해도 BIS 문맥을 유지하는지 확인한다."
+  },
+  {
+    "id": "qv3_003_compare_kwater_three_projects",
+    "type": "compare",
+    "turns": [
+      "수자원공사의 CMS 고도화, 사고분석솔루션, 용인 산단 용수공급 타당성 이 세 건은 정보시스템 구축 성격이 어떻게 다른지 비교해줘. 타당성 조사 문서를 구축 사업처럼 쓰면 안 돼."
+    ],
+    "target_orgs": [
+      "한국수자원공사"
+    ],
+    "target_biz": "건설통합시스템(CMS) 고도화 / 통합 사고분석솔루션 / 용인 첨단 시스템반도체 국가산단 용수공급사업 타당성",
+    "note": "v3 first_validation: 같은 기관의 서로 다른 사업을 한 답변 안에서 섞지 않는지 보는 source-scope stress case다."
+  },
+  {
+    "id": "qv3_004_ambiguous_redcross_dr",
+    "type": "single_extract",
+    "turns": [
+      "적십자병원 재해복구시스템 그거, 병원정보 DR 구축 범위랑 백업/복구 요구를 문서 근거로 정리해줘."
+    ],
+    "target_orgs": [
+      "대한적십자사 의료원"
+    ],
+    "target_biz": "적십자병원 병원정보 재해복구시스템 구축",
+    "note": "v3 first_validation: 줄여 부르는 기관/사업명에서 의료원 재해복구 문서를 찾고 DR 요구를 일반 백업론으로 확장하지 않는지 본다."
+  },
+  {
+    "id": "qv3_005_single_ipnavi_center_management",
+    "type": "single_extract",
+    "turns": [
+      "IP-NAVI 해외지식재산센터 사업관리 시스템 기능개선에서 센터 업무관리랑 통계/보고 기능 쪽 요구를 구분해줘."
+    ],
+    "target_orgs": [
+      "한국지식재산보호원"
+    ],
+    "target_biz": "IP-NAVI 해외지식재산센터 사업관리 시스템 기능개선",
+    "note": "v3 first_validation: 영문 서비스명과 센터 업무를 함께 물을 때 정확한 사업 범위로 답하는지 확인한다."
+  },
+  {
+    "id": "qv3_006_abstain_seogmin_final_vendor_contacts",
+    "type": "abstain",
+    "turns": [
+      "서민금융진흥원 채팅 상담시스템 구축 최종 낙찰업체, 계약금액, 상담사 개인 연락처 알려줘."
+    ],
+    "target_orgs": [
+      "서민금융진흥원"
+    ],
+    "target_biz": "서민금융진흥원 서민금융 채팅 상담시스템 구축",
+    "expect_abstention": true,
+    "note": "v3 first_validation: RFP에 없는 최종 계약 결과와 개인정보를 요구하는 진상형 질문에서 거절하는지 본다."
+  },
+  {
+    "id": "qv3_007_followup_mozambique_its",
+    "type": "followup",
+    "turns": [
+      "수출입은행 모잠비크 마푸토 ITS 구축사업은 어떤 해외 사업이야?",
+      "그럼 교통센터, 현장 장비, 교육/운영지원 요구를 나눠서 설명해줘."
+    ],
+    "target_orgs": [
+      "한국수출입은행"
+    ],
+    "target_biz": "모잠비크 마푸토 지능형교통시스템(ITS) 구축사업",
+    "note": "v3 first_validation: 해외 ITS 사업에서 후속 질문의 세부 범주를 정확히 유지하는지 본다."
+  },
+  {
+    "id": "qv3_008_abstain_dbrain_accessibility_award",
+    "type": "abstain",
+    "turns": [
+      "한국재정정보원 e나라도움 웹 접근성 컨설팅에서 최종 제안 평가점수랑 선정업체명만 알려줘."
+    ],
+    "target_orgs": [
+      "한국재정정보원"
+    ],
+    "target_biz": "e나라도움 업무시스템 웹 접근성 컨설팅",
+    "expect_abstention": true,
+    "note": "v3 first_validation: 컨설팅 RFP에서 사후 선정 결과를 요구할 때 확인 불가로 처리하는지 본다."
+  },
+  {
+    "id": "qv3_009_compare_kitech_procurement_gas",
+    "type": "compare",
+    "turns": [
+      "생기원 전자조달시스템 기반구축이랑 EIP3.0 고압가스 안전관리 시스템 구축은 둘 다 한국생산기술연구원인데, 목적과 구축 범위가 어떻게 달라?"
+    ],
+    "target_orgs": [
+      "한국생산기술연구원"
+    ],
+    "target_biz": "2세대 전자조달시스템 기반구축 / EIP3.0 고압가스 안전관리 시스템 구축",
+    "note": "v3 first_validation: 같은 기관의 두 시스템을 비교하되 전자조달과 안전관리 요구를 섞지 않는지 본다."
+  },
+  {
+    "id": "qv3_010_casual_anyang_sports_reservation",
+    "type": "single_extract",
+    "turns": [
+      "안양 호계체육관 배드민턴/탁구 예약시스템, 회원통합운영이랑 예약/결제 쪽 요구 뭐야? 좀 짧게."
+    ],
+    "target_orgs": [
+      "경기도 안양시"
+    ],
+    "target_biz": "호계체육관 배드민턴장 및 탁구장 예약시스템 구축",
+    "note": "v3 first_validation: 짧고 구어체인 질문에서 체육시설 예약/회원/결제 요구를 과도하게 장황하지 않게 답하는지 본다."
+  },
+  {
+    "id": "qv3_011_single_nmc_emergency_system",
+    "type": "single_extract",
+    "turns": [
+      "국립중앙의료원 차세대 응급의료 상황관리시스템에서 상황 접수·전파, 병상/이송 정보, 유관기관 연계 요구를 구분해줘."
+    ],
+    "target_orgs": [
+      "국립중앙의료원"
+    ],
+    "target_biz": "차세대 응급의료 상황관리시스템 구축",
+    "note": "v3 first_validation: 응급의료 시스템의 여러 기능 축을 한 문서 안에서 분리해 근거 기반으로 답하는지 확인한다."
+  },
+  {
+    "id": "qv3_012_abstain_nepal_pilot_personal_contacts",
+    "type": "abstain",
+    "turns": [
+      "한국농어촌공사 네팔 수자원관리 Pilot 사업의 투입 개발자 실명과 개인 이메일, 휴대전화번호를 알려줘."
+    ],
+    "target_orgs": [
+      "한국농어촌공사"
+    ],
+    "target_biz": "네팔 수자원관리 정보화사업-Pilot 시스템 구축용역",
+    "expect_abstention": true,
+    "note": "v3 first_validation: 해외 사업 RFP에서 개인 연락처를 요구하는 경우 전면 확인 불가로 처리하는지 본다."
+  }
+]

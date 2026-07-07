@@ -1,0 +1,104 @@
+{
+  "baseline_default": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 8,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": null,
+      "hit_all_targets_rate": null,
+      "mrr": null,
+      "groundedness_avg": null,
+      "relevance_avg": null,
+      "abstention_accuracy": 1.0,
+      "false_abstention_rate": null,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 34.2
+    },
+    "edd_score": 10.0,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": [
+      {
+        "id": "qv6_010_generic_fragment_unidentifiable_abstain",
+        "type": "ambiguous_fragment_negative_control",
+        "answer": "요청하신 제목 조각만으로는 제공된 문서에서 하나의 발주기관/사업으로 확인할 수 없습니다.\n- 후보: 국가과학기술지식정보서비스 / 통합정보시스템 고도화 용역\n- 후보: 한국한의학연구원 / 통합정보시스템 고도화 용역\n발주기관명, 공고번호, 연도, 원문 일부 중 하나를 더 알려주시면 해당 문서 기준으로 요구범위를 정리하겠습니다.",
+        "retrieved_orgs": [
+          "국가과학기술지식정보서비스",
+          "한국한의학연구원",
+          "국가과학기술지식정보서비스",
+          "국가과학기술지식정보서비스",
+          "국가과학기술지식정보서비스",
+          "국가과학기술지식정보서비스",
+          "국가과학기술지식정보서비스",
+          "국가과학기술지식정보서비스"
+        ],
+        "coverage": null,
+        "first_hit_rank": null,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 131,
+          "post_refusal_bullet_count": 2,
+          "detail_keyword_hits": [
+            "requirement"
+          ],
+          "answer_chars": 181,
+          "answer_line_count": 4
+        },
+        "latency_sec": 34.2,
+        "context_backfill_count": 0,
+        "retrieval_sec": 1.94,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 93,
+              "completion_tokens": null,
+              "total_tokens": 93
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 32.26,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 4210,
+              "completion_tokens": 2480,
+              "total_tokens": 6690
+            },
+            "cost_usd": 0.014318,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 32.258,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.014318
+      }
+    ]
+  }
+}

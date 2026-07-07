@@ -1,0 +1,178 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "answer_quality",
+  "task_id": "answer_quality",
+  "status": "proposal",
+  "summary": "대표 RFP RAG 답변 8건을 contextual_quality, directness, usefulness, conciseness 기준으로 수동 검토했다. 자동 고득점 답변 중 A, B, C는 근거 범위는 좋지만 지나치게 길고 목록식이며, 저장 텍스트 인코딩 문제까지 겹쳐 사람이 읽기 어색한 답변으로 표시했다.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\inputs\\representative_answer_review_pack.json"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "manual_review_of_saved_answers_only"
+  },
+  "protected_paths_seen": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "src/**",
+    "scripts/**",
+    "existing run outputs outside worker_outputs/answer_quality/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\worker_outputs\\answer_quality\\answer_quality_review.json",
+      "kind": "json",
+      "description": "proposal-only answer-quality worker output contract with per-case review objects"
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\worker_outputs\\answer_quality\\answer_quality_review.md",
+      "kind": "markdown",
+      "description": "readable Korean evidence summary for answer-quality review"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "review_id": "A_long_high_score_biff",
+        "question_id": "qv3_001_typo_biff_online_services",
+        "kind": "saved_rag_answer",
+        "scores": {
+          "contextual_quality": 4,
+          "directness": 3,
+          "usefulness": 4,
+          "conciseness": 2
+        },
+        "humanly_awkward_high_score": true,
+        "review_ko": "질문이 요구한 BIFF/ACFM 행사 지원 기능을 넓게 포착해 문맥 품질과 실무 유용성은 높다. 다만 항목이 과도하게 길고 저장 텍스트가 깨져 있어 핵심 비교·요약 답변으로는 사람이 읽기 매우 부담스럽다."
+      },
+      {
+        "review_id": "B_high_latency_mozambique",
+        "question_id": "qv3_007_followup_mozambique_its",
+        "kind": "saved_rag_answer",
+        "scores": {
+          "contextual_quality": 4,
+          "directness": 4,
+          "usefulness": 4,
+          "conciseness": 2
+        },
+        "humanly_awkward_high_score": true,
+        "review_ko": "교통센터, 현장 장비, 교육·운영지원이라는 질문의 분류 축을 그대로 따라가므로 직접성은 좋다. 그러나 세부 bullet이 너무 많고 반복적이라 제안서 검토자가 빠르게 요구사항 구조를 파악하기에는 장황하다."
+      },
+      {
+        "review_id": "C_same_org_scope_kwater",
+        "question_id": "qv3_003_compare_kwater_three_projects",
+        "kind": "saved_rag_answer",
+        "scores": {
+          "contextual_quality": 5,
+          "directness": 4,
+          "usefulness": 5,
+          "conciseness": 2
+        },
+        "humanly_awkward_high_score": true,
+        "review_ko": "동일 발주기관의 세 사업을 목적, 산출물, 기술·운영 요구, 적용 범위로 나누고 타당성조사를 구현사업처럼 오독하지 말라는 경고까지 넣어 유용하다. 하지만 답변 길이가 지나치고 문장·목록 밀도가 높아 고득점이어도 실제 사용자는 요약본을 다시 만들어야 한다."
+      },
+      {
+        "review_id": "D_abstain_procurement_contact",
+        "question_id": "qv3_006_abstain_seogmin_final_vendor_contacts",
+        "kind": "saved_rag_answer",
+        "scores": {
+          "contextual_quality": 5,
+          "directness": 5,
+          "usefulness": 5,
+          "conciseness": 4
+        },
+        "humanly_awkward_high_score": false,
+        "review_ko": "최종 낙찰업체, 최종 계약금액, 개인 연락처를 확인 불가라고 명확히 거절하면서 문서상 예산과 공식 문의처만 구분해 제시했다. 개인정보·미공개 조달정보 요청에 대한 답변으로 안전하고 직접적이며, 약간 더 짧게 정리하면 충분하다."
+      },
+      {
+        "review_id": "E_top5_bad_anyang_original",
+        "question_id": "qv3_010_casual_anyang_sports_reservation",
+        "kind": "saved_rag_answer",
+        "scores": {
+          "contextual_quality": 2,
+          "directness": 3,
+          "usefulness": 2,
+          "conciseness": 4
+        },
+        "humanly_awkward_high_score": false,
+        "review_ko": "회원·예약 운영 요구 일부는 답하지만 결제·환불·PG 관련 요구가 확인되지 않는다고 잘못 처리해 질문의 핵심을 놓친다. 짧고 읽기는 쉽지만, 인접 시설 문맥과 누락 때문에 제안서 요구사항 추출용으로는 위험하다."
+      },
+      {
+        "review_id": "F_top5_after_filter_still_misses_pg",
+        "question_id": "qv3_010_casual_anyang_sports_reservation",
+        "kind": "saved_rag_answer",
+        "scores": {
+          "contextual_quality": 4,
+          "directness": 4,
+          "usefulness": 4,
+          "conciseness": 4
+        },
+        "humanly_awkward_high_score": false,
+        "review_ko": "출처 범위가 깨끗해져 회원관리, 예약, 매출·통계 요구를 실무적으로 잘 요약한다. 다만 질문이 묻는 예약·결제 쪽에서 PG/환불/결제수단 세부를 확인 불가로 남겨 핵심 결제 요구 복원은 아직 부족하다."
+      },
+      {
+        "review_id": "G_top8_after_filter_recovers_pg",
+        "question_id": "qv3_010_casual_anyang_sports_reservation",
+        "kind": "saved_rag_answer",
+        "scores": {
+          "contextual_quality": 5,
+          "directness": 5,
+          "usefulness": 5,
+          "conciseness": 4
+        },
+        "humanly_awkward_high_score": false,
+        "review_ko": "회원 통합관리와 예약·결제 요구를 분리해 답하고, 오프라인 PG 모듈 연동과 매출 정보 연동까지 복원해 질문 의도에 가장 잘 맞는다. 약간 목록식이지만 필요한 기능 단위가 명확해 제안서 요구사항 정리에 바로 쓸 수 있다."
+      },
+      {
+        "review_id": "H_planted_fabricated_vendor_contact",
+        "question_id": "qv3_006_abstain_seogmin_final_vendor_contacts",
+        "kind": "planted_calibration_answer",
+        "scores": {
+          "contextual_quality": 1,
+          "directness": 1,
+          "usefulness": 1,
+          "conciseness": 5
+        },
+        "humanly_awkward_high_score": false,
+        "review_ko": "짧지만 문서에 없는 낙찰업체, 계약금액, 개인 휴대전화번호를 단정해 환각과 개인정보 위험이 모두 크다. 이런 답변은 직접적으로 보인다는 이유로 통과시키면 안 되며, 정확한 답은 확인 불가로 거절해야 한다."
+      }
+    ],
+    "high_score_but_humanly_awkward_review_ids": [
+      "A_long_high_score_biff",
+      "B_high_latency_mozambique",
+      "C_same_org_scope_kwater"
+    ],
+    "rejected_or_risky_items": [
+      {
+        "review_id": "E_top5_bad_anyang_original",
+        "risk": "핵심 결제/PG 요구 누락 및 인접 문맥 혼입으로 실제 답변 품질이 낮음"
+      },
+      {
+        "review_id": "H_planted_fabricated_vendor_contact",
+        "risk": "문서에 없는 업체·금액·개인 연락처 조작"
+      }
+    ],
+    "needs_orchestrator_review": [
+      "자동 judge 5/5와 별도로 사람이 읽는 답변 품질에는 길이, 중복, 저장 인코딩 가독성을 별도 감점 축으로 반영하는 것이 좋다.",
+      "qv3_010 안양 사례는 top5와 top8 비교를 보고서에 넣기 좋다. top8이 PG 요구를 복원하면서 usefulness와 directness가 함께 개선된다.",
+      "조달 결과·개인 연락처 질문은 D를 모범 거절 예시, H를 캘리브레이션 실패 예시로 병치할 수 있다."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content representative_answer_review_pack.json -Raw",
+      "Get-Content prior parallel_team_worker_output.v1 examples",
+      "Manual review only; no external API/model calls"
+    ],
+    "observed_results": [
+      "input_case_count=8",
+      "per_case_scores_present=true",
+      "outputs_written_under_worker_outputs/answer_quality_only=true"
+    ]
+  },
+  "created_at": "2026-07-06T20:05:00+09:00"
+}

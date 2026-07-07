@@ -1,0 +1,23 @@
+﻿[
+    {
+        "suite":  "baseline_default",
+        "worker_id":  "l100_baseline_default",
+        "pid":  44844,
+        "out":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\logs\\l100_baseline_default.out.log",
+        "err":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\logs\\l100_baseline_default.err.log"
+    },
+    {
+        "suite":  "topk5_only",
+        "worker_id":  "l100_topk5_only",
+        "pid":  9204,
+        "out":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\logs\\l100_topk5_only.out.log",
+        "err":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\logs\\l100_topk5_only.err.log"
+    },
+    {
+        "suite":  "prompt_concise_verified_only",
+        "worker_id":  "l100_prompt_concise_verified_only",
+        "pid":  9408,
+        "out":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\logs\\l100_prompt_concise_verified_only.out.log",
+        "err":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\logs\\l100_prompt_concise_verified_only.err.log"
+    }
+]

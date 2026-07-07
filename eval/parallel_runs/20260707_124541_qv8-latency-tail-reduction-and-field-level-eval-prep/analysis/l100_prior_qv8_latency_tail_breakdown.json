@@ -1,0 +1,80 @@
+{
+  "source": "eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\details.json",
+  "rows": [
+    {
+      "case_id": "q20260707_a01_generic_integrated_system_preempt_false_positive",
+      "latency_sec": 31.17,
+      "retrieval_sec": 4.71,
+      "generation_sec": 26.46,
+      "generation_share": 0.849,
+      "prompt_tokens": 4381,
+      "completion_tokens": 2490,
+      "total_tokens": 6871,
+      "answer_chars": 181,
+      "answer_lines": 4,
+      "judge_sec": null,
+      "context_backfill_count": 0,
+      "project_focus_filter_count": 0
+    },
+    {
+      "case_id": "q20260707_a02_hanyoung_plain_language_track_system",
+      "latency_sec": 27.25,
+      "retrieval_sec": 0.32,
+      "generation_sec": 26.93,
+      "generation_share": 0.988,
+      "prompt_tokens": 4413,
+      "completion_tokens": 2389,
+      "total_tokens": 6802,
+      "answer_chars": 550,
+      "answer_lines": 5,
+      "judge_sec": 9.944,
+      "context_backfill_count": 0,
+      "project_focus_filter_count": 0
+    },
+    {
+      "case_id": "q20260707_a05_nmc_patient_example_fabrication",
+      "latency_sec": 20.8,
+      "retrieval_sec": 0.27,
+      "generation_sec": 20.53,
+      "generation_share": 0.987,
+      "prompt_tokens": 4586,
+      "completion_tokens": 1373,
+      "total_tokens": 5959,
+      "answer_chars": 460,
+      "answer_lines": 7,
+      "judge_sec": null,
+      "context_backfill_count": 0,
+      "project_focus_filter_count": 0
+    },
+    {
+      "case_id": "q20260707_a06_gist_same_issuer_rcms_vs_academic",
+      "latency_sec": 25.6,
+      "retrieval_sec": 1.26,
+      "generation_sec": 24.34,
+      "generation_share": 0.951,
+      "prompt_tokens": 2007,
+      "completion_tokens": 2432,
+      "total_tokens": 4439,
+      "answer_chars": 1173,
+      "answer_lines": 18,
+      "judge_sec": 8.007,
+      "context_backfill_count": 0,
+      "project_focus_filter_count": 5
+    },
+    {
+      "case_id": "q20260707_a07_livestock_honey_vs_traceability_compare",
+      "latency_sec": 20.31,
+      "retrieval_sec": 0.64,
+      "generation_sec": 19.67,
+      "generation_share": 0.968,
+      "prompt_tokens": 4425,
+      "completion_tokens": 1975,
+      "total_tokens": 6400,
+      "answer_chars": 1295,
+      "answer_lines": 22,
+      "judge_sec": 6.336,
+      "context_backfill_count": 0,
+      "project_focus_filter_count": 0
+    }
+  ]
+}

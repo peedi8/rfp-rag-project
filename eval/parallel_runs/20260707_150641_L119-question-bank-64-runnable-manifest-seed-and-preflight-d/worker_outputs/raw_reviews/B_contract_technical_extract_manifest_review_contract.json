@@ -1,0 +1,88 @@
+{
+  "worker": "B_contract_technical_extract",
+  "status": "pass_with_warnings",
+  "reviewed_cases": [
+    {
+      "case_id": "Q024",
+      "assessment": "clean concrete single-doc case; S_BIFF matches target doc and one fixed seed is enough"
+    },
+    {
+      "case_id": "Q026",
+      "assessment": "clean concrete single-doc case; S_E_NARADOOM matches target doc and one fixed seed is enough"
+    },
+    {
+      "case_id": "Q027",
+      "assessment": "clean concrete single-doc case; S_REDCROSS_DR matches target doc and one fixed seed is enough"
+    },
+    {
+      "case_id": "Q038",
+      "assessment": "selected-project contract extract is plausible; one fixed seed is enough, but seed choice must be tied to selected-project memory"
+    },
+    {
+      "case_id": "Q039",
+      "assessment": "same selected-project contract pattern as Q038; measurable gate set looks reasonable"
+    },
+    {
+      "case_id": "Q040",
+      "assessment": "contract-method extraction is runnable with one seed; no two-seed requirement needed"
+    },
+    {
+      "case_id": "Q041",
+      "assessment": "participation-limit extraction is measurable via contract fields; one chosen seed should suffice"
+    },
+    {
+      "case_id": "Q042",
+      "assessment": "budget/notice extraction is plausible and single-seed runnable"
+    },
+    {
+      "case_id": "Q043",
+      "assessment": "schedule/period extraction is plausible and single-seed runnable"
+    },
+    {
+      "case_id": "Q044",
+      "assessment": "deliverable extraction is plausible and single-seed runnable"
+    },
+    {
+      "case_id": "Q045",
+      "assessment": "date/window extraction is plausible and single-seed runnable"
+    },
+    {
+      "case_id": "Q046",
+      "assessment": "technical field extraction is plausible; one technical-rich seed is enough, with abstention on missing fields"
+    },
+    {
+      "case_id": "Q047",
+      "assessment": "infra/security extraction is plausible; one technical-rich seed is enough"
+    },
+    {
+      "case_id": "Q048",
+      "assessment": "data/access-control extraction is plausible; metric and gate are measurable"
+    },
+    {
+      "case_id": "Q049",
+      "assessment": "UI/UX extraction may be sparse, but the runner note correctly warns against claiming absent fields"
+    },
+    {
+      "case_id": "Q050",
+      "assessment": "privacy/security extraction is plausible; one technical-rich seed is enough if unsupported fields are left empty"
+    }
+  ],
+  "findings": [
+    {
+      "severity": "medium",
+      "case_id": "Q038-Q045",
+      "cause": "The runner note says to run at least one seed and only run both if time allows, but it does not explicitly bind the run to the selected-project memory or forbid cross-seed synthesis.",
+      "result": "A runner could pick the wrong project seed or blend evidence across the two project docs, which would overstate contract-field coverage on sparse rows.",
+      "recommended_change": "Change the note to: choose the seed that matches selected-project memory, use one fixed seed per run, and abstain rather than blend if the needed field is not present."
+    },
+    {
+      "severity": "low",
+      "case_id": "Q046-Q050",
+      "cause": "The technical seed pool includes one short seed (S_ADD_LARGE_TRANSFER) alongside richer docs, but the note only says to avoid claiming absent fields.",
+      "result": "Sparse-field cases such as UI/UX or infrastructure can still produce weak overclaims unless the runner has an explicit fallback order.",
+      "recommended_change": "Add a preferred-seed order or a 'return not found/none' fallback so sparse documents do not get padded with guessed technical fields."
+    }
+  ],
+  "merge_recommendation": "pass_with_warnings",
+  "next_step": "Keep Q024/Q026/Q027 as-is, and patch the selected-project notes for Q038-Q045 plus a sparse-field fallback rule for Q046-Q050 before release."
+}

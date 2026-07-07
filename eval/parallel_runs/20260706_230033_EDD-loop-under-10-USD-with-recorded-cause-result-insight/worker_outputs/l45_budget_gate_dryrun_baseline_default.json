@@ -1,0 +1,91 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "l45_budget_gate_dryrun",
+  "task_id": "baseline_default",
+  "status": "proposal",
+  "summary": "baseline_default produced no successful rows",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v6_l39_goyang_order_depth_probe.json",
+    "I:\\0706\\rfp-rag-project\\chroma_db",
+    "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py"
+  ],
+  "models": {
+    "answer_model": "",
+    "judge_model": ""
+  },
+  "budget_summary": {
+    "budget_cap_usd": null,
+    "hard_stop_usd": 0.001,
+    "starting_spent_usd": 0.0,
+    "spent_observed_usd": 0.0,
+    "preflight_case_estimate_usd": 0.01,
+    "effective_case_count": 1,
+    "events": 1,
+    "skipped_preflight_budget": 1
+  },
+  "protected_paths_seen": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "CLAUDE.md",
+    "config.py",
+    "src/**",
+    "chroma_db/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l45_budget_gate_dryrun_baseline_default\\results.csv",
+      "kind": "data",
+      "description": "worker metrics with EDD score"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l45_budget_gate_dryrun_baseline_default\\details.json",
+      "kind": "json",
+      "description": "question-level details and issue keys"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l45_budget_gate_dryrun_baseline_default\\cost_summary.json",
+      "kind": "json",
+      "description": "observed model usage and cost summary"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l45_budget_gate_dryrun_baseline_default\\budget_ledger.jsonl",
+      "kind": "data",
+      "description": "append-style per-call usage/cost ledger for this worker run"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l45_budget_gate_dryrun_baseline_default\\worker_output.json",
+      "kind": "json",
+      "description": "worker output contract"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [],
+    "rejected_or_risky_items": [],
+    "needs_orchestrator_review": [
+      "Compare EDD score with raw metrics before adopting any parameter.",
+      "Do not adopt a row if empty_answer or false_abstain issue keys dominate."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "scripts\\run_experiment_worker.py --run-dir eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight --suite baseline_default --worker-id l45_budget_gate_dryrun --questions eval\\questions_v6_l39_goyang_order_depth_probe.json --case-limit 1 --dry-run --hard-stop-usd 0.001 --preflight-case-estimate-usd 0.01"
+    ],
+    "observed_results": [
+      "index_count=11842",
+      "effective_case_count=1",
+      "budget_gate hard_stop_usd=0.001 starting_spent_usd=0.0",
+      "skipped_budget baseline_default estimated=0.01 spent_before=0.0",
+      "wrote_rows=0",
+      "budget_events=1",
+      "metrics_recomputed_from_saved_details",
+      "metrics_recomputed_from_saved_details",
+      "metrics_recomputed_from_saved_details",
+      "metrics_recomputed_from_saved_details",
+      "metrics_recomputed_from_saved_details"
+    ]
+  },
+  "created_at": "2026-07-06T23:52:59"
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="580" viewBox="0 0 920 580">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" font-size="22" font-family="Segoe UI, Arial" font-weight="700">Latency vs EDD score</text>
+<line x1="90" y1="500" x2="880" y2="500" stroke="#334155"/>
+<line x1="90" y1="60" x2="90" y2="500" stroke="#334155"/>
+<text x="485.0" y="556" font-size="14" text-anchor="middle" font-family="Segoe UI, Arial">latency avg sec</text>
+<text x="24" y="280.0" font-size="14" transform="rotate(-90 24 280.0)" text-anchor="middle" font-family="Segoe UI, Arial">EDD score</text>
+</svg>

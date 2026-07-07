@@ -1,0 +1,7 @@
+loop,branch,question_file,label,edd,coverage,mrr,groundedness,relevance,abstention_accuracy,false_abstention_rate,field_score_issues,latency_avg_sec,observed_cost_usd,decision
+L112,B,questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json,existing diagnostic baseline top8,60.0,1.0,1.0,,,1.0,0.0,none,7.184,0.040586,keep_baseline
+L113,B,questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json,topk5 same-cohort latency-only,59.86,1.0,1.0,,,1.0,0.0,none,8.598,0.037178,reject_slower_than_l112
+L113,B,questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json,topk8 same-cohort latency-only,59.92,1.0,1.0,,,1.0,0.0,none,8.369,0.041707,reject_slower_than_l112
+L113,B,questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json,topk12 same-cohort latency-only,58.43,1.0,1.0,,,1.0,0.0,none,14.89,0.075458,reject_latency_tail
+L114,A,questions_v9_source_inspected_mini_diagnostic_frozen.json,v9 first execution raw,93.42,1.0,1.0,5.0,5.0,0.5,0.0,none,14.934,0.06737,record_raw_diagnostic
+L115,A,questions_v9_source_inspected_mini_diagnostic_frozen.json,v9 saved-answer measurement correction,98.42,1.0,1.0,5.0,5.0,1.0,0.0,none,14.934,0,record_measurement_correction

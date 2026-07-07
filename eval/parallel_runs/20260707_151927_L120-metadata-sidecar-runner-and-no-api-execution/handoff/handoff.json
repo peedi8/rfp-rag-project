@@ -1,0 +1,27 @@
+{
+  "schema": "l120_handoff.v1",
+  "created_at": "2026-07-07T15:25:42",
+  "status": "complete_no_api_sidecar_ready",
+  "artifacts": [
+    "scripts/run_metadata_sidecar.py",
+    "eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\metadata_sidecar_results.json",
+    "eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\metadata_sidecar_results.csv",
+    "eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\metadata_sidecar_results.md",
+    "eval\\parallel_runs\\20260707_151927_L120-metadata-sidecar-runner-and-no-api-execution\\sidecar\\metadata_sidecar_strictness.svg"
+  ],
+  "counts": {
+    "case_count": 17,
+    "status_counts": {
+      "ready": 17
+    },
+    "sidecar_readiness_score": 1.0,
+    "exact_semantic_accuracy_n": 6,
+    "candidate_or_taxonomy_n": 11
+  },
+  "must_remember": [
+    "This is sidecar readiness, not EDD/model performance.",
+    "Q070 intentionally aliases Q006 sidecar key.",
+    "Candidate keyword rows require row-level evidence review before semantic claims.",
+    "Next best step is selected-project scripted runner."
+  ]
+}

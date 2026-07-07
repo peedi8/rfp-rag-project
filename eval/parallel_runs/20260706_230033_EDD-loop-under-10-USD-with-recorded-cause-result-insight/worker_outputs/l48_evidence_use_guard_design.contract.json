@@ -1,0 +1,262 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "l48_evidence_use_guard_design",
+  "task_id": "l48_evidence_use_guard_design",
+  "status": "proposal",
+  "summary": "Proposal-only narrow evidence-use guard for qv6_007-style false-not-found failures where retrieved/context evidence contains physical access-control purchase/install scope but the generated answer says the point cannot be confirmed or substitutes system/account access control.",
+  "inputs": [
+    "src/generator.py",
+    "src/rag.py",
+    "scripts/check_claim_preservation.py",
+    "eval/claim_preservation_expectations.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l47_claim_gate_l40_alias_retry/claim_preservation_results.json",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l40_v6_goyang_alias_retry_baseline_default/details.json"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "Read-only local source/artifact inspection; no RAG run, no judge, no OpenAI/API/model call."
+  },
+  "protected_paths_seen": [
+    "src/**",
+    "scripts/**",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md",
+    "eval/claim_preservation_expectations.json"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l48_evidence_use_guard_design.contract.json",
+      "kind": "json",
+      "description": "Proposal contract for the narrow physical access-control evidence-use guard."
+    },
+    {
+      "path": "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l48_evidence_use_guard_design.md",
+      "kind": "markdown",
+      "description": "Human-readable design note with before/after verification plan."
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Narrow physical access-control evidence-use guard design for qv6_007-style source-supported underanswers.",
+      "No-API before/after verification plan using claim-preservation fixtures.",
+      "Trace fields for guard action, source marker hits, false-friend hits, and before/after answer hashes."
+    ],
+    "rejected_or_risky_items": [
+      "Do not repair from global source files.",
+      "Do not treat this exposed qv6_007 diagnostic as fresh validation.",
+      "Do not overcorrect unknown RFID/vendor/spec/interface details."
+    ],
+    "needs_orchestrator_review": [
+      "Accept only after fixture proof and diagnostic labeling.",
+      "Keep worker output as proposal evidence, not direct approval."
+    ]
+  },
+  "observed_failure": {
+    "case_id": "qv6_007_goyang_facility_order_permutation",
+    "retrieval_status": "clean_target_retrieval",
+    "evidence_from_l47": {
+      "gate_status": "fail",
+      "claims_total": 2,
+      "claims_passed": 1,
+      "claims_failed": 1,
+      "claim_preservation_rate": 0.5,
+      "failed_claim_key": "physical_access_control_system",
+      "issue": "source_supported_but_answer_underanswered;false_friend_substitution",
+      "source_supported": true,
+      "answer_supported": false,
+      "underanswered": true
+    },
+    "evidence_from_l40_details": {
+      "retrieved_target_org_count": 8,
+      "off_target_retrieved_count": 0,
+      "judge_groundedness": 5,
+      "judge_relevance": 5,
+      "failure_shape": "The answer confirms unmanned-operation/HW linkage but says physical access-control cannot be confirmed, then cites account/access-permission/log/network access-control evidence as a substitute."
+    }
+  },
+  "proposed_changes": [
+    {
+      "id": "add_no_api_evidence_use_guard_module",
+      "scope": "implementation proposal only",
+      "target_area": "src/generator.py or a new small helper imported by src/rag.py/generator.py",
+      "description": "Add a deterministic post-generation guard that receives query, chunks, answer, and optional expectation config. It scans only retrieved chunks, not global source files, for physical access-control purchase/install evidence and scans the answer for broad cannot-confirm wording near physical access-control anchors.",
+      "narrowness": "Enable initially only when retrieved chunks are target-bound and contain physical access-control purchase/install markers; do not run as a general RFP completeness checker."
+    },
+    {
+      "id": "physical_access_control_false_not_found_rule",
+      "scope": "implementation proposal only",
+      "target_area": "guard rule",
+      "description": "If retrieved chunk text contains markers equivalent to '출입통제시스템 구매 및 설치' or '출입통제시스템', then the answer must not say access control cannot be confirmed unless it also positively confirms purchase/install inclusion and limits the unknown to method/spec/vendor/interface details."
+    },
+    {
+      "id": "false_friend_rule",
+      "scope": "implementation proposal only",
+      "target_area": "guard rule",
+      "description": "If the answer mentions account permissions, access logs, server/network access control, or security products as the only access-control evidence while retrieved chunks contain physical access-control purchase/install markers, classify it as false_friend_substitution."
+    },
+    {
+      "id": "bounded_response_repair_or_block",
+      "scope": "implementation proposal only",
+      "target_area": "RAGPipeline.ask result shaping",
+      "description": "Prefer a conservative guard result first: include answer_quality_issues and block report-ready promotion. If product behavior requires repair, use a deterministic one-sentence correction appended to the answer, not another model call: 'However, the retrieved evidence does confirm physical access-control-system purchase/install; detailed method/spec/vendor remains unconfirmed.'"
+    },
+    {
+      "id": "trace_guard_result",
+      "scope": "implementation proposal only",
+      "target_area": "returned ask() payload/details.json",
+      "description": "Record guard metadata such as guard_id, source_marker_hits, answer_underanswer_hits, false_friend_hits, action, and before_answer_hash/after_answer_hash so future L47-style checks can explain why a report was blocked or corrected."
+    }
+  ],
+  "guard_contract": {
+    "guard_id": "physical_access_control_evidence_use_guard.v1",
+    "trigger_conditions_all": [
+      "At least one retrieved chunk is bound to the target project/org for the current answer, or all retrieved_orgs are target-only.",
+      "Retrieved chunk text contains a physical access-control source marker such as 출입통제시스템 구매 및 설치 or 출입통제시스템.",
+      "The user query or claim expectation is asking about access-control inclusion, unmanned operation/access-control feature division, or a qv6_007-style equivalent."
+    ],
+    "fail_conditions_any": [
+      "Answer has cannot-confirm wording near access-control anchors while lacking a positive physical access-control purchase/install marker.",
+      "Answer says physical/facility access control cannot be confirmed while citing only account/admin permission, connection log, server, network, or security-product access control.",
+      "Answer contains a physical access-control marker only inside a negated/not-confirmed sentence."
+    ],
+    "allowed_unknown_boundary": [
+      "The answer may say RFID/card/biometric method is unconfirmed.",
+      "The answer may say vendor, product model, detailed interface, or exact device specification is unconfirmed.",
+      "The answer may say operating-system linkage details are unclear if it first confirms purchase/install inclusion."
+    ],
+    "recommended_actions": [
+      "Default action: flag and block report-ready promotion for the case.",
+      "Optional action for user-facing answer quality: deterministic append-only correction that confirms purchase/install evidence and preserves unknown detail boundaries.",
+      "Never run a second API/model call for this guard."
+    ]
+  },
+  "risks": [
+    {
+      "risk": "Marker brittleness because current artifacts contain mojibake and spacing variants.",
+      "mitigation": "Keep marker lists small, include both normalized Korean and current mojibake variants during implementation, and prefer source row/chunk IDs when available."
+    },
+    {
+      "risk": "Global source leakage if the guard reuses source_text_for() style whole-file search.",
+      "mitigation": "Use only retrieved chunks passed to generate_answer_with_trace/RAGPipeline.ask for runtime guard decisions."
+    },
+    {
+      "risk": "Overcorrecting legitimate unknowns.",
+      "mitigation": "Only flag broad inclusion denial; allow unknown method/spec/vendor/interface statements."
+    },
+    {
+      "risk": "Turning an exposed qv6_007 diagnostic into a claimed general validation score.",
+      "mitigation": "Label this as diagnostic_only_exposed_case until tested on fresh held-out claim pairs."
+    },
+    {
+      "risk": "Changing answer text can affect downstream judge/relevance metrics.",
+      "mitigation": "Start in flag-only/report-ready-block mode; if repair is enabled, log before/after and rerun deterministic preservation checks before any paid loop."
+    }
+  ],
+  "exact_before_after_verification_plan": {
+    "before_no_code_change": [
+      {
+        "step": "Confirm current L40 residual failure from saved no-API L47 result.",
+        "command": "PowerShell: Get-Content -Raw eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l47_claim_gate_l40_alias_retry/claim_preservation_results.json | ConvertFrom-Json | Select-Object -ExpandProperty summary",
+        "expected": "gate_status=fail, claims_failed=1, claim_preservation_rate=0.5, claim_scope=diagnostic_only_exposed_case"
+      },
+      {
+        "step": "Confirm failed claim details.",
+        "command": "PowerShell: parse the same JSON and select cases[0].claims where claim_key is physical_access_control_system",
+        "expected": "status=fail, issue contains source_supported_but_answer_underanswered and false_friend_substitution, source_supported=true, answer_supported=false, underanswered=true"
+      },
+      {
+        "step": "Confirm retrieval itself is not the blocker.",
+        "command": "PowerShell: parse l40_v6_goyang_alias_retry_baseline_default/details.json and inspect retrieved_orgs for qv6_007",
+        "expected": "8 retrieved orgs, all target org, no off-target retrieval; judge_groundedness=5 and judge_relevance=5"
+      }
+    ],
+    "after_implementation_flag_only": [
+      {
+        "step": "Run a no-API unit/fixture test that feeds L40 answer plus its retrieved chunk text to the new guard.",
+        "command": "python -m pytest tests/test_evidence_use_guard.py -q",
+        "expected": "The qv6_007/L40 fixture returns action=flag, guard_id=physical_access_control_evidence_use_guard.v1, issue contains source_supported_but_answer_underanswered and false_friend_substitution."
+      },
+      {
+        "step": "Run the existing preservation checker on the unchanged L40 details as baseline.",
+        "command": "python -X utf8 scripts/check_claim_preservation.py --details eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/worker_outputs/l40_v6_goyang_alias_retry_baseline_default/details.json --expectations eval/claim_preservation_expectations.json --out-dir eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l48_before_l40_claim_gate --source-root .",
+        "expected": "Exit code 1 with written JSON showing gate_status=fail and physical_access_control_system fail; this validates the before state, not an infrastructure failure."
+      },
+      {
+        "step": "Run a synthetic corrected-answer fixture through the guard and preservation checker helper functions without API calls.",
+        "command": "python -m pytest tests/test_evidence_use_guard.py::test_physical_access_control_corrected_answer_passes -q",
+        "expected": "Corrected answer confirms physical access-control purchase/install, leaves detail method unknown, and returns no guard issue."
+      }
+    ],
+    "after_implementation_optional_repair": [
+      {
+        "step": "Run a local no-API fixture that applies deterministic append-only repair to the L40 answer.",
+        "command": "python -m pytest tests/test_evidence_use_guard.py::test_l40_answer_repair_preserves_unknown_boundary -q",
+        "expected": "after_answer contains physical access-control purchase/install confirmation and does not claim RFID/vendor/spec details."
+      },
+      {
+        "step": "Run claim preservation against a temporary repaired details fixture.",
+        "command": "python -X utf8 scripts/check_claim_preservation.py --details eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l48_tmp_l40_repaired_details.json --expectations eval/claim_preservation_expectations.json --out-dir eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/analysis/l48_after_l40_repaired_claim_gate --source-root .",
+        "expected": "gate_status=pass for qv6_007 exposed diagnostic, claims_failed=0, while output remains labeled diagnostic_only_exposed_case."
+      }
+    ],
+    "regression_checks": [
+      {
+        "step": "Fixture where source lacks physical access-control marker.",
+        "expected": "No flag and no correction, even if answer says access control cannot be confirmed."
+      },
+      {
+        "step": "Fixture where answer confirms purchase/install but says RFID/vendor/specs are unknown.",
+        "expected": "Pass/no flag because unknown boundary is narrow and acceptable."
+      },
+      {
+        "step": "Fixture where retrieved chunks are mixed or off-target.",
+        "expected": "Guard does not repair; it may emit blocked_due_to_source_scope so non-Goyang evidence is not promoted."
+      },
+      {
+        "step": "Fixture where answer repeats physical marker inside a negated sentence.",
+        "expected": "Fail/flag by polarity; lexical mention alone is not support."
+      }
+    ]
+  },
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\src\\generator.py'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\src\\rag.py'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\scripts\\check_claim_preservation.py'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\claim_preservation_expectations.json'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l47_claim_gate_l40_alias_retry\\claim_preservation_results.json'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l40_v6_goyang_alias_retry_baseline_default\\details.json'",
+      "Get-ChildItem -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs' | Select-Object Name,Length,LastWriteTime | Format-Table -AutoSize",
+      "git -C 'I:\\0706\\rfp-rag-project' status --short",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l47_claim_gate_red.contract.json'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l47_claim_gate_schema.contract.json'",
+      "Get-ChildItem -Force -LiteralPath 'I:\\0706\\rfp-rag-project' | Select-Object Name,Mode,Length | Format-Table -AutoSize",
+      "PowerShell ConvertFrom-Json parse check on l48_evidence_use_guard_design.contract.json",
+      "Get-ChildItem -Filter 'l48_evidence_use_guard_design*' in the run worker_outputs directory",
+      "Get-Content -Raw on l48_evidence_use_guard_design.md",
+      "Get-Content -Raw on l48_evidence_use_guard_design.contract.json"
+    ],
+    "observed_results": [
+      "No API/model calls were made.",
+      "src/generator.py performs generation and retry, but has no deterministic post-generation evidence-use guard.",
+      "src/rag.py returns answer/chunks/retrieval metadata and is a natural place to attach guard diagnostics to the ask() result.",
+      "scripts/check_claim_preservation.py already detects source_supported_but_answer_underanswered and false_friend_substitution using local artifacts.",
+      "eval/claim_preservation_expectations.json already defines qv6_007 physical_access_control_system markers and false-friend markers.",
+      "L47 L40 result fails only physical_access_control_system: source_supported=true, answer_supported=false, underanswered=true.",
+      "L40 details show clean target-only retrieval and judge 5/5, so the proposed guard addresses evidence use/generation, not retrieval.",
+      "git status could not be used because I:\\0706\\rfp-rag-project is not a git repository in this checkout."
+    ],
+    "post_write_verification": [
+      "l48_evidence_use_guard_design.contract.json parsed successfully as JSON.",
+      "Parsed contract schema is parallel_team_worker_output.v1, task_id is l48_evidence_use_guard_design, status is proposal, and outputs count is 2.",
+      "Only l48_evidence_use_guard_design.contract.json and l48_evidence_use_guard_design.md matched the l48_evidence_use_guard_design* output prefix.",
+      "Markdown and contract were read back after writing.",
+      "No protected path was edited."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "created_at": "2026-07-07T00:21:16+09:00"
+}

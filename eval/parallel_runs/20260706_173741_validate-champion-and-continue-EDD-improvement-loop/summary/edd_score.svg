@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="138" viewBox="0 0 1100 138">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" font-size="22" font-family="Segoe UI, Arial" font-weight="700">EDD score by experiment</text>
+<text x="24" y="82" font-size="13" font-family="Segoe UI, Arial">baseline_default · holdout_after_backfill_abstain_balanced_judge_baseline_default</text>
+<rect x="310" y="66" width="629.2" height="20" rx="3" fill="#2f6fed"/>
+<text x="947.2" y="82" font-size="13" font-family="Segoe UI, Arial">96.80</text>
+<text x="24" y="116" font-size="13" font-family="Segoe UI, Arial">baseline_default · holdout_champion_top8_balanced_judge_baseline_default</text>
+<rect x="310" y="100" width="595.1" height="20" rx="3" fill="#6b8fd6"/>
+<text x="913.1" y="116" font-size="13" font-family="Segoe UI, Arial">91.55</text>
+</svg>

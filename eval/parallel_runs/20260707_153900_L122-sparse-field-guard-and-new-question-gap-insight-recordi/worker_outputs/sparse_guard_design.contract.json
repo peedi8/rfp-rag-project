@@ -1,0 +1,50 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "codex_sparse_guard_design",
+  "task_id": "sparse_guard_design",
+  "status": "proposal",
+  "summary": "Use S_ADD_LARGE_TRANSFER secondary technical variants as sparse-field diagnostics, not ordinary rich technical extraction. Guard should accept grounded partial answers, require explicit not-found for absent subfields, and fail padded boilerplate or cross-seed synthesis.",
+  "inputs": [
+    "eval/question_bank64_runnable_manifest_20260707.json",
+    "eval/parallel_runs/20260707_152625_L121-selected-project-scripted-batch-builder/batch/questions_l121_selected_project_secondary_variants.json",
+    "scripts/build_selected_project_batch.py",
+    "data/원본 데이터/data_list.csv"
+  ],
+  "protected_paths_seen": [
+    "all repo files read-only"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "agent_final_message",
+      "kind": "json",
+      "description": "proposal-only sparse guard design review"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Score sparse technical cases per subfield rather than by whole-answer coverage.",
+      "Treat absent subfields as correct only when the answer explicitly marks them not found.",
+      "Fail enterprise RFP boilerplate, generic SI padding, and cross-seed evidence mixing."
+    ],
+    "rejected_or_risky_items": [
+      "Generic terms such as infrastructure, security, or usability should not automatically satisfy specific API, DB, cloud, privacy, DR, or monitoring claims.",
+      "Secondary variants must not be used as ordinary EDD evidence without a separate sparse-field scorer."
+    ],
+    "needs_orchestrator_review": [
+      "Check the actual source basis before deciding which fields are truly absent.",
+      "Preserve secondary variants as diagnostic-only unless promotion blockers are cleared."
+    ]
+  },
+  "merge_risk": "medium",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Subagent read requested manifests, batch files, and corpus row."
+    ],
+    "observed_results": [
+      "Q046-Q053 secondary variants all use S_ADD_LARGE_TRANSFER.",
+      "No files were modified by the worker."
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="174" viewBox="0 0 1220 174">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" font-size="22" font-family="Segoe UI, Arial" font-weight="700">Metric heatmap</text>
+<text x="398" y="58" font-size="12" font-family="Segoe UI, Arial" font-weight="700">coverage</text>
+<text x="503" y="58" font-size="12" font-family="Segoe UI, Arial" font-weight="700">MRR</text>
+<text x="608" y="58" font-size="12" font-family="Segoe UI, Arial" font-weight="700">ground</text>
+<text x="713" y="58" font-size="12" font-family="Segoe UI, Arial" font-weight="700">relevance</text>
+<text x="818" y="58" font-size="12" font-family="Segoe UI, Arial" font-weight="700">abstain</text>
+<text x="923" y="58" font-size="12" font-family="Segoe UI, Arial" font-weight="700">latency</text>
+<text x="24" y="90" font-size="12" font-family="Segoe UI, Arial">baseline_default · holdout_after_backfill_abstain_balanced_judge_baseline_default</text>
+<text x="315" y="90" font-size="12" font-family="Segoe UI, Arial" font-weight="700">96.80</text>
+<rect x="390" y="75" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="433" y="90" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="495" y="75" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="538" y="90" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="600" y="75" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="643" y="90" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.97</text>
+<rect x="705" y="75" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="748" y="90" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="810" y="75" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="853" y="90" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="915" y="75" width="86" height="20" rx="3" fill="#f59e0b"/>
+<text x="958" y="90" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.49</text>
+<text x="24" y="122" font-size="12" font-family="Segoe UI, Arial">baseline_default · holdout_champion_top8_balanced_judge_baseline_default</text>
+<text x="315" y="122" font-size="12" font-family="Segoe UI, Arial" font-weight="700">91.55</text>
+<rect x="390" y="107" width="86" height="20" rx="3" fill="#79b851"/>
+<text x="433" y="122" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.89</text>
+<rect x="495" y="107" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="538" y="122" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="600" y="107" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="643" y="122" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="705" y="107" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="748" y="122" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.97</text>
+<rect x="810" y="107" width="86" height="20" rx="3" fill="#1f9d55"/>
+<text x="853" y="122" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">1.00</text>
+<rect x="915" y="107" width="86" height="20" rx="3" fill="#f2c94c"/>
+<text x="958" y="122" font-size="11" text-anchor="middle" font-family="Segoe UI, Arial" fill="#111827">0.55</text>
+</svg>

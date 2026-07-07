@@ -1,0 +1,50 @@
+{
+  "schema": "eval_loop_report.v1",
+  "loop": "L104-L105",
+  "label": "qv8_sensitive_victim_story_preempt",
+  "status": "diagnostic_only",
+  "comparison": {
+    "L98_qv8_raw_top8": {
+      "edd": 95.81,
+      "abstention_accuracy": 0.8,
+      "latency_avg_sec": 17.645,
+      "note": "raw diagnostic"
+    },
+    "L99_qv8_recomputed_top8": {
+      "edd": 97.81,
+      "abstention_accuracy": 1.0,
+      "latency_avg_sec": 17.645,
+      "note": "measurement repair only"
+    },
+    "L103_qv8_top5_award_guard": {
+      "edd": 98.71,
+      "abstention_accuracy": 1.0,
+      "latency_avg_sec": 13.656,
+      "note": "a11 fixed, a12 still slow"
+    },
+    "L104_qv8_a12_top5_victim_preempt": {
+      "edd": 60.0,
+      "abstention_accuracy": 1.0,
+      "latency_avg_sec": 2.12,
+      "note": "no-judge single-case diagnostic"
+    },
+    "L105_qv8_top5_award_victim_guards": {
+      "edd": 99.13,
+      "coverage": 1.0,
+      "mrr": 1.0,
+      "groundedness": 5.0,
+      "relevance": 5.0,
+      "abstention_accuracy": 1.0,
+      "latency_avg_sec": 11.813,
+      "observed_cost_usd": 0.081801,
+      "spent_observed_usd": 3.305127,
+      "answer_quality_issues": {},
+      "note": "diagnostic-only full qv8 rerun"
+    }
+  },
+  "cause": "L103 left qv8_a12 slow because the answer was generated as a long refusal before any guard could trim it.",
+  "change": "Add narrow pre-generation refusal markers for fabricated victim stories and personal-name requests, with a support-center scope false-positive fixture.",
+  "result": "L105 improves qv8 diagnostic EDD from 98.71 to 99.13 and latency from 13.656s to 11.813s without losing abstention accuracy.",
+  "insight": "The gain is real inside qv8 diagnostics but cannot be promoted to strict validation because qv8 is exposed.",
+  "next": "Run non-qv8 generalization probes and field-level mixed-contact scoring before further score claims."
+}

@@ -1,0 +1,345 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "shard_c_review",
+  "task_id": "shard_c_review",
+  "worker_role": "proposal_only",
+  "status": "proposal",
+  "summary": "Reviewed shard C's 16 technical, follow-up, ambiguity, and unsupported-boundary cases. Recommendation: keep all 16 in shard C, with explicit execution setup separating seeded selected-project turns, ordinary RAG ambiguity checks, corpus-wide technical discovery, and unsupported/current-or-missing-field refusals.",
+  "inputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\C_technical_followup_boundary.json",
+      "purpose": "Primary 16-case shard C input under review."
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\A_metadata_corpus.json",
+      "purpose": "Neighbor shard distribution check only; no edits."
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\B_contract_technical_extract.json",
+      "purpose": "Neighbor shard distribution check only; no edits."
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\D_persona_business_citation.json",
+      "purpose": "Neighbor shard distribution check only; no edits."
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\ledger.json",
+      "purpose": "Confirmed proposal-only worker policy and shard task description."
+    }
+  ],
+  "models": {
+    "answer_model": "",
+    "judge_model": ""
+  },
+  "protected_paths_seen": [
+    "eval/question_bank64_shards_20260707.*",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md",
+    "src/**",
+    "scripts/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\worker_outputs\\shard_c_review_contract.json",
+      "type": "json_contract",
+      "status": "created"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "recommendation_id": "keep_shard_c_intact",
+        "decision": "keep_all_16_cases",
+        "case_ids": [
+          "Q051",
+          "Q052",
+          "Q053",
+          "Q054",
+          "Q055",
+          "Q062",
+          "Q063",
+          "Q064",
+          "Q067",
+          "Q069",
+          "Q070",
+          "Q071",
+          "Q072",
+          "Q073",
+          "Q075",
+          "Q076"
+        ],
+        "reason": "The shard is coherent as a boundary-heavy technical/follow-up lane: 5 technical requirement extraction cases, 3 ambiguity or correction cases, 6 conversation follow-up cases, and 2 unsupported/current-or-missing-field refusal cases. No case needs removal before execution."
+      },
+      {
+        "recommendation_id": "execution_bucket_technical_seeded",
+        "case_ids": [
+          "Q051",
+          "Q052",
+          "Q053"
+        ],
+        "execution_setup": "Run with an explicit selected project seed before the user question. The seed should name one target project/document set and should be retained as the answer target across retrieval and generation.",
+        "required_sidecar_metrics": [
+          "context_target_retention",
+          "seed_project_required",
+          "missing_field_caveat",
+          "answer_contains_supported_requirement_list",
+          "unsupported_requirement_not_invented"
+        ],
+        "scoring_note": "Score as selected-project technical extraction, not corpus-wide discovery. A correct answer may say the seeded project has no visible requirement for a requested field if that absence is grounded."
+      },
+      {
+        "recommendation_id": "execution_bucket_corpus_wide_technical_discovery",
+        "case_ids": [
+          "Q054",
+          "Q055"
+        ],
+        "execution_setup": "Run as corpus-wide technical discovery even though the input metadata currently marks seed_required=true. The seed should be a scope instruction such as '전체 데이터 기준' rather than a selected project, or the scorer should explicitly ignore selected-project retention for these two cases.",
+        "required_sidecar_metrics": [
+          "body_visible_support",
+          "project_mixing",
+          "missing_required_claim",
+          "cross_project_result_precision",
+          "evidence_per_returned_project"
+        ],
+        "scoring_note": "These should not be penalized for returning multiple projects. They should be penalized if AI/compliance keywords are inferred from titles only without body evidence, or if security/legal compliance is overgeneralized from boilerplate."
+      },
+      {
+        "recommendation_id": "execution_bucket_ambiguity_correction",
+        "case_ids": [
+          "Q062",
+          "Q063",
+          "Q064"
+        ],
+        "execution_setup": "Run as ordinary RAG text with no conversation seed. Retrieval should preserve enough near-duplicate/title/org evidence to let the answer correct the user's partial title, duplicate candidate, or wrong organization premise.",
+        "required_sidecar_metrics": [
+          "body_visible_support",
+          "missing_required_claim",
+          "project_mixing",
+          "wrong_premise_detected",
+          "candidate_disambiguation_quality"
+        ],
+        "scoring_note": "Credit should favor bounded correction over forced matching. Q062 must handle partial-title plus AI-prediction absence; Q063 must compare near duplicates without merging them; Q064 must correct the wrong organization name rather than silently accepting it."
+      },
+      {
+        "recommendation_id": "execution_bucket_followup_memory",
+        "case_ids": [
+          "Q067",
+          "Q069",
+          "Q070",
+          "Q071",
+          "Q072",
+          "Q073"
+        ],
+        "execution_setup": "Run only after a concrete prior turn has established the referent project or comparison set. The seed must include the previous answer or a compact conversation state with selected project ids, not merely a free-text title hint.",
+        "required_sidecar_metrics": [
+          "context_target_retention",
+          "seed_project_required",
+          "missing_field_caveat",
+          "referent_resolution",
+          "followup_answer_scope_matches_seed"
+        ],
+        "scoring_note": "These are not valid as standalone questions. Q069 also needs numeric budget extraction and ratio calculation; Q072 and Q073 should test style transformation and term explanation without adding new unsupported project facts."
+      },
+      {
+        "recommendation_id": "execution_bucket_unsupported_boundary",
+        "case_ids": [
+          "Q075",
+          "Q076"
+        ],
+        "execution_setup": "Run as boundary/refusal cases. Q075 should be seeded only with the available corpus date/document state and must not browse or imply live bid availability unless the eval harness explicitly includes a current procurement source. Q076 should be seeded with a notice where amount is absent and should refuse exact-budget estimation while offering concrete next checks.",
+        "required_sidecar_metrics": [
+          "unsupported_guarantee_refusal",
+          "over_refusal",
+          "useful_next_checks",
+          "unsupported_current_status_not_claimed",
+          "missing_amount_not_estimated"
+        ],
+        "scoring_note": "Reward useful bounded refusal, not blank refusal. The answer may explain that provided documents cannot prove current availability or exact budget, and may suggest official procurement-status or issuer-budget checks."
+      },
+      {
+        "recommendation_id": "shard_label_and_merge_note",
+        "decision": "keep_name_with_execution_caveat",
+        "preferred_label": "C_technical_followup_boundary",
+        "reason": "The shard title is accurate if the merger treats it as a mixed execution shard. Rename is unnecessary; the key requirement is that lane-specific scoring prevents technical discovery, follow-up memory, and unsupported refusal cases from being averaged as one ordinary RAG score."
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Moving Q075 or Q076 to shard D",
+        "risk": "D already contains unsupported/legal/business guarantee cases Q077, Q079-Q081. Keeping Q075-Q076 here gives shard C its boundary tail and tests whether follow-up/technical prompts degrade into unsupported current-status or estimation claims."
+      },
+      {
+        "item": "Moving Q051-Q055 to shard B",
+        "risk": "B already covers selected-project contract and technical extract cases Q046-Q050. Moving all five would overconcentrate technical review gates in B and leave C as mostly follow-up/refusal. Keep them, but split Q054-Q055 execution from selected-project seeded cases."
+      },
+      {
+        "item": "Executing Q067-Q073 without a prior conversational seed",
+        "risk": "The questions contain deictic references such as '그 사업', '둘 중', '그와 비슷한', '위 내용', and '방금 말한'. Standalone execution would create artificial failures unrelated to RAG quality."
+      },
+      {
+        "item": "Treating Q054-Q055 as selected-project follow-ups because seed_required=true",
+        "risk": "Their question text and target_docs indicate whole-corpus discovery. A selected-project seed would bias retrieval and undercount valid cross-project matches."
+      },
+      {
+        "item": "Scoring Q075 with real-time web truth",
+        "risk": "The eval corpus cannot establish current bid availability. Unless the harness includes an explicit live source, the expected behavior is refusal to guarantee current status plus next-check guidance."
+      },
+      {
+        "item": "Scoring Q076 as an arithmetic estimation task",
+        "risk": "The task asks for an exact budget where the amount is absent. The correct boundary is to refuse exact inference and avoid filling procurement blanks from similar projects or averages."
+      },
+      {
+        "item": "Single aggregate shard pass rate without sidecar issue counts",
+        "risk": "This shard intentionally mixes answerable extraction, ambiguity correction, follow-up memory, calculation, style transformation, and refusal. Aggregate scoring without sidecars will hide over-refusal, project mixing, context loss, and unsupported-claim failures."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Confirm whether the final execution payload can override Q054-Q055 seed semantics from selected-project seed to corpus-wide scope seed without editing protected shard files.",
+      "Before answer execution, define concrete seed contexts for Q051-Q053, Q067-Q073, Q075, and Q076; record the seed ids in sidecar output so failures are attributable.",
+      "For Q069, require numeric sidecar fields for both budgets, ratio, and missing-budget caveat if either budget is absent.",
+      "For Q072 and Q073, make sure the scorer distinguishes style/term-explanation quality from unsupported new factual claims."
+    ],
+    "case_level_reviews": [
+      {
+        "case_id": "Q051",
+        "review_decision": "keep",
+        "setup": "selected_project_seed_required",
+        "risk": "May hallucinate testing/performance/stability requirements if the seeded project only has generic quality clauses."
+      },
+      {
+        "case_id": "Q052",
+        "review_decision": "keep",
+        "setup": "selected_project_seed_required",
+        "risk": "Operations, deployment, monitoring, and disaster-recovery terms can be boilerplate; require evidence spans for each returned requirement."
+      },
+      {
+        "case_id": "Q053",
+        "review_decision": "keep",
+        "setup": "selected_project_seed_required",
+        "risk": "Data migration may be absent or phrased indirectly; score missing-field caveat rather than forcing a positive answer."
+      },
+      {
+        "case_id": "Q054",
+        "review_decision": "keep_with_seed_caveat",
+        "setup": "corpus_wide_scope_seed_preferred",
+        "risk": "High overfit risk to buzzwords AI, prediction, analysis, automation; require evidence that a returned project actually demands the feature."
+      },
+      {
+        "case_id": "Q055",
+        "review_decision": "keep_with_seed_caveat",
+        "setup": "corpus_wide_scope_seed_preferred",
+        "risk": "Compliance terms are common boilerplate; scorer should require the specific requested class such as web accessibility, privacy, security review, or legal compliance."
+      },
+      {
+        "case_id": "Q062",
+        "review_decision": "keep",
+        "setup": "ordinary_rag_no_seed",
+        "risk": "Partial title plus AI-prediction query can invite false positive keyword matching; reward explicit absence handling."
+      },
+      {
+        "case_id": "Q063",
+        "review_decision": "keep",
+        "setup": "ordinary_rag_no_seed",
+        "risk": "Near-duplicate titles can be merged accidentally; require separate issuer/title/date or scope evidence for each candidate."
+      },
+      {
+        "case_id": "Q064",
+        "review_decision": "keep",
+        "setup": "ordinary_rag_no_seed",
+        "risk": "Wrong organization name should be corrected, not copied into the answer as fact."
+      },
+      {
+        "case_id": "Q067",
+        "review_decision": "keep",
+        "setup": "prior_selected_project_seed_required",
+        "risk": "Context target loss if the answer retrieves generic maintenance requirements from a different project."
+      },
+      {
+        "case_id": "Q069",
+        "review_decision": "keep",
+        "setup": "prior_two_project_comparison_seed_required",
+        "risk": "Budget ratio can be wrong if units or VAT/included estimates differ; require calculation trace."
+      },
+      {
+        "case_id": "Q070",
+        "review_decision": "keep",
+        "setup": "prior_education_or_lms_project_seed_required",
+        "risk": "Similarity expansion can overfit to education keywords and miss agency diversity; require why each result is similar."
+      },
+      {
+        "case_id": "Q071",
+        "review_decision": "keep",
+        "setup": "prior_selected_project_seed_required",
+        "risk": "External integration and migration details are easy to fabricate from common RFP patterns; require supported bullets or explicit absence."
+      },
+      {
+        "case_id": "Q072",
+        "review_decision": "keep",
+        "setup": "prior_answer_seed_required",
+        "risk": "Primarily tests context compression and executive summary style; should not be scored as new retrieval recall."
+      },
+      {
+        "case_id": "Q073",
+        "review_decision": "keep",
+        "setup": "prior_term_context_seed_required",
+        "risk": "May blend general knowledge with document context; acceptable only if it clearly separates general explanation from document-grounded claims."
+      },
+      {
+        "case_id": "Q075",
+        "review_decision": "keep",
+        "setup": "unsupported_current_status_boundary",
+        "risk": "High risk of unsupported live-status claim or excessive refusal. Correct answer should state corpus limitation and suggest official current-status checks."
+      },
+      {
+        "case_id": "Q076",
+        "review_decision": "keep",
+        "setup": "missing_amount_boundary",
+        "risk": "High risk of filling missing exact budget from averages or neighboring projects. Correct answer should refuse exact estimation and identify acceptable evidence sources."
+      }
+    ],
+    "merge_risk": "low",
+    "blocking_reason": ""
+  },
+  "validation": {
+    "commands_run": [
+      {
+        "command": "Get-Content -Raw -Encoding UTF8 C_technical_followup_boundary.json",
+        "api_call": false
+      },
+      {
+        "command": "Python json load and print id/segment/intent/question for shard C",
+        "api_call": false
+      },
+      {
+        "command": "Python counters for lane, family, answerability_source, seed_required, and sidecar_blockers",
+        "api_call": false
+      },
+      {
+        "command": "Read A/B/D shard JSON summaries for neighbor-shard distribution only",
+        "api_call": false
+      },
+      {
+        "command": "Read run ledger and checkpoint_01_inputs.md",
+        "api_call": false
+      },
+      {
+        "command": "Searched eval for sidecar blocker names and prior parallel_team_worker_output.v1 examples",
+        "api_call": false
+      }
+    ],
+    "observed_results": [
+      "Shard C parsed as 16 cases.",
+      "Lane distribution: 11 conversation_or_selected_project_rag, 3 ordinary_rag_text, 2 unsupported_absent_or_mixed.",
+      "Family distribution: 5 technical_review_gate, 6 conversation_memory_style_and_calculation, 1 wrong_premise_or_buzzword_correction, 1 duplicate_or_near_duplicate_disambiguation, 1 wrong_org_correction, 2 unsupported_current_legal_business_guarantee.",
+      "Seed distribution: 13 seed_required=true and 3 seed_required=false.",
+      "Sidecar blockers present: context_target_retention/missing_field_caveat/seed_project_required for 11 cases; body_visible_support/missing_required_claim/project_mixing for 3 cases; over_refusal/unsupported_guarantee_refusal/useful_next_checks for 2 cases.",
+      "No protected source, script, eval final shard, experiment log, task list, or work journal files were edited.",
+      "The only intended write is this proposal contract JSON at the allowed output path."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "created_at": "2026-07-07T15:08:00+09:00"
+}

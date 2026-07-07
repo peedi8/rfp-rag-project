@@ -1,0 +1,18 @@
+[
+  {
+    "id": "qv6_001_uicc_fragment_scope",
+    "type": "title_fragment_scope_recovery",
+    "questioner_profile": "busy_research_admin",
+    "metamorphic_group": "uicc_fragment",
+    "failure_mode": "partial title fragment must recover body-grounded scope without title-only inference",
+    "turns": [
+      "UICC 기능개선이라고만 적힌 그 대학 산학협력 실태조사 쪽 사업 있잖아. 기능개선, 운영지원, 대학정보공시 연계가 각각 문서에서 어떻게 나오나? 사업명 전체 몰라도 한국연구재단 문서 기준으로만 말해줘."
+    ],
+    "target_orgs": [
+      "한국연구재단"
+    ],
+    "target_biz": "2024년 대학산학협력활동 실태조사 시스템(UICC) 기능개선",
+    "property_under_test": "title-fragment recovery with body-grounded scope split",
+    "note": "v6 first-run candidate: partial title fragment plus issuer hint."
+  }
+]

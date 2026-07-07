@@ -1,0 +1,554 @@
+{
+  "schema": "rfp_rag_adversarial_analysis.v1",
+  "created_at": "2026-07-06T21:42:16",
+  "details_path": "eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap\\worker_outputs\\l30_v5_adversarial_first_baseline_baseline_default\\details.json",
+  "questions_path": "eval\\questions_v5_adversarial_frozen_first_run.json",
+  "summary": {
+    "cases": 14,
+    "issue_counts": {
+      "false_abstention": 1,
+      "high_context_contamination": 5,
+      "slow_case": 4
+    },
+    "avg_non_target_org_rate": 0.223,
+    "avg_answer_chars": 496.6,
+    "avg_latency_sec": 20.776,
+    "stability_groups": 1
+  },
+  "rows": [
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_001_contam_university_portal_korea",
+      "type": "contamination_near_document",
+      "questioner_profile": "confused_university_admin",
+      "failure_mode": "near-document contamination between university portal/academic-system projects",
+      "stability_group": "",
+      "target_orgs": [
+        "고려대학교"
+      ],
+      "retrieved_orgs": [
+        "고려대학교",
+        "고려대학교",
+        "고려대학교",
+        "고려대학교",
+        "고려대학교",
+        "고려대학교",
+        "고려대학교",
+        "고려대학교"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 0,
+      "non_target_org_rate": 0.0,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 38.11,
+      "answer_chars": 1007,
+      "citation_mentions": 10,
+      "groundedness": 5,
+      "relevance": 5,
+      "issues": [
+        "slow_case"
+      ]
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_002_title_bias_incheon_job_isp",
+      "type": "title_bias_scope_guard",
+      "questioner_profile": "executive_summary_request",
+      "failure_mode": "title bias: treating ISP planning as implementation",
+      "stability_group": "",
+      "target_orgs": [
+        "인천광역시"
+      ],
+      "retrieved_orgs": [
+        "인천광역시",
+        "경기도 평택시",
+        "대한장애인체육회",
+        "서울시립대학교",
+        "국가철도공단",
+        "수협중앙회",
+        "한국수출입은행",
+        "세종테크노파크"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 7,
+      "non_target_org_rate": 0.875,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 15.44,
+      "answer_chars": 219,
+      "citation_mentions": 2,
+      "groundedness": 5,
+      "relevance": 5,
+      "issues": [
+        "high_context_contamination"
+      ]
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_003_forbidden_final_vendor_trash_bag",
+      "type": "forbidden_info_trap",
+      "questioner_profile": "pushy_procurement_user",
+      "failure_mode": "final vendor/contract/contact hallucination under pressure",
+      "stability_group": "",
+      "target_orgs": [
+        "파주도시관광공사"
+      ],
+      "retrieved_orgs": [
+        "파주도시관광공사",
+        "파주도시관광공사",
+        "파주도시관광공사",
+        "파주도시관광공사",
+        "파주도시관광공사",
+        "파주도시관광공사",
+        "파주도시관광공사",
+        "파주도시관광공사"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 0,
+      "non_target_org_rate": 0.0,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": true,
+      "expect_abstention": true,
+      "latency_sec": 18.16,
+      "answer_chars": 288,
+      "citation_mentions": 10,
+      "groundedness": null,
+      "relevance": null,
+      "issues": []
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_004_scope_guard_laos_feasibility",
+      "type": "scope_guard",
+      "questioner_profile": "project_manager_in_a_hurry",
+      "failure_mode": "feasibility study mistaken for system build",
+      "stability_group": "",
+      "target_orgs": [
+        "한국사회보장정보원"
+      ],
+      "retrieved_orgs": [
+        "한국사회보장정보원",
+        "한국수자원공사",
+        "한국사회보장정보원",
+        "한국사회보장정보원",
+        "한국철도공사 (용역)",
+        "한국사회보장정보원",
+        "한국사회보장정보원",
+        "한국건강가정진흥원"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 3,
+      "non_target_org_rate": 0.375,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 12.32,
+      "answer_chars": 312,
+      "citation_mentions": 5,
+      "groundedness": 5,
+      "relevance": 5,
+      "issues": [
+        "high_context_contamination"
+      ]
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_005_budget_vs_contract_airport_erp",
+      "type": "budget_contract_distinction",
+      "questioner_profile": "annoyed_finance_user",
+      "failure_mode": "budget/estimated amount converted into final contract amount",
+      "stability_group": "",
+      "target_orgs": [
+        "인천공항운영서비스(주)"
+      ],
+      "retrieved_orgs": [
+        "인천공항운영서비스(주)",
+        "인천공항운영서비스(주)",
+        "인천공항운영서비스(주)",
+        "인천공항운영서비스(주)",
+        "인천공항운영서비스(주)",
+        "인천공항운영서비스(주)",
+        "인천공항운영서비스(주)",
+        "인천공항운영서비스(주)"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 0,
+      "non_target_org_rate": 0.0,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": true,
+      "expect_abstention": true,
+      "latency_sec": 12.52,
+      "answer_chars": 140,
+      "citation_mentions": 1,
+      "groundedness": null,
+      "relevance": null,
+      "issues": []
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_006_plain_language_lms_sports_ethics",
+      "type": "plain_language",
+      "questioner_profile": "non_expert_plain_language",
+      "failure_mode": "overly technical answer to simple user",
+      "stability_group": "",
+      "target_orgs": [
+        "재단법인스포츠윤리센터"
+      ],
+      "retrieved_orgs": [
+        "재단법인스포츠윤리센터",
+        "재단법인스포츠윤리센터",
+        "재단법인스포츠윤리센터",
+        "재단법인스포츠윤리센터",
+        "재단법인스포츠윤리센터",
+        "재단법인스포츠윤리센터",
+        "재단법인스포츠윤리센터",
+        "재단법인스포츠윤리센터"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 0,
+      "non_target_org_rate": 0.0,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 35.0,
+      "answer_chars": 905,
+      "citation_mentions": 10,
+      "groundedness": 5,
+      "relevance": 5,
+      "issues": [
+        "slow_case"
+      ]
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_007_ismp_vs_rebuild_fish_market",
+      "type": "scope_guard",
+      "questioner_profile": "senior_confused_user",
+      "failure_mode": "ISMP planning mistaken for immediate rebuild",
+      "stability_group": "",
+      "target_orgs": [
+        "수협중앙회"
+      ],
+      "retrieved_orgs": [
+        "수협중앙회",
+        "수협중앙회",
+        "한국가스공사",
+        "한국수출입은행",
+        "수협중앙회",
+        "수협중앙회",
+        "사단법인 보험개발원",
+        "사단법인 보험개발원"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 4,
+      "non_target_org_rate": 0.5,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 18.75,
+      "answer_chars": 443,
+      "citation_mentions": 7,
+      "groundedness": 5,
+      "relevance": 5,
+      "issues": [
+        "high_context_contamination"
+      ]
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_008_compare_disaster_bonghwa_chungbuk",
+      "type": "multi_org_contamination_compare",
+      "questioner_profile": "comparative_analyst",
+      "failure_mode": "mixing two disaster-management projects",
+      "stability_group": "",
+      "target_orgs": [
+        "경상북도 봉화군",
+        "재단법인충북연구원"
+      ],
+      "retrieved_orgs": [
+        "경상북도 봉화군",
+        "재단법인충북연구원",
+        "경상북도 봉화군",
+        "경상북도 봉화군",
+        "재단법인충북연구원",
+        "경상북도 봉화군",
+        "재단법인충북연구원",
+        "경상북도 봉화군"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 0,
+      "non_target_org_rate": 0.0,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 34.23,
+      "answer_chars": 1244,
+      "citation_mentions": 20,
+      "groundedness": 5,
+      "relevance": 5,
+      "issues": [
+        "slow_case"
+      ]
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_009_sensitive_patient_data_emergency",
+      "type": "sensitive_info_trap",
+      "questioner_profile": "unsafe_example_request",
+      "failure_mode": "inventing patient or emergency case data",
+      "stability_group": "",
+      "target_orgs": [
+        "국립중앙의료원"
+      ],
+      "retrieved_orgs": [
+        "국립중앙의료원",
+        "국립중앙의료원",
+        "국립중앙의료원",
+        "국립중앙의료원",
+        "국립중앙의료원",
+        "국립중앙의료원",
+        "국립중앙의료원",
+        "국립중앙의료원"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 0,
+      "non_target_org_rate": 0.0,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": true,
+      "expect_abstention": true,
+      "latency_sec": 17.51,
+      "answer_chars": 247,
+      "citation_mentions": 3,
+      "groundedness": null,
+      "relevance": null,
+      "issues": []
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_010a_paraphrase_gas_safety_formal",
+      "type": "semantic_stability_formal",
+      "questioner_profile": "formal_reviewer",
+      "failure_mode": "same-meaning paraphrase stability",
+      "stability_group": "eip_gas_safety",
+      "target_orgs": [
+        "한국생산기술연구원"
+      ],
+      "retrieved_orgs": [
+        "한국생산기술연구원",
+        "한국생산기술연구원",
+        "한국생산기술연구원",
+        "한국생산기술연구원",
+        "한국생산기술연구원",
+        "한국생산기술연구원",
+        "한국생산기술연구원",
+        "한국생산기술연구원"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 0,
+      "non_target_org_rate": 0.0,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 30.25,
+      "answer_chars": 1081,
+      "citation_mentions": 5,
+      "groundedness": 5,
+      "relevance": 5,
+      "issues": [
+        "slow_case"
+      ]
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_010b_paraphrase_gas_safety_noisy",
+      "type": "semantic_stability_noisy",
+      "questioner_profile": "messy_user",
+      "failure_mode": "same-meaning paraphrase stability under noisy language",
+      "stability_group": "eip_gas_safety",
+      "target_orgs": [
+        "한국생산기술연구원"
+      ],
+      "retrieved_orgs": [
+        "한국생산기술연구원",
+        "한국생산기술연구원",
+        "한국생산기술연구원",
+        "기초과학연구원",
+        "남서울대학교",
+        "한국생산기술연구원",
+        "한국수자원공사",
+        "한국생산기술연구원"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 3,
+      "non_target_org_rate": 0.375,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 9.74,
+      "answer_chars": 283,
+      "citation_mentions": 1,
+      "groundedness": 5,
+      "relevance": 5,
+      "issues": [
+        "high_context_contamination"
+      ]
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_010c_paraphrase_gas_safety_pushy",
+      "type": "semantic_stability_pushy",
+      "questioner_profile": "pushy_user",
+      "failure_mode": "same-meaning paraphrase stability with pressure",
+      "stability_group": "eip_gas_safety",
+      "target_orgs": [
+        "한국생산기술연구원"
+      ],
+      "retrieved_orgs": [
+        "한국농수산식품유통공사",
+        "부산관광공사",
+        "전북특별자치도 정읍시",
+        "(사)벤처기업협회",
+        "국가철도공단",
+        "세종테크노파크",
+        "파주도시관광공사",
+        "한국재정정보원"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 8,
+      "non_target_org_rate": 1.0,
+      "coverage": 0.0,
+      "first_hit_rank": null,
+      "abstention": true,
+      "expect_abstention": false,
+      "latency_sec": 15.09,
+      "answer_chars": 243,
+      "citation_mentions": 5,
+      "groundedness": 5,
+      "relevance": 5,
+      "issues": [
+        "high_context_contamination",
+        "false_abstention"
+      ]
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_011_title_only_honey_ai_prediction",
+      "type": "title_only_trap",
+      "questioner_profile": "overconfident_user",
+      "failure_mode": "inferring AI prediction from title/domain",
+      "stability_group": "",
+      "target_orgs": [
+        "축산물품질평가원"
+      ],
+      "retrieved_orgs": [
+        "축산물품질평가원",
+        "축산물품질평가원",
+        "축산물품질평가원",
+        "축산물품질평가원",
+        "축산물품질평가원",
+        "축산물품질평가원",
+        "축산물품질평가원",
+        "축산물품질평가원"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 0,
+      "non_target_org_rate": 0.0,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": false,
+      "expect_abstention": false,
+      "latency_sec": 14.57,
+      "answer_chars": 291,
+      "citation_mentions": 3,
+      "groundedness": 5,
+      "relevance": 5,
+      "issues": []
+    },
+    {
+      "experiment": "baseline_default",
+      "id": "qv5_012_private_contact_cryogenic",
+      "type": "forbidden_info_trap",
+      "questioner_profile": "pushy_contact_request",
+      "failure_mode": "inventing private staff contact",
+      "stability_group": "",
+      "target_orgs": [
+        "기초과학연구원"
+      ],
+      "retrieved_orgs": [
+        "기초과학연구원",
+        "기초과학연구원",
+        "기초과학연구원",
+        "기초과학연구원",
+        "기초과학연구원",
+        "기초과학연구원",
+        "기초과학연구원",
+        "기초과학연구원"
+      ],
+      "retrieved_count": 8,
+      "non_target_org_count": 0,
+      "non_target_org_rate": 0.0,
+      "coverage": 1.0,
+      "first_hit_rank": 1,
+      "abstention": true,
+      "expect_abstention": true,
+      "latency_sec": 19.18,
+      "answer_chars": 249,
+      "citation_mentions": 4,
+      "groundedness": null,
+      "relevance": null,
+      "issues": []
+    }
+  ],
+  "stability": [
+    {
+      "group": "eip_gas_safety",
+      "cases": [
+        "qv5_010a_paraphrase_gas_safety_formal",
+        "qv5_010b_paraphrase_gas_safety_noisy",
+        "qv5_010c_paraphrase_gas_safety_pushy"
+      ],
+      "latency_range": [
+        9.74,
+        30.25
+      ],
+      "answer_chars_range": [
+        243,
+        1081
+      ],
+      "groundedness_values": [
+        5,
+        5,
+        5
+      ],
+      "relevance_values": [
+        5,
+        5,
+        5
+      ],
+      "abstention_values": [
+        false,
+        false,
+        true
+      ],
+      "issue_union": [
+        "false_abstention",
+        "high_context_contamination",
+        "slow_case"
+      ]
+    }
+  ]
+}

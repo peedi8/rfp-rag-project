@@ -1,0 +1,68 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "C_technical_followup_boundary",
+  "task_id": "shard_c_manifest",
+  "status": "proposal",
+  "summary": "Merge as-is for shard C; the seeded technical, corpus-discovery, follow-up-memory, and unsupported-boundary rows are internally consistent with their required artifacts and gates.",
+  "inputs": [
+    "eval\\parallel_runs\\20260707_150641_L119-question-bank-64-runnable-manifest-seed-and-preflight-d\\inputs\\C_technical_followup_boundary_manifest_review_input.json",
+    "eval/question_bank64_runnable_manifest_20260707.json"
+  ],
+  "protected_paths_seen": [
+    "eval/question_bank64_runnable_manifest_20260707.json",
+    "eval/question_bank64_runnable_manifest_20260707.csv",
+    "eval/question_bank64_runnable_manifest_20260707.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "????.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260707_150641_L119-question-bank-64-runnable-manifest-seed-and-preflight-d\\worker_outputs\\C_technical_followup_boundary_manifest_review_contract.json",
+      "kind": "json",
+      "description": "standard worker proposal wrapper"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260707_150641_L119-question-bank-64-runnable-manifest-seed-and-preflight-d\\worker_outputs\\raw_reviews\\C_technical_followup_boundary_manifest_review_contract.json",
+      "kind": "json",
+      "description": "raw shard review content preserved before schema wrapping"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [],
+    "rejected_or_risky_items": [],
+    "needs_orchestrator_review": [],
+    "raw_status": "pass",
+    "reviewed_cases": [
+      "Q051",
+      "Q052",
+      "Q053",
+      "Q054",
+      "Q055",
+      "Q062",
+      "Q063",
+      "Q064",
+      "Q067",
+      "Q069",
+      "Q070",
+      "Q071",
+      "Q072",
+      "Q073",
+      "Q075",
+      "Q076"
+    ],
+    "next_step": "Run the shard with the scripted prior-turn flow for Q067-Q073 and the metadata sidecar path for Q054-Q055, then verify abstention behavior on Q075-Q076."
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "direct JSON readback by worker; orchestrator schema wrap"
+    ],
+    "observed_results": [
+      "raw review JSON parsed and preserved",
+      "merge_risk=low"
+    ]
+  }
+}

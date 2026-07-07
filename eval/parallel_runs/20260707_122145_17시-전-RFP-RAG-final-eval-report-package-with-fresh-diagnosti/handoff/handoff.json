@@ -1,0 +1,32 @@
+{
+  "objective": "17? ? RFP-RAG final eval/report package",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti",
+  "final_report": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\summary\\final_report_draft.md",
+  "strict_scoreboard": {
+    "loop": "L37",
+    "edd": 86.25
+  },
+  "best_source_exposed_diagnostic": {
+    "loop": "L95",
+    "edd": 98.54,
+    "latency_avg_sec": 14.44
+  },
+  "qv8_raw": {
+    "loop": "L98",
+    "edd": 95.81,
+    "latency_avg_sec": 17.645,
+    "observed_cost_usd": 0.126294
+  },
+  "qv8_recomputed": {
+    "loop": "L99",
+    "edd": 97.81,
+    "abstention_accuracy": 1.0
+  },
+  "fixture_status": "34/34 pass",
+  "smoke_status": "pass",
+  "next_actions": [
+    "latency-tail loop on qv8 high-latency cases",
+    "field-level scoring for mixed official/private information",
+    "preserve diagnostic vs scoreboard split"
+  ]
+}

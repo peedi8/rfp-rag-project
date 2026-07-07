@@ -1,0 +1,57 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "technical_seed_batch_review",
+  "task_id": "technical_seed_batch_review",
+  "status": "proposal",
+  "summary": "Accepted: Q046-Q048 use S_KOGAS_ERP and Q049-Q052 use S_BONGHWA_DISASTER while Q053 returns to S_KOGAS_ERP, matching manifest preferred order and the one selected technical seed policy; both primary and secondary variants use seed_policy \"one_fixed_seed_per_run_no_cross_seed_synthesis\". Accepted: G_TECHNICAL_REQUIREMENT_FIELDS and G_SELECTED_PROJECT_MEMORY are active for all primary/secondary technical cases, and ADD is consistently used for all *_technical_add_transfer variants as a sparse-field probe.\nRisky: ADD proxy variants still mirror full technical question forms, so downstream scoring pipelines must explicitly treat \"variant_claim\": \"secondary sparse-technical seed to test not-found behavior\" as diagnostic and exclude these from main evidence. Risk remains if not-found handling is weak because secondary variants can return false positives on sparse fields.\nNeeds review: confirm evaluation harness explicitly enforces no cross-seed fusion and explicit not-found handling on sparse outputs, because Q046-Q053 technical topics can include genuinely missing fields.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.csv",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_secondary_variants.json"
+  ],
+  "protected_paths_seen": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.csv",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_secondary_variants.json"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\worker_outputs\\technical_seed_batch_review.contract.json",
+      "kind": "json",
+      "description": "standard worker proposal wrapper"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\worker_outputs\\raw_reviews\\technical_seed_batch_review.contract.json",
+      "kind": "json",
+      "description": "raw worker review preserved before schema normalization"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Keep Q046-Q048 on S_KOGAS_ERP, Q049-Q052 on S_BONGHWA_DISASTER, and Q053 on S_KOGAS_ERP.",
+      "Keep one-fixed-seed/no-cross-seed-synthesis rule for primary technical rows.",
+      "Keep ADD transfer entries as secondary diagnostic variants only."
+    ],
+    "rejected_or_risky_items": [
+      "Secondary ADD variants are structurally close to primary rows; downstream scoring must honor variant_claim and not promote them as main evidence.",
+      "Sparse-field/not-found behavior needs an explicit scorer check because technical fields can genuinely be absent."
+    ],
+    "needs_orchestrator_review": [
+      "Before scoring secondary variants, filter or subtotal them explicitly as diagnostic variants.",
+      "Add not-found/padding guard before using secondary sparse-field rows as evidence."
+    ]
+  },
+  "merge_risk": "medium",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "raw review parsed by orchestrator",
+      "schema normalized by orchestrator"
+    ],
+    "observed_results": [
+      "Verified Q046-Q053 in selected_project_batch_l121.csv: Q046/Q047/Q048 use S_KOGAS_ERP, Q049-Q052 use S_BONGHWA_DISASTER, Q053 uses S_KOGAS_ERP.",
+      "Verified manifest rows Q046-Q053 require one selected technical seed per run, no cross-seed synthesis, and not-found for sparse fields.",
+      "Verified technical secondary variants l121_Q046_technical_add_transfer through l121_Q053_technical_add_transfer each use single seed_refs [\"S_ADD_LARGE_TRANSFER\"] and variant_claim \"secondary sparse-technical seed to test not-found behavior\".",
+      "Wrote only I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\worker_outputs\\technical_seed_batch_review.contract.json."
+    ]
+  }
+}

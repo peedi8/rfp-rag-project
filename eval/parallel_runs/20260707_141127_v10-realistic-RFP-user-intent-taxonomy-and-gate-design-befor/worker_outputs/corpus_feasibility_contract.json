@@ -1,0 +1,563 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "corpus_feasibility",
+  "task_id": "corpus_feasibility",
+  "status": "proposal",
+  "summary": "Inspected corpus metadata, RAG/context boundaries, existing question exposure labels, and recent reports to propose feasible non-absurd v10 question slots. Main recommendation: separate ordinary RAG-text intents from CSV-metadata and source-inspected diagnostics before freezing v10.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\data\\원본 데이터\\data_list.csv",
+    "I:\\0706\\rfp-rag-project\\data\\원본 데이터\\files\\",
+    "I:\\0706\\rfp-rag-project\\src\\data_loader.py",
+    "I:\\0706\\rfp-rag-project\\src\\chunking.py",
+    "I:\\0706\\rfp-rag-project\\src\\vectorstore.py",
+    "I:\\0706\\rfp-rag-project\\src\\retriever.py",
+    "I:\\0706\\rfp-rag-project\\src\\generator.py",
+    "I:\\0706\\rfp-rag-project\\src\\rag.py",
+    "I:\\0706\\rfp-rag-project\\config.py",
+    "I:\\0706\\rfp-rag-project\\eval\\question_exposure_registry.md",
+    "I:\\0706\\rfp-rag-project\\eval\\headless_loop_report_summary.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v2.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v4_frozen_first_run.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v5_adversarial_frozen_first_run.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v6_metamorphic_frozen_first_run.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v7_source_exposed_prompt_diagnostic_frozen.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v9_source_inspected_mini_diagnostic_frozen.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_l109_nonqv8_grounded_guard_field_scored_diagnostic.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\checkpoint_01_inputs.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\ledger.json"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "paid_api_calls_made": false
+  },
+  "protected_paths_seen": [
+    "src/**",
+    "scripts/**",
+    "eval/questions*.json",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md",
+    "data/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\worker_outputs\\corpus_feasibility_contract.json",
+      "kind": "json",
+      "description": "Proposal-only corpus feasibility contract for v10 realistic RFP user-intent taxonomy and gate design."
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "proposal_id": "corpus_inventory_boundary",
+        "recommendation": "Treat the current corpus as a 100-row public-sector IT RFP collection with structured listing metadata plus extracted RFP text, not as a complete procurement-result database.",
+        "observed_facts": {
+          "row_count": 100,
+          "file_format_counts": {
+            "hwp": 96,
+            "pdf": 4
+          },
+          "metadata_columns": [
+            "공고 번호",
+            "공고 차수",
+            "사업명",
+            "사업 금액",
+            "발주 기관",
+            "공개 일자",
+            "입찰 참여 시작일",
+            "입찰 참여 마감일",
+            "사업 요약",
+            "파일형식",
+            "파일명",
+            "텍스트"
+          ],
+          "field_completeness": {
+            "공고 번호": {
+              "present": 82,
+              "missing": 18
+            },
+            "사업명": {
+              "present": 100,
+              "missing": 0
+            },
+            "사업 금액": {
+              "present": 99,
+              "missing": 1,
+              "zero_amount_rows": 7
+            },
+            "발주 기관": {
+              "present": 100,
+              "missing": 0
+            },
+            "공개 일자": {
+              "present": 100,
+              "missing": 0
+            },
+            "입찰 참여 시작일": {
+              "present": 74,
+              "missing": 26
+            },
+            "입찰 참여 마감일": {
+              "present": 92,
+              "missing": 8
+            },
+            "사업 요약": {
+              "present": 100,
+              "missing": 0
+            },
+            "파일형식": {
+              "present": 100,
+              "missing": 0
+            },
+            "파일명": {
+              "present": 100,
+              "missing": 0
+            },
+            "텍스트": {
+              "present": 100,
+              "missing": 0
+            }
+          },
+          "date_and_amount_ranges": {
+            "public_date_min": "2021-10-08 00:00:00",
+            "public_date_max": "2025-02-11 13:32:46",
+            "bid_deadline_min_nonempty": "2024-02-26 10:00:00",
+            "bid_deadline_max_nonempty": "2025-03-10 11:00:00",
+            "amount_min": 0,
+            "amount_max": 14107009000,
+            "amount_average_rounded": 683765260
+          },
+          "text_extraction_caution": "Some rows have short extracted text despite useful summaries. Observed examples below 1000 characters include 한국발명진흥회 특허 활용실적 관리시스템(89), 전북대학교 xAPI LRS(130), 구미 아시아육상 종합정보시스템(186), 서울시립대학교 학업성취도 PDF(220), 한국생산기술연구원 EIP3.0 고압가스 안전관리(234), 스포츠윤리센터 LMS(298), 한국수출입은행 모잠비크 ITS F/S(666), and 서울특별시 지도정보 플랫폼(808)."
+        }
+      },
+      {
+        "proposal_id": "rag_text_vs_metadata_boundary",
+        "recommendation": "Assign every v10 candidate an explicit answerability_source: rag_text, metadata_visible_in_body, csv_metadata_only, unsupported_absent, or mixed.",
+        "rag_text_likely_retrievable": [
+          {
+            "slot": "single_project_scope_and_purpose",
+            "safe_when": "Question names a concrete issuer and/or distinctive project title fragment, and the target row has enough extracted text.",
+            "likely_fields": [
+              "사업 배경",
+              "추진 목적",
+              "구축 범위",
+              "기능 요구",
+              "운영/유지관리 범위",
+              "기대효과"
+            ]
+          },
+          {
+            "slot": "planning_vs_build_scope_guard",
+            "safe_when": "RFP body clearly says ISP, ISMP, F/S, 사전 컨설팅, or 운영/유지보수 rather than direct implementation.",
+            "likely_fields": [
+              "planning/consulting distinction",
+              "scope limitation",
+              "what should not be inferred"
+            ]
+          },
+          {
+            "slot": "same_issuer_or_same_domain_comparison",
+            "safe_when": "Limit to two or three explicitly named projects and verify each project has body text covering its scope.",
+            "likely_fields": [
+              "different purposes",
+              "different systems",
+              "different target users",
+              "different deliverables"
+            ]
+          },
+          {
+            "slot": "requirement_detail_extraction",
+            "safe_when": "Question asks for document-grounded categories such as security, 개인정보, 연계, 교육, 유지관리, 평가 criteria, deliverables, or schedule that occur in body text.",
+            "likely_fields": [
+              "requirement groups",
+              "evaluation criteria",
+              "deliverables",
+              "security/privacy obligations",
+              "operation and maintenance obligations"
+            ]
+          },
+          {
+            "slot": "plain_language_public_summary",
+            "safe_when": "Still names a concrete project; expected answer is a short explanation of what the agency is trying to improve, not a long requirements dump.",
+            "likely_fields": [
+              "why this project exists",
+              "what users get",
+              "main improvements"
+            ]
+          },
+          {
+            "slot": "official_contact_boundary",
+            "safe_when": "The RFP body contains an official department, desk phone, or inquiry channel and the question excludes private staff contacts.",
+            "likely_fields": [
+              "official department",
+              "official phone",
+              "official inquiry channel"
+            ]
+          },
+          {
+            "slot": "budget_or_deadline_if_body_visible",
+            "safe_when": "The amount/deadline appears inside the retrieved RFP body, not only in CSV metadata, and the row is not zero/missing.",
+            "likely_fields": [
+              "사업비/사업예산/사업금액",
+              "사업기간",
+              "입찰/제안서 제출 date if present in body"
+            ]
+          }
+        ],
+        "csv_only_or_unreliable_without_context_injection": [
+          {
+            "field": "공고 번호",
+            "boundary": "Structured CSV metadata; sometimes missing. The generator prompt normally exposes only title and issuer in context headers, so exact notice number questions should be metadata diagnostics unless the number appears in body text."
+          },
+          {
+            "field": "공개 일자",
+            "boundary": "Structured CSV metadata. Good for metadata plumbing checks, not ordinary RAG text unless explicitly added to context."
+          },
+          {
+            "field": "입찰 참여 시작일",
+            "boundary": "26 rows missing. Use only after confirming nonempty and visible in body or after metadata-context support is intentionally tested."
+          },
+          {
+            "field": "입찰 참여 마감일",
+            "boundary": "8 rows missing. Commonly useful to users, but dangerous as a normal RAG-text target unless the RFP body contains it or metadata is passed to the answer prompt."
+          },
+          {
+            "field": "사업 금액",
+            "boundary": "99 nonempty but 7 zero-amount rows. Use as ordinary answer only when body text confirms 사업비/사업예산/사업금액; otherwise mark as metadata-only diagnostic."
+          },
+          {
+            "field": "사업 요약",
+            "boundary": "Complete for all rows but not generally embedded as the retrieval document text. It is only available through narrow code paths such as CSV summary backfill, so summary-only facts should not be normal validation targets."
+          },
+          {
+            "field": "파일형식 and 파일명",
+            "boundary": "Structured source metadata, useful for source inspection and test construction, not a natural user answer target except diagnostics."
+          },
+          {
+            "field": "최종 낙찰자, 최종 평가점수, 실제 계약금액, 환자/피해자/아동 사례, 개인 연락처",
+            "boundary": "Not a listing metadata field and usually absent from RFPs. These are unsupported/safety refusal cases, not retrieval-answer cases."
+          }
+        ],
+        "runtime_boundary_evidence": [
+          "config.py defaults DATA_SOURCE to csv and chunk size/top_k are oriented around the CSV 텍스트 column.",
+          "data_loader.py loads row 텍스트 as document text and attaches metadata fields to each document.",
+          "chunking.py chunks only document text while carrying metadata on chunks.",
+          "generator.py formats context headers with 사업명 and 발주기관, then chunk text; it does not generally print all metadata fields into the answer prompt.",
+          "rag.py has a narrow csv_summary_backfill for selected terms, so summary/metadata reliance should be treated deliberately rather than assumed."
+        ]
+      },
+      {
+        "proposal_id": "safe_project_domain_slots_for_v10",
+        "recommendation": "Prefer a small v10 cohort built from high-extraction rows and realistic RFP user intents. Avoid obscure needle questions unless labeled diagnostic.",
+        "safe_slots": [
+          {
+            "slot_id": "supported_scope_summary_high_text",
+            "intent": "A user asks what the project is trying to build, improve, or operate.",
+            "suggested_count": 4,
+            "safe_project_examples": [
+              "울산광역시 / 2024년 버스정보시스템 확대 구축 및 기능개선 용역 / text_len 15856",
+              "한국생산기술연구원 / 2세대 전자조달시스템 기반구축사업 / text_len 17414",
+              "한국교육과정평가원 / 국가교육과정정보센터(NCIC) 시스템 운영 및 개선 / text_len 8557",
+              "국립중앙의료원 / 2024년도 차세대 응급의료 상황관리시스템 구축 / text_len 4331",
+              "한국어촌어항공단 / 경영관리시스템(ERP·GW) 기능 고도화 / text_len 5903"
+            ],
+            "question_shape": "이 사업은 무슨 문제를 해결하려고 하고, 주요 구축/개선 범위는 무엇인지 3-5개 항목으로 설명해줘.",
+            "answerability_source": "rag_text"
+          },
+          {
+            "slot_id": "planning_or_consulting_vs_implementation",
+            "intent": "A user might misread planning work as a build project.",
+            "suggested_count": 3,
+            "safe_project_examples": [
+              "국가철도공단 / 철도인프라 디지털트윈 정보화전략계획(ISP) 수립 용역 / text_len 6395",
+              "인천광역시 / 인천일자리플랫폼 정보시스템 구축 ISP 수립용역 / text_len 6166",
+              "수협중앙회 / 수산물사이버직매장 시스템 재구축 ISMP 수립 / text_len 7674",
+              "(재)예술경영지원센터 / 통합 정보시스템 구축 사전 컨설팅 / text_len 4573"
+            ],
+            "question_shape": "이게 실제 시스템 구축 계약인지, 구축 전 계획/컨설팅인지 문서 근거로 구분해줘.",
+            "answerability_source": "rag_text"
+          },
+          {
+            "slot_id": "same_issuer_project_separation",
+            "intent": "A user compares similar projects from the same issuer and needs boundaries kept separate.",
+            "suggested_count": 2,
+            "safe_project_examples": [
+              "한국철도공사: 모바일오피스 시스템 고도화(text_len 18335), 운행정보기록 자동분석시스템 개량(text_len 3556), 예약발매시스템 개량 ISMP(text_len 1526)",
+              "한국수자원공사: 수도사업장 통합 사고분석솔루션(text_len 7353), 수문자료정보관리시스템 HDIMS 3단계(text_len 3588), 건설통합시스템 CMS(text_len 1075)",
+              "한국농어촌공사: 네팔 수자원관리 Pilot(text_len 3686), AFSIS 캄보디아 PMC(text_len 2389)"
+            ],
+            "question_shape": "같은 발주기관의 두세 사업을 섞지 말고 목적과 범위를 비교해줘.",
+            "answerability_source": "rag_text",
+            "constraint": "Do not exceed three projects in one case; otherwise retrieval coverage and answer length become the thing being tested."
+          },
+          {
+            "slot_id": "same_domain_cross_org_comparison",
+            "intent": "A user wants a domain comparison, not a full corpus synthesis.",
+            "suggested_count": 2,
+            "safe_domain_examples": [
+              "재난/안전: 봉화군 재난통합관리시스템(text_len 5840), 충북연구원 GIS/통계 재난안전데이터(text_len 2141), 한국산업단지공단 산단 안전정보시스템(text_len 7094)",
+              "교통/이동: 울산 BIS(text_len 15856), 수협 강릉어선안전조업국 상황관제(text_len 5699), 국가철도공단 디지털트윈 ISP(text_len 6395)",
+              "의료/보건: 국립중앙의료원 응급의료 상황관리(text_len 4331), 보험개발원 실손보험 청구 전산화(text_len 8771), 한국보건산업진흥원 의료기기 종합정보시스템(text_len 9007)"
+            ],
+            "question_shape": "두 사업의 대상 사용자, 데이터/시스템 범위, 운영 목적이 어떻게 다른지 비교해줘.",
+            "answerability_source": "rag_text"
+          },
+          {
+            "slot_id": "requirements_detail_with_category",
+            "intent": "A practitioner asks for a bounded requirement detail such as 보안, 개인정보, 연계, 유지관리, 교육, 평가기준, or 산출물.",
+            "suggested_count": 4,
+            "safe_project_examples": [
+              "국방과학연구소 / 기록관리시스템 통합 활용 및 보안 환경 구축 / text_len 6828",
+              "인천공항운영서비스 / 차세대 ERP시스템 구축 / text_len 6330",
+              "한국재정정보원 / e나라도움 업무시스템 웹 접근성 컨설팅 / text_len 6203",
+              "전북특별자치도 정읍시 / 체육트레이닝센터 통합운영관리시스템 / text_len 6937",
+              "한국산업단지공단 / 산단 안전정보시스템 1차 구축 / text_len 7094"
+            ],
+            "question_shape": "문서에 있는 보안/개인정보/연계/유지관리 요구만 골라서 정리해줘.",
+            "answerability_source": "rag_text"
+          },
+          {
+            "slot_id": "plain_language_nonexpert",
+            "intent": "A non-expert asks for an easy explanation without procurement-result speculation.",
+            "suggested_count": 3,
+            "safe_project_examples": [
+              "한국보건산업진흥원 / 의료기기산업 종합정보시스템 기능개선 / text_len 9007",
+              "국립인천해양박물관 / 해양자료관리시스템 구축 / text_len 4638",
+              "파주도시관광공사 / 종량제봉투 판매관리 전산시스템 개선사업 / text_len 6343",
+              "한국건강가정진흥원 / 아이돌봄인력 인적성 검사 정보시스템 운영 / text_len 6173"
+            ],
+            "question_shape": "전문용어 줄이고, 이 사업에서 사용자가 체감할 변화만 쉽게 3가지로 말해줘.",
+            "answerability_source": "rag_text"
+          },
+          {
+            "slot_id": "supported_budget_deadline_body_checked",
+            "intent": "A procurement reader asks for budget/deadline plus a short scope caveat.",
+            "suggested_count": 2,
+            "safe_project_examples": [
+              "봉화군 재난통합관리시스템 고도화: body_has_budget true, body_has_deadline true, text_len 5840",
+              "한국보건산업진흥원 의료기기산업 종합정보시스템: body_has_budget true, body_has_deadline true, text_len 9007",
+              "국방과학연구소 기록관리시스템: body_has_budget true, body_has_deadline true, text_len 6828",
+              "울산 BIS 확대 구축: body_has_budget true, body_has_deadline true, text_len 15856"
+            ],
+            "question_shape": "문서에 확인되는 사업금액/마감일과 주요 범위를 같이 알려줘. 최종 계약금액으로 바꾸지는 마.",
+            "answerability_source": "metadata_visible_in_body",
+            "constraint": "Must verify the exact amount/deadline string in body text before freezing. If only CSV metadata has it, move this to csv_metadata_only diagnostic."
+          },
+          {
+            "slot_id": "unsupported_result_and_private_info_refusal",
+            "intent": "A user asks for final winner/contract/evaluation result or private/sensitive case data not present in RFP.",
+            "suggested_count": 3,
+            "safe_project_examples": [
+              "한국로봇산업진흥원 / 사업관리시스템 온라인평가 체계 구축 / text_len 3411",
+              "사단법인 보험개발원 / 실손보험 청구 전산화 시스템 구축 / text_len 8771",
+              "서울특별시 여성가족재단 / 디지털성범죄 안심지원센터 업무시스템 및 AI 기반 삭제지원시스템 통합 / text_len 4844",
+              "한국건강가정진흥원 / 아이돌봄인력 인적성 검사 정보시스템 운영 / text_len 6173"
+            ],
+            "question_shape": "최종 선정업체/계약금액/실제 개인 사례를 알려달라는 요청에 대해, 문서에 있는 공개 범위와 없는 정보를 분리해 답하게 한다.",
+            "answerability_source": "mixed",
+            "claim_use": "diagnostic_only unless v10 explicitly includes refusal gates separate from ordinary RAG answerability"
+          }
+        ]
+      },
+      {
+        "proposal_id": "diagnostic_only_question_types",
+        "recommendation": "Keep the following types diagnostic-only because they depend on source inspection, metadata plumbing, previous failures, or unsupported/safety boundaries rather than ordinary unseen user retrieval.",
+        "diagnostic_only_types": [
+          {
+            "type": "csv_metadata_only_exact_field",
+            "examples": [
+              "공고 번호 only",
+              "공개 일자 only",
+              "입찰 참여 시작일 only",
+              "입찰 참여 마감일 when absent from body",
+              "사업 금액 when absent from body or zero in CSV",
+              "파일형식/파일명"
+            ],
+            "reason": "The current generator context does not generally expose all CSV metadata fields to the answer model."
+          },
+          {
+            "type": "short_text_or_summary_only_row",
+            "examples": [
+              "전북대학교 xAPI LRS text_len 130",
+              "한국생산기술연구원 EIP3.0 고압가스 안전관리 text_len 234",
+              "스포츠윤리센터 LMS text_len 298",
+              "한국수출입은행 모잠비크 ITS F/S text_len 666",
+              "서울특별시 지도정보 플랫폼 text_len 808"
+            ],
+            "reason": "The business summary may be complete, but the RAG text is too thin for normal evidence-grounded questions unless a specific source snippet is verified."
+          },
+          {
+            "type": "source_inspected_needle",
+            "examples": [
+              "Questions that depend on a manually inspected sentence, table, official phone number, or exact requirement count.",
+              "Questions built after reading the source and choosing a hidden detail the retriever may not surface."
+            ],
+            "reason": "Useful for guard and evidence diagnostics, but not strict held-out validation."
+          },
+          {
+            "type": "prior_failure_family_or_targeted_repair_probe",
+            "examples": [
+              "Known qv6/qv7/qv8 latency tail cases",
+              "Known award-result or victim-story guard probes",
+              "Same cohort recomputation after a fix"
+            ],
+            "reason": "Exposure registry and reports already classify these as diagnostic/regression, not fresh performance evidence."
+          },
+          {
+            "type": "unsupported_final_procurement_result",
+            "examples": [
+              "최종 선정업체",
+              "최종 제안평가 점수",
+              "실제 계약금액",
+              "낙찰 결과"
+            ],
+            "reason": "RFPs usually contain criteria/budget, not final award outcomes. These should test refusal shape, not retrieval recall."
+          },
+          {
+            "type": "sensitive_or_private_fabrication",
+            "examples": [
+              "환자명/피해자명/아동명",
+              "실제 상담 사례",
+              "개인 이메일/휴대전화",
+              "made-up examples when the document is silent"
+            ],
+            "reason": "These are safety and privacy boundary tests. Score separately from normal RAG answerability."
+          },
+          {
+            "type": "overbroad_multi_document_synthesis",
+            "examples": [
+              "Compare more than three projects at once",
+              "Ask for all disaster/safety projects in the corpus",
+              "Ask for all education-platform projects with no explicit titles"
+            ],
+            "reason": "The current top_k and prompt shape are not a corpus analytics engine; broad synthesis mostly measures retrieval coverage limits."
+          }
+        ]
+      },
+      {
+        "proposal_id": "recommended_checks_before_freezing_v10",
+        "recommendation": "Run the following checks before freezing v10 so the taxonomy is realistic and the evidence label is honest.",
+        "checks": [
+          {
+            "check_id": "answerability_source_required",
+            "description": "Every case must declare one of rag_text, metadata_visible_in_body, csv_metadata_only, unsupported_absent, or mixed.",
+            "freeze_rule": "csv_metadata_only and unsupported_absent must not be mixed into ordinary RAG correctness scores unless the gate is explicitly a metadata/refusal gate."
+          },
+          {
+            "check_id": "target_row_text_length_and_snippet",
+            "description": "For normal RAG-text cases, confirm target row text_len >= 1500, preferably >= 3000, and capture the exact source phrase/category that supports the expected answer.",
+            "freeze_rule": "If support exists only in 사업 요약 or a very short extracted text field, mark diagnostic_only."
+          },
+          {
+            "check_id": "metadata_body_parity_for_amount_deadline",
+            "description": "For amount/deadline cases, compare CSV metadata against body text and reject rows with zero/missing amount or missing deadline unless the case is explicitly testing metadata handling.",
+            "freeze_rule": "Do not ask exact amount/deadline as normal validation if the generator cannot see the field in context."
+          },
+          {
+            "check_id": "retrieval_preview_no_generation",
+            "description": "Run a cheap retrieval-only preview for each candidate to confirm the intended issuer/project appears in top results under default settings, except intentional ambiguity/refusal controls.",
+            "freeze_rule": "If the intended project is absent, either rewrite to a more realistic identifying phrase or label it a retrieval stress diagnostic."
+          },
+          {
+            "check_id": "exposure_registry_dedup",
+            "description": "Check candidate projects/intents against eval/question_exposure_registry.md and prior qv2-v9 files.",
+            "freeze_rule": "If a project/failure family is already saturated, call the case diagnostic/regression rather than fresh validation."
+          },
+          {
+            "check_id": "realistic_user_language_review",
+            "description": "A human or red worker should reject questions that sound like synthetic traps unless they model a real procurement reader, project manager, operator, evaluator, or public user.",
+            "freeze_rule": "Trap wording is allowed only in diagnostic/refusal gates."
+          },
+          {
+            "check_id": "cohort_balance",
+            "description": "Keep a small balanced cohort: supported scope, planning/build distinction, bounded comparison, requirement detail, plain-language, metadata/body numeric, and refusal boundary.",
+            "freeze_rule": "Do not let unsupported-result and privacy traps dominate v10 if the goal is realistic RFP user intent."
+          },
+          {
+            "check_id": "manifest_and_claim_label",
+            "description": "Freeze with a manifest containing SHA256, case count, allowed_use, source inspection status, and whether first-run scores may be promoted.",
+            "freeze_rule": "If the cases were source-inspected or designed from known failures, label diagnostic_only before any run."
+          },
+          {
+            "check_id": "field_level_metric_separation",
+            "description": "For mixed questions with supported fields plus unavailable fields, use field-level scoring or separate issue labels instead of a single full-abstention score.",
+            "freeze_rule": "Do not collapse partial answers with a correct caveat into full abstentions or full failures."
+          },
+          {
+            "check_id": "json_schema_smoke",
+            "description": "Validate candidate question JSON parses, has nonempty id/type/turns, target_orgs/target_biz where applicable, and no duplicate ids.",
+            "freeze_rule": "Do this before paid or judged runs."
+          }
+        ]
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Using every CSV field as if it were visible RAG evidence",
+        "reason": "Chunk text is built from 텍스트 while the generator context generally prints only title and issuer metadata. Exact listing fields are not always in the prompt."
+      },
+      {
+        "item": "Building v10 mostly from source-inspected needles",
+        "reason": "That would repeat v7-v9 diagnostic drift and make the score hard to explain as realistic user-intent performance."
+      },
+      {
+        "item": "Using rows with very short extracted text for ordinary scope questions",
+        "reason": "The answer may depend on CSV 사업 요약 or raw source inspection rather than retrievable text."
+      },
+      {
+        "item": "Treating final award/vendor/contract facts as answerable procurement metadata",
+        "reason": "The corpus is RFP/request documents, not award-result records."
+      },
+      {
+        "item": "More global top_k tuning on exposed cohorts before v10 taxonomy is frozen",
+        "reason": "Recent reports already warn that same-set tuning and measurement corrections are diagnostic, not fresh model improvement."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Decide whether v10 is a strict first-run validation set or a diagnostic taxonomy/gate set. The recommended corpus-safe design supports both, but labels must be fixed before answer execution.",
+      "If exact amount/deadline questions are important to users, consider either adding selected CSV metadata to answer context or keeping those questions in a separate metadata-field gate.",
+      "Pick high-text projects from the safe slots first, then use short-text/source-inspected projects only for boundary diagnostics.",
+      "Keep final score reporting split by intent family: supported RAG text, metadata field handling, mixed partial answer, unsupported result refusal, and privacy/sensitive refusal."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -LiteralPath 'C:\\Users\\peedi\\.codex\\skills\\parallel-team-orchestrator\\SKILL.md'",
+      "Get-Content -LiteralPath 'C:\\Users\\peedi\\.codex\\skills\\parallel-team-orchestrator\\references\\worker-output-contract.md'",
+      "Get-ChildItem -Force in I:\\0706\\rfp-rag-project",
+      "rg --files in I:\\0706\\rfp-rag-project",
+      "Get-ChildItem -Recurse -File eval | Select-Object -First 200",
+      "Get-ChildItem -Recurse -File data | Select-Object FullName,Length",
+      "Import-Csv data_list.csv | Select-Object -First 5 | ConvertTo-Json -Depth 4",
+      "Import-Csv data_list.csv field completeness count",
+      "Import-Csv data_list.csv format count",
+      "Import-Csv data_list.csv amount/date range summary",
+      "Import-Csv data_list.csv zero-amount row listing",
+      "Import-Csv data_list.csv text length buckets and safe high-text row listing",
+      "Import-Csv data_list.csv body keyword counts for 사업예산/사업비/사업금액/입찰/평가/담당/문의/과업범위/기대효과/추진배경/사업기간/유지관리/보안/개인정보/최종/낙찰/계약금액",
+      "Get-Content src/data_loader.py, src/chunking.py, src/vectorstore.py, src/retriever.py, src/generator.py, src/rag.py, config.py",
+      "Get-Content selected eval/questions*.json and manifests",
+      "Get-Content eval/question_exposure_registry.md",
+      "Get-Content eval/headless_loop_report_summary.md",
+      "Get-Content eval/next_improvement_tasks.md",
+      "Get-Content current v10 checkpoint_01_inputs.md and ledger.json",
+      "Get-Content -Raw -Encoding UTF8 corpus_feasibility_contract.json | ConvertFrom-Json"
+    ],
+    "observed_results": [
+      "Worker output contract shape confirmed as parallel_team_worker_output.v1 with proposal-only status.",
+      "No protected paths were modified; only this worker_outputs JSON was created.",
+      "Corpus has 100 rows, 96 HWP and 4 PDF source files.",
+      "CSV metadata is complete for title, issuer, public date, summary, filename/type, and extracted text, but incomplete for notice number, bid start, bid deadline, and one amount; seven amount values are zero.",
+      "Current pipeline chunks the CSV 텍스트 field and carries metadata, but generation context normally exposes only 사업명 and 발주기관 plus chunk text.",
+      "Existing exposure registry marks most v2-v9 and L106-L109 files as development/regression/diagnostic rather than strict validation.",
+      "Recent reports warn not to promote source-inspected, same-cohort, no-judge, or measurement-correction results as fresh validation.",
+      "Final worker contract parsed successfully as UTF-8 JSON with schema parallel_team_worker_output.v1, status proposal, one output entry, zero protected path modifications, and five proposal sections."
+    ]
+  },
+  "created_at": "2026-07-07T14:31:00+09:00"
+}

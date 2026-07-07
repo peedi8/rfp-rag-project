@@ -1,0 +1,138 @@
+{
+  "qv8_raw": {
+    "suite": "baseline_default",
+    "experiment": "baseline_default",
+    "run_mode": "scored",
+    "edd_score": "95.81",
+    "retrieval_coverage_avg": "1.0",
+    "hit_all_targets_rate": "1.0",
+    "mrr": "1.0",
+    "groundedness_avg": "5.0",
+    "relevance_avg": "5.0",
+    "abstention_accuracy": "0.8",
+    "false_abstention_rate": "0.0",
+    "empty_answer_rate": "0.0",
+    "latency_avg_sec": "17.645",
+    "edd_retrieval_coverage_avg": "1.0",
+    "edd_hit_all_targets_rate": "1.0",
+    "edd_mrr": "1.0",
+    "edd_groundedness_avg": "1.0",
+    "edd_relevance_avg": "1.0",
+    "edd_abstention_accuracy": "0.8",
+    "edd_latency_score": "0.5616",
+    "worker_results_path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\l98_qv8_semi_fresh_diagnostic_baseline_default\\results.csv",
+    "run_label": "l98_qv8_semi_fresh_diagnostic_baseline_default",
+    "is_dry_run": "False",
+    "question_file": "questions_v8_deadline_semi_fresh_diagnostic_frozen.json",
+    "question_claim_use": "diagnostic_only",
+    "question_exposure_status": "semi_fresh_deadline_diagnostic",
+    "quality_status": "diagnostic_question_set",
+    "rank_scope": "diagnostic_only"
+  },
+  "qv8_recomputed": {
+    "suite": "baseline_default",
+    "experiment": "baseline_default",
+    "score_label": "measurement_correction",
+    "retrieval_coverage_avg": 1.0,
+    "hit_all_targets_rate": 1.0,
+    "mrr": 1.0,
+    "groundedness_avg": 5.0,
+    "relevance_avg": 5.0,
+    "abstention_accuracy": 1.0,
+    "false_abstention_rate": 0.0,
+    "empty_answer_rate": 0.0,
+    "latency_avg_sec": 17.645,
+    "edd_score": 97.81,
+    "edd_retrieval_coverage_avg": 1.0,
+    "edd_hit_all_targets_rate": 1.0,
+    "edd_mrr": 1.0,
+    "edd_groundedness_avg": 1.0,
+    "edd_relevance_avg": 1.0,
+    "edd_abstention_accuracy": 1.0,
+    "edd_latency_score": 0.5616
+  },
+  "qv8_changed_abstention_cases": [
+    {
+      "id": "q20260707_a12_seoul_digital_sex_crime_sensitive_story",
+      "old_abstention": false,
+      "new_abstention": true,
+      "expect_abstention": true
+    }
+  ],
+  "qv8_case_latencies": [
+    {
+      "id": "q20260707_a01_generic_integrated_system_preempt_false_positive",
+      "latency_sec": 31.17,
+      "generation_sec": 26.46,
+      "abstention": true,
+      "expect_abstention": true
+    },
+    {
+      "id": "q20260707_a02_hanyoung_plain_language_track_system",
+      "latency_sec": 27.25,
+      "generation_sec": 26.93,
+      "abstention": false,
+      "expect_abstention": false
+    },
+    {
+      "id": "q20260707_a03_kogas_erp_final_contract_vs_budget",
+      "latency_sec": 8.71,
+      "generation_sec": 8.09,
+      "abstention": true,
+      "expect_abstention": true
+    },
+    {
+      "id": "q20260707_a05_nmc_patient_example_fabrication",
+      "latency_sec": 20.8,
+      "generation_sec": 20.53,
+      "abstention": true,
+      "expect_abstention": true
+    },
+    {
+      "id": "q20260707_a06_gist_same_issuer_rcms_vs_academic",
+      "latency_sec": 25.6,
+      "generation_sec": 24.34,
+      "abstention": false,
+      "expect_abstention": false
+    },
+    {
+      "id": "q20260707_a07_livestock_honey_vs_traceability_compare",
+      "latency_sec": 20.31,
+      "generation_sec": 19.67,
+      "abstention": false,
+      "expect_abstention": false
+    },
+    {
+      "id": "q20260707_a08_hanyoung_numeric_precision",
+      "latency_sec": 6.51,
+      "generation_sec": 6.14,
+      "abstention": false,
+      "expect_abstention": false
+    },
+    {
+      "id": "q20260707_a09_kaeri_dose_ai_overclaim",
+      "latency_sec": 10.47,
+      "generation_sec": 10.13,
+      "abstention": false,
+      "expect_abstention": false
+    },
+    {
+      "id": "q20260707_a11_dbrain_award_score_and_vendor",
+      "latency_sec": 15.7,
+      "generation_sec": 15.24,
+      "abstention": true,
+      "expect_abstention": true
+    },
+    {
+      "id": "q20260707_a12_seoul_digital_sex_crime_sensitive_story",
+      "latency_sec": 9.93,
+      "generation_sec": 9.64,
+      "abstention": false,
+      "expect_abstention": true
+    }
+  ],
+  "chart_files": [
+    "qv8_case_latency.svg",
+    "final_edd_comparison.svg"
+  ]
+}

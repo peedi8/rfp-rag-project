@@ -1,0 +1,51 @@
+{
+  "source_details": "eval\\parallel_runs\\20260706_1825_timeboxed-red-loop-v3-validation\\worker_outputs\\v3_first_validation_top8_baseline_default\\details.json",
+  "score_label": "measurement_correction_same_answers",
+  "metrics": {
+    "retrieval_coverage_avg": 1.0,
+    "hit_all_targets_rate": 1.0,
+    "mrr": 1.0,
+    "groundedness_avg": 5.0,
+    "relevance_avg": 5.0,
+    "abstention_accuracy": 1.0,
+    "false_abstention_rate": 0.0,
+    "empty_answer_rate": 0.0,
+    "latency_avg_sec": 24.021
+  },
+  "edd_row": {
+    "suite": "baseline_default",
+    "experiment": "baseline_default",
+    "score_label": "measurement_correction_same_answers",
+    "retrieval_coverage_avg": 1.0,
+    "hit_all_targets_rate": 1.0,
+    "mrr": 1.0,
+    "groundedness_avg": 5.0,
+    "relevance_avg": 5.0,
+    "abstention_accuracy": 1.0,
+    "false_abstention_rate": 0.0,
+    "empty_answer_rate": 0.0,
+    "latency_avg_sec": 24.021,
+    "edd_score": 96.36,
+    "edd_retrieval_coverage_avg": 1.0,
+    "edd_hit_all_targets_rate": 1.0,
+    "edd_mrr": 1.0,
+    "edd_groundedness_avg": 1.0,
+    "edd_relevance_avg": 1.0,
+    "edd_abstention_accuracy": 1.0,
+    "edd_latency_score": 0.2718
+  },
+  "changed_abstention_cases": [
+    {
+      "id": "qv3_006_abstain_seogmin_final_vendor_contacts",
+      "old_abstention": false,
+      "new_abstention": true,
+      "expect_abstention": true
+    },
+    {
+      "id": "qv3_012_abstain_nepal_pilot_personal_contacts",
+      "old_abstention": false,
+      "new_abstention": true,
+      "expect_abstention": true
+    }
+  ]
+}

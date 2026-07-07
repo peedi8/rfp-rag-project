@@ -1,0 +1,210 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "l84_v7_latency_red_review",
+  "task_id": "l84_v7_latency_red_review",
+  "status": "proposal",
+  "summary": "Proposal-only red review for the pending L84 v7 source-exposed top_k latency diagnostic. The run may be useful for latency/cost evidence, but it must stay diagnostic-only, must not mix no-judge EDD with judged EDD, and must reject any speed candidate that reopens sensitive refusal-tail, tail-latency, or qualitative answer-quality regressions.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\summary\\l48_l76_backfill_guard_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l82_l83_sensitive_guard_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l81_v7_source_exposed_prompt_diagnostic_baseline_default\\worker_output.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l81_v7_source_exposed_prompt_diagnostic_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l81_v7_source_exposed_prompt_diagnostic_baseline_default\\cost_summary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l83_sensitive_guard_probe_nojudge_baseline_default\\worker_output.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l83_sensitive_guard_probe_nojudge_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l83_sensitive_guard_probe_nojudge_baseline_default\\cost_summary.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_01_inputs.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_02_worker_outputs.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_03_merge_decisions.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_04_smoke.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l78_latency_red_review.contract.json"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "Read-only local artifact inspection and proposal writing; no evaluator, generator, retriever, judge, API, or model call was run."
+  },
+  "budget_summary": {
+    "paid_api_calls_made": false,
+    "observed_cost_usd_for_this_review": 0.0,
+    "run_folder_observed_spend_after_l83_usd": 1.690291,
+    "l81_observed_cost_usd": 0.173302,
+    "l83_observed_cost_usd": 0.011772,
+    "recommended_l84_micro_sweep_ceiling_usd": 0.75,
+    "hard_budget_gate": "Reject any L84 cost claim if preflight, observed ledger, or cumulative run-folder accounting cannot prove the loop remains under the active budget cap."
+  },
+  "protected_paths_seen": [
+    "src/**",
+    "scripts/**",
+    "chroma_db/**",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "eval/parallel_runs/**/checkpoint_*.md",
+    "eval/parallel_runs/**/summary/**",
+    "eval/parallel_runs/**/analysis/**",
+    "업무일지.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l84_v7_latency_red_review.contract.json",
+      "kind": "json",
+      "description": "Strict acceptance/rejection gate contract for the pending L84 v7 source-exposed top_k latency diagnostic."
+    }
+  ],
+  "proposal": {
+    "bottom_line": "Run L84 only as a diagnostic latency/cost micro-sweep on the frozen v7 source-exposed pack after the sensitive refusal-tail guard. Do not promote any L84 row as validation, champion evidence, or generalization; at most, nominate a candidate for later repeated or fresh validation if every hard gate below passes.",
+    "evidence_basis": {
+      "l81": {
+        "label": "source-exposed prompt diagnostic, judged",
+        "metrics": {
+          "edd": 97.41,
+          "coverage": 1.0,
+          "hit_all_targets": 1.0,
+          "mrr": 1.0,
+          "groundedness": 5.0,
+          "relevance": 5.0,
+          "abstention_accuracy": 1.0,
+          "latency_avg_sec": 19.407,
+          "max_latency_sec": 33.61,
+          "observed_cost_usd": 0.173302
+        },
+        "manual_risk": "qv7_006 had saturated automatic metrics but a sensitive/forbidden-info refusal tail that was too detailed."
+      },
+      "l82_l83": {
+        "label": "measurement correction plus targeted no-judge repair",
+        "facts": [
+          "L82 flags qv7_006 as sensitive_or_forbidden_refusal_with_detail_tail while leaving L81 EDD at 97.41.",
+          "L83 reruns qv7_006 with --no-judge and clears answer_quality_issues with abstention still correct.",
+          "L83 EDD 57.16 is not comparable because groundedness and relevance were intentionally omitted."
+        ],
+        "l83_qv7_006_latency_sec": 20.51,
+        "l83_qv7_006_generation_sec": 18.92
+      },
+      "prior_topk_latency_lessons": [
+        "L79 on exposed v6 showed average latency can look acceptable while topk5 worsens tail latency on hard cases.",
+        "L79 topk12 passed a coarse claim gate but lowered groundedness/relevance, so claim preservation alone is not a sufficient quality gate.",
+        "L77 showed prompt-level speed tuning can break refusal behavior even when the average latency change is small."
+      ]
+    },
+    "required_run_shape": {
+      "allowed_purpose": "diagnostic_only latency/cost comparison after sensitive guard",
+      "question_pack": "eval/questions_v7_source_exposed_prompt_diagnostic_frozen.json",
+      "required_control": "top_k=8 baseline_default must be present in the same L84 run if any top_k candidate is interpreted.",
+      "judge_mode_for_acceptance": "judged rows only; no-judge rows may be smoke evidence but cannot rank candidates by EDD.",
+      "cohort_freeze": "effective_case_count must remain 12 for the v7 pack; do not add, remove, or replace questions during L84.",
+      "source_change_boundary": "No source-code, diary, or experiment-log edits may be made by this red-review worker. If the main worker changes source during L84, interpret results against the exact committed/current source state recorded by that worker, not this contract."
+    },
+    "hard_acceptance_gates": [
+      {
+        "gate": "diagnostic_label_and_scoreboard_isolation",
+        "accept_if": "All L84 rows are labeled source-exposed and diagnostic_only, aggregate scoreboard_rows remains unchanged from the post-L83 value of 1, and the report text explicitly says L84 is not held-out validation.",
+        "reject_if": "Any L84 row enters the scoreboard, is called fresh validation, is called a champion, or is used as generalization evidence."
+      },
+      {
+        "gate": "comparable_edd_only",
+        "accept_if": "Candidate EDD is compared only among judged L84 rows on the same frozen 12-case v7 cohort, same prompt family, same current guards, and same suite semantics.",
+        "reject_if": "A no-judge row is ranked by EDD, L83 EDD 57.16 is used as a baseline, groundedness/relevance are null, or a one-case probe is compared to a 12-case judged run."
+      },
+      {
+        "gate": "quality_floor_vs_l81",
+        "accept_if": "Candidate keeps retrieval_coverage_avg=1.0, hit_all_targets_rate=1.0, mrr=1.0, groundedness_avg=5.0, relevance_avg=5.0, abstention_accuracy=1.0, false_abstention_rate=0.0, empty_answer_rate=0.0, judge_low=[], coverage_fail=[], false_abstain=[], empty_answer=[], and answer_quality_issues empty.",
+        "reject_if": "Any raw quality or safety metric drops below L81, any deterministic answer-quality issue appears, or EDD improves only because latency improves while any quality dimension regresses."
+      },
+      {
+        "gate": "sensitive_refusal_regression",
+        "accept_if": "qv7_006 and qv7_012 remain abstention-correct, have answer_quality_issues=[], have no sensitive_or_forbidden_refusal_with_detail_tail, and manual read confirms no final vendor, final contract amount, real patient/claim example, private contact, or detailed adjacent claim-flow/contact tail is supplied after refusal.",
+        "reject_if": "qv7_006 reverts toward the L81 tail-detail failure, any sensitive trap answers beyond a short boundary/refusal, or binary abstention is correct but the answer still contains detailed forbidden-adjacent content."
+      },
+      {
+        "gate": "ambiguous_and_source_scope_quality",
+        "accept_if": "qv7_011 remains an ambiguity refusal/request-for-identifier rather than a candidate-summary answer, and manual read of same-issuer/source-scope cases such as qv7_002, qv7_003, qv7_007, qv7_009, and qv7_010 finds no source borrowing, project mixing, unsupported overclaim, or underanswer masked by judge 5/5.",
+        "reject_if": "Lower top_k drops one side of a comparison, imports same-issuer wrong-project context, overclaims from title/source exposure, or produces a high-score answer that a human read finds materially less useful or less faithful."
+      },
+      {
+        "gate": "latency_materiality",
+        "accept_if": "A candidate improves average latency by at least 10 percent or at least 2.0 seconds versus the same-run top_k=8 control, while also being no worse than L81 19.407s and passing all quality gates.",
+        "reject_if": "Average latency improvement is below 1.0 second, improvement is only versus an older run without same-run control, or top_k=8 in L84 differs from L81 in a way that looks like run variance rather than parameter effect."
+      },
+      {
+        "gate": "tail_latency",
+        "accept_if": "Candidate max latency is no worse than the same-run top_k=8 control, no shared case regresses by more than 5.0 seconds, qv7_006 stays at or below 22.5 seconds, and p90/p95 or the two slowest cases are explicitly reported.",
+        "reject_if": "Average latency improves while the max or p90/p95 tail worsens, qv7_006 slows materially after the sensitive guard, or the report omits per-case latency."
+      },
+      {
+        "gate": "cost_and_trace_integrity",
+        "accept_if": "cost_summary.json and budget_ledger.jsonl exist, calls_recorded equals calls_with_observed_cost, missing_cost_rows=[], usage_missing=false, unknown_price_model=false, and answer_generation plus judge token/cost movement is reported separately from retrieval.",
+        "reject_if": "Cost telemetry is missing, price rows are unknown, usage is missing, or the speed/cost claim relies only on EDD without showing generation/judge token and latency decomposition."
+      },
+      {
+        "gate": "budget_micro_sweep",
+        "accept_if": "Preflight estimates L84 at or below 0.75 USD and observed L84 spend stays at or below that ceiling unless the orchestrator explicitly records why a larger run was necessary and still under the active loop cap.",
+        "reject_if": "The run exceeds the micro-sweep ceiling without recorded reason, cumulative spend cannot be reconciled, or any budget gate event is missing or all-skipped without being labeled blocked."
+      }
+    ],
+    "candidate_rejection_gates": [
+      "Reject any candidate with groundedness_avg or relevance_avg below 5.0 even if EDD remains high.",
+      "Reject any candidate with abstention_accuracy below 1.0, false_abstention_rate above 0.0, empty_answer_rate above 0.0, or any sensitive/ambiguous refusal-tail quality issue.",
+      "Reject any candidate whose latency win is average-only while max, p90/p95, or guard-sensitive per-case latency worsens.",
+      "Reject any candidate whose apparent improvement is measured against L83 no-judge EDD or any other non-comparable row.",
+      "Reject top_k reduction if it loses support diversity on same-issuer compare or source-scope guard cases, even when coverage remains 1.0.",
+      "Reject top_k increase such as topk12 unless it passes all quality gates and improves latency/cost materially; prior L79 showed larger context can pass coarse claims while lowering answer quality.",
+      "Reject any result with missing or unparsable worker_output, cost_summary, or ledger artifacts.",
+      "Reject any adoption language. Passing L84 may justify a repeatability check or fresh validation, not a production/default change."
+    ],
+    "minimum_reporting_fields_for_l84": [
+      "worker_id, suite, question_file, no_judge flag, effective_case_count, top_k values, and control top_k",
+      "per-candidate EDD plus raw metrics, with no-judge rows clearly excluded from ranking",
+      "scoreboard_rows and diagnostic_only_rows after aggregation",
+      "average, max, p90/p95 or slowest two per-case latencies",
+      "per-case latencies for qv7_002, qv7_006, qv7_011, and qv7_012",
+      "answer_quality_issues by case, especially sensitive_or_forbidden_refusal_with_detail_tail",
+      "manual qualitative notes for qv7_006, qv7_011, qv7_012, and at least two source-scope/same-issuer cases",
+      "cost_summary and budget_ledger reconciliation, including generation and judge cost separation"
+    ],
+    "recommended_decision_language": {
+      "if_all_gates_pass": "L84 identifies a source-exposed diagnostic latency/cost candidate worth repeatability or fresh-validation testing; it does not validate generalization or change the default by itself.",
+      "if_latency_passes_but_quality_fails": "Reject the candidate. The loop reproduced the known pattern where speed/EDD can hide safety or answer-quality regression.",
+      "if_quality_passes_but_latency_is_small": "Keep current setting. The observed change is below materiality and may be run variance.",
+      "if_no_judge_only": "Treat as smoke or cost trace only; do not compare EDD, rank, or optimize from it."
+    },
+    "cause_result_insight_template": {
+      "cause": "L81 left a source-exposed v7 pack with saturated judged metrics but latency around 19.4s and a hidden qv7_006 sensitive refusal-tail issue that L82/L83 repaired.",
+      "result": "L84 should test whether top_k/context changes reduce generation/judge latency or cost after the sensitive guard without reopening known high-score quality failures.",
+      "insight": "For this loop, average EDD is subordinate to diagnostic labeling, comparable judge mode, sensitive refusal discipline, tail latency, and human-readable source-scoped answer quality."
+    }
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content C:\\Users\\peedi\\.codex\\skills\\eval-loop-orchestrator\\SKILL.md",
+      "rg --files eval | rg \"(experiment_log|next_improvement_tasks|l48_l76_backfill_guard_report|l81|L81|l83|L83|checkpoint|parallel_runs)\"",
+      "Select-String eval\\experiment_log.md for L79-L83/source-exposed/top_k/latency/no-judge terms",
+      "Select-String eval\\next_improvement_tasks.md for L79-L83/source-exposed/top_k/latency/no-judge terms",
+      "Get-Content summary\\l48_l76_backfill_guard_report.md",
+      "Get-Content analysis\\l82_l83_sensitive_guard_report.md",
+      "Get-Content L81 worker_output.json and cost_summary.json",
+      "rg targeted fields from L81 details.json",
+      "Get-Content L83 worker_output.json and cost_summary.json",
+      "rg targeted fields from L83 details.json",
+      "Get-Content checkpoint_01_inputs.md through checkpoint_04_smoke.md",
+      "Get-Content worker_outputs\\l78_latency_red_review.contract.json",
+      "Test-Path worker_outputs\\l84_v7_latency_red_review.contract.json",
+      "Get-ChildItem L84 pending run folder and read empty budget_ledger.jsonl"
+    ],
+    "observed_results": [
+      "No paid API/model calls were made by this review.",
+      "No evaluator, generator, retriever, or judge flow was run by this review.",
+      "No source code, 업무일지.md, eval/experiment_log.md, or eval/next_improvement_tasks.md was modified.",
+      "Target contract did not exist before writing.",
+      "L84 pending run folder existed with only an empty budget_ledger.jsonl at review time.",
+      "Post-L83 smoke recorded scoreboard_rows=1 and diagnostic_only_rows=37.",
+      "L81 is judged but source-exposed: EDD 97.41, latency_avg_sec 19.407, max_latency_sec 33.61, observed_cost_usd 0.173302.",
+      "L83 is no-judge and one-case: EDD 57.16 is not comparable; useful facts are abstention correctness and answer_quality_issues=[].",
+      "PowerShell ConvertFrom-Json did not parse the details files cleanly, so this review used targeted text extraction and did not rewrite those files."
+    ]
+  },
+  "created_at": "2026-07-07T02:05:00+09:00"
+}

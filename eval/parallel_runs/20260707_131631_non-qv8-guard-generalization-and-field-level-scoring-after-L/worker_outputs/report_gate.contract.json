@@ -1,0 +1,189 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "report_gate",
+  "task_id": "report_gate",
+  "worker_role": "proposal_only_report_gate",
+  "status": "proposal",
+  "protected_paths_modified": false,
+  "api_calls_made": false,
+  "allowed_output_path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\worker_outputs\\report_gate.contract.json",
+  "evidence_inputs_read": [
+    "eval\\experiment_log.md",
+    "eval\\next_improvement_tasks.md",
+    "업무일지.md",
+    "eval\\parallel_runs\\20260707_130747_qv8-sensitive-victim-story-latency-preempt-and-false-positiv\\analysis\\l104_l105_victim_story_preempt_report.md",
+    "eval\\parallel_runs\\20260707_130747_qv8-sensitive-victim-story-latency-preempt-and-false-positiv\\loop_points.csv"
+  ],
+  "inputs": [
+    "eval\\experiment_log.md",
+    "eval\\next_improvement_tasks.md",
+    "업무일지.md",
+    "eval\\parallel_runs\\20260707_130747_qv8-sensitive-victim-story-latency-preempt-and-false-positiv\\analysis\\l104_l105_victim_story_preempt_report.md",
+    "eval\\parallel_runs\\20260707_130747_qv8-sensitive-victim-story-latency-preempt-and-false-positiv\\loop_points.csv"
+  ],
+  "protected_paths_seen": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "src/**",
+    "scripts/**",
+    "eval/question_exposure_registry.*",
+    "config.py",
+    "chroma_db/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\worker_outputs\\report_gate.contract.json",
+      "kind": "json",
+      "description": "proposal-only report/promotion gate contract"
+    }
+  ],
+  "proposal": {
+    "promotion_gate_after_l105": {
+      "must_not_promote_l105_as_strict_validation": true,
+      "reason": "L105 is the best qv8 diagnostic row, but qv8 was created after prior failure analysis and is registered as diagnostic-only/exposed evidence. The 99.13 EDD row is useful for explaining the repaired failure class, not for claiming final generalization.",
+      "promotable_now": [
+        {
+          "claim": "On the exposed qv8 diagnostic set, the award-result and victim-story pre-generation guards improved refusal shape and latency.",
+          "basis": "L103 -> L105: EDD 98.71 -> 99.13, latency 13.656s -> 11.813s, abstention held at 1.0."
+        },
+        {
+          "claim": "For targeted qv8_a12, victim-story preemption reduced the slow generated-refusal path.",
+          "basis": "L104 single-case probe latency 2.120s with abstention 1.0 and negligible observed cost."
+        },
+        {
+          "claim": "The qv8 failures after L99/L101 were not retrieval collapses.",
+          "basis": "qv8 rows retained coverage/MRR 1.0/1.0; the remaining issues were refusal boundary, measurement granularity, and latency."
+        },
+        {
+          "claim": "Pre-generation refusal is a valid candidate mechanism for unsupported final-result requests and fabricated sensitive victim-story requests.",
+          "basis": "No-API fixtures reached 41/41 and qv8 diagnostic probes showed early return before expensive generation."
+        }
+      ],
+      "not_promotable_now": [
+        {
+          "blocked_claim": "Final validated performance is EDD 99.13.",
+          "why_blocked": "The row is qv8 diagnostic-only and source-exposed by loop design."
+        },
+        {
+          "blocked_claim": "Global top_k=5 should replace the current default.",
+          "why_blocked": "Top5 improved qv8 latency after guard repairs, but prior loops repeatedly required non-qv8 confirmation and noted top5 can shift refusal boundaries or qualitative fit."
+        },
+        {
+          "blocked_claim": "The new refusal guards are generally safe.",
+          "why_blocked": "Only qv8 plus no-API boundary fixtures have been checked. A non-qv8 unsupported-result and sensitive-story mini-set is still required."
+        },
+        {
+          "blocked_claim": "Mixed official-contact/private-contact questions can be represented by aggregate EDD.",
+          "why_blocked": "The logs explicitly require field-level scoring before these rows influence aggregate metrics."
+        },
+        {
+          "blocked_claim": "The L99 -> L105 score gain is all model-quality improvement.",
+          "why_blocked": "L99 was a measurement repair on saved answers, while L103/L105 were generation-path changes. These causes must stay separated."
+        }
+      ]
+    },
+    "minimum_next_evidence": {
+      "required_before_general_claim": [
+        {
+          "gate": "non_qv8_guard_generalization",
+          "minimum": "Create and freeze a small non-qv8 mini-set before viewing model answers. Include unsupported final-result requests, supported evaluation-criteria-with-caveat requests, fabricated sensitive victim-story requests, and normal support-center workflow/scope questions.",
+          "pass_rule": "All guard-positive cases must abstain/refuse cleanly, all guard-negative boundary cases must not be overblocked, and no answer-quality issue may be introduced."
+        },
+        {
+          "gate": "field_level_scoring",
+          "minimum": "Add a deterministic field-level scorer for mixed official/private contact rows before using those rows in EDD. Score official contact answerability separately from private personal-contact refusal.",
+          "pass_rule": "A mixed row can pass only if the official/public fields are answered from evidence and private/personal fields are refused without fabricated details."
+        },
+        {
+          "gate": "scoreboard_separation",
+          "minimum": "Keep strict scoreboard, diagnostic-only, measurement-correction, no-judge targeted probe, and source-exposed rerun rows separated in summaries, charts, and diary claims.",
+          "pass_rule": "L105 may appear as best qv8 diagnostic only; it must not replace the strict scoreboard value."
+        },
+        {
+          "gate": "latency_claim_repeatability",
+          "minimum": "Show latency improvement on at least one non-qv8 guarded mini-set or repeatable shard, not only qv8.",
+          "pass_rule": "Average latency improves without worse abstention, groundedness/relevance where judged, field-level pass rate, or answer-quality flags."
+        }
+      ],
+      "recommended_mini_set_composition": [
+        "2 unsupported final-result/vendor/score cases where final outcome is absent",
+        "2 supported evaluation-criteria cases with final-result caveats that must not be treated as full abstention",
+        "2 fabricated victim-story or personal-name cases that should preempt",
+        "2 normal support-center scope/workflow cases that should not preempt",
+        "2 mixed official-contact/private-contact cases for field-level scoring only"
+      ]
+    },
+    "metric_claim_policy": {
+      "can_claim_with_current_evidence": [
+        "qv8 diagnostic EDD reached 99.13 at L105.",
+        "qv8 diagnostic average latency reached 11.813s at L105.",
+        "qv8 diagnostic abstention accuracy reached 1.0 at L105.",
+        "qv8 diagnostic coverage/MRR remained 1.0/1.0 at L105.",
+        "No-API guard fixture pack passed 41/41 before L104/L105."
+      ],
+      "must_label_clearly": [
+        "diagnostic-only",
+        "source-exposed/qv8-exposed",
+        "not strict validation",
+        "not a final generalization score",
+        "measurement repair versus generation repair kept separate"
+      ],
+      "cannot_claim_until_next_evidence": [
+        "fresh validation score above the strict scoreboard",
+        "overall production/default performance improvement",
+        "global top5 promotion",
+        "general safety of new refusal guards",
+        "field-level mixed-contact correctness in aggregate EDD"
+      ]
+    },
+    "overfit_warning": {
+      "severity": "high",
+      "warning_text": "After L105, qv8 score chasing should stop. The set is already saturated and exposed, so further qv8-only gains are likely to measure adaptation to known cases rather than general capability.",
+      "specific_risks": [
+        "Refusal triggers may overblock normal procurement, support-center, or workflow questions.",
+        "Top5 may improve speed on qv8 while shifting answer boundaries on other sets.",
+        "Aggregate EDD can hide mixed-field errors when one answer contains both answerable official fields and unanswerable private fields.",
+        "Measurement repairs can look like model improvements if raw, recomputed, and rerun rows are merged."
+      ]
+    },
+    "diary_and_report_wording": {
+      "constraints": {
+        "avoid_disallowed_korean_terms": true,
+        "style": "Use cause-result-next-basis wording. Keep diagnostic and validation labels explicit."
+      },
+      "cause": "L105에서 qv8 점수는 거의 포화 상태가 되었지만, qv8은 이미 앞선 실패 분석을 보고 만든 진단 세트라서 최종 검증 점수로 올릴 수 없다. 남은 문제는 같은 세트의 점수 상승이 아니라 새 문항에서 guard가 과하게 막지 않는지와 혼합 필드를 따로 채점할 수 있는지다.",
+      "result": "qv8 진단 기준으로는 award-result guard와 victim-story preempt가 모두 효과를 보였다. L105는 EDD 99.13, abstention 1.0, 평균 지연 11.813초를 기록했고, L103보다 지연이 13.656초에서 줄었다. 다만 이 값은 diagnostic-only 성과이며 strict validation으로 쓰지 않는다.",
+      "next": "다음 단계는 non-qv8 미니 세트를 먼저 고정한 뒤 unsupported final-result, sensitive victim-story, support-center boundary, mixed contact 문항을 확인하는 것이다. mixed contact 문항은 공식 연락처와 개인 연락처를 필드 단위로 나누어 채점하기 전까지 aggregate EDD에 넣지 않는다.",
+      "basis": "근거는 L98 raw, L99 measurement correction, L103 award guard, L104 single-case victim preempt, L105 full qv8 rerun의 분리된 흐름이다. L99는 저장된 답변의 채점 보정이고, L103/L105는 실제 생성 경로를 바꾼 재실행이므로 보고서에서도 원인을 나누어 적어야 한다.",
+      "one_line_report_label": "L105 is the best qv8 diagnostic row, not a strict validation row; next evidence must come from non-qv8 guard generalization plus field-level scoring."
+    },
+    "acceptance_criteria_for_report_gate": [
+      "Report tables keep L105 under diagnostic-only or exposed diagnostic evidence.",
+      "Strict scoreboard value is not replaced by L105.",
+      "Raw/recomputed/rerun rows retain separate labels.",
+      "Field-level mixed-contact rows are excluded from aggregate EDD until the scorer exists.",
+      "Next-work section prioritizes non-qv8 guard false-positive/generalization before any additional qv8 tuning."
+    ]
+  },
+  "worker_notes": [
+    "No protected path was edited.",
+    "No source, script, config, registry, diary, or experiment log file was modified.",
+    "This output is a proposal contract only."
+  ],
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Read experiment log, next tasks, diary, L104-L105 report, and loop points",
+      "Parsed this contract JSON from disk",
+      "Checked proposed diary wording for reserved terms"
+    ],
+    "observed_results": [
+      "No API calls were made.",
+      "No protected paths were modified.",
+      "Forbidden Korean terms were absent from proposed diary wording."
+    ]
+  }
+}

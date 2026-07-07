@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="465" viewBox="0 0 1200 465">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" font-size="22" font-family="Segoe UI, Arial" font-weight="700">qv8 case latency and abstention status</text>
+<text x="24" y="91" font-size="12" font-family="Segoe UI, Arial">a01_generic_integrated_system_preempt_false_positive</text>
+<rect x="430" y="75" width="650.0" height="20" rx="3" fill="#dc2626"/>
+<text x="1088.0" y="91" font-size="12" font-family="Segoe UI, Arial">31.17s ? OK</text>
+<text x="24" y="125" font-size="12" font-family="Segoe UI, Arial">a02_hanyoung_plain_language_track_system</text>
+<rect x="430" y="109" width="568.3" height="20" rx="3" fill="#dc2626"/>
+<text x="1006.3" y="125" font-size="12" font-family="Segoe UI, Arial">27.25s ? OK</text>
+<text x="24" y="159" font-size="12" font-family="Segoe UI, Arial">a03_kogas_erp_final_contract_vs_budget</text>
+<rect x="430" y="143" width="181.6" height="20" rx="3" fill="#2f6fed"/>
+<text x="619.6" y="159" font-size="12" font-family="Segoe UI, Arial">8.71s ? OK</text>
+<text x="24" y="193" font-size="12" font-family="Segoe UI, Arial">a05_nmc_patient_example_fabrication</text>
+<rect x="430" y="177" width="433.8" height="20" rx="3" fill="#f59e0b"/>
+<text x="871.8" y="193" font-size="12" font-family="Segoe UI, Arial">20.80s ? OK</text>
+<text x="24" y="227" font-size="12" font-family="Segoe UI, Arial">a06_gist_same_issuer_rcms_vs_academic</text>
+<rect x="430" y="211" width="533.8" height="20" rx="3" fill="#dc2626"/>
+<text x="971.8" y="227" font-size="12" font-family="Segoe UI, Arial">25.60s ? OK</text>
+<text x="24" y="261" font-size="12" font-family="Segoe UI, Arial">a07_livestock_honey_vs_traceability_compare</text>
+<rect x="430" y="245" width="423.5" height="20" rx="3" fill="#f59e0b"/>
+<text x="861.5" y="261" font-size="12" font-family="Segoe UI, Arial">20.31s ? OK</text>
+<text x="24" y="295" font-size="12" font-family="Segoe UI, Arial">a08_hanyoung_numeric_precision</text>
+<rect x="430" y="279" width="135.8" height="20" rx="3" fill="#2f6fed"/>
+<text x="573.8" y="295" font-size="12" font-family="Segoe UI, Arial">6.51s ? OK</text>
+<text x="24" y="329" font-size="12" font-family="Segoe UI, Arial">a09_kaeri_dose_ai_overclaim</text>
+<rect x="430" y="313" width="218.3" height="20" rx="3" fill="#2f6fed"/>
+<text x="656.3" y="329" font-size="12" font-family="Segoe UI, Arial">10.47s ? OK</text>
+<text x="24" y="363" font-size="12" font-family="Segoe UI, Arial">a11_dbrain_award_score_and_vendor</text>
+<rect x="430" y="347" width="327.4" height="20" rx="3" fill="#f59e0b"/>
+<text x="765.4" y="363" font-size="12" font-family="Segoe UI, Arial">15.70s ? OK</text>
+<text x="24" y="397" font-size="12" font-family="Segoe UI, Arial">a12_seoul_digital_sex_crime_sensitive_story</text>
+<rect x="430" y="381" width="207.1" height="20" rx="3" fill="#2f6fed"/>
+<text x="645.1" y="397" font-size="12" font-family="Segoe UI, Arial">9.93s ? raw miss -&gt; recompute OK</text>
+</svg>

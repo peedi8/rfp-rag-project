@@ -1,0 +1,151 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "report_update",
+  "task_id": "report_update",
+  "status": "proposal",
+  "summary": "Proposal-only record plan for a two-branch run: Branch A should be recorded as fresh mini-set first-run evidence only if its exposure gate passes, while Branch B should be recorded as same-cohort latency profiling only.",
+  "inputs": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "eval/parallel_runs/20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati/analysis/l108_l112_nonqv8_guard_field_report.md",
+    "eval/parallel_runs/20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr/ledger.json",
+    "eval/parallel_runs/20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr/checkpoint_01_inputs.md"
+  ],
+  "protected_paths_seen": [
+    "src/**",
+    "scripts/**",
+    "eval/questions*.json",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr/worker_outputs/report_update_contract.json",
+      "kind": "json",
+      "description": "record plan proposal"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "target": "업무일지.md",
+        "kind": "proposed_diary_text",
+        "label": "Branch A: fresh mini-set first-run candidate",
+        "proposed_text_ko": "A 갈래는 새 작은 묶음을 답변 확인 전에 고정하고 첫 실행값을 따로 남기는 쪽이다. 원인은 L108-L112가 깨끗해졌지만 이미 실패 유형을 보고 만든 진단 묶음이라 일반화 근거로 쓰기 어렵기 때문이다. 결과에는 질문 파일 고정 시각, 답변 확인 전 고정 여부, 첫 실행 점수, false abstention, field_score issue, latency, cost를 함께 적는다. 인사이트는 처음 본 묶음의 첫 실행값과 같은 묶음 재시도값은 다른 라벨이어야 한다는 점이다. 다음 근거는 exposure gate를 통과하고 first-run raw에서 field_score issue와 false abstention이 허용 범위 안에 있을 때만 성능 주장 후보가 된다는 것이다.",
+        "honest_label": "fresh mini-set first-run candidate; promote only if frozen before answer inspection and red gate passes"
+      },
+      {
+        "target": "업무일지.md",
+        "kind": "proposed_diary_text",
+        "label": "Branch B: L112 same-cohort latency profile",
+        "proposed_text_ko": "B 갈래는 L112의 같은 8문항을 다시 쓰더라도 성능을 더 자랑하지 않고 지연과 비용만 보는 쪽이다. 원인은 L112가 false abstention 0.0과 field_score issue 없음까지 정리됐지만, 이미 여러 차례 본 진단 묶음이라 추가 점수 상승은 과적합 위험이 크기 때문이다. 결과에는 top_k별 평균 지연, 최대 지연, 비용, false abstention, field_score issue, empty answer, answer_quality_issues를 적고, EDD 60.0은 no-judge라 비교하지 않는다고 붙인다. 인사이트는 문맥 축소가 빠르게 만들 수 있지만 거절 경계를 흔들 수 있다는 점이다. 다음 근거는 같은 품질 신호가 유지되면서 10% 또는 1초 이상의 지연 개선이 있을 때만 새 묶음에서 다시 확인할 후보로 올리는 것이다.",
+        "honest_label": "same-cohort latency-only diagnostic; no performance promotion"
+      },
+      {
+        "target": "eval/experiment_log.md",
+        "kind": "record_plan",
+        "label": "Branch A cause/result/insight/next-basis",
+        "fields": {
+          "cause": "L108-L112 separated answerable supported fields, unavailable final-result fields, and unsafe private/fabricated fields, but it is failure-family-driven. A new mini-set is needed before any broader claim.",
+          "result_to_record": "Record the actual Branch A first-run metrics only after the mini-set is frozen: question file, manifest/hash if available, freeze-before-answer status, exposure label, EDD if judged, coverage/MRR, groundedness/relevance, abstention accuracy, false abstention, field_score issues, latency, cost, and any answer_quality_issues.",
+          "insight": "First-run evidence, measurement correction, targeted retry, and diagnostic rerun must remain separate labels.",
+          "next_basis": "If Branch A passes the exposure/overfit gate, use it as the next performance-claim candidate. If it fails, record the failure family and require another untouched set before making a stronger claim."
+        }
+      },
+      {
+        "target": "eval/experiment_log.md",
+        "kind": "record_plan",
+        "label": "Branch B cause/result/insight/next-basis",
+        "fields": {
+          "cause": "L112 is currently clean on false abstention, field_score issues, empty answers, and cost, but the same eight cases are reused and no-judge EDD is not comparable.",
+          "result_to_record": "Record same-cohort top_k or context-profile results as latency/cost evidence only: mean latency, max latency, per-case tail movement, observed cost, false abstention, field_score issues, empty answers, answer_quality_issues, and whether quality invariants held.",
+          "insight": "Context reduction may lower generation time, but earlier qv8 and v3/v6 loops showed that shorter context or shorter prompting can damage refusal boundaries or evidence detail.",
+          "next_basis": "Only promote the latency setting to a candidate for Branch A or another untouched set if it preserves L112 quality invariants and improves latency by at least 10% or 1 second. Do not update strict scoreboard from Branch B."
+        }
+      },
+      {
+        "target": "eval/next_improvement_tasks.md",
+        "kind": "proposed_task_entries",
+        "entries": [
+          "[ ] Branch A: freeze a new mini-set before answer inspection, record manifest/hash, and label first-run raw separately from any targeted retry.",
+          "[ ] Branch A: after the exposure gate, decide whether the run is first-run candidate evidence or diagnostic-only.",
+          "[ ] Branch B: treat the L112 same-cohort top_k/profile run as latency-only evidence; require false abstention 0.0, field_score issues {}, empty answers 0.0, and no answer_quality_issues before using it as a future candidate.",
+          "[ ] Branch B: do not compare no-judge EDD 60.0 with judged EDD rows and do not move same-cohort profiling into the strict scoreboard."
+        ]
+      },
+      {
+        "target": "report labels",
+        "kind": "claim_and_overfit_gates",
+        "gates": [
+          "Strict scoreboard remains separate from diagnostic-only and same-cohort latency rows.",
+          "L105 qv8 remains source-exposed diagnostic evidence, not strict validation.",
+          "L112 remains diagnostic-only; its useful numbers are false abstention, field_score issues, latency, cost, and empty-answer rate, not no-judge EDD.",
+          "Branch A can be described as first-run candidate evidence only if the question set was frozen before answers and the red/exposure gate agrees.",
+          "Branch B can support a speed-candidate decision only; it cannot support a stronger accuracy or generalization claim.",
+          "Any targeted retry after Branch A first-run must be logged as targeted retry, not as the first-run score."
+        ]
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Promoting L108-L112 or L112 same-cohort reruns to strict validation",
+        "reason": "The cohort is source-exposed/failure-family-driven and has already been rerun; repeated use is close to overfit territory."
+      },
+      {
+        "item": "Comparing L112 no-judge EDD 60.0 against judged EDD rows",
+        "reason": "Groundedness and relevance are null in no-judge mode, so the EDD value is bookkeeping rather than a performance score."
+      },
+      {
+        "item": "Calling qv8 L105 EDD 99.13 final validation",
+        "reason": "qv8 was built after earlier failures and is explicitly diagnostic-only, even though the improvement inside qv8 is real."
+      },
+      {
+        "item": "Using Branch B latency gains to adopt global top5 immediately",
+        "reason": "Earlier loops showed top5 can reduce latency while weakening refusal boundaries or dropping needed evidence details."
+      },
+      {
+        "item": "Recording measurement repairs as model improvements",
+        "reason": "L99 and parts of L108-L112 were evaluator/scorer granularity repairs and must be labeled as such."
+      }
+    ],
+    "needs_orchestrator_review": [
+      {
+        "question": "Did Branch A freeze the new mini-set before answer inspection and pass fresh_red_gate exposure review?",
+        "why": "This decides whether the record label can be first-run candidate evidence or must stay diagnostic-only."
+      },
+      {
+        "question": "What exact Branch B latency profile metrics were produced by the latency_profile worker?",
+        "why": "The final diary/log should insert actual top_k mean/max latency, cost, and invariant results rather than placeholders."
+      },
+      {
+        "question": "Should the final report require a 10% latency improvement, a 1 second improvement, or both as the Branch B speed-candidate threshold?",
+        "why": "The task history mentions both styles of materiality gate; the orchestrator should choose one consistent threshold."
+      },
+      {
+        "question": "Should field-level metrics remain outside aggregate EDD for all mixed official/private rows in the next run?",
+        "why": "The current evidence says yes, but final scoring policy belongs to the orchestrator."
+      }
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content 업무일지.md, eval/experiment_log.md, eval/next_improvement_tasks.md, and the L108-L112 report with UTF-8 output",
+      "Test-Path eval/parallel_runs/20260707_134725_Two-branch-eval-fresh-mini-set-first-run-and-L112-latency-pr/worker_outputs/report_update_contract.json",
+      "Get-ChildItem on the target run folder and worker_outputs folder",
+      "Get-Content target run ledger.json and checkpoint_01_inputs.md",
+      "git status --short"
+    ],
+    "observed_results": [
+      "The requested protected source files were inspected but not modified.",
+      "The target JSON did not exist before this worker write.",
+      "The run ledger lists report_update as a proposal-only worker output path under worker_outputs.",
+      "The key source evidence says L112 is diagnostic-only, false abstention 0.0, abstention accuracy 1.0, field_score issues {}, latency 7.184s, cost $0.040586, and no-judge EDD is not comparable.",
+      "The workspace path is not a git repository, so git status could not provide a diff."
+    ]
+  }
+}

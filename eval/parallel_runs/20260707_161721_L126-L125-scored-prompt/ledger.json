@@ -1,0 +1,55 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-07T16:17:21",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "L126 scored prompt diagnostic on frozen L125 sparse-field cases",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_161721_L126-L125-scored-prompt",
+  "recommended_workers": 2,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "CLAUDE.md",
+    "config.py",
+    "src/**",
+    "chroma_db/**",
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md"
+  ],
+  "tasks": [
+    {
+      "task_id": "baseline_default",
+      "description": "Run baseline_default on L125 frozen sparse diagnostic questions with judge enabled.",
+      "status": "completed",
+      "worker_id": "baseline_default",
+      "output_contract": "worker_outputs/baseline_default_baseline_default.json",
+      "merge_decision": "accepted_as_diagnostic_only"
+    },
+    {
+      "task_id": "prompt_sweep",
+      "description": "Run prompt variants on L125 frozen sparse diagnostic questions with judge enabled.",
+      "status": "completed",
+      "worker_id": "prompt_sweep",
+      "output_contract": "worker_outputs/prompt_sweep_prompt_sweep.json",
+      "merge_decision": "accepted_as_diagnostic_only"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "checkpoint_01_inputs.md",
+    "worker_outputs": "checkpoint_02_worker_outputs.md",
+    "merge_decisions": "checkpoint_03_merge_decisions.md",
+    "smoke": "checkpoint_04_smoke.md"
+  },
+  "events": [
+    {
+      "ts": "2026-07-07T16:17:21",
+      "event": "run_started",
+      "note": "Original folder was accidentally created with literal ${stamp}; normalized to timestamped folder after execution."
+    },
+    {
+      "ts": "2026-07-07T17:12:00",
+      "event": "aggregation_guard_fixed",
+      "note": "Diagnostic-only question file content is now detected by aggregate_parallel_eval.py and excluded from scoreboard."
+    }
+  ]
+}

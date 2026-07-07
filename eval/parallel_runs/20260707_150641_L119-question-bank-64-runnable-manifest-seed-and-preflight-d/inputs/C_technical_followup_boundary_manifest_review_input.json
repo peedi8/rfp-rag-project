@@ -1,0 +1,1548 @@
+{
+  "schema": "l119_shard_manifest_review_input.v1",
+  "shard": "C_technical_followup_boundary",
+  "run_dir": "eval\\parallel_runs\\20260707_150641_L119-question-bank-64-runnable-manifest-seed-and-preflight-d",
+  "worker_output_expected_path": "eval\\parallel_runs\\20260707_150641_L119-question-bank-64-runnable-manifest-seed-and-preflight-d\\worker_outputs\\C_technical_followup_boundary_manifest_review_contract.json",
+  "source_manifest": "eval\\question_bank64_runnable_manifest_20260707.json",
+  "review_instructions": [
+    "Review only this shard for execution readiness.",
+    "Do not modify final artifacts directly; write only the worker output contract path.",
+    "Flag seed mismatch, sidecar/ordinary-EDD leakage, impossible runner requirements, and likely overfitting gates.",
+    "Recommend minimal corrections with cause/result/next-step wording."
+  ],
+  "seed_catalog_subset": {
+    "S_ADD_LARGE_TRANSFER": {
+      "doc_id": "DOC010",
+      "row_index": 10,
+      "title": "대용량 자료전송시스템 고도화",
+      "org": "국방과학연구소",
+      "amount_krw": 316800000.0,
+      "format": "hwp",
+      "text_length": 1047,
+      "published_at": "2024-08-22 11:20:10",
+      "bid_start_at": "2024-08-22 11:30:00",
+      "bid_end_at": "2024-10-01 10:00:00",
+      "filename": "국방과학연구소_대용량 자료전송시스템 고도화.hwp",
+      "why": "technical upgrade project; useful for interface, operations, performance, and failure-response checks"
+    },
+    "S_BONGHWA_DISASTER": {
+      "doc_id": "DOC005",
+      "row_index": 5,
+      "title": "봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)",
+      "org": "경상북도 봉화군",
+      "amount_krw": 900000000.0,
+      "format": "hwp",
+      "text_length": 5840,
+      "published_at": "2024-04-18 16:33:28",
+      "bid_start_at": "2024-04-26 09:00:00",
+      "bid_end_at": "2024-04-30 17:00:00",
+      "filename": "경상북도 봉화군_봉화군 재난통합관리시스템 고도화 사업(협상)(긴급).hwp",
+      "why": "disaster integrated management project; useful for security, control, and operational risk checks"
+    },
+    "S_HEAVY_ION": {
+      "doc_id": "DOC051",
+      "row_index": 51,
+      "title": "2025년도 중이온가속기용 극저온시스템 운전 용역",
+      "org": "기초과학연구원",
+      "amount_krw": 743070000.0,
+      "format": "pdf",
+      "text_length": 2716,
+      "published_at": "2024-11-15 09:53:46",
+      "bid_start_at": "2024-11-22 10:00:00",
+      "bid_end_at": "2024-11-26 14:00:00",
+      "filename": "기초과학연구원_2025년도 중이온가속기용 극저온시스템 운전 용역.pdf",
+      "why": "explicit cryogenic operation service case for negative AI prediction question"
+    },
+    "S_KOGAS_ERP": {
+      "doc_id": "DOC048",
+      "row_index": 48,
+      "title": "[재공고]차세대 통합정보시스템(ERP) 구축",
+      "org": "한국가스공사",
+      "amount_krw": 14107009000.0,
+      "format": "hwp",
+      "text_length": 2114,
+      "published_at": "2024-08-08 00:00:00",
+      "bid_start_at": "",
+      "bid_end_at": "2024-09-09 15:00:00",
+      "filename": "한국가스공사_[재공고]차세대 통합정보시스템(ERP) 구축.hwp",
+      "why": "large ERP/backoffice build; useful for contract and integration/migration checks"
+    },
+    "S_LMS_SPORTS_ETHICS": {
+      "doc_id": "DOC009",
+      "row_index": 9,
+      "title": "스포츠윤리센터 LMS(학습지원시스템) 기능개선",
+      "org": "재단법인스포츠윤리센터",
+      "amount_krw": 46445000.0,
+      "format": "hwp",
+      "text_length": 298,
+      "published_at": "2024-08-22 11:11:14",
+      "bid_start_at": "2024-08-22 14:00:00",
+      "bid_end_at": "2024-09-02 14:00:00",
+      "filename": "재단법인스포츠윤리센터_스포츠윤리센터 LMS(학습지원시스템) 기능개선.hwp",
+      "why": "compact LMS case for education follow-up expansion"
+    },
+    "S_MEDICAL_DEVICE_A": {
+      "doc_id": "DOC022",
+      "row_index": 22,
+      "title": "의료기기산업 종합정보시스템(정보관리기관) 기능개선 사업",
+      "org": "한국보건산업진흥원",
+      "amount_krw": 50000000.0,
+      "format": "hwp",
+      "text_length": 9007,
+      "published_at": "2024-09-04 18:33:03",
+      "bid_start_at": "2024-09-13 10:00:00",
+      "bid_end_at": "2024-09-20 10:00:00",
+      "filename": "한국보건산업진흥원_의료기기산업 종합정보시스템(정보관리기관) 기능.hwp",
+      "why": "medical device information system first issuer variant"
+    },
+    "S_MEDICAL_DEVICE_B": {
+      "doc_id": "DOC047",
+      "row_index": 47,
+      "title": "의료기기산업 종합정보시스템(정보관리기관) 기능개선 사업(2차)",
+      "org": "BioIN",
+      "amount_krw": 50000000.0,
+      "format": "hwp",
+      "text_length": 3363,
+      "published_at": "2024-09-05 00:00:00",
+      "bid_start_at": "",
+      "bid_end_at": "",
+      "filename": "BioIN_의료기기산업 종합정보시스템(정보관리기관) 기능개선 사업(2차).hwp",
+      "why": "same/near-same medical device information system title with BioIN issuer variant"
+    },
+    "S_MISSING_AMOUNT_RENEWABLE": {
+      "doc_id": "DOC060",
+      "row_index": 60,
+      "title": "기업 재생에너지 지원센터 홈페이지 개편 및 시스템 고도화 사업",
+      "org": "대한상공회의소",
+      "amount_krw": null,
+      "format": "hwp",
+      "text_length": 2036,
+      "published_at": "2024-06-05 11:12:09",
+      "bid_start_at": "",
+      "bid_end_at": "2024-06-14 14:00:00",
+      "filename": "대한상공회의소_기업 재생에너지 지원센터 홈페이지 개편 및 시스템 고.hwp",
+      "why": "only corpus row with missing budget value"
+    },
+    "S_NUCLEAR_DOSE": {
+      "doc_id": "DOC082",
+      "row_index": 82,
+      "title": "한국원자력연구원 선량평가시스템 고도화",
+      "org": "한국원자력연구원",
+      "amount_krw": 46600000.0,
+      "format": "hwp",
+      "text_length": 8669,
+      "published_at": "2024-06-18 18:26:21",
+      "bid_start_at": "2024-06-27 10:00:00",
+      "bid_end_at": "2024-07-01 10:00:00",
+      "filename": "한국원자력연구원_한국원자력연구원 선량평가시스템 고도화.hwp",
+      "why": "correct organization is institute, useful for wrong-org correction"
+    },
+    "S_PORTAL_KOREA_UNIV": {
+      "doc_id": "DOC008",
+      "row_index": 8,
+      "title": "차세대 포털·학사 정보시스템 구축사업",
+      "org": "고려대학교",
+      "amount_krw": 11270000000.0,
+      "format": "pdf",
+      "text_length": 2450,
+      "published_at": "2024-07-01 00:00:00",
+      "bid_start_at": "2024-07-05 11:00:00",
+      "bid_end_at": "2024-08-12 11:00:00",
+      "filename": "고려대학교_차세대 포털·학사 정보시스템 구축사업.pdf",
+      "why": "large PDF education/portal project; useful for procurement, evaluation, schedule, budget, and persona rewrite tests"
+    }
+  },
+  "metadata_expected_outputs_subset": {
+    "Q006": {
+      "check_type": "keyword_discovery_preflight",
+      "keyword_family": "education_academic",
+      "count": 29,
+      "docs": [
+        {
+          "doc_id": "DOC001",
+          "row_index": 1,
+          "title": "한영대학교 특성화 맞춤형 교육환경 구축 - 트랙운영 학사정보시스템 고도화",
+          "org": "한영대학",
+          "amount_krw": 130000000.0,
+          "format": "hwp",
+          "text_length": 1799
+        },
+        {
+          "doc_id": "DOC002",
+          "row_index": 2,
+          "title": "2024년 대학산학협력활동 실태조사 시스템(UICC) 기능개선",
+          "org": "한국연구재단",
+          "amount_krw": 129300000.0,
+          "format": "hwp",
+          "text_length": 2792
+        },
+        {
+          "doc_id": "DOC004",
+          "row_index": 4,
+          "title": "도시계획위원회 통합관리시스템 구축용역",
+          "org": "인천광역시",
+          "amount_krw": 150000000.0,
+          "format": "hwp",
+          "text_length": 3143
+        },
+        {
+          "doc_id": "DOC006",
+          "row_index": 6,
+          "title": "전기안전 관제시스템 보안 모듈 개발 용역",
+          "org": "한국전기안전공사",
+          "amount_krw": 222180200.0,
+          "format": "hwp",
+          "text_length": 2379
+        },
+        {
+          "doc_id": "DOC008",
+          "row_index": 8,
+          "title": "차세대 포털·학사 정보시스템 구축사업",
+          "org": "고려대학교",
+          "amount_krw": 11270000000.0,
+          "format": "pdf",
+          "text_length": 2450
+        },
+        {
+          "doc_id": "DOC009",
+          "row_index": 9,
+          "title": "스포츠윤리센터 LMS(학습지원시스템) 기능개선",
+          "org": "재단법인스포츠윤리센터",
+          "amount_krw": 46445000.0,
+          "format": "hwp",
+          "text_length": 298
+        },
+        {
+          "doc_id": "DOC011",
+          "row_index": 11,
+          "title": "KUSF 체육특기자 경기기록 관리시스템 개발",
+          "org": "(사）한국대학스포츠협의회",
+          "amount_krw": 150000000.0,
+          "format": "hwp",
+          "text_length": 3854
+        },
+        {
+          "doc_id": "DOC012",
+          "row_index": 12,
+          "title": "대학재정정보시스템(기본재산 및 기채 사후관리) 고도화",
+          "org": "한국사학진흥재단",
+          "amount_krw": 211000000.0,
+          "format": "hwp",
+          "text_length": 4026
+        },
+        {
+          "doc_id": "DOC013",
+          "row_index": 13,
+          "title": "[사전공개] 학업성취도 다차원 종단분석 통합시스템 1차 고도화 용역",
+          "org": "서울시립대학교",
+          "amount_krw": 0.0,
+          "format": "pdf",
+          "text_length": 220
+        },
+        {
+          "doc_id": "DOC014",
+          "row_index": 14,
+          "title": "[입찰공고] 산학협력단 정보시스템 운영 용역업체 선정",
+          "org": "경희대학교",
+          "amount_krw": 0.0,
+          "format": "hwp",
+          "text_length": 1419
+        },
+        {
+          "doc_id": "DOC021",
+          "row_index": 21,
+          "title": "JST 공유대학(원) xAPI기반 LRS시스템 구축",
+          "org": "전북대학교",
+          "amount_krw": 116000000.0,
+          "format": "hwp",
+          "text_length": 130
+        },
+        {
+          "doc_id": "DOC030",
+          "row_index": 30,
+          "title": "인천일자리플랫폼 정보시스템 구축 ISP 수립용역",
+          "org": "인천광역시",
+          "amount_krw": 100000000.0,
+          "format": "hwp",
+          "text_length": 6166
+        },
+        {
+          "doc_id": "DOC036",
+          "row_index": 36,
+          "title": "e나라도움 업무시스템 웹 접근성 컨설팅",
+          "org": "한국재정정보원",
+          "amount_krw": 70000000.0,
+          "format": "hwp",
+          "text_length": 6203
+        },
+        {
+          "doc_id": "DOC039",
+          "row_index": 39,
+          "title": "학사시스템 기능개선 사업",
+          "org": "광주과학기술원",
+          "amount_krw": 157300000.0,
+          "format": "hwp",
+          "text_length": 2407
+        },
+        {
+          "doc_id": "DOC042",
+          "row_index": 42,
+          "title": "을지대학교 비교과시스템 개발",
+          "org": "을지대학교",
+          "amount_krw": 0.0,
+          "format": "hwp",
+          "text_length": 5039
+        },
+        {
+          "doc_id": "DOC043",
+          "row_index": 43,
+          "title": "대전대학교 2024학년도 다층적 융합 학습경험 플랫폼(MILE) 전산시스템 구축",
+          "org": "대전대학교",
+          "amount_krw": 60000000.0,
+          "format": "hwp",
+          "text_length": 1919
+        },
+        {
+          "doc_id": "DOC044",
+          "row_index": 44,
+          "title": "2024년 기초학문자료센터 시스템 운영 및 연구성과물 DB구축 사업",
+          "org": "한국연구재단",
+          "amount_krw": 212300000.0,
+          "format": "hwp",
+          "text_length": 665
+        },
+        {
+          "doc_id": "DOC045",
+          "row_index": 45,
+          "title": "전문대학 혁신지원사업 서영대학교 차세대 교육혁신지원시스템  3단계 구축 용역 재공고",
+          "org": "서영대학교 산학협력단",
+          "amount_krw": 950000000.0,
+          "format": "hwp",
+          "text_length": 697
+        },
+        {
+          "doc_id": "DOC048",
+          "row_index": 48,
+          "title": "[재공고]차세대 통합정보시스템(ERP) 구축",
+          "org": "한국가스공사",
+          "amount_krw": 14107009000.0,
+          "format": "hwp",
+          "text_length": 2114
+        },
+        {
+          "doc_id": "DOC049",
+          "row_index": 49,
+          "title": "2024년 이러닝시스템 운영 용역",
+          "org": "국민연금공단",
+          "amount_krw": 773801000.0,
+          "format": "hwp",
+          "text_length": 2346
+        },
+        {
+          "doc_id": "DOC053",
+          "row_index": 53,
+          "title": "아태 사이버범죄 역량강화 허브(APC-HUB) 홈페이지 및 온라인 교육시스템 고도화 2차사업",
+          "org": "대검찰청",
+          "amount_krw": 35750000.0,
+          "format": "hwp",
+          "text_length": 806
+        },
+        {
+          "doc_id": "DOC067",
+          "row_index": 67,
+          "title": "국립인천해양박물관 해양자료관리시스템 구축 용역(장기계속계약)",
+          "org": "국립인천해양박물관",
+          "amount_krw": 137000000.0,
+          "format": "hwp",
+          "text_length": 4638
+        },
+        {
+          "doc_id": "DOC068",
+          "row_index": 68,
+          "title": "국가교육과정정보센터(NCIC) 시스템 운영 및 개선",
+          "org": "한국교육과정평가원",
+          "amount_krw": 50000000.0,
+          "format": "hwp",
+          "text_length": 8557
+        },
+        {
+          "doc_id": "DOC072",
+          "row_index": 72,
+          "title": "[재공고][긴급][협상형]운행정보기록 자동분석시스템 개량",
+          "org": "한국철도공사 (용역)",
+          "amount_krw": 0.0,
+          "format": "hwp",
+          "text_length": 3556
+        },
+        {
+          "doc_id": "DOC077",
+          "row_index": 77,
+          "title": "[혁신-국고] 남서울대학교 스마트 정보시스템 활성화(학사행정 암호화) 개발 용역 입찰",
+          "org": "남서울대학교",
+          "amount_krw": 70000000.0,
+          "format": "hwp",
+          "text_length": 3371
+        },
+        {
+          "doc_id": "DOC081",
+          "row_index": 81,
+          "title": "RFID기반 국가자격 시험 결과물 스마트 관리시스템 도입 사업",
+          "org": "한국산업인력공단",
+          "amount_krw": 80000000.0,
+          "format": "hwp",
+          "text_length": 884
+        },
+        {
+          "doc_id": "DOC085",
+          "row_index": 85,
+          "title": "서울특별시교육청 지능정보화전략계획(ISP) 수립(2차) 사업 용역",
+          "org": "서울특별시교육청",
+          "amount_krw": 248796000.0,
+          "format": "hwp",
+          "text_length": 2050
+        },
+        {
+          "doc_id": "DOC093",
+          "row_index": 93,
+          "title": "(재공고)2024 조선대학교 SW중심대학 사업관리시스템(WeHub) 구축",
+          "org": "조선대학교",
+          "amount_krw": 100000000.0,
+          "format": "hwp",
+          "text_length": 610
+        },
+        {
+          "doc_id": "DOC095",
+          "row_index": 95,
+          "title": "산단 안전정보시스템 1차 구축 용역",
+          "org": "한국산업단지공단",
+          "amount_krw": 717285200.0,
+          "format": "hwp",
+          "text_length": 7094
+        }
+      ]
+    },
+    "Q054": {
+      "check_type": "ai_analytics_automation_discovery_preflight",
+      "count": 29,
+      "docs": [
+        {
+          "doc_id": "DOC003",
+          "row_index": 3,
+          "title": "EIP3.0 고압가스 안전관리 시스템 구축 용역",
+          "org": "한국생산기술연구원",
+          "amount_krw": 40000000.0,
+          "format": "hwp",
+          "text_length": 234
+        },
+        {
+          "doc_id": "DOC007",
+          "row_index": 7,
+          "title": "GIS/통계 기반 재난안전데이터 분석ㆍ관리 시스템 구축 용역",
+          "org": "재단법인충북연구원",
+          "amount_krw": 100000000.0,
+          "format": "hwp",
+          "text_length": 2141
+        },
+        {
+          "doc_id": "DOC009",
+          "row_index": 9,
+          "title": "스포츠윤리센터 LMS(학습지원시스템) 기능개선",
+          "org": "재단법인스포츠윤리센터",
+          "amount_krw": 46445000.0,
+          "format": "hwp",
+          "text_length": 298
+        },
+        {
+          "doc_id": "DOC010",
+          "row_index": 10,
+          "title": "대용량 자료전송시스템 고도화",
+          "org": "국방과학연구소",
+          "amount_krw": 316800000.0,
+          "format": "hwp",
+          "text_length": 1047
+        },
+        {
+          "doc_id": "DOC013",
+          "row_index": 13,
+          "title": "[사전공개] 학업성취도 다차원 종단분석 통합시스템 1차 고도화 용역",
+          "org": "서울시립대학교",
+          "amount_krw": 0.0,
+          "format": "pdf",
+          "text_length": 220
+        },
+        {
+          "doc_id": "DOC017",
+          "row_index": 17,
+          "title": "예약발매시스템 개량 ISMP 용역",
+          "org": "한국철도공사 (용역)",
+          "amount_krw": 0.0,
+          "format": "hwp",
+          "text_length": 1526
+        },
+        {
+          "doc_id": "DOC018",
+          "row_index": 18,
+          "title": "2025 구미아시아육상경기선수권대회 종합정보시스템 및 홈페이지 등 구축 용역",
+          "org": "2025 구미 아시아육상경기선수권대회 조직위원회",
+          "amount_krw": 260000000.0,
+          "format": "hwp",
+          "text_length": 186
+        },
+        {
+          "doc_id": "DOC020",
+          "row_index": 20,
+          "title": "관산근린공원 다목적구장 홈페이지 및 회원 통합운영 관리 시스템 구축[협상에 의한 계약]",
+          "org": "고양도시관리공사",
+          "amount_krw": 90000000.0,
+          "format": "hwp",
+          "text_length": 1183
+        },
+        {
+          "doc_id": "DOC023",
+          "row_index": 23,
+          "title": "라오스 보건의료정보화 협력을 위한 사전타당성 조사",
+          "org": "한국사회보장정보원",
+          "amount_krw": 44000000.0,
+          "format": "hwp",
+          "text_length": 1250
+        },
+        {
+          "doc_id": "DOC026",
+          "row_index": 26,
+          "title": "아세안+3 식량안보정보시스템(AFSIS) 3단계 협력(캄보디아)사업 PMC 용역",
+          "org": "한국농어촌공사",
+          "amount_krw": 977240000.0,
+          "format": "hwp",
+          "text_length": 2389
+        },
+        {
+          "doc_id": "DOC028",
+          "row_index": 28,
+          "title": "수도사업장 통합 사고분석솔루션 시범구축 용역",
+          "org": "한국수자원공사",
+          "amount_krw": 195030000.0,
+          "format": "hwp",
+          "text_length": 7353
+        },
+        {
+          "doc_id": "DOC029",
+          "row_index": 29,
+          "title": "기록관리시스템 통합 활용 및 보안 환경 구축",
+          "org": "국방과학연구소",
+          "amount_krw": 282300000.0,
+          "format": "hwp",
+          "text_length": 6828
+        },
+        {
+          "doc_id": "DOC038",
+          "row_index": 38,
+          "title": "정읍체육트레이닝센터 통합운영관리시스템 구축 용역(협상에의한계약,긴급)",
+          "org": "전북특별자치도 정읍시",
+          "amount_krw": 200000000.0,
+          "format": "hwp",
+          "text_length": 6937
+        },
+        {
+          "doc_id": "DOC048",
+          "row_index": 48,
+          "title": "[재공고]차세대 통합정보시스템(ERP) 구축",
+          "org": "한국가스공사",
+          "amount_krw": 14107009000.0,
+          "format": "hwp",
+          "text_length": 2114
+        },
+        {
+          "doc_id": "DOC056",
+          "row_index": 56,
+          "title": "2세대 전자조달시스템  기반구축사업",
+          "org": "한국생산기술연구원",
+          "amount_krw": 94000000.0,
+          "format": "hwp",
+          "text_length": 17414
+        },
+        {
+          "doc_id": "DOC060",
+          "row_index": 60,
+          "title": "기업 재생에너지 지원센터 홈페이지 개편 및 시스템 고도화 사업",
+          "org": "대한상공회의소",
+          "amount_krw": null,
+          "format": "hwp",
+          "text_length": 2036
+        },
+        {
+          "doc_id": "DOC062",
+          "row_index": 62,
+          "title": "평택시 강소형 스마트시티 AI 기반의 영상감시 시스템 및 홍수감시 시스템 연동 개발",
+          "org": "케빈랩 주식회사",
+          "amount_krw": 341000000.0,
+          "format": "hwp",
+          "text_length": 8563
+        },
+        {
+          "doc_id": "DOC065",
+          "row_index": 65,
+          "title": "네팔 수자원관리 정보화사업-Pilot 시스템 구축용역",
+          "org": "한국농어촌공사",
+          "amount_krw": 181913000.0,
+          "format": "hwp",
+          "text_length": 3686
+        },
+        {
+          "doc_id": "DOC066",
+          "row_index": 66,
+          "title": "종량제봉투 판매관리 전산시스템 개선사업",
+          "org": "파주도시관광공사",
+          "amount_krw": 55000000.0,
+          "format": "hwp",
+          "text_length": 6343
+        },
+        {
+          "doc_id": "DOC069",
+          "row_index": 69,
+          "title": "(재공고, 협상) 서울 디지털성범죄 안심지원센터 업무시스템 및 AI 기반 삭제지원시스템 통합",
+          "org": "서울특별시 여성가족재단",
+          "amount_krw": 336403000.0,
+          "format": "hwp",
+          "text_length": 4844
+        },
+        {
+          "doc_id": "DOC071",
+          "row_index": 71,
+          "title": "철도인프라 디지털트윈 정보화전략계획(ISP) 수립 용역(변경공고)",
+          "org": "국가철도공단",
+          "amount_krw": 689480000.0,
+          "format": "hwp",
+          "text_length": 6395
+        },
+        {
+          "doc_id": "DOC072",
+          "row_index": 72,
+          "title": "[재공고][긴급][협상형]운행정보기록 자동분석시스템 개량",
+          "org": "한국철도공사 (용역)",
+          "amount_krw": 0.0,
+          "format": "hwp",
+          "text_length": 3556
+        },
+        {
+          "doc_id": "DOC083",
+          "row_index": 83,
+          "title": "2024년 항해용 간행물 품질관리 업무보조 시스템 구축",
+          "org": "한국해양조사협회",
+          "amount_krw": 200000000.0,
+          "format": "hwp",
+          "text_length": 736
+        },
+        {
+          "doc_id": "DOC091",
+          "row_index": 91,
+          "title": "2024년 국립민속박물관 민속아카이브 자료관리시스템 기능개선",
+          "org": "문화체육관광부 국립민속박물관",
+          "amount_krw": 77000000.0,
+          "format": "hwp",
+          "text_length": 3279
+        },
+        {
+          "doc_id": "DOC092",
+          "row_index": 92,
+          "title": "연차별 자율 품질관리 시스템 기능개선",
+          "org": "한국보육진흥원",
+          "amount_krw": 75000000.0,
+          "format": "hwp",
+          "text_length": 2103
+        },
+        {
+          "doc_id": "DOC095",
+          "row_index": 95,
+          "title": "산단 안전정보시스템 1차 구축 용역",
+          "org": "한국산업단지공단",
+          "amount_krw": 717285200.0,
+          "format": "hwp",
+          "text_length": 7094
+        },
+        {
+          "doc_id": "DOC096",
+          "row_index": 96,
+          "title": "적십자병원 병원정보 재해복구시스템 구축 용역 재공고입찰",
+          "org": "대한적십자사 의료원",
+          "amount_krw": 500000000.0,
+          "format": "hwp",
+          "text_length": 3280
+        },
+        {
+          "doc_id": "DOC097",
+          "row_index": 97,
+          "title": "수문자료정보관리시스템(HDIMS) 재구축 용역(3단계)",
+          "org": "한국수자원조사기술원",
+          "amount_krw": 493270440.0,
+          "format": "hwp",
+          "text_length": 3588
+        },
+        {
+          "doc_id": "DOC098",
+          "row_index": 98,
+          "title": "통합 정보시스템 구축 사전 컨설팅",
+          "org": "(재)예술경영지원센터",
+          "amount_krw": 50000000.0,
+          "format": "hwp",
+          "text_length": 4573
+        }
+      ]
+    },
+    "Q055": {
+      "check_type": "accessibility_privacy_security_law_discovery_preflight",
+      "count": 26,
+      "docs": [
+        {
+          "doc_id": "DOC003",
+          "row_index": 3,
+          "title": "EIP3.0 고압가스 안전관리 시스템 구축 용역",
+          "org": "한국생산기술연구원",
+          "amount_krw": 40000000.0,
+          "format": "hwp",
+          "text_length": 234
+        },
+        {
+          "doc_id": "DOC006",
+          "row_index": 6,
+          "title": "전기안전 관제시스템 보안 모듈 개발 용역",
+          "org": "한국전기안전공사",
+          "amount_krw": 222180200.0,
+          "format": "hwp",
+          "text_length": 2379
+        },
+        {
+          "doc_id": "DOC008",
+          "row_index": 8,
+          "title": "차세대 포털·학사 정보시스템 구축사업",
+          "org": "고려대학교",
+          "amount_krw": 11270000000.0,
+          "format": "pdf",
+          "text_length": 2450
+        },
+        {
+          "doc_id": "DOC016",
+          "row_index": 16,
+          "title": "통합정보시스템 고도화 용역",
+          "org": "국가과학기술지식정보서비스",
+          "amount_krw": 140000000.0,
+          "format": "hwp",
+          "text_length": 3678
+        },
+        {
+          "doc_id": "DOC020",
+          "row_index": 20,
+          "title": "관산근린공원 다목적구장 홈페이지 및 회원 통합운영 관리 시스템 구축[협상에 의한 계약]",
+          "org": "고양도시관리공사",
+          "amount_krw": 90000000.0,
+          "format": "hwp",
+          "text_length": 1183
+        },
+        {
+          "doc_id": "DOC034",
+          "row_index": 34,
+          "title": "2024년 버스정보시스템 확대 구축 및 기능개선 용역",
+          "org": "울산광역시",
+          "amount_krw": 986945000.0,
+          "format": "hwp",
+          "text_length": 15856
+        },
+        {
+          "doc_id": "DOC036",
+          "row_index": 36,
+          "title": "e나라도움 업무시스템 웹 접근성 컨설팅",
+          "org": "한국재정정보원",
+          "amount_krw": 70000000.0,
+          "format": "hwp",
+          "text_length": 6203
+        },
+        {
+          "doc_id": "DOC038",
+          "row_index": 38,
+          "title": "정읍체육트레이닝센터 통합운영관리시스템 구축 용역(협상에의한계약,긴급)",
+          "org": "전북특별자치도 정읍시",
+          "amount_krw": 200000000.0,
+          "format": "hwp",
+          "text_length": 6937
+        },
+        {
+          "doc_id": "DOC041",
+          "row_index": 41,
+          "title": "2025년 통합접수시스템 운영",
+          "org": "재단법인경기도일자리재단",
+          "amount_krw": 738820000.0,
+          "format": "hwp",
+          "text_length": 3351
+        },
+        {
+          "doc_id": "DOC042",
+          "row_index": 42,
+          "title": "을지대학교 비교과시스템 개발",
+          "org": "을지대학교",
+          "amount_krw": 0.0,
+          "format": "hwp",
+          "text_length": 5039
+        },
+        {
+          "doc_id": "DOC043",
+          "row_index": 43,
+          "title": "대전대학교 2024학년도 다층적 융합 학습경험 플랫폼(MILE) 전산시스템 구축",
+          "org": "대전대학교",
+          "amount_krw": 60000000.0,
+          "format": "hwp",
+          "text_length": 1919
+        },
+        {
+          "doc_id": "DOC045",
+          "row_index": 45,
+          "title": "전문대학 혁신지원사업 서영대학교 차세대 교육혁신지원시스템  3단계 구축 용역 재공고",
+          "org": "서영대학교 산학협력단",
+          "amount_krw": 950000000.0,
+          "format": "hwp",
+          "text_length": 697
+        },
+        {
+          "doc_id": "DOC054",
+          "row_index": 54,
+          "title": "통합정보시스템 고도화 용역",
+          "org": "한국한의학연구원",
+          "amount_krw": 140000000.0,
+          "format": "hwp",
+          "text_length": 706
+        },
+        {
+          "doc_id": "DOC055",
+          "row_index": 55,
+          "title": "한국어촌어항공단 경영관리시스템(ERP·GW) 기능 고도화 용역",
+          "org": "한국어촌어항공단",
+          "amount_krw": 397000000.0,
+          "format": "hwp",
+          "text_length": 5903
+        },
+        {
+          "doc_id": "DOC058",
+          "row_index": 58,
+          "title": "2024년 BIFF & ACFM 온라인서비스 재개발 및 행사지원시스템 공급 용역 입찰 공고의 건",
+          "org": "(사)부산국제영화제",
+          "amount_krw": 243000000.0,
+          "format": "hwp",
+          "text_length": 5952
+        },
+        {
+          "doc_id": "DOC060",
+          "row_index": 60,
+          "title": "기업 재생에너지 지원센터 홈페이지 개편 및 시스템 고도화 사업",
+          "org": "대한상공회의소",
+          "amount_krw": null,
+          "format": "hwp",
+          "text_length": 2036
+        },
+        {
+          "doc_id": "DOC064",
+          "row_index": 64,
+          "title": "2025년 아이돌봄인력 인적성 검사 정보시스템 운영",
+          "org": "한국건강가정진흥원",
+          "amount_krw": 172700000.0,
+          "format": "hwp",
+          "text_length": 6173
+        },
+        {
+          "doc_id": "DOC067",
+          "row_index": 67,
+          "title": "국립인천해양박물관 해양자료관리시스템 구축 용역(장기계속계약)",
+          "org": "국립인천해양박물관",
+          "amount_krw": 137000000.0,
+          "format": "hwp",
+          "text_length": 4638
+        },
+        {
+          "doc_id": "DOC068",
+          "row_index": 68,
+          "title": "국가교육과정정보센터(NCIC) 시스템 운영 및 개선",
+          "org": "한국교육과정평가원",
+          "amount_krw": 50000000.0,
+          "format": "hwp",
+          "text_length": 8557
+        },
+        {
+          "doc_id": "DOC075",
+          "row_index": 75,
+          "title": "광주정책연구아카이브(GPA) 시스템 개발",
+          "org": "재단법인 광주연구원",
+          "amount_krw": 43000000.0,
+          "format": "hwp",
+          "text_length": 734
+        },
+        {
+          "doc_id": "DOC076",
+          "row_index": 76,
+          "title": "호계체육관 배드민턴장 및 탁구장 예약시스템 구축 용역",
+          "org": "경기도 안양시",
+          "amount_krw": 49500000.0,
+          "format": "hwp",
+          "text_length": 5848
+        },
+        {
+          "doc_id": "DOC077",
+          "row_index": 77,
+          "title": "[혁신-국고] 남서울대학교 스마트 정보시스템 활성화(학사행정 암호화) 개발 용역 입찰",
+          "org": "남서울대학교",
+          "amount_krw": 70000000.0,
+          "format": "hwp",
+          "text_length": 3371
+        },
+        {
+          "doc_id": "DOC078",
+          "row_index": 78,
+          "title": "꿀 품질평가 전산시스템 기능개선 사업",
+          "org": "축산물품질평가원",
+          "amount_krw": 49000000.0,
+          "format": "hwp",
+          "text_length": 2404
+        },
+        {
+          "doc_id": "DOC079",
+          "row_index": 79,
+          "title": "IP-NAVI  해외지식재산센터 사업관리 시스템 기능개선",
+          "org": "한국지식재산보호원",
+          "amount_krw": 60000000.0,
+          "format": "hwp",
+          "text_length": 549
+        },
+        {
+          "doc_id": "DOC082",
+          "row_index": 82,
+          "title": "한국원자력연구원 선량평가시스템 고도화",
+          "org": "한국원자력연구원",
+          "amount_krw": 46600000.0,
+          "format": "hwp",
+          "text_length": 8669
+        },
+        {
+          "doc_id": "DOC091",
+          "row_index": 91,
+          "title": "2024년 국립민속박물관 민속아카이브 자료관리시스템 기능개선",
+          "org": "문화체육관광부 국립민속박물관",
+          "amount_krw": 77000000.0,
+          "format": "hwp",
+          "text_length": 3279
+        }
+      ]
+    },
+    "Q076": {
+      "check_type": "missing_amount_boundary",
+      "docs": [
+        {
+          "doc_id": "DOC060",
+          "row_index": 60,
+          "title": "기업 재생에너지 지원센터 홈페이지 개편 및 시스템 고도화 사업",
+          "org": "대한상공회의소",
+          "amount_krw": null,
+          "format": "hwp",
+          "text_length": 2036
+        }
+      ],
+      "expected_behavior": "Do not estimate exact budget; state source metadata lacks amount and optionally recommend checking official notice attachments."
+    }
+  },
+  "cases": [
+    {
+      "id": "Q051",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 1,
+      "segment": "기술검토",
+      "intent": "테스트/품질",
+      "difficulty": "중",
+      "question": "테스트, 성능검증, 안정성, 장애 대응과 관련된 요구사항을 찾아줘.",
+      "target_docs": "사용자가 지정한 사업",
+      "expected_answer_type": "품질 요구 목록",
+      "eval_focus": "품질 섹션 검색",
+      "bank_lane": "conversation_or_selected_project_rag",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "selected_project_seeded_technical_rag",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "technical_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "seed_refs": [
+        "S_ADD_LARGE_TRANSFER",
+        "S_KOGAS_ERP",
+        "S_BONGHWA_DISASTER"
+      ],
+      "preflight_answer_key_ref": null,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_TECHNICAL_REQUIREMENT_FIELDS"
+      ],
+      "risks": [],
+      "runner_note": "Use technical-rich seeds; avoid claiming absent fields if source is sparse."
+    },
+    {
+      "id": "Q052",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 2,
+      "segment": "기술검토",
+      "intent": "운영/배포",
+      "difficulty": "중",
+      "question": "배포, 운영 전환, 모니터링, 장애 복구 요구사항이 있는지 알려줘.",
+      "target_docs": "사용자가 지정한 사업",
+      "expected_answer_type": "운영 요구 목록",
+      "eval_focus": "운영 관련 검색",
+      "bank_lane": "conversation_or_selected_project_rag",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "selected_project_seeded_technical_rag",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "technical_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "seed_refs": [
+        "S_ADD_LARGE_TRANSFER",
+        "S_KOGAS_ERP",
+        "S_BONGHWA_DISASTER"
+      ],
+      "preflight_answer_key_ref": null,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_TECHNICAL_REQUIREMENT_FIELDS"
+      ],
+      "risks": [],
+      "runner_note": "Use technical-rich seeds; avoid claiming absent fields if source is sparse."
+    },
+    {
+      "id": "Q053",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 3,
+      "segment": "기술검토",
+      "intent": "데이터 이관",
+      "difficulty": "중",
+      "question": "기존 데이터 이관 또는 마이그레이션 범위가 있으면 요약해줘.",
+      "target_docs": "사용자가 지정한 사업",
+      "expected_answer_type": "이관 요구 요약",
+      "eval_focus": "문서 내 이관 키워드 검색",
+      "bank_lane": "conversation_or_selected_project_rag",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "selected_project_seeded_technical_rag",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "technical_field_coverage",
+        "groundedness",
+        "latency"
+      ],
+      "seed_refs": [
+        "S_ADD_LARGE_TRANSFER",
+        "S_KOGAS_ERP",
+        "S_BONGHWA_DISASTER"
+      ],
+      "preflight_answer_key_ref": null,
+      "gates": [
+        "G_SELECTED_PROJECT_MEMORY",
+        "G_TECHNICAL_REQUIREMENT_FIELDS"
+      ],
+      "risks": [],
+      "runner_note": "Use technical-rich seeds; avoid claiming absent fields if source is sparse."
+    },
+    {
+      "id": "Q054",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 4,
+      "segment": "기술검토",
+      "intent": "AI 요구 확인",
+      "difficulty": "중",
+      "question": "AI, 예측, 분석, 자동화 기능이 요구되는 사업을 찾아서 어떤 요구인지 정리해줘.",
+      "target_docs": "전체 데이터",
+      "expected_answer_type": "AI 관련 사업 목록",
+      "eval_focus": "키워드 검색+근거 요약",
+      "bank_lane": "conversation_or_selected_project_rag",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "corpus_discovery_rag_with_sidecar",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "answer_json",
+        "retrieval_sources",
+        "metadata_sidecar_key",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "discovery_recall_against_sidecar",
+        "groundedness",
+        "latency"
+      ],
+      "seed_refs": [],
+      "preflight_answer_key_ref": "metadata_expected_outputs.Q054",
+      "gates": [
+        "G_CORPUS_DISCOVERY"
+      ],
+      "risks": [],
+      "runner_note": "Use discovery recall sidecar; ordinary EDD alone may understate/overstate corpus-wide coverage."
+    },
+    {
+      "id": "Q055",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 5,
+      "segment": "기술검토",
+      "intent": "인증/규정",
+      "difficulty": "상",
+      "question": "웹 접근성, 개인정보보호, 보안성 검토, 관련 법령 준수 요구사항이 언급된 사업을 찾아줘.",
+      "target_docs": "전체 데이터",
+      "expected_answer_type": "규정 관련 사업 목록",
+      "eval_focus": "범용 키워드 검색",
+      "bank_lane": "conversation_or_selected_project_rag",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "corpus_discovery_rag_with_sidecar",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "answer_json",
+        "retrieval_sources",
+        "metadata_sidecar_key",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "discovery_recall_against_sidecar",
+        "groundedness",
+        "latency"
+      ],
+      "seed_refs": [],
+      "preflight_answer_key_ref": "metadata_expected_outputs.Q055",
+      "gates": [
+        "G_CORPUS_DISCOVERY"
+      ],
+      "risks": [],
+      "runner_note": "Use discovery recall sidecar; ordinary EDD alone may understate/overstate corpus-wide coverage."
+    },
+    {
+      "id": "Q062",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 6,
+      "segment": "모호질문",
+      "intent": "사업명 일부",
+      "difficulty": "중",
+      "question": "극저온 시스템 운전 용역에서 AI 예측 요구가 있는지 찾아줘.",
+      "target_docs": "기초과학연구원_중이온가속기용 극저온시스템 운전 용역",
+      "expected_answer_type": "관련 여부",
+      "eval_focus": "부분 검색+부정/없음 처리",
+      "bank_lane": "ordinary_rag_text",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "negative_requirement_check",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "negative_requirement_precision",
+        "groundedness"
+      ],
+      "seed_refs": [
+        "S_HEAVY_ION"
+      ],
+      "preflight_answer_key_ref": null,
+      "gates": [
+        "G_NEGATIVE_REQUIREMENT"
+      ],
+      "risks": [],
+      "runner_note": ""
+    },
+    {
+      "id": "Q063",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 7,
+      "segment": "모호질문",
+      "intent": "중복 후보",
+      "difficulty": "상",
+      "question": "의료기기산업 종합정보시스템 기능개선 사업이 두 개 보이는데 차이가 있는지 비교해줘.",
+      "target_docs": "한국보건산업진흥원 / BioIN 의료기기산업 종합정보시스템",
+      "expected_answer_type": "비교",
+      "eval_focus": "유사/중복 사업 구분",
+      "bank_lane": "ordinary_rag_text",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "near_duplicate_comparison",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "comparison_coverage",
+        "entity_disambiguation"
+      ],
+      "seed_refs": [
+        "S_MEDICAL_DEVICE_A",
+        "S_MEDICAL_DEVICE_B"
+      ],
+      "preflight_answer_key_ref": null,
+      "gates": [
+        "G_DUPLICATE_TITLE_DISAMBIGUATION"
+      ],
+      "risks": [],
+      "runner_note": ""
+    },
+    {
+      "id": "Q064",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 8,
+      "segment": "모호질문",
+      "intent": "기관명 오류",
+      "difficulty": "상",
+      "question": "한국원자력공단 선량평가 시스템 고도화 사업 찾아줘.",
+      "target_docs": "한국원자력연구원_선량평가시스템 고도화",
+      "expected_answer_type": "정정+요약",
+      "eval_focus": "잘못된 기관명 보정",
+      "bank_lane": "ordinary_rag_text",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "wrong_org_correction_boundary",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "wrong_entity_correction",
+        "abstention_or_correction_quality"
+      ],
+      "seed_refs": [
+        "S_NUCLEAR_DOSE"
+      ],
+      "preflight_answer_key_ref": null,
+      "gates": [
+        "G_ENTITY_CORRECTION"
+      ],
+      "risks": [],
+      "runner_note": ""
+    },
+    {
+      "id": "Q067",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 9,
+      "segment": "후속질문",
+      "intent": "추가조건",
+      "difficulty": "중",
+      "question": "그럼 그 사업에서 유지보수나 운영지원 조건도 있어?",
+      "target_docs": "직전 지정 사업",
+      "expected_answer_type": "유지보수 요약",
+      "eval_focus": "지시어 해석",
+      "bank_lane": "conversation_or_selected_project_rag",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "conversation_seeded_followup_rag",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "multi_turn_transcript",
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "followup_memory",
+        "answer_rewrite_or_term_quality",
+        "groundedness"
+      ],
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "preflight_answer_key_ref": null,
+      "gates": [
+        "G_FOLLOWUP_CONTEXT_MEMORY"
+      ],
+      "risks": [],
+      "runner_note": "Requires scripted prior turn; do not run as isolated one-shot."
+    },
+    {
+      "id": "Q069",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 10,
+      "segment": "후속질문",
+      "intent": "예산 비교",
+      "difficulty": "중",
+      "question": "둘 중 예산 규모가 더 큰 사업은 어느 쪽이고 몇 배 차이나?",
+      "target_docs": "직전 비교 대상 2개",
+      "expected_answer_type": "계산+비교",
+      "eval_focus": "메타데이터 계산",
+      "bank_lane": "conversation_or_selected_project_rag",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "conversation_seeded_numeric_comparison",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "multi_turn_transcript",
+        "numeric_sidecar",
+        "answer_json"
+      ],
+      "metric_routes": [
+        "EDD",
+        "numeric_ratio_accuracy",
+        "comparison_coverage"
+      ],
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV",
+        "S_LMS_SPORTS_ETHICS"
+      ],
+      "preflight_answer_key_ref": null,
+      "gates": [
+        "G_NUMERIC_COMPARISON"
+      ],
+      "risks": [],
+      "runner_note": ""
+    },
+    {
+      "id": "Q070",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 11,
+      "segment": "후속질문",
+      "intent": "유사사업 확장",
+      "difficulty": "상",
+      "question": "그와 비슷한 교육 또는 학습 관련 사업을 다른 기관에서도 찾아줘.",
+      "target_docs": "직전 교육/LMS 사업",
+      "expected_answer_type": "유사사업 목록",
+      "eval_focus": "맥락 기반 검색 확장",
+      "bank_lane": "conversation_or_selected_project_rag",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "conversation_seeded_domain_expansion",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "followup_memory",
+        "domain_expansion_recall"
+      ],
+      "seed_refs": [
+        "S_LMS_SPORTS_ETHICS"
+      ],
+      "preflight_answer_key_ref": "metadata_expected_outputs.Q006",
+      "gates": [
+        "G_FOLLOWUP_DOMAIN_EXPANSION"
+      ],
+      "risks": [],
+      "runner_note": ""
+    },
+    {
+      "id": "Q071",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 12,
+      "segment": "후속질문",
+      "intent": "기술 상세",
+      "difficulty": "중",
+      "question": "그 사업에서 외부 시스템 연계나 데이터 이관이 있으면 따로 정리해줘.",
+      "target_docs": "직전 지정 사업",
+      "expected_answer_type": "기술 요구 목록",
+      "eval_focus": "대상 문서 유지",
+      "bank_lane": "conversation_or_selected_project_rag",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "conversation_seeded_followup_rag",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "multi_turn_transcript",
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "followup_memory",
+        "answer_rewrite_or_term_quality",
+        "groundedness"
+      ],
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "preflight_answer_key_ref": null,
+      "gates": [
+        "G_FOLLOWUP_CONTEXT_MEMORY"
+      ],
+      "risks": [],
+      "runner_note": "Requires scripted prior turn; do not run as isolated one-shot."
+    },
+    {
+      "id": "Q072",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 13,
+      "segment": "후속질문",
+      "intent": "요약 수준 변경",
+      "difficulty": "하",
+      "question": "위 내용을 임원 보고용으로 5줄만 요약해줘.",
+      "target_docs": "직전 답변",
+      "expected_answer_type": "간결 요약",
+      "eval_focus": "답변 스타일 제어",
+      "bank_lane": "conversation_or_selected_project_rag",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "conversation_seeded_followup_rag",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "multi_turn_transcript",
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "followup_memory",
+        "answer_rewrite_or_term_quality",
+        "groundedness"
+      ],
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "preflight_answer_key_ref": null,
+      "gates": [
+        "G_FOLLOWUP_CONTEXT_MEMORY"
+      ],
+      "risks": [],
+      "runner_note": "Requires scripted prior turn; do not run as isolated one-shot."
+    },
+    {
+      "id": "Q073",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 14,
+      "segment": "후속질문",
+      "intent": "쉬운 설명",
+      "difficulty": "하",
+      "question": "방금 말한 ISMP랑 ISP가 무슨 차이인지 쉽게 설명해줘.",
+      "target_docs": "직전 답변 내 용어",
+      "expected_answer_type": "용어 설명",
+      "eval_focus": "문서 기반+일반 지식 경계",
+      "bank_lane": "conversation_or_selected_project_rag",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "conversation_seeded_followup_rag",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "multi_turn_transcript",
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "followup_memory",
+        "answer_rewrite_or_term_quality",
+        "groundedness"
+      ],
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "preflight_answer_key_ref": null,
+      "gates": [
+        "G_FOLLOWUP_CONTEXT_MEMORY"
+      ],
+      "risks": [],
+      "runner_note": "Requires scripted prior turn; do not run as isolated one-shot."
+    },
+    {
+      "id": "Q075",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 15,
+      "segment": "부정질문",
+      "intent": "미래/최신 정보",
+      "difficulty": "상",
+      "question": "이 공고가 지금도 입찰 가능한지 최신 상태를 알려줘.",
+      "target_docs": "전체 데이터",
+      "expected_answer_type": "제공 문서 기준 한계 표시",
+      "eval_focus": "최신성 한계 인식",
+      "bank_lane": "unsupported_absent_or_mixed",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "unsupported_claim_boundary",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "abstention_correctness",
+        "unsupported_claim_severity",
+        "useful_safe_alternative"
+      ],
+      "seed_refs": [
+        "S_PORTAL_KOREA_UNIV"
+      ],
+      "preflight_answer_key_ref": null,
+      "gates": [
+        "G_UNSUPPORTED_CLAIM_BOUNDARY"
+      ],
+      "risks": [],
+      "runner_note": "Expected to refuse guarantee/current/live/business certainty while giving source-grounded next step."
+    },
+    {
+      "id": "Q076",
+      "shard": "C_technical_followup_boundary",
+      "shard_index": 16,
+      "segment": "부정질문",
+      "intent": "없는 금액",
+      "difficulty": "상",
+      "question": "사업 금액이 비어 있는 공고의 정확한 예산을 추정해서 알려줘.",
+      "target_docs": "금액 누락 공고",
+      "expected_answer_type": "추정 거절",
+      "eval_focus": "근거 없는 추론 방지",
+      "bank_lane": "unsupported_absent_or_mixed",
+      "source_execution_subtotal": "lane_default",
+      "runnable_status": "ready",
+      "execution_mode": "missing_metadata_abstention_boundary",
+      "ordinary_edd_included": true,
+      "required_artifacts": [
+        "answer_json",
+        "retrieval_sources",
+        "latency_ms"
+      ],
+      "metric_routes": [
+        "EDD",
+        "abstention_correctness",
+        "unsupported_claim_severity"
+      ],
+      "seed_refs": [
+        "S_MISSING_AMOUNT_RENEWABLE"
+      ],
+      "preflight_answer_key_ref": "metadata_expected_outputs.Q076",
+      "gates": [
+        "G_NO_EXACT_BUDGET_GUESS"
+      ],
+      "risks": [],
+      "runner_note": "Expected answer refuses exact budget estimation because source metadata is blank."
+    }
+  ]
+}

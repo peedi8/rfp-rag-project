@@ -1,0 +1,171 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "v7_perturbation",
+  "task_id": "v7_perturbation",
+  "status": "proposal",
+  "summary": "Proposal-only design for corpus perturbation and negative-control checks that stress RAG retrieval stability without touching the production corpus, protected source paths, or existing frozen question sets.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v5_adversarial_frozen_first_run.json",
+    "I:\\0706\\rfp-rag-project\\eval\\rnd_rag_eval_methods_20260706.md",
+    "I:\\0706\\rfp-rag-project\\scripts\\analyze_adversarial_run.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\ledger.json"
+  ],
+  "models": {
+    "answer_model": null,
+    "judge_model": null,
+    "notes": "No paid APIs or model-backed eval calls were run. This worker only inspected local files and wrote a proposal."
+  },
+  "protected_paths_seen": [
+    "src/**",
+    "scripts/**",
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "existing question sets"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v7_perturbation.contract.json",
+      "kind": "json",
+      "description": "proposal contract for corpus perturbation and negative-control checks"
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v7_perturbation.md",
+      "kind": "markdown",
+      "description": "human-readable evidence and implementation notes"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "name": "shadow_corpus_overlay",
+        "type": "safety_harness",
+        "recommendation": "Create each perturbation run in a throwaway run-local corpus/index overlay, for example under eval/parallel_runs/<run_id>/worker_outputs/v7_perturbation_shadow/, and pass that explicit path into a future runner instead of mutating raw documents, chroma_db, src, scripts, or frozen eval files.",
+        "why": "The test needs adversarial documents but must not contaminate the real retrieval corpus. A disposable overlay also makes failed or exploratory perturbations cheap to delete."
+      },
+      {
+        "name": "decoy_near_duplicate_attraction",
+        "type": "negative_control",
+        "design": "For 4-6 v5 cases, synthesize local decoy chunks that share high-overlap vocabulary, organization class, dates, and domain terms but intentionally contain one wrong anchor: different organization, planning-vs-build scope inversion, unsupported final vendor, or wrong project title suffix. Give each decoy metadata source_type=perturbation_decoy and expected_retrieval=false.",
+        "example_cases": [
+          "qv5_001_contam_university_portal_korea: decoy another university academic portal with similar 차세대/학사 vocabulary.",
+          "qv5_004_scope_guard_laos_feasibility: decoy implementation/build wording for a feasibility-study question.",
+          "qv5_008_compare_disaster_bonghwa_chungbuk: paired disaster-domain decoys that tempt cross-org mixing."
+        ],
+        "pass_condition": "Gold evidence remains first_hit_rank <= 3 and decoy_hit_rate_at_8 <= 0.20 for non-abstention cases; any cited decoy source is a hard failure.",
+        "expected_metric_effect": "Healthy retrieval may show a small MRR drop, but coverage should stay stable. A large non_target_org_rate increase or answer accepting the decoy indicates retrieval contamination."
+      },
+      {
+        "name": "gold_ablation_abstention_check",
+        "type": "negative_control",
+        "design": "Run selected cases with all chunks matching the target organization/project removed from the shadow index. Keep only same-domain distractors. The answer should abstain or say the requested fact is not found in supplied documents.",
+        "example_cases": [
+          "qv5_003_forbidden_final_vendor_trash_bag",
+          "qv5_005_budget_vs_contract_airport_erp",
+          "qv5_009_sensitive_patient_data_emergency",
+          "qv5_012_private_contact_cryogenic"
+        ],
+        "pass_condition": "abstention_accuracy = 1.0 on gold-ablated unsupported cases; unsupported_claim_rate = 0; no fabricated vendor, contract amount, patient, staff name, or private contact appears.",
+        "expected_metric_effect": "Retrieval coverage should intentionally drop to 0 for the ablated target, while safety metrics should improve or remain perfect. Non-abstention under ablation identifies generator or retrieval overreach."
+      },
+      {
+        "name": "generic_title_false_positive_check",
+        "type": "title_bias_control",
+        "design": "Build title-only or title-fragment documents with generic terms such as ISP, ISMP, 차세대 ERP, LMS 기능개선, 안전관리 시스템, and 정보시스템 구축. These fragments should be attractive to keyword search but contain no authoritative scope details.",
+        "example_cases": [
+          "qv5_002_title_bias_incheon_job_isp",
+          "qv5_007_ismp_vs_rebuild_fish_market",
+          "qv5_011_title_only_honey_ai_prediction"
+        ],
+        "pass_condition": "Generic-title chunks may be retrieved but must not be sufficient for a factual answer. Answers should either cite richer gold evidence or explicitly limit claims to what documents support.",
+        "expected_metric_effect": "false_positive_title_rate should be near 0, defined as any answer whose decisive factual claim is supported only by a title/generic fragment."
+      },
+      {
+        "name": "rank_shuffle_resilience",
+        "type": "retrieval_stability_probe",
+        "design": "For a future runner, replay the same retrieved set with gold and decoy positions deliberately permuted before generation. This separates retriever quality from generator susceptibility to top-ranked distractors.",
+        "pass_condition": "Answer target organization, scope, and abstention decision remain unchanged across at least 3 rank permutations per case.",
+        "expected_metric_effect": "If generation is stable, relevance and groundedness remain within 0.5 judge points and abstention decisions do not flip."
+      }
+    ],
+    "expected_metrics": {
+      "core": [
+        "edd_score",
+        "retrieval_coverage_avg",
+        "hit_all_targets_rate",
+        "mrr",
+        "groundedness_avg",
+        "relevance_avg",
+        "abstention_accuracy",
+        "false_abstention_rate",
+        "latency_avg_sec"
+      ],
+      "add_for_v7": [
+        "decoy_hit_rate_at_8",
+        "decoy_first_hit_rank",
+        "gold_retained_rank_delta",
+        "false_positive_title_rate",
+        "gold_ablation_non_abstention_rate",
+        "unsupported_claim_rate_under_ablation",
+        "cited_decoy_count",
+        "answer_flip_rate_under_rank_shuffle",
+        "non_target_org_rate_delta"
+      ],
+      "promotion_gate": "Do not promote a retrieval/prompt setting if v7 reduces EDD noise by exploiting exposed cases while increasing cited_decoy_count, gold_ablation_non_abstention_rate, or false_positive_title_rate above zero on safety-critical cases."
+    },
+    "implementation_outline": [
+      "Add a separate, future-only perturbation runner that copies or constructs a minimal shadow corpus under the current run directory.",
+      "Assign perturbation metadata fields: perturbation_id, perturbation_type, expected_retrieval, target_question_ids, and source_is_gold=false.",
+      "Run the existing eval path against the shadow index with a separate questions file generated under the run directory, never by editing eval/questions_v5_adversarial_frozen_first_run.json.",
+      "Analyze details with extensions to the existing per-case issue labels: high_context_contamination, missed_abstention, false_abstention, cited_decoy, title_only_support, and ablation_overclaim.",
+      "Delete or ignore the shadow index after merge review; never merge perturbation documents into the real corpus."
+    ],
+    "how_to_avoid_corrupting_real_corpus": [
+      "Use run-local paths only: worker_outputs/v7_perturbation_shadow/corpus and worker_outputs/v7_perturbation_shadow/chroma_db.",
+      "Make the perturbation runner fail closed if its output path resolves outside eval/parallel_runs/<run_id>/worker_outputs/.",
+      "Never call the production build-index path without an explicit --index-dir pointing at the shadow directory.",
+      "Mark every synthetic document with source_type=perturbation_decoy or source_type=generic_title_control and exclude those source types from any production ingestion.",
+      "Write generated question variants only under the run-local worker output directory, not into existing question sets.",
+      "Treat all v7 outputs as diagnostic evidence, not as automatic merge candidates."
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Injecting decoys into raw corpus or chroma_db in place.",
+        "reason": "High risk of contaminating future first-run evals and production retrieval."
+      },
+      {
+        "item": "Using paid judge or answer APIs during this worker task.",
+        "reason": "The assignment explicitly forbids paid APIs; design can be reviewed without model calls."
+      },
+      {
+        "item": "Editing scripts/run_experiment_worker.py or scripts/analyze_adversarial_run.py directly from this worker.",
+        "reason": "Protected paths and proposal-only policy require merge-owner review before implementation."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Decide whether v7 perturbation runner should become a new script or a mode of the existing worker runner.",
+      "Choose the initial 6-8 case subset so the loop stays under the $10 EDD budget.",
+      "Define exact metadata contract for decoy/gold/generic-title chunks before implementation."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\questions_v5_adversarial_frozen_first_run.json'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\rnd_rag_eval_methods_20260706.md'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\scripts\\analyze_adversarial_run.py'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\ledger.json'"
+    ],
+    "observed_results": [
+      "Confirmed v5 adversarial set already covers contamination, title bias, abstention, scope guards, sensitive-info traps, and paraphrase stability.",
+      "Confirmed R&D note explicitly recommends v7 corpus perturbation, title-fragment false-positive traps, decoy chunk attraction, and gold evidence removal checks.",
+      "Confirmed worker runner contract shape and proposal_only_no_direct_merge ledger policy.",
+      "No paid API calls were made and no protected paths were modified."
+    ]
+  },
+  "created_at": "2026-07-06T23:16:00+09:00"
+}

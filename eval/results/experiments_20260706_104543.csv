@@ -1,0 +1,6 @@
+﻿experiment,retrieval_coverage_avg,hit_all_targets_rate,mrr,groundedness_avg,relevance_avg,abstention_accuracy,latency_avg_sec
+1_baseline_유사도top5,0.562,0.5,0.542,1.429,1.429,1.0,10.908
+2_MMR_top5,0.5,0.375,0.525,2.0,2.0,1.0,11.257
+3_MMR_top8,0.625,0.5,0.543,2.0,2.25,1.0,9.097
+4_MMR_top5_자동필터,0.625,0.5,0.75,1.625,1.875,1.0,7.689
+5_MMR_top5_LLM리랭크,0.562,0.5,0.542,1.667,1.667,1.0,19.652

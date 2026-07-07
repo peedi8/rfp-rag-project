@@ -1,0 +1,39 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "synthetic_secondary_guard",
+  "task_id": "synthetic_smoke",
+  "status": "proposal",
+  "summary": "Synthetic full-quality row pointing at the L121 secondary variant question file. It should be forced to diagnostic_only by aggregate_parallel_eval.py.",
+  "inputs": [
+    "questions_l121_selected_project_secondary_variants.json"
+  ],
+  "protected_paths_seen": [
+    "scripts/aggregate_parallel_eval.py",
+    "eval/parallel_runs/20260707_152625_L121-selected-project-scripted-batch-builder/batch/questions_l121_selected_project_secondary_variants.json"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260707_154721_L123-secondary-variant-scoreboard-guard/worker_outputs/synthetic_secondary_guard/results.csv",
+      "kind": "data",
+      "description": "synthetic aggregate smoke row"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Use this synthetic row only to prove secondary variant exclusion."
+    ],
+    "rejected_or_risky_items": [],
+    "needs_orchestrator_review": []
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "synthetic no-api aggregate smoke for questions_l121_selected_project_secondary_variants.json"
+    ],
+    "observed_results": [
+      "No answer generation or judge calls."
+    ]
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "next_experiments",
+  "task_id": "next_experiments",
+  "status": "proposal",
+  "summary": "Proposes the next three low-cost headless experiments, ordered to put red/judge and overfit gates before broader scoring.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\summary\\answer_quality_review_matrix.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_1946_answer-format-safety-loop\\summary\\answer_format_safety_loop.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_1825_timeboxed-red-loop-v3-validation\\loop_points.csv"
+  ],
+  "models": {
+    "answer_model": "",
+    "judge_model": ""
+  },
+  "protected_paths_seen": [
+    "eval/next_improvement_tasks.md",
+    "eval/experiment_log.md",
+    "eval/parallel_runs/20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo/summary/answer_quality_review_matrix.json",
+    "eval/parallel_runs/20260706_1946_answer-format-safety-loop/summary/answer_format_safety_loop.json",
+    "eval/parallel_runs/20260706_1825_timeboxed-red-loop-v3-validation/loop_points.csv",
+    "src/**",
+    "scripts/**",
+    "eval logs",
+    "업무일지/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs\\next_experiments\\next_experiments.contract.json",
+      "kind": "json",
+      "description": "required worker proposal contract"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs\\next_experiments\\next_experiments.md",
+      "kind": "md",
+      "description": "readable summary of the next three low-cost experiments"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "priority": 1,
+        "experiment_id": "blind_judge_calibration_gate_6case",
+        "title": "Run the existing blind judge calibration pack before trusting new scored claims.",
+        "why_now": "L7/L8 prepared a six-case planted pass/fail pack after red review warned that near-ceiling EDD may be optimistic. Running this first protects later prompt/adaptive claims from a lenient judge.",
+        "expected_signal": "A trustworthy judge should pass the 2 grounded/proper-abstention cases and fail the 4 planted bad cases: wrong denial of available PG evidence, wrong-document bleed, fabricated vendor/contact details, and same-issuer scope mix.",
+        "cost_mode": "low_judge_only_6_cases_no_answer_generation",
+        "success_label": "judge_calibration_gate_pass",
+        "failure_label": "judge_calibration_gate_fail_rubric_or_context_fix_required",
+        "loop_point": {
+          "next_id": "L14",
+          "label": "blind_judge_calibration_scored",
+          "score_type": "red_gate_judge_calibration"
+        },
+        "inputs_to_reuse": [
+          "eval\\parallel_runs\\20260706_1825_timeboxed-red-loop-v3-validation\\analysis\\l7_blind_judge_calibration_pack\\calibration_pack.json",
+          "scripts\\run_blind_judge_calibration.py"
+        ],
+        "promotion_gate": "No later EDD or prompt/adaptive improvement should be promoted unless planted unsafe or scope-mixed answers are failed by the judge.",
+        "overfit_gate": "Uses planted counterexamples rather than the tuned/targeted answer set, so it detects scoring leniency instead of optimizing RAG behavior."
+      },
+      {
+        "priority": 2,
+        "experiment_id": "small_mixed_prompt_report_ready_scored_sweep",
+        "title": "Score report_ready against existing prompt variants on a tiny mixed, fixed-retrieval set.",
+        "why_now": "The answer-format safety loop added report_ready only as a no-API candidate, while the review matrix showed high-score answers can still be verbose, hard to cite, or unsafe around unavailable fields.",
+        "expected_signal": "Report-ready formatting should improve or tie EDD while improving directness/conciseness/citation clarity on A/B/C-style verbose cases and preserving D/H safety behavior. It should not pretend to recover E/F/G retrieval-depth failures.",
+        "cost_mode": "low_small_scored_prompt_sweep_6_to_8_cases_same_retrieval_controls",
+        "success_label": "prompt_report_ready_passes_mixed_quality_safety_gate",
+        "failure_label": "prompt_report_ready_regresses_grounding_safety_or_false_abstention",
+        "loop_point": {
+          "next_id": "L15",
+          "label": "prompt_report_ready_small_scored_sweep",
+          "score_type": "small_scored_prompt_candidate"
+        },
+        "suggested_case_mix": [
+          "A_long_high_score_biff or B_high_latency_mozambique for verbosity",
+          "C_same_org_scope_kwater for same-issuer scope separation",
+          "D_abstain_procurement_contact for proper unavailable-field refusal",
+          "H_planted_fabricated_vendor_contact as a red/safety trap if the judge gate supports planted scoring",
+          "E/F/G Anyang cases only as analysis labels, not as prompt-recoverable success criteria"
+        ],
+        "promotion_gate": "Adopt only if report_ready is tied or better on EDD and does not reduce safety/refusal correctness or evidence fit under unchanged top8 control retrieval.",
+        "overfit_gate": "Keep first scored result separate from targeted retries; do not tune wording after seeing case failures inside this same loop."
+      },
+      {
+        "priority": 3,
+        "experiment_id": "adaptive_top_k_guard_validation_small",
+        "title": "Validate the opt-in adaptive_top_k guard on a small mixed set after the red gates pass.",
+        "why_now": "L9/L10 showed qv3_010 needs top8 for PG/payment detail even after source-scope fixes, and L11 encoded an opt-in guard. Global top5 was already rejected, so only the specific adaptive guard is worth a small check.",
+        "expected_signal": "Facility reservation/payment questions should route to effective top8 and preserve PG/payment detail, while simple/single-extract questions remain at top5 and gain latency. Quality must match the L1/top8 standard on hard cases instead of repeating L2/L3 regressions.",
+        "cost_mode": "low_small_answer_plus_judge_run_after_calibration_gate",
+        "success_label": "adaptive_top_k_passes_quality_latency_gate",
+        "failure_label": "adaptive_top_k_quality_regression_or_no_latency_value",
+        "loop_point": {
+          "next_id": "L16",
+          "label": "adaptive_top_k_small_validation",
+          "score_type": "small_scored_latency_candidate"
+        },
+        "suggested_case_mix": [
+          "qv3_010_casual_anyang_sports_reservation as required hard facility/payment case",
+          "one simple single-extract case that should stay top5",
+          "one same-org/scope-risk case to detect source mixing",
+          "one unavailable-info abstention case to detect safety regression"
+        ],
+        "promotion_gate": "Promote only if hard-case groundedness/relevance do not regress versus top8 and any latency gain is real on cases routed to top5.",
+        "overfit_gate": "Do not add more top_k sweeps; classify this as an opt-in guard validation, not a new default or broad parameter search."
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Broad top_k or fetch_k sweep",
+        "reason": "The log already rejects global top5: L2/L3 lost answer quality for modest latency gain, and the task list says broad top_k sweep is deferred until validation gates are cleaner."
+      },
+      {
+        "item": "New untouched validation set generation as the immediate next worker step",
+        "reason": "Important for final generalization, but higher setup/review cost than the existing blind calibration and small candidate gates. It should follow once scoring validity is known."
+      },
+      {
+        "item": "Claiming report_ready improvement from no-API validation",
+        "reason": "The answer-format safety loop explicitly labels L13 as local prompt-candidate validation only, not a performance score."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Confirm whether L14 can spend the small judge-only calibration cost; if not, keep L14 as no-api red gate preparation and do not promote new EDD claims.",
+      "Use the same score-label discipline as loop_points.csv: first validation, measurement correction, no-judge diagnostic, and targeted retry must remain separate.",
+      "If L14 fails, stop the improvement loop and fix judge rubric/context before L15 or L16."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw eval\\next_improvement_tasks.md",
+      "Get-Content -Raw eval\\experiment_log.md",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\summary\\answer_quality_review_matrix.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_1946_answer-format-safety-loop\\summary\\answer_format_safety_loop.json",
+      "Get-Content -Raw eval\\parallel_runs\\20260706_1825_timeboxed-red-loop-v3-validation\\loop_points.csv",
+      "rg -n \"parallel_team_worker_output\\.v1|worker_output\" -S eval"
+    ],
+    "observed_results": [
+      "L0/L1 establish first validation versus measurement correction; L2/L3 reject global top5.",
+      "L7/L8 prepared a blind judge calibration pack and no-api runner with expected pass=2 and fail=4.",
+      "L12 review matrix identified verbosity, same-issuer scope, Anyang retrieval-depth, and abstention/fabrication safety cases.",
+      "L13 report_ready prompt is candidate-only with no scored performance claim.",
+      "No external API/model calls were made by this proposal worker."
+    ]
+  },
+  "created_at": "2026-07-06T20:10:00+09:00"
+}

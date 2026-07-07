@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="246" viewBox="0 0 1040 246">
+<rect width="100%" height="100%" fill="#ffffff" />
+<text x="20" y="30" font-size="18" font-family="Arial" font-weight="700">Sparse Answer Audit Pass Rate</text>
+<text x="20" y="75" font-size="12" font-family="Arial">prompt_concise_verified</text>
+<rect x="300" y="58" width="215" height="18" rx="3" fill="#2f7d62" />
+<text x="742" y="73" font-size="12" font-family="Arial">pass 0.500 / detector conflicts 0</text>
+<text x="20" y="109" font-size="12" font-family="Arial">prompt_report_ready</text>
+<rect x="300" y="92" width="215" height="18" rx="3" fill="#2f7d62" />
+<text x="742" y="107" font-size="12" font-family="Arial">pass 0.500 / detector conflicts 0</text>
+<text x="20" y="143" font-size="12" font-family="Arial">baseline_default</text>
+<rect x="300" y="126" width="215" height="18" rx="3" fill="#2f7d62" />
+<text x="742" y="141" font-size="12" font-family="Arial">pass 0.500 / detector conflicts 2</text>
+<text x="20" y="177" font-size="12" font-family="Arial">prompt_default</text>
+<rect x="300" y="160" width="215" height="18" rx="3" fill="#2f7d62" />
+<text x="742" y="175" font-size="12" font-family="Arial">pass 0.500 / detector conflicts 3</text>
+<text x="20" y="211" font-size="12" font-family="Arial">prompt_strict_evidence</text>
+<rect x="300" y="194" width="71" height="18" rx="3" fill="#2f7d62" />
+<text x="742" y="209" font-size="12" font-family="Arial">pass 0.167 / detector conflicts 0</text>
+</svg>

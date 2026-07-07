@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="580" viewBox="0 0 920 580">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" font-size="22" font-family="Segoe UI, Arial" font-weight="700">Latency vs EDD score</text>
+<line x1="90" y1="500" x2="880" y2="500" stroke="#334155"/>
+<line x1="90" y1="60" x2="90" y2="500" stroke="#334155"/>
+<text x="485.0" y="556" font-size="14" text-anchor="middle" font-family="Segoe UI, Arial">latency avg sec</text>
+<text x="24" y="280.0" font-size="14" transform="rotate(-90 24 280.0)" text-anchor="middle" font-family="Segoe UI, Arial">EDD score</text>
+<circle cx="504.1" cy="79.4" r="8" fill="#2f6fed" fill-opacity="0.75" stroke="#111827" stroke-width="0.5"/>
+<text x="515.1" y="83.4" font-size="10" font-family="Segoe UI, Arial">l32_v5_title_filter_topk_top</text>
+<circle cx="670.3" cy="95.1" r="8" fill="#64748b" fill-opacity="0.75" stroke="#111827" stroke-width="0.5"/>
+<text x="681.3" y="99.1" font-size="10" font-family="Segoe UI, Arial">l33_v4_regression_title_filt</text>
+<circle cx="713.7" cy="99.2" r="8" fill="#2f6fed" fill-opacity="0.75" stroke="#111827" stroke-width="0.5"/>
+<text x="724.7" y="103.2" font-size="10" font-family="Segoe UI, Arial">l35_v4_title_filter_topk_reg</text>
+<circle cx="504.6" cy="101.4" r="8" fill="#2f6fed" fill-opacity="0.75" stroke="#111827" stroke-width="0.5"/>
+<text x="515.6" y="105.4" font-size="10" font-family="Segoe UI, Arial">l32_v5_title_filter_topk_top</text>
+<circle cx="451.4" cy="101.8" r="8" fill="#2f6fed" fill-opacity="0.75" stroke="#111827" stroke-width="0.5"/>
+<text x="462.4" y="105.8" font-size="10" font-family="Segoe UI, Arial">l32_v5_title_filter_topk_top</text>
+<circle cx="489.0" cy="105.4" r="8" fill="#64748b" fill-opacity="0.75" stroke="#111827" stroke-width="0.5"/>
+<text x="500.0" y="109.4" font-size="10" font-family="Segoe UI, Arial">l31_v5_title_filter_baseline</text>
+<circle cx="729.2" cy="119.0" r="8" fill="#2f6fed" fill-opacity="0.75" stroke="#111827" stroke-width="0.5"/>
+<text x="740.2" y="123.0" font-size="10" font-family="Segoe UI, Arial">l35_v4_title_filter_topk_reg</text>
+<circle cx="778.3" cy="139.5" r="8" fill="#2f6fed" fill-opacity="0.75" stroke="#111827" stroke-width="0.5"/>
+<text x="789.3" y="143.5" font-size="10" font-family="Segoe UI, Arial">l35_v4_title_filter_topk_reg</text>
+<circle cx="637.1" cy="143.6" r="8" fill="#64748b" fill-opacity="0.75" stroke="#111827" stroke-width="0.5"/>
+<text x="648.1" y="147.6" font-size="10" font-family="Segoe UI, Arial">l30_v5_adversarial_first_bas</text>
+</svg>

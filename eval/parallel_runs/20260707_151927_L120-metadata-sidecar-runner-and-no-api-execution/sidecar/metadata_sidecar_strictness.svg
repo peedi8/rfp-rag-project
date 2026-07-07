@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="320" viewBox="0 0 920 320">
+<rect width="100%" height="100%" fill="#f7f7f4" />
+<text x="16" y="24" font-size="18" font-family="Arial" font-weight="700">L120 Metadata Sidecar Strictness</text>
+<text x="16" y="57" font-size="13" font-family="Arial">taxonomy_candidate</text>
+<rect x="220" y="40" width="64" height="24" fill="#6b5ca5" rx="3" />
+<text x="292" y="57" font-size="13" font-family="Arial">1</text>
+<text x="16" y="93" font-size="13" font-family="Arial">exact_repeated_org_set</text>
+<rect x="220" y="76" width="64" height="24" fill="#2f6f73" rx="3" />
+<text x="292" y="93" font-size="13" font-family="Arial">1</text>
+<text x="16" y="129" font-size="13" font-family="Arial">exact_top_amount_order</text>
+<rect x="220" y="112" width="64" height="24" fill="#2f6f73" rx="3" />
+<text x="292" y="129" font-size="13" font-family="Arial">1</text>
+<text x="16" y="165" font-size="13" font-family="Arial">exact_amount_threshold_set</text>
+<rect x="220" y="148" width="64" height="24" fill="#2f6f73" rx="3" />
+<text x="292" y="165" font-size="13" font-family="Arial">1</text>
+<text x="16" y="201" font-size="13" font-family="Arial">exact_amount_threshold_set_with_domain_note</text>
+<rect x="220" y="184" width="64" height="24" fill="#2f6f73" rx="3" />
+<text x="292" y="201" font-size="13" font-family="Arial">1</text>
+<text x="16" y="237" font-size="13" font-family="Arial">candidate_keyword_discovery</text>
+<rect x="220" y="220" width="580" height="24" fill="#b07b2c" rx="3" />
+<text x="808" y="237" font-size="13" font-family="Arial">9</text>
+<text x="16" y="273" font-size="13" font-family="Arial">exact_format_count</text>
+<rect x="220" y="256" width="64" height="24" fill="#2f6f73" rx="3" />
+<text x="292" y="273" font-size="13" font-family="Arial">1</text>
+<text x="16" y="309" font-size="13" font-family="Arial">candidate_followup_domain_expansion</text>
+<rect x="220" y="292" width="64" height="24" fill="#b07b2c" rx="3" />
+<text x="292" y="309" font-size="13" font-family="Arial">1</text>
+<text x="16" y="345" font-size="13" font-family="Arial">boundary_missing_metadata</text>
+<rect x="220" y="328" width="64" height="24" fill="#2f6f73" rx="3" />
+<text x="292" y="345" font-size="13" font-family="Arial">1</text>
+<text x="16" y="298" font-size="13" font-family="Arial">Runner status: ready: 17</text>
+</svg>

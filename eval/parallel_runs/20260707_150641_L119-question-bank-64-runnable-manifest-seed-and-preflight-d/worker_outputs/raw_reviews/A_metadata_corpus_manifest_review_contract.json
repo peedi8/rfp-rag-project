@@ -1,0 +1,47 @@
+{
+  "worker": "A_metadata_corpus",
+  "status": "pass_with_warnings",
+  "reviewed_cases": [
+    "Q001",
+    "Q002",
+    "Q003",
+    "Q004",
+    "Q005",
+    "Q006",
+    "Q007",
+    "Q008",
+    "Q009",
+    "Q010",
+    "Q011",
+    "Q012",
+    "Q065",
+    "Q033",
+    "Q034",
+    "Q035"
+  ],
+  "findings": [
+    {
+      "severity": "low",
+      "case_id": "Q001-Q012,Q065",
+      "cause": "These rows are explicitly marked execution_mode=metadata_corpus_sidecar with ordinary_edd_included=false and runner notes that exclude ordinary target-org RAG.",
+      "result": "Ordinary EDD exclusion is correct; they should be scored only through the metadata sidecar path.",
+      "recommended_change": "Keep them out of the ordinary EDD subtotal and preserve the sidecar-only gate."
+    },
+    {
+      "severity": "medium",
+      "case_id": "Q006-Q011,Q065",
+      "cause": "Several prompts are broad cross-domain or acronym-heavy searches, so keyword-only preflight can over-match unrelated rows even when the sidecar key is correct.",
+      "result": "Metadata sidecar keys are sufficient for routing, but preflight filtering is vulnerable to false positives if it leans on terms like ERP, ODA, education, or general governance language.",
+      "recommended_change": "Use computed_sidecar_key plus row-level metadata filters, not keyword match alone, before judging readiness."
+    },
+    {
+      "severity": "low",
+      "case_id": "Q033-Q035",
+      "cause": "These comparison rows are physically inside shard A but are labeled ordinary_rag_text with source_execution_subtotal=ordinary_rag_text_cluster_comparison_quarantined_inside_A and ordinary_edd_included=true.",
+      "result": "They should remain in A physically, but be subtotaled separately from the metadata/corpus sidecar cases.",
+      "recommended_change": "Keep the quarantine boundary intact and do not merge their scores into the metadata corpus subtotal."
+    }
+  ],
+  "merge_recommendation": "Merge shard A as runnable for metadata/corpus sidecar execution, with Q033-Q035 retained in-place but excluded from the metadata subtotal and reported under the quarantined comparison subtotal.",
+  "next_step": "Run the sidecar harness using computed_sidecar_key and corpus visibility, then aggregate only the metadata_corpus_sidecar rows into the metadata subtotal."
+}

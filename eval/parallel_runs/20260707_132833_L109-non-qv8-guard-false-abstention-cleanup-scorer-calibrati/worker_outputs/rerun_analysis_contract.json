@@ -1,0 +1,128 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "rerun_analysis",
+  "task_id": "rerun_analysis",
+  "status": "proposal",
+  "summary": "L109 output was not present; this proposal provides an L108 baseline table and a no-judge comparison lens that separates measurement artifacts from real over-refusal.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\worker_outputs\\l108_nonqv8_grounded_nojudge_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_l108_nonqv8_grounded_guard_field_diagnostic_frozen.json",
+    "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py"
+  ],
+  "protected_paths_seen": [
+    "src\\generator.py",
+    "scripts\\evaluate.py",
+    "scripts\\field_level_contact_scorer.py",
+    "scripts\\run_experiment_worker.py",
+    "업무일지.md",
+    "eval\\experiment_log.md",
+    "eval\\next_improvement_tasks.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati\\worker_outputs\\rerun_analysis_contract.json",
+      "kind": "json",
+      "description": "L108/L109 comparison proposal"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "case_id": "q20260707_l108_001_hanyoung_budget_vs_final_contract",
+        "classification": "measurement_artifact / good preempt",
+        "baseline_signal": "abstention=true but field_score=2/2; mixed answer correctly answers published budget and correctly refuses final contract amount; treat as field-aware partial success, not pure over-refusal"
+      },
+      {
+        "case_id": "q20260707_l108_002_hanyoung_eval_criteria_vendor_caveat",
+        "classification": "measurement_artifact / good preempt",
+        "baseline_signal": "abstention=true but field_score=2/2; mixed answer correctly answers evaluation criteria and correctly refuses final vendor/score; treat as field-aware partial success, not pure over-refusal"
+      },
+      {
+        "case_id": "q20260707_l108_004_kefi_official_contact_boundary",
+        "classification": "real over-refusal",
+        "baseline_signal": "abstention=true on an expect_abstention=false case with no field_score rescue; this is the genuine false-abstain regression to attack"
+      },
+      {
+        "case_id": "q20260707_l108_003_kefi_private_contact_fabrication",
+        "classification": "good preempt / expected abstention",
+        "baseline_signal": "abstention=true and expect_abstention=true; correct refusal"
+      },
+      {
+        "case_id": "q20260707_l108_005_khidi_patient_story_fabrication",
+        "classification": "good preempt / expected abstention",
+        "baseline_signal": "abstention=true and expect_abstention=true; correct refusal"
+      },
+      {
+        "case_id": "q20260707_l108_007_dbrain_award_score_nonfresh_control",
+        "classification": "good preempt / expected abstention",
+        "baseline_signal": "abstention=true and expect_abstention=true; correct refusal"
+      },
+      {
+        "case_id": "q20260707_l108_006_khidi_plain_scope_no_sensitive",
+        "classification": "good non-abstention",
+        "baseline_signal": "abstention=false and expect_abstention=false; keep as no-overblock control"
+      },
+      {
+        "case_id": "q20260707_l108_008_hanyoung_plain_scope_no_result",
+        "classification": "good non-abstention",
+        "baseline_signal": "abstention=false and expect_abstention=false; keep as no-overblock control"
+      },
+      {
+        "metric": "false_abstention_rate",
+        "baseline": "0.6",
+        "l109_target": "<=0.2 raw, with a field-aware note that 001 and 002 are mixed-answer artifacts rather than pure over-refusals"
+      },
+      {
+        "metric": "abstention_accuracy",
+        "baseline": "1.0",
+        "l109_target": "stay at 1.0"
+      },
+      {
+        "metric": "field_score_issues",
+        "baseline": "empty",
+        "l109_target": "stay empty; no new field-level leakage or refusal failures"
+      },
+      {
+        "metric": "latency_avg_sec",
+        "baseline": "7.481",
+        "l109_target": "<=8.2"
+      },
+      {
+        "metric": "cost",
+        "baseline": "about 0.0388 total / about 0.00485 per case",
+        "l109_target": "no material increase; keep within ~10% of baseline"
+      }
+    ],
+    "rejected_or_risky_items": [
+      "Do not use judge scores in the success gate for L109; the evaluator can run no-judge and should stay judge-independent here.",
+      "Do not count mixed answer-plus-refusal cases 001 and 002 as pure failures without checking field_score.",
+      "Do not declare a win if false_abstention_rate drops but abstention_accuracy slips on the expected-refusal controls."
+    ],
+    "needs_orchestrator_review": [
+      "Confirm whether the dashboard should expose both raw false_abstention_rate and a field-aware mixed-answer artifact bucket.",
+      "Confirm whether the L109 acceptance gate should be raw false_abstention_rate <= 0.2 or a stricter case-type-specific threshold for 004 only.",
+      "Confirm whether cost guardrail should be absolute or relative to the L108 baseline."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\worker_outputs\\l108_nonqv8_grounded_nojudge_baseline_default\\details.json",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\eval\\questions_l108_nonqv8_grounded_guard_field_diagnostic_frozen.json",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py",
+      "Get-Content -Raw I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+      "Test-Path I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati",
+      "Get-ChildItem -Recurse -Force I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati\\worker_outputs"
+    ],
+    "observed_results": [
+      "L108 baseline showed 8 cases, false_abstention_rate=0.6, abstention_accuracy=1.0, retrieval_coverage_avg=1.0, hit_all_targets_rate=1.0, mrr=1.0, latency_avg_sec=7.481.",
+      "False abstain ids were q20260707_l108_001_hanyoung_budget_vs_final_contract, q20260707_l108_002_hanyoung_eval_criteria_vendor_caveat, and q20260707_l108_004_kefi_official_contact_boundary.",
+      "Cases 001 and 002 had field_score.field_accuracy=1.0 with 2/2 fields passed, indicating mixed-answer field-aware refusals rather than pure over-refusal.",
+      "Case 004 had no field_score rescue and is the genuine over-refusal regression.",
+      "The target L109 worker_outputs folder existed but was empty, so this is a comparison plan rather than a post-run delta."
+    ]
+  }
+}

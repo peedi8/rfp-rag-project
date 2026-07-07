@@ -1,0 +1,105 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-07T15:26:27",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "L121 selected-project scripted batch builder",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder",
+  "cpu_percent_at_start": 0.0,
+  "recommended_workers": 4,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "final target index.html",
+    "renderer source files",
+    "prepared payload JSON",
+    "option consumer payload JSON",
+    "stage slot pack candidate files"
+  ],
+  "tasks": [
+    {
+      "task_id": "contract_seed_batch_review",
+      "description": "review contract selected-project seed batch",
+      "status": "merged",
+      "worker_id": "019f3b44-66c5-7433-adf0-9741e46dee49",
+      "output_contract": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\worker_outputs\\contract_seed_batch_review.contract.json",
+      "merge_decision": "accepted; file integrity caveat resolved by UTF-8 PowerShell and Python full-file parse"
+    },
+    {
+      "task_id": "technical_seed_batch_review",
+      "description": "review technical selected-project seed batch",
+      "status": "merged",
+      "worker_id": "019f3b46-7adc-76e1-920c-71e39084d959",
+      "output_contract": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\worker_outputs\\technical_seed_batch_review.contract.json",
+      "merge_decision": "accepted with diagnostic-only secondary variants and required sparse not-found guard"
+    },
+    {
+      "task_id": "followup_persona_batch_review",
+      "description": "review followup and persona seeded transcripts",
+      "status": "merged",
+      "worker_id": "019f3b44-d5c4-75a0-8628-55d0d935424d",
+      "output_contract": "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\worker_outputs\\followup_persona_batch_review.contract.json",
+      "merge_decision": "accepted with resolved-vs-multiturn claim boundary"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\checkpoint_01_inputs.md",
+    "worker_outputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\checkpoint_02_worker_outputs.md",
+    "merge_decisions": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\checkpoint_03_merge_decisions.md",
+    "smoke": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\checkpoint_04_smoke.md"
+  },
+  "events": [
+    {
+      "ts": "2026-07-07T15:26:27",
+      "event": "scaffold_created",
+      "recommended_workers": 4,
+      "cpu_percent": 0.0
+    },
+    {
+      "ts": "2026-07-07T15:29:19",
+      "event": "l121_batch_generated",
+      "outputs": [
+        "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\selected_project_batch_l121.json",
+        "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_multiturn_primary.json",
+        "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_resolved_primary.json",
+        "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\batch\\questions_l121_selected_project_secondary_variants.json"
+      ],
+      "case_count": 35,
+      "secondary_variant_count": 16,
+      "multiturn_calls_if_executed": 71,
+      "resolved_calls_if_executed": 35
+    },
+    {
+      "ts": "2026-07-07T15:30:13",
+      "event": "l121_workers_spawned",
+      "worker_ids": {
+        "contract_seed_batch_review": "019f3b44-66c5-7433-adf0-9741e46dee49",
+        "technical_seed_batch_review": "019f3b44-a9c3-7303-aba5-b3fbcab047b8",
+        "followup_persona_batch_review": "019f3b44-d5c4-75a0-8628-55d0d935424d"
+      }
+    },
+    {
+      "ts": "2026-07-07T15:31:55",
+      "event": "l121_technical_worker_capacity_fallback",
+      "failed_worker_id": "019f3b44-a9c3-7303-aba5-b3fbcab047b8",
+      "fallback_worker_id": "019f3b46-7adc-76e1-920c-71e39084d959",
+      "fallback_model": "gpt-5.3-codex-spark"
+    },
+    {
+      "ts": "2026-07-07T15:34:38",
+      "event": "l121_reviews_merged",
+      "decisions": [
+        "contract batch accepted; full JSON parse confirmed with UTF-8",
+        "technical secondary variants diagnostic-only",
+        "followup/persona resolved-one-turn is smoke only; multiturn needed for memory claims"
+      ]
+    },
+    {
+      "ts": "2026-07-07T15:35:40",
+      "event": "l121_handoff_written",
+      "files": [
+        "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\handoff\\handoff.json",
+        "eval\\parallel_runs\\20260707_152625_L121-selected-project-scripted-batch-builder\\handoff\\handoff.md"
+      ]
+    }
+  ]
+}

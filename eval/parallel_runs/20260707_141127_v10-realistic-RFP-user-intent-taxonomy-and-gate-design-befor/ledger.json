@@ -1,0 +1,106 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-07T14:11:28",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "v10 realistic RFP user-intent taxonomy and gate design before new eval questions",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor",
+  "cpu_percent_at_start": 6.0,
+  "recommended_workers": 4,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "final target index.html",
+    "renderer source files",
+    "prepared payload JSON",
+    "option consumer payload JSON",
+    "stage slot pack candidate files"
+  ],
+  "tasks": [
+    {
+      "task_id": "intent_taxonomy",
+      "description": "propose realistic RFP user question taxonomy from prior logs and project context",
+      "status": "completed",
+      "worker_id": "019f3afd-74f8-7e80-b96b-434d78a34136",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\worker_outputs\\intent_taxonomy_contract.json",
+      "merge_decision": "accepted"
+    },
+    {
+      "task_id": "gate_design",
+      "description": "propose measurable gates and small-cohort structure for each realistic intent",
+      "status": "completed",
+      "worker_id": "019f3afd-8980-7691-8fc0-01480b4635d5",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\worker_outputs\\gate_design_contract.json",
+      "merge_decision": "accepted"
+    },
+    {
+      "task_id": "corpus_feasibility",
+      "description": "inspect available corpus/metadata boundaries and propose feasible non-absurd question slots",
+      "status": "completed",
+      "worker_id": "019f3afd-8c37-7953-b25c-99e4c7fbd1a5",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\worker_outputs\\corpus_feasibility_contract.json",
+      "merge_decision": "accepted"
+    },
+    {
+      "task_id": "red_report",
+      "description": "audit overfitting/claim labels and propose report/diary wording",
+      "status": "completed",
+      "worker_id": "019f3afd-8df1-73e2-9a4e-5740568520c0",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\worker_outputs\\red_report_contract.json",
+      "merge_decision": "accepted"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\checkpoint_01_inputs.md",
+    "worker_outputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\checkpoint_02_worker_outputs.md",
+    "merge_decisions": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\checkpoint_03_merge_decisions.md",
+    "smoke": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_141127_v10-realistic-RFP-user-intent-taxonomy-and-gate-design-befor\\checkpoint_04_smoke.md"
+  },
+  "events": [
+    {
+      "ts": "2026-07-07T14:11:28",
+      "event": "scaffold_created",
+      "recommended_workers": 4,
+      "cpu_percent": 6.0
+    },
+    {
+      "ts": "2026-07-07T14:12:15",
+      "event": "workers_assigned",
+      "worker_count": 4,
+      "tasks": [
+        "intent_taxonomy",
+        "gate_design",
+        "corpus_feasibility",
+        "red_report"
+      ]
+    },
+    {
+      "ts": "2026-07-07T14:18:30",
+      "event": "worker_outputs_collected",
+      "outputs": [
+        "intent_taxonomy_contract.json",
+        "gate_design_contract.json",
+        "corpus_feasibility_contract.json",
+        "red_report_contract.json"
+      ]
+    },
+    {
+      "ts": "2026-07-07T14:19:30",
+      "event": "merge_completed",
+      "gate_version": "rfp_rag_user_intent_gate_v10.0.0",
+      "created_artifacts": [
+        "analysis/v10_realistic_intent_taxonomy_gate_report.md",
+        "analysis/v10_realistic_intent_taxonomy.json"
+      ],
+      "new_edd_point": false,
+      "paid_model_calls": false
+    },
+    {
+      "ts": "2026-07-07T14:19:46",
+      "event": "final_smoke_passed",
+      "worker_output_count": 4,
+      "issues": [],
+      "json_parse_passed": true,
+      "diary_forbidden_word_check_passed": true
+    }
+  ]
+}

@@ -1,0 +1,395 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "l41_cost_trace_design_review",
+  "task_id": "l41_cost_trace_design_review",
+  "status": "proposal",
+  "summary": "No-API implementation review for adding token, cost, and stage timing tracing to the general experiment runner. The design preserves current metrics, adds optional trace fields and append-only cost artifacts, and uses the existing blind judge calibration cost-capture pattern as the nearest local precedent.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+    "I:\\0706\\rfp-rag-project\\src\\generator.py",
+    "I:\\0706\\rfp-rag-project\\src\\rag_pipeline.py",
+    "I:\\0706\\rfp-rag-project\\src\\rag.py",
+    "I:\\0706\\rfp-rag-project\\src\\retriever.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\run_blind_judge_calibration.py",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v9_latency_cost.contract.json"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "paid_api_calls_made": false,
+    "review_method": "static local file inspection only"
+  },
+  "protected_paths_seen": [
+    "I:\\0706\\rfp-rag-project\\업무일지.md",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\src\\**",
+    "I:\\0706\\rfp-rag-project\\scripts\\**",
+    "I:\\0706\\rfp-rag-project\\config.py",
+    "I:\\0706\\rfp-rag-project\\chroma_db\\**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l41_cost_trace_design_review.contract.json",
+      "kind": "json",
+      "description": "required worker contract containing the no-API tracing design review"
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l41_cost_trace_design_review.md",
+      "kind": "markdown",
+      "description": "human-readable implementation review for token, cost, and stage timing tracing"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "component": "input_path_correction",
+        "recommendation": "Treat src\\rag_pipeline.py from the task prompt as stale and patch the actual RAG pipeline implementation at src\\rag.py. evaluate.py imports RAGPipeline from src.rag, and src\\rag_pipeline.py was not present in this checkout.",
+        "exact_code_points_to_patch": [
+          {
+            "file": "I:\\0706\\rfp-rag-project\\src\\rag.py",
+            "symbol": "RAGPipeline.ask",
+            "change": "Add optional trace collection around query rewrite, effective top-k calculation, retrieval, generation, and history update. Preserve return fields latency_sec and retrieval_sec."
+          }
+        ],
+        "risk": "low",
+        "reasoning": "Patching a nonexistent file would make the implementation fail. The actual code path is confirmed by scripts\\evaluate.py importing from src.rag."
+      },
+      {
+        "component": "trace_context_helper",
+        "recommendation": "Add a small internal trace helper, preferably in scripts\\evaluate.py first for minimal blast radius, then optionally move to a shared helper after adoption.",
+        "exact_code_points_to_patch": [
+          {
+            "file": "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+            "symbol": "run_eval",
+            "change": "Initialize a per-evaluation trace accumulator when trace output paths or trace=True are supplied. Pass a per-case/per-turn trace object into RAGPipeline.ask only after that method supports an optional trace parameter."
+          },
+          {
+            "file": "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+            "symbol": "aggregate",
+            "change": "Add new optional aggregate keys for token/cost/stage timing while leaving existing keys unchanged."
+          }
+        ],
+        "minimal_helper_shape": {
+          "stage_timer": {
+            "fields": [
+              "stage",
+              "started_at",
+              "ended_at",
+              "elapsed_sec"
+            ],
+            "behavior": "Use time.perf_counter for elapsed time and datetime.now().isoformat(timespec='seconds') for human-readable timestamps."
+          },
+          "usage_recorder": {
+            "fields": [
+              "operation",
+              "model",
+              "prompt_tokens",
+              "completion_tokens",
+              "total_tokens",
+              "cost_usd",
+              "cost_basis"
+            ],
+            "behavior": "Accept missing usage without failing the run; record usage_missing=true and estimate tokens only if configured."
+          }
+        },
+        "risk": "medium",
+        "reasoning": "evaluate.py owns result details and aggregate metrics, so it is the least surprising place to start. Moving tracing into src later improves attribution but touches protected core code."
+      },
+      {
+        "component": "generator_usage_capture",
+        "recommendation": "Return optional usage metadata from generation without changing the answer string API by adding a new generate_answer_with_trace wrapper or an optional return_metadata flag.",
+        "exact_code_points_to_patch": [
+          {
+            "file": "I:\\0706\\rfp-rag-project\\src\\generator.py",
+            "symbol": "generate_answer",
+            "change": "Avoid changing the default return type. Add return_metadata: bool = False or add generate_answer_with_trace(query, chunks, ...)->dict. Extract resp.usage after each OpenAI completion, including retry completions."
+          },
+          {
+            "file": "I:\\0706\\rfp-rag-project\\src\\generator.py",
+            "symbol": "generate_answer._complete",
+            "change": "Time each completion attempt, record max_completion_tokens, finish_reason, retry number, and usage prompt_tokens/completion_tokens/total_tokens when present."
+          }
+        ],
+        "minimal_return_metadata": {
+          "answer": "string",
+          "usage": {
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "total_tokens": 0,
+            "usage_missing": false
+          },
+          "model": "config.CHAT_MODEL",
+          "attempts": [
+            {
+              "attempt": 1,
+              "max_completion_tokens": 0,
+              "finish_reason": "stop | length | null",
+              "latency_sec": 0.0
+            }
+          ]
+        },
+        "risk": "medium",
+        "reasoning": "Many call sites likely expect generate_answer to return a string. A wrapper or opt-in flag avoids breaking current code."
+      },
+      {
+        "component": "judge_usage_capture",
+        "recommendation": "Mirror the existing blind judge calibration usage extraction inside evaluate.py's judge path.",
+        "exact_code_points_to_patch": [
+          {
+            "file": "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+            "symbol": "_chat_json",
+            "change": "Change internally to capture resp.usage using the run_blind_judge_calibration.py pattern. Preserve existing returned JSON for callers, or add _chat_json_with_usage and keep _chat_json as a compatibility wrapper."
+          },
+          {
+            "file": "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+            "symbol": "_judge",
+            "change": "Attach judge_usage, judge_cost_usd, judge_latency_sec, and judge_model to rec['judge'] or a sibling rec['trace']['judge']."
+          },
+          {
+            "file": "I:\\0706\\rfp-rag-project\\scripts\\run_blind_judge_calibration.py",
+            "symbol": "chat_json",
+            "change": "Use as reference only: it already extracts prompt_tokens, completion_tokens, total_tokens and computes actual cost from observed usage."
+          }
+        ],
+        "risk": "low",
+        "reasoning": "The calibration script already shows a working usage/cost pattern. Keeping the old _chat_json behavior via a wrapper avoids broad edits."
+      },
+      {
+        "component": "retrieval_stage_timing",
+        "recommendation": "Add optional stage timing to retrieval without changing retrieved document ordering or scoring.",
+        "exact_code_points_to_patch": [
+          {
+            "file": "I:\\0706\\rfp-rag-project\\src\\retriever.py",
+            "symbol": "retrieve",
+            "change": "Add trace: dict | None = None optional parameter. Record timings for load_index, embed_texts, auto_org_filter, primary col.query, missing-org extra queries, rerank or mmr, ensure_org_coverage, and final assembly."
+          },
+          {
+            "file": "I:\\0706\\rfp-rag-project\\src\\retriever.py",
+            "symbol": "_llm_rerank",
+            "change": "If rerank is enabled, capture usage/cost/latency for this LLM call as operation='retrieval_rerank'. Default rerank is false, so this should not affect common runs."
+          }
+        ],
+        "risk": "medium",
+        "reasoning": "Retrieval timing is valuable, but the function has many branches. The trace parameter must be optional and append-only to avoid behavior changes."
+      },
+      {
+        "component": "runner_artifacts",
+        "recommendation": "Have the general experiment runner write tracing artifacts under each worker experiment directory and expose summary columns without replacing existing CSV columns.",
+        "exact_code_points_to_patch": [
+          {
+            "file": "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py",
+            "symbol": "METRIC_COLS",
+            "change": "Append new columns after existing metrics: cost_usd_total, cost_usd_answer, cost_usd_judge, tokens_total, tokens_answer_total, tokens_judge_total, stage_answer_generation_avg_sec, stage_retrieval_avg_sec, stage_judge_generation_avg_sec."
+          },
+          {
+            "file": "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py",
+            "symbol": "run_suite",
+            "change": "Create budget_ledger.jsonl, timing_ledger.jsonl, and cost_summary.json inside worker_dir. Pass trace output paths into run_eval once supported. Add these paths to contract outputs."
+          },
+          {
+            "file": "I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py",
+            "symbol": "details_all[name]",
+            "change": "Store metrics plus trace_summary, but keep existing details format intact for consumers."
+          }
+        ],
+        "risk": "low",
+        "reasoning": "Appending columns and files is backward-compatible for existing readers using extrasaction='ignore' and dict access."
+      },
+      {
+        "component": "budget_ledger_schema",
+        "recommendation": "Use append-only budget_ledger.jsonl with one row per model-call attempt, including skipped budget rows.",
+        "minimal_schema": {
+          "schema": "rfp_rag_budget_ledger.v1",
+          "run_id": "string",
+          "worker_id": "string",
+          "suite": "string",
+          "experiment": "string",
+          "case_id": "string",
+          "turn_index": 0,
+          "operation": "answer_generation | judge_generation | retrieval_rerank | query_rewrite",
+          "provider": "openai | local_cli | none",
+          "model": "string",
+          "is_paid_api": true,
+          "status": "ok | failed | skipped_budget | no_api | usage_missing",
+          "started_at": "ISO-8601 string",
+          "ended_at": "ISO-8601 string",
+          "latency_sec": 0.0,
+          "prompt_tokens_estimated": 0,
+          "completion_tokens_estimated": 0,
+          "total_tokens_estimated": 0,
+          "prompt_tokens_observed": 0,
+          "completion_tokens_observed": 0,
+          "total_tokens_observed": 0,
+          "cost_usd_estimated": 0.0,
+          "cost_usd_observed": 0.0,
+          "cost_basis": "observed_usage | estimated_chars | no_api | missing_usage",
+          "spent_before_usd": 0.0,
+          "spent_after_usd": 0.0,
+          "hard_cap_usd": 10.0,
+          "stop_reason": ""
+        },
+        "risk": "low",
+        "reasoning": "This follows run_blind_judge_calibration.py's append_jsonl/checkpoint pattern and makes interrupted runs auditable."
+      },
+      {
+        "component": "cost_summary_schema",
+        "recommendation": "Write one cost_summary.json per worker experiment directory after each run.",
+        "minimal_schema": {
+          "schema": "rfp_rag_cost_summary.v1",
+          "created_at": "ISO-8601 string",
+          "run_id": "string",
+          "worker_id": "string",
+          "suite": "string",
+          "experiment": "string",
+          "no_api": false,
+          "budget": {
+            "hard_cap_usd": 10.0,
+            "launch_ceiling_usd": 9.0,
+            "spent_observed_usd": 0.0,
+            "spent_estimated_usd": 0.0,
+            "remaining_observed_usd": 10.0,
+            "paid_api_calls": 0,
+            "skipped_budget_calls": 0
+          },
+          "tokens": {
+            "prompt_tokens_observed": 0,
+            "completion_tokens_observed": 0,
+            "total_tokens_observed": 0,
+            "usage_missing_calls": 0
+          },
+          "cost_by_operation": {
+            "answer_generation": 0.0,
+            "judge_generation": 0.0,
+            "retrieval_rerank": 0.0,
+            "query_rewrite": 0.0
+          },
+          "latency_by_stage_avg_sec": {
+            "query_rewrite": 0.0,
+            "retrieval_total": 0.0,
+            "answer_generation": 0.0,
+            "judge_generation": 0.0,
+            "metric_aggregation": 0.0
+          },
+          "case_count": 0,
+          "artifact_paths": {
+            "budget_ledger": "budget_ledger.jsonl",
+            "timing_ledger": "timing_ledger.jsonl"
+          }
+        },
+        "risk": "low",
+        "reasoning": "A compact summary lets run_experiment_worker add CSV fields without scanning all details every time."
+      },
+      {
+        "component": "avoid_breaking_current_metrics",
+        "recommendation": "Make all trace features opt-in or additive and preserve current public return keys.",
+        "rules": [
+          "Do not change generate_answer default return type from str.",
+          "Do not rename latency_sec, retrieval_sec, metrics, details, judge, answer, chunks, retrieved_orgs, or first_hit_rank.",
+          "Do not change aggregate formulas for retrieval_coverage_avg, hit_all_targets_rate, mrr, groundedness_avg, relevance_avg, abstention_accuracy, false_abstention_rate, empty_answer_rate, or latency_avg_sec.",
+          "Append new metrics instead of inserting required dependencies into existing ones.",
+          "Keep no_judge behavior: judge_model remains None and judge cost fields are zero/null.",
+          "Keep dry_run behavior: generated trace rows should be status='dry_run' or omitted, never charged.",
+          "When usage is missing, record usage_missing=true and do not fail evaluation unless a hard budget mode explicitly requires observed usage."
+        ],
+        "risk": "low",
+        "reasoning": "The current EDD loop depends on stable keys in results.csv, details.json, and worker_output.json."
+      }
+    ],
+    "rejected_or_risky_items": [
+      {
+        "item": "Changing generate_answer to always return a dict",
+        "risk": "Would break RAGPipeline.ask, interactive ask flows, and any call site expecting a plain answer string."
+      },
+      {
+        "item": "Using only post-run observed usage for budget control",
+        "risk": "It documents overspend after the fact but cannot prevent crossing the hard cap."
+      },
+      {
+        "item": "Failing a run whenever usage metadata is missing",
+        "risk": "Some SDK responses or local providers may not expose usage; trace should degrade to estimated or usage_missing unless the run is in strict budget enforcement mode."
+      },
+      {
+        "item": "Patching src\\rag_pipeline.py",
+        "risk": "That file was not present in this checkout; the actual RAGPipeline code lives in src\\rag.py."
+      }
+    ],
+    "needs_orchestrator_review": [
+      "Confirm whether pricing should stay as a small local mapping copied from run_blind_judge_calibration.py or be centralized in a new helper later.",
+      "Approve the optional generate_answer_with_trace wrapper versus return_metadata flag.",
+      "Decide whether strict budget mode should fail on missing observed usage or allow estimated cost with usage_missing=true.",
+      "Confirm if query_rewrite should be included as a paid operation; current src\\rag.py calls rewrite_query when history exists, and its implementation was not part of this task input."
+    ],
+    "estimated_risk": {
+      "overall": "medium",
+      "reason": "The implementation touches core evaluation and RAG paths, but the risk is controllable if all new behavior is opt-in/additive and existing return keys remain stable.",
+      "highest_risk_points": [
+        "generator return type compatibility",
+        "threading trace objects through src.rag and src.retriever without changing retrieval behavior",
+        "budget enforcement semantics when observed usage is unavailable"
+      ],
+      "lowest_risk_points": [
+        "adding append-only JSONL artifacts",
+        "adding summary JSON files under worker output directories",
+        "appending CSV columns in run_experiment_worker.py"
+      ]
+    },
+    "small_verification_plan": [
+      {
+        "step": "Static import check",
+        "command": "python -m py_compile scripts\\evaluate.py scripts\\run_experiment_worker.py src\\rag.py src\\generator.py src\\retriever.py",
+        "expected": "No syntax errors."
+      },
+      {
+        "step": "No-API dry run",
+        "command": "python scripts\\run_experiment_worker.py --run-dir <temp_run_dir> --suite baseline_default --worker-id trace_smoke --dry-run --no-judge --case-limit 1",
+        "expected": "results.csv, details.json, worker_output.json, and trace summary artifacts are written with zero paid API calls."
+      },
+      {
+        "step": "Compatibility check",
+        "command": "Compare keys in old and new details.json for a dry-run case.",
+        "expected": "Existing keys remain present; new trace fields are additive."
+      },
+      {
+        "step": "Budget ledger validation",
+        "command": "Parse budget_ledger.jsonl and cost_summary.json with json.loads/json.load.",
+        "expected": "All JSON records parse; dry-run/no-api rows have cost_usd_observed=0 and status not charged."
+      },
+      {
+        "step": "Metric non-regression check",
+        "command": "Run aggregate() on synthetic details with and without trace fields.",
+        "expected": "Existing aggregate metric values are identical."
+      }
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\scripts\\run_experiment_worker.py'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\scripts\\evaluate.py'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\src\\generator.py'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\src\\rag_pipeline.py'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\src\\retriever.py'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\scripts\\run_blind_judge_calibration.py'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v9_latency_cost.contract.json'",
+      "Get-ChildItem -LiteralPath 'I:\\0706\\rfp-rag-project\\src' | Select-Object -ExpandProperty Name",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\src\\rag.py'"
+    ],
+    "observed_results": [
+      "No paid APIs were called.",
+      "No protected project files were modified.",
+      "The requested input src\\rag_pipeline.py does not exist in this checkout.",
+      "scripts\\evaluate.py imports RAGPipeline from src.rag, so src\\rag.py is the actual pipeline implementation.",
+      "run_experiment_worker.py currently writes results.csv, details.json, worker_output.json, and a root worker JSON contract.",
+      "evaluate.py currently records per-case latency_sec from RAGPipeline.ask and computes latency_avg_sec, but does not persist token usage or cost.",
+      "src\\rag.py currently returns latency_sec and retrieval_sec from RAGPipeline.ask.",
+      "src\\generator.py currently calls OpenAI completions but returns only the answer string and discards resp.usage.",
+      "src\\retriever.py includes an optional LLM rerank path that can call OpenAI and should be traced if enabled.",
+      "run_blind_judge_calibration.py already contains useful precedents: MODEL_PRICES_PER_MTOK, _estimate_tokens, _cost_usd, chat_json usage extraction, append_jsonl budget ledger, no-api mode, budget cap, and hard stop handling.",
+      "v9_latency_cost.contract.json recommends budget_ledger.jsonl, timing_ledger.jsonl, cost_summary.json, and a hard 10 USD policy; this review narrows that into concrete code patch points and schemas."
+    ]
+  },
+  "created_at": "2026-07-06T23:18:00+09:00"
+}

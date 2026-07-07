@@ -1,0 +1,61 @@
+{
+  "schema": "rfp_question_bank64_manifest.v1",
+  "created_at": "2026-07-07T14:54:40",
+  "files": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\question_bank64_shards_20260707.json",
+      "sha256": "668674f7b60a1aa40cff6bbf9e0be9add3b2f3a2bc7620d300464cfbec51b4e7",
+      "bytes": 89538
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\question_bank64_shards_20260707.csv",
+      "sha256": "a58a41434778c52bc9b56fb34290a43be667dbcd53f7eb3d95ad053893edeec8",
+      "bytes": 43552
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\question_bank64_shards_20260707.md",
+      "sha256": "3dc60ddf035b6e760d0ce5eb43eb8860155043e24b661992a7ab79c5c5bc52a0",
+      "bytes": 9305
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\A_metadata_corpus.json",
+      "sha256": "3dbf2f0f2b0d7a67c74042280df31fc4a3ccbc0d98571bc4c54a183c999583af",
+      "bytes": 18177
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\B_contract_technical_extract.json",
+      "sha256": "2c4aa399a892798818cb2ab55b6363a22ef5bd1401ed23a737b23c96c64dc439",
+      "bytes": 18756
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\C_technical_followup_boundary.json",
+      "sha256": "ed8cb2a32d1297df3efee686e5bc7ee247357225d896ff20bf2b1237965499c1",
+      "bytes": 18654
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\D_persona_business_citation.json",
+      "sha256": "0497fb62ca6e9f944314e5d13fb930e3c34f8572eb82f754c2ff7ab68791f68d",
+      "bytes": 18567
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\A_metadata_corpus.csv",
+      "sha256": "124816e77acd415fa3a2f5833e1233385d381c2e045000fa9685f5b7f0409eaf",
+      "bytes": 10288
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\B_contract_technical_extract.csv",
+      "sha256": "2761be7e773c7567e701049c3a44f3cc3a644ead8c46fab9371a7c6165a5e326",
+      "bytes": 10861
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\C_technical_followup_boundary.csv",
+      "sha256": "6608b960f337edba42033ffb7bc6966cf1545a5303472ce4912e30eea9db5ef6",
+      "bytes": 10751
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_144929_L118-question-bank-64-shard-preparation-and-team-review\\inputs\\D_persona_business_citation.csv",
+      "sha256": "bc5a68251e17f4186d1977f694fe512049098bfd67e7440c91e8c2b958725046",
+      "bytes": 10664
+    }
+  ]
+}

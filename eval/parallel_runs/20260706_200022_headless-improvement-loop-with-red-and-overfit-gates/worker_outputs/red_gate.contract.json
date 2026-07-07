@@ -1,0 +1,339 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "red_gate",
+  "task_id": "red_gate",
+  "status": "proposal",
+  "summary": "Proposal for a practical red gate around the headless improvement loop: separate scoreboard candidates from diagnostics, no-judge probes, measurement corrections, and targeted reruns; require blind-judge/safety checks before promotion; and fail promotion on source-scope bleed, fabricated unavailable facts, overfit evidence, or incomparable scoring.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_1825_timeboxed-red-loop-v3-validation\\loop_points.csv",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\scripts\\aggregate_parallel_eval.py",
+    "I:\\0706\\rfp-rag-project\\scripts\\evaluate.py",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\worker_outputs\\answer_quality_review.contract.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\worker_outputs\\evidence_quality_review.contract.json"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "manual review of saved local artifacts and scripts only"
+  },
+  "protected_paths_seen": [
+    "eval/parallel_runs/20260706_1825_timeboxed-red-loop-v3-validation/loop_points.csv",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "scripts/aggregate_parallel_eval.py",
+    "scripts/evaluate.py",
+    "existing worker contracts outside worker_outputs/red_gate",
+    "src/**",
+    "scripts/**",
+    "eval logs",
+    "업무일지.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs\\red_gate\\red_gate.contract.json",
+      "kind": "json",
+      "description": "proposal-only red gate worker contract"
+    },
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\worker_outputs\\red_gate\\red_gate.md",
+      "kind": "markdown",
+      "description": "readable red gate proposal"
+    }
+  ],
+  "proposal": {
+    "red_gate_purpose": [
+      "Prevent diagnostic or targeted rows from being promoted as global performance evidence.",
+      "Prevent judge-leniency, source-scope bleed, and fabricated unavailable facts from hiding behind high EDD.",
+      "Keep useful local probes in the loop log without letting them enter the leaderboard or final claim path."
+    ],
+    "promotion_states": [
+      {
+        "state": "diagnostic_only",
+        "rank_scope": "diagnostic_only",
+        "eligible_for_promotion": false,
+        "meaning": "Local retrieval/source/code/judge-prep check, no judge run, no answer rerun, synthetic connection check, or incomplete judged metrics.",
+        "examples_from_loop_points": [
+          "L4 local_retrieval_diagnostic",
+          "L5 local_retrieval_diagnostic",
+          "L6 local_source_evidence_diagnostic",
+          "L7 local_judge_validation_preparation",
+          "L8 local_runner_validation",
+          "L11 local_code_guard_validation",
+          "L12 qualitative_review_no_api",
+          "L13 local_prompt_candidate_no_api"
+        ]
+      },
+      {
+        "state": "targeted_probe",
+        "rank_scope": "diagnostic_only",
+        "eligible_for_promotion": false,
+        "meaning": "A rerun on a known failure case, small slice, or single question. It can explain a fix but cannot establish general performance.",
+        "examples_from_loop_points": [
+          "L9 no_judge_targeted_answer_probe",
+          "L10 no_judge_targeted_answer_probe"
+        ]
+      },
+      {
+        "state": "measurement_correction",
+        "rank_scope": "evidence_note",
+        "eligible_for_promotion": false,
+        "meaning": "Same answers rescored after evaluator or taxonomy correction. It may correct the historical record but is not a new RAG run.",
+        "examples_from_loop_points": [
+          "L1 measurement_correction_same_answers",
+          "L3 measurement_correction_same_answers"
+        ]
+      },
+      {
+        "state": "scoreboard_candidate",
+        "rank_scope": "scoreboard",
+        "eligible_for_promotion": "conditional",
+        "meaning": "Fresh run on a declared suite with complete retrieval metrics, complete judge quality metrics for non-abstention answers, abstention metrics, latency, and no red-gate failures."
+      },
+      {
+        "state": "promotion_candidate",
+        "rank_scope": "scoreboard",
+        "eligible_for_promotion": "conditional",
+        "meaning": "A scoreboard candidate that beats or ties the current baseline under comparable settings and passes blind/safety/overfit checks."
+      },
+      {
+        "state": "promoted",
+        "rank_scope": "accepted_best",
+        "eligible_for_promotion": true,
+        "meaning": "A promotion candidate approved after red gate review, with final report language limited to the exact validated suite."
+      },
+      {
+        "state": "rejected",
+        "rank_scope": "rejected",
+        "eligible_for_promotion": false,
+        "meaning": "A row or proposal with a confirmed quality, safety, comparability, or overfit failure."
+      }
+    ],
+    "red_gate_checks": [
+      {
+        "check_id": "complete_judge_metrics",
+        "required_for": [
+          "scoreboard_candidate",
+          "promotion_candidate",
+          "promoted"
+        ],
+        "pass_condition": "groundedness_avg and relevance_avg are present, parseable, and based on judged non-abstention answers; abstention cases are evaluated by abstention accuracy rather than fake groundedness/relevance.",
+        "fail_condition": "Missing judge columns, no-judge mode, judge parse failures that leave quality blank, or EDD-like values computed from missing quality metrics."
+      },
+      {
+        "check_id": "declared_suite_and_split",
+        "required_for": [
+          "scoreboard_candidate",
+          "promotion_candidate",
+          "promoted"
+        ],
+        "pass_condition": "Run records the question file/suite, case count, answer model, judge model, and whether the split is tune, holdout, untouched validation, or targeted.",
+        "fail_condition": "Unknown case source, mixed targeted rerun plus full suite without labels, reused holdout treated as untouched, or silent suite slicing."
+      },
+      {
+        "check_id": "first_score_vs_rerun",
+        "required_for": [
+          "promotion_candidate",
+          "promoted"
+        ],
+        "pass_condition": "First validation score is preserved separately from same-answer rescoring and targeted retries.",
+        "fail_condition": "A measurement correction, retry, or one-case targeted probe is presented as a fresh global score."
+      },
+      {
+        "check_id": "blind_judge_calibration",
+        "required_for": [
+          "promotion_candidate",
+          "promoted"
+        ],
+        "pass_condition": "Before relying on near-ceiling EDD, run the existing blind calibration pack or equivalent: expected pass cases pass, planted bad answers fail, and failures are recorded.",
+        "fail_condition": "Judge passes planted fabricated vendor/contact data, wrong-document bleed, wrong denial of PG evidence, or same-issuer scope mix."
+      },
+      {
+        "check_id": "source_scope_red_review",
+        "required_for": [
+          "promotion_candidate",
+          "promoted"
+        ],
+        "pass_condition": "Representative risky answers show correct issuer/project scope and no unsupported cross-document bleed, especially compare questions and short-alias municipality questions.",
+        "fail_condition": "Wrong issuer, wrong project, same-issuer but wrong-document mix, or false 'not found' caused by too-narrow retrieval when evidence exists in the correct scope."
+      },
+      {
+        "check_id": "unavailable_fact_safety",
+        "required_for": [
+          "promotion_candidate",
+          "promoted"
+        ],
+        "pass_condition": "For final vendor, final contract amount, evaluation scores, private contact, and similar unavailable fields, the answer abstains while preserving verified public RFP facts.",
+        "fail_condition": "Fabricates vendor/amount/contact data, converts missing final procurement data into a confident answer, or over-refuses verified public facts."
+      },
+      {
+        "check_id": "human_quality_caution",
+        "required_for": [
+          "promotion_candidate",
+          "promoted"
+        ],
+        "pass_condition": "High EDD rows have a small representative answer review for directness, usefulness, citation clarity, and conciseness; known high-score-but-awkward answers are called out in report language.",
+        "fail_condition": "Claims final answer-quality improvement from EDD alone when saved answers remain verbose, hard to cite, or report-unready."
+      },
+      {
+        "check_id": "overfit_guard",
+        "required_for": [
+          "promotion_candidate",
+          "promoted"
+        ],
+        "pass_condition": "Improvement is shown on a declared non-targeted validation set or clearly labeled as tune-only; targeted fixes are followed by a broader judged rerun before global claims.",
+        "fail_condition": "Same failed holdout is repeatedly tuned against and then reported as strict held-out evidence, or one known case is used to justify a default change."
+      },
+      {
+        "check_id": "latency_not_quality_substitute",
+        "required_for": [
+          "promotion_candidate",
+          "promoted"
+        ],
+        "pass_condition": "Latency improvement is accepted only if groundedness, relevance, abstention, and safety do not regress beyond declared tolerance.",
+        "fail_condition": "Lower top_k or faster path is promoted despite quality regression, missed PG/detail evidence, or new source-scope risk."
+      }
+    ],
+    "what_fails_promotion": [
+      "Any row with missing groundedness_avg or relevance_avg.",
+      "Any no-judge row, even if retrieval coverage, MRR, abstention, or latency look strong.",
+      "Any local diagnostic, code guard, calibration preparation, qualitative review, or prompt candidate with no scored answer/judge run.",
+      "Any measurement correction of the same answers when presented as a new run.",
+      "Any targeted rerun on known failures when presented as global validation.",
+      "Any run whose score depends on a judge that fails blind calibration bad cases.",
+      "Any answer that fabricates unavailable procurement/private-contact facts.",
+      "Any answer with confirmed wrong-document or wrong-issuer source-scope bleed.",
+      "Any faster configuration that loses material evidence quality, such as the observed top5 PG-detail miss compared with top8 on qv3_010.",
+      "Any claimed strict holdout/generalization score from a split already used for failure analysis and targeted repair unless it is explicitly labeled as remeasurement."
+    ],
+    "row_labeling_rules": [
+      {
+        "score_type_pattern": "local_*",
+        "quality_status": "not_applicable",
+        "rank_scope": "diagnostic_only",
+        "promotion_state": "diagnostic_only",
+        "scoreboard_edd": null,
+        "report_rule": "May be cited as diagnostic evidence or implementation preparation only."
+      },
+      {
+        "score_type_pattern": "*no_judge*",
+        "quality_status": "incomplete_no_judge",
+        "rank_scope": "diagnostic_only",
+        "promotion_state": "targeted_probe",
+        "scoreboard_edd": null,
+        "report_rule": "May be cited for retrieval/answer behavior; must not be ranked or graphed as performance."
+      },
+      {
+        "score_type_pattern": "targeted_* or *_targeted_*",
+        "quality_status": "targeted",
+        "rank_scope": "diagnostic_only",
+        "promotion_state": "targeted_probe",
+        "scoreboard_edd": null,
+        "report_rule": "May explain a fix; requires broader judged rerun before promotion."
+      },
+      {
+        "score_type_pattern": "measurement_correction_same_answers",
+        "quality_status": "corrected_measurement",
+        "rank_scope": "evidence_note",
+        "promotion_state": "measurement_correction",
+        "scoreboard_edd": "display_as_corrected_score_only",
+        "report_rule": "Use to correct historical interpretation; do not count as new performance."
+      },
+      {
+        "score_type_pattern": "first_validation_score_raw or full_judged_run",
+        "quality_status": "complete",
+        "rank_scope": "scoreboard",
+        "promotion_state": "scoreboard_candidate",
+        "scoreboard_edd": "allowed_if_metrics_complete",
+        "report_rule": "Can enter leaderboard; still must pass red-gate checks before promoted claims."
+      },
+      {
+        "score_type_pattern": "synthetic, connection-check, fake-client, no-api validation",
+        "quality_status": "not_applicable",
+        "rank_scope": "diagnostic_only",
+        "promotion_state": "diagnostic_only",
+        "scoreboard_edd": null,
+        "report_rule": "Implementation smoke only; no answer-quality or RAG performance claims."
+      }
+    ],
+    "recommended_aggregator_fields": [
+      "quality_status",
+      "rank_scope",
+      "promotion_state",
+      "score_type",
+      "suite_split",
+      "case_count",
+      "is_targeted_rerun",
+      "is_measurement_correction",
+      "is_no_judge",
+      "blind_calibration_status",
+      "red_gate_status",
+      "red_gate_reasons"
+    ],
+    "minimum_promotion_record": {
+      "required": [
+        "run_label",
+        "score_type",
+        "suite_split",
+        "questions_path",
+        "case_count",
+        "answer_model",
+        "judge_model",
+        "edd_score",
+        "retrieval_coverage_avg",
+        "mrr",
+        "groundedness_avg",
+        "relevance_avg",
+        "abstention_accuracy",
+        "false_abstention_rate",
+        "empty_answer_rate",
+        "latency_avg_sec",
+        "red_gate_status",
+        "red_gate_reasons"
+      ],
+      "red_gate_status_values": [
+        "pass",
+        "fail",
+        "diagnostic_only",
+        "needs_broader_rerun",
+        "needs_blind_calibration",
+        "needs_manual_red_review"
+      ]
+    },
+    "practical_application_to_current_loop": [
+      "Treat L0 as first-run evidence but not automatically promoted because later notes found evaluator issues.",
+      "Treat L1 as corrected measurement of L0 answers, not a new run.",
+      "Treat L2/L3 as rejected global default evidence because speed improved but quality dropped.",
+      "Treat L4-L8 as diagnostics/calibration prep only.",
+      "Treat L9/L10 as targeted no-judge probes explaining why top8 is safer for qv3_010; do not score them.",
+      "Treat L11-L13 as candidate preparation and qualitative evidence, not performance improvements.",
+      "Before any next promoted default, require a judged non-targeted rerun plus blind calibration and representative red review."
+    ],
+    "needs_orchestrator_review": [
+      "Whether near-ceiling EDD must always run blind calibration first, or only when promoted over the current best.",
+      "Exact tolerances for latency improvements: suggested default is no drop in groundedness/relevance over 0.10 average and no new safety red failures.",
+      "Whether corrected-measurement rows should appear in summary.md as a separate 'Corrected Measurement' table rather than the current diagnostic-only table."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content loop_points.csv -TotalCount 80",
+      "Get-Content eval/experiment_log.md -Tail 160",
+      "Get-Content eval/next_improvement_tasks.md",
+      "Get-Content scripts/aggregate_parallel_eval.py",
+      "Get-Content scripts/evaluate.py",
+      "Get-Content prior parallel_team_worker_output.v1 contracts",
+      "Manual proposal only; no external API/model calls"
+    ],
+    "observed_results": [
+      "loop_points.csv has L0-L13 with raw, corrected, local diagnostic, no-judge targeted probe, code guard, qualitative review, and prompt candidate labels.",
+      "aggregate_parallel_eval.py already excludes missing quality rows from rankings using diagnostic_only, but does not yet distinguish targeted rerun, measurement correction, calibration, or promotion states.",
+      "evaluate.py computes retrieval, judge quality, abstention, empty answer, and latency metrics; no-judge outputs can leave quality incomplete.",
+      "proposal output confined to worker_outputs/red_gate only."
+    ]
+  },
+  "created_at": "2026-07-06T20:12:00+09:00"
+}

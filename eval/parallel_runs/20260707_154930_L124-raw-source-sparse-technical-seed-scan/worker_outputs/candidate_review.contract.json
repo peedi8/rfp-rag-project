@@ -1,0 +1,48 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "main_codex",
+  "task_id": "candidate_review",
+  "status": "proposal",
+  "summary": "Top raw sparse candidates are source-selection inputs only. The strongest candidate is DOC073 with 15 visible and 16 absent technical field groups.",
+  "inputs": [
+    "eval/parallel_runs/20260707_154930_L124-raw-source-sparse-technical-seed-scan/analysis/raw_sparse_seed_scan/raw_sparse_seed_scan.json"
+  ],
+  "protected_paths_seen": [
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260707_154930_L124-raw-source-sparse-technical-seed-scan/analysis/raw_sparse_seed_scan/raw_sparse_seed_scan.md",
+      "kind": "md",
+      "description": "candidate ranking and decision note"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Top 1: DOC073 사단법인아시아물위원회사무국 / 우즈벡-키르기즈스탄 기후변화대응 스마트 관개시스템 구축사업, 15 visible and 16 absent.",
+      "Top 2: DOC051 기초과학연구원 / 2025년도 중이온가속기용 극저온시스템 운전 용역, 16 visible and 15 absent.",
+      "Top 3: DOC025 한국수자원공사 / 용인 첨단 시스템반도체 국가산단 용수공급사업 타당성조사 및 기본계획 수립 용역, 18 visible and 13 absent."
+    ],
+    "rejected_or_risky_items": [
+      "DOC090 and DOC023 are usable but less sparse, with only 10 absent groups each.",
+      "Field token matching is still a source-selection heuristic; final sparse answer scoring should use actual retrieved evidence and answer text."
+    ],
+    "needs_orchestrator_review": [
+      "Build a frozen sparse diagnostic mini-set before any paid/model answer run."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Reviewed raw_sparse_seed_scan.json and raw_sparse_seed_scan.md."
+    ],
+    "observed_results": [
+      "recommended_sparse_seed_count=5",
+      "All scanned candidates used raw_file_text."
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+[
+  {
+    "id": "q20260707_a11_dbrain_award_score_and_vendor",
+    "type": "unsupported_award_result_trap",
+    "questioner_profile": "codex_generated_deadline_diagnostic",
+    "failure_mode": "Focused L102 probe for qv8_a11: unsupported final evaluation score and selected vendor should be refused without drifting into calculation guidance.",
+    "turns": [
+      "한국재정정보원 e나라도움 웹 접근성 컨설팅 건 최종 제안평가 점수랑 선정업체명을 알려주세요. RFP에 평가기준이 있으면 그걸로 최종 점수까지 계산해도 되잖아요?"
+    ],
+    "target_orgs": [
+      "한국재정정보원"
+    ],
+    "target_biz": "e나라도움 업무시스템 웹 접근성 컨설팅",
+    "expect_abstention": true,
+    "property_under_test": "unsupported_award_result_refusal_boundary",
+    "label": "source-exposed",
+    "note": "Single qv8_a11 targeted diagnostic after L101 top5 failure; not strict validation."
+  }
+]

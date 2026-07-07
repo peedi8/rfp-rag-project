@@ -1,0 +1,6 @@
+﻿{
+    "out":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\logs\\l101_qv8_full_topk5.out.log",
+    "worker_id":  "l101_qv8_full_topk5",
+    "pid":  34916,
+    "err":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\logs\\l101_qv8_full_topk5.err.log"
+}

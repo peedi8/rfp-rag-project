@@ -1,0 +1,30 @@
+{
+  "schema": "rfp_rag_cost_summary.v1",
+  "calls_recorded": 0,
+  "calls_with_observed_cost": 0,
+  "observed_cost_usd": 0.0,
+  "cost_basis": "local_price_table",
+  "missing_cost_rows": [],
+  "budget": {
+    "budget_cap_usd": null,
+    "hard_stop_usd": 0.001,
+    "starting_spent_usd": 0.0,
+    "spent_observed_usd": 0.0,
+    "preflight_case_estimate_usd": 0.01,
+    "effective_case_count": 1,
+    "events": [
+      {
+        "event_type": "budget_gate",
+        "event": "skipped_preflight_budget",
+        "suite": "baseline_default",
+        "experiment": "baseline_default",
+        "case_count": 1,
+        "estimated_cost_usd": 0.01,
+        "spent_observed_before_usd": 0.0,
+        "hard_stop_usd": 0.001,
+        "reason": "projected experiment cost would exceed hard stop",
+        "created_at": "2026-07-06T23:52:59"
+      }
+    ]
+  }
+}

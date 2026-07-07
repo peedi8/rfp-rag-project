@@ -1,0 +1,152 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "quality_audit",
+  "task_id": "quality_audit",
+  "status": "proposal",
+  "summary": "Quality audit compared top5 vs top8 existing answers and judge reasons. Recommendation: reject top5 as champion; prefer top8 as the current candidate, with targeted follow-up on qv2_003 source-scope bleed and qv2_015 question/answer interpretation.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_150000_RFP-RAG-question-audit-improvement-loop\\worker_outputs\\topk5_after_filter_abstain_balanced_judge_full_topk_sweep\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_150000_RFP-RAG-question-audit-improvement-loop\\worker_outputs\\v2_tune_after_filter_abstain_balanced_judge_full_baseline_default\\details.json"
+  ],
+  "models": {
+    "answer_model": "existing_artifacts_only",
+    "judge_model": "existing_judge_reasons_only"
+  },
+  "protected_paths_seen": [
+    "config.py",
+    "src/**",
+    "scripts/**",
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "chroma_db/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\worker_outputs\\quality_audit\\worker_output.json",
+      "kind": "json",
+      "description": "proposal-only quality audit contract"
+    }
+  ],
+  "proposal": {
+    "decision": {
+      "top5_should_be": "rejected",
+      "recommended_candidate": "top8_baseline_default",
+      "confidence": "medium_high",
+      "rationale": "Top8 has higher aggregate EDD (95.55 vs 91.34), higher groundedness/relevance averages (4.938 vs 4.812), and full abstention accuracy (1.0 vs 0.5). Qualitatively, top8 fixes qv2_009 and qv2_017 and improves qv2_006. Top5 retains avoidable unsupported or incomplete claims in multiple high-risk cases."
+    },
+    "case_audit": [
+      {
+        "case_id": "qv2_003_single_add_large_transfer",
+        "top5_scores": {
+          "groundedness": 3,
+          "relevance": 4
+        },
+        "top8_scores": {
+          "groundedness": 4,
+          "relevance": 5
+        },
+        "comparison": "Top8 is better because it adds directly relevant performance and transfer details such as packaging, response time, concurrent users, 50GB transfer, and archive/download handling. However, it still mixes in security clauses from other or more general documents.",
+        "concrete_risk": "Both variants can overstate project-specific requirements by importing security or records-management items not clearly tied to the large-file transfer project. This is the main remaining unsupported-claim risk.",
+        "recommendation": "Accept top8 improvement over top5, but add a source-scope guard or answer pruning rule so qv2_003 only keeps bullets from the same project or explicitly labels general bid/security terms as general."
+      },
+      {
+        "case_id": "qv2_006_followup_incheon_committee_security",
+        "top5_scores": {
+          "groundedness": 5,
+          "relevance": 4
+        },
+        "top8_scores": {
+          "groundedness": 5,
+          "relevance": 5
+        },
+        "comparison": "Top8 directly links the background problem of manual committee operation and duplicated redistribution to access control, document management, secure deletion/return, secure coding, and data integrity requirements. Top5 is mostly grounded but has a weaker bridge between performance/availability and the asked security-management background.",
+        "concrete_risk": "Top5 risks a qualitative regression because it answers with a list of security-adjacent requirements without enough causal connection to the stated background.",
+        "recommendation": "Prefer top8."
+      },
+      {
+        "case_id": "qv2_009_compare_learning_platforms",
+        "top5_scores": {
+          "groundedness": 4,
+          "relevance": 5
+        },
+        "top8_scores": {
+          "groundedness": 5,
+          "relevance": 5
+        },
+        "comparison": "Top8 replaces top5's weak/general HanYoung description with concrete track, course, class opening, enrollment, and permission-management support. It also gives a more concrete Eulji comparison with extracurricular program, CQI, certification, and integration details.",
+        "concrete_risk": "Top5 contains mild unsupported inference for HanYoung from the project title and a lightly unsupported role label for Daejeon. This is a groundedness regression relative to top8.",
+        "recommendation": "Prefer top8; retain qv2_009 as a regression sentinel for cross-project comparison quality."
+      },
+      {
+        "case_id": "qv2_015_precise_ntis_requirements_count",
+        "top5_scores": {
+          "groundedness": 5,
+          "relevance": 5
+        },
+        "top8_scores": {
+          "groundedness": 5,
+          "relevance": 4
+        },
+        "comparison": "Top5 answers category count (10 categories) and says the period is not confirmed. Top8 answers numeric requirement counts for three categories (24+5+5=34) and identifies a 5-month period. The judge considered top8 grounded but slightly less relevant because the question can mean category count.",
+        "concrete_risk": "Top8 may be correct for requirement-item counts but can miss the expected interpretation if the user asks 'how many requirement classifications'. This is a relevance/interpretation risk, not a hallucination risk.",
+        "recommendation": "Do not let qv2_015 alone reject top8. Clarify the eval expected answer or make the answer include both category count and item-count totals when both are present."
+      },
+      {
+        "case_id": "qv2_017_ambiguous_water_systems",
+        "top5_scores": {
+          "groundedness": 5,
+          "relevance": 4
+        },
+        "top8_scores": {
+          "groundedness": 5,
+          "relevance": 5
+        },
+        "comparison": "Top8 improves completeness by retrieving additional HDIMS supporting documents while preserving abstention for the unconfirmed water-supply feasibility item. Top5 is grounded but incomplete.",
+        "concrete_risk": "Top5 can under-answer ambiguous multi-entity questions when a relevant entity appears beyond rank 5.",
+        "recommendation": "Prefer top8 for ambiguous-org questions."
+      }
+    ],
+    "additional_low_score_findings": [
+      {
+        "case_id": "qv2_006_followup_incheon_committee_security",
+        "variant": "top5",
+        "issue": "relevance 4 from weak explicit linkage between background and security/data-management requirements",
+        "risk_level": "medium"
+      },
+      {
+        "case_id": "qv2_015_precise_ntis_requirements_count",
+        "variant": "top8",
+        "issue": "relevance 4 from likely ambiguity between requirement-category count and requirement-item count",
+        "risk_level": "medium"
+      }
+    ],
+    "rejected_or_risky_items": [
+      "Reject top5 as champion because it has more sub-5 cases, worse abstention accuracy, and clear qualitative regressions on qv2_003, qv2_009, and qv2_017.",
+      "Do not promote any answer that imports requirements from a different 사업/document set without explicitly labeling them as general bid/security requirements.",
+      "Treat qv2_003 as the highest-risk remaining top8 case because the improved answer is still partially contaminated by broad security clauses."
+    ],
+    "needs_orchestrator_review": [
+      "Decide whether champion acceptance should require qv2_003 source-scope pruning before final logging.",
+      "Clarify qv2_015 expected interpretation: category count, requirement-item count, or both.",
+      "Add regression checks for qv2_003, qv2_009, qv2_015, and qv2_017 before another EDD loop."
+    ],
+    "recommended_next_action": "Proceed with top8 as the preferred candidate over top5, but run one targeted improvement pass focused on answer-side source-scope pruning for qv2_003 and dual-interpretation handling for precise count questions like qv2_015. Do not accept top5."
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Text-mined both details.json artifacts for focus cases and all groundedness/relevance scores below 5 because the persisted files are not strict JSON parseable.",
+      "Compared answer text and existing judge reasons for qv2_003, qv2_006, qv2_009, qv2_015, and qv2_017.",
+      "No external APIs called."
+    ],
+    "observed_results": [
+      "Top5 sub-5 cases: qv2_003 (g3/r4), qv2_006 (g5/r4), qv2_009 (g4/r5), qv2_017 (g5/r4).",
+      "Top8 sub-5 cases: qv2_003 (g4/r5), qv2_015 (g5/r4).",
+      "Aggregate metrics from artifacts: top5 EDD 91.34, groundedness_avg 4.812, relevance_avg 4.812, abstention_accuracy 0.5; top8 EDD 95.55, groundedness_avg 4.938, relevance_avg 4.938, abstention_accuracy 1.0."
+    ]
+  },
+  "created_at": "2026-07-06T17:37:41"
+}

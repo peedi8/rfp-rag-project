@@ -1,0 +1,166 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "quality_redteam",
+  "task_id": "quality_redteam",
+  "status": "proposal",
+  "summary": "Read-only red-team findings for final reporting: high EDD diagnostic rows remain source-exposed, some high-score answers still needed deterministic/manual caveats, and no-judge or one-case probes must not be compared with judged 12-case rows.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_02_worker_outputs.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_03_merge_decisions.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_04_smoke.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\summary\\summary.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\summary\\l47_claim_preservation_gate_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\summary\\l48_l76_backfill_guard_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l82_l83_sensitive_guard_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l82_l81_sensitive_quality_recompute\\recomputed_metrics.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l84_l86_v7_latency_measurement_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l91_plain_language_hint_v7_regression_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l93_l95_sensitive_preempt_report.md",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l81_v7_source_exposed_prompt_diagnostic_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l83_sensitive_guard_probe_nojudge_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l88_plain_language_format_probe_prompt_sweep\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l95_sensitive_preempt_v7_regression_baseline_default\\worker_output.json"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "Read-only artifact inspection with rg, Get-Content, and limited local JSON parsing attempts; no generator, judge, retriever, evaluator, API, or model call was run."
+  },
+  "budget_summary": {
+    "paid_api_calls_made": false,
+    "observed_cost_usd_for_this_review": 0.0,
+    "prior_run_observed_spend_after_l95_usd": 2.687161,
+    "known_caveat": "L84 monolithic timeout may have made calls before writing cost_summary.json, so local observed spend can undercount true spend."
+  },
+  "protected_paths_seen": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "eval/question_exposure_registry.*",
+    "src/**",
+    "scripts/**",
+    "config.py",
+    "chroma_db/**",
+    "eval/parallel_runs/20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\quality_redteam.contract.json",
+      "kind": "json",
+      "description": "Worker C report caveat and high-score-answer red-team contract."
+    },
+    {
+      "path": "eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\quality_redteam.md",
+      "kind": "markdown",
+      "description": "Compact human-readable summary of the accepted findings."
+    }
+  ],
+  "proposal": {
+    "bottom_line": "The final report should lead with L37 as the only strict scoreboard row and present L95 only as the strongest source-exposed diagnostic candidate. The report should include explicit caveats for qv7_006 and qv7_009 because both show that high groundedness/relevance and high EDD can miss answer-usefulness or safety-tail problems.",
+    "accepted_fields_or_changes": [
+      {
+        "title": "Source-exposed high scores are diagnostic, not held-out validation",
+        "evidence_path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_04_smoke.md",
+        "loop_id": "L81-L95",
+        "quote_or_short_paraphrase": "Smoke preserves strict scoreboard L37 EDD 86.25; L95 is best source-exposed v7 diagnostic with EDD 98.54 and no answer_quality_issues, but is not fresh validation.",
+        "report_wording": "Report L95 as the strongest source-exposed diagnostic candidate, not as held-out validation or a production champion. The only strict scoreboard score remains L37 EDD 86.25 unless a genuinely fresh cohort is run.",
+        "risk_severity": "critical"
+      },
+      {
+        "title": "qv7_006: correct abstention still had a forbidden-detail tail",
+        "evidence_path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l82_l83_sensitive_guard_report.md",
+        "loop_id": "L81-L83",
+        "quote_or_short_paraphrase": "L81 scored EDD 97.41 with coverage/MRR 1.0 and judge 5/5, but qv7_006 refused final vendor/amount and then continued with a claim-flow example and official contact details.",
+        "report_wording": "Use qv7_006 as the primary example that binary abstention and judge 5/5 can hide unsafe or over-helpful refusal tails. The fix should be described as a deterministic sensitive-tail guard plus no-judge targeted repair, not as a new comparable EDD gain.",
+        "risk_severity": "critical"
+      },
+      {
+        "title": "L83 and L94 EDD values are non-comparable because judge scores were omitted or structurally absent",
+        "evidence_path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_03_merge_decisions.md",
+        "loop_id": "L83, L94",
+        "quote_or_short_paraphrase": "L83 EDD 57.16 was intentionally no-judge; L94 is latency/cost evidence only because abstention rows do not receive judge scores.",
+        "report_wording": "Do not rank L83 or L94 by EDD against judged 12-case rows. Their useful facts are targeted behavior, cost, and latency observations; their EDD scores are smoke/diagnostic artifacts.",
+        "risk_severity": "high"
+      },
+      {
+        "title": "Judge-blindness: qv6_007 passed ordinary judge while failing claim preservation",
+        "evidence_path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\summary\\l47_claim_preservation_gate_report.md",
+        "loop_id": "L44-L47",
+        "quote_or_short_paraphrase": "L44 judge gave 5/5, but the claim gate still failed physical_access_control_system as source_supported_but_answer_underanswered; preservation rate 0.5.",
+        "report_wording": "State that groundedness/relevance judges are necessary but not sufficient. Paired claim-preservation and source-scoped checks are needed because a human-important claim can be missed even under a 5/5 judge.",
+        "risk_severity": "high"
+      },
+      {
+        "title": "qv7_009: grounded answer was too structured for plain-language intent",
+        "evidence_path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\summary\\l48_l76_backfill_guard_report.md",
+        "loop_id": "L87-L91",
+        "quote_or_short_paraphrase": "qv7_009 was flagged as plain_language_answer_over_structured despite judge 5/5; L81 baseline had about 1142 chars and 20 list/bullet lines. L89/L91 reduced it to concise plain-language form.",
+        "report_wording": "Use qv7_009 as the answer-format example: a technically grounded RFP-style checklist can be the wrong answer shape when the user asks for an easy/plain-language explanation. Keep format-fit gates separate from factual judging.",
+        "risk_severity": "high"
+      },
+      {
+        "title": "Tail latency and timeout risk can be hidden by average EDD",
+        "evidence_path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l84_l86_v7_latency_measurement_report.md",
+        "loop_id": "L84-L86, L91",
+        "quote_or_short_paraphrase": "L84 timed out before artifacts; L85 topk12 had max latency 36.95s and lower judge metrics; L91 still had a qv7_006 28.81s tail despite clean answer issues.",
+        "report_wording": "Report average latency beside max/tail latency and artifact completeness. A row with good average EDD is not sufficient if the run timed out, cost artifacts are missing, or sensitive cases remain slow.",
+        "risk_severity": "high"
+      },
+      {
+        "title": "Preemptive sensitive guard is a candidate improvement but carries false-positive risk",
+        "evidence_path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_03_merge_decisions.md",
+        "loop_id": "L93-L96",
+        "quote_or_short_paraphrase": "L95 is strongest source-exposed diagnostic row, but next gate is false-positive set or fresh validation; L96 narrowed the preempt marker set to avoid 추정금액 false positives.",
+        "report_wording": "Describe the preempt guard as promising but not fully validated. Include a preempt false-positive caveat: broad markers can suppress legitimate budget/estimated-amount questions unless guarded by fixtures and fresh tests.",
+        "risk_severity": "medium"
+      },
+      {
+        "title": "Same-issuer and source-scope cases need source-purity caveats even with perfect retrieval metrics",
+        "evidence_path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\summary\\l48_l76_backfill_guard_report.md",
+        "loop_id": "L48-L76",
+        "quote_or_short_paraphrase": "qv6_001 retrieved only the same org but mixed UICC with another same-issuer project; project-title focus was required. Source markers must be tied to the target row, not the whole CSV.",
+        "report_wording": "Add a source-purity caveat: org coverage and retrieved-source labels do not guarantee the answer used the right project row. Same-issuer project focus and target-bound source checks should be reported as required safeguards.",
+        "risk_severity": "medium"
+      }
+    ],
+    "recommended_report_section": {
+      "heading": "Caveats and Red-Team Examples",
+      "must_include_case_ids": [
+        "qv7_006_insurance_claim_forbidden_result_contact",
+        "qv7_009_venture_confirm_feature_upgrade"
+      ],
+      "recommended_order": [
+        "scoreboard isolation and source-exposure",
+        "qv7_006 sensitive refusal-tail",
+        "qv7_009 answer-format mismatch",
+        "judge blindness and claim preservation",
+        "non-comparable no-judge/one-case EDD",
+        "latency tail and timeout/cost artifact risk",
+        "preempt false-positive risk"
+      ]
+    }
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-ChildItem -Force I:\\0706\\rfp-rag-project",
+      "Get-ChildItem -Force current run dir and worker_outputs",
+      "rg --files previous run dir",
+      "rg -n for qv7_006, qv7_009, L81-L96, judge, latency, source, EDD, false-positive terms",
+      "Get-Content prior checkpoint_03_merge_decisions.md, checkpoint_04_smoke.md, summary.md, l47/l48-l76 reports, and L82-L83/L84-L86/L91 reports",
+      "Attempted ConvertFrom-Json extracts from selected details.json files; PowerShell reported invalid-array parsing errors on prior artifacts, so compact evidence was taken from report/checkpoint text and targeted rg snippets instead",
+      "No model, generator, judge, retriever, evaluator, or API command was run"
+    ],
+    "observed_results": [
+      "Current worker_outputs initially contained guard_false_positive.contract.json only.",
+      "Prior smoke says final aggregate rows=49, scoreboard_rows=1, diagnostic_only_rows=48, smoke pass, and latest no-API fixture pack 28/28.",
+      "Prior smoke says L95 EDD 98.54, latency 14.44s, qv7_009 clean, qv7_006/qv7_012 preempted, and all answer_quality_issues empty, while explicitly not fresh validation.",
+      "L82-L83 report says qv7_006 was a high-score L81 issue: refused some forbidden fields but continued with detailed claim-flow/contact tail; L83 no-judge targeted repair cleared answer_quality_issues.",
+      "L48-L76 summary says qv7_009 was grounded and judge 5/5 but over-structured for plain-language intent; L89/L91 are candidate repairs, not fresh validation.",
+      "L84-L86 report says monolithic L84 timed out before artifacts and topk12 had worse latency tail plus lower groundedness/relevance.",
+      "No protected files were modified."
+    ]
+  },
+  "created_at": "2026-07-07T12:36:00+09:00"
+}

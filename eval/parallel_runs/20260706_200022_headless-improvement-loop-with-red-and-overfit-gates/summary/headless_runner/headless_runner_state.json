@@ -1,0 +1,16 @@
+{
+  "schema": "rfp_rag_headless_runner_state.v1",
+  "created_at": "2026-07-06T20:16:01",
+  "status": "completed",
+  "mode": "no_api_gate_only",
+  "allow_api": false,
+  "manifest_path": "eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\headless_manifest.json",
+  "gate_report_json": "eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\summary\\headless_runner\\headless_gate_report.json",
+  "gate_report_md": "eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates\\summary\\headless_runner\\headless_gate_report.md",
+  "next_action": {
+    "state": "pending_cost_gate",
+    "next_candidate": "Run blind judge calibration before trusting another near-ceiling judge score.",
+    "reason": "The next useful scored gate needs judge/API cost, but this manifest is no-api.",
+    "safe_no_api_followup": "Maintain gates, prepare manifests, update logs, or create a fresh question draft without scoring."
+  }
+}

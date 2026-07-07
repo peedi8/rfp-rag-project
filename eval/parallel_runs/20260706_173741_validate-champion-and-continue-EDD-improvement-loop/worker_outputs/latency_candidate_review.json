@@ -1,0 +1,121 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "latency_candidate_review",
+  "task_id": "latency_candidate_review",
+  "status": "proposal",
+  "summary": "Keep top8 as champion. Run the next experiment as adaptive_top5_else_top8_by_query_type first, then add the abstention guard and top6 middle-ground arm if the initial adaptive run still shows quality loss on qv2_003 or qv2_021.",
+  "inputs": [
+    "eval/parallel_runs/20260706_150000_RFP-RAG-question-audit-improvement-loop/worker_outputs/v2_tune_after_filter_abstain_balanced_judge_full_baseline_default/details.json",
+    "eval/parallel_runs/20260706_150000_RFP-RAG-question-audit-improvement-loop/worker_outputs/topk5_after_filter_abstain_balanced_judge_full_topk_sweep/details.json",
+    "eval/parallel_runs/20260706_150000_RFP-RAG-question-audit-improvement-loop/worker_outputs/v2_tune_after_filter_abstain_balanced_judge_full_baseline_default/results.csv",
+    "eval/parallel_runs/20260706_150000_RFP-RAG-question-audit-improvement-loop/worker_outputs/topk5_after_filter_abstain_balanced_judge_full_topk_sweep/results.csv"
+  ],
+  "protected_paths_seen": [
+    "????.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "config.py",
+    "src/**",
+    "scripts/**",
+    "chroma_db/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_173741_validate-champion-and-continue-EDD-improvement-loop\\worker_outputs\\latency_candidate_review\\worker_output.json",
+      "kind": "json",
+      "description": "latency/adaptive top_k proposal"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      {
+        "name": "adaptive_top_k_fast_path_with_risk_fallback",
+        "hypothesis": "An adaptive policy can preserve top8 quality and abstention behavior while capturing much of top5 latency savings by using top5 only for low-risk prompts and escalating to top8 for ambiguity, comparison, abstention-sensitive, or weak-context cases.",
+        "candidate_policy": {
+          "default_top_k": 5,
+          "fallback_top_k": 8,
+          "use_mmr": true,
+          "mmr_lambda": 0.5,
+          "fetch_k": 20,
+          "auto_filter": true,
+          "rewrite_query": true,
+          "fallback_triggers": [
+            "query_type in ['abstention', 'compare', 'ambiguous_org', 'followup']",
+            "query asks for missing/nonexistent facts such as winner, vendor, contract amount, evaluation score, deadline, or undisclosed bid details",
+            "retrieved evidence spans multiple organizations/projects with no dominant project cluster",
+            "top5 answer would cite fewer than the required distinct project/document groups for compare or ambiguity prompts",
+            "generation contains uncertainty phrases about unavailable evidence while still producing a factual table/list; rerun with top8 and enforce abstention"
+          ],
+          "fast_path_triggers": [
+            "query_type in ['precise_check', 'single_extract']",
+            "single dominant organization/project in retrieved set",
+            "first_hit_rank is 1 and retrieval_coverage is 1.0",
+            "requested answer can be satisfied from a small number of documents without cross-project comparison"
+          ]
+        },
+        "experiment_arms": [
+          {
+            "name": "top8_champion_control",
+            "top_k": 8,
+            "purpose": "Confirm baseline stability and keep champion comparison fixed."
+          },
+          {
+            "name": "top5_global_speed_control",
+            "top_k": 5,
+            "purpose": "Retain the known speed candidate as a negative quality control."
+          },
+          {
+            "name": "adaptive_top5_else_top8_by_query_type",
+            "policy": "Use top5 only for precise_check and single_extract; use top8 for followup, compare, ambiguous_org, and abstention.",
+            "purpose": "Lowest-risk adaptive experiment; expected to recover most abstention and compare quality."
+          },
+          {
+            "name": "adaptive_top5_with_abstention_guard",
+            "policy": "Use query-type policy plus force top8 and stricter abstention when the question requests procurement outcomes or facts likely absent from RFP documents.",
+            "purpose": "Directly target qv2_021 while preserving top5 wins on simple cases."
+          },
+          {
+            "name": "adaptive_top6_middle_ground",
+            "policy": "Use top6 for fast-path queries and top8 for risk-triggered queries.",
+            "purpose": "Test whether one extra document repairs qv2_003-style grounding loss with less latency than top8."
+          }
+        ],
+        "success_criteria": {
+          "required": [
+            "abstention_accuracy >= 1.0 on the current eval set",
+            "no case with groundedness below 4",
+            "no case with relevance below 4",
+            "edd_score >= 95.0 or within 0.5 of top8 champion",
+            "latency_avg_sec at least 15 percent faster than top8 champion"
+          ],
+          "watch_items": [
+            "qv2_003_single_add_large_transfer must recover at least groundedness 4 and relevance 5 or be routed to top8.",
+            "qv2_021_abstain_winning_vendor must abstain.",
+            "qv2_006_followup_incheon_committee_security should route to top8 because top5 was slower and lower quality."
+          ]
+        },
+        "expected_outcome": "The query-type adaptive arm should keep top8 behavior for the riskiest 8 to 10 cases while using top5 on simpler cases. Based on observed per-case deltas, this should capture a meaningful but smaller latency gain than global top5 without accepting the abstention regression."
+      }
+    ],
+    "rejected_or_risky_items": [
+      "EDD score drops from 95.55 to 91.34 despite a 31.16 percent latency improvement.",
+      "Abstention accuracy drops from 1.0 to 0.5 due to qv2_021_abstain_winning_vendor.",
+      "Several non-abstention cases lose judge quality, including qv2_003 with a two-point combined groundedness/relevance loss.",
+      "Global retrieval metrics remain perfect, so the failures are likely context sufficiency or answer policy failures rather than simple retrieval misses."
+    ],
+    "needs_orchestrator_review": [
+      "Keep top8 as champion. Run the next experiment as adaptive_top5_else_top8_by_query_type first, then add the abstention guard and top6 middle-ground arm if the initial adaptive run still shows quality loss on qv2_003 or qv2_021."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "subagent latency_candidate_review"
+    ],
+    "observed_results": [
+      "proposal_only_no_protected_paths_modified"
+    ]
+  }
+}

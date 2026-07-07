@@ -1,0 +1,7 @@
+{
+  "schema": "parallel_team_handoff.v1",
+  "created_at": "2026-07-06T21:26:48",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap",
+  "ledger": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_212647_Adversarial-RAG-breaker-loop-under-budget-cap\\ledger.json",
+  "status": "initialized"
+}

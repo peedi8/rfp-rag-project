@@ -1,0 +1,74 @@
+﻿{
+    "schema":  "parallel_team_run_ledger.v1",
+    "created_at":  "2026-07-06T13:42:55",
+    "workspace":  "I:\\0706\\rfp-rag-project",
+    "objective":  "RFP RAG parallel EDD full run after abstention fix",
+    "run_dir":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix",
+    "cpu_percent_at_start":  9.0,
+    "recommended_workers":  4,
+    "worker_policy":  "proposal_only_no_direct_merge",
+    "merge_owner":  "main_codex_orchestrator",
+    "protected_paths":  [
+                            "I:\\0706\\rfp-rag-project\\업무일지.md",
+                            "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+                            "I:\\0706\\rfp-rag-project\\CLAUDE.md",
+                            "I:\\0706\\rfp-rag-project\\config.py",
+                            "I:\\0706\\rfp-rag-project\\src\\**",
+                            "I:\\0706\\rfp-rag-project\\chroma_db\\**"
+                        ],
+    "tasks":  [
+                  {
+                      "task_id":  "topk_sweep",
+                      "description":  "Run top_k 5/8/12 against frozen raw index",
+                      "status":  "completed",
+                      "worker_id":  "topk_sweep",
+                      "output_contract":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\worker_outputs\\topk_sweep_topk_sweep.json",
+                      "merge_decision":  "accepted_as_evidence"
+                  },
+                  {
+                      "task_id":  "mmr_lambda_sweep",
+                      "description":  "Run mmr_lambda 0.3/0.5/0.7 against frozen raw index",
+                      "status":  "completed",
+                      "worker_id":  "mmr_lambda_sweep",
+                      "output_contract":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\worker_outputs\\mmr_lambda_sweep_mmr_lambda_sweep.json",
+                      "merge_decision":  "accepted_as_evidence"
+                  },
+                  {
+                      "task_id":  "fetchk_sweep",
+                      "description":  "Run fetch_k 20/40 against frozen raw index",
+                      "status":  "completed",
+                      "worker_id":  "fetchk_sweep",
+                      "output_contract":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\worker_outputs\\fetchk_sweep_fetchk_sweep.json",
+                      "merge_decision":  "accepted_as_evidence"
+                  },
+                  {
+                      "task_id":  "filter_rewrite_ablation",
+                      "description":  "Run auto_filter on/off x rewrite_query on/off ablation",
+                      "status":  "completed",
+                      "worker_id":  "filter_rewrite_ablation",
+                      "output_contract":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\worker_outputs\\filter_rewrite_ablation_filter_rewrite_ablation.json",
+                      "merge_decision":  "accepted_as_evidence"
+                  }
+              ],
+    "checkpoints":  {
+                        "inputs":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\checkpoint_01_inputs.md",
+                        "worker_outputs":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\checkpoint_02_worker_outputs.md",
+                        "merge_decisions":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\checkpoint_03_merge_decisions.md",
+                        "smoke":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\checkpoint_04_smoke.md"
+                    },
+    "events":  [
+                   {
+                       "ts":  "2026-07-06T13:42:55",
+                       "event":  "scaffold_created",
+                       "recommended_workers":  4,
+                       "cpu_percent":  9.0
+                   },
+                   {
+                       "ts":  "2026-07-06T14:25:17",
+                       "event":  "parallel_eval_completed",
+                       "summary":  "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_134254_RFP-RAG-parallel-EDD-full-run-after-abstention-fix\\summary\\summary.md",
+                       "smoke":  "pass",
+                       "final_candidate":  "top_k=8, mmr_lambda=0.5, fetch_k=20, auto_filter=true, rewrite_query=true"
+                   }
+               ]
+}

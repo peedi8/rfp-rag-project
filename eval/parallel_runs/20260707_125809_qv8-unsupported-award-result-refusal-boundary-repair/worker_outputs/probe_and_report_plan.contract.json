@@ -1,0 +1,126 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "worker_d_probe_and_report_plan",
+  "task_id": "probe_and_report_plan",
+  "status": "proposal",
+  "summary": "Diagnostic-only qv8_a11 probe/report plan focused on the unsupported final award-result refusal boundary. The plan separates true unsupported-result refusals from supported criteria answers and from partial answers that carry a caveat but are not full abstentions.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_125809_qv8-unsupported-award-result-refusal-boundary-repair\\ledger.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_125809_qv8-unsupported-award-result-refusal-boundary-repair\\checkpoint_01_inputs.md",
+    "I:\\0706\\rfp-rag-project\\eval\\experiment_log.md",
+    "I:\\0706\\rfp-rag-project\\eval\\next_improvement_tasks.md",
+    "I:\\0706\\rfp-rag-project\\업무일지.md"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "paid_api_calls_made": false
+  },
+  "protected_paths_seen": [
+    "업무일지.md",
+    "eval\\experiment_log.md",
+    "eval\\next_improvement_tasks.md",
+    "eval\\question_exposure_registry.*",
+    "src\\**",
+    "scripts\\**",
+    "config.py",
+    "chroma_db\\**",
+    "prior run folders"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_125809_qv8-unsupported-award-result-refusal-boundary-repair\\worker_outputs\\probe_and_report_plan.contract.json",
+      "kind": "json",
+      "description": "required Worker D proposal contract for qv8_a11 probe and report caveats"
+    }
+  ],
+  "proposal": {
+    "probe_shapes": [
+      {
+        "probe_id": "qv8_a11_probe_01_unsupported_final_score_vendor_refusal",
+        "shape_type": "unsupported_award_result_trap",
+        "question_shape": "Ask for the final award score and winning vendor when the document does not support either result.",
+        "expected_behavior": "Refuse the unsupported final score/vendor claim clearly and stop before inventing a result.",
+        "reporting_label": "true_refusal",
+        "why_this_shape_matters": "This is the core failure boundary for qv8_a11 and the main thing the report must diagnose."
+      },
+      {
+        "probe_id": "qv8_a11_probe_02_final_vendor_only_refusal",
+        "shape_type": "unsupported_result_partial_request",
+        "question_shape": "Ask only for the selected vendor or winner, without the score, when the result is still unsupported.",
+        "expected_behavior": "Refuse the unsupported vendor claim even if the wording is narrower than the score+vendor version.",
+        "reporting_label": "true_refusal",
+        "why_this_shape_matters": "This checks that the boundary is tied to unsupported result facts, not to one specific phrasing."
+      },
+      {
+        "probe_id": "qv8_a11_probe_03_evaluation_criteria_answer",
+        "shape_type": "supported_criteria_question",
+        "question_shape": "Ask what evaluation criteria, scoring rules, or judging factors the document actually states.",
+        "expected_behavior": "Answer the evaluation criteria that are supported by the source, without refusing the whole question.",
+        "reporting_label": "should_answer",
+        "why_this_shape_matters": "The report needs a positive control so a correct refusal policy is not mistaken for blanket abstention."
+      },
+      {
+        "probe_id": "qv8_a11_probe_04_partial_answer_with_final_result_caveat",
+        "shape_type": "normal_scope_answer_with_caveat",
+        "question_shape": "Ask for a normal scope summary that includes a caveat such as 'the final result is not supported' while still requesting supported details.",
+        "expected_behavior": "Provide the supported summary and caveat; do not count this as a full abstention.",
+        "reporting_label": "partial_answer_not_full_abstention",
+        "why_this_shape_matters": "This is the main detector-granularity guard: caveat-bearing answers should not be scored as full refusals."
+      },
+      {
+        "probe_id": "qv8_a11_probe_05_mixed_supported_and_unsupported_split",
+        "shape_type": "mixed_support_boundary",
+        "question_shape": "Ask for supported document facts plus the unsupported final result in one prompt.",
+        "expected_behavior": "Answer the supported part, refuse only the unsupported final result, and keep the refusal scoped.",
+        "reporting_label": "split_answer",
+        "why_this_shape_matters": "This captures the practical mixed-case pattern where a correct answer must be partial rather than all-or-nothing."
+      }
+    ],
+    "metrics": {
+      "primary": [
+        "unsupported_refusal_exact_match_rate",
+        "unsupported_refusal_scope_precision",
+        "supported_criteria_answer_rate",
+        "partial_answer_preservation_rate",
+        "full_abstention_false_positive_rate"
+      ],
+      "secondary": [
+        "caveat_only_not_full_abstention_rate",
+        "unsupported_vendor_or_score_contamination_rate",
+        "answer_continuation_groundedness_on_supported_parts"
+      ],
+      "report_cut": [
+        "Treat qv8_a11 as diagnostic-only.",
+        "Report refusal correctness separately from partial-answer correctness.",
+        "Do not collapse caveat-bearing partial answers into full abstentions."
+      ]
+    },
+    "report_caveats": [
+      "This is a boundary probe, not a fresh validation claim and not a model promotion gate.",
+      "A reply that says the final result is unsupported but still answers supported criteria should be credited as a partial answer, not as a full abstention.",
+      "A refusal must be scoped to the unsupported award/result fact; do not reward overbroad blanket refusals that discard answerable criteria.",
+      "The report should distinguish score/vendor hallucination from detector granularity, because those are different failure modes.",
+      "Any qv8_a11 caveat-bearing answer should be read as evidence about answer shape, not as evidence that the whole case was safely abstained."
+    ],
+    "cause_result_insight_next": "Cause: qv8_a11 exposed a brittle boundary around unsupported final award-result questions, where the answer can be partly right but still contain a refusal caveat. Result: current evaluation can confuse scoped refusals, supported criteria answers, and partial answers that mention the unsupported final result. Insight: the report needs separate labels for true unsupported-result refusal, supported criteria answering, and mixed answers with a caveat so we do not mistake partial correctness for abstention. Next: run the four boundary shapes plus the mixed split case, then report exact refusal behavior and the false full-abstention rate side by side."
+  },
+  "validation": {
+    "commands_run": [
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_125809_qv8-unsupported-award-result-refusal-boundary-repair\\ledger.json'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_125809_qv8-unsupported-award-result-refusal-boundary-repair\\checkpoint_01_inputs.md'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_124541_qv8-latency-tail-reduction-and-field-level-eval-prep\\worker_outputs\\report_update_plan.contract.json'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\guard_false_positive.contract.json'",
+      "Get-Content -Raw -LiteralPath 'I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_122145_17시-전-RFP-RAG-final-eval-report-package-with-fresh-diagnosti\\worker_outputs\\fresh_questions.contract.json'"
+    ],
+    "observed_results": [
+      "Run ledger marks probe_and_report_plan as pending under proposal_only_no_direct_merge.",
+      "Diary and experiment log context point to qv8_a11 as the unsupported award-result boundary problem.",
+      "Prior sibling contracts show the expected contract family: schema, worker metadata, proposal section, report caveats, and a cause-result-insight-next style note.",
+      "No protected files were modified during proposal drafting."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "created_at": "2026-07-07T12:58:10+09:00"
+}

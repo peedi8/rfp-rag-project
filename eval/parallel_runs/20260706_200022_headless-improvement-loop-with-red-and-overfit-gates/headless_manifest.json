@@ -1,0 +1,20 @@
+{
+  "schema": "rfp_rag_headless_loop_manifest.v1",
+  "mode": "no_api_gate_only",
+  "allow_api": false,
+  "run_dir": "eval\\parallel_runs\\20260706_200022_headless-improvement-loop-with-red-and-overfit-gates",
+  "loop_points_path": "eval\\parallel_runs\\20260706_1825_timeboxed-red-loop-v3-validation\\loop_points.csv",
+  "quality_matrix_path": "eval\\parallel_runs\\20260706_193521_Representative-answer-quality-review-matrix-for-RFP-RAG-repo\\summary\\answer_quality_review_matrix.json",
+  "exposure_registry_path": "eval\\question_exposure_registry.json",
+  "objective": "Continue improvement loops while red/overfit gates prevent unsafe promotion.",
+  "budget_policy": {
+    "api_calls_allowed": false,
+    "paid_scored_runs_allowed": false,
+    "safe_actions": [
+      "gate audit",
+      "log update",
+      "manifest preparation",
+      "fresh question draft without scoring"
+    ]
+  }
+}

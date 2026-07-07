@@ -1,0 +1,44 @@
+# Evidence Guard Fixtures
+
+- created_at: `2026-07-07T12:35:38`
+- fixtures: `34`
+- passed: `34`
+- failed: `0`
+- status: `pass`
+
+| fixture | passed |
+|---|---:|
+| target_bound_csv_summary_backfill | True |
+| mixed_org_no_backfill | True |
+| false_friend_only_no_repair | True |
+| no_physical_source_no_repair | True |
+| source_supported_denial_repaired | True |
+| source_supported_contradictory_caveat_repaired | True |
+| source_supported_duplicate_access_lines_collapsed | True |
+| source_supported_scope_denial_and_dangling_heading_removed | True |
+| narrow_unknown_boundary_passes | True |
+| ambiguous_title_verbose_refusal_trimmed | True |
+| ambiguous_title_short_refusal_preserved | True |
+| sensitive_forbidden_verbose_refusal_trimmed | True |
+| sensitive_forbidden_detail_tail_flagged | True |
+| partial_scope_unknown_not_full_abstention | True |
+| unsupported_subclaim_not_full_abstention | True |
+| sensitive_patient_refusal_with_project_prefix | True |
+| sensitive_patient_refusal_without_guessing_word | True |
+| sensitive_victim_story_refusal_with_project_prefix | True |
+| bracket_marker_partial_answer_not_full_abstention | True |
+| plain_language_overstructured_flagged | True |
+| plain_language_substantive_answer_with_final_result_caveat_not_full_abstention | True |
+| plain_language_prompt_hint_positive_trigger | True |
+| plain_language_prompt_hint_negated_request_no_trigger | True |
+| plain_language_marker_constant_positive_trigger | True |
+| plain_language_marker_constant_negation_precedence | True |
+| sensitive_preempt_marker_constants_positive_trigger | True |
+| sensitive_preempt_two_sensitive_markers_without_fabrication_marker_not_triggered | True |
+| sensitive_preempt_one_result_marker_with_fabrication_marker_triggered | True |
+| sensitive_adversarial_query_preempted | True |
+| non_adversarial_boundary_query_not_preempted | True |
+| estimate_price_procurement_term_not_preempted | True |
+| ambiguous_title_single_candidate_no_trim | True |
+| same_org_clear_project_focus_filters_other_title | True |
+| same_org_ambiguous_project_focus_preserves_titles | True |

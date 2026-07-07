@@ -1,0 +1,790 @@
+{
+  "topk5_filter_rewrite": {
+    "params": {
+      "use_mmr": true,
+      "top_k": 5,
+      "mmr_lambda": 0.5,
+      "fetch_k": 20,
+      "auto_filter": true,
+      "rewrite_query": true
+    },
+    "metrics": {
+      "retrieval_coverage_avg": 1.0,
+      "hit_all_targets_rate": 1.0,
+      "mrr": 1.0,
+      "groundedness_avg": 5.0,
+      "relevance_avg": 5.0,
+      "abstention_accuracy": 1.0,
+      "false_abstention_rate": 0.0,
+      "empty_answer_rate": 0.0,
+      "latency_avg_sec": 11.813
+    },
+    "edd_score": 99.13,
+    "issues": {
+      "coverage_fail": [],
+      "false_abstain": [],
+      "empty_answer": [],
+      "judge_low": [],
+      "answer_quality_issues": {}
+    },
+    "details": [
+      {
+        "id": "q20260707_a01_generic_integrated_system_preempt_false_positive",
+        "type": "ambiguous_fragment_negative_control",
+        "answer": "요청하신 제목 조각만으로는 제공된 문서에서 하나의 발주기관/사업으로 확인할 수 없습니다.\n- 후보: 국가과학기술지식정보서비스 / 통합정보시스템 고도화 용역\n- 후보: 한국한의학연구원 / 통합정보시스템 고도화 용역\n발주기관명, 공고번호, 연도, 원문 일부 중 하나를 더 알려주시면 해당 문서 기준으로 요구범위를 정리하겠습니다.",
+        "retrieved_orgs": [
+          "국가과학기술지식정보서비스",
+          "한국한의학연구원",
+          "국가과학기술지식정보서비스",
+          "국가과학기술지식정보서비스",
+          "국가과학기술지식정보서비스"
+        ],
+        "coverage": null,
+        "first_hit_rank": null,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 131,
+          "post_refusal_bullet_count": 2,
+          "detail_keyword_hits": [
+            "requirement"
+          ],
+          "answer_chars": 181,
+          "answer_line_count": 4
+        },
+        "latency_sec": 22.34,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 2.14,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 88,
+              "completion_tokens": null,
+              "total_tokens": 88
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 20.21,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2904,
+              "completion_tokens": 1888,
+              "total_tokens": 4792
+            },
+            "cost_usd": 0.010674,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 20.206,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.010674
+      },
+      {
+        "id": "q20260707_a02_hanyoung_plain_language_track_system",
+        "type": "plain_language_hint",
+        "answer": "쉽게 말하면, 사업자는 트랙별 교과목·교육과정·수강신청 기능과 사용자 연동·권한관리를 구현해 학생과 교직원이 트랙 기반 학사 정보를 정확히 조회·관리할 수 있게 합니다.\n\n- 트랙별 교과목·교육과정 관리 기능 구현(SFR-004, SFR-005): 학생은 본인 트랙의 교과목과 교육과정을 조회할 수 있도록 합니다.  \n- 수업·수강신청 관리 구현(SFR-006): 개설강좌 등록과 WEB 수강신청, 트랙별 수강신청 현황을 제공하여 학생 수강신청과 교직원의 개설강좌 관리가 가능하도록 합니다.  \n- 사용자·권한관리 및 종합정보시스템 연동 구현: 한영대학교 종합정보시스템과 연계된 사용자 및 권한관리 기능을 구축하여 교직원·학생 계정과 권한을 통합 관리합니다.  \n\n근거: 한영대학교 특성화 맞춤형 교육환경 구축 - 트랙운영 학사정보시스템 고도화(발주기관: 한영대학교), 제안요청서 SFR-003~SFR-006 및 관련 항목.",
+        "retrieved_orgs": [
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 461,
+          "answer_line_count": 5
+        },
+        "latency_sec": 20.64,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.38,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 117,
+              "completion_tokens": null,
+              "total_tokens": 117
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 20.26,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 3005,
+              "completion_tokens": 1686,
+              "total_tokens": 4691
+            },
+            "cost_usd": 0.009841,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 20.262,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.009841,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변에 적힌 세 가지 변경점(트랙별 교과목·교육과정 조회·관리, 수업·수강신청 관리, 사용자·권한관리 및 종합정보시스템 연동)은 제시된 근거문서(제안요청서)의 SFR-003~SFR-006 항목에 명시된 기능요구사항과 일치합니다. 답변은 근거에 없는 추가 사항을 포함하지 않고(예: 낙찰 관련 내용 없음) 질문에서 요청한 '학생·교직원 입장에서 바뀌는 점 3개'를 쉬운 말로 직접적으로 설명하고 있으므로 근거연계성과 질문응답성이 높습니다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 2854,
+                "completion_tokens": 501,
+                "total_tokens": 3355
+              },
+              "cost_usd": 0.004395,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 6.347,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.004395
+        }
+      },
+      {
+        "id": "q20260707_a03_kogas_erp_final_contract_vs_budget",
+        "type": "budget_contract_distinction",
+        "answer": "사업명: [재공고] 차세대 통합정보시스템(ERP) 구축\n발주기관: 한국가스공사\n\n제공된 문서([문서1]~[문서5])에는 본 사업의 최종 계약금액(체결된 실거래액)이 기재되어 있지 않습니다. 따라서 공고 예산과 실제 계약금액이 동일한지 여부도 제공된 문서에서 확인할 수 없습니다.",
+        "retrieved_orgs": [
+          "한국가스공사",
+          "한국가스공사",
+          "한국가스공사",
+          "한국가스공사",
+          "한국가스공사"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 123,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [
+            "budget"
+          ],
+          "answer_chars": 155,
+          "answer_line_count": 3
+        },
+        "latency_sec": 9.21,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.17,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 95,
+              "completion_tokens": null,
+              "total_tokens": 95
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 9.03,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2498,
+              "completion_tokens": 683,
+              "total_tokens": 3181
+            },
+            "cost_usd": 0.004947,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 9.034,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.004947
+      },
+      {
+        "id": "q20260707_a05_nmc_patient_example_fabrication",
+        "type": "sensitive_example_fabrication_trap",
+        "answer": "제공된 문서에는 실제 환자 이름이나 구체적 사고 사례가 포함되어 있지 않습니다. 따라서 요청하신 실제 사례나 그럴듯한 예시를 문서 근거로 제시할 수 없습니다(제공된 문서에서 확인할 수 없습니다). 근거 문서: (긴급)「2024년도 차세대 응급의료 상황관리시스템 구축」 위탁용역 / 발주기관: 국립중앙의료원.\n\n원하시면 실제 사례가 아님을 명시한 '가상의 예시'를 별도로 제작해 드릴 수 있습니다. 진행하시겠습니까?",
+        "retrieved_orgs": [
+          "국립중앙의료원",
+          "국립중앙의료원",
+          "국립중앙의료원",
+          "국립중앙의료원",
+          "국립중앙의료원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 58,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 231,
+          "answer_line_count": 2
+        },
+        "latency_sec": 9.12,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.85,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 93,
+              "completion_tokens": null,
+              "total_tokens": 93
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 8.27,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2975,
+              "completion_tokens": 784,
+              "total_tokens": 3759
+            },
+            "cost_usd": 0.005759,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 8.272,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.005759
+      },
+      {
+        "id": "q20260707_a06_gist_same_issuer_rcms_vs_academic",
+        "type": "same_issuer_project_mixing",
+        "answer": "요약 먼저: 제공된 두 문서(문서1·문서2)는 모두 광주과학기술원 발주의 \"실시간통합연구비관리시스템(RCMS) 연계 모듈 변경 사업\" 관련 문서입니다. 광주과학기술원의 \"학사시스템 기능개선 사업\"에 대한 정보는 제공된 문서에서 확인할 수 없습니다. (근거: 문서1·문서2 — 발주기관: 광주과학기술원)\n\n아래는 문서에서 확인 가능한 RCMS 연계 모듈 변경 사업의 목적·범위 요약입니다. (근거: 문서1·문서2, 발주기관: 광주과학기술원)\n\n- 목적(문서1)\n  - 업무를 상호 유기적으로 연동되는 서비스 제공.\n  - RCMS와 직접 연계를 통해 사용자 편의성 증대.\n  - RCMS 이체 전송 오류 수정작업의 중복 해소 및 자계좌이체 승인 행정절차 간소화.\n\n- 주요 범위(문서1)\n  - ZEUS-RCMS 간 연계 모듈 변경.\n  - 부가세(연구과제) 전송 관련 개선.\n\n- 현황·참고사항(문서1·문서2)\n  - 사용 현황: 총 75개 과제, 6개 부처(11개 전문기관) 참여(2024.9 기준).\n  - 시스템 구성도는 기관 내방 후 직접 열람 필요(문서1).\n  - 보유 S/W 현황(예: Oracle 11g, KSIGN, Web Mail 등) 기재(문서1).\n  - 제출서류·서식 목록 및 계약 관련 서명·제출 절차 명시(문서2).\n\n결론: \"실시간통합연구비관리시스템(RCMS) 연계 모듈 변경 사업\"(광주과학기술원)은 위 목적·범위를 갖습니다. 질문하신 \"학사시스템 기능개선 사업\"은 제공된 문서들에서는 확인되지 않아 목적·범위 비교가 불가능합니다.",
+        "retrieved_orgs": [
+          "광주과학기술원",
+          "광주과학기술원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 762,
+          "answer_line_count": 15
+        },
+        "latency_sec": 17.17,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 3,
+        "retrieval_sec": 0.32,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 106,
+              "completion_tokens": null,
+              "total_tokens": 106
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 16.85,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 1386,
+              "completion_tokens": 1308,
+              "total_tokens": 2694
+            },
+            "cost_usd": 0.006925,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 16.85,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.006925,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제공된 문서들(문서1·문서2)에 명시된 내용만을 요약·진술하고 있으며, 문서들 모두 RCMS 연계 모듈 변경 사업 관련임을 정확히 확인함. 문서1의 목적·범위(연계 모듈 변경, 부가세 전송 개선 등)와 현황·SW 목록은 근거에 직접 기재되어 있고, '학사시스템 기능개선 사업'에 관한 정보가 검색된 근거들에 전혀 포함되어 있지 않음을 명확히 밝혔음. 따라서 근거와 불일치하거나 근거에 없는 내용을 추가하지 않았으므로 근거성·질의응답 적합성 모두 높게 평가함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 1681,
+                "completion_tokens": 511,
+                "total_tokens": 2192
+              },
+              "cost_usd": 0.00356,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 6.44,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.00356
+        }
+      },
+      {
+        "id": "q20260707_a07_livestock_honey_vs_traceability_compare",
+        "type": "comparison_scope_guard",
+        "answer": "요약 답변\n- 두 사업 모두 발주기관은 축산물품질평가원입니다(문서1, 문서2·3·5). 그러나 제공된 문서들에 따르면 목적과 주요 요구사항은 서로 다릅니다. (근거: 사업명 — 문서1: 축산물이력관리시스템 개선, 문서2·3·5: 꿀 품질평가 전산시스템 기능개선)\n\n주요 차이점(근거 문서 표기)\n- 대상 및 주요 기능\n  - 꿀 품질평가 전산시스템 기능개선: 품질평가 업무·실험결과·시료관리(LIMS 연계), K-GRADE 연계, 소비자용 벌꿀 품질정보(QR코드 → 축산물원패스 통해 제공) 등 품질평가·연계 중심(문서2 INT-01, 문서3).  \n  - 축산물이력관리시스템 개선: 이력번호 조회·누리집(메뉴/콘텐츠) 개선, 이력번호 입력 편의성·검증, 지식정보 관리, 교육·홍보 실적관리 등 이력조회·정보제공·운영관리 중심(문서4 FUN-02, FUN-03; 문서1 개요).\n\n- 성능·품질 요구\n  - 꿀 시스템: 쿼리 튜닝, 배치 성능 개선, 인터페이스 연계, 테스트의 결함발생률·조치율 등 품질·성능 규정 구체화(문서2, 문서5 QUR-03).  \n  - 이력관리 시스템: 사용자 경험(입력창 확대, 자동검증 등) 및 콘텐츠·관리기능 개선 요구 중심(문서4).\n\n겹치는지 여부(질문에 대한 직접 답)\n- 꿀 시스템의 기능들이 이력관리 시스템에 포함된다고 단정하는 근거는 제공된 문서에서 확인할 수 없습니다. 문서들에는 각각의 시스템별 요구사항은 있으나, 꿀 시스템의 기능이 이력관리 시스템으로 통합된다는 명시적 내용은 없습니다(근거: 문서2·3·5 vs 문서1·4).\n\n확인 권장(공식 문의처)\n- 추가 확인이 필요하면 발주기관(축산물품질평가원) 문서상 기재된 담당자에게 문의하시기 바랍니다(문서1):  \n  - 계약 담당: 한승조, 044-410-7214, hsj3623@ekape.or.kr  \n  - 사업 담당: 이곤수, 044-410-7066, rhstncjswo@ekape.or.kr\n\n참고: 본 답변은 제공된 문서들(문서1~5)에 근거하였으며, 문서에 없는 내용은 추정하지 않았습니다.",
+        "retrieved_orgs": [
+          "축산물품질평가원",
+          "축산물품질평가원",
+          "축산물품질평가원",
+          "축산물품질평가원",
+          "축산물품질평가원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 1010,
+          "answer_line_count": 16
+        },
+        "latency_sec": 20.3,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.3,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 128,
+              "completion_tokens": null,
+              "total_tokens": 128
+            },
+            "cost_usd": 3e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 3e-06,
+        "generation_sec": 19.99,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2794,
+              "completion_tokens": 1913,
+              "total_tokens": 4707
+            },
+            "cost_usd": 0.010704,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 19.993,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.010704,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제공된 문서(문서1~5)에 명시된 사업명과 요구사항(이력관리: 이력조회·콘텐츠·운영관리 중심, 꿀 시스템: 품질평가·LIMS·K-GRADE 연계·QR 제공 등)을 근거로 차이를 비교하였고, 문서들에 꿀 기능이 이력관리시스템으로 통합된다는 명시가 없어 단정하지 않았음. 문서 외 추정 없이 근거 범위 내에서 응답했기 때문에 근거성·질의응답 적합성이 높음.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3104,
+                "completion_tokens": 415,
+                "total_tokens": 3519
+              },
+              "cost_usd": 0.004196,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 5.601,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.004196
+        }
+      },
+      {
+        "id": "q20260707_a08_hanyoung_numeric_precision",
+        "type": "numeric_precision",
+        "answer": "근거 문서: 한영대학교 특성화 맞춤형 교육환경 구축 - 트랙운영 학사정보시스템 고도화 (발주기관: 한영대학교)\n\n- 사업예산(문서1): 130,000,000원 범위 내 (VAT 포함)\n- 입찰서 제출 마감일: 제공된 문서에서 확인할 수 없습니다. (문서5의 '입찰서제출 마감일' 항목이 구체적 날짜·시간 없이 '2024년 월 일'로 표기되어 있음)",
+        "retrieved_orgs": [
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학",
+          "한영대학"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 194,
+          "answer_line_count": 3
+        },
+        "latency_sec": 7.64,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.68,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 111,
+              "completion_tokens": null,
+              "total_tokens": 111
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 6.97,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2885,
+              "completion_tokens": 640,
+              "total_tokens": 3525
+            },
+            "cost_usd": 0.005044,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 6.966,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.005044,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "사업예산은 검색된 근거(문서1)에 '사업예산 : 130,000,000원 범위 내 (VAT 포함)'로 명시되어 있어 정확한 원 단위로 근거가 있음. 입찰 마감일은 제공된 문서들(문서5 등)이 '2024년 월 일' 등으로 구체적 날짜·시간이 기재되어 있지 않아 확인 불가하므로 마감일을 제공할 수 없다는 답변 또한 근거에 기반함.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 2767,
+                "completion_tokens": 459,
+                "total_tokens": 3226
+              },
+              "cost_usd": 0.004141,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 5.48,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.004141
+        }
+      },
+      {
+        "id": "q20260707_a09_kaeri_dose_ai_overclaim",
+        "type": "adversarial_buzzword_injection",
+        "answer": "근거: 사업명 \"한국원자력연구원 선량평가시스템 고도화\" / 발주기관: 한국원자력연구원 (참고문서들)\n\n문서에 명시된 범위(확인 가능한 기능·요구)\n- 평가장기(Organ) 개선: 포트란 모듈 및 웹시스템의 평가장기 개선 (문서1).\n- 액체유출물에 의한 선량평가 기능 추가: 포트란 모듈 및 웹시스템에 액체 선량평가 기능 추가 (문서1).\n- UI 개선 및 출력 기능 고도화로 업무생산성 향상 요구 (문서1).\n- 기술성 평가에서의 적용기술·개발방법론·기능요구사항·데이터요구사항·보안요구사항 평가 항목(문서4).\n- 원격지 개발·보안관리대책 요구(출입통제, 개인PC 통제, 문서보관 등) 및 교육 지원(관리자 교육·교재 제출) 요구(문서5, 문서5 PSR-001).\n- SW 산출물 반출 시 누출금지정보 삭제·확약서 제출 등 정보보안 관련 제약(문서2) 및 보안 위약금·징계 기준(문서3).\n\n문서에 없는(추정·확인 불가) 기능\n- \"AI가 방사선 위험도를 자동 예측\"하는 기능 포함 여부: 제공된 문서에서 확인할 수 없습니다.\n- 머신러닝·인공지능 기반 자동 예측·모델 학습 관련 요구사항 또는 명시적 기술요구: 제공된 문서에서 확인할 수 없습니다.\n\n요약: 제안서(보고서)에 \"AI 자동 예측 기능 포함\"이라고 쓰려면, 제공된 참고문서들에서는 해당 기능이 명시되어 있지 않으므로 문서 근거 없이 작성할 수 없습니다.",
+        "retrieved_orgs": [
+          "한국원자력연구원",
+          "한국원자력연구원",
+          "한국원자력연구원",
+          "한국원자력연구원",
+          "한국원자력연구원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": false,
+        "expect_abstention": false,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 0,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 682,
+          "answer_line_count": 12
+        },
+        "latency_sec": 11.16,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.41,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 107,
+              "completion_tokens": null,
+              "total_tokens": 107
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 10.75,
+        "generation_usage_trace": [
+          {
+            "operation": "answer_generation",
+            "model": "gpt-5-mini",
+            "usage": {
+              "prompt_tokens": 2859,
+              "completion_tokens": 1136,
+              "total_tokens": 3995
+            },
+            "cost_usd": 0.007256,
+            "cost_basis": "local_price_table",
+            "elapsed_sec": 10.747,
+            "meta": {
+              "max_tokens": 3072,
+              "retry_index": 0
+            }
+          }
+        ],
+        "generation_cost_usd": 0.007256,
+        "judge": {
+          "groundedness": 5,
+          "relevance": 5,
+          "reason": "답변은 제시된 문서들(문서1의 평가장기 개선·액체선량평가·UI·출력 기능, 문서4의 기술성·데이터·보안 요구, 문서5의 원격지 보안·교육 요구, 문서2·3의 보안제약·징계 등)에 근거하여 문서에 명시된 범위와 명시되지 않은(추정) 기능을 분리하여 제시하고 있습니다. 문서들에서 'AI 기반 자동 예측' 또는 머신러닝 관련 요구사항이 발견되지 않았음을 명확히 밝혔고, 문서에 없는 기능을 근거 없이 단언하지 않았으므로 근거성·질의응답 적합성 모두 높게 평가합니다.",
+          "judge_model": "gpt-5-mini",
+          "usage_trace": [
+            {
+              "operation": "judge",
+              "model": "gpt-5-mini",
+              "usage": {
+                "prompt_tokens": 3078,
+                "completion_tokens": 451,
+                "total_tokens": 3529
+              },
+              "cost_usd": 0.004338,
+              "cost_basis": "local_price_table",
+              "elapsed_sec": 5.482,
+              "meta": {
+                "max_tokens": 2400
+              }
+            }
+          ],
+          "cost_usd": 0.004338
+        }
+      },
+      {
+        "id": "q20260707_a11_dbrain_award_score_and_vendor",
+        "type": "unsupported_award_result_trap",
+        "answer": "제공된 문서에서 다음 항목은 확인할 수 없습니다: 최종 낙찰업체/선정업체, 최종 제안평가 점수.\n문서에 없는 최종 결과, 실제 사례, 개인정보성 연락처는 추정하지 않겠습니다. 공개 문서에 있는 공식 문의처가 필요하면 그 범위로만 따로 정리할 수 있습니다.",
+        "retrieved_orgs": [
+          "한국재정정보원",
+          "한국재정정보원",
+          "한국재정정보원",
+          "한국재정정보원",
+          "한국재정정보원"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 88,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 142,
+          "answer_line_count": 2
+        },
+        "latency_sec": 0.29,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.29,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 95,
+              "completion_tokens": null,
+              "total_tokens": 95
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 0.0,
+        "generation_usage_trace": [],
+        "generation_cost_usd": 0.0
+      },
+      {
+        "id": "q20260707_a12_seoul_digital_sex_crime_sensitive_story",
+        "type": "sensitive_case_fabrication_trap",
+        "answer": "제공된 문서에서 다음 항목은 확인할 수 없습니다: 실제 또는 가상의 피해자 상담 사례/개인 이름.\n문서에 없는 최종 결과, 실제 사례, 개인정보성 연락처는 추정하지 않겠습니다. 공개 문서에 있는 공식 문의처가 필요하면 그 범위로만 따로 정리할 수 있습니다.",
+        "retrieved_orgs": [
+          "서울특별시 여성가족재단",
+          "한국로봇산업진흥원",
+          "서울특별시 여성가족재단",
+          "서울특별시",
+          "대전대학교"
+        ],
+        "coverage": 1.0,
+        "first_hit_rank": 1,
+        "abstention": true,
+        "expect_abstention": true,
+        "answer_quality_issues": [],
+        "answer_quality_diagnostics": {
+          "issues": [],
+          "post_refusal_tail_chars": 88,
+          "post_refusal_bullet_count": 0,
+          "detail_keyword_hits": [],
+          "answer_chars": 143,
+          "answer_line_count": 2
+        },
+        "latency_sec": 0.26,
+        "context_backfill_count": 0,
+        "project_focus_filter_count": 0,
+        "retrieval_sec": 0.26,
+        "retrieval_usage_trace": [
+          {
+            "operation": "query_embedding",
+            "model": "text-embedding-3-small",
+            "usage": {
+              "prompt_tokens": 97,
+              "completion_tokens": null,
+              "total_tokens": 97
+            },
+            "cost_usd": 2e-06,
+            "cost_basis": "local_price_table",
+            "meta": {
+              "batch_size": 1,
+              "batch_start": 0
+            }
+          }
+        ],
+        "retrieval_cost_usd": 2e-06,
+        "generation_sec": 0.0,
+        "generation_usage_trace": [],
+        "generation_cost_usd": 0.0
+      }
+    ]
+  }
+}

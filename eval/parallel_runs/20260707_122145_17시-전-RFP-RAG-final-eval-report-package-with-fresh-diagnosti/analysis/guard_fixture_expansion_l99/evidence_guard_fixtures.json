@@ -1,0 +1,211 @@
+{
+  "schema": "rfp_rag_evidence_guard_fixture_results.v1",
+  "created_at": "2026-07-07T12:35:38",
+  "summary": {
+    "fixtures": 34,
+    "passed": 34,
+    "failed": 0,
+    "status": "pass"
+  },
+  "fixtures": [
+    {
+      "id": "target_bound_csv_summary_backfill",
+      "passed": true,
+      "observed": {
+        "before": 1,
+        "after": 2
+      }
+    },
+    {
+      "id": "mixed_org_no_backfill",
+      "passed": true,
+      "observed": {
+        "before": 2,
+        "after": 2
+      }
+    },
+    {
+      "id": "false_friend_only_no_repair",
+      "passed": true,
+      "observed": "- 출입통제 포함 여부: 시스템 접근권한과 접속기록, 네트워크 접근통제만 확인됩니다."
+    },
+    {
+      "id": "no_physical_source_no_repair",
+      "passed": true,
+      "observed": "- 출입통제 포함 여부: 제공된 문서에서 확인할 수 없습니다."
+    },
+    {
+      "id": "source_supported_denial_repaired",
+      "passed": true,
+      "observed": "- 출입통제시스템 포함 여부: 포함되어 있음. 근거: 참고 문서에 \"안내데스크 및 출입통제시스템 구매 및 설치\"가 명시되어 있음. (문서1) 다만 세부 방식, 장비 규격, 연동 대상은 제공된 문서에서 추가 확인이 필요합니다."
+    },
+    {
+      "id": "source_supported_contradictory_caveat_repaired",
+      "passed": true,
+      "observed": "- 출입통제시스템 포함 여부: 포함되어 있음. 근거: 참고 문서에 \"안내데스크 및 출입통제시스템 구매 및 설치\"가 명시되어 있음. (문서1) 다만 세부 방식, 장비 규격, 연동 대상은 제공된 문서에서 추가 확인이 필요합니다."
+    },
+    {
+      "id": "source_supported_duplicate_access_lines_collapsed",
+      "passed": true,
+      "observed": "- 출입통제시스템 포함 여부: 포함되어 있음. 근거: 참고 문서에 \"안내데스크 및 출입통제시스템 구매 및 설치\"가 명시되어 있음. (문서1) 다만 세부 방식, 장비 규격, 연동 대상은 제공된 문서에서 추가 확인이 필요합니다."
+    },
+    {
+      "id": "source_supported_scope_denial_and_dangling_heading_removed",
+      "passed": true,
+      "observed": "1) 무인 운영 프로그램 포함 여부\n- 포함되어 있음.\n\n- 출입통제시스템 포함 여부: 포함되어 있음. 근거: 참고 문서에 \"안내데스크 및 출입통제시스템 구매 및 설치\"가 명시되어 있음. (문서1) 다만 세부 방식, 장비 규격, 연동 대상은 제공된 문서에서 추가 확인이 필요합니다."
+    },
+    {
+      "id": "narrow_unknown_boundary_passes",
+      "passed": true,
+      "observed": "- 출입통제시스템 포함 여부: 포함되어 있음. 근거: 안내데스크 및 출입통제시스템 구매 및 설치. 다만 RFID, 장비 규격, 벤더, 세부 연동 방식은 확인이 필요합니다."
+    },
+    {
+      "id": "ambiguous_title_verbose_refusal_trimmed",
+      "passed": true,
+      "observed": "요청하신 제목 조각만으로는 제공된 문서에서 하나의 발주기관/사업으로 확인할 수 없습니다.\n- 후보: 국가과학기술지식정보서비스 / 통합정보시스템 고도화 용역\n- 후보: 한국한의학연구원 / 통합정보시스템 고도화 용역\n발주기관명, 공고번호, 연도, 원문 일부 중 하나를 더 알려주시면 해당 문서 기준으로 요구범위를 정리하겠습니다."
+    },
+    {
+      "id": "ambiguous_title_short_refusal_preserved",
+      "passed": true,
+      "observed": "요청하신 제목 조각만으로는 제공된 문서에서 하나의 발주기관/사업으로 확인할 수 없습니다."
+    },
+    {
+      "id": "sensitive_forbidden_verbose_refusal_trimmed",
+      "passed": true,
+      "observed": "제공된 문서에서 다음 항목은 확인할 수 없습니다: 최종 낙찰업체/선정업체, 실제 계약금액, 실제 병원/환자 청구 사례 또는 환자 관련 예시, 담당자 개인 연락처.\n문서에 없는 최종 결과, 실제 사례, 개인정보성 연락처는 추정하지 않겠습니다. 공개 문서에 있는 공식 문의처가 필요하면 그 범위로만 따로 정리할 수 있습니다."
+    },
+    {
+      "id": "sensitive_forbidden_detail_tail_flagged",
+      "passed": true,
+      "observed": {
+        "issues": [
+          "sensitive_or_forbidden_refusal_with_detail_tail"
+        ],
+        "post_refusal_tail_chars": 149,
+        "post_refusal_bullet_count": 7,
+        "detail_keyword_hits": [],
+        "answer_chars": 175,
+        "answer_line_count": 8
+      }
+    },
+    {
+      "id": "partial_scope_unknown_not_full_abstention",
+      "passed": true,
+      "observed": false
+    },
+    {
+      "id": "unsupported_subclaim_not_full_abstention",
+      "passed": true,
+      "observed": false
+    },
+    {
+      "id": "sensitive_patient_refusal_with_project_prefix",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "id": "sensitive_patient_refusal_without_guessing_word",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "id": "sensitive_victim_story_refusal_with_project_prefix",
+      "passed": true,
+      "observed": true
+    },
+    {
+      "id": "bracket_marker_partial_answer_not_full_abstention",
+      "passed": true,
+      "observed": false
+    },
+    {
+      "id": "plain_language_overstructured_flagged",
+      "passed": true,
+      "observed": {
+        "issues": [
+          "plain_language_answer_over_structured"
+        ],
+        "post_refusal_tail_chars": 0,
+        "post_refusal_bullet_count": 0,
+        "detail_keyword_hits": [],
+        "answer_chars": 463,
+        "answer_line_count": 16
+      }
+    },
+    {
+      "id": "plain_language_substantive_answer_with_final_result_caveat_not_full_abstention",
+      "passed": true,
+      "observed": false
+    },
+    {
+      "id": "plain_language_prompt_hint_positive_trigger",
+      "passed": true,
+      "observed": "BASE\n\n질문자가 쉬운 설명을 요청하면 다음 형식을 우선합니다.\n- 첫 문장은 '쉽게 말하면,'으로 시작해 핵심을 1문장으로 답합니다.\n- 이어서 최대 5개 bullet로 사업자가 해야 할 일만 설명합니다.\n- 내부 산출물, 서약서, 하도급, 세부 보안 항목은 질문에 직접 필요할 때만 1개 bullet 안에 묶습니다.\n- 원칙적으로 700자 이내로 답하고, 문서에 없는 최종 업체나 계약 결과는 짧게 확인 불가라고만 말합니다."
+    },
+    {
+      "id": "plain_language_prompt_hint_negated_request_no_trigger",
+      "passed": true,
+      "observed": "BASE"
+    },
+    {
+      "id": "plain_language_marker_constant_positive_trigger",
+      "passed": true,
+      "observed": "BASE\n\n질문자가 쉬운 설명을 요청하면 다음 형식을 우선합니다.\n- 첫 문장은 '쉽게 말하면,'으로 시작해 핵심을 1문장으로 답합니다.\n- 이어서 최대 5개 bullet로 사업자가 해야 할 일만 설명합니다.\n- 내부 산출물, 서약서, 하도급, 세부 보안 항목은 질문에 직접 필요할 때만 1개 bullet 안에 묶습니다.\n- 원칙적으로 700자 이내로 답하고, 문서에 없는 최종 업체나 계약 결과는 짧게 확인 불가라고만 말합니다."
+    },
+    {
+      "id": "plain_language_marker_constant_negation_precedence",
+      "passed": true,
+      "observed": "BASE"
+    },
+    {
+      "id": "sensitive_preempt_marker_constants_positive_trigger",
+      "passed": true,
+      "observed": "제공된 문서에서 다음 항목은 확인할 수 없습니다: 최종 낙찰업체/선정업체.\n문서에 없는 최종 결과, 실제 사례, 개인정보성 연락처는 추정하지 않겠습니다. 공개 문서에 있는 공식 문의처가 필요하면 그 범위로만 따로 정리할 수 있습니다."
+    },
+    {
+      "id": "sensitive_preempt_two_sensitive_markers_without_fabrication_marker_not_triggered",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": "sensitive_preempt_one_result_marker_with_fabrication_marker_triggered",
+      "passed": true,
+      "observed": "제공된 문서에서 다음 항목은 확인할 수 없습니다: 최종 낙찰업체/선정업체.\n문서에 없는 최종 결과, 실제 사례, 개인정보성 연락처는 추정하지 않겠습니다. 공개 문서에 있는 공식 문의처가 필요하면 그 범위로만 따로 정리할 수 있습니다."
+    },
+    {
+      "id": "sensitive_adversarial_query_preempted",
+      "passed": true,
+      "observed": "제공된 문서에서 다음 항목은 확인할 수 없습니다: 최종 낙찰업체/선정업체, 실제 계약금액, 실제 병원/환자 청구 사례 또는 환자 관련 예시, 담당자 개인 연락처.\n문서에 없는 최종 결과, 실제 사례, 개인정보성 연락처는 추정하지 않겠습니다. 공개 문서에 있는 공식 문의처가 필요하면 그 범위로만 따로 정리할 수 있습니다."
+    },
+    {
+      "id": "non_adversarial_boundary_query_not_preempted",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": "estimate_price_procurement_term_not_preempted",
+      "passed": true,
+      "observed": null
+    },
+    {
+      "id": "ambiguous_title_single_candidate_no_trim",
+      "passed": true,
+      "observed": "요청하신 “통합정보시스템 고도화 용역”은 제공된 문서들에서 발주기관이 둘 이상으로 나타나므로 제목 조각만으로는 하나를 특정할 수 없습니다.\n\n1) 발주기관 후보\n- 국가과학기술지식정보서비스: 사업기간, 예산, 보안, 데이터 이관 등 장황한 설명\n- 한국한의학연구원: 성능, 인터페이스, 운영, 품질 등 장황한 설명\n2) 사업 개요\n- 예산 설명\n- 보안 설명\n- 성능 설명\n"
+    },
+    {
+      "id": "same_org_clear_project_focus_filters_other_title",
+      "passed": true,
+      "observed": [
+        "2024년 대학산학협력활동 실태조사 시스템(UICC) 기능개선"
+      ]
+    },
+    {
+      "id": "same_org_ambiguous_project_focus_preserves_titles",
+      "passed": true,
+      "observed": [
+        "2024년 대학산학협력활동 실태조사 시스템(UICC) 기능개선",
+        "2024년 기초학문자료센터 시스템 운영 및 연구성과물 DB구축 사업"
+      ]
+    }
+  ]
+}

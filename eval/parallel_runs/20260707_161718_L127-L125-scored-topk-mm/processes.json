@@ -1,0 +1,18 @@
+﻿[
+  {
+    "suite": "topk_sweep",
+    "returncode": 0,
+    "log": "eval\\parallel_runs\\20260707_161718_L127-L125-scored-topk-mm\\logs\\topk_sweep.log"
+  },
+  {
+    "suite": "mmr_lambda_sweep",
+    "returncode": 0,
+    "log": "eval\\parallel_runs\\20260707_161718_L127-L125-scored-topk-mm\\logs\\mmr_lambda_sweep.log"
+  },
+  {
+    "suite": "aggregate",
+    "returncode": 0,
+    "stdout": "{\n  \"rows\": 6,\n  \"scoreboard_rows\": 0,\n  \"diagnostic_only_rows\": 6,\n  \"summary\": \"eval\\\\parallel_runs\\\\20260707_161718_L127-L125-scored-topk-mm\\\\summary\\\\summary.md\"\n}\n",
+    "stderr": ""
+  }
+]

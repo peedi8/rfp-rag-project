@@ -1,0 +1,68 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-07T15:39:01",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "L122 sparse-field guard and new-question-gap insight recording",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_153900_L122-sparse-field-guard-and-new-question-gap-insight-recordi",
+  "cpu_percent_at_start": 2.0,
+  "recommended_workers": 4,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "final target index.html",
+    "renderer source files",
+    "prepared payload JSON",
+    "option consumer payload JSON",
+    "stage slot pack candidate files"
+  ],
+  "tasks": [
+    {
+      "task_id": "sparse_guard_design",
+      "description": "review selected technical fields and propose absent-field guard rules",
+      "status": "completed",
+      "worker_id": "codex_sparse_guard_design",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_153900_L122-sparse-field-guard-and-new-question-gap-insight-recordi\\worker_outputs\\sparse_guard_design.contract.json",
+      "merge_decision": "accepted_with_source_basis_correction"
+    },
+    {
+      "task_id": "secondary_variant_red_review",
+      "description": "review secondary variants for scoring contamination and overclaim risk",
+      "status": "completed",
+      "worker_id": "secondary_variant_red_review",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_153900_L122-sparse-field-guard-and-new-question-gap-insight-recordi\\worker_outputs\\secondary_variant_red_review.contract.json",
+      "merge_decision": "accepted"
+    },
+    {
+      "task_id": "report_log_review",
+      "description": "review insight/log wording and promotion labels",
+      "status": "completed_local_fallback",
+      "worker_id": "main_codex_local_review",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_153900_L122-sparse-field-guard-and-new-question-gap-insight-recordi\\worker_outputs\\report_log_review.local_contract.json",
+      "merge_decision": "accepted_after_agent_thread_limit"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_153900_L122-sparse-field-guard-and-new-question-gap-insight-recordi\\checkpoint_01_inputs.md",
+    "worker_outputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_153900_L122-sparse-field-guard-and-new-question-gap-insight-recordi\\checkpoint_02_worker_outputs.md",
+    "merge_decisions": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_153900_L122-sparse-field-guard-and-new-question-gap-insight-recordi\\checkpoint_03_merge_decisions.md",
+    "smoke": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_153900_L122-sparse-field-guard-and-new-question-gap-insight-recordi\\checkpoint_04_smoke.md"
+  },
+  "events": [
+    {
+      "ts": "2026-07-07T15:39:01",
+      "event": "scaffold_created",
+      "recommended_workers": 4,
+      "cpu_percent": 2.0
+    },
+    {
+      "ts": "2026-07-07T15:43:24",
+      "event": "sparse_field_guard_first_pass",
+      "result": "fixture_pass_but_raw_text_reversed_csv_sparse_assumption"
+    },
+    {
+      "ts": "2026-07-07T15:44:00",
+      "event": "worker_outputs_recorded",
+      "worker_output_count": 3
+    }
+  ]
+}

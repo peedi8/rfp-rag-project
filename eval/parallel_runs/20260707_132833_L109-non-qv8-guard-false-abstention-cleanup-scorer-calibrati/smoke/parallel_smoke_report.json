@@ -1,0 +1,8 @@
+{
+  "schema": "parallel_team_smoke_report.v1",
+  "created_at": "2026-07-07T13:45:25",
+  "run_dir": "eval\\parallel_runs\\20260707_132833_L109-non-qv8-guard-false-abstention-cleanup-scorer-calibrati",
+  "status": "pass",
+  "worker_output_count": 8,
+  "issues": []
+}

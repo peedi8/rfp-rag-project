@@ -1,0 +1,342 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "l41_claim_pair_audit",
+  "task_id": "l41_claim_pair_audit",
+  "status": "proposal",
+  "summary": "No-API claim-level comparison audit for the qv6_006/qv6_007 Goyang metamorphic pair. L37 preserved project identity but underanswered both requested qv6_007 facility-feature claims; L40 preserved project identity and the unmanned-operation claim but still underanswered/negated the physical access-control claim.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l37_v6_metamorphic_first_baseline_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l40_v6_goyang_alias_retry_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v6_metamorphic_frozen_first_run.json",
+    "I:\\0706\\rfp-rag-project\\data\\원본 데이터\\data_list.csv"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "manual read-only audit of saved JSON artifacts and data_list.csv only"
+  },
+  "protected_paths_seen": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "src/**",
+    "scripts/**",
+    "config.py",
+    "chroma_db/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l41_claim_pair_audit.contract.json",
+      "kind": "json",
+      "description": "parallel worker contract with no-API claim-pair audit proposal"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l41_claim_pair_audit.md",
+      "kind": "markdown",
+      "description": "readable claim-level comparison audit for qv6_006 versus qv6_007 L37/L40"
+    }
+  ],
+  "proposal": {
+    "audit_scope": {
+      "canonical_question_id": "qv6_006_goyang_facility_canonical",
+      "permutation_question_id": "qv6_007_goyang_facility_order_permutation",
+      "metamorphic_group": "goyang_facility",
+      "project_binding_expected": "고양도시관리공사 관산근린공원 다목적구장 회원 통합운영관리 시스템 구축",
+      "comparison_runs": [
+        {
+          "label": "L37 qv6_007 baseline_default",
+          "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l37_v6_metamorphic_first_baseline_baseline_default\\details.json",
+          "retrieval_summary": {
+            "coverage": 1.0,
+            "first_hit_rank": 2,
+            "retrieved_orgs_contains_goyang": true,
+            "all_retrieved_orgs_goyang": false,
+            "latency_sec": 10.68
+          }
+        },
+        {
+          "label": "L40 qv6_007 alias_retry baseline_default",
+          "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l40_v6_goyang_alias_retry_baseline_default\\details.json",
+          "retrieval_summary": {
+            "coverage": 1.0,
+            "first_hit_rank": 1,
+            "retrieved_orgs_contains_goyang": true,
+            "all_retrieved_orgs_goyang": true,
+            "latency_sec": 40.69
+          }
+        }
+      ],
+      "source_data_note": "data_list.csv confirms the Goyang project identity, budget, high-level business scope, automatic system/HW linkage, unmanned operation program, and purchase/installation of information desk/access-control systems at lines 2035-2039 and 2086-2100. The richer SFR/document-slot evidence appears only in saved answer/judge artifacts, so claim support below distinguishes direct CSV support from answer-citation support."
+    },
+    "atomic_claims_expected_from_qv6_006": [
+      {
+        "claim_id": "C01",
+        "area": "project_identity",
+        "claim_text": "The relevant project is the Goyang Urban Management Corporation Gwan-san Neighborhood Park multipurpose field member integrated operation management system build.",
+        "qv6_006_evidence": "qv6_006 answer opening; data_list.csv lines 2035, 2086.",
+        "csv_support": "direct",
+        "l37_preserved": "yes",
+        "l37_note": "Names the same project and issuer, although only as 참고문서: 문서2.",
+        "l40_preserved": "yes",
+        "l40_note": "Names the same project and issuer."
+      },
+      {
+        "claim_id": "C02",
+        "area": "homepage",
+        "claim_text": "Homepage work includes linkage to the existing Goyang integrated reservation site (yeyak.gys.or.kr) for class/rental applications.",
+        "qv6_006_evidence": "qv6_006 cites 문서6 SFR-015.",
+        "csv_support": "not_in_csv_excerpt",
+        "l37_preserved": "no",
+        "l37_note": "qv6_007 L37 does not discuss homepage/reservation integration.",
+        "l40_preserved": "no",
+        "l40_note": "qv6_007 L40 does not discuss homepage/reservation integration."
+      },
+      {
+        "claim_id": "C03",
+        "area": "homepage",
+        "claim_text": "Homepage/payment scope includes PG linkage plus center-level online/offline payment and refund support.",
+        "qv6_006_evidence": "qv6_006 cites 문서2 SFR-011 and 문서6 SFR-015.",
+        "csv_support": "not_in_csv_excerpt",
+        "l37_preserved": "no",
+        "l37_note": "Not addressed in qv6_007 L37.",
+        "l40_preserved": "no",
+        "l40_note": "Not addressed in qv6_007 L40."
+      },
+      {
+        "claim_id": "C04",
+        "area": "homepage",
+        "claim_text": "The system sends automatic required information notices to members, such as wait approval, rental approval, privacy deletion, and password-finding notices.",
+        "qv6_006_evidence": "qv6_006 cites 문서2.",
+        "csv_support": "not_in_csv_excerpt",
+        "l37_preserved": "no",
+        "l37_note": "Not addressed.",
+        "l40_preserved": "no",
+        "l40_note": "Not addressed."
+      },
+      {
+        "claim_id": "C05",
+        "area": "homepage",
+        "claim_text": "The implementation applies e-Government Framework 3.9+ level-2 compatibility and uses existing JAVA/JSP, Tomcat 8.5, and Oracle 12c web/WAS/DB environment.",
+        "qv6_006_evidence": "qv6_006 cites 문서3, 문서5, 문서8.",
+        "csv_support": "not_in_csv_excerpt",
+        "l37_preserved": "no",
+        "l37_note": "Not addressed.",
+        "l40_preserved": "no",
+        "l40_note": "Not addressed."
+      },
+      {
+        "claim_id": "C06",
+        "area": "member_management",
+        "claim_text": "Member/customer management includes administrator account create/delete/query functions.",
+        "qv6_006_evidence": "qv6_006 cites 문서2 SFR-012 and 문서5.",
+        "csv_support": "partial_high_level",
+        "l37_preserved": "no",
+        "l37_note": "Not addressed.",
+        "l40_preserved": "partial",
+        "l40_note": "L40 mentions 사용자 생성/삭제 in system access-control context."
+      },
+      {
+        "claim_id": "C07",
+        "area": "member_management",
+        "claim_text": "Member/customer management includes role/grade-based permissions, permission bundle management, permission change history retained for 3+ years, and permission revocation.",
+        "qv6_006_evidence": "qv6_006 cites 문서2 SFR-012 and 문서5.",
+        "csv_support": "not_in_csv_excerpt",
+        "l37_preserved": "no",
+        "l37_note": "Not addressed.",
+        "l40_preserved": "partial",
+        "l40_note": "L40 mentions 접근권한 부여/회수/변경 but not the full bundle/history-retention detail."
+      },
+      {
+        "claim_id": "C08",
+        "area": "member_management",
+        "claim_text": "Passwords are stored with one-way encryption; password-change notices are sent; issuer password rules are followed.",
+        "qv6_006_evidence": "qv6_006 cites 문서2 SFR-012.",
+        "csv_support": "not_in_csv_excerpt",
+        "l37_preserved": "no",
+        "l37_note": "Not addressed.",
+        "l40_preserved": "no",
+        "l40_note": "Not addressed."
+      },
+      {
+        "claim_id": "C09",
+        "area": "member_management",
+        "claim_text": "Access logs save name, work content, time, IP, etc. in time order and are queryable.",
+        "qv6_006_evidence": "qv6_006 cites 문서2 SFR-012.",
+        "csv_support": "not_in_csv_excerpt",
+        "l37_preserved": "no",
+        "l37_note": "Not addressed.",
+        "l40_preserved": "partial",
+        "l40_note": "L40 mentions 접속기록 저장 but not all fields/query details."
+      },
+      {
+        "claim_id": "C10",
+        "area": "member_management",
+        "claim_text": "Additional center licenses are provided within the customer information integrated system.",
+        "qv6_006_evidence": "qv6_006 cites 문서8 4. 사업범위.",
+        "csv_support": "not_in_csv_excerpt",
+        "l37_preserved": "no",
+        "l37_note": "Not addressed.",
+        "l40_preserved": "no",
+        "l40_note": "Not addressed."
+      },
+      {
+        "claim_id": "C11",
+        "area": "unmanned_operation",
+        "claim_text": "The project includes program and technical support for unmanned operation.",
+        "qv6_006_evidence": "qv6_006 cites 문서5; data_list.csv lines 2037-2039 mention 무인화 운영 프로그램 제공 and 자동화시스템 구축.",
+        "csv_support": "direct",
+        "l37_preserved": "no_contradicted",
+        "l37_note": "L37 says 무인 운영 프로그램 포함 여부 cannot be confirmed.",
+        "l40_preserved": "yes",
+        "l40_note": "L40 says 포함되어 있음 and cites 문서5 사업범위 라. '무인화 운영을 위한 프로그램 및 기술 지원'."
+      },
+      {
+        "claim_id": "C12",
+        "area": "unmanned_operation",
+        "claim_text": "The project includes purchase/installation of unmanned ticketing machines and information-desk auxiliary equipment, with 2SET unmanned ticketing machines specified.",
+        "qv6_006_evidence": "qv6_006 cites 문서5 and 문서3 추진일정; data_list.csv line 2038 mentions 안내데스크 and 출입통제시스템 purchase/installation but not the 2SET count.",
+        "csv_support": "partial",
+        "l37_preserved": "no",
+        "l37_note": "Not addressed; L37 only says unmanned-operation inclusion cannot be confirmed.",
+        "l40_preserved": "no",
+        "l40_note": "L40 confirms unmanned operation program but not ticketing machines, desk equipment, or 2SET."
+      },
+      {
+        "claim_id": "C13",
+        "area": "unmanned_operation",
+        "claim_text": "The project provides H/W linkage programs with the operating system.",
+        "qv6_006_evidence": "qv6_006 cites 문서5 and 문서8 4. 사업범위; data_list.csv line 2037 states 운영시스템과의 하드웨어 연동.",
+        "csv_support": "direct",
+        "l37_preserved": "no",
+        "l37_note": "Not addressed; L37 says feature inclusion cannot be confirmed.",
+        "l40_preserved": "yes",
+        "l40_note": "L40 cites 문서3 ECR-001 for 운영시스템과의 H/W 연동 프로그램 제공."
+      },
+      {
+        "claim_id": "C14",
+        "area": "physical_access_control",
+        "claim_text": "The project includes purchase/installation of entry/exit access-control systems, 2SET, with relay server and auxiliary equipment.",
+        "qv6_006_evidence": "qv6_006 cites 문서5; data_list.csv line 2038 mentions 출입통제시스템 구매 및 설치 but not 2SET/relay server.",
+        "csv_support": "partial",
+        "l37_preserved": "no_contradicted",
+        "l37_note": "L37 says 출입통제 포함 여부 cannot be confirmed.",
+        "l40_preserved": "no_contradicted",
+        "l40_note": "L40 says physical access-control device linkage cannot be confirmed, while distinguishing system-level access control."
+      },
+      {
+        "claim_id": "C15",
+        "area": "physical_access_control",
+        "claim_text": "The access-control system is linked with the operating system.",
+        "qv6_006_evidence": "qv6_006 cites 문서5 and 문서8 4. 사업범위.",
+        "csv_support": "partial_inferred_from_hw_linkage_and_access_control_purchase",
+        "l37_preserved": "no_contradicted",
+        "l37_note": "L37 says 출입통제 cannot be confirmed.",
+        "l40_preserved": "no_contradicted",
+        "l40_note": "L40 refuses physical access-control linkage; it preserves only system-level user access control."
+      },
+      {
+        "claim_id": "C16",
+        "area": "explicit_not_found",
+        "claim_text": "Detailed H/W specs, access-control method such as RFID/fingerprint/card, specific PG provider, and external-interface specs are not confirmed in the provided documents.",
+        "qv6_006_evidence": "qv6_006 final 추가·미확인 사항 paragraph.",
+        "csv_support": "direct_absence_in_csv_excerpt",
+        "l37_preserved": "partial",
+        "l37_note": "L37 gives broader not-found statements for unmanned/access-control inclusion, not these narrower unknown technical details.",
+        "l40_preserved": "partial",
+        "l40_note": "L40 states physical access-control device linkage is unconfirmed, but does not enumerate detailed unknowns."
+      }
+    ],
+    "claim_preservation_summary": {
+      "total_expected_claims_from_qv6_006": 16,
+      "qv6_007_user_focus_claims": [
+        "C01",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16"
+      ],
+      "l37": {
+        "preserved_yes": 1,
+        "preserved_partial": 1,
+        "not_preserved_or_underanswered": 14,
+        "contradicted_or_false_not_found": 3,
+        "unsupported_claim_count": 0,
+        "underanswered_claim_count": 14,
+        "notes": "L37 is conservative and grounded to the limited retrieved excerpt, but fails metamorphic preservation: it loses qv6_006's unmanned-operation and access-control claims despite binding to the Goyang project."
+      },
+      "l40": {
+        "preserved_yes": 3,
+        "preserved_partial": 4,
+        "not_preserved_or_underanswered": 9,
+        "contradicted_or_false_not_found": 2,
+        "unsupported_claim_count": 0,
+        "underanswered_claim_count": 9,
+        "notes": "L40 is a clear retrieval improvement over L37. It recovers all-Goyang retrieval and preserves unmanned-operation/HW-linkage claims, but still loses qv6_006's physical access-control purchase/linkage claims."
+      }
+    },
+    "evidence_snippets_and_refs": [
+      {
+        "source": "data_list.csv",
+        "line_refs": "2035-2039",
+        "snippet": "사업 개요 identifies 고양도시관리공사/관산근린공원; 사업범위 includes 시스템 업그레이드, 운영시스템과의 하드웨어 연동, 무인화 운영 프로그램 제공; 기대효과 includes 안내데스크 및 출입통제시스템 구매 및 설치."
+      },
+      {
+        "source": "data_list.csv",
+        "line_refs": "2086-2100",
+        "snippet": "사업명, 과업기간 90일, 예산 90,000,000원, and purpose: efficient operation member integrated management system plus automatic-system build and related goods purchase."
+      },
+      {
+        "source": "l37 details.json qv6_006 answer",
+        "line_refs": "answer block for qv6_006_goyang_facility_canonical",
+        "snippet": "qv6_006 explicitly lists homepage, member management, unmanned operation, and access control; it states 무인화 운영 프로그램/기술지원, 무인발권기 2SET, 출입통제시스템 2SET, and operating-system linkage."
+      },
+      {
+        "source": "l37 details.json qv6_007 answer",
+        "line_refs": "answer block for qv6_007_goyang_facility_order_permutation",
+        "snippet": "L37 says 무인 운영 프로그램 포함 여부 and 출입통제 포함 여부 cannot be confirmed."
+      },
+      {
+        "source": "l40 details.json qv6_007 answer",
+        "line_refs": "answer block for qv6_007_goyang_facility_order_permutation",
+        "snippet": "L40 says 무인 운영 프로그램 is included, citing 문서5 and 문서3 ECR-001, but says physical 출입통제 linkage cannot be confirmed; it separates system-level 접근권한/접속기록."
+      }
+    ],
+    "merge_recommendation": {
+      "decision": "merge_l40_as_partial_fix_with_caveat",
+      "rationale": [
+        "L40 should replace L37 for qv6_007 because it fixes the major project-binding/retrieval problem: first_hit_rank improves from 2 to 1 and retrieved_orgs become all Goyang.",
+        "L40 should not be promoted as full metamorphic pass against qv6_006 because it still fails to preserve qv6_006's physical 출입통제 purchase/linkage claims, which are at least partially supported by data_list.csv line 2038.",
+        "Report the result as partial recovery: unmanned operation recovered, physical access-control still underanswered/false-not-found."
+      ],
+      "recommended_next_action_proposal_only": [
+        "Attach retrieved chunk text/snippets to future details.json or audit packs so document-slot claims can be verified without relying on answer/judge text.",
+        "Add a no-API regression assertion for qv6_007: expected answer must preserve C11/C13 and must not say physical 출입통제 is wholly unconfirmed when the project summary includes 출입통제시스템 purchase/installation.",
+        "Keep paid APIs disabled for this audit; any later judge should inspect only the unresolved physical access-control claims."
+      ]
+    }
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "Get-Content -Encoding UTF8 -Raw l37 details.json",
+      "Get-Content -Encoding UTF8 -Raw l40 details.json",
+      "Get-Content -Encoding UTF8 -Raw l39 details.json for context only",
+      "Get-Content -Raw eval/questions_v6_metamorphic_frozen_first_run.json",
+      "rg -n \"관산근린공원|무인|출입|전자결제|SFR-012|SFR-015\" data/원본 데이터/data_list.csv",
+      "Get-Content selected data_list.csv line ranges 2035-2039 and 2086-2100",
+      "Read prior parallel_team_worker_output.v1 examples v8_claim_audit.contract.json and report_case_review.contract.json"
+    ],
+    "observed_results": [
+      "No paid API or external model call was made.",
+      "L37 qv6_006 has a rich canonical answer with 16 auditable claims.",
+      "L37 qv6_007 binds to the Goyang project but answers both user-requested feature checks as not confirmed.",
+      "L40 qv6_007 retrieves all Goyang orgs and recovers the unmanned-operation/HW-linkage claim, but still says physical access-control inclusion cannot be confirmed.",
+      "data_list.csv directly supports project identity, high-level HW linkage, unmanned-operation program, and access-control system purchase/installation at lines 2035-2039.",
+      "Modified paths are confined to the two allowed l41 worker_outputs files."
+    ]
+  },
+  "created_at": "2026-07-06T23:36:00+09:00"
+}

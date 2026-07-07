@@ -1,0 +1,14 @@
+﻿{
+  "schema": "rfp_rag_sparse_diagnostic_question_manifest.v1",
+  "created_at": "2026-07-07T15:54:57",
+  "claim": "Frozen sparse-field diagnostic question set; not an answer run and not an EDD point.",
+  "case_count": 6,
+  "source_scan": "eval\\parallel_runs\\20260707_154930_L124-raw-source-sparse-technical-seed-scan\\analysis\\raw_sparse_seed_scan\\raw_sparse_seed_scan.json",
+  "claim_use": "diagnostic_only_sparse_field_not_found_probe",
+  "file_hashes": {
+    "questions_l125_sparse_field_diagnostic_frozen.json": "58e62b87514b9306facff5e3b96b2557f9e397e74e1c395e4a952aaa51aac105",
+    "questions_l125_sparse_field_diagnostic_frozen.csv": "507f7cc9b621a5151860feb65dfedc41b8def48c72b3f3f75671b16a8a1ea7f7",
+    "questions_l125_sparse_field_diagnostic_frozen.md": "e788d6c6d343c84cc3f757e0d24a8da845d60a836b534bb720ad4063fee9b148"
+  },
+  "next_run_rule": "Preserve first answer run raw; do not promote to ordinary EDD."
+}

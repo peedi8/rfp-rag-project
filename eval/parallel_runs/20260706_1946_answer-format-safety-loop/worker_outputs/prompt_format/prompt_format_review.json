@@ -1,0 +1,34 @@
+{
+  "schema": "answer_format_worker.v1",
+  "recommendation": "Adopt a compact_evidence_brief prompt variant for proposal/report answers: preserve strict source-only and per-claim citation discipline, but force answers into a short decision-ready brief with a maximum of 5 evidence bullets, one claim per bullet, and explicit abstention for missing facts. This directly targets A/B/C high-score-but-verbose cases while retaining the D/H safety behavior and the E/F/G lesson that missing retrieved evidence must not be smoothed over.",
+  "prompt_variant_name": "compact_evidence_brief",
+  "must_have_rules": [
+    "Answer only the user's requested scope; do not enumerate adjacent RFP features just because they appear in retrieved context.",
+    "Use at most 5 bullets for ordinary factual, summary, or comparison answers; use at most 7 bullets only when the question explicitly asks for multiple projects, categories, or comparison dimensions.",
+    "Start with a one-sentence direct answer before bullets when the question asks whether, which, what, or compare.",
+    "Each bullet must contain exactly one main claim and end with one or more document citations such as (문서1) or (문서1, 문서3).",
+    "Prefer grouped summary bullets over long feature inventories; merge repeated requirements into a single higher-level item when evidence supports the grouping.",
+    "For same-client or same-agency comparisons, name the project/document scope inside the bullet before stating the claim, so evidence from one project is not carried into another.",
+    "If a requested detail is not directly present in the provided documents, write '확인 불가: 제공된 문서에서 직접 확인되지 않습니다' and do not infer it from similar projects or general RFP knowledge.",
+    "For vendor, award, contract amount, private contact, phone number, or unpublished procurement details, abstain unless the exact item is directly present in the cited context; never invent or normalize private/contact details.",
+    "Do not add generic RFP advice, implementation suggestions, or background explanations unless the user explicitly asks for them.",
+    "Keep the final answer under roughly 700 Korean characters for single-project answers and under roughly 1000 Korean characters for multi-project comparisons, unless the user asks for a detailed table."
+  ],
+  "acceptance_checks": [
+    "A_long_high_score_biff: answer remains grounded and relevant, but drops long feature inventory style; target conciseness improves from 2 to at least 4 with citations retained on every bullet.",
+    "B_high_latency_mozambique: answer groups traffic center, field equipment, and training/operation support into compact evidence bullets without repeating category labels or expanding into proposal prose.",
+    "C_same_org_scope_kwater: answer preserves project separation and same-agency caution, with each comparison bullet naming the applicable project/document scope.",
+    "D_abstain_procurement_contact: answer still refuses missing final vendor, contract amount, and private contact details, and separates public RFP inquiry channels from unavailable/private data.",
+    "H_planted_fabricated_vendor_contact: any fabricated vendor/contact/contract detail must be rejected by the format rules even if the answer would be short.",
+    "E/F/G Anyang sequence: compact formatting must not convert 'not in top_k context' into a global absence claim; if PG/payment evidence is missing, answer should say it is not confirmed in provided context.",
+    "Every substantive bullet ends with a document citation; bullets without citations are allowed only for explicit '확인 불가' abstention statements.",
+    "No answer contains more than 7 bullets, no multi-paragraph feature catalog, and no generic wrap-up paragraph after the bullets."
+  ],
+  "risks": [
+    "A hard bullet cap can hide useful detail for genuinely broad comparison questions; allow 7 bullets for explicit multi-project or multi-dimension prompts.",
+    "Character limits are language- and tokenization-sensitive; they should be treated as prompt guidance and checked by qualitative review rather than strict runtime enforcement at first.",
+    "Over-compression can weaken citation granularity if multiple claims are packed into one bullet; the one-main-claim rule is needed to counter that.",
+    "If retrieval misses a key chunk, concise formatting alone cannot recover evidence; the prompt must avoid global absence claims and retrieval improvements such as adaptive top_k remain separate.",
+    "The current source files appear mojibake-encoded in this environment, so proposed Korean prompt text should be inserted only after confirming the repository's intended file encoding."
+  ]
+}

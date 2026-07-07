@@ -1,0 +1,42 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "main_codex",
+  "task_id": "synthetic_smoke",
+  "status": "proposal",
+  "summary": "Synthetic no-API smoke checks that a perfect secondary-variant metric row is excluded from scoreboard ranking.",
+  "inputs": [
+    "eval/parallel_runs/20260707_154721_L123-secondary-variant-scoreboard-guard/worker_outputs/synthetic_secondary_guard/results.csv",
+    "eval/parallel_runs/20260707_154721_L123-secondary-variant-scoreboard-guard/worker_outputs/synthetic_secondary_guard/worker_output.json"
+  ],
+  "protected_paths_seen": [
+    "scripts/aggregate_parallel_eval.py"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval/parallel_runs/20260707_154721_L123-secondary-variant-scoreboard-guard/summary/summary.json",
+      "kind": "json",
+      "description": "aggregate smoke output"
+    }
+  ],
+  "proposal": {
+    "accepted_fields_or_changes": [
+      "Smoke must show scoreboard_rows=0 and diagnostic_only_rows=1."
+    ],
+    "rejected_or_risky_items": [],
+    "needs_orchestrator_review": []
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "python scripts/aggregate_parallel_eval.py --run-dir eval/parallel_runs/20260707_154721_L123-secondary-variant-scoreboard-guard"
+    ],
+    "observed_results": [
+      "rows=1",
+      "scoreboard_rows=0",
+      "diagnostic_only_rows=1",
+      "synthetic perfect secondary variant row was excluded from scoreboard"
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-07T13:16:32",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "non-qv8 guard generalization and field-level scoring after L105",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L",
+  "cpu_percent_at_start": 5.0,
+  "recommended_workers": 4,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "final target index.html",
+    "renderer source files",
+    "prepared payload JSON",
+    "option consumer payload JSON",
+    "stage slot pack candidate files"
+  ],
+  "tasks": [
+    {
+      "task_id": "probe_design",
+      "description": "design non-qv8 unsupported-result and sensitive-story diagnostic cases",
+      "status": "completed",
+      "worker_id": "019f3acb-02cb-7e91-a663-34653adb5a80",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\worker_outputs\\probe_design.contract.json",
+      "merge_decision": "accepted_as_diagnostic_draft_questions"
+    },
+    {
+      "task_id": "false_positive_red",
+      "description": "audit guard markers for overblocking and propose fixtures",
+      "status": "completed",
+      "worker_id": "019f3acb-2c3d-76f2-ad13-406fb3ed3980",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\worker_outputs\\false_positive_red.contract.json",
+      "merge_decision": "accepted_guard_false_positive_fixtures"
+    },
+    {
+      "task_id": "field_scorer",
+      "description": "design field-level scoring for official/private contact mixed answers",
+      "status": "completed",
+      "worker_id": "019f3acb-5623-7181-9aa2-3ac00be3f460",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\worker_outputs\\field_scorer.contract.json",
+      "merge_decision": "accepted_standalone_and_eval_detail_field_score"
+    },
+    {
+      "task_id": "report_gate",
+      "description": "define promotion gate and report labels after L105 diagnostic saturation",
+      "status": "completed",
+      "worker_id": "019f3acb-8118-7c11-99b8-94455fed754f",
+      "output_contract": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\worker_outputs\\report_gate.contract.json",
+      "merge_decision": "accepted_no_promotion_after_l105_gate"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\checkpoint_01_inputs.md",
+    "worker_outputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\checkpoint_02_worker_outputs.md",
+    "merge_decisions": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\checkpoint_03_merge_decisions.md",
+    "smoke": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260707_131631_non-qv8-guard-generalization-and-field-level-scoring-after-L\\checkpoint_04_smoke.md"
+  },
+  "events": [
+    {
+      "ts": "2026-07-07T13:16:32",
+      "event": "scaffold_created",
+      "recommended_workers": 4,
+      "cpu_percent": 5.0
+    },
+    {
+      "ts": "2026-07-07T13:18:47",
+      "event": "worker_outputs_received",
+      "outputs": [
+        "worker_outputs\\probe_design.contract.json",
+        "worker_outputs\\false_positive_red.contract.json",
+        "worker_outputs\\field_scorer.contract.json",
+        "worker_outputs\\report_gate.contract.json"
+      ]
+    },
+    {
+      "ts": "2026-07-07T13:22:30",
+      "event": "orchestrator_merge_completed",
+      "result": "L106 guard fixtures 49/49; field scorer expectation matched 4/4; L107 draft registered diagnostic-only"
+    }
+  ]
+}

@@ -1,0 +1,603 @@
+{
+  "schema": "parallel_team_worker_output.v1",
+  "worker_id": "worker_a_l47_claim_gate_schema",
+  "task_id": "l47_claim_preservation_gate_design_qv6_007",
+  "status": "proposal",
+  "summary": "Proposal-only deterministic no-API claim-preservation expectation schema for qv6_007. The gate should fail answers that bind the Goyang project but still say unmanned operation or physical access-control scope cannot be confirmed, especially the L40-style false-not-found on physical 출입통제.",
+  "inputs": [
+    "I:\\0706\\rfp-rag-project\\eval\\questions_v6_metamorphic_frozen_first_run.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l37_v6_metamorphic_first_baseline_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l40_v6_goyang_alias_retry_baseline_default\\details.json",
+    "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l41_claim_pair_audit.contract.json",
+    "I:\\0706\\rfp-rag-project\\eval\\claim_preservation_expectations.json",
+    "I:\\0706\\rfp-rag-project\\data\\원본 데이터\\data_list.csv"
+  ],
+  "models": {
+    "external_api_or_model_calls": false,
+    "review_method": "manual read-only inspection of saved local artifacts and deterministic marker design; no API or model judge used"
+  },
+  "protected_paths_seen": [
+    "scripts/**",
+    "src/**",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "업무일지.md",
+    "config.py",
+    "chroma_db/**"
+  ],
+  "directly_modified_protected_paths": [],
+  "outputs": [
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l47_claim_gate_schema.contract.json",
+      "kind": "json",
+      "description": "proposal-only worker contract for qv6_007 no-API claim-preservation gate schema"
+    },
+    {
+      "path": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l47_claim_gate_schema.md",
+      "kind": "markdown",
+      "description": "readable summary of the proposed deterministic qv6_007 gate"
+    }
+  ],
+  "proposal": {
+    "expectation_schema": {
+      "schema": "rfp_rag_claim_preservation_gate.v1",
+      "gate_id": "qv6_007_goyang_facility_claim_preservation",
+      "case_id": "qv6_007_goyang_facility_order_permutation",
+      "canonical_case_id": "qv6_006_goyang_facility_canonical",
+      "metamorphic_group": "goyang_facility",
+      "audit_mode": "deterministic_no_api",
+      "freshness_policy": "diagnostic_only_exposed_case_not_a_fresh_score",
+      "purpose": [
+        "Assert that shuffled wording with '고양 공사' preserves the same Goyang project binding as qv6_006.",
+        "Assert that qv6_007 preserves the user-focused qv6_006 claims: unmanned operation program/HW linkage and physical access-control purchase/install scope.",
+        "Detect L37/L40 style underanswers where the answer says the relevant feature is not confirmed despite available evidence."
+      ]
+    },
+    "evidence_basis": {
+      "questions": {
+        "qv6_006": "Canonical question asks how homepage, member management, unmanned operation, and access-control requirements are divided for the Goyang Urban Management Corporation Gwan-san multipurpose field system.",
+        "qv6_007": "Order-permuted question asks whether the same Goyang system includes unmanned operation program and access control, using only document evidence."
+      },
+      "observed_runs": [
+        {
+          "run": "L37 qv6_006",
+          "finding": "Canonical answer explicitly includes unmanned operation program/technical support, unmanned ticketing 2SET, H/W linkage, entry/exit access-control system purchase/install 2SET, relay server/equipment, and access-control linkage."
+        },
+        {
+          "run": "L37 qv6_007",
+          "finding": "Answer preserves project identity only partially and says both unmanned operation program and access control cannot be confirmed while retrieval mixes non-Goyang organizations."
+        },
+        {
+          "run": "L40 qv6_007",
+          "finding": "Alias retry retrieves all Goyang orgs and recovers unmanned operation/HW linkage, but still says physical access-control device linkage cannot be confirmed and substitutes system-level access permissions."
+        }
+      ],
+      "csv_line_findings": [
+        {
+          "source": "data\\원본 데이터\\data_list.csv",
+          "line_refs": "2035-2039",
+          "org_scope": "고양도시관리공사",
+          "supports": [
+            "project title and issuer",
+            "운영시스템과의 하드웨어 연동",
+            "무인화 운영 프로그램 제공",
+            "안내데스크 및 출입통제시스템 구매 및 설치",
+            "자동화 시스템 구축"
+          ]
+        },
+        {
+          "source": "data\\원본 데이터\\data_list.csv",
+          "line_refs": "2086-2100",
+          "org_scope": "고양도시관리공사",
+          "supports": [
+            "exact project name",
+            "90-day project period",
+            "90,000,000 KRW budget",
+            "automatic-system build and related goods purchase need"
+          ]
+        },
+        {
+          "source": "data\\원본 데이터\\data_list.csv",
+          "line_refs": "6708, 6727, 6751-6755",
+          "org_scope": "전북특별자치도 정읍시 / not Goyang",
+          "supports": [
+            "distractor examples for 무인발권, 출입통제, 주차관제, 중계서버, 무인발권기"
+          ],
+          "gate_use": "These lines must not satisfy the qv6_007 Goyang source-support check unless the retrieved source record is independently bound to 고양도시관리공사. They are useful leakage guards, not Goyang evidence."
+        }
+      ]
+    },
+    "gate_input_contract": {
+      "required_fields": [
+        "case_id",
+        "answer_text"
+      ],
+      "optional_but_recommended_fields": [
+        "canonical_case_id",
+        "retrieved_orgs",
+        "first_hit_rank",
+        "retrieved_source_text",
+        "source_line_refs",
+        "run_label"
+      ],
+      "normalization": [
+        "Collapse whitespace, including newlines, to a single space for marker checks.",
+        "Compare marker arrays named *_markers_* as literal substrings after whitespace normalization.",
+        "Compare marker arrays named *_regex_* with deterministic regular expressions; no API or judge model is involved.",
+        "Treat ASCII H/W, HW, h/w, and 하드웨어 as equivalent for linkage markers.",
+        "Apply negative markers within the same sentence or bullet when possible; if sentence splitting is unavailable, use a 60-character window around the claim anchor."
+      ]
+    },
+    "expected_claims": [
+      {
+        "claim_key": "project_identity.goyang_gwansan_integrated_operation",
+        "severity": "critical",
+        "required_for_pass": true,
+        "description": "The answer is about the Goyang Urban Management Corporation Gwan-san Neighborhood Park multipurpose field homepage/member integrated operation management system project.",
+        "positive_markers_all": [
+          [
+            "고양도시관리공사",
+            "고양 공사"
+          ],
+          [
+            "관산근린공원",
+            "관산"
+          ],
+          [
+            "다목적구장",
+            "회원 통합운영",
+            "통합운영관리 시스템"
+          ]
+        ],
+        "negative_markers_any": [
+          "정읍시청",
+          "전북특별자치도 정읍시",
+          "한국지식재산보호원",
+          "한국보육진흥원",
+          "경기도일자리재단",
+          "인천광역시",
+          "조선대학교",
+          "고려대학교"
+        ],
+        "fail_logic": "Fail if no Goyang/project marker group matches, or if the answer presents a different organization/project as the target."
+      },
+      {
+        "claim_key": "unmanned_operation.program_technical_support",
+        "severity": "critical",
+        "required_for_pass": true,
+        "description": "The project includes an unmanned operation program and technical support.",
+        "positive_markers_any": [
+          "무인 운영 프로그램 포함",
+          "무인 운영 프로그램은 포함",
+          "무인화 운영 프로그램 제공",
+          "무인화 운영을 위한 프로그램",
+          "무인화 운영을 위한 프로그램 및 기술 지원",
+          "무인 운영 관련 프로그램·기술 지원",
+          "무인 운영 관련 프로그램 및 기술 지원"
+        ],
+        "source_positive_markers_any": [
+          "무인화 운영 프로그램 제공",
+          "무인화 운영을 위한 프로그램 및 기술 지원"
+        ],
+        "negative_underanswer_anchors_any": [
+          "무인 운영 프로그램",
+          "무인 운영",
+          "무인화"
+        ],
+        "negative_underanswer_markers_any": [
+          "제공된 문서에서 확인할 수 없습니다",
+          "확인할 수 없습니다",
+          "확인 불가",
+          "명시적 언급은 없습니다",
+          "명확히 확인되지 않음",
+          "포함 여부를 확인할 수 없습니다"
+        ],
+        "fail_logic": "Fail if no positive answer marker is present, or if a negative-underanswer marker occurs near an unmanned-operation anchor."
+      },
+      {
+        "claim_key": "unmanned_operation.operating_system_hw_linkage",
+        "severity": "major",
+        "required_for_pass": true,
+        "description": "The operating system includes H/W linkage programs or equivalent hardware linkage scope.",
+        "positive_markers_any": [
+          "운영시스템과의 하드웨어 연동",
+          "운영시스템과의 H/W 연동",
+          "H/W 연동 프로그램",
+          "하드웨어(H/W) 연동 프로그램",
+          "하드웨어 연동 프로그램",
+          "운영시스템과 연동"
+        ],
+        "source_positive_markers_any": [
+          "운영시스템과의 하드웨어 연동"
+        ],
+        "negative_underanswer_anchors_any": [
+          "H/W 연동",
+          "하드웨어 연동",
+          "운영시스템"
+        ],
+        "negative_underanswer_markers_any": [
+          "확인할 수 없습니다",
+          "확인 불가",
+          "명시적 언급은 없습니다"
+        ],
+        "fail_logic": "Fail if no H/W linkage marker is present, because qv6_006 and the Goyang CSV summary both preserve this bridge between unmanned/automation scope and the operating system."
+      },
+      {
+        "claim_key": "unmanned_operation.unmanned_ticketing_detail",
+        "severity": "minor",
+        "required_for_pass": false,
+        "description": "The richer canonical answer mentions unmanned ticketing machines, information-desk auxiliary equipment, and 2SET. This is a preservation warning, not a hard qv6_007 pass condition, because the inspected Goyang CSV summary directly supports information desk purchase/install but not the 무인발권기/2SET wording.",
+        "positive_markers_any": [
+          "무인발권기",
+          "무인 발권기",
+          "안내데스크",
+          "부가장비",
+          "2SET",
+          "2 SET"
+        ],
+        "source_positive_markers_any": [
+          "안내데스크 및 출입통제시스템 구매 및 설치"
+        ],
+        "leakage_warning_markers_any": [
+          "정읍시청",
+          "시청 내 체육시설",
+          "주차관제",
+          "전자키"
+        ],
+        "fail_logic": "Do not hard-fail solely for missing this claim. Warn if absent. Fail only if the answer imports Jeongeup-only details as if they were Goyang evidence."
+      },
+      {
+        "claim_key": "physical_access_control.purchase_install",
+        "severity": "critical",
+        "required_for_pass": true,
+        "description": "The project includes physical access-control-system purchase/installation scope. The answer may say detailed method/specs are unknown, but it must not wholly deny access-control evidence.",
+        "positive_markers_any": [
+          "출입통제시스템 구매 및 설치",
+          "출입통제시스템 구매",
+          "출입통제시스템 설치",
+          "출입통제 시스템 구매",
+          "출입통제 시스템 설치",
+          "입·퇴장 출입통제시스템",
+          "입퇴장 출입통제시스템"
+        ],
+        "positive_regex_any": [
+          "출입통제시스템\\s*.*포함",
+          "출입통제\\s*.*포함",
+          "물리적\\s*출입통제\\s*.*구매",
+          "물리적\\s*출입통제\\s*.*설치"
+        ],
+        "source_positive_markers_any": [
+          "출입통제시스템 구매 및 설치",
+          "출입통제시스템"
+        ],
+        "negative_underanswer_anchors_any": [
+          "출입통제 포함 여부",
+          "출입통제",
+          "출입통제시스템",
+          "물리적 시설 출입통제",
+          "물리적 출입통제"
+        ],
+        "negative_underanswer_markers_any": [
+          "제공된 문서에서 확인할 수 없습니다",
+          "확인할 수 없습니다",
+          "확인 불가",
+          "명시적 언급은 없습니다",
+          "명확히 확인되지 않음",
+          "포함 여부를 확인할 수 없습니다",
+          "문서 근거만으로는 확인할 수 없습니다",
+          "직접적으로 명시되어 있지 않"
+        ],
+        "fail_logic": "Fail if no physical access-control purchase/install marker is present. Also fail if any negative-underanswer marker occurs near a physical access-control anchor, unless the same sentence narrowly limits the unknown to detailed method/spec/vendor rather than inclusion."
+      },
+      {
+        "claim_key": "physical_access_control.operating_system_linkage",
+        "severity": "major",
+        "required_for_pass": false,
+        "description": "The canonical answer says the access-control system links with the operating system. This is a useful preservation check, but purchase/install inclusion is the hard qv6_007 claim.",
+        "positive_markers_any": [
+          "출입통제시스템과 운영시스템 연계",
+          "출입통제 시스템과 운영시스템 연계"
+        ],
+        "positive_regex_any": [
+          "출입통제\\s*.*운영시스템\\s*.*연계",
+          "출입통제\\s*.*H/W\\s*연동",
+          "출입통제\\s*.*하드웨어\\s*연동"
+        ],
+        "negative_underanswer_anchors_any": [
+          "출입통제",
+          "연동",
+          "운영시스템"
+        ],
+        "negative_underanswer_markers_any": [
+          "확인할 수 없습니다",
+          "확인 불가",
+          "명시적 언급은 없습니다"
+        ],
+        "fail_logic": "Warn if absent. Fail only if the answer explicitly denies all physical access-control linkage while also lacking the required purchase/install claim."
+      },
+      {
+        "claim_key": "physical_access_control.not_system_account_access_only",
+        "severity": "critical",
+        "required_for_pass": true,
+        "description": "Do not substitute system/admin access-control features for physical facility 출입통제.",
+        "false_friend_markers_any": [
+          "시스템 차원의 접근통제",
+          "시스템 차원의 접근 통제",
+          "사용자·관리자 접근권한",
+          "사용자 접근권한",
+          "관리자 접근권한",
+          "접근권한",
+          "접속기록",
+          "네트워크 접근통제",
+          "서버 접근통제",
+          "보안제품 목록"
+        ],
+        "required_counter_marker_any": [
+          "출입통제시스템 구매",
+          "출입통제시스템 설치",
+          "출입통제시스템 구매 및 설치",
+          "물리적 출입통제"
+        ],
+        "fail_logic": "Fail if false-friend markers appear and no required physical access-control counter-marker appears. This catches the L40 pattern."
+      },
+      {
+        "claim_key": "unknown_detail_boundary.method_specs_not_overclaimed",
+        "severity": "major",
+        "required_for_pass": false,
+        "description": "The answer should preserve a narrow unknown boundary: inclusion/purchase may be confirmed, while detailed method/spec/vendor/interface may be unconfirmed.",
+        "acceptable_unknown_markers_any": [
+          "상세한 H/W 규격",
+          "상세 규격",
+          "출입통제 방식",
+          "RFID",
+          "지문",
+          "카드",
+          "특정 PG 사업자",
+          "외부연계 인터페이스",
+          "세부 규격",
+          "구체 기술",
+          "제품명"
+        ],
+        "acceptable_unknown_qualifiers_any": [
+          "확인할 수 없습니다",
+          "미확인",
+          "제공된 문서에서 확인되지 않습니다",
+          "문서에 없습니다",
+          "확정하지 않음"
+        ],
+        "unsupported_specific_detail_markers_any": [
+          "RFID 방식으로 구축",
+          "지문인식 방식",
+          "카드 인증 방식으로 구축",
+          "특정 PG",
+          "게이트 모델",
+          "제품명은"
+        ],
+        "fail_logic": "Pass when the answer confirms inclusion but narrows unknowns to method/spec/vendor/interface. Fail if it asserts a specific method/vendor/product as confirmed without source markers, or if it turns narrow unknowns into a broad inclusion denial."
+      },
+      {
+        "claim_key": "source_scope.no_cross_org_leak",
+        "severity": "critical",
+        "required_for_pass": true,
+        "description": "The qv6_007 answer must not satisfy Goyang claims by borrowing Jeongeup or other non-Goyang facility-system evidence.",
+        "positive_scope_markers_all": [
+          [
+            "고양도시관리공사"
+          ],
+          [
+            "관산근린공원",
+            "다목적구장"
+          ]
+        ],
+        "leakage_markers_any": [
+          "정읍",
+          "정읍시청",
+          "전북특별자치도",
+          "시청 내 체육시설",
+          "주차관제",
+          "전자키",
+          "JST 공유대학",
+          "한국지식재산보호원",
+          "한국보육진흥원"
+        ],
+        "retrieved_orgs_rule": "If retrieved_orgs is supplied, hard-fail when it contains no 고양도시관리공사. Warn on mixed orgs. For strict regression mode, hard-fail mixed orgs because qv6_007 note says to avoid other facility reservation systems.",
+        "fail_logic": "Fail if leakage markers are used as evidence for answer claims. In strict mode, also fail when retrieved_orgs contains any non-Goyang org."
+      }
+    ],
+    "positive_marker_groups": {
+      "minimal_passing_answer_must_include": [
+        "고양도시관리공사 plus 관산근린공원/다목적구장 project binding",
+        "무인화 운영 프로그램 제공 or 무인화 운영을 위한 프로그램 및 기술 지원",
+        "운영시스템과의 하드웨어 연동 or H/W 연동 프로그램",
+        "출입통제시스템 구매 및 설치 or equivalent physical 출입통제시스템 purchase/install inclusion",
+        "a narrow not-found boundary for details, not for inclusion"
+      ],
+      "good_answer_optional_details": [
+        "무인발권기 / 무인 발권기",
+        "안내데스크 부가장비",
+        "2SET",
+        "중계서버",
+        "출입통제시스템과 운영시스템 연계"
+      ]
+    },
+    "negative_and_underanswer_markers": {
+      "critical_false_not_found_patterns": [
+        {
+          "anchor_any": [
+            "무인 운영 프로그램",
+            "무인 운영",
+            "무인화"
+          ],
+          "bad_marker_any": [
+            "제공된 문서에서 확인할 수 없습니다",
+            "확인할 수 없습니다",
+            "확인 불가",
+            "명확히 확인되지 않음"
+          ],
+          "label": "false_not_found_unmanned_operation"
+        },
+        {
+          "anchor_any": [
+            "출입통제",
+            "출입통제시스템",
+            "물리적 시설 출입통제"
+          ],
+          "bad_marker_any": [
+            "제공된 문서에서 확인할 수 없습니다",
+            "확인할 수 없습니다",
+            "확인 불가",
+            "명시적 언급은 없습니다",
+            "명확히 확인되지 않음",
+            "직접적으로 명시되어 있지 않"
+          ],
+          "label": "false_not_found_physical_access_control"
+        }
+      ],
+      "false_friend_patterns": [
+        {
+          "bad_marker_any": [
+            "시스템 차원의 접근통제",
+            "접근권한",
+            "접속기록",
+            "네트워크 접근통제",
+            "서버 접근통제",
+            "보안제품 목록"
+          ],
+          "missing_counter_marker_any": [
+            "출입통제시스템 구매",
+            "출입통제시스템 설치",
+            "출입통제시스템 구매 및 설치",
+            "물리적 출입통제"
+          ],
+          "label": "system_access_control_substituted_for_physical_access_control"
+        }
+      ],
+      "source_leak_patterns": [
+        {
+          "bad_marker_any": [
+            "정읍",
+            "정읍시청",
+            "전북특별자치도",
+            "시청 내 체육시설",
+            "주차관제",
+            "전자키"
+          ],
+          "label": "non_goyang_facility_evidence_leak"
+        }
+      ]
+    },
+    "pass_fail_logic": {
+      "claim_result_values": [
+        "pass",
+        "warn_missing_optional_detail",
+        "fail_missing_required_positive",
+        "fail_false_not_found",
+        "fail_false_friend",
+        "fail_wrong_project_or_source_leak",
+        "fail_unsupported_specific_detail"
+      ],
+      "case_pass_conditions": [
+        "case_id equals qv6_007_goyang_facility_order_permutation or the runner explicitly maps it to that expectation.",
+        "All required_for_pass claims with critical or major severity pass.",
+        "No critical false-not-found pattern is detected for unmanned operation or physical access control.",
+        "No system-level access-control false friend is used as the only answer to physical 출입통제.",
+        "No non-Goyang source leakage is used to satisfy Goyang claims.",
+        "Unknowns, if present, are limited to method/spec/vendor/interface details rather than inclusion/purchase/install scope."
+      ],
+      "case_fail_conditions": [
+        "The answer says 무인 운영 프로그램 or 무인화 cannot be confirmed.",
+        "The answer says 출입통제 or physical access-control inclusion cannot be confirmed without also confirming 출입통제시스템 purchase/install.",
+        "The answer only discusses 접근권한/접속기록/네트워크 접근통제 for the 출입통제 part.",
+        "The answer omits all physical 출입통제시스템 purchase/install markers.",
+        "The answer is bound to a non-Goyang project or imports Jeongeup/other-org facility details.",
+        "The answer asserts specific access-control method/vendor/product details as confirmed when the evidence only supports inclusion and leaves details unknown."
+      ],
+      "strict_retrieval_mode": {
+        "enabled_recommendation": true,
+        "rule": "When retrieved_orgs exists, fail if it is empty or lacks 고양도시관리공사; warn by default on mixed orgs; for regression gating, treat mixed orgs as fail because qv6_007 is explicitly a project-binding/order-permutation case.",
+        "l37_expected_gate_result": "fail_wrong_project_or_source_leak plus fail_false_not_found_unmanned_operation and fail_false_not_found_physical_access_control",
+        "l40_expected_gate_result": "fail_false_not_found_physical_access_control plus fail_false_friend"
+      },
+      "minimal_passing_answer_example": "고양도시관리공사 관산근린공원 다목적구장 회원 통합운영관리 시스템 구축 건은 무인화 운영 프로그램 제공과 운영시스템 H/W 연동을 포함한다. 또한 문서 요약에 안내데스크 및 출입통제시스템 구매 및 설치가 있어 물리적 출입통제시스템 범위도 포함된 것으로 정리해야 한다. 다만 RFID/지문/카드 방식, 세부 H/W 규격, 특정 제품명 같은 상세 방식은 제공 문서에서 확인되지 않는다."
+    },
+    "suggested_outputs": {
+      "claim_gate_results_jsonl": {
+        "path_pattern": "eval\\parallel_runs\\<run_id>\\worker_outputs\\claim_gate_qv6_007\\claim_gate_results.jsonl",
+        "row_fields": [
+          "case_id",
+          "run_label",
+          "gate_id",
+          "overall_result",
+          "failed_claim_keys",
+          "warning_claim_keys",
+          "detected_positive_markers",
+          "detected_negative_markers",
+          "retrieved_orgs_summary",
+          "source_line_refs",
+          "notes"
+        ]
+      },
+      "claim_gate_summary_json": {
+        "path_pattern": "eval\\parallel_runs\\<run_id>\\worker_outputs\\claim_gate_qv6_007\\claim_gate_summary.json",
+        "fields": [
+          "schema",
+          "gate_id",
+          "cases_checked",
+          "passed",
+          "failed",
+          "fail_counts_by_label",
+          "strict_retrieval_mode",
+          "no_api",
+          "diagnostic_only"
+        ]
+      },
+      "claim_gate_report_md": {
+        "path_pattern": "eval\\parallel_runs\\<run_id>\\worker_outputs\\claim_gate_qv6_007\\claim_gate_report.md",
+        "sections": [
+          "Bottom line",
+          "Per-claim table",
+          "Positive markers found",
+          "Underanswer markers found",
+          "Source-scope/leakage notes",
+          "Recommended next action"
+        ]
+      },
+      "hard_stop_flag": {
+        "path_pattern": "eval\\parallel_runs\\<run_id>\\worker_outputs\\claim_gate_qv6_007\\hard_stop_flags.json",
+        "use": "Optional small artifact for orchestrator: broad paid v7/v8/v9 remains closed when qv6_007 gate overall_result is fail."
+      }
+    },
+    "implementation_notes_proposal_only": [
+      "This proposal does not edit scripts or source files.",
+      "Implement with local regex/string matching first; no judge model is needed.",
+      "Prefer sentence/bullet-window checks for negative markers so a valid sentence like 'details are unknown' does not fail a nearby valid inclusion claim.",
+      "Keep qv6_007 gate diagnostic-only because qv6_006/qv6_007 were already exposed in L37-L40.",
+      "Do not let the Jeongeup 무인발권/중계서버 lines satisfy the Goyang gate. Treat them as leakage markers unless source metadata binds them to 고양도시관리공사."
+    ]
+  },
+  "merge_risk": "low",
+  "blocking_reason": "",
+  "validation": {
+    "commands_run": [
+      "rg -n \"qv6_00[67]|L37|L40|고양도시관리공사|출입통제|무인발권\" eval data -S",
+      "ConvertFrom-Json eval/questions_v6_metamorphic_frozen_first_run.json and selected qv6_006/qv6_007",
+      "Read l37_v6_metamorphic_first_baseline_baseline_default/details.json lines around qv6_006/qv6_007",
+      "Read l40_v6_goyang_alias_retry_baseline_default/details.json lines around qv6_007",
+      "Read data/원본 데이터/data_list.csv lines 2035-2039, 2086-2100, and 6705-6755",
+      "Read existing l41_claim_pair_audit.contract.json and eval/claim_preservation_expectations.json for prior accepted proposal context",
+      "ConvertFrom-Json l47_claim_gate_schema.contract.json to validate JSON shape",
+      "Get-ChildItem worker_outputs -Filter l47_claim_gate_schema* to verify only the allowed L47 output files exist"
+    ],
+    "observed_results": [
+      "No paid API/model calls were made.",
+      "qv6_006 and qv6_007 are the same Goyang project in frozen v6; qv6_007 is the order/permutation phrasing.",
+      "L37 canonical answer contains the richer expected claim set; L37 qv6_007 underanswers both requested feature claims.",
+      "L40 qv6_007 recovers Goyang-only retrieval and unmanned operation/HW linkage, but still underanswers physical access control.",
+      "Goyang CSV lines directly support project identity, H/W linkage, unmanned operation program, and access-control-system purchase/install.",
+      "The inspected 무인발권/중계서버/주차관제 lines around 6708-6755 are non-Goyang distractor scope and should be leakage guards, not Goyang source support.",
+      "The contract parsed successfully as JSON and reported schema=parallel_team_worker_output.v1, status=proposal, gate_id=qv6_007_goyang_facility_claim_preservation, claim_count=9.",
+      "Only l47_claim_gate_schema.contract.json and l47_claim_gate_schema.md were created for the L47 prefix."
+    ]
+  },
+  "created_at": "2026-07-07T00:09:04+09:00"
+}

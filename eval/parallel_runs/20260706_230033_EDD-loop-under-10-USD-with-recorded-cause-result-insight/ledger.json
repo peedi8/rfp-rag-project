@@ -1,0 +1,634 @@
+{
+  "schema": "parallel_team_run_ledger.v1",
+  "created_at": "2026-07-06T23:00:34",
+  "updated_at": "2026-07-07T03:03:37",
+  "workspace": "I:\\0706\\rfp-rag-project",
+  "objective": "EDD loop under 10 USD with recorded cause-result-insight",
+  "run_dir": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight",
+  "cpu_percent_at_start": 5.0,
+  "recommended_workers": 4,
+  "worker_policy": "proposal_only_no_direct_merge",
+  "merge_owner": "main_codex_orchestrator",
+  "protected_paths": [
+    "업무일지.md",
+    "eval/experiment_log.md",
+    "eval/next_improvement_tasks.md",
+    "src/**",
+    "scripts/**",
+    "config.py",
+    "chroma_db/**"
+  ],
+  "tasks": [
+    {
+      "task_id": "v6_metamorphic",
+      "description": "propose unseen title-fragment and metamorphic eval cohort",
+      "status": "completed",
+      "worker_id": "019f37bb-447e-79f1-a667-118259741439",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v6_metamorphic.contract.json",
+      "merge_decision": "accepted_partially: converted proposal into frozen v6 first-run cohort; L37 is first-run evidence and later retries are diagnostic only"
+    },
+    {
+      "task_id": "v7_perturbation",
+      "description": "propose decoy ablation and generic title false-positive checks",
+      "status": "completed",
+      "worker_id": "019f37bb-e725-7891-84a6-4e699302c8ab",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v7_perturbation.contract.json",
+      "merge_decision": "accepted_as_next_loop_design: do not run broad paid perturbation until cost tracing and gates are in place"
+    },
+    {
+      "task_id": "v8_claim_audit",
+      "description": "propose claim-level citation audit workflow",
+      "status": "completed",
+      "worker_id": "019f37bc-1a2c-7600-88b5-86adce60b200",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v8_claim_audit.contract.json",
+      "merge_decision": "accepted_as_next_loop_design: use for high-score-but-not-convincing answer review and unsupported-claim counting"
+    },
+    {
+      "task_id": "v9_latency_cost",
+      "description": "propose latency and cost decomposition workflow",
+      "status": "completed",
+      "worker_id": "019f37bc-4c55-7083-ab3d-379bd09a9b05",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\v9_latency_cost.contract.json",
+      "merge_decision": "accepted_and_implemented_partially: answer/no-judge usage trace verified; judge live trace still needs a tiny smoke"
+    },
+    {
+      "task_id": "l41_claim_pair_audit",
+      "description": "no-API qv6_006/qv6_007 claim preservation audit",
+      "status": "completed",
+      "worker_id": "019f37d4-0482-71c3-a16e-936e2adc6386",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l41_claim_pair_audit.contract.json",
+      "merge_decision": "accepted: L40 is partial recovery only"
+    },
+    {
+      "task_id": "l41_qv6_010_ambiguity_review",
+      "description": "no-API generic title ambiguity over-answer review",
+      "status": "completed",
+      "worker_id": "019f37d4-5bfb-7d91-9142-9e23c5873710",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l41_qv6_010_ambiguity_review.contract.json",
+      "merge_decision": "accepted: add post-refusal over-answer quality issue"
+    },
+    {
+      "task_id": "l41_cost_trace_design_review",
+      "description": "no-API cost trace implementation design review",
+      "status": "completed",
+      "worker_id": "019f37d4-a0fb-7d72-b76c-fe9ea4c69720",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l41_cost_trace_design_review.contract.json",
+      "merge_decision": "accepted: implemented through actual src/rag.py path"
+    },
+    {
+      "task_id": "l47_claim_gate_schema",
+      "description": "propose qv6_007 claim-preservation expectation schema",
+      "status": "completed",
+      "worker_id": "019f37f3-f915-73f0-aeb7-3bd524ba047e",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l47_claim_gate_schema.contract.json",
+      "merge_decision": "accepted_partially: converted proposal into deterministic diagnostic-only claim-preservation expectation"
+    },
+    {
+      "task_id": "l47_claim_gate_red",
+      "description": "red-review qv6_007 claim-preservation gate for false positives and reporting labels",
+      "status": "completed",
+      "worker_id": "019f37f4-24ea-7fc0-9371-ecd5ca9ce784",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l47_claim_gate_red.contract.json",
+      "merge_decision": "accepted: row-scoped source matching, false-friend access-control flag, diagnostic-only labels"
+    },
+    {
+      "task_id": "l48_evidence_use_guard_design",
+      "description": "proposal-only design for qv6_007 physical access-control evidence-use guard",
+      "status": "completed",
+      "worker_id": "019f3803-76aa-7972-aca1-742ed5fb6935",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l48_evidence_use_guard_design.contract.json",
+      "merge_decision": "accepted_partially: implemented narrow target-bound backfill and answer guard; kept diagnostic-only labels"
+    },
+    {
+      "task_id": "l48_guard_red_review",
+      "description": "proposal-only red review of physical access-control evidence-use guard",
+      "status": "completed",
+      "worker_id": "019f3803-a7d3-7230-9d38-02b57e049e06",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l48_guard_red_review.contract.json",
+      "merge_decision": "accepted: no broad keyword repair; require no-API fixtures and target-bound source use"
+    },
+    {
+      "task_id": "l65_qv6_001_project_mix_diagnosis",
+      "description": "proposal-only diagnosis of qv6_001 same-issuer different-project mixing",
+      "status": "completed",
+      "worker_id": "019f381e-4d0a-7da2-a8c4-a340d9b6df2d",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l65_qv6_001_project_mix_diagnosis.contract.json",
+      "merge_decision": "accepted: added conservative project focus filter and details trace"
+    },
+    {
+      "task_id": "l65_same_project_guard_red_review",
+      "description": "proposal-only red review for same-project/source-mixing guard",
+      "status": "completed",
+      "worker_id": "019f381e-6188-7a22-994f-ff41f8043f4e",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l65_same_project_guard_red_review.contract.json",
+      "merge_decision": "accepted: project scoping must be conservative, fixture-proven, and not applied to ambiguous fragments"
+    },
+    {
+      "task_id": "l78_latency_red_review",
+      "description": "proposal-only red review after L77 latency prompt regression",
+      "status": "completed",
+      "worker_id": "019f383d-c163-7591-9b6c-cb119cf32ea1",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l78_latency_red_review.contract.json",
+      "merge_decision": "accepted: reject L77 prompt concision and run only tightly gated top-k/context latency diagnostics"
+    },
+    {
+      "task_id": "l78_fresh_validation_design",
+      "description": "proposal-only fresh v7/v8 validation cohort strategy",
+      "status": "completed",
+      "worker_id": "019f383d-e75a-70d3-a65b-99cc7a810157",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l78_fresh_validation_design.contract.json",
+      "merge_decision": "accepted_as_next_loop_design: create untouched v7/v8 before claiming generalization"
+    },
+    {
+      "task_id": "l81_v7_source_exposed_prompt_diagnostic",
+      "description": "source-exposed prompt diagnostic over v7 question forms",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l81_v7_source_exposed_prompt_diagnostic_baseline_default\\worker_output.json",
+      "merge_decision": "kept diagnostic-only; EDD 97.41 is not held-out validation"
+    },
+    {
+      "task_id": "l82_sensitive_refusal_tail_measurement",
+      "description": "no-API measurement correction for sensitive/forbidden refusal-tail over-detail",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l82_l81_sensitive_quality_recompute\\recomputed_metrics.json",
+      "merge_decision": "accepted: qv7_006 is flagged without changing L81 EDD"
+    },
+    {
+      "task_id": "l83_sensitive_guard_probe_nojudge",
+      "description": "targeted one-case no-judge probe for qv7_006 after sensitive abstention guard",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l83_sensitive_guard_probe_nojudge_baseline_default\\worker_output.json",
+      "merge_decision": "accepted as repair evidence; no-judge EDD is not comparable"
+    },
+    {
+      "task_id": "l84_v7_latency_red_review",
+      "description": "red review acceptance gates for v7 source-exposed latency diagnostics",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l84_v7_latency_red_review.contract.json",
+      "merge_decision": "accepted: hard gates used for L85/L86 interpretation"
+    },
+    {
+      "task_id": "l84_v7_topk_monolithic_timeout",
+      "description": "monolithic topk_sweep attempt that timed out before writing artifacts",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "",
+      "merge_decision": "rejected run design; split into shards"
+    },
+    {
+      "task_id": "l85_v7_topk_latency_shards",
+      "description": "topk5/topk8/topk12 source-exposed v7 latency shards",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l85_v7_source_exposed_topk8_latency_shard_topk8_only\\worker_output.json",
+      "merge_decision": "topk8 control best diagnostic row; no new optimization claim"
+    },
+    {
+      "task_id": "l86_abstention_classifier_measurement_correction",
+      "description": "no-API correction of partial-answer and sensitive-refusal abstention classification",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l86_abstention_classifier_fixtures_final2\\evidence_guard_fixtures.json",
+      "merge_decision": "accepted: fixtures 21/21 and saved metrics recomputed"
+    },
+    {
+      "task_id": "l87_plain_language_quality_gate",
+      "description": "no-API measurement correction for plain-language over-structured answers",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l87_plain_language_quality_report.md",
+      "merge_decision": "accepted: qv7_009 over-structured answers are flagged without changing EDD or current control settings"
+    },
+    {
+      "task_id": "l88_plain_language_format_probe",
+      "description": "one-case qv7_009 prompt sweep after L87 over-structure flag",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l88_plain_language_format_probe_prompt_sweep\\worker_output.json",
+      "merge_decision": "report_ready cleared the issue but was too slow; default remained over-structured"
+    },
+    {
+      "task_id": "l89_plain_language_prompt_hint_probe",
+      "description": "one-case qv7_009 rerun after query-specific plain-language hint",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l89_plain_language_prompt_hint_probe_baseline_default\\worker_output.json",
+      "merge_decision": "accepted as guarded candidate: quality issue cleared, judge 5/5, latency 16.7s; single source-exposed case only"
+    },
+    {
+      "task_id": "l90_plain_language_abstention_measurement_correction",
+      "description": "no-API correction for substantive plain-language answers with final-result caveats",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l90_plain_language_abstention_fixtures_final\\evidence_guard_fixtures.json",
+      "merge_decision": "accepted: fixtures 23/23 and saved metrics recomputed"
+    },
+    {
+      "task_id": "l91_plain_language_hint_v7_regression",
+      "description": "full v7 source-exposed regression after plain-language hint",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l91_plain_language_hint_v7_regression_baseline_default\\worker_output.json",
+      "merge_decision": "accepted as source-exposed regression evidence; not fresh validation or speed win"
+    },
+    {
+      "task_id": "l92_plain_language_hint_trigger_guard",
+      "description": "no-API false-positive guard for plain-language hint trigger negations",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l92_plain_language_hint_trigger_fixtures\\evidence_guard_fixtures.json",
+      "merge_decision": "accepted: fixture pack 25/25; no performance score attached"
+    },
+    {
+      "task_id": "l93_sensitive_preempt_guard_fixtures",
+      "description": "no-API fixtures for preemptive sensitive abstention guard",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l93_sensitive_preempt_fixtures\\evidence_guard_fixtures.json",
+      "merge_decision": "accepted: fixtures 27/27"
+    },
+    {
+      "task_id": "l94_sensitive_preempt_latency_probe",
+      "description": "two-case qv7_006/qv7_012 live latency probe after preemptive abstention",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l94_sensitive_preempt_latency_probe_baseline_default\\worker_output.json",
+      "merge_decision": "accepted as latency/cost evidence only; EDD not comparable for abstention-only no-judge rows"
+    },
+    {
+      "task_id": "l95_sensitive_preempt_v7_regression",
+      "description": "full v7 source-exposed regression after preemptive sensitive abstention guard",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\worker_outputs\\l95_sensitive_preempt_v7_regression_baseline_default\\worker_output.json",
+      "merge_decision": "accepted as strongest source-exposed diagnostic row; not fresh validation"
+    },
+    {
+      "task_id": "l96_preempt_estimate_price_false_positive_guard",
+      "description": "no-API false-positive correction so ???? procurement terms do not trigger sensitive preempt",
+      "status": "completed",
+      "worker_id": "",
+      "output_contract": "eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\analysis\\l96_preempt_estimate_price_false_positive_fixtures\\evidence_guard_fixtures.json",
+      "merge_decision": "accepted: fixtures 28/28; no paid rerun required"
+    }
+  ],
+  "checkpoints": {
+    "inputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_01_inputs.md",
+    "worker_outputs": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_02_worker_outputs.md",
+    "merge_decisions": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_03_merge_decisions.md",
+    "smoke": "I:\\0706\\rfp-rag-project\\eval\\parallel_runs\\20260706_230033_EDD-loop-under-10-USD-with-recorded-cause-result-insight\\checkpoint_04_smoke.md",
+    "l81_l83_quality_loop": {
+      "status": "completed",
+      "summary": "L81 source-exposed diagnostic found qv7_006 qualitative issue; L82 measured it; L83 repaired the answer tail.",
+      "observed_spend_usd": 1.690291
+    },
+    "l84_l86_latency_measurement_loop": {
+      "status": "completed",
+      "summary": "Monolithic L84 failed before artifacts; L85 shards completed; L86 fixed abstention measurement; topk8 remains current diagnostic control only.",
+      "observed_spend_usd": 2.230893,
+      "unledgered_cost_risk": "L84 timed out before cost_summary.json; actual API spend may be higher than local observed total."
+    },
+    "l87_plain_language_quality_gate": {
+      "status": "completed",
+      "summary": "Added plain_language_answer_over_structured; fixtures 22/22; qv7_009 flagged in L81 and L85 v7 diagnostic rows; no new paid call.",
+      "observed_spend_usd": 2.230893,
+      "scoreboard_rows": 1,
+      "diagnostic_only_rows": 40
+    },
+    "final_smoke_after_l87": {
+      "status": "pass",
+      "worker_output_count": 55,
+      "aggregate_rows": 41,
+      "scoreboard_rows": 1,
+      "diagnostic_only_rows": 40,
+      "fixtures": "22/22",
+      "diary_forbidden_terms": "no matches"
+    },
+    "l88_l91_plain_language_loop": {
+      "status": "completed",
+      "summary": "L88 found report_ready clean but slow; L89 query-specific hint cleared qv7_009 issue faster; L90 fixed abstention measurement; L91 full v7 source-exposed regression had 0 quality issue rows.",
+      "observed_spend_usd": 2.530798,
+      "scoreboard_rows": 1,
+      "diagnostic_only_rows": 46
+    },
+    "final_smoke_after_l91": {
+      "status": "pass",
+      "worker_output_count": 58,
+      "aggregate_rows": 47,
+      "scoreboard_rows": 1,
+      "diagnostic_only_rows": 46,
+      "fixtures": "23/23",
+      "observed_spend_usd": 2.530798,
+      "diary_forbidden_terms": "no matches"
+    },
+    "l92_plain_language_hint_trigger_guard": {
+      "status": "completed",
+      "summary": "Plain-language hint positive and negated trigger fixtures pass; total fixture pack 25/25.",
+      "observed_spend_usd": 2.530798
+    },
+    "final_smoke_after_l92": {
+      "status": "pass",
+      "worker_output_count": 58,
+      "aggregate_rows": 47,
+      "scoreboard_rows": 1,
+      "diagnostic_only_rows": 46,
+      "fixtures": "25/25",
+      "observed_spend_usd": 2.530798,
+      "diary_forbidden_terms": "no matches"
+    },
+    "l93_l95_sensitive_preempt_loop": {
+      "status": "completed",
+      "summary": "Preemptive sensitive abstention removed wasted generation on qv7_006/qv7_012 and L95 reached EDD 98.54 latency 14.44 with 0 quality issue rows on source-exposed v7.",
+      "observed_spend_usd": 2.687161,
+      "scoreboard_rows": 1,
+      "diagnostic_only_rows": 48
+    },
+    "final_smoke_after_l95": {
+      "status": "pass",
+      "worker_output_count": 60,
+      "aggregate_rows": 49,
+      "scoreboard_rows": 1,
+      "diagnostic_only_rows": 48,
+      "fixtures": "27/27",
+      "observed_spend_usd": 2.687161,
+      "diary_forbidden_terms": "no matches"
+    },
+    "l96_preempt_estimate_price_false_positive_guard": {
+      "status": "completed",
+      "summary": "Narrowed preempt marker from broad ?? to intent phrases and added ???? false-positive fixture; fixture pack 28/28.",
+      "observed_spend_usd": 2.687161
+    },
+    "final_smoke_after_l96": {
+      "status": "pass",
+      "worker_output_count": 60,
+      "aggregate_rows": 49,
+      "scoreboard_rows": 1,
+      "diagnostic_only_rows": 48,
+      "fixtures": "28/28",
+      "observed_spend_usd": 2.687161,
+      "diary_forbidden_terms": "no matches"
+    }
+  },
+  "events": [
+    {
+      "ts": "2026-07-06T23:00:34",
+      "event": "scaffold_created",
+      "recommended_workers": 4,
+      "cpu_percent": 5.0
+    },
+    {
+      "ts": "2026-07-06T23:10:40",
+      "event": "L37_v6_first_run_completed",
+      "edd_score": 86.25,
+      "primary_cause": "abstention_accuracy_0.0 on unsupported final procurement and generic title fragment traps"
+    },
+    {
+      "ts": "2026-07-06T23:13:29",
+      "event": "L38_safety_retry_completed",
+      "status": "diagnostic_only",
+      "result": "qv6_004/qv6_010 abstention fixed; qv6_010 still over-summarizes after ambiguity"
+    },
+    {
+      "ts": "2026-07-06T23:15:19",
+      "event": "L39_goyang_topk_probe_completed",
+      "status": "diagnostic_only",
+      "result": "top_k alone did not fix the metamorphic failure"
+    },
+    {
+      "ts": "2026-07-06T23:16:48",
+      "event": "L40_goyang_alias_retry_completed",
+      "status": "diagnostic_only",
+      "result": "alias recovered rank1/all-target-org context, but latency regressed and physical access-control remained underanswered"
+    },
+    {
+      "ts": "2026-07-06T23:30:15",
+      "event": "L41_qv6_010_ambiguity_review_completed",
+      "status": "no_api_diagnostic",
+      "result": "post-refusal candidate summary issue defined"
+    },
+    {
+      "ts": "2026-07-06T23:36:00",
+      "event": "L41_claim_pair_audit_completed",
+      "status": "no_api_diagnostic",
+      "result": "L40 is partial recovery: unmanned/HW linkage recovered, physical access-control underanswered"
+    },
+    {
+      "ts": "2026-07-06T23:35:10",
+      "event": "L43_cost_trace_onecase_nojudge_completed",
+      "status": "diagnostic_only",
+      "observed_cost_usd": 0.008312,
+      "result": "query_embedding and answer_generation usage/cost captured"
+    },
+    {
+      "ts": "2026-07-06T23:41:22",
+      "event": "L44_cost_trace_onecase_withjudge_completed",
+      "status": "diagnostic_only",
+      "observed_cost_usd": 0.013187,
+      "result": "query_embedding, answer_generation, and judge usage/cost captured; judge scored 5/5 despite remaining access-control under-answer"
+    },
+    {
+      "ts": "2026-07-06T23:41:30",
+      "event": "final_smoke_after_l41_l44",
+      "smoke_status": "pass",
+      "worker_output_count": 15,
+      "scoreboard_rows": 1,
+      "diagnostic_only_rows": 9
+    },
+    {
+      "ts": "2026-07-07T00:17:41",
+      "event": "L47_claim_preservation_gate_completed",
+      "status": "no_api_diagnostic",
+      "result": "L37 0/2, L40 1/2, L44 1/2; qv6_007 physical access-control remains underanswered",
+      "claim_preservation_rates": {
+        "L37": 0.0,
+        "L40": 0.5,
+        "L44": 0.5
+      },
+      "decision": "keep broad paid v7/v8/v9 closed until claim-preservation gate passes or report risk is explicit"
+    },
+    {
+      "created_at": "2026-07-07T01:16:13",
+      "event": "l48_l60_qv6_007_backfill_guard",
+      "status": "completed",
+      "summary": "CSV summary backfill plus evidence-use guard moved qv6_007 claim preservation to 2/2; L60 exposed regression EDD 97.59 but qv6_010 over-answer remained."
+    },
+    {
+      "created_at": "2026-07-07T01:16:13",
+      "event": "l61_l64_ambiguous_refusal_guard",
+      "status": "completed",
+      "summary": "qv6_010 ambiguity refusal shortened; L64 exposed regression cleared over-answer but revealed qv6_001 same-issuer project mixing."
+    },
+    {
+      "created_at": "2026-07-07T01:16:13",
+      "event": "l65_l68_project_focus_filter",
+      "status": "completed",
+      "summary": "Project focus filter recovered qv6_001 groundedness to 5/5; L68 exposed regression showed qv6_007 answer contradiction remained."
+    },
+    {
+      "created_at": "2026-07-07T01:16:13",
+      "event": "l69_l76_answer_cleanup_and_final_exposed_regression",
+      "status": "completed",
+      "summary": "Access-control contradiction/duplicate cleanup fixtures reached 14/14; L76 exposed regression EDD 97.13, qv6_007 claim 2/2, scoreboard_rows 1."
+    },
+    {
+      "created_at": "2026-07-07T01:16:13",
+      "event": "parallel_smoke_after_l76",
+      "status": "pass",
+      "summary": "smoke_parallel_outputs passed with 45 worker output contracts and no issues after adding proposal wrapper to L48 contract."
+    },
+    {
+      "created_at": "2026-07-07T01:26:11",
+      "event": "l78_proposal_smoke",
+      "status": "pass",
+      "summary": "smoke_parallel_outputs passed with 48 worker output contracts after L78 latency and fresh-validation proposals."
+    },
+    {
+      "created_at": "2026-07-07T01:38:29",
+      "event": "l79_guarded_topk_latency_probe",
+      "status": "completed",
+      "summary": "topk8 control was best exposed diagnostic row EDD 98.15 latency 16.13; topk5 was cost candidate with tail risk; topk12 rejected despite claim 2/2 due groundedness/relevance drop."
+    },
+    {
+      "created_at": "2026-07-07T01:50:00",
+      "event": "l80_exposure_registry_correction",
+      "status": "completed",
+      "summary": "v5 was corrected from unscored candidate to exposed after prior L30 run; qv6_l61/qv6_l65 were labeled diagnostic-only; aggregate guard restored scoreboard_rows=1."
+    },
+    {
+      "created_at": "2026-07-07T02:01:55",
+      "event": "l81_v7_source_exposed_prompt_diagnostic",
+      "status": "completed",
+      "summary": "L81 reached EDD 97.41 on prompt-fresh but source-exposed v7 diagnostics; qv7_006 required human-quality review."
+    },
+    {
+      "created_at": "2026-07-07T02:01:55",
+      "event": "l82_sensitive_refusal_tail_measurement",
+      "status": "completed",
+      "summary": "Added sensitive_or_forbidden_refusal_with_detail_tail and recomputed saved L81 answers; qv7_006 was flagged while EDD stayed 97.41."
+    },
+    {
+      "created_at": "2026-07-07T02:01:55",
+      "event": "l83_sensitive_guard_probe_nojudge",
+      "status": "completed",
+      "summary": "One-case qv7_006 rerun produced concise refusal with answer_quality_issues=[]; observed cost 0.011772; EDD not comparable due no judge."
+    },
+    {
+      "created_at": "2026-07-07T02:01:55",
+      "event": "aggregate_after_l83",
+      "status": "pass",
+      "summary": "aggregate rows=38, scoreboard_rows=1, diagnostic_only_rows=37."
+    },
+    {
+      "created_at": "2026-07-07T02:27:50",
+      "event": "l84_v7_topk_monolithic_timeout",
+      "status": "failed_design",
+      "summary": "Single topk_sweep timed out before writing result/cost artifacts; possible unledgered calls; future long sweeps must be sharded."
+    },
+    {
+      "created_at": "2026-07-07T02:27:50",
+      "event": "l85_v7_topk_latency_shards",
+      "status": "completed",
+      "summary": "After L86 recompute: topk5 EDD 97.99 latency 16.865, topk8 control EDD 98.00 latency 16.794, topk12 EDD 95.51 latency 19.922."
+    },
+    {
+      "created_at": "2026-07-07T02:27:50",
+      "event": "l86_abstention_classifier_measurement_correction",
+      "status": "completed",
+      "summary": "Partial-scope and sensitive-refusal abstention classifier fixtures pass 21/21; aggregate remains scoreboard_rows=1."
+    },
+    {
+      "created_at": "2026-07-07T02:34:18",
+      "event": "l87_plain_language_quality_gate",
+      "status": "completed",
+      "summary": "qv7_009 plain-language answers were grounded but over-structured; new quality flag catches the issue while aggregate remains scoreboard_rows=1."
+    },
+    {
+      "created_at": "2026-07-07T02:35:07",
+      "event": "final_smoke_after_l87",
+      "status": "pass",
+      "summary": "py_compile pass; fixtures 22/22; aggregate rows=41 scoreboard_rows=1; smoke passed with 55 worker outputs; diary forbidden-term check passed."
+    },
+    {
+      "created_at": "2026-07-07T02:50:28",
+      "event": "l88_plain_language_format_probe",
+      "status": "completed",
+      "summary": "Prompt sweep on qv7_009: report_ready cleared issue but latency 50.94s; default remained over-structured."
+    },
+    {
+      "created_at": "2026-07-07T02:50:28",
+      "event": "l89_plain_language_prompt_hint_probe",
+      "status": "completed",
+      "summary": "Query-specific plain-language hint produced 605 chars, 5 bullets, judge 5/5, no quality issue, latency 16.7s."
+    },
+    {
+      "created_at": "2026-07-07T02:50:28",
+      "event": "l90_plain_language_abstention_measurement_correction",
+      "status": "completed",
+      "summary": "Substantive plain-language answers with final-result caveats are no longer counted as full abstentions; fixtures 23/23."
+    },
+    {
+      "created_at": "2026-07-07T02:50:28",
+      "event": "l91_plain_language_hint_v7_regression",
+      "status": "completed",
+      "summary": "Full v7 source-exposed regression after hint reached EDD 97.82 with 0 quality issue rows; not fresh validation."
+    },
+    {
+      "created_at": "2026-07-07T02:51:07",
+      "event": "final_smoke_after_l91",
+      "status": "pass",
+      "summary": "py_compile pass; fixtures 23/23; aggregate rows=47 scoreboard_rows=1; smoke passed with 58 worker outputs; diary forbidden-term check passed."
+    },
+    {
+      "created_at": "2026-07-07T02:52:14",
+      "event": "l92_plain_language_hint_trigger_guard",
+      "status": "completed",
+      "summary": "Added negation markers so plain-language hint does not override requests not to simplify; fixtures 25/25."
+    },
+    {
+      "created_at": "2026-07-07T02:52:46",
+      "event": "final_smoke_after_l92",
+      "status": "pass",
+      "summary": "py_compile pass; fixtures 25/25; aggregate rows=47 scoreboard_rows=1; smoke passed with 58 worker outputs; diary forbidden-term check passed."
+    },
+    {
+      "created_at": "2026-07-07T03:00:45",
+      "event": "l93_sensitive_preempt_guard_fixtures",
+      "status": "completed",
+      "summary": "Added preemptive sensitive abstention guard and fixtures; fixture pack 27/27."
+    },
+    {
+      "created_at": "2026-07-07T03:00:45",
+      "event": "l94_sensitive_preempt_latency_probe",
+      "status": "completed",
+      "summary": "Two-case probe showed generation trace length 0, generation cost 0, avg latency 2.065s; EDD not comparable."
+    },
+    {
+      "created_at": "2026-07-07T03:00:45",
+      "event": "l95_sensitive_preempt_v7_regression",
+      "status": "completed",
+      "summary": "Full v7 source-exposed regression reached EDD 98.54, latency 14.44, quality issue rows 0/12."
+    },
+    {
+      "created_at": "2026-07-07T03:01:32",
+      "event": "final_smoke_after_l95",
+      "status": "pass",
+      "summary": "py_compile pass; fixtures 27/27; aggregate rows=49 scoreboard_rows=1; smoke passed with 60 worker outputs; diary forbidden-term check passed."
+    },
+    {
+      "created_at": "2026-07-07T03:02:57",
+      "event": "l96_preempt_estimate_price_false_positive_guard",
+      "status": "completed",
+      "summary": "Narrowed preempt marker to avoid ???? false positives; fixtures 28/28."
+    },
+    {
+      "created_at": "2026-07-07T03:03:37",
+      "event": "final_smoke_after_l96",
+      "status": "pass",
+      "summary": "py_compile pass; fixtures 28/28; aggregate rows=49 scoreboard_rows=1; smoke passed with 60 worker outputs; diary forbidden-term check passed."
+    }
+  ]
+}
