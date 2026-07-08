@@ -14,8 +14,9 @@ data/
 *.pdf
 data_list*.csv
 data_list*.xlsx
-# 단, 제출용 보고서 PDF는 커밋 허용 (원본 데이터 아님)
+# 단, 제출용 보고서/업무일지 PDF는 커밋 허용 (원본 데이터 아님)
 !보고서.pdf
+!업무일지.pdf
 
 # === 생성물 ===
 chroma_db/
